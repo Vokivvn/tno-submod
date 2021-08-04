@@ -1,0 +1,999 @@
+﻿################################
+## West Indies Federation Events - Panzer
+################################
+
+add_namespace = WIN
+
+#1965 Elections
+country_event = { #1965 Elections - Announcement
+	id = WIN.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.20"}
+	title = WIN.20.t
+	desc = WIN.20.desc
+
+	fire_only_once = yes
+	trigger = {
+		tag = WIN
+		date > 1965.5.1
+	}
+	mean_time_to_happen = {
+		days = 5
+	}
+	option = {
+		name = WIN.20.a
+		set_country_flag = WIN_Election_1965
+		hidden_effect = {
+			country_event = {id = WIN.21 days = 14}
+			country_event = {id = WIN.23 days = 90}
+			country_event = {id = WIN.24 days = 120}
+			country_event = {id = WIN.25 days = 97}
+			country_event = {id = WIN.26 days = 190}
+		}
+	}
+}
+
+country_event = { #Barrow announces candidacy
+	id = WIN.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.21"}
+	title = WIN.21.t
+	desc = WIN.21.desc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.21.a
+		add_political_power = -20
+		hidden_effect = {
+			country_event = {id = WIN.22 days = 30}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.22"}
+	title = WIN.22.t
+	desc = WIN.22.desc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.22.a
+		add_political_power = -20
+		add_popularity = {ideology = social_liberal popularity = -0.03}
+		add_popularity = {ideology = social_conservative popularity = -0.01}
+		add_popularity = {ideology = market_liberal popularity = -0.01}
+	}
+}
+
+country_event = { #Barrow or Adams for leader of party
+	id = WIN.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.23"}
+	title = WIN.23.t
+	desc = WIN.23.desc
+	picture = GFX_report_event_generic_conference
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.23.a
+		add_political_power = 50
+		hidden_effect = {
+			set_country_flag = WIN_1965_Adams
+		}
+	}
+	option = {
+		name = WIN.23.b
+		add_popularity = {ideology = social_liberal popularity = 0.05}
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Errol Barrow"
+				desc = "POLITICS_ERROL_BARROW_DESC"
+				picture = "Portrait_WIN_ERROL_BARROW.dds"
+				expire = "1987.1.1"
+				ideology = market_liberal_subtype
+			}
+			create_country_leader = {
+				name = "Errol Barrow"
+				desc = "POLITICS_ERROL_BARROW_DESC"
+				picture = "Portrait_WIN_ERROL_BARROW.dds"
+				expire = "1987.1.1"
+				ideology = social_liberal_subtype
+			}
+			create_country_leader = {
+				name = "Errol Barrow"
+				desc = "POLITICS_ERROL_BARROW_DESC"
+				picture = "Portrait_WIN_ERROL_BARROW.dds"
+				expire = "1987.1.1"
+				ideology = social_conservative_subtype
+			}
+			set_country_flag = WIN_1965_Barrow
+		}
+	}
+}
+
+country_event = { #debate
+	id = WIN.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.24"}
+	title = WIN.24.t
+	desc = WIN.24.desc
+	picture = GFX_report_event_german_politician_speech
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.24.a
+		add_popularity = {ideology = social_liberal popularity = 0.07}
+		add_popularity = {ideology = social_democrat popularity = -0.05}
+	}
+	option = {
+		name = WIN.24.b
+		add_popularity = {ideology = social_democrat popularity = 0.07}
+		add_popularity = {ideology = social_liberal popularity = -0.05}
+	}
+}
+
+country_event = { #rally in Bridgetown
+	id = WIN.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.25"}
+	title = WIN.25.t
+	desc = WIN.25.desc
+	picture = GFX_report_event_german_reichstag_gathering
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.25.a
+		add_popularity = {ideology = social_democrat popularity = 0.05}
+		add_popularity = {ideology = socialist popularity = 0.02}
+		add_popularity = {ideology = authoritarian_democrat popularity = 0.02}
+		add_political_power = -50
+	}
+}
+
+country_event = { #Final Results 1965
+	id = WIN.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.26"}
+	title = WIN.26.t
+	desc = WIN.26.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = WIN.26.a
+		add_popularity = { ideology = social_liberal popularity = 0.05}
+		clr_country_flag = WIN_Election_1965
+		country_event = {id = WIN.40 days = 4}
+	}
+	option = {
+		name = WIN.26.b
+		add_popularity = { ideology = social_democrat popularity = 0.1 }
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = yes
+		}
+		clr_country_flag = WIN_Election_1965
+
+		country_event = {id = WIN.30 days = 4}
+	}
+}
+
+#VICTORY OF DLP
+country_event = {
+	id = WIN.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.30"}
+	title = WIN.30.t
+	desc = WIN.30.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.30.a
+		set_country_flag = DLP_195_Victory
+		##load_focus_tree = WIN_dlp_1965
+
+		add_popularity = {ideology = social_democrat popularity = 0.03}
+		add_popularity = {ideology = socialist popularity = 0.02}
+
+
+	}
+}
+
+country_event = {
+	id = WIN.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.31"}
+	title = WIN.31.t
+	desc = WIN.31.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.30.a
+		add_popularity = {ideology = socialist popularity = 0.05}
+		add_popularity = {ideology = communist popularity = 0.02}
+		add_political_power = +70
+	}
+
+	option = {
+		name = WIN.30.a
+		add_popularity = {ideology = socialist popularity = -0.07}
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	id = WIN.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.35"}
+	title = WIN.35.t
+	desc = WIN.35.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.35.a
+		hidden_effect = {
+			country_event = {id = WIN.36 days = 20}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.36"}
+	title = WIN.36.t
+	desc = WIN.36.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.36.a
+		hidden_effect = {
+			country_event = {id = WIN.37 days = 24}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.37"}
+	title = WIN.37.t
+	desc = WIN.37.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.37.a
+		add_stability = -0.1
+		country_event = {id = WIN.38 days = 7}
+
+	}
+}
+
+country_event = {
+	id = WIN.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.38"}
+	title = WIN.38.t
+	desc = WIN.38.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.38.a
+		add_political_power = -200
+		add_stability = -0.25
+		set_country_flag = WIN_jam_ref
+		release = JAM
+		#remove_ideas = WIN_jamaican_nationalism
+		hidden_effect = {
+			country_event = {id = WIN.80 days = 10}
+		}
+	}
+}
+
+#FLP VICTORY
+country_event = {
+	id = WIN.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.40"}
+	title = WIN.40.t
+	desc = WIN.40.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.40.a
+		set_country_flag = WIN_FLP_Victory
+		##load_focus_tree = WIN_flp_1965
+	}
+}
+
+country_event = {
+	id = WIN.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.41"}
+	title = WIN.41.t
+	desc = WIN.41.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.41.a
+		#add_ideas = WIN_west_indies_economic_union
+		hidden_effect = {
+			country_event = {id = WIN.42 days = 28}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.42"}
+	title = WIN.42.t
+	desc = WIN.42.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.42.a
+		add_political_power = -70
+		add_popularity = {ideology = social_liberal popularity = -0.03}
+	}
+}
+
+country_event = {
+	id = WIN.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.43"}
+	title = WIN.43.t
+	desc = WIN.43.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.42.a
+		add_political_power = -90
+	}
+}
+
+
+
+#1967 JAMAICAN INDEPENDENCE
+country_event = {
+	id = WIN.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.50"}
+	title = WIN.50.t
+	desc = WIN.50.desc
+	#picture =
+
+	trigger = {
+		tag = WIN
+		date > 1966.11.1
+	}
+	mean_time_to_happen = {
+		days = 15
+	}
+	fire_only_once = yes
+	option = {
+		name = WIN.50.a
+		add_political_power = -80
+
+		#swap_ideas = {
+			#remove_idea = WIN_jamaican_nationalism
+			#add_idea = WIN_jamaican_nationalism2
+		#}
+
+		hidden_effect = {
+			country_event = {id = WIN.51 days = 20}
+		}
+
+	}
+}
+
+country_event = {
+	id = WIN.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.51"}
+	title = WIN.51.t
+	desc = WIN.51.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.51.a
+		add_political_power = -70
+		add_popularity = {ideology = authoritarian_democrat popularity = 0.1}
+		add_popularity = {ideology = social_democrat popularity = 0.03}
+		add_popularity = {ideology = socialist popularity = 0.03}
+		set_country_flag = WIN_1967_Independence
+		#load_focus_tree = west_crisis_1967
+
+	}
+}
+
+country_event = {
+	id = WIN.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.52"}
+	title = WIN.52.t
+	desc = WIN.52.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.52.a
+		hidden_effect = {
+			set_country_flag = WIN_diplo
+		}
+	}
+	option = {
+		name = WIN.52.b
+		hidden_effect = {
+			set_country_flag = WIN_direct
+		}
+	}
+}
+
+country_event = { #declare martial law
+	id = WIN.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.53"}
+	title = WIN.53.t
+	desc = WIN.53.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.53.a
+		#swap_ideas = {
+			#remove_idea = WIN_jamaican_nationalism2
+			#add_idea = WIN_jamaican_nationalism3
+		#}
+	}
+
+}
+
+country_event = { #economic concessions
+	id = WIN.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.54"}
+	title = WIN.54.t
+	desc = WIN.54.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.54.a
+		#swap_ideas = {
+			#remove_idea = WIN_jamaican_nationalism2
+			#add_idea = WIN_jamaican_nationalism4
+		#}
+	}
+
+}
+
+country_event = {
+	id = WIN.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.55"}
+	title = WIN.55.t
+	desc = WIN.55.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.55.a
+		hidden_effect = {
+			country_event = {id = WIN.69 days = 14}
+		}
+	}
+
+}
+
+country_event = {
+	id = WIN.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.56"}
+	title = WIN.56.t
+	desc = WIN.56.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.56.a
+		hidden_effect = {
+			country_event = {id = WIN.69 days = 14}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.69
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.69"}
+	title = WIN.69.t
+	desc = WIN.69.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		add_political_power = -100
+		hidden_effect = {
+			country_event = {id = WIN.70 days = 4}
+		}
+	}
+
+}
+
+country_event = { #Jamaican independence event
+	id = WIN.70
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.70"}
+	title = WIN.70.t
+	desc = WIN.70.desc
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.70.a
+
+		add_political_power = -100
+		add_popularity = {ideology = authoritarian_democrat popularity = -0.3}
+		clr_country_flag =  WIN_1967_Independence
+		set_country_flag = WIN_1967_collapse
+		set_global_flag = West_Indies_Collapse
+		release = JAM
+		#remove_ideas = WIN_jamaican_nationalism4
+		#remove_ideas = WIN_jamaican_nationalism3
+
+		hidden_effect = {country_event = {id = WIN.80 days = 7}}
+	}
+
+}
+
+#AFTERMATH OF INDEPENDENCE REFERENDUM 1965
+
+country_event = {
+	id = WIN.80
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.80"}
+	title = WIN.80.t
+	desc = WIN.80.desc
+	#picture
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = WIN.80.a
+			set_country_flag = WIN_1965_rip_jamaica
+			#load_focus_tree = WIN_jamaica_leaves
+			#swap_ideas = {
+				#remove_idea = WIN_splitting_apart
+				#add_idea = WIN_splitting_apart2
+			#}
+			hidden_effect = {
+				country_event = {id = WIN.81 days = 3}
+		}
+
+	}
+
+}
+
+country_event = {
+	id = WIN.81
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.81"}
+	title = WIN.81.t
+	desc = WIN.81.desc
+	#picture
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.81.a
+		add_political_power = -100
+		#add_ideas = WIN_economic_meltdown
+		hidden_effect = {
+			country_event = {id = WIN.82 days = 100}
+		}
+	}
+}
+
+country_event = { #Moves for Independence in T&T
+	id = WIN.82
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.82"}
+	title = WIN.82.t
+	desc = WIN.81.desc
+	#picture
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.82.a
+		add_political_power = -50
+		hidden_effect = {
+			country_event = {id = WIN.83 days = 15}
+		}
+	}
+}
+
+country_event = {#Referendum begins
+	id = WIN.83
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.83"}
+	title = WIN.83.t
+	desc = WIN.83.desc
+	#picture
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.83.a
+		add_political_power = -70
+		add_stability = -0.1
+	}
+}
+
+country_event = {#call in the USA?
+	id = WIN.84
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.84"}
+	title = WIN.84.t
+	desc = WIN.84.desc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.84.a
+		USA = {
+			country_event = { days = 1 id = USA.500 }
+		}
+	}
+
+	option = {
+		name = WIN.84.b
+		hidden_effect = {
+			country_event = {id = WIN.85 days = 15}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.85
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.85"}
+	title = WIN.85.t
+	desc = WIN.85.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.85.a
+		add_political_power = -100
+		release = TRI
+		#This probably just straight leads to the death of the Federation
+		country_event = {id = WIN.95 days = 7}
+		clr_country_flag = WIN_1965_rip_jamaica
+		USA = {
+			country_event = {id = 501 days = 1}
+		}
+
+	}
+}
+
+country_event = {#Next two events are in the wrong place
+	id = WIN.86
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.86"}
+	title = WIN.86.t
+	desc = WIN.86.desc
+	#picture
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.86.a
+		add_political_power = -70
+		#swap_ideas = {
+			#remove_idea =  WIN_economic_meltdown
+			#add_idea = WIN_economic_meltdown2
+		#}
+	}
+}
+
+country_event = {
+	id = WIN.87
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.87"}
+	title = WIN.87.t
+	desc = WIN.87.desc
+	#picture
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WIN.87.a
+		add_political_power = -100
+		add_popularity = {ideology = socialist popularity = 0.05}
+		add_popularity = {ideology = social_liberal popularity = 0.07}
+		add_popularity = {ideology = social_conservative popularity = 0.07}
+	}
+}
+
+####AFTERMATH OF JAMAICAN INDEPENDENCE 1967
+
+country_event = { #announces new crisis
+	id = WIN.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.130"}
+	title = WIN.130.t
+	desc = WIN.130.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.130.a
+		#add_ideas = WIN_the_new_crisis
+		hidden_effect = {
+			country_event = {id = WIN.131 days = 5}
+		}
+	}
+}
+
+country_event = {
+	id = WIN.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.131"}
+	title = WIN.131.t
+	desc = WIN.131.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.131.a
+		#add_ideas = WIN_economic_meltdown
+	}
+}
+
+#Order collapses
+country_event = {
+	id = WIN.95
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.95"}
+ 	title = WIN.95.t
+ 	desc = WIN.95.desc
+ 	picture = GFX_report_event_generic_rally
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Request US intervention
+ 		name = WIN.95.a
+		USA = {
+			country_event = { days = 1 id = USA.500 }
+		}
+ 	}
+	option = { #Attempt to disband
+ 		name = WIN.95.b
+		USA = {
+			country_event = { days = 1 id = USA.501 }
+		}
+ 	}
+}
+
+country_event = { #US agrees to annex us
+	id = WIN.96
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.96"}
+ 	title = WIN.96.t
+ 	desc = WIN.96.desc
+ 	picture = GFX_report_event_generic_sign_treaty1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.96.a
+		USA = {
+			annex_country = {
+				target = WIN
+				transfer_troops = yes
+			}
+		}
+		set_global_flag = west_indies_dead
+ 	}
+}
+
+country_event = { #US refused to annex us
+	id = WIN.97
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.97"}
+ 	title = WIN.97.t
+ 	desc = WIN.97.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier4
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.97.a
+		country_event = { days = 5 id = WIN.102 }
+ 	}
+}
+
+country_event = { #US forces intervention
+	id = WIN.98
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.98"}
+ 	title = WIN.98.t
+ 	desc = WIN.98.desc
+ 	picture = GFX_report_event_us_navy
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #bow
+ 		name = WIN.98.a
+		USA = {
+			annex_country = {
+				target = WIN
+				transfer_troops = yes
+			}
+		}
+		set_global_flag = west_indies_dead
+ 	}
+	option = { #try and refuse them
+ 		name = WIN.98.b
+		USA = {
+			country_event = { days = 1 id = USA.502 }
+		}
+ 	}
+}
+
+country_event = { #US allows us to disband
+	id = WIN.99
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.99"}
+ 	title = WIN.99.t
+ 	desc = WIN.99.desc
+ 	picture = GFX_report_event_generic_sign_treaty2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.99.a
+		country_event = { days = 5 id = WIN.102 }
+		set_global_flag = West_Indies_Disband
+ 	}
+}
+
+country_event = { #US declared war!
+	id = WIN.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.100"}
+ 	title = WIN.100.t
+ 	desc = WIN.100.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier4
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.100.a
+		set_global_flag = West_Indies_War
+ 	}
+}
+
+country_event = { #US backs down
+	id = WIN.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.101"}
+ 	title = WIN.101.t
+ 	desc = WIN.101.desc
+ 	picture = GFX_report_event_generic_sign_treaty2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.101.a
+		country_event = { days = 5 id = WIN.102 }
+ 	}
+}
+
+#Death of the Federation
+country_event = {
+	id = WIN.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.102"}
+ 	title = WIN.102.t
+ 	desc = WIN.102.desc
+ 	picture = GFX_report_event_generic_congress
+
+ 	trigger = {
+ 		tag = WIN
+		controls_state = 900
+		controls_state = 691
+		controls_state = 692
+		controls_state = 901
+		controls_state = 902
+		controls_state = 903
+		controls_state = 308
+		controls_state = 904
+		controls_state = 689
+ 	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+ 		name = WIN.102.a
+		set_global_flag = west_indies_dead
+		release = BRB
+		release = SLU
+		release = TRI
+		release = GND
+		release = SVI
+		release = DMI
+		release = JAM
+		release = ANT
+		release = SKN
+		release = CUR
+		release = GUD
+		release = MRT
+		USA = {
+			annex_country = {
+				target = WIN
+				transfer_troops = no
+			}
+		}
+ 	}
+}
+
+
+#FLAVOUR
+country_event = {
+	id = WIN.150
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.150"}
+	title = WIN.150.t
+	desc = WIN.150.desc
+	#picture
+	#trigger = {
+	#	tag = WIN
+	#	date > 1963.4.1
+	#}
+	#mean_time_to_happen = {
+	#	days = 1
+	#}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = WIN.150.a
+		add_political_power = 5
+	}
+}
+
+#new shit
+
+country_event = {
+	id = WIN.200
+	immediate = {log = "[GetDateText]: [Root.GetName]: event WIN.200"}
+	title = WIN.200.t
+	desc = WIN.200.d
+	#picture
+#	trigger = {
+		#
+#	}
+  is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = WIN.200.a
+		#load_focus_tree = { tree = win_introtree }
+		set_country_flag = WIN_intro_tree
+	}
+}

@@ -1,0 +1,4078 @@
+###########################################
+##  ██████╗ ███╗   ███╗ ██████╗██╗  ██╗  ##
+## ██╔═══██╗████╗ ████║██╔════╝██║ ██╔╝  ##
+## ██║   ██║██╔████╔██║██║     █████╔╝   ##
+## ██║   ██║██║╚██╔╝██║██║     ██╔═██╗   ##
+## ╚██████╔╝██║ ╚═╝ ██║╚██████╗██║  ██╗  ##
+##  ╚═════╝ ╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝  ##
+###########################################
+
+###########################################
+##======| Initial Karbyshev Tree |======###
+###=========| By Thunderslav |==========###
+###########################################
+shared_focus = {
+	id = OMS_initial_last_days_of_comrade_karbyshev
+	icon = GFX_OMS_last_days_of_karbyshev
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_last_days_of_comrade_karbyshev"
+		add_political_power = 50
+		custom_effect_tooltip = OMS_initial_last_days_of_comrade_karbyshev_tt
+		hidden_effect = {
+			country_event = { id = omsk.2 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_review_the_redemptionary_brigades
+	icon = GFX_OMS_review_the_redemptionary_brigades
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_last_days_of_comrade_karbyshev
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_initial_last_days_of_comrade_karbyshev
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_review_the_redemptionary_brigades"
+		country_event = { id = omsk.5 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_trust_in_yazov
+	icon = GFX_OMS_trust_in_yazov
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_review_the_redemptionary_brigades
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_initial_review_the_redemptionary_brigades
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_trust_in_yazov"
+		add_political_power = 35
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = { id = omsk.20 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_watch_the_borders
+	icon = GFX_OMS_watch_the_borders
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_trust_in_yazov
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_initial_trust_in_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_watch_the_borders"
+		571 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_a_quiet_war
+	icon = GFX_OMS_a_quiet_war
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_trust_in_yazov
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_initial_trust_in_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_a_quiet_war"
+		add_stability = 0.075
+		add_timed_idea = { idea = OMS_idea_quiet_war days = 730 }
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_against_the_old_guard
+	icon = GFX_OMS_against_the_old_guard
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_last_days_of_comrade_karbyshev
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_initial_last_days_of_comrade_karbyshev
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_against_the_old_guard"
+		custom_effect_tooltip = OMS_initial_against_the_old_guard_tt
+		hidden_effect = {
+			country_event = { id = omsk.16 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_enforce_discipline
+	icon = GFX_OMS_enforce_discipline
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_against_the_old_guard
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_initial_against_the_old_guard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_enforce_discipline"
+		custom_effect_tooltip = OMS_initial_enforce_discipline_tt
+		hidden_effect = {
+			country_event = { id = omsk.4 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_breaking_the_cliques
+	icon = GFX_OMS_breaking_the_cliques
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_against_the_old_guard
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_initial_against_the_old_guard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_breaking_the_cliques"
+		custom_effect_tooltip = OMS_initial_breaking_the_cliques_tt
+		hidden_effect = {
+			country_event = { id = omsk.18 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_the_final_speech
+	icon = GFX_OMS_last_speech
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_enforce_discipline
+	}
+	prerequisite = {
+		focus = OMS_initial_breaking_the_cliques
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_initial_enforce_discipline
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_the_final_speech"
+		custom_effect_tooltip = OMS_initial_the_final_speech_tt
+		hidden_effect = {
+			country_event = { id = omsk.19 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_lessons_of_the_first_trial
+	icon = GFX_OMS_lessons_from_the_first_trial
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_last_days_of_comrade_karbyshev
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_initial_last_days_of_comrade_karbyshev
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_lessons_of_the_first_trial"
+		army_experience = 10
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_the_steel_heart_of_omsk
+	icon = GFX_OMS_steel_heart_of_omsk
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_lessons_of_the_first_trial
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_initial_lessons_of_the_first_trial
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_the_steel_heart_of_omsk"
+		571 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		hidden_effect = {
+			country_event = { id = omsk.13 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_the_shield_of_the_motherland
+	icon = GFX_OMS_shield_of_the_motherland
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_the_steel_heart_of_omsk
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_initial_the_steel_heart_of_omsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_the_shield_of_the_motherland"
+		add_ideas = OMS_the_shield
+		hidden_effect = {
+			country_event = { id = omsk.17 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_remember_the_oath
+	icon = GFX_OMS_remember_the_oath
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_the_steel_heart_of_omsk
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_initial_the_steel_heart_of_omsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_remember_the_oath"
+		add_political_power = 50
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_initial_falling_snow
+	icon = GFX_OMS_death_of_karbyshev
+	cost = 3.75
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_initial_watch_the_borders
+	}
+	prerequisite = {
+		focus = OMS_initial_a_quiet_war
+	}
+	prerequisite = {
+		focus = OMS_initial_the_final_speech
+	}
+	prerequisite = {
+		focus = OMS_initial_the_shield_of_the_motherland
+	}
+	prerequisite = {
+		focus = OMS_initial_remember_the_oath
+	}
+	x = 5
+	y = 1
+	relative_position_id = OMS_initial_watch_the_borders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_initial_falling_snow"
+		custom_effect_tooltip = OMS_initial_falling_snow_tt
+		hidden_effect = {
+			country_event = { id = omsk.12 days = 3 }
+		}
+	}
+}
+
+#######################################
+##======| Initial Yazov  Tree |======##
+###=======| By Thunderslav |========###
+#######################################
+shared_focus = {
+	id = OMS_all_hail_comrade_yazov
+	icon = GFX_OMS_trust_in_yazov
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_all_hail_comrade_yazov"
+		add_stability = 0.05
+		add_political_power = 35
+		hidden_effect = {
+			country_event = { id = omskgauntlet.1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_a_chance_at_redemption
+	icon = GFX_OMS_a_chance_at_redemption
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_country_flag = OMS_the_capital_secured
+	}
+	prerequisite = {
+		focus = OMS_all_hail_comrade_yazov
+	}
+	x = -4
+	y = 1
+	relative_position_id = OMS_all_hail_comrade_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_chance_at_redemption"
+		add_ideas = tno_penal_system_penal_labor
+		add_political_power = -25
+		add_war_support = 0.075
+		country_event = { id = omsk.30 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_new_tactics
+	icon = GFX_OMS_new_tactics
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_a_chance_at_redemption
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_a_chance_at_redemption
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_new_tactics"
+		army_experience = 10
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_equip_the_auxiliaries
+	icon = GFX_OMS_equip_the_auxiliaries
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_a_chance_at_redemption
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_a_chance_at_redemption
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_equip_the_auxiliaries"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = OMS
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 350
+			producer = OMS
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_tap_the_black_gold
+	icon = GFX_OMS_tap_the_black_gold
+	cost = 3.33
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_country_flag = OMS_the_capital_secured
+	}
+	prerequisite = {
+		focus = OMS_all_hail_comrade_yazov
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_all_hail_comrade_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_tap_the_black_gold"
+		571 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_resource = {
+			type = oil
+			amount = 15
+			state = 571
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_rebuild_the_railways
+	icon = GFX_OMS_rebuild_the_railways
+	cost = 3.33
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 5
+	}
+	available = {
+		has_country_flag = OMS_the_capital_secured
+	}
+	prerequisite = {
+		focus = OMS_all_hail_comrade_yazov
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_all_hail_comrade_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_rebuild_the_railways"
+		TNO_improve_industrial_equipment_low = yes
+		571 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_undoing_bukharins_mess
+	icon = GFX_OMS_undoing_bukharins_mess
+	cost = 3.33
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 5
+	}
+	prerequisite = {
+		focus = OMS_tap_the_black_gold
+	}
+	prerequisite = {
+		focus = OMS_rebuild_the_railways
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_tap_the_black_gold
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_undoing_bukharins_mess"
+		custom_effect_tooltip = OMS_undoing_bukharins_mess_tt
+	}
+}
+
+shared_focus = {
+	id = OMS_the_new_order
+	icon = GFX_OMS_the_new_order
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_country_flag = OMS_the_capital_secured
+	}
+	prerequisite = {
+		focus = OMS_all_hail_comrade_yazov
+	}
+	x = 4
+	y = 1
+	relative_position_id = OMS_all_hail_comrade_yazov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_new_order"
+		country_event = { id = omsk.40 }
+		hidden_effect = {
+			country_event = { id = omsk.28 days = 7 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_why_we_fight
+	icon = GFX_OMS_why_we_fight
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_new_order
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_new_order
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_why_we_fight"
+		add_stability = 0.075
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_honor_the_old_general
+	icon = GFX_OMS_last_days_of_karbyshev
+	cost = 2
+	prerequisite = {
+		focus = OMS_the_new_order
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_new_order
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_honor_the_old_general"
+		add_war_support = 0.075
+		country_event = { id = omsk.29 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_fortress_omsk
+	icon = GFX_OMS_fortress_omsk
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_new_tactics
+	}
+	prerequisite = {
+		focus = OMS_equip_the_auxiliaries
+	}
+	prerequisite = {
+		focus = OMS_undoing_bukharins_mess
+	}
+	prerequisite = {
+		focus = OMS_why_we_fight
+	}
+	prerequisite = {
+		focus = OMS_honor_the_old_general
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_new_tactics
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_fortress_omsk"
+		571 = {
+			add_building_construction = {
+				type = bunker
+				level = 3
+				instant_build = yes
+				province = 10696
+			}
+		}
+		add_offsite_building = {
+			type = industrial_complex
+			level = 1
+		}
+		country_event = { id = omsk.31 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_plan_hydra
+	icon = GFX_OMS_plan_hydra
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_new_tactics
+	}
+	prerequisite = {
+		focus = OMS_equip_the_auxiliaries
+	}
+	prerequisite = {
+		focus = OMS_undoing_bukharins_mess
+	}
+	prerequisite = {
+		focus = OMS_why_we_fight
+	}
+	prerequisite = {
+		focus = OMS_honor_the_old_general
+	}
+	x = 7
+	y = 1
+	relative_position_id = OMS_new_tactics
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_plan_hydra"
+		add_ideas = OMS_idea_plan_hydra
+		army_experience = 15
+		country_event = { id = omsk.32 }
+	}
+}
+
+shared_focus = {
+	id = OMS_a_grip_of_cold_iron
+	icon = GFX_OMS_a_grip_of_cold_iron
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		hidden_trigger = {
+			NOT = {
+				has_country_flag = OMS_old_guard_uprising
+			}
+		}
+	}
+	prerequisite = {
+		focus = OMS_fortress_omsk
+	}
+	prerequisite = {
+		focus = OMS_plan_hydra
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_fortress_omsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_grip_of_cold_iron"
+		remove_ideas = OMS_new_boss
+		add_timed_idea = { idea = OMS_leadership_secured days = 365 }
+		country_event = { id = omsk.33 days = 1 }
+	}
+}
+
+######################################
+##======| Post-Bombing  Tree |======##
+###=======| By Thunderslav |========##
+######################################
+shared_focus = {
+	id = OMS_clear_skies
+	icon = GFX_OMS_clear_skies
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			has_idea = SIB_terror_bombing
+		}
+	}
+	bypass = {
+		NOT = {
+			has_idea = SIB_terror_bombing
+		}
+	}
+	x = 20
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_clear_skies"
+		custom_effect_tooltip = OMS_clear_skies_tt
+	}
+}
+
+shared_focus = {
+	id = OMS_the_task_ahead
+	icon = GFX_OMS_the_task_ahead
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_clear_skies
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_clear_skies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_task_ahead"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = OMS_fund_omsktransmash
+	icon = GFX_OMS_fund_omsktransmash
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_task_ahead
+	}
+	x = -3
+	y = 1
+	relative_position_id = OMS_the_task_ahead
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_fund_omsktransmash"
+		TNO_improve_industrial_expertise_med = yes
+		571 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = armor
+		}
+		hidden_effect = {
+			country_event = { id = omsk.26 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_an_elite_force
+	icon = GFX_OMS_an_elite_force
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_task_ahead
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_task_ahead
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_an_elite_force"
+		add_political_power = -35
+		TNO_improve_army_professionalism_high = yes
+		set_division_template_lock = {
+			division_template = "Chernaya Gvardiya"
+			is_locked = no
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_black_hand_of_yazov
+	icon = GFX_OMS_the_black_hand_of_yazov
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_task_ahead
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_task_ahead
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_black_hand_of_yazov"
+		add_political_power = 25
+		add_stability = 0.075
+		tno_security_improve = yes
+		if = {
+			limit = { has_dlc = "La Resistance" }
+			create_intelligence_agency = {
+				name = "Upravleniye Vnutrenney Bezopasnosti"
+				icon = "GFX_intelligence_agency_logo_oms"
+			}
+		}
+		hidden_effect = {
+			country_event = { id = omsk.34 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_enhanced_training_programs
+	icon = GFX_OMS_enhanced_training_programs
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_task_ahead
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_the_task_ahead
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_enhanced_training_programs"
+		add_political_power = -25
+		tno_training_improve = yes
+		hidden_effect = {
+			country_event = { id = omsk.35 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_scattered_depots
+	icon = GFX_OMS_scattered_depots
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_fund_omsktransmash
+	}
+	prerequisite = {
+		focus = OMS_an_elite_force
+	}
+	prerequisite = {
+		focus = OMS_the_black_hand_of_yazov
+	}
+	prerequisite = {
+		focus = OMS_enhanced_training_programs
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_fund_omsktransmash
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_scattered_depots"
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = OMS
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 250
+			producer = OMS
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 250
+			producer = OMS
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_test_their_mettle
+	icon = GFX_OMS_test_their_mettle
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_fund_omsktransmash
+	}
+	prerequisite = {
+		focus = OMS_an_elite_force
+	}
+	prerequisite = {
+		focus = OMS_the_black_hand_of_yazov
+	}
+	prerequisite = {
+		focus = OMS_enhanced_training_programs
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_fund_omsktransmash
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_test_their_mettle"
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 571
+				num_provinces = 3
+				on_win = omsk.21
+				on_lose = omsk.22
+			}
+			defender = {
+				state = 403
+				num_provinces = 5
+				on_win = omsk.23
+				on_lose = omsk.24
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_infiltrate_our_enemies
+	icon = GFX_OMS_infiltrate_our_enemies
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_fund_omsktransmash
+	}
+	prerequisite = {
+		focus = OMS_an_elite_force
+	}
+	prerequisite = {
+		focus = OMS_the_black_hand_of_yazov
+	}
+	prerequisite = {
+		focus = OMS_enhanced_training_programs
+	}
+	x = 5
+	y = 1
+	relative_position_id = OMS_fund_omsktransmash
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_infiltrate_our_enemies"
+		country_event = { id = omsk.36 }
+		hidden_effect = {
+			ISH = {
+				country_event = { id = omsk.25 days = 3 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_drums_of_war
+	icon = GFX_OMS_the_drums_of_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_scattered_depots
+	}
+	prerequisite = {
+		focus = OMS_test_their_mettle
+	}
+	prerequisite = {
+		focus = OMS_infiltrate_our_enemies
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_scattered_depots
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_drums_of_war"
+		custom_effect_tooltip = OMS_the_drums_of_war_tt
+		hidden_effect = {
+			load_focus_tree = {	tree = OMS_expansion_tree keep_completed = yes }
+		}
+	}
+}
+
+###################################
+##======| Expansion  Tree |======##
+###=====| By Thunderslav |======###
+###################################
+shared_focus = {
+	id = OMS_on_the_road_to_war
+	icon = GFX_GER_A_War_of_Attrition
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	x = 30
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_on_the_road_to_war"
+		country_event = { id = omskexp.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_sharpen_the_sword
+	icon = GFX_BAS_Foreign_Instructors
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_on_the_road_to_war
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_on_the_road_to_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_sharpen_the_sword"
+		army_experience = 10
+		country_event = { id = omskexp.2 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_ready_the_shield
+	icon = GFX_BAS_redoubt_preperations
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_on_the_road_to_war
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_on_the_road_to_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_ready_the_shield"
+		country_event = { id = omskexp.3 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_war_plan_tugarin
+	icon = GFX_generic_tyumen_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		ISH = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_sharpen_the_sword
+	}
+	prerequisite = {
+		focus = OMS_ready_the_shield
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_sharpen_the_sword
+	will_lead_to_war_with = ISH
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_war_plan_tugarin"
+		declare_war_on = {
+			target = ISH
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_take_the_black
+	icon = GFX_generic_omsk_ride
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 403
+		owns_state = 572
+	}
+	bypass = {
+		TOB = {
+			owns_state = 403
+			owns_state = 572
+		}
+	}
+	prerequisite = {
+		focus = OMS_war_plan_tugarin
+	}
+	mutually_exclusive = {
+		focus = OMS_a_pure_league
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_war_plan_tugarin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_take_the_black"
+		country_event = { id = omskexp.4 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_a_pure_league
+	icon = GFX_NIK_A_Harsh_Glare
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 403
+		owns_state = 572
+	}
+	bypass = {
+		TOB = {
+			owns_state = 403
+			owns_state = 572
+		}
+	}
+	prerequisite = {
+		focus = OMS_war_plan_tugarin
+	}
+	mutually_exclusive = {
+		focus = OMS_take_the_black
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_war_plan_tugarin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_pure_league"
+		add_political_power = 50
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.075
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_the_underground
+	icon = GFX_CHU_move_it_underground
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 403
+		owns_state = 572
+	}
+	bypass = {
+		TOB = {
+			owns_state = 403
+			owns_state = 572
+		}
+	}
+	prerequisite = {
+		focus = OMS_war_plan_tugarin
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_war_plan_tugarin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_the_underground"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		add_offsite_building = {
+			type = industrial_complex
+			level = 2
+		}
+		hidden_effect = {
+			country_event = { id = omskexp.17 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_war_plan_bogatyr
+	icon = GFX_generic_sverdlovsk_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		TOB = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_take_the_black
+		focus = OMS_a_pure_league
+	}
+	prerequisite = {
+		focus = OMS_expand_the_underground
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_take_the_black
+	will_lead_to_war_with = TOB
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_war_plan_bogatyr"
+		declare_war_on = {
+			target = TOB
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_study_their_tactics
+	icon = GFX_URL_experimental_training_methods
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 580
+		owns_state = 653
+	}
+	prerequisite = {
+		focus = OMS_war_plan_bogatyr
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_war_plan_bogatyr
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_study_their_tactics"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+		hidden_effect = {
+			country_event = { id = omskexp.5 days = 7 }
+			country_event = { id = omskexp.16 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_take_over_the_design_bureau
+	icon = GFX_TNO_Generic_Science02
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 580
+		owns_state = 653
+	}
+	prerequisite = {
+		focus = OMS_war_plan_bogatyr
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_war_plan_bogatyr
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_take_over_the_design_bureau"
+		add_ideas = TOB_sverdlovsk_design_bureau_idea
+		TNO_improve_research_facilities_med = yes
+	}
+}
+
+shared_focus = {
+	id = OMS_the_old_republic_crushed
+	icon = GFX_goal_ISH_Holding_Out
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = { country_exists = ISH }
+		NOT = { country_exists = TOB }
+	}
+	prerequisite = {
+		focus = OMS_study_their_tactics
+	}
+	prerequisite = {
+		focus = OMS_take_over_the_design_bureau
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_study_their_tactics
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_old_republic_crushed"
+		add_stability = 0.1
+		add_war_support = 0.1
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = OMS_efficient_supply_lines
+	icon = GFX_KHA_enhanced_equipment_channels
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_old_republic_crushed
+	}
+	x = -3
+	y = 1
+	relative_position_id = OMS_the_old_republic_crushed
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_efficient_supply_lines"
+		TNO_improve_industrial_equipment_med = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_a_new_bureaucracy
+	icon = GFX_CAU_purge_the_bureaucrats
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_old_republic_crushed
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_old_republic_crushed
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_new_bureaucracy"
+		country_event = { id = omskexp.6 }
+	}
+}
+
+shared_focus = {
+	id = OMS_loyalty_to_comrade_yazov
+	icon = GFX_POL_germanys_loyal_sons
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_old_republic_crushed
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_old_republic_crushed
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_loyalty_to_comrade_yazov"
+		add_war_support = 0.075
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.075
+		}
+		country_event = { id = omskexp.7 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_dispersed_industry
+	icon = GFX_generic_diplomacy_industrial
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_the_old_republic_crushed
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_the_old_republic_crushed
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_dispersed_industry"
+		add_ideas = OMS_idea_dispersed_industry
+	}
+}
+
+shared_focus = {
+	id = OMS_sweep_the_rest
+	icon = GFX_CHI_Strike_when_the_Iron_is_hot
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_efficient_supply_lines
+	}
+	prerequisite = {
+		focus = OMS_a_new_bureaucracy
+	}
+	prerequisite = {
+		focus = OMS_loyalty_to_comrade_yazov
+	}
+	prerequisite = {
+		focus = OMS_dispersed_industry
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_efficient_supply_lines
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_sweep_the_rest"
+		FAV = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+		KOM = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+		UDM = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_an_offer_they_cant_refuse
+	icon = GFX_generic_free_aviators_diplo
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		FAV = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_sweep_the_rest
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_sweep_the_rest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_an_offer_they_cant_refuse"
+		FAV = {
+			country_event = { id = omskexp.8 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_league_air_wings
+	icon = GFX_OMS_league_air_wings
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 579
+	}
+	prerequisite = {
+		focus = OMS_an_offer_they_cant_refuse
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_an_offer_they_cant_refuse
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_league_air_wings"
+		air_experience = 15
+		add_equipment_to_stockpile = {
+			type = fighter_equipment
+			amount = 75
+			producer = OMS
+		}
+		add_equipment_to_stockpile = {
+			type = CAS_equipment
+			amount = 75
+			producer = OMS
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_war_plan_solovey
+	icon = GFX_generic_yugra_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		KOM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_sweep_the_rest
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_sweep_the_rest
+	will_lead_to_war_with = KOM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_war_plan_solovey"
+		declare_war_on = {
+			target = KOM
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_press_them_into_service
+	icon = GFX_TNO_Forced_Conscription
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 581
+		owns_state = 756
+		owns_state = 844
+		owns_state = 845
+	}
+	prerequisite = {
+		focus = OMS_war_plan_solovey
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_war_plan_solovey
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_press_them_into_service"
+		add_manpower = 5000
+	}
+}
+
+shared_focus = {
+	id = OMS_yugorsk_prison_city
+	icon = GFX_TNO_generic_prison_camp
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 581
+		owns_state = 756
+		owns_state = 844
+		owns_state = 845
+	}
+	prerequisite = {
+		focus = OMS_press_them_into_service
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_press_them_into_service
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_yugorsk_prison_city"
+		country_event = { id = omskexp.11 days = 3 }
+		845 = {
+			add_building_construction = {
+				type = bunker
+				level = 4
+				instant_build = yes
+				province = 1771
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_war_plan_sadko
+	icon = GFX_generic_zlatoust_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		UDM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_sweep_the_rest
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_sweep_the_rest
+	will_lead_to_war_with = UDM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_war_plan_sadko"
+		declare_war_on = {
+			target = UDM
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_crack_open_the_armories
+	icon = GFX_generic_advanced_weapons
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 573
+		owns_state = 871
+	}
+	prerequisite = {
+		focus = OMS_war_plan_sadko
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_war_plan_sadko
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_crack_open_the_armories"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = UDM
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 150
+			producer = UDM
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 150
+			producer = UDM
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_seize_their_assets
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 573
+		owns_state = 871
+	}
+	prerequisite = {
+		focus = OMS_crack_open_the_armories
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_crack_open_the_armories
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_seize_their_assets"
+		573 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_war_plan_koschei
+	icon = GFX_generic_vorkuta_war
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		VOR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = OMS_seize_their_assets
+	}
+	prerequisite = {
+		focus = OMS_league_air_wings
+	}
+	prerequisite = {
+		focus = OMS_yugorsk_prison_city
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_seize_their_assets
+	will_lead_to_war_with = VOR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_war_plan_koschei"
+		declare_war_on = {
+			target = VOR
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_from_gulags_into_training_camps
+	icon = GFX_BAS_Hostile_Weather_Conditioning
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 863
+	}
+	prerequisite = {
+		focus = OMS_war_plan_koschei
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_war_plan_koschei
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_from_gulags_into_training_camps"
+		add_political_power = -25
+		tno_training_improve = yes
+		country_event = { id = omskexp.12 days = 4 }
+	}
+}
+
+shared_focus = {
+	id = OMS_solidify_control
+	icon = GFX_YUN_Establish_Control
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_from_gulags_into_training_camps
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_from_gulags_into_training_camps
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_solidify_control"
+		add_political_power = 15
+		add_stability = 0.075
+		hidden_effect = {
+			country_event = { id = omskexp.13 days = 4 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_integrate_their_nkvd
+	icon = GFX_TNO_generic_soviet_nkvd
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 863
+	}
+	prerequisite = {
+		focus = OMS_war_plan_koschei
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_war_plan_koschei
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_integrate_their_nkvd"
+		add_ideas = OMS_vorkuta_nkvd
+		VOR = {
+			every_unit_leader = {
+				limit = {
+					OR = {
+						has_id = 3526
+					}
+				}
+				set_nationality = OMS
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_shadows_over_west_siberia
+	icon = GFX_UPO_From_the_Shadows
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_integrate_their_nkvd
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_integrate_their_nkvd
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_shadows_over_west_siberia"
+		add_political_power = 35
+		country_event = { id = omskexp.14 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_our_authority_secured
+	icon = GFX_OMS_our_authority_secured
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = OMS_solidify_control
+	}
+	prerequisite = {
+		focus = OMS_shadows_over_west_siberia
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_solidify_control
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_our_authority_secured"
+		add_political_power = 100
+		country_event = { id = omskexp.15 days = 1 }
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+#####################################
+####======| Regional Tree |======####
+###======| By Thunderslav |=======###
+#####################################
+
+### Regional Political Tree ###
+shared_focus = {
+	id = OMS_establishing_a_foothold
+	icon = GFX_OMS_why_we_fight
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_establishing_a_foothold"
+		add_stability = 0.025
+		RUS_integration_cost_days_decrease = yes
+		add_political_power = 150
+		country_event = { id = omskreg.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_securing_the_people
+	icon = GFX_OMS_a_chance_at_redemption
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_establishing_a_foothold
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_establishing_a_foothold
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_securing_the_people"
+		add_political_power = 50
+		swap_ideas = {
+			remove_idea = OMS_vorkuta_nkvd
+			add_idea = OMS_securing_the_people_idea
+		}
+		RUS_decrease_administrative_strain = yes
+		country_event = { id = omskreg.2 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_an_end_to_frivolous_luxury
+	icon = GFX_OMS_An_End_to_Frivolous_Luxuries
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_securing_the_people
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_securing_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_an_end_to_frivolous_luxury"
+		add_ideas = OMS_an_end_to_luxury
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.025
+		}
+		country_event = { id = omskreg.3 days = 1 }
+		add_to_variable = { money_reserves = 350 }	
+		custom_effect_tooltip = econ_increase_money_reserves
+	}
+}
+
+shared_focus = {
+	id = OMS_new_regional_commissariats
+	icon = GFX_RAJ_National_Land_Reform
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_securing_the_people
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_securing_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_new_regional_commissariats"
+		RUS_decrease_administrative_strain = yes
+		add_political_power = 15
+	}
+}
+
+shared_focus = {
+	id = OMS_a_society_on_war_footing
+	icon = GFX_PRM_A_City_On_War_Footing
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_an_end_to_frivolous_luxury
+	}
+	prerequisite = {
+		focus = OMS_new_regional_commissariats
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_an_end_to_frivolous_luxury
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_society_on_war_footing"
+		swap_ideas = {
+			remove_idea = OMS_an_end_to_luxury
+			add_idea = OMS_an_end_to_luxury_2
+		}
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = OMS_lessons_from_the_gauntlet
+	icon = GFX_OMS_a_grip_of_cold_iron
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_establishing_a_foothold
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_establishing_a_foothold
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_lessons_from_the_gauntlet"
+		add_stability = 0.025
+		country_event = { id = omskreg.8 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_committee_of_internal_investigation
+	icon = GFX_OMS_breaking_the_cliques
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_lessons_from_the_gauntlet
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_lessons_from_the_gauntlet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_committee_of_internal_investigation"
+		RUS_decrease_administrative_strain = yes
+		TNO_improve_army_professionalism_low = yes
+		country_event = { id = omskreg.9 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_hunt_down_batovs_bandits
+	icon = GFX_OMS_the_new_order
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 90 }
+	prerequisite = {
+		focus = OMS_establishing_a_foothold
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_establishing_a_foothold
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_hunt_down_batovs_bandits"
+		custom_effect_tooltip = OMS_hunt_down_batovs_bandits_tt
+		set_country_flag = OMS_batov_decisions_set_1
+		country_event = { id = omskreg.4 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_strike_from_within
+	icon = GFX_OMS_infiltrate_our_enemies
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 90 }
+	prerequisite = {
+		focus = OMS_hunt_down_batovs_bandits
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_hunt_down_batovs_bandits
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_strike_from_within"
+		custom_effect_tooltip = OMS_strike_from_within_tt
+		set_country_flag = OMS_batov_decisions_set_2
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = OMS_raid_the_mountain_holdouts
+	icon = GFX_YUN_Mountain_People
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 90 }
+	prerequisite = {
+		focus = OMS_hunt_down_batovs_bandits
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_hunt_down_batovs_bandits
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_raid_the_mountain_holdouts"
+		custom_effect_tooltip = OMS_raid_the_mountain_holdouts_tt
+		set_country_flag = OMS_batov_decisions_set_3
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		country_event = { id = omskreg.5 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_erase_their_legacy
+	icon = GFX_OMS_erase_their_legacy
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 90 }
+	prerequisite = {
+		focus = OMS_strike_from_within
+	}
+	prerequisite = {
+		focus = OMS_raid_the_mountain_holdouts
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_strike_from_within
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_erase_their_legacy"
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.20
+		}
+		country_event = { id = omskreg.6 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_three_theses
+	icon = GFX_OMS_the_task_ahead
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_a_society_on_war_footing
+	}
+	prerequisite = {
+		focus = OMS_erase_their_legacy
+	}
+	prerequisite = {
+		focus = OMS_the_committee_of_internal_investigation
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_the_committee_of_internal_investigation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_three_theses"
+		RUS_decrease_administrative_strain = yes
+		country_event = { id = omskreg.7 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_for_the_good_of_russia
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_the_three_theses
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_the_three_theses
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_for_the_good_of_russia"
+		add_ideas = OMS_a_plan_for_russia
+	}
+}
+
+shared_focus = {
+	id = OMS_the_great_trial_above_all
+	icon = GFX_OMS_The_Great_Trial_Above_All
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_the_three_theses
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_the_three_theses
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_great_trial_above_all"
+		swap_ideas = {
+			remove_idea = OMS_nothing_left_to_lose
+			add_idea = OMS_nothing_left_to_lose_2
+		}
+		country_event = { id = omskreg.11 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_duty_of_the_black_league
+	icon = GFX_OMS_remember_the_oath
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_the_three_theses
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_the_three_theses
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_duty_of_the_black_league"
+		add_political_power = 50
+		country_event = { id = omskreg.12 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_program_of_national_action
+	icon = GFX_OMS_last_speech
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_for_the_good_of_russia
+	}
+	prerequisite = {
+		focus = OMS_the_great_trial_above_all
+	}
+	prerequisite = {
+		focus = OMS_the_duty_of_the_black_league
+	} 
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_great_trial_above_all
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_program_of_national_action"
+		RUS_decrease_administrative_strain = yes
+		swap_ideas = {
+			remove_idea = OMS_a_plan_for_russia
+			add_idea = OMS_a_plan_for_russia_2
+		}
+		country_event = { id = omskreg.10 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_watchful_eye_of_the_directorate
+	icon = GFX_OMS_The_Watchful_Eye_Of_The_Directorate
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_for_the_good_of_russia
+	}
+	prerequisite = {
+		focus = OMS_the_great_trial_above_all
+	}
+	prerequisite = {
+		focus = OMS_the_duty_of_the_black_league
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_great_trial_above_all
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_watchful_eye_of_the_directorate"
+		tno_security_improve = yes
+		country_event = { id = omskreg.13 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_a_quiet_rage
+	icon = GFX_OMS_our_authority_secured
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 80 }
+	prerequisite = {
+		focus = OMS_the_program_of_national_action
+	}
+	prerequisite = {
+		focus = OMS_the_watchful_eye_of_the_directorate
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_program_of_national_action
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_quiet_rage"
+		add_political_power = 100
+		country_event = { id = omskreg.14 days = 1 }
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+### Regional Economy Tree ###
+shared_focus = {
+	id = OMS_the_state_development_directorate
+	icon = GFX_OMS_fund_omsktransmash
+	cost = 3.6
+	x = 17
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_state_development_directorate"
+		country_event = { id = omskreg.15 days = 1 }
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = industry
+		}
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = OMS_a_new_sibplan
+	icon = GFX_MAG_Siberian_Factories
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_state_development_directorate
+	}
+	x = -3
+	y = 1
+	relative_position_id = OMS_the_state_development_directorate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_new_sibplan"
+		add_timed_idea = { idea = OMS_a_new_sibplan_idea days = 1080 }
+		add_to_variable = { GDP_growth = 0.01 }
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+	}
+}
+
+shared_focus = {
+	id = OMS_total_industrial_nationalization
+	icon = GFX_GER_SGR_houses_to_factories
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_new_sibplan
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_a_new_sibplan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_total_industrial_nationalization"
+		871 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		573 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		653 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_militarized_railway_system
+	icon = GFX_OMS_rebuild_the_railways
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_new_sibplan
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_a_new_sibplan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_militarized_railway_system"
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					infrastructure > 9 
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					infrastructure > 9 
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					infrastructure > 9 
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					infrastructure > 9 
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					infrastructure > 9 
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_to_variable = { GDP = 85 }
+		custom_effect_tooltip = econ_increase_GDP_small
+	}
+}
+
+shared_focus = {
+	id = OMS_optimize_agricultural_output
+	icon = GFX_BRG_Focus_Automated_Agricultural_Practices
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_new_sibplan
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_a_new_sibplan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_optimize_agricultural_output"
+		random_owned_controlled_state = {
+			limit = {
+				OR = {
+					has_state_category = rural
+					has_state_category = town
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			limit = {
+				OR = {
+					has_state_category = rural
+					has_state_category = town
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		TNO_improve_agriculture_high = yes
+		TNO_improve_poverty_med = yes
+		add_to_variable = { national_debt = 100 }
+		add_to_variable = { GDP_growth = 0.01 }
+		custom_effect_tooltip = econ_increase_GDP_small
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_the_industrial_cadres
+	icon = GFX_YUN_Every_Woman_A_Worker
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_total_industrial_nationalization
+	}
+	prerequisite = {
+		focus = OMS_militarized_railway_system
+	}
+	prerequisite = {
+		focus = OMS_optimize_agricultural_output
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_militarized_railway_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_the_industrial_cadres"
+		TNO_improve_industrial_expertise_high = yes
+		country_event = { id = omskreg.16 days = 1 }
+		add_to_variable = { GDP = 25 }
+		custom_effect_tooltip = econ_increase_GDP_small
+	}
+}
+
+shared_focus = {
+	id = OMS_better_tools
+	icon = GFX_CHI_New_Production_Tools
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_total_industrial_nationalization
+	}
+	prerequisite = {
+		focus = OMS_militarized_railway_system
+	}
+	prerequisite = {
+		focus = OMS_optimize_agricultural_output
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_militarized_railway_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_better_tools"
+		TNO_improve_industrial_equipment_high = yes
+		country_event = { id = omskreg.17 days = 1 }
+		add_to_variable = { national_debt = 150 }
+		add_to_variable = { GDP = 60 }
+		custom_effect_tooltip = econ_increase_GDP_small
+		custom_effect_tooltip = econ_increase_debt_small
+	}
+}
+
+shared_focus = {
+	id = OMS_new_urban_development_programs
+	icon = GFX_JAP_Horizontal_Urban_Density
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_the_industrial_cadres
+	}
+	prerequisite = {
+		focus = OMS_better_tools
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_expand_the_industrial_cadres
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_new_urban_development_programs"
+		capital_scope = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			hidden_effect = {
+				add_manpower = 320500
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				OR = {
+					has_state_category = large_town
+					has_state_category = city
+					has_state_category = large_city
+					has_state_category = metropolis
+					has_state_category = megalopolis
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			hidden_effect = {
+				add_manpower = 210000
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				OR = {
+					has_state_category = large_town
+					has_state_category = city
+					has_state_category = large_city
+					has_state_category = metropolis
+					has_state_category = megalopolis
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			hidden_effect = {
+				add_manpower = 165000
+			}
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					has_state_category = town
+					has_state_category = rural
+				}
+				add_manpower = -75000
+			}
+			country_event = { id = omskreg.18 days = 1 }
+		}
+		custom_effect_tooltip = OMS_new_urban_development_programs_tt
+		add_to_variable = { GDP_growth = 0.01 }
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+	}
+}
+
+shared_focus = {
+	id = OMS_foundries_of_war
+	icon = GFX_OMS_steel_heart_of_omsk
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_new_urban_development_programs
+	}
+	prerequisite = {
+		focus = OMS_expand_the_industrial_cadres
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_new_urban_development_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_foundries_of_war"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		TNO_improve_industrial_equipment_med = yes
+		add_to_variable = { national_debt = 500 }
+		custom_effect_tooltip = econ_increase_debt_large
+	}
+}
+
+shared_focus = {
+	id = OMS_the_resource_consolidation_commission
+	icon = GFX_TOB_The_Resources_of_Siberia
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_new_urban_development_programs
+	}
+	prerequisite = {
+		focus = OMS_better_tools
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_new_urban_development_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_resource_consolidation_commission"
+		580 = {
+			add_resource = {
+				type = steel
+				amount = 20
+			}
+		}
+		581 = {
+			add_resource = {
+				type = chromium
+				amount = 20
+			}
+		}
+		653 = {
+			add_resource = {
+				type = oil
+				amount = 20
+			}
+		}
+		TNO_improve_industrial_expertise_med = yes
+		add_to_variable = { national_debt = 350 }
+		custom_effect_tooltip = econ_increase_debt
+	}
+}
+
+shared_focus = {
+	id = OMS_research_and_development_initiatives
+	icon = GFX_CHI_Teach_The_Sciences
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_state_development_directorate
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_the_state_development_directorate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_research_and_development_initiatives"
+		TNO_improve_research_facilities_high = yes
+		add_to_variable = { national_debt = 180 }
+		custom_effect_tooltip = econ_increase_debt_small
+	}
+}
+
+shared_focus = {
+	id = OMS_project_kamera
+	icon = GFX_Generic_Gas_Soldier
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_research_and_development_initiatives
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_research_and_development_initiatives
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_project_kamera"
+		add_ideas = OMS_project_kamera_idea
+		country_event = { id = omskreg.19 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_black_budget
+	icon = GFX_GER_burn_the_blacklist
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_research_and_development_initiatives
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_research_and_development_initiatives
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_black_budget"
+		country_event = { id = omskreg.20 days = 1 }
+		add_to_variable = { misc_costs = 250 }
+		custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+	}
+}
+
+shared_focus = {
+	id = OMS_an_all_league_education
+	icon = GFX_OMS_An_All_League_Education
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_project_kamera
+	}
+	prerequisite = {
+		focus = OMS_the_black_budget
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_project_kamera
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_an_all_league_education"
+		TNO_improve_academic_base_high = yes
+		add_to_variable = { GDP = 90 }
+		add_to_variable = { national_debt = 150 }
+		custom_effect_tooltip = econ_increase_GDP_small
+		custom_effect_tooltip = econ_increase_debt_small
+		hidden_effect = {
+			country_event = { id = omskreg.29 days = 14	random = 72	}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_national_redoubt_program
+	icon = GFX_OMS_fortress_omsk
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_an_all_league_education
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_an_all_league_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_national_redoubt_program"
+		custom_effect_tooltip = OMS_national_redoubt_program_tt
+		set_country_flag = OMS_national_redoubt_program_flag
+		hidden_effect = {
+			country_event = { id = omskreg.28 days = 21	random = 72	}
+		}
+	}
+}
+
+### Regional Military Tree ###
+shared_focus = {
+	id = OMS_the_russian_national_army
+	icon = GFX_OMS_an_elite_force
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 29
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_russian_national_army"
+		army_experience = 15
+		country_event = { id = omskreg.21 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_tactical_analysis
+	icon = GFX_OMS_new_tactics
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_russian_national_army
+	}
+	x = -3
+	y = 1
+	relative_position_id = OMS_the_russian_national_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_tactical_analysis"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_finest_armor
+	icon = GFX_KEM_Columns_of_Tanks
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_tactical_analysis
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_tactical_analysis
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_finest_armor"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = armor
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_aerial_superiority
+	icon = GFX_OMS_clear_skies
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_tactical_analysis
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_tactical_analysis
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_aerial_superiority"
+		air_experience = 25
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = air_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_experimental_designs
+	icon = GFX_TNO_generic_gun_production
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_tactical_analysis
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_tactical_analysis
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_experimental_designs"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_spetsgruppa_v
+	icon = GFX_OMS_Spetsgruppa_V
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_finest_armor
+	}
+	prerequisite = {
+		focus = OMS_aerial_superiority
+	}
+	prerequisite = {
+		focus = OMS_experimental_designs
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_aerial_superiority
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_spetsgruppa_v"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = special_forces_tech
+		}
+		country_event = { id = omskreg.22 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_a_will_of_iron
+	icon = GFX_IBR_Iron_Fist
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_russian_national_army
+	}
+	x = 3
+	y = 1
+	relative_position_id = OMS_the_russian_national_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_will_of_iron"
+		army_experience = 20
+		TNO_improve_army_professionalism_med = yes
+		country_event = { id = omskreg.23 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_monitored_dedovshchina
+	icon = GFX_OMS_enhanced_training_programs
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_will_of_iron
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_a_will_of_iron
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_monitored_dedovshchina"
+		add_war_support = 0.05
+		country_event = { id = omskreg.24 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_isd_field_commissars
+	icon = GFX_YUN_New_Officers
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_will_of_iron
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_a_will_of_iron
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_isd_field_commissars"
+		add_ideas = OMS_isd_field_commissars_idea
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_the_vorkuta_training_center
+	icon = GFX_MAG_The_Siberian_School
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_monitored_dedovshchina
+	}
+	prerequisite = {
+		focus = OMS_isd_field_commissars
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_monitored_dedovshchina
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_the_vorkuta_training_center"
+		TNO_improve_army_professionalism_med = yes
+		country_event = { id = omskreg.25 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_bolster_the_auxiliaries
+	icon = GFX_OMS_review_the_redemptionary_brigades
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_spetsgruppa_v
+	}
+	prerequisite = {
+		focus = OMS_expand_the_vorkuta_training_center
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_spetsgruppa_v
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_bolster_the_auxiliaries"
+		add_ideas = OMS_expanded_auxiliaries
+	}
+}
+
+shared_focus = {
+	id = OMS_a_professional_core
+	icon = GFX_OMS_shield_of_the_motherland
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_spetsgruppa_v
+	}
+	prerequisite = {
+		focus = OMS_expand_the_vorkuta_training_center
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_expand_the_vorkuta_training_center
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_professional_core"
+		TNO_improve_army_professionalism_high = yes
+		country_event = { id = omskreg.26 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_marching_for_vengeance
+	icon = GFX_OMS_Marching_for_Vengeance
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_bolster_the_auxiliaries
+	}
+	prerequisite = {
+		focus = OMS_a_professional_core
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_bolster_the_auxiliaries
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_marching_for_vengeance"
+		country_event = { id = omskreg.27 days = 1 }
+	}
+}
+
+### Regional Diplo Tree ###
+shared_focus = {
+	id = OMS_our_image_abroad
+	icon = GFX_OMS_our_image_abroad
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 38
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_our_image_abroad"
+		country_event = { id = omskdiplo.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_operation_potemkin
+	icon = GFX_USA_Keep_It_Clean2
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_our_image_abroad
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_our_image_abroad
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_operation_potemkin"
+		custom_effect_tooltip = OMS_operation_potemkin_tt
+		add_political_power = 75
+		hidden_effect = {
+			set_politics = {
+				ruling_party = despotism
+			}
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.55
+			}
+			create_country_leader = {
+				name = "Dmitry Yazov"
+				desc = "POLITICS_DMITRY_YAZOV_DESC"
+				picture = "Portrait_Omsk_Dmitry_Yazov.dds"
+				expire = "1999.1.1"
+				ideology = despotism_subtype
+				traits = {
+					
+				}
+			}
+			set_party_name = {
+				ideology = ultranational_socialism
+				long_name = "Chernaya Liga"
+				name = "Chernaya Liga"
+			}
+			set_party_name = {
+				ideology = despotism
+				long_name = "Chernaya Liga"
+				name = "Chernaya Liga"
+			}
+			set_cosmetic_tag = OMS_POTEMKIN
+		}
+		country_event = { id = omskdiplo.2 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_appeal_for_recognition
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_operation_potemkin
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_operation_potemkin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_appeal_for_recognition"
+		USA = {
+			country_event = { id = omskdiplo.3 days = 1 }
+		}
+		JAP = {
+			country_event = { id = omskdiplo.6 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_aid_for_the_reconstruction
+	icon = GFX_CAU_stop_the_shipments
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_appeal_for_recognition
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_appeal_for_recognition
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_aid_for_the_reconstruction"
+		country_event = { id = omskdiplo.11 days = 1 }
+		add_to_variable = { money_reserves = 650 }
+		custom_effect_tooltip = econ_increase_money_reserves_large
+	}
+}
+
+shared_focus = {
+	id = OMS_a_message_to_germania
+	icon = GFX_UPO_A_Gift_to_Germany
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_our_image_abroad
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_our_image_abroad
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_message_to_germania"
+		if = {
+			limit = {
+				GER = {
+					has_country_leader = {
+						name = "Albert Speer"
+						ruling_only = yes
+					}
+				}
+			}
+			GER = {
+				country_event = { id = omskdiplo.14 days = 1 }
+			}
+		}
+		if = {
+			limit = {
+				GER = {
+					has_country_leader = {
+						name = "Martin Bormann"
+						ruling_only = yes
+					}
+				}
+			}
+			GER = {
+				country_event = { id = omskdiplo.15 days = 1 }
+			}
+		}
+		if = {
+			limit = {
+				GER = {
+					has_country_leader = {
+						name = "Hermann Göring"
+						ruling_only = yes
+					}
+				}
+			}
+			GER = {
+				country_event = { id = omskdiplo.16 days = 1 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_start_the_illegals_program
+	icon = GFX_OMS_start_the_illegals_program
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_message_to_germania
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_a_message_to_germania
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_start_the_illegals_program"
+		MCW = {
+			add_stability = -0.05
+		}
+		OST = {
+			add_stability = -0.05
+		}
+		UKR = {
+			add_stability = -0.05
+		}
+		GER = {
+			country_event = { id = omskdiplo.13 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_directorate_of_foreign_activities
+	icon = GFX_GER_internationale_kondorbataillone
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_our_image_abroad
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_our_image_abroad
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_directorate_of_foreign_activities"
+		country_event = { id = omskdiplo.19 days = 1 }
+		every_other_country = {
+			limit = {
+				is_neighbor_of = OMS
+			}
+			add_war_support = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_denounce_the_warlords
+	icon = GFX_UPO_rally_the_russians
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_directorate_of_foreign_activities
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_the_directorate_of_foreign_activities
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_denounce_the_warlords"
+		every_other_country = {
+			limit = {
+				is_russian_nation = yes
+			}
+			country_event = { id = omskdiplo.17 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_agents_in_kazakhstan
+	icon = GFX_UPO_From_the_Shadows
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_denounce_the_warlords
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_denounce_the_warlords
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_agents_in_kazakhstan"
+		every_country = {
+			limit = {
+				is_kazakh_nation = yes
+			}
+			add_war_support = -0.10
+			country_event = { id = omskdiplo.18 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_foundations_laid
+	icon = GFX_OST_A_better_world
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_start_the_illegals_program
+	}
+	prerequisite = {
+		focus = OMS_aid_for_the_reconstruction
+	}
+	prerequisite = {
+		focus = OMS_agents_in_kazakhstan
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_start_the_illegals_program
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_foundations_laid"
+		country_event = { id = omskdiplo.20 days = 1 }
+	}
+}
+
+##################################################
+##============| Superregional Tree |============##
+##=====| Design by Barry Morris Goldwater |=====##
+##################################################
+
+shared_focus = {
+	id = OMS_the_reclamation_government
+	icon = GFX_OMS_review_the_redemptionary_brigades
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_reclamation_government"
+		add_political_power = 100
+		country_event = { id = omsksr.1 days = 1 }
+		hidden_effect = {
+			every_country = {
+				news_event = { id = omsksr.2 days = 3 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_national_survival
+	icon = GFX_OMS_an_elite_force
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_reclamation_government
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_reclamation_government
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_national_survival"
+		country_event = { id = omsksr.3 days = 1 }
+		TNO_improve_poverty_med = yes
+	}
+}
+
+shared_focus = {
+	id = OMS_a_societal_redoubt
+	icon = GFX_OMS_fortress_omsk
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_national_survival
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_national_survival
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_a_societal_redoubt"
+		custom_effect_tooltip = OMS_a_societal_redoubt_tt
+		set_country_flag = OMS_a_societal_redoubt_flag
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_the_state_development_directorate
+	icon = GFX_OMS_scattered_depots
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_societal_redoubt
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_a_societal_redoubt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_the_state_development_directorate"
+		TNO_improve_industrial_equipment_med = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		add_to_variable = { GDP_growth = 0.005 }
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+	}
+}
+
+shared_focus = {
+	id = OMS_waste_not_want_not
+	icon = GFX_YUN_No_More_Waste
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_the_state_development_directorate
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_expand_the_state_development_directorate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_waste_not_want_not"
+		tno_economic_focus_improve = yes
+	}
+}
+
+shared_focus = {
+	id = OMS_fires_of_hell
+	icon = GFX_OMO_Yet_The_Darkness_Did_Not_Overcome
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_a_societal_redoubt
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_a_societal_redoubt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_fires_of_hell"
+		country_event = { id = omsksr.4 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_the_system
+	icon = GFX_OMS_new_tactics
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_national_survival
+		focus = OMS_national_reconstruction
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_national_survival
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_the_system"
+		add_ideas = OMS_expanded_system
+		hidden_effect = {
+			country_event = { id = omsksr.33 days = 21 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_escalate_potemkin
+	icon = GFX_TNO_generic_public_houses
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_the_system
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_expand_the_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_escalate_potemkin"
+		USA = {
+			country_event = { id = omsksr.6 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_contacts_in_moskowien
+	icon = GFX_MCW_A_Door_To_The_Russian_Hell
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_the_system
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_expand_the_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_contacts_in_moskowien"
+		country_event = { id = omsksr.10 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_first_draft
+	icon = GFX_UPO_six_million_germans
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_escalate_potemkin
+	}
+	prerequisite = {
+		focus = OMS_contacts_in_moskowien
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_escalate_potemkin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_first_draft"
+		country_event = { id = omsksr.12 days = 1 }
+		add_war_support = 0.025
+	}
+}
+
+shared_focus = {
+	id = OMS_warnings_from_within
+	icon = GFX_OMS_death_of_karbyshev
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_fires_of_hell
+		focus = OMS_venerate_the_front
+	}
+	prerequisite = {
+		focus = OMS_the_first_draft
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_the_first_draft
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_warnings_from_within"
+		custom_effect_tooltip = OMS_warnings_from_within_tt
+		hidden_effect = {
+			country_event = { id = omsksr.18 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_national_reconstruction
+	icon = GFX_OMS_rebuild_the_railways
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_reclamation_government
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_reclamation_government
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_national_reconstruction"
+		add_timed_idea = { idea = OMS_national_reconstruction_idea days = 540 }
+	}
+}
+
+shared_focus = {
+	id = OMS_dewarlordization_trials
+	icon = GFX_OMS_infiltrate_our_enemies
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_national_reconstruction
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_national_reconstruction
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_dewarlordization_trials"
+		country_event = { id = omsksr.13 days = 1 }
+		hidden_effect = {
+			country_event = { id = omsksr.26 days = 8 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_reintegrate_the_armies
+	icon = GFX_OMS_enhanced_training_programs
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_dewarlordization_trials
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_dewarlordization_trials
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_reintegrate_the_armies"
+		country_event = { id = omsksr.16 days = 1 }
+		TNO_improve_army_professionalism_high = yes
+
+	}
+}
+
+shared_focus = {
+	id = OMS_onwards_to_berlin
+	icon = GFX_OMS_onwards_to_berlin
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_reintegrate_the_armies
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_reintegrate_the_armies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_onwards_to_berlin"
+		country_event = { id = omsksr.17 days = 1 }
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = OMS_venerate_the_front
+	icon = GFX_WRS_The_Red_Junta
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_dewarlordization_trials
+	}
+	x = 0
+	y = 2
+	relative_position_id = OMS_dewarlordization_trials
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_venerate_the_front"
+		country_event = { id = omsksr.14 days = 1 }
+		country_event = { id = omsksr.15 days = 10 }
+		hidden_effect = {
+			country_event = { id = omsksr.25 days = 35 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_great_trial_awaits
+	icon = GFX_OMS_The_Great_Trial_Above_All
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_waste_not_want_not
+	}
+	prerequisite = {
+		focus = OMS_onwards_to_berlin
+	}
+	prerequisite = {
+		focus = OMS_warnings_from_within
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_warnings_from_within
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_great_trial_awaits"
+		add_stability = 0.15
+		add_war_support = 0.05
+		add_political_power = 100
+	}
+}
+
+### Nuke tree ###
+shared_focus = {
+	id = OMS_the_weapons_of_national_vengeance
+	icon = GFX_OMS_the_weapons_of_national_vengeance
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 16
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_weapons_of_national_vengeance"
+		custom_effect_tooltip = RUS_RWS_nukes_into_the_atomic_age_tt
+		add_to_variable = { misc_costs = 100 }
+		RUS_init_nuke_system = yes
+		country_event = { id = omsksr.19 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_expand_on_kamera
+	icon = GFX_TNO_generic_unethical_science
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_weapons_of_national_vengeance
+	}
+	x = -2
+	y = 1
+	relative_position_id = OMS_the_weapons_of_national_vengeance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_expand_on_kamera"
+		swap_ideas = {
+			remove_idea = OMS_project_kamera_idea
+			add_idea = OMS_project_kamera_idea_2
+		}
+		add_to_variable = { national_debt = 250 }
+		custom_effect_tooltip = econ_increase_debt
+	}
+}
+
+shared_focus = {
+	id = OMS_seize_the_arsenal
+	icon = GFX_Generic_Gas_Soldier
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_weapons_of_national_vengeance
+	}
+	x = 0
+	y = 1
+	relative_position_id = OMS_the_weapons_of_national_vengeance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_seize_the_arsenal"
+		swap_ideas = {
+			remove_idea = RUS_syktyvkar_arsenal
+			add_idea = NIK_unrestricted_arsenal
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_the_atomic_age
+	icon = GFX_generic_nuclear_power
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_weapons_of_national_vengeance
+	}
+	x = 2
+	y = 1
+	relative_position_id = OMS_the_weapons_of_national_vengeance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_atomic_age"
+		country_event = { id = omsksr.20 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_consult_with_ovchinnikov
+	icon = GFX_CHI_Teach_The_Sciences
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_on_kamera
+	}
+	prerequisite = {
+		focus = OMS_seize_the_arsenal
+	}
+	prerequisite = {
+		focus = OMS_the_atomic_age
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_seize_the_arsenal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_consult_with_ovchinnikov"
+		country_event = { id = omsksr.21 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_source_uranium_deposits
+	icon = GFX_USA_Glenn_We-Shall-Have-it-All
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_expand_on_kamera
+	}
+	prerequisite = {
+		focus = OMS_seize_the_arsenal
+	}
+	prerequisite = {
+		focus = OMS_the_atomic_age
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_seize_the_arsenal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_source_uranium_deposits"
+		custom_effect_tooltip = RUS_RWS_nukes_address_the_uranium_problem_tt
+		country_event = { id = omsksr.22 days = 1 }
+		if = {
+			limit = {
+				OR = {
+					has_country_flag = RUS_nuclear_program_phase_2
+					has_country_flag = RUS_nuclear_program_phase_1
+				}
+			}
+			add_to_variable = { RUSNukesMatsProgress = 5 }
+		}
+		add_to_variable = { RUSNukesMonthlyProgress = 2 }
+		add_to_variable = { national_debt = 150 }
+	}
+}
+
+shared_focus = {
+	id = OMS_the_fourth_thesis
+	icon = GFX_OMS_why_we_fight
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_consult_with_ovchinnikov
+	}
+	prerequisite = {
+		focus = OMS_source_uranium_deposits
+	}
+	available = {
+		has_completed_focus = OMS_warnings_from_within
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_consult_with_ovchinnikov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_the_fourth_thesis"
+		custom_effect_tooltip = OMS_the_fourth_thesis_tt
+		set_country_flag = OMS_fourth_thesis
+		hidden_effect = {
+			country_event = { id = omsksr.23 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = OMS_renew_the_black_mountain
+	icon = GFX_OMS_Renew_The_Black_Mountain
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_fourth_thesis
+	}
+	x = -1
+	y = 1
+	relative_position_id = OMS_the_fourth_thesis
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_renew_the_black_mountain"
+		582 = {
+			add_building_construction = {
+				type = anti_air_building
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+		}
+		country_event = { id = omsksr.24 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = OMS_underground_military_depots
+	icon = GFX_OMS_steel_heart_of_omsk
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = OMS_the_fourth_thesis
+	}
+	x = 1
+	y = 1
+	relative_position_id = OMS_the_fourth_thesis
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus OMS_underground_military_depots"
+		add_ideas = OMS_underground_military_depots_idea
+	}
+}

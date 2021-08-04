@@ -1,0 +1,3032 @@
+space_test_decisions = {
+	show_hide_debug_decisions = {
+		icon = generic_industry
+
+		available = {
+			always = yes
+		}
+		visible = {
+			always = yes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision show_hide_debug_decisions"
+			if = {
+				limit = { NOT = { has_country_flag = hide_debug_decisions } }
+				set_country_flag = hide_debug_decisions
+			}
+			else_if = {
+				limit = { has_country_flag = hide_debug_decisions }
+				clr_country_flag = hide_debug_decisions
+			}
+		}
+	}
+
+	debug_trigger_after_midnight_collapse = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_trigger_after_midnight_collapse"
+		   	country_event = { 
+			   	id = after_midnight_collapse.0
+		    }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+    debug_open_the_rift = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_open_the_rift"
+			hidden_effect = {
+		    country_event = { 
+			    id = cau.788
+		    }
+		    }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+    debug_revive_goebbels = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_revive_goebbels"
+			hidden_effect = {
+				every_country = { country_event = { id = spook_news.1 days = 1 } }
+				BRG = { country_event = { id = spook_temp.1 days = 211 } }
+		    }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_start_the_DLC = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: debug_start_the_DLC"
+			JAP = {
+			add_ideas = JAP_Dai_Li_conspiracy
+		    country_event = { 
+				hours = 1
+			    id = japdlc.1
+		    }
+		    }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_start_gekokujo = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_start_gekokujo"
+			JAP = { set_variable = { JAP_Tension = 100 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_disable = {
+		icon = generic_industry
+
+		available = { is_ai = no }
+		visible = {
+			NOT = {
+				has_country_flag = hide_debug_decisions
+				has_global_flag = DBG_GCW_Disable
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_disable"
+
+			set_global_flag = DBG_GCW_Disable
+
+			#if = {
+			#	limit = { has_global_flag = DBG_GCW_Disable }
+			#	clr_global_flag = DBG_GCW_Disable
+			#}
+			#else = { set_global_flag = DBG_GCW_Disable }
+		}
+	}
+
+	debug_civil_war_germany_Start = {
+		icon = generic_industry
+
+		available = { is_ai = no }
+		visible = {
+			NOT = {
+				has_country_flag = hide_debug_decisions
+				has_global_flag = DBG_GCW_Disable
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_Start"
+			set_global_flag = hitler_dead
+			GER = { country_event = { hours = 1 id = reich.23 } }
+			GER = { country_event = { hours = 1 id = reich.36 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_Anarchy = {
+		icon = generic_industry
+
+		available = { is_ai = no }
+		visible = {
+			NOT = {
+				has_country_flag = hide_debug_decisions
+				has_global_flag = DBG_GCW_Disable
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_Anarchy"
+			set_global_flag = german_anarchy
+			ARG = { set_country_flag = SGR_german_anarchy }
+			BRA = { set_country_flag = BGR_german_anarchy }
+			#ARG = { load_focus_tree = tno_speer_anarchy }
+			BRA = { load_focus_tree = tno_bormann_anarchy }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_ostland_Start = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_ostland_Start"
+			set_global_flag = hitler_dead
+			OST = { country_event = OSTL.6 }
+			# OST = { country_event = { hours = 3 id = OST.3 } }
+			# OST = { country_event = { hours = 1 id = OST.4 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_show_USA_debug_decisions = {
+		icon = generic_industry		
+		allowed = {
+			tag = USA
+		}
+		available = {
+			is_ai = no	
+		}
+		visible = {
+			NOT = { has_country_flag = USA_debug_decisions }
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_show_USA_debug_decisions"
+			set_country_flag = USA_debug_decisions
+		}
+	}
+	
+	debug_hide_USA_debug_decisions = {
+		icon = generic_industry
+		allowed = {
+			tag = USA
+		}
+		available = {
+			is_ai = no
+		}
+		visible = {
+			has_country_flag = USA_debug_decisions
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_hide_USA_debug_decisions"
+			clr_country_flag = USA_debug_decisions
+		}
+	}
+	
+	debug_USA_printing_show = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = USA_debug_printing_all }
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_USA_printing_show"
+			USA = {
+				set_country_flag = USA_debug_printing_all
+				country_event = {
+					id = USA.10000
+				}
+			}
+		}
+	}
+	
+	debug_USA_printing_hide = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			has_country_flag = USA_debug_printing_all
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_USA_printing_hide"
+			clr_country_flag = USA_debug_printing_all
+		}
+	}
+	
+	debug_hide_US_var_display = {
+		icon = generic_industry
+		allowed = {
+			tag = USA
+		}
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = USA_var_display_hidden }
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_hide_US_var_display"
+			set_country_flag = USA_var_display_hidden
+		}
+	}
+	
+	debug_show_US_var_display = {
+		icon = generic_industry
+		allowed = {
+			tag = USA
+		}
+		available = {
+			is_ai = no
+		}
+		visible = {
+			has_country_flag = USA_var_display_hidden
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 1
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_show_US_var_display"
+			clr_country_flag = USA_var_display_hidden
+		}
+	}
+	
+	debug_civil_war_germany_SummonRandomCommies = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+			has_global_flag = german_anarchy
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_SummonRandomCommies"
+			SGR = { country_event = { hours = 1 id = speer.2 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_SummonSchoerner = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+			has_global_flag = german_anarchy
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_SummonSchoerner"
+			GGR = { country_event = { hours = 1 id = goering.1 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_SpeerWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_SpeerWins"
+			SGR = { 
+				#Annex the other contenders
+				if = { limit = { country_exists = BGR } annex_country = { target = BGR transfer_troops = no } }
+				if = { limit = { country_exists = GGR } annex_country = { target = GGR transfer_troops = no } }
+				if = { limit = { country_exists = HGR } annex_country = { target = HGR transfer_troops = no } }
+				GER_GCW_conclude = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_BormannWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_BormannWins"
+			BGR = {
+				#Annex the other contenders
+				if = { limit = { country_exists = SGR } annex_country = { target = SGR transfer_troops = no } }
+				if = { limit = { country_exists = GGR } annex_country = { target = GGR transfer_troops = no } }
+				if = { limit = { country_exists = HGR } annex_country = { target = HGR transfer_troops = no } }
+				GER_GCW_conclude = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_GoeringWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_GoeringWins"
+			GGR = {
+				#Annex the other contenders
+				if = { limit = { country_exists = SGR } annex_country = { target = SGR transfer_troops = no } }
+				if = { limit = { country_exists = BGR } annex_country = { target = BGR transfer_troops = no } }
+				if = { limit = { country_exists = HGR } annex_country = { target = HGR transfer_troops = no } }
+				GER_GCW_conclude = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_HeydrichWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_HeydrichWins"
+			HGR = {
+				#Annex the other contenders
+				if = { limit = { country_exists = SGR } annex_country = { target = SGR transfer_troops = no } }
+				if = { limit = { country_exists = GGR } annex_country = { target = GGR transfer_troops = no } }
+				if = { limit = { country_exists = BGR } annex_country = { target = BGR transfer_troops = no } }
+				GER_GCW_conclude = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_RNWWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+			has_global_flag = german_anarchy
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_RNWWins"
+			RNW = { country_event = { hours = 1 id = RNW.4 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_civil_war_germany_DSRWins = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = german_civil_war
+			has_global_flag = german_anarchy
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_germany_DSRWins"
+			DSR = { country_event = { hours = 1 id = DSR.2 } }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_saf_war_bor_only = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_saf_war_bor_only"
+
+			SAF = {
+				country_event = {
+					id = SAF.8
+					days = 14
+				}
+				country_event = {
+					id = SAF.19
+					days = 1
+				}
+			}
+			MZB = {
+				country_event = {
+					id = MZB.2
+					days = 1
+				}
+			}
+			USA = {
+				add_political_power = 200
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_saf_war_bor_anc = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_saf_war_bor_anc"
+
+			SAF = {
+				country_event = {
+					id = SAF.8
+					days = 14
+				}
+				country_event = {
+					id = SAF.19
+					days = 1
+				}
+				country_event = {
+					id = SAF.36
+					days = 1
+				}
+			}
+			MZB = {
+				country_event = {
+					id = MZB.2
+					days = 1
+				}
+			}
+			USA = {
+				add_political_power = 200
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_trigger_iberian_wars = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_trigger_iberian_wars"
+			IBR = {
+				country_event = { hours = 1 id = IBR.1112 }
+			}
+			set_country_flag = IBRWarbyDebug
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_civil_war_england_HMMLR = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_england_HMMLR"
+			ENG = {
+				country_event = { id = ENG_HMMLRECW.1 }
+			}
+		}
+	}
+
+	debug_civil_war_england_collabs = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_civil_war_england_collabs"
+			ENG = {
+				country_event = { id = ENG_HMMLRECW.1 }
+			}
+		}
+	}
+	
+	debug_kill_farouk = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_kill_farouk"
+			EGY = {
+				country_event = {
+					id = egy.15
+					days = 1
+				}
+			}
+		}
+	}
+	
+	debug_kill_amadeo = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_kill_amadeo"
+			IEA = {
+				country_event = {
+					id = IEA.9
+					days = 1
+				}
+			}
+		}
+	}
+	
+	debug_yemen_civil_war = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_yemen_civil_war"
+			YEM = {
+				country_event = {
+					id = YEM.50
+					days = 1
+				}
+			}
+		}
+	}
+	
+	debug_iran_civil_war = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_iran_civil_war"
+			PER = {
+				country_event = {
+					id = PER.1
+					days = 1
+				}
+			}
+		}
+	}
+	
+	debug_egypt_civil_war = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_egypt_civil_war"
+			if = {
+				limit = {
+					check_variable = { global.PanArabRadicalism < 8 }
+				}
+				country_event = {
+					id = egy.43
+					days = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { global.PanArabRadicalism = 8 }
+				}
+				country_event = {
+					id = egy.44
+					days = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { global.PanArabRadicalism > 8 }
+				}
+				country_event = {
+					id = egy.45
+					days = 1
+				}
+			}
+		}
+	}
+	
+	debug_NEXTLEVELASSAD_set_radicalism_to_max = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = no
+		days_re_enable = 7
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_NEXTLEVELASSAD_set_radicalism_to_max"
+			add_to_variable = {
+				var = global.PanArabRadicalism
+				value = 100
+			}
+		}
+	}
+
+	debug_triumvirate_breakup = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_triumvirate_breakup"
+			ITA = {
+				dismantle_faction = yes
+			}
+			set_global_flag = debug_triumvirate
+		}
+	}
+
+	debug_ITWAR = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			has_global_flag = debug_triumvirate
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_ITWAR"
+			TUR = {
+				country_event = {
+				id = itatur.1
+				days = 1
+				}
+			}
+		}
+	}
+	
+	debug_print_state_pops = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_print_state_pops"
+			hidden_effect = {
+				every_country = {
+					every_owned_state = {
+						log = "[Prev.GetName],[This.GetName],[?This.state_population_k]"
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_fire_indonesian_war = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_fire_indonesian_war"
+			INS = {
+				country_event = {id = indonesia.100}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_fire_itaelections_66 = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_fire_italeections_66"
+			ITA = {
+				country_event = { id = itaelections66.1 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_max_decryption = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_max_decryption"
+			add_ideas = USA_lots_of_decryption
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_max_decryption_remove = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_max_decryption_remove"
+			remove_ideas = USA_lots_of_decryption
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_load_western_insurrection_warmup_tree = {
+		icon = generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			set_country_flag = CHI_Western_Insurrection_Warmup
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_global_flag = CHI_show_western_tree_hidden_middle
+			clr_global_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+			CHI_reload_tree = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	debug_load_western_insurrection_main_tree = {
+		icon = generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			is_ai = no
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			set_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_Western_Insurrection_Warmup
+			clr_country_flag = CHI_Nanjing_Crisis
+			CHI_reload_tree = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	
+	debug_load_hidden_western_insurrection_tree = {
+		icon = generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			set_country_flag = CHI_show_western_tree_hidden_middle
+			set_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+			CHI_reload_tree = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_load_Nanjing_and_Oil_Crisis = {
+		icon = generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			set_country_flag = CHI_Nanjing_Crisis
+			set_country_flag = CHI_Oil_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			CHI_reload_tree = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	debug_load_gaw_yun = {
+		icon = generic_industry
+
+		allowed = {
+			original_tag = YUN
+		}
+
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			set_global_flag = YUN_NPA_China_Defeated
+    		YUN_reload_tree = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	#debug_english_catastrophe = {
+	#	icon = generic_industry
+	#
+	#	visible = {
+	#		NOT = { has_country_flag = hide_debug_decisions }
+	#	}
+	#	complete_effect = {
+	#				ENG = {
+	#						country_event = { id = engcat.20 hours = 1}
+	#				}
+	#	}
+	#	ai_will_do = {
+	#		factor = 0
+	#	}
+	#}
+
+	debug_blow_up_the_middle_east = {
+		icon = generic_industry
+
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+		}
+		complete_effect = {
+			if = {
+				limit = { tag = GER }
+				set_country_flag = GER_OC_intervention
+				set_country_flag = GER_OC_Oman_CW
+				set_country_flag = GER_OC_Iraq_CW
+				set_country_flag = GER_OC_Egypt_CW
+				set_variable = { BOR_OC_send_volunteer_size = 1 }
+				hidden_effect = {
+					add_ideas = GER_Bormann_OC_intervention
+					add_dynamic_modifier = { modifier = GER_BOR_OC_intervention_dynamic_modifier }
+				}
+			}
+			ITA = {
+				end_puppet = EGY
+				end_puppet = YEM
+			}
+			EGB = {
+				transfer_state = 452
+				transfer_state = 1115
+				transfer_state = 456
+				transfer_state = 1123
+				transfer_state = 551
+				transfer_state = 1125
+				transfer_state = 1124
+				transfer_state = 1127
+				transfer_state = 1126
+				transfer_state = 1136
+				transfer_state = 549
+				add_state_core = 452
+				add_state_core = 1115
+				add_state_core = 456
+				add_state_core = 1123
+				add_state_core = 551
+				add_state_core = 1125
+				add_state_core = 1124
+				add_state_core = 1127
+				add_state_core = 1126
+				add_state_core = 1136
+				add_state_core = 549
+				load_oob = EGB_civil_war_strong
+				set_country_flag = BaathistCountry
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+				set_global_flag = OIL_Egypt_Critical
+			}
+			EGY = {
+				leave_faction = yes
+				load_oob = EGY_civil_war
+			}
+			EGQ = {
+				transfer_state = 552
+				transfer_state = 1116
+				add_state_core = 552
+				add_state_core = 1116
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+				declare_war_on = {
+					target = EGB
+					type = civil_war
+				}
+				load_oob = EGQ_oil_crisis
+			}
+			RPS = {
+				transfer_state = 551
+				transfer_state = 1119
+				transfer_state = 1120
+				transfer_state = 1121
+				transfer_state = 549
+				transfer_state = 1122
+				add_state_core = 551
+				 add_state_core = 1119
+				 add_state_core = 1120
+				 add_state_core = 1121
+				 add_state_core = 549
+				 add_state_core = 1122
+				load_oob = RPS_civil_war
+			}
+			SDS = {
+				transfer_state = 1123
+				transfer_state = 1124
+				transfer_state = 1125
+				transfer_state = 1136
+				transfer_state = 1135
+				add_state_core = 1123
+				add_state_core = 1124
+				add_state_core = 1125
+				add_state_core = 1136
+				add_state_core = 1135
+				load_oob = SDS_civil_war
+				declare_war_on = {
+					target = RPS
+					type = civil_war
+				}
+				declare_war_on = {
+					target = AYA
+					type = civil_war
+				}
+				declare_war_on = {
+					target = AZA
+					type = civil_war
+				}
+			}
+			SDF = {
+				transfer_state = 1128
+				transfer_state = 1127
+				transfer_state = 1126
+				transfer_state = 1130
+				transfer_state = 1129
+				add_state_core = 1128
+				add_state_core = 1127
+				add_state_core = 1126
+				add_state_core = 1130
+				add_state_core = 1129
+				load_oob = SDF_civil_war
+				declare_war_on = {
+					target = SDS
+					type = civil_war
+				}
+				declare_war_on = {
+					target = RPS
+					type = civil_war
+				}
+				declare_war_on = {
+					target = AZA
+					type = civil_war
+				}
+				declare_war_on = {
+					target = AYA
+					type = civil_war
+				}
+			}
+			AZA = {
+				transfer_state = 1133
+				transfer_state = 1134
+				add_state_core = 1133
+				add_state_core = 1134
+				load_oob = AZA_civil_war
+				declare_war_on = {
+					target = AYA
+					type = civil_war
+				}
+			}
+			AYA = {
+				transfer_state = 1179
+				transfer_state = 1132
+				transfer_state = 1131
+				add_state_core = 1179
+				add_state_core = 1132
+				add_state_core = 1131
+				load_oob = AYA_civil_war
+				declare_war_on = {
+					target = AZA
+					type = civil_war
+				}
+			}
+			IRQ = {
+				retire_country_leader = yes
+				set_politics = {
+					ruling_party = despotism
+				}
+				create_country_leader = {
+					name = "Vito Miceli"
+					desc = "POLITICS_Vito_Miceli_DESC"
+					picture = "Vito_Miceli.dds"
+					expire = "1999.1.1"
+					ideology = despotism_subtype
+				}
+				leave_faction = yes
+			}
+			SNI = {
+				transfer_state = 1333
+				transfer_state = 916
+				add_state_core = 1333
+				add_state_core = 916
+				add_state_core = 924
+				add_state_core = 675
+				add_state_core = 676
+				add_state_core = 781
+				add_state_core = 1334
+				load_oob = SNI_oil_crisis
+			}
+			BIR = {
+				transfer_state = 924
+				transfer_state = 675
+				add_state_core = 1333
+				add_state_core = 916
+				add_state_core = 924
+				add_state_core = 675
+				add_state_core = 676
+				add_state_core = 781
+				add_state_core = 1334
+				load_oob = BIR_oil_crisis
+			}
+			KUR = {
+				transfer_state = 781
+				transfer_state = 1334
+				add_state_core = 781
+				add_state_core = 1334
+				load_oob = KUR_oil_crisis
+			}
+			IRP = {
+				transfer_state = 676
+				add_state_core = 1333
+				add_state_core = 916
+				add_state_core = 924
+				add_state_core = 675
+				add_state_core = 676
+				add_state_core = 781
+				add_state_core = 1334
+				load_oob = IRP_oil_crisis
+			}
+			IRP = {
+				declare_war_on = { target = IRQ type = annex_everything }
+				declare_war_on = { target = BIR type = annex_everything }
+				declare_war_on = { target = SNI type = annex_everything }
+				declare_war_on = { target = KUR type = annex_everything }
+			}
+			IRQ = {
+				declare_war_on = { target = IRP type = annex_everything }
+				declare_war_on = { target = BIR type = annex_everything }
+				declare_war_on = { target = SNI type = annex_everything }
+				declare_war_on = { target = KUR type = annex_everything }
+				load_oob = IRQ_oil_crisis
+			}
+			BIR = {
+				declare_war_on = { target = IRQ type = annex_everything }
+				declare_war_on = { target = IRP type = annex_everything }
+				declare_war_on = { target = SNI type = annex_everything }
+				declare_war_on = { target = KUR type = annex_everything }
+			}
+			SNI = {
+				declare_war_on = { target = IRQ type = annex_everything }
+				declare_war_on = { target = BIR type = annex_everything }
+				declare_war_on = { target = IRP type = annex_everything }
+				declare_war_on = { target = KUR type = annex_everything }
+			}
+			NYM = {
+				transfer_state = 910 # Hajjah
+				transfer_state = 912 # Al Bayda'
+				transfer_state = 911 # Ma'rib
+				add_state_core = 910
+				add_state_core = 911
+				add_state_core = 912
+				add_state_core = 293
+				add_state_core = 908
+				add_state_core = 909
+				add_state_core = 925
+				add_state_core = 659
+				set_country_flag = BaathistCountry
+				add_ideas = { NYM_civil_war }
+				add_opinion_modifier = {
+					target = ITA
+					modifier = arab_imperialist_oppressor
+				}
+				load_oob = NYM_uprising
+				add_manpower = 40000
+			}
+			YEM = {
+				leave_faction = yes
+				add_ideas = { 
+					YEM_civil_war 
+					OIL_prosaud_volunteers
+				}
+				remove_ideas = { YEM_italian_overlordship }
+				declare_war_on = {
+					target = NYM
+					type = civil_war
+				}
+			}
+			OMI = {
+				transfer_state = 914
+				add_state_core = 914
+				add_state_core = 915
+				add_state_core = 294
+				add_state_core = 913
+				load_oob = OMI_oil_crisis
+				declare_war_on = {
+					target = OMA
+					type = annex_everything
+				}
+			}
+			OMB = {
+				transfer_state = 913
+				add_state_core = 914
+				add_state_core = 915
+				add_state_core = 294
+				add_state_core = 913
+				load_oob = OMB_oil_crisis
+				declare_war_on = {
+					target = OMI
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = OMA
+					type = annex_everything
+				}
+			}
+			OMI = {
+				declare_war_on = {
+					target = OMB
+					type = annex_everything
+				}
+			}
+			OMA = {
+				leave_faction = yes
+				create_country_leader = {
+					name = "Qaboos bin Said Al Said"
+					desc = "POLITICS_Qaboos_bin_Said_Al_Said_DESC"
+					picture = "Qaboos_bin_Said_al_Said.dds"
+					expire = "2023.3.6"
+					ideology = social_conservative_subtype
+				}
+				load_oob = OMA_oil_crisis
+				set_politics = {
+					ruling_party = social_conservative
+				}
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.2
+				}
+				declare_war_on = {
+					target = OMI
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = OMB
+					type = annex_everything
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	debug_mini_herbst = {
+		icon = generic_industry
+
+		available = {
+			is_ai = no
+			tag = GER
+		}
+		visible = {
+			NOT = { has_country_flag = hide_debug_decisions }
+			tag = GER
+
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision debug_mini_herbst"
+			country_event = {
+				id = bormann.1300
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+
+space_decisions = {
+#	ww2_spaceflight_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = ww2_spaceflight_decision_fast
+#						has_decision = ww2_spaceflight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				NOT = {
+#					has_global_flag = ww2_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove ww2_spaceflight_decision"
+#			set_global_flag = ww2_spaceflight_flag
+#			custom_effect_tooltip = space_regular_completion
+#		}
+#	}
+#	ww2_spaceflight_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = ww2_spaceflight_decision
+#						has_decision = ww2_spaceflight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#		
+#		visible = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				NOT = {
+#					has_global_flag = ww2_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove ww2_spaceflight_decision_fast"
+#			set_global_flag = ww2_spaceflight_flag_decision_fast
+#			custom_effect_tooltip = space_fast_completion
+#		}
+#	}
+#	ww2_spaceflight_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = ww2_spaceflight_decision_fast
+#						has_decision = ww2_spaceflight_decision
+#					}
+#				}
+#			}
+#		}
+#		
+#		visible = {
+#			AND = {
+#				has_tech = ww2_spaceflight
+#				NOT = {
+#					has_global_flag = ww2_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove ww2_spaceflight_decision_careful"
+#			set_global_flag = ww2_spaceflight_flag_decision_careful
+#			custom_effect_tooltip = space_careful_completion
+#		}
+#	}
+#	space_photography_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_photography
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_photography_decision_fast
+#						has_decision = space_photography_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_photography
+#				NOT = {
+#					has_global_flag = space_photography_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_photography_decision"
+#			set_global_flag = space_photography_flag
+#		}
+#	}
+#	space_photography_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_photography
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_photography_decision
+#						has_decision = space_photography_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_photography
+#				NOT = {
+#					has_global_flag = space_photography_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_photography_decision_fast"
+#			set_global_flag = space_photography_flag_decision_fast
+#		}
+#	}
+#	space_photography_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_photography
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_photography_decision_fast
+#						has_decision = space_photography_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_photography
+#				NOT = {
+#					has_global_flag = space_photography_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_photography_decision_careful"
+#			set_global_flag = space_photography_flag_decision_careful
+#		}
+#	}
+#	space_animal_flight_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_animal_flight_decision_fast
+#						has_decision = space_animal_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				NOT = {
+#					has_global_flag = space_animal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animal_flight_decision"
+#			set_global_flag = space_animal_flight_flag
+#		}
+#	}
+#	space_animal_flight_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_animal_flight_decision
+#						has_decision = space_animal_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				NOT = {
+#					has_global_flag = space_animal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animal_flight_decision_fast"
+#			set_global_flag = space_animal_flight_flag_decision_fast
+#		}
+#	}
+#	space_animal_flight_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_animal_flight_decision_fast
+#						has_decision = space_animal_flight_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animal_flight
+#				NOT = {
+#					has_global_flag = space_animal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animal_flight_decision_careful"
+#			set_global_flag = space_animal_flight_flag_decision_careful
+#		}
+#	}
+#	space_mammal_flight_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_mammal_flight_decision_fast
+#						has_decision = space_mammal_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				NOT = {
+#					has_global_flag = space_mammal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_mammal_flight_decision"
+#			set_global_flag = space_mammal_flight_flag
+#		}
+#	}
+#	space_mammal_flight_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_mammal_flight_decision
+#						has_decision = space_mammal_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				NOT = {
+#					has_global_flag = space_mammal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_mammal_flight_decision_fast"
+#			set_global_flag = space_mammal_flight_flag_decision_fast
+#		}
+#	}
+#	space_mammal_flight_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_mammal_flight_decision_fast
+#						has_decision = space_mammal_flight_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_mammal_flight
+#				NOT = {
+#					has_global_flag = space_mammal_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_mammal_flight_decision_careful"
+#			set_global_flag = space_mammal_flight_flag_decision_careful
+#		}
+#	}
+#	space_sattelite_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_sattelite
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_sattelite_decision_fast
+#						has_decision = space_sattelite_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_sattelite
+#				NOT = {
+#					has_global_flag = space_sattelite_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_sattelite_decision"
+#			set_global_flag = space_sattelite_flag
+#		}
+#	}
+#	space_sattelite_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_sattelite
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_sattelite_decision
+#						has_decision = space_sattelite_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_sattelite
+#				NOT = {
+#					has_global_flag = space_sattelite_success
+#				}
+#			}
+#		}
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_sattelite_decision_fast"
+#			set_global_flag = space_sattelite_flag_decision_fast
+#		}
+#	}
+#	space_sattelite_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_sattelite
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_sattelite_decision_fast
+#						has_decision = space_sattelite_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_sattelite
+#				NOT = {
+#					has_global_flag = space_sattelite_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_sattelite_decision_careful"
+#			set_global_flag = space_sattelite_flag_decision_careful
+#		}
+#	}
+#	space_animals_in_space_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_animals_in_space_decision_fast
+#						has_decision = space_animals_in_space_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				NOT = {
+#					has_global_flag = space_animals_in_space_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animals_in_space_decision"
+#			set_global_flag = space_animals_in_space_flag
+#		}
+#	}
+#	space_animals_in_space_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_animals_in_space_decision
+#						has_decision = space_animals_in_space_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				NOT = {
+#					has_global_flag = space_animals_in_space_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animals_in_space_decision_fast"
+#			set_global_flag = space_animals_in_space_flag_decision_fast
+#		}
+#	}
+#	space_animals_in_space_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_animals_in_space_decision_fast
+#						has_decision = space_animals_in_space_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_animals_in_space
+#				NOT = {
+#					has_global_flag = space_animals_in_space_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_animals_in_space_decision_careful"
+#			set_global_flag = space_animals_in_space_flag_decision_careful
+#		}
+#	}
+#	space_past_orbital_flight_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				num_of_civilian_factories_available_for_projects > 3
+#				NOT = {
+#					OR = {
+#						has_decision = space_past_orbital_flight_decision_fast
+#						has_decision = space_past_orbital_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				NOT = {
+#					has_global_flag = space_past_orbital_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_past_orbital_flight_decision"
+#			set_global_flag = space_past_orbital_flight_flag
+#		}
+#	}
+#	space_past_orbital_flight_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_past_orbital_flight_decision
+#						has_decision = space_past_orbital_flight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				NOT = {
+#					has_global_flag = space_past_orbital_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_past_orbital_flight_decision_fast"
+#			set_global_flag = space_past_orbital_flight_flag_decision_fast
+#		}
+#	}
+#	space_past_orbital_flight_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				num_of_civilian_factories_available_for_projects > 3	
+#				NOT = {
+#					OR = {
+#						has_decision = space_past_orbital_flight_decision_fast
+#						has_decision = space_past_orbital_flight_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_past_orbital_flight
+#				NOT = {
+#					has_global_flag = space_past_orbital_flight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_past_orbital_flight_decision_careful"
+#			set_global_flag = space_past_orbital_flight_flag_decision_careful
+#		}
+#	}
+#	space_human_spaceflight_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				num_of_civilian_factories_available_for_projects > 5
+#				NOT = {
+#					OR = {
+#						has_decision = space_human_spaceflight_decision_fast
+#						has_decision = space_human_spaceflight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				NOT = {
+#					has_global_flag = space_human_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_human_spaceflight_decision"
+#			set_global_flag = space_human_spaceflight_flag
+#		}
+#	}
+#	space_human_spaceflight_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				num_of_civilian_factories_available_for_projects > 8	
+#				NOT = {
+#					OR = {
+#						has_decision = space_human_spaceflight_decision
+#						has_decision = space_human_spaceflight_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				NOT = {
+#					has_global_flag = space_human_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 9
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_human_spaceflight_decision_fast"
+#			set_global_flag = space_human_spaceflight_flag_decision_fast
+#		}
+#	}
+#	space_human_spaceflight_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_human_spaceflight_decision_fast
+#						has_decision = space_human_spaceflight_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_human_spaceflight
+#				NOT = {
+#					has_global_flag = space_human_spaceflight_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_human_spaceflight_decision_careful"
+#			set_global_flag = space_human_spaceflight_flag_decision_careful
+#		}
+#	}
+#	space_telescope_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_telescope
+#				num_of_civilian_factories_available_for_projects > 5
+#				NOT = {
+#					OR = {
+#						has_decision = space_telescope_decision_fast
+#						has_decision = space_telescope_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_telescope
+#				NOT = {
+#					has_global_flag = space_telescope_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 4
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_telescope_decision"
+#			set_global_flag = space_telescope_flag
+#		}
+#	}
+#	space_telescope_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_telescope
+#				num_of_civilian_factories_available_for_projects > 8	
+#				NOT = {
+#					OR = {
+#						has_decision = space_telescope_decision
+#						has_decision = space_telescope_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_telescope
+#				NOT = {
+#					has_global_flag = space_telescope_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 9
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_telescope_decision_fast"
+#			set_global_flag = space_telescope_flag_decision_fast
+#		}
+#	}
+#	space_telescope_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_telescope
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_telescope_decision_fast
+#						has_decision = space_telescope_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_telescope
+#				NOT = {
+#					has_global_flag = space_telescope_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_telescope_decision_careful"
+#			set_global_flag = space_telescope_flag_decision_careful
+#		}
+#	}
+#	space_extra_vehicular_activity_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				num_of_civilian_factories_available_for_projects > 5
+#				NOT = {
+#					OR = {
+#						has_decision = space_extra_vehicular_activity_decision_fast
+#						has_decision = space_extra_vehicular_activity_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				NOT = {
+#					has_global_flag = space_extra_vehicular_activity_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_extra_vehicular_activity_decision"
+#			set_global_flag = space_extra_vehicular_activity_flag
+#		}
+#	}
+#	space_extra_vehicular_activity_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				num_of_civilian_factories_available_for_projects > 8	
+#				NOT = {
+#					OR = {
+#						has_decision = space_extra_vehicular_activity_decision
+#						has_decision = space_extra_vehicular_activity_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				NOT = {
+#					has_global_flag = space_extra_vehicular_activity_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 90
+#
+#		modifier = {
+#			civilian_factory_use = 9
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_extra_vehicular_activity_decision_fast"
+#			set_global_flag = space_extra_vehicular_activity_flag_decision_fast
+#		}
+#	}
+#	space_extra_vehicular_activity_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				num_of_civilian_factories_available_for_projects > 5	
+#				NOT = {
+#					OR = {
+#						has_decision = space_extra_vehicular_activity_decision_fast
+#						has_decision = space_extra_vehicular_activity_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_extra_vehicular_activity
+#				NOT = {
+#					has_global_flag = space_extra_vehicular_activity_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 6
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_extra_vehicular_activity_decision_careful"
+#			set_global_flag = space_extra_vehicular_activity_flag_decision_careful
+#		}
+#	}
+#	space_station_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_station
+#				num_of_civilian_factories_available_for_projects > 9
+#				NOT = {
+#					OR = {
+#						has_decision = space_station_decision_fast
+#						has_decision = space_station_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_station
+#				NOT = {
+#					has_global_flag = space_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 10
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_station_decision"
+#			set_global_flag = space_station_flag
+#		}
+#	}
+#	space_station_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_station
+#				num_of_civilian_factories_available_for_projects > 14	
+#				NOT = {
+#					OR = {
+#						has_decision = space_station_decision
+#						has_decision = space_station_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_station
+#				NOT = {
+#					has_global_flag = space_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 180
+#
+#		modifier = {
+#			civilian_factory_use = 15
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_station_decision_fast"
+#			set_global_flag = space_station_flag_decision_fast
+#		}
+#	}
+#	space_station_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_station
+#				num_of_civilian_factories_available_for_projects > 9	
+#				NOT = {
+#					OR = {
+#						has_decision = space_station_decision_fast
+#						has_decision = space_station_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_station
+#				NOT = {
+#					has_global_flag = space_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 720
+#
+#		modifier = {
+#			civilian_factory_use = 10
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_station_decision_careful"
+#			set_global_flag = space_station_flag_decision_careful
+#		}
+#	}
+#	space_longterm_research_station_decision = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				num_of_civilian_factories_available_for_projects > 15
+#				NOT = {
+#					OR = {
+#						has_decision = space_longterm_research_station_decision_fast
+#						has_decision = space_longterm_research_station_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				NOT = {
+#					has_global_flag = space_longterm_research_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 1440
+#
+#		modifier = {
+#			civilian_factory_use = 16
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_longterm_research_station_decision"
+#			set_global_flag = space_longterm_research_station_flag
+#		}
+#	}
+#	space_longterm_research_station_decision_fast = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				num_of_civilian_factories_available_for_projects > 23	
+#				NOT = {
+#					OR = {
+#						has_decision = space_longterm_research_station_decision
+#						has_decision = space_longterm_research_station_decision_careful
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				NOT = {
+#					has_global_flag = space_longterm_research_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 360
+#
+#		modifier = {
+#			civilian_factory_use = 24
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_longterm_research_station_decision_fast"
+#			set_global_flag = space_longterm_research_station_flag_decision_fast
+#		}
+#	}
+#	space_longterm_research_station_decision_careful = {
+#		
+#		icon = generic_operation
+#
+#		available = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				num_of_civilian_factories_available_for_projects > 15	
+#				NOT = {
+#					OR = {
+#						has_decision = space_longterm_research_station_decision_fast
+#						has_decision = space_longterm_research_station_decision
+#					}
+#				}
+#			}
+#		}
+#
+#		visible = {
+#			AND = {
+#				has_tech = space_longterm_research_station
+#				NOT = {
+#					has_global_flag = space_longterm_research_station_success
+#				}
+#			}
+#		}
+#
+#		fire_only_once = yes
+#
+#		cost = 25
+#		days_remove = 1440
+#
+#		modifier = {
+#			civilian_factory_use = 16
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove space_longterm_research_station_decision_careful"
+#			set_global_flag = space_longterm_research_station_flag_decision_careful
+#		}
+#	}
+}

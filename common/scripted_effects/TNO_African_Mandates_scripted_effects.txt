@@ -1,0 +1,1497 @@
+USA_AFRICA_set_start_stability = {
+	MZB = {
+		set_variable = { OFN_MANDATE_rebel_stability = 0.6 }
+		set_variable = { OFN_MANDATE_administrative_hold = 0.2 }
+	}
+	COG = {
+		set_variable = { OFN_MANDATE_rebel_stability = 0.85 }
+		set_variable = { OFN_MANDATE_administrative_hold = 0.6 }
+	}
+	ANG = {
+		set_variable = { OFN_MANDATE_rebel_stability = 0.75 }
+		set_variable = { OFN_MANDATE_administrative_hold = 0.3 }
+
+		set_variable = { OFN_MANDATE_ANG_UNITA_power_level = 15 }
+		set_variable = { OFN_MANDATE_ANG_MPLA_power_level = 10 }
+	}
+}
+
+USA_AFRICA_CAR_set_start_stability = {
+	MZB = {
+		set_variable = { OFN_MANDATE_rebel_stability = 0.5 }
+		set_variable = { OFN_MANDATE_administrative_hold = 0.1 }
+		set_variable = { OFN_MANDATE_military_presence = 0.15 }
+	}
+}
+
+USA_AFRICA_compute_rebellions = {
+	hidden_effect = {
+		### EAST AFRICA
+		if = {
+			limit = {
+				check_variable = { OFN_MANDATE_rebel_stability < 0.2 }
+				tag = MZB
+				MZB = {
+					has_cosmetic_tag = MZB_USA
+				}
+			}
+
+			## EFFECT
+		}
+
+		### CENTRAL AFRICA
+		if = {
+			limit = {
+				check_variable = { OFN_MANDATE_rebel_stability < 0.2 }
+				tag = COG
+				COG = {
+					has_cosmetic_tag = COG_USA
+				}
+			}
+
+			## EFFECT
+		}
+
+		### SOUTH WEST AFRICA
+		if = {
+			limit = {
+				check_variable = { OFN_MANDATE_rebel_stability < 0.2 }
+				tag = ANG
+				ANG = {
+					has_cosmetic_tag = ANG_USA
+				}
+			}
+
+			## EFFECT
+		}
+	}
+}
+
+OFN_COG_Unhappy_Investors_Leveler = {
+		if = {
+			limit = {
+				has_idea = COG_OFN_Unhappy_Investors_1
+			}
+			swap_ideas = {
+				remove_idea = COG_OFN_Unhappy_Investors_1
+				add_idea = COG_OFN_Unhappy_Investors_2
+			}
+		}
+		else_if = {
+				limit = {
+					has_idea = COG_OFN_Unhappy_Investors_2
+				}
+				swap_ideas = {
+					remove_idea = COG_OFN_Unhappy_Investors_2
+					add_idea = COG_OFN_Unhappy_Investors_3
+				}
+			}
+		else_if = {
+				limit = {
+					has_idea = COG_OFN_Unhappy_Investors_3
+				}
+				swap_ideas = {
+					remove_idea = COG_OFN_Unhappy_Investors_3
+					add_idea = COG_OFN_Unhappy_Investors_4
+				}
+			}
+		else_if = {
+				limit = {
+					has_idea = COG_OFN_Unhappy_Investors_4
+				}
+				swap_ideas = {
+					remove_idea = COG_OFN_Unhappy_Investors_4
+					add_idea = COG_OFN_Unhappy_Investors_5
+				}
+			}
+		else_if = {
+				limit = {
+					has_idea = COG_OFN_Unhappy_Investors_5
+				}
+				swap_ideas = {
+					remove_idea = COG_OFN_Unhappy_Investors_5
+					add_idea = COG_OFN_Unhappy_Investors_6
+				}
+			}
+}
+
+USA_AFRICA_setup_african_crisis = {
+	MZB = {
+		leave_faction = yes
+	}
+	USA = {
+		end_puppet = MZB
+	}
+
+	hidden_effect = {
+		MZB = {
+			country_event = {
+				id = OFN_CAR.211
+				days = 10
+			}
+		}
+		ANG = {
+			leave_faction = yes
+		}
+		USA = {
+			end_puppet = ANG
+		}
+
+		GAB = {
+			add_ideas = {
+				GAB_Paul_Marie_Yembit_hog
+				GAB_Jacques_Opangault_for
+				GAB_Apollinaire_Bazinga_eco
+				GAB_Ba_Oumar_sec
+			}
+
+			transfer_state = 539
+			transfer_state = 1163
+			transfer_state = 1164
+			transfer_state = 1165
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = GAB_AC
+		}
+
+		CAF = {
+			add_ideas = {
+				CAF_David_Dacko_hog
+				CAF_Barthelemy_Boganda_for
+				CAF_Ange_Felix_Patasse_eco
+				CAF_Andre_Kolingba_sec
+			}
+
+			transfer_state = 538
+			transfer_state = 1171
+			transfer_state = 1181
+			transfer_state = 1182
+			transfer_state = 1183
+			transfer_state = 1184
+			transfer_state = 1185
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = CAF_AC
+		}
+
+		CFS = {
+			add_ideas = {
+				CFS_Joseph_Okito_hog
+				CFS_Albert_Kalonji_for
+				CFS_Godefroid_Munongo_eco
+				CFS_Victor_Lundula_sec
+			}
+
+			transfer_state = 295
+			transfer_state = 718
+			transfer_state = 1055
+			transfer_state = 1056
+			transfer_state = 1057
+			transfer_state = 1162
+			transfer_state = 1166
+			transfer_state = 1167
+			transfer_state = 1168
+			transfer_state = 1169
+			transfer_state = 1170
+			transfer_state = 1172
+			transfer_state = 1173
+			transfer_state = 1174
+			transfer_state = 1175
+			transfer_state = 1176
+			transfer_state = 1177
+			transfer_state = 1178
+			transfer_state = 1180
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = CFS_AC
+		}
+
+		KTG = {
+			
+			transfer_state = 1055
+			transfer_state = 1056
+			transfer_state = 1057
+			transfer_state = 1173
+			transfer_state = 1174
+		
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = KTG_AC
+		}
+
+		ANG = {
+			add_ideas = {
+				ANG_Jeremias_Chitunda_dep
+				ANG_Demosthenes_Amos_Chilingutila_mil
+				ANG_Jorge_Sangumba_for
+				ANG_Jose_Eduardo_dos_Santos_eco
+			}
+
+			load_focus_tree = generic_focus
+
+			transfer_state = 540
+			transfer_state = 1032
+			transfer_state = 1033
+			transfer_state = 1034
+			transfer_state = 1035
+			transfer_state = 1036
+			transfer_state = 1037
+			transfer_state = 1038
+			transfer_state = 1039
+			transfer_state = 1040
+			transfer_state = 1051
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			retire_country_leader = yes
+			set_capital = 1035
+			drop_cosmetic_tag = yes
+			
+			set_politics = {	
+	            ruling_party = despotism
+	            last_election = "1933.3.5"
+	            election_frequency = 48
+	            elections_allowed = no
+			}
+	        set_popularities = {
+	            communist = 0
+	            ultranational_socialism = 0
+	            socialist = 0
+	            social_democrat = 0
+	            social_liberal = 0
+	            market_liberal = 0
+	            social_conservative = 0
+	            authoritarian_democrat = 0
+	            despotism = 80
+	            fascism = 20
+	            national_socialism = 0
+	            burgundian_system = 0
+	        }
+			create_country_leader = {
+	            name = "Jonas Savimbi"
+	            desc = "POLITICS_JONAS_SAVIMBI_DESC"
+	            picture = "Portrait_Angola_Jonas_Savimbi.dds"
+	            expire = "1999.1.23"
+	            ideology = despotism_subtype
+	            traits = {
+		
+	            }
+	        }
+
+			load_oob = ANG_AC
+		}
+
+		ZAM = {
+			add_ideas = {
+				ZAM_Reuben_Kamanga_hog
+				ZAM_Elijah_Mudenda_for
+				ZAM_Alexander_Grey_Zulu_eco
+				ZAM_Casimir_Michael_Grigg_sec
+			}
+
+			transfer_state = 748
+
+			if = {
+				limit = {
+					MZB = { owns_state = 884 }
+				}
+				transfer_state = 884
+			}
+		
+			transfer_state = 1052
+			transfer_state = 1053
+			transfer_state = 1054
+			transfer_state = 1066
+			transfer_state = 1067
+			transfer_state = 1068
+			transfer_state = 1069
+			transfer_state = 1070
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = ZAM_AC
+		}
+
+		GAZ = {
+			add_ideas = {
+				GAZ_Joaquim_Chissano_hog
+				GAZ_Alberto_Massavanhane_for
+				GAZ_Marcelino_dos_Santos_eco
+				GAZ_Samora_Machel_sec
+			}
+		
+			transfer_state = 1073
+			transfer_state = 1076
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = GAZ_AC
+		}
+
+		RMB = {
+			add_ideas = {
+				RMB_Hastings_Kamuzu_Banda_hog
+				RMB_Orton_Chirwa_for
+				RMB_Aleke_Banda_eco
+				RMB_Katoba_Musopole_sec
+			}
+
+			transfer_state = 879
+			transfer_state = 1074
+			transfer_state = 1075
+			transfer_state = 1083
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = RMB_AC
+		}
+
+		BRD = {
+			add_ideas = {
+				BRD_Michel_Micombero_hog
+				BRD_Alexis_Nimubona_for
+				BRD_Thomas_Ndabemeye_eco
+				BRD_Jean_Baptiste_Bagaza_sec
+			}
+
+			transfer_state = 1087
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+			
+			load_oob = BRD_AC
+		}
+
+		RWA = {
+			add_ideas = {
+				RWA_Dominique_Mbonyumutwa_hog
+				RWA_Sylvestre_Nsanzimana_for
+				RWA_Gregoire_Kayibanda_eco
+				RWA_Juvenal_Habyarimana_sec
+			}
+
+			transfer_state = 1088
+			
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = RWA_AC
+		}
+
+		set_province_name = {
+		    id = 13383
+		    name = "Kigali"
+		}
+
+		UGD = {
+			add_ideas = {
+				UGD_Isaac_Maliyamungu_hog
+				UGD_Idi_Amin_Dada_for
+				UGD_Juma_Butabika_eco
+				UGD_Mustafa_Adrisi_sec
+			}
+
+			transfer_state = 548
+			transfer_state = 1089
+			transfer_state = 1090
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = UGD_AC
+		}
+
+		set_province_name = {
+		    id = 12989
+		    name = "Kampala"
+		}
+
+		TNZ = {
+			add_ideas = {
+				TNZ_Rashidi_Kawawa_hog
+				TNZ_Paul_Bomani_for
+				TNZ_John_Malecela_eco
+				TNZ_Rashidi_Kawawa_sec
+			}
+
+			transfer_state = 1077
+			transfer_state = 1079
+			transfer_state = 1080
+			transfer_state = 1081
+			transfer_state = 1082
+			transfer_state = 1084
+			transfer_state = 1085
+			transfer_state = 1086
+
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = TNZ_AC
+		}
+
+		LUO = {
+			add_ideas = {
+				LUO_Argwings_Kodhek_hog
+				LUO_Elijah_Masinde_for
+				LUO_William_Odongo_Omamo_eco
+				LUO_Hezekiah_Ochuka_sec
+			}
+
+			transfer_state = 1091
+			
+			every_owned_state = {
+				add_core_of = PREV
+			}
+
+			load_oob = LUO_AC
+		}
+	}
+}
+
+USA_AFRICA_start_african_crisis = {
+	hidden_effect = {
+		set_country_flag = OFN_CAR_african_crisis_has_started
+
+		GAB = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		CAF = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		CFS = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		KTG = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		ANG = {
+	        declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		ZAM = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		GAZ = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		RMB = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		BRD = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		RWA = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		UGD = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		TNZ = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+
+		LUO = {
+			declare_war_on = {
+				target = MZB
+				type = annex_everything
+			}
+		}
+	}
+}
+
+USA_AFRICA_CAR_transfer_administrative_hold = { 
+
+	set_variable = { OFN_CAR_DIP_ango_negotiation = OFN_MANDATE_administrative_hold }
+	set_variable = { OFN_CAR_DIP_cent_negotiation = OFN_MANDATE_administrative_hold }
+	set_variable = { OFN_CAR_DIP_east_negotiation = OFN_MANDATE_administrative_hold }
+	
+	multiply_variable = { OFN_CAR_DIP_ango_negotiation = 0.3 }
+	multiply_variable = { OFN_CAR_DIP_cent_negotiation = 0.3 }
+	multiply_variable = { OFN_CAR_DIP_east_negotiation = 0.3 }
+}
+
+USA_AFRICA_CAR_transfer_military_hold = {
+
+	set_variable = { OFN_CAR_WAR_logistics = OFN_MANDATE_military_presence }
+	set_variable = { OFN_CAR_WAR_material = OFN_MANDATE_military_presence }
+	set_variable = { OFN_CAR_WAR_training = OFN_MANDATE_military_presence }
+	
+	multiply_variable = { OFN_CAR_WAR_logistics = 0.3 }
+	multiply_variable = { OFN_CAR_WAR_material = 0.3 }
+	multiply_variable = { OFN_CAR_WAR_training = 0.3 }
+}
+
+USA_AFRICA_compute_african_war_bonus = {
+	### GAMEPLAY VARIABLES
+	# OFN_CAR_WAR_logistics
+	# OFN_CAR_WAR_material
+	# OFN_CAR_WAR_training
+
+	### MODIFIER VARIABLES
+	# OFN_CAR_weighted_logistics_bonus_org
+	# OFN_CAR_weighted_logistics_bonus_speed
+	# OFN_CAR_weighted_material_bonus_morale
+	# OFN_CAR_weighted_material_bonus_attrition
+	# OFN_CAR_weighted_material_bonus_oos
+	# OFN_CAR_weighted_training_bonus
+
+	set_variable = { OFN_CAR_weighted_logistics_bonus_org = OFN_CAR_WAR_logistics }
+	set_variable = { OFN_CAR_weighted_logistics_bonus_speed = OFN_CAR_WAR_logistics }
+
+	set_variable = { OFN_CAR_weighted_material_bonus_morale = OFN_CAR_WAR_material }
+	set_variable = { OFN_CAR_weighted_material_bonus_attrition = OFN_CAR_WAR_material }
+	set_variable = { OFN_CAR_weighted_material_bonus_oos = OFN_CAR_WAR_material }
+
+	set_variable = { OFN_CAR_weighted_training_bonus = OFN_CAR_WAR_training }
+
+	multiply_variable = { OFN_CAR_weighted_logistics_bonus_org = 20 }
+	multiply_variable = { OFN_CAR_weighted_logistics_bonus_speed = 0.5 }
+
+	multiply_variable = { OFN_CAR_weighted_material_bonus_morale = 0.35 }
+	multiply_variable = { OFN_CAR_weighted_material_bonus_attrition = -0.2 }
+	multiply_variable = { OFN_CAR_weighted_material_bonus_oos = -0.2 }
+
+	multiply_variable = { OFN_CAR_weighted_training_bonus = 0.4 }
+	
+	add_to_variable = { OFN_CAR_weighted_logistics_bonus_org = -10 }
+	add_to_variable = { OFN_CAR_weighted_logistics_bonus_speed = -0.25 }
+	
+	add_to_variable = { OFN_CAR_weighted_material_bonus_morale = -0.175 }
+	add_to_variable = { OFN_CAR_weighted_material_bonus_attrition = 0.1 }
+	add_to_variable = { OFN_CAR_weighted_material_bonus_oos = 0.1 }
+	
+	add_to_variable = { OFN_CAR_weighted_training_bonus = -0.2 } 
+
+	MZB = {
+		add_dynamic_modifier = { modifier = OFN_CAR_logistics_bonus }
+		add_dynamic_modifier = { modifier = OFN_CAR_material_bonus }
+		add_dynamic_modifier = { modifier = OFN_CAR_training_bonus }
+	}
+}
+
+USA_AFRICA_liberate_africa = {
+	hidden_effect = {
+		if = {
+			limit = {
+				MZB_is_in_control_of_kameroon_car = yes
+				has_country_flag = OFN_CAR_cameroon_established
+			}
+			GAB = {
+				add_ideas = {
+					GAB_Paul_Marie_Yembit_hog
+					GAB_Jacques_Opangault_for
+					GAB_Apollinaire_Bazinga_eco
+					GAB_Ba_Oumar_sec
+				}
+
+				create_country_leader = {
+					name = "Jean-Hilaire Aubame"
+					desc = "POLITICS_JEAN_HILAIRE_AUBAME_DESC"
+					picture = "Portrait_Orungu_Jean_Hilaire_Aubame.dds"
+					expire = "1999.1.23"
+					ideology = social_conservative_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_conservative
+					elections_allowed = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_ubangi_schari_car = yes
+				has_country_flag = OFN_CAR_beafrika_established
+			}
+			CAF = {
+				add_ideas = {
+					CAF_David_Dacko_hog
+					CAF_Barthelemy_Boganda_for
+					CAF_Ange_Felix_Patasse_eco
+					CAF_Andre_Kolingba_sec
+				}
+
+				create_country_leader = {
+					name = "Ange-Félix Patassé"
+					desc = "POLITICS_ANGE_FELIX_PARASSE_DESC"
+					picture = "Portrait_Beafrika_Ange_Felix_Patasse.dds"
+					expire = "1999.1.23"
+					ideology = social_democrat_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_democrat
+					elections_allowed = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_kongo_car = yes
+				has_country_flag = OFN_CAR_congo_established
+			}
+			CFS = {
+				add_ideas = {
+					CFS_Joseph_Okito_hog
+					CFS_Albert_Kalonji_for
+					CFS_Godefroid_Munongo_eco
+					CFS_Victor_Lundula_sec
+				}
+
+				create_country_leader = {
+					name = "Cyrille Adoula"
+					desc = "POLITICS_CYRILLE_ADOULA_DESC"
+					picture = "Portrait_Congo_Cyrille_Adoula.dds"
+					expire = "1999.1.23"
+					ideology = social_liberal_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_liberal
+					elections_allowed = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_angola_car = yes
+				has_country_flag = OFN_CAR_angola_established
+			}
+			ANG = {
+				add_ideas = {
+					ANG_Jeremias_Chitunda_dep
+					ANG_Demosthenes_Amos_Chilingutila_mil
+					ANG_Jorge_Sangumba_for
+					ANG_Jose_Eduardo_dos_Santos_eco
+				}
+
+				set_politics = {	
+		            ruling_party = despotism
+		            last_election = "1933.3.5"
+		            election_frequency = 48
+		            elections_allowed = no
+				}
+		        set_popularities = {
+		            communist = 0
+		            ultranational_socialism = 0
+		            socialist = 0
+		            social_democrat = 0
+		            social_liberal = 0
+		            market_liberal = 0
+		            social_conservative = 0
+		            authoritarian_democrat = 0
+		            despotism = 80
+		            fascism = 20
+		            national_socialism = 0
+		            burgundian_system = 0
+		        }
+				create_country_leader = {
+		            name = "Jonas Savimbi"
+		            desc = "POLITICS_JONAS_SAVIMBI_DESC"
+		            picture = "Portrait_Angola_Jonas_Savimbi.dds"
+		            expire = "1999.1.23"
+		            ideology = despotism_subtype
+		            traits = {
+			
+		            }
+		        }
+		        remove_unit_leader = 191001
+				remove_unit_leader = 191002
+				create_field_marshal = {
+					name = "Jonas Savimbi"
+					picture = "Portrait_Angola_Jonas_Savimbi.dds"
+					traits = { commando }
+					id = 5003
+					skill = 3
+					attack_skill = 3
+					defense_skill = 2
+					planning_skill = 3
+					logistics_skill = 2
+				}
+
+				create_corps_commander = {
+					name = "Agostinho Neto"
+					picture = "Portrait_Angola_Agostinho_Neto.dds"
+					traits = {  }
+					id = 5004
+					skill = 3
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 3
+				}
+
+				create_corps_commander = {
+					name = "Demosthenes Amos Chilingutila"
+					picture = "Portrait_Angola_Demosthenes_Amos_Chilingutila.dds"
+					traits = {  }
+					id = 5005
+					skill = 2
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 3
+					logistics_skill = 1
+				}
+
+				create_corps_commander = {
+					name = "Iko Carreira"
+					picture = "Portrait_Angola_Iko_Carreira.dds"
+					traits = { commando }
+					id = 5006
+					skill = 2
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 3
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_sambia_car = yes
+				has_country_flag = OFN_CAR_zambia_established
+			}
+			ZAM = {
+				add_ideas = {
+					ZAM_Reuben_Kamanga_hog
+					ZAM_Elijah_Mudenda_for
+					ZAM_Alexander_Grey_Zulu_eco
+					ZAM_Casimir_Michael_Grigg_sec
+				}
+
+				create_country_leader = {
+					name = "Simon Kapwepwe"
+					desc = "POLITICS_SIMON_KAPWEPWE_DESC"
+					picture = "Portrait_Zambia_Simon_Kapwepwe.dds"
+					expire = "1999.1.23"
+					ideology = social_conservative_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_conservative
+					elections_allowed = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_mosambik_car = yes
+				has_country_flag = OFN_CAR_mozambique_established
+			}
+			GAZ = {
+				add_ideas = {
+					GAZ_Joaquim_Chissano_hog
+					GAZ_Alberto_Massavanhane_for
+					GAZ_Marcelino_dos_Santos_eco
+					GAZ_Samora_Machel_sec
+				}
+
+				## TO ADD LEADER
+			}
+			RMB = {
+				add_ideas = {
+					RMB_Hastings_Kamuzu_Banda_hog
+					RMB_Orton_Chirwa_for
+					RMB_Aleke_Banda_eco
+					RMB_Katoba_Musopole_sec
+				}
+
+				## TO ADD LEADER
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_ruanda_burundi_car = yes
+				has_country_flag = OFN_CAR_rwanda_burundi_established
+			}
+			BRD = {
+				add_ideas = {
+					BRD_Michel_Micombero_hog
+					BRD_Alexis_Nimubona_for
+					BRD_Thomas_Ndabemeye_eco
+					BRD_Jean_Baptiste_Bagaza_sec
+				}
+
+				create_country_leader = {
+					name = "Ernest Kabushemeye"
+					desc = "POLITICS_ERNEST_KABUSHEMEYE_DESC"
+					picture = "Portrait_Burundi_Ernest_Kabushemeye.dds"
+					expire = "1999.1.23"
+					ideology = social_liberal_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_liberal
+					elections_allowed = no
+				}
+			}
+
+			RWA = {
+				add_ideas = {
+					RWA_Dominique_Mbonyumutwa_hog
+					RWA_Sylvestre_Nsanzimana_for
+					RWA_Gregoire_Kayibanda_eco
+					RWA_Juvenal_Habyarimana_sec
+				}
+
+				create_country_leader = {
+					name = "Dominique Mbonyumutwa"
+					desc = "POLITICS_DOMINIQUE_MBONYUMUTWA_DESC"
+					picture = "Portrait_Rwanda_Dominique_Mbonyumutwa.dds"
+					expire = "1999.1.23"
+					ideology = social_liberal_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_liberal
+					elections_allowed = no
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_uganda_car = yes
+				has_country_flag = OFN_CAR_uganda_established
+			}
+			UGD = {
+				add_ideas = {
+					UGD_Isaac_Maliyamungu_hog
+					UGD_Idi_Amin_Dada_for
+					UGD_Juma_Butabika_eco
+					UGD_Mustafa_Adrisi_sec
+				}
+
+				## TO ADD LEADER
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_tanganika_car = yes
+				has_country_flag = OFN_CAR_tanganyika_established
+			}
+			TNZ = {
+				add_ideas = {
+					TNZ_Rashidi_Kawawa_hog
+					TNZ_Paul_Bomani_for
+					TNZ_John_Malecela_eco
+					TNZ_Rashidi_Kawawa_sec
+				}
+
+				create_country_leader = {
+					name = "Oscar Kambona"
+					desc = "POLITICS_OSCAR_KAMBONA_DESC"
+					picture = "Portrait_Tanganyika_Oscar_Kambona.dds"
+					expire = "1999.1.23"
+					ideology = social_liberal_subtype
+					traits = { }
+				}
+				set_politics = {	
+					ruling_party = social_liberal
+					elections_allowed = no
+				}
+			}
+
+			ZZB = {
+				add_ideas = {
+					ZZB_Muhammad_Shamte_Hamadi_hog
+					ZZB_Ali_Muhsin_Al_Barwani_for
+					ZZB_Kighoma_Malima_eco
+					ZZB_Kanali_Ali_Mahfoudh_sec
+				}
+
+				## TO ADD LEADER
+			}
+		}
+
+		if = {
+			limit = {
+				MZB_is_in_control_of_kenia = yes
+				has_country_flag = OFN_CAR_kenya_established
+			}
+			LUO = {
+				add_ideas = {
+					LUO_Argwings_Kodhek_hog
+					LUO_Elijah_Masinde_for
+					LUO_William_Odongo_Omamo_eco
+					LUO_Hezekiah_Ochuka_sec
+				}
+
+				## TO ADD LEADER
+			}
+		}
+
+		GAB = {
+			set_state_owner = 539
+			set_state_controller = 539
+			add_state_core = 539
+		
+			set_state_owner = 1163
+			set_state_controller = 1163
+			add_state_core = 1163
+		
+			set_state_owner = 1164
+			set_state_controller = 1164
+			add_state_core = 1164
+		
+			set_state_owner = 1165
+			set_state_controller = 1165
+			add_state_core = 1165
+		}
+		CAF = {
+			set_state_owner = 538
+			set_state_controller = 538
+			add_state_core = 538
+		
+			set_state_owner = 1171
+			set_state_controller = 1171
+			add_state_core = 1171
+		
+			set_state_owner = 1181
+			set_state_controller = 1181
+			add_state_core = 1181
+		
+			set_state_owner = 1182
+			set_state_controller = 1182
+			add_state_core = 1182
+		
+			set_state_owner = 1183
+			set_state_controller = 1183
+			add_state_core = 1183
+		
+			set_state_owner = 1184
+			set_state_controller = 1184
+			add_state_core = 1184
+		
+			set_state_owner = 1185
+			set_state_controller = 1185
+			add_state_core = 1185
+		}
+		CFS = {	
+			set_state_owner = 295
+			set_state_controller = 295
+			add_state_core = 295
+		
+			set_state_owner = 718
+			set_state_controller = 718
+			add_state_core = 718
+		
+			set_state_owner = 1162
+			set_state_controller = 1162
+			add_state_core = 1162
+		
+			set_state_owner = 1166
+			set_state_controller = 1166
+			add_state_core = 1166
+		
+			set_state_owner = 1167
+			set_state_controller = 1167
+			add_state_core = 1167
+		
+			set_state_owner = 1168
+			set_state_controller = 1168
+			add_state_core = 1168
+
+			set_state_owner = 1169
+			set_state_controller = 1169
+			add_state_core = 1169
+		
+			set_state_owner = 1170
+			set_state_controller = 1170
+			add_state_core = 1170
+		
+			set_state_owner = 1172
+			set_state_controller = 1172
+			add_state_core = 1172
+		
+			set_state_owner = 1173
+			set_state_controller = 1173
+			add_state_core = 1173
+		
+			set_state_owner = 1174
+			set_state_controller = 1174
+			add_state_core = 1174
+		
+			set_state_owner = 1175
+			set_state_controller = 1175
+			add_state_core = 1175
+		
+			set_state_owner = 1176
+			set_state_controller = 1176
+			add_state_core = 1176
+		
+			set_state_owner = 1177
+			set_state_controller = 1177
+			add_state_core = 1177
+		
+			set_state_owner = 1178
+			set_state_controller = 1178
+			add_state_core = 1178
+		
+			set_state_owner = 1180
+			set_state_controller = 1180
+			add_state_core = 1180
+		}
+		KTG = {
+			set_state_owner = 1055
+			set_state_controller = 1055
+			add_state_core = 1055
+		
+			set_state_owner = 1056
+			set_state_controller = 1056
+			add_state_core = 1056
+		
+			set_state_owner = 1057
+			set_state_controller = 1057
+			add_state_core = 1057
+		}
+		ANG = {
+			load_focus_tree = generic_focus
+
+			set_state_owner = 540
+			set_state_controller = 540
+			add_state_core = 540
+
+			set_state_owner = 1032
+			set_state_controller = 1032
+			add_state_core = 1032
+
+			set_state_owner = 1033
+			set_state_controller = 1033
+			add_state_core = 1033
+
+			set_state_owner = 1034
+			set_state_controller = 1034
+			add_state_core = 1034
+
+			set_state_owner = 1035
+			set_state_controller = 1035
+			add_state_core = 1035
+
+			set_state_owner = 1036
+			set_state_controller = 1036
+			add_state_core = 1036
+
+			set_state_owner = 1037
+			set_state_controller = 1037
+			add_state_core = 1037
+
+			set_state_owner = 1038
+			set_state_controller = 1038
+			add_state_core = 1038
+
+			set_state_owner = 1039
+			set_state_controller = 1039
+			add_state_core = 1039
+
+			set_state_owner = 1040
+			set_state_controller = 1040
+			add_state_core = 1040
+
+			set_state_owner = 1051
+			set_state_controller = 1051
+			add_state_core = 1051
+
+			retire_country_leader = yes
+			set_capital = 1035
+			drop_cosmetic_tag = yes
+		}
+		ZAM = {
+			set_state_owner = 748
+			set_state_controller = 748
+			add_state_core = 748
+
+			if = {
+				limit = {
+					MZB = { owns_state = 884 }
+				}
+				set_state_owner = 884
+				set_state_controller = 884
+				add_state_core = 884
+			}
+		
+			set_state_owner = 1052
+			set_state_controller = 1052
+			add_state_core = 1052
+		
+			set_state_owner = 1053
+			set_state_controller = 1053
+			add_state_core = 1053
+		
+			set_state_owner = 1054
+			set_state_controller = 1054
+			add_state_core = 1054
+		
+			set_state_owner = 1066
+			set_state_controller = 1066
+			add_state_core = 1066
+		
+			set_state_owner = 1067
+			set_state_controller = 1067
+			add_state_core = 1067
+		
+			set_state_owner = 1068
+			set_state_controller = 1068
+			add_state_core = 1068
+		
+			set_state_owner = 1069
+			set_state_controller = 1069
+			add_state_core = 1069
+		
+			set_state_owner = 1070
+			set_state_controller = 1070
+			add_state_core = 1070
+		}
+
+		GAZ = {
+			set_state_owner = 544
+			set_state_controller = 544
+			add_state_core = 544
+
+			set_state_owner = 1071
+			set_state_controller = 1071
+			add_state_core = 1071
+		
+			set_state_owner = 1072
+			set_state_controller = 1072
+			add_state_core = 1072
+
+			set_state_owner = 1073
+			set_state_controller = 1073
+			add_state_core = 1073
+			
+			set_state_owner = 1076
+			set_state_controller = 1076
+			add_state_core = 1076
+		}
+		RMB = {
+			set_state_owner = 879
+			set_state_controller = 879
+			add_state_core = 879
+
+			set_state_owner = 1074
+			set_state_controller = 1074
+			add_state_core = 1074
+
+			set_state_owner = 1075
+			set_state_controller = 1075
+			add_state_core = 1075
+
+			set_state_owner = 1083
+			set_state_controller = 1083
+			add_state_core = 1083
+		}
+		BRD = {
+			set_state_owner = 1087
+			set_state_controller = 1087
+			add_state_core = 1087
+		}
+		RWA = {
+			set_state_owner = 1088
+			set_state_controller = 1088
+			add_state_core = 1088
+		}
+		UGD = {
+			set_state_owner = 548
+			set_state_controller = 548
+			add_state_core = 548
+		
+			set_state_owner = 1089
+			set_state_controller = 1089
+			add_state_core = 1089
+		
+			set_state_owner = 1090
+			set_state_controller = 1090
+			add_state_core = 1090
+		}
+		TNZ = {
+			set_state_owner = 546
+			set_state_controller = 546
+			add_state_core = 546
+
+			set_state_owner = 1077
+			set_state_controller = 1077
+			add_state_core = 1077
+
+			set_state_owner = 1078
+			set_state_controller = 1078
+			add_state_core = 1078
+		
+			set_state_owner = 1079
+			set_state_controller = 1079
+			add_state_core = 1079
+		
+			set_state_owner = 1080
+			set_state_controller = 1080
+			add_state_core = 1080
+		
+			set_state_owner = 1081
+			set_state_controller = 1081
+			add_state_core = 1081
+		
+			set_state_owner = 1082
+			set_state_controller = 1082
+			add_state_core = 1082
+		
+			set_state_owner = 1084
+			set_state_controller = 1084
+			add_state_core = 1084
+		
+			set_state_owner = 1085
+			set_state_controller = 1085
+			add_state_core = 1085
+		
+			set_state_owner = 1086
+			set_state_controller = 1086
+			add_state_core = 1086
+		}
+		ZZB = {
+			set_state_owner = 1118
+			set_state_controller = 1118
+			add_state_core = 1118
+		}
+		LUO = {
+			set_state_owner = 1091
+			set_state_controller = 1091
+			add_state_core = 1091
+		}
+		CMR = {
+			set_state_owner = 708
+			set_state_controller = 708
+			add_state_core = 708
+		}
+	}
+}
+
+USA_AFRICA_core_africa = {
+	hidden_effect = {
+		MZB = {
+			add_state_core = 1066
+			add_state_core = 1082
+			add_state_core = 1035
+			add_state_core = 295
+			add_state_core = 539
+			add_state_core = 544
+		}
+		every_state = {
+			limit = { is_core_of = COG }
+			remove_core_of = COG
+		}
+		every_state = {
+			limit = { is_core_of = ANG }
+			remove_core_of = ANG
+		}
+	}
+}
+
+USA_AFRICA_uncore_africa = {
+	hidden_effect = {
+		every_state = {
+			limit = { is_core_of = MZB }
+			remove_core_of = MZB
+		}
+		MZB = {
+			add_state_core = 1066
+			add_state_core = 1082
+			add_state_core = 1035
+			add_state_core = 295
+			add_state_core = 539
+			add_state_core = 544
+		}
+	}
+}
+
+ANG_USA_compute_rivalry_effects = {
+	## VARIABLES TO BE USED
+
+	# OFN_MANDATE_ANG_UNITA_power_level : strength of UNITA
+	# OFN_MANDATE_ANG_MPLA_power_level  : strength of MPLA
+	# stability
+
+	# OFN_MANDATE_ANG_UNITA_power_level_weigthed
+	# OFN_MANDATE_ANG_MPLA_power_level_weigthed
+	# OFN_MANDATE_ANG_NEUTRAL_power_level_weigthed
+
+	set_temp_variable = { OFN_MANDATE_ANG_total_power = OFN_MANDATE_ANG_UNITA_power_level }
+	add_to_temp_variable = { OFN_MANDATE_ANG_total_power = OFN_MANDATE_ANG_MPLA_power_level }
+
+	if = {
+		limit = {
+			check_variable = { stability > 0 }
+		}
+		# Weight set between 1 and 1 + 0.2*stability
+		# This weight allows space for neutral outcome to happen
+
+		set_temp_variable = { OFN_MANDATE_ANG_total_power_weight = stability }
+		multiply_temp_variable = { OFN_MANDATE_ANG_total_power_weight = 0.2 }
+		add_to_temp_variable = { OFN_MANDATE_ANG_total_power_weight = 1 }
+
+		multiply_temp_variable = { OFN_MANDATE_ANG_total_power = OFN_MANDATE_ANG_total_power_weight }
+	}
+
+	set_variable = { OFN_MANDATE_ANG_UNITA_power_level_weigthed = OFN_MANDATE_ANG_UNITA_power_level }
+	divide_variable = { OFN_MANDATE_ANG_UNITA_power_level_weigthed = OFN_MANDATE_ANG_total_power }
+
+	set_variable = { OFN_MANDATE_ANG_MPLA_power_level_weigthed = OFN_MANDATE_ANG_MPLA_power_level }
+	divide_variable = { OFN_MANDATE_ANG_MPLA_power_level_weigthed = OFN_MANDATE_ANG_total_power }
+
+	set_variable = { OFN_MANDATE_ANG_NEUTRAL_power_level_weigthed = 1 }
+	subtract_from_variable = { OFN_MANDATE_ANG_NEUTRAL_power_level_weigthed = OFN_MANDATE_ANG_UNITA_power_level_weigthed }
+	subtract_from_variable = { OFN_MANDATE_ANG_NEUTRAL_power_level_weigthed = OFN_MANDATE_ANG_MPLA_power_level_weigthed }
+}
+
+ANG_USA_start_rivalry_event = {
+	set_temp_variable = { OFN_MANDATE_ANG_diceroll = random }
+
+	if = { # UNITA WIN
+		limit = {
+			check_variable = { OFN_MANDATE_ANG_diceroll < OFN_MANDATE_ANG_UNITA_power_level_weigthed }
+		}
+		hidden_effect = {
+			country_event = { id = OFN_ANG.2 }
+		}
+	}
+
+	else = {
+		set_temp_variable = { OFN_MANDATE_ANG_diceroll_number_to_compare = OFN_MANDATE_ANG_UNITA_power_level_weigthed }
+		add_to_temp_variable = { OFN_MANDATE_ANG_diceroll_number_to_compare = OFN_MANDATE_ANG_MPLA_power_level_weigthed }
+
+		if = { # MPLA WIN
+			limit = {
+				check_variable = { OFN_MANDATE_ANG_diceroll < OFN_MANDATE_ANG_diceroll_number_to_compare }
+			}
+			hidden_effect = {
+				country_event = { id = OFN_ANG.3 }
+			}
+		}
+
+		else = { # NEUTRAL WIN
+			hidden_effect = {
+				country_event = { id = OFN_ANG.4 }
+			}
+		}
+	}
+}
+
+OFN_MANDATE_set_starting_laws = {
+	add_ideas = {
+			#POLITICAL
+		tno_political_parties_controlled_opposition
+		tno_religious_rights_secularism
+		tno_trade_unions_nonsocialist_allowed
+		tno_immigration_quota_immigration
+		tno_slavery_outlawed
+		tno_public_meetings_allowed
+		tno_press_rights_censored_press
+		tno_vote_franchise_universal
+		tno_refugees_open
+			#MILITARY
+		tno_conscription_volunteer_only
+		tno_women_military_assistance
+		tno_military_supervision_military_policing
+		tno_military_spending_large_spending
+		tno_training_combat_schooling
+		tno_racial_integration_integrated_military
+		tno_draft_exemptions_educational_deferment
+			#SOCIAL
+		tno_safety_minimal_regulations
+		tno_health_care_no_health_care
+		tno_pollution_no_controls
+		tno_education_public_education
+		tno_penal_system_capital_punishment
+		tno_lgbt_rights_lgbt_outlawed
+		tno_gender_rights_women_in_the_workplace
+		tno_minorities_segregation
+		tno_security_police
+			#ECONOMIC
+		tno_trade_laws_free_trade
+		tno_economic_focus_demilitarized_economy
+		tno_tax_rate_medium_taxation
+		tno_income_taxation_tax_havens
+		tno_minimum_wage_low_minimum_wage
+		tno_max_workhours_12_hour_work_day
+		tno_child_labor_illegal
+		tno_pensions_trinket_pensions
+		tno_unemployment_trinket_subsidies
+
+			#SOCIETAL DEVELOPMENT
+		tno_army_professionalism_cronyism
+		tno_industrial_equipment_modern
+	}
+}

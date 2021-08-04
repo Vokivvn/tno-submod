@@ -1,0 +1,6765 @@
+﻿############################
+## Dirlewanger
+############################
+
+add_namespace = ORS
+
+#### INTRO EVENTS ###
+
+country_event = {
+	id = ORS.01
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.01"}
+	title = ORS.01.t
+	desc = ORS.01.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.01.a
+	}
+}
+
+### Capture of Orenburg
+country_event = {
+	id = ORS.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.50"}
+	title = ORS.50.t
+	desc = ORS.50.desc
+	picture = GFX_report_event_destroyed_krakow
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.50.a
+		set_global_flag = Orenburg_Burns
+	}
+}
+
+country_event = { #Failure of Lysenko's trap
+	id = ORS.162
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.162"}
+	title = ORS.162.t
+	desc = ORS.162.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.162.a
+	}
+}
+country_event = {
+	id = ORS.200
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.200"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.200.a
+		ORS_Dirlewanger_Death = yes
+	}
+}
+
+country_event = { ##reaction event to NKVD coup
+	id = ORS.400
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ORS.400" }
+	title = ORS.400.t
+	desc = ORS.400.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #a little
+		name = ORS.400.a
+		add_manpower = 1200
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 60
+			producer = BAS
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			producer = BAS
+		}
+	}
+}
+
+#death triggers
+country_event = {
+	id = ORS.500
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.500"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = ORS.500.a
+
+	}
+}
+#Ural war death
+country_event = {
+	id = ORS.501
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.501"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.501.a
+		random_list = {
+			90 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			7 = {
+				country_event = { id = ORS.405 days = 50 }
+			}
+			3 = {
+				country_event = { id = ORS.431 days = 70 }
+			}
+		}
+	}
+}
+#Lysenko war
+country_event = {
+	id = ORS.502
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.502"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.502.a
+		random_list = {
+			50 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			7 = {
+				country_event = { id = ORS.432 days = 50 }
+			}
+			3 = {
+				country_event = { id = ORS.438 days = 90 }
+			}
+			10 = {
+				country_event = { id = ORS.404 days = 70 }
+			}
+			13 = {
+				country_event = { id = ORS.408 days = 120 }
+			}
+			7 = {
+				country_event = { id = ORS.403 days = 40 }
+			}
+			10 = {
+				if = {
+					limit = {
+						BAS = {
+							has_global_flag = BAS_NKVD_coup
+						}
+					}
+					country_event = { id = ORS.479 days = 70 }
+				}
+				else = {
+					country_event = { id = ORS.404 days = 70 }
+				}
+			}
+		}
+	}
+}
+
+#rando death
+
+country_event = {
+	id = ORS.511
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.511"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.511.a
+		random_list = {
+			90 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.401 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.406 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.402 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.407 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.409 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.410 days = 4 }
+			}
+			1 = {
+				country_event = { id = ORS.411 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.412 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.413 days = 5 }
+			}
+			1 = {
+				country_event = { id = ORS.416 days = 5 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.512
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.512"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.512.a
+		random_list = {
+			80 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			1 = {
+				country_event = { id = ORS.414 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.415 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.417 days = 3 }
+			}
+			1 = {
+				country_event = { id = ORS.418 days = 3 }
+			}
+			2 = {
+				country_event = { id = ORS.419 days = 3 }
+			}
+			3 = {
+				country_event = { id = ORS.420 days = 2 }
+			}
+			2 = {
+				country_event = { id = ORS.421 days = 4 }
+			}
+			5 = {
+				country_event = { id = ORS.422 days = 5 }
+			}
+			4 = {
+				country_event = { id = ORS.423 days = 4 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.513
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.513"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.513.a
+		random_list = {
+			70 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			3 = {
+				country_event = { id = ORS.424 days = 5 }
+			}
+			2 = {
+				country_event = { id = ORS.425 days = 1 }
+			}
+			2 = {
+				country_event = { id = ORS.426 days = 5 }
+			}
+			2 = {
+				country_event = { id = ORS.427 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.428 days = 9 }
+			}
+			4 = {
+				country_event = { id = ORS.429 days = 7 }
+			}
+			2 = {
+				country_event = { id = ORS.430 days = 1 }
+			}
+			2 = {
+				country_event = { id = ORS.468 days = 1 }
+			}
+			2 = {
+				country_event = { id = ORS.467 days = 1 }
+			}
+			4 = {
+				country_event = { id = ORS.433 days = 1 }
+			}
+			4 = {
+				country_event = { id = ORS.434 days = 4 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.514
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.514"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.514.a
+		random_list = {
+			60 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			3 = {
+				country_event = { id = ORS.471 days = 2 }
+			}
+			4 = {
+				country_event = { id = ORS.435 days = 2 }
+			}
+			3 = {
+				country_event = { id = ORS.436 days = 2 }
+			}
+			5 = {
+				country_event = { id = ORS.437 days = 3 }
+			}
+			5 = {
+				country_event = { id = ORS.466 days = 3 }
+			}
+			3 = {
+				country_event = { id = ORS.449 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.469 days = 4 }
+			}
+			4 = {
+				country_event = { id = ORS.440 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.470 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.441 days = 4 }
+			}
+			2 = {
+				country_event = { id = ORS.442 days = 4 }
+			}
+			2 = {
+				country_event = { id = ORS.474 days = 4 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.515
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.515"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.515.a
+		random_list = {
+			60 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			7 = {
+				country_event = { id = ORS.443 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.444 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.475 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.476 days = 5 }
+			}
+			4 = {
+				country_event = { id = ORS.445 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.446 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.477 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.447 days = 5 }
+			}
+			4 = {
+				country_event = { id = ORS.448 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.480 days = 5 }
+			}
+			4 = {
+				country_event = { id = ORS.478 days = 5 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.516
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.516"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.516.a
+		random_list = {
+			65 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			4 = {
+				country_event = { id = ORS.449 days = 4 }
+			}
+			5 = {
+				country_event = { id = ORS.480 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.450 days = 4 }
+			}
+			5 = {
+				country_event = { id = ORS.451 days = 4 }
+			}
+			5 = {
+				country_event = { id = ORS.465 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.453 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.454 days = 4 }
+			}
+			3 = {
+				country_event = { id = ORS.455 days = 4 }
+			}
+			4 = {
+				country_event = { id = ORS.456 days = 4 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.517
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.517"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.517.a
+		random_list = {
+			50 = {
+				country_event = { id = ORS.500 days = 2 }
+			}
+			6 = {
+				country_event = { id = ORS.457 days = 5 }
+			}
+			7 = {
+				country_event = { id = ORS.458 days = 9 }
+			}
+			3 = {
+				country_event = { id = ORS.459 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.460 days = 9 }
+			}
+			3 = {
+				country_event = { id = ORS.461 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.483 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.484 days = 9 }
+			}
+			3 = {
+				country_event = { id = ORS.485 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.486 days = 9 }
+			}
+			4 = {
+				country_event = { id = ORS.487 days = 9 }
+			}
+			3 = {
+				country_event = { id = ORS.463 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.464 days = 9 }
+			}
+			3 = {
+				country_event = { id = ORS.481 days = 5 }
+			}
+			3 = {
+				country_event = { id = ORS.482 days = 9 }
+			}
+
+		}
+	}
+}
+country_event = { #Dirly Super-OOF
+	id = ORS.518
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.518"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.518.a
+		random_list = {
+			6 = {
+				country_event = { id = ORS.457 days = 5 }
+			}
+			7 = {
+				country_event = { id = ORS.458 days = 9 }
+			}
+			7 = {
+				country_event = { id = ORS.459 days = 5 }
+			}
+			8 = {
+				country_event = { id = ORS.460 days = 9 }
+			}
+			8 = {
+				country_event = { id = ORS.461 days = 5 }
+			}
+			8 = {
+				country_event = { id = ORS.483 days = 5 }
+			}
+			8 = {
+				country_event = { id = ORS.484 days = 9 }
+			}
+			7 = {
+				country_event = { id = ORS.485 days = 5 }
+			}
+			7 = {
+				country_event = { id = ORS.486 days = 9 }
+			}
+			7 = {
+				country_event = { id = ORS.487 days = 9 }
+			}
+			6 = {
+				country_event = { id = ORS.463 days = 5 }
+			}
+			8 = {
+				country_event = { id = ORS.464 days = 9 }
+			}
+			7 = {
+				country_event = { id = ORS.481 days = 5 }
+			}
+			6 = {
+				country_event = { id = ORS.482 days = 9 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.520
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.520"}
+	title = ORS.200.t
+	desc = ORS.200.desc
+	picture = GFX_report_event_dirlewanger
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.520.a
+		country_event = { id = ORS.500 days = 150 }
+
+	}
+}
+###Lysenkos strategy events###
+
+##Testing our enemies
+country_event = {
+	id = ORS.201
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.201"}
+	title = ORS.201.t
+	desc = ORS.201.d
+	picture = GFX_report_event_ORS_testing_our_enemies
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.201.a
+		ai_chance = { factor = 80 }
+	}
+}
+##Strike at Orenburg - Beginning
+country_event = {
+	id = ORS.202
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.202"}
+	title = ORS.202.t
+	desc = ORS.202.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.202.a
+		ai_chance = { factor = 80 }
+		ORE = {
+			country_event = { id = ORE.1 days = 2 }
+		}
+	}
+}
+
+##Orenburd Raid succeeds
+country_event = {
+	id = ORS.203
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.203"}
+	title = ORS.203.t
+	desc = ORS.203.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.203.a
+		ai_chance = { factor = 80 }
+		add_ideas = ORS_band_exhausted
+		add_political_power = 150
+		army_experience = 10
+		add_manpower = -42
+	}
+}
+
+##Orenburg Raid fails
+country_event = {
+	id = ORS.204
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.204"}
+	title = ORS.204.t
+	desc = ORS.204.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.204.a
+		ai_chance = { factor = 80 }
+		add_ideas = ORS_band_exhausted
+		add_political_power = -50
+		army_experience = -10
+		add_manpower = -300
+	}
+}
+
+##Strike at the League begining
+country_event = {
+	id = ORS.205
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.205"}
+	title = ORS.205.t
+	desc = ORS.205.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.205.a
+		ai_chance = { factor = 80 }
+		URL = {
+			country_event = { id = URL.22 days = 2 }
+		}
+	}
+}
+
+##Strike at the League - raid succeeds
+country_event = {
+	id = ORS.206
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.206"}
+	title = ORS.206.t
+	desc = ORS.206.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.206.a
+		ai_chance = { factor = 80 }
+		add_ideas = ORS_band_exhausted
+		army_experience = 20
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = URL
+		}
+		add_manpower = -73
+	}
+}
+
+##Strike at the League - raid fails
+country_event = {
+	id = ORS.207
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.207"}
+	title = ORS.207.t
+	desc = ORS.207.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.207.a
+		ai_chance = { factor = 80 }
+		add_ideas = ORS_band_exhausted
+		army_experience = -10
+		add_political_power = -75
+		add_manpower = -522
+	}
+}
+
+##Strike at the peasants - begining
+country_event = {
+	id = ORS.208
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.208"}
+	title = ORS.208.t
+	desc = ORS.208.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.208.a
+		ai_chance = { factor = 80 }
+		BAS = {
+			country_event = { id = BAS.1 days = 2 }
+		}
+	}
+}
+
+##Strike at the peasants - raid succeeds
+country_event = {
+	id = ORS.209
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.209"}
+	title = ORS.209.t
+	desc = ORS.209.d
+	picture = GFX_report_event_ORS_forest_patrol
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.209.a
+		ai_chance = { factor = 80 }
+		add_ideas = ORS_band_exhausted
+		add_political_power = 10
+		army_experience = 2
+		add_tech_bonus = {
+			name = land_doc_bonus
+			bonus = 0.1
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+
+##Black Bandit on Black Mountain
+
+country_event = {
+	id = ORS.666
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.666"}
+	title = ORS.666.t
+	desc = ORS.666.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.666.a
+		ai_chance = { factor = 60 }
+		add_political_power = 25
+	}
+}
+
+##The Battle of Novotroitsk
+country_event = {
+	id = ORS.211
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.211"}
+	title = ORS.211.t
+	desc = ORS.211.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.211.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.212 days = 2 }
+		}
+	}
+}
+##The Battle of Novotroitsk - The Outskirts
+country_event = {
+	id = ORS.212
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.212"}
+	title = ORS.212.t
+	desc = ORS.212.d
+	picture = GFX_report_event_ORS_novotroitsk_outskirts
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.212.a
+		ai_chance = { factor = 80 }
+		add_manpower = -23
+		hidden_effect = {
+			country_event = { id = ORS.213 days = 1 }
+			URL = {
+				country_event = { id = URL.23 days = 1 }
+			}
+		}
+	}
+}
+##The Battle of Novotroitsk - The Industrial District
+country_event = {
+	id = ORS.213
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.213"}
+	title = ORS.213.t
+	desc = ORS.213.d
+	picture = GFX_report_event_ORS_novotroitsk_industry
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.213.a
+		ai_chance = { factor = 80 }
+		add_manpower = -128
+		hidden_effect = {
+			random_list = {
+				90 = {
+					country_event = { id = ORS.214 days = 2 }
+				}
+				10 = {
+					country_event = { id = ORS.216 days = 2 }
+				}
+			}
+		}
+	}
+}
+
+##The Battle of Novotroitsk - The Town Center
+country_event = {
+	id = ORS.214
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.214"}
+	title = ORS.214.t
+	desc = ORS.214.d
+	picture = GFX_report_event_ORS_novotroitsk_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.214.a
+		ai_chance = { factor = 80 }
+		add_manpower = -53
+		hidden_effect = {
+			country_event = { id = ORS.215 days = 1 }
+		}
+	}
+}
+
+##The Battle of Novotroitsk - Victory
+country_event = {
+	id = ORS.215
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.215"}
+	title = ORS.215.t
+	desc = ORS.215.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.215.a
+		ai_chance = { factor = 80 }
+		custom_effect_tooltip = ORS_officer_anger_down_t
+		add_to_variable = { ORS_Dirlewanger_Officer_Angery_Level = -4 }
+		custom_effect_tooltip = ORS_brigade_anger_down_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = -4 }
+		hidden_effect = {
+			URL = {
+				country_event = { id = URL.25 days = 1 }
+			}
+		}
+	}
+}
+
+##The Battle of Novotroitsk - Defeat
+country_event = {
+	id = ORS.216
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.216"}
+	title = ORS.216.t
+	desc = ORS.216.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.216.a
+		ai_chance = { factor = 80 }
+		add_political_power = -100
+		custom_effect_tooltip = ORS_officer_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Officer_Angery_Level = 4 }
+		custom_effect_tooltip = ORS_brigade_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = 4 }
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.1
+		}
+		hidden_effect = {
+			URL = {
+				country_event = { id = URL.24 days = 1 }
+			}
+		}
+	}
+}
+
+##The Second Phase
+country_event = {
+	id = ORS.217
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.217"}
+	title = ORS.217.t
+	desc = ORS.217.d
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.217.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 200
+			producer = ORS
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 400
+			producer = ORS
+		}
+	}
+}
+
+##A Second Great Raid
+country_event = {
+	id = ORS.218
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.218"}
+	title = ORS.218.t
+	desc = ORS.218.d
+	picture = GFX_report_event_ORS_testing_our_enemies
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.218.a
+		ai_chance = { factor = 80 }
+		add_political_power = 25
+	}
+}
+
+##Draw Out The Guard
+country_event = {
+	id = ORS.219
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.219"}
+	title = ORS.219.t
+	desc = ORS.219.d
+	picture = GFX_report_event_ORS_forest_patrol
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.219.a
+		ai_chance = { factor = 80 }
+		remove_ideas = ORS_band_exhausted
+		add_political_power = 50
+	}
+}
+
+##Demand Double - Lysenko sends half
+country_event = {
+	id = ORS.220
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.220"}
+	title = ORS.220.t
+	desc = ORS.220.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.220.a
+		ai_chance = { factor = 80 }
+		add_political_power = -50
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 250
+			producer = ORS
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 100
+			producer = ORS
+		}
+	}
+}
+
+###Lysenko Interactions###
+
+##Transfer The Flesh
+country_event = {
+	id = ORS.250
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.250"}
+	title = ORS.250.t
+	desc = ORS.250.d
+	picture = GFX_report_event_ORS_hand_them_over
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.250.a
+		ai_chance = { factor = 80 }
+		add_political_power = 100
+	}
+}
+
+##Hand Them Over
+country_event = {
+	id = ORS.251
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.251"}
+	title = ORS.251.t
+	desc = ORS.251.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.251.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##The Deal Changed - Lysenko agrees
+country_event = {
+	id = ORS.252
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.252"}
+	title = ORS.252.t
+	desc = ORS.252.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.252.a
+		ai_chance = { factor = 80 }
+		set_country_flag = ORS_lysenko_caves_in
+	}
+}
+
+##The Deal Changed
+country_event = {
+	id = ORS.253
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.253"}
+	title = ORS.253.t
+	desc = ORS.253.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.253.a
+		ai_chance = { factor = 60 }
+		BAS = {
+			country_event = { id = BAS.2 days = 1 }
+		}
+	}
+}
+
+##The Deal Changed - Lysenko stands firm.
+country_event = {
+	id = ORS.254
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.254"}
+	title = ORS.254.t
+	desc = ORS.254.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.254.a
+		ai_chance = { factor = 80 }
+		set_country_flag = ORS_lysenko_stands_strong
+	}
+}
+
+##Demand Double - Lysenko sends double.
+country_event = {
+	id = ORS.255
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.255"}
+	title = ORS.255.t
+	desc = ORS.255.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.255.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			producer = ORS
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 400
+			producer = ORS
+		}
+	}
+}
+
+##Harry the stragglers.
+country_event = {
+	id = ORS.256
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.256"}
+	title = ORS.256.t
+	desc = ORS.256.d
+	picture = GFX_report_event_ORS_camp
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.256.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 500
+			producer = ORS
+		}
+	}
+}
+
+##The world turned upside down.
+country_event = {
+	id = ORS.257
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.257"}
+	title = ORS.257.t
+	desc = ORS.257.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.257.a
+		ai_chance = { factor = 80 }
+		remove_ideas = ORS_to_the_slaughter
+		add_ideas = ORS_band_exhausted
+	}
+}
+
+##Salt the earth.
+country_event = {
+	id = ORS.258
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.258"}
+	title = ORS.258.t
+	desc = ORS.258.d
+	picture = GFX_report_event_ORS_salt_the_earth
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.258.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Let all know fear
+country_event = {
+	id = ORS.259
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.259"}
+	title = ORS.259.t
+	desc = ORS.259.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.259.a
+		ai_chance = { factor = 80 }
+		add_political_power = 50
+	}
+}
+
+## Assassinate/Overthrow Dirlewanger foci
+##Kill the German scum
+country_event = {
+	id = ORS.260
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.260"}
+	title = ORS.260.t
+	desc = ORS.260.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.260.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Organize the Russians
+country_event = {
+	id = ORS.261
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.261"}
+	title = ORS.261.t
+	desc = ORS.261.d
+	picture = GFX_report_event_ORS_camp
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.261.a
+		ai_chance = { factor = 80 }
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.14
+		}
+	}
+}
+
+##Organize the Kazakhs
+country_event = {
+	id = ORS.262
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.262"}
+	title = ORS.262.t
+	desc = ORS.262.d
+	picture = GFX_report_event_ORS_forest_patrol
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.262.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Pay the Mercenaries
+country_event = {
+	id = ORS.263
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.263"}
+	title = ORS.263.t
+	desc = ORS.263.d
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.263.a
+		ai_chance = { factor = 40 }
+		add_manpower = -40000
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.5
+		}
+	}
+	option = {
+		name = ORS.263.b
+		ai_chance = { factor = 40 }
+		add_political_power = -500
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.5
+		}
+	}
+}
+
+##Poison the Germans
+country_event = {
+	id = ORS.264
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.264"}
+	title = ORS.264.t
+	desc = ORS.264.d
+	picture = GFX_report_event_ORS_poison_the_germans
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.264.a
+		ai_chance = { factor = 80 }
+		add_stability = -0.3
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.1
+		}
+	}
+}
+
+##Kill the scum
+country_event = {
+	id = ORS.265
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.265"}
+	title = ORS.265.t
+	desc = ORS.265.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.265.a
+		ORS_Dirlewanger_Death = yes
+	}
+}
+
+##Deep in the West.
+country_event = {
+	id = ORS.266
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.266"}
+	title = ORS.266.t
+	desc = ORS.266.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.266.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			ORE = {
+				country_event = { id = ORE.2 days = 2 }
+			}
+		}
+	}
+}
+
+##Deep in the West - An overwhelming success!
+country_event = {
+	id = ORS.267
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.267"}
+	title = ORS.267.t
+	desc = ORS.267.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.267.a
+		ai_chance = { factor = 80 }
+		add_political_power = 150
+		remove_ideas = ORS_to_the_slaughter
+		add_ideas = ORS_band_exhausted
+	}
+}
+
+##Penetrate the Mountains.
+country_event = {
+	id = ORS.268
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.268"}
+	title = ORS.268.t
+	desc = ORS.268.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.268.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			URL = {
+				country_event = { id = URL.26 days = 1 }
+			}
+		}
+	}
+}
+
+##Penetrate the Mountains - The Results.
+country_event = {
+	id = ORS.269
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.269"}
+	title = ORS.269.t
+	desc = ORS.269.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.269.a
+		ai_chance = { factor = 80 }
+		add_political_power = 150
+		army_experience = 10
+		remove_ideas = ORS_to_the_slaughter
+		add_ideas = ORS_band_exhausted
+	}
+}
+
+##The Pincer.
+country_event = {
+	id = ORS.270
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.270"}
+	title = ORS.270.t
+	desc = ORS.270.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.270.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			ORE = {
+				country_event = { id = ORE.3 days = 1 }
+			}
+		}
+	}
+}
+
+##The Pincer - Success in Orenburg.
+country_event = {
+	id = ORS.271
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.271"}
+	title = ORS.271.t
+	desc = ORS.271.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.271.a
+		ai_chance = { factor = 80 }
+		add_political_power = 150
+		hidden_effect = {
+			URL = {
+				country_event = { id = URL.27 days = 1 }
+			}
+		}
+	}
+}
+
+##The Pincer - Failure in Orenburg.
+country_event = {
+	id = ORS.272
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.272"}
+	title = ORS.272.t
+	desc = ORS.272.d
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.272.a
+		ai_chance = { factor = 80 }
+		add_political_power = -100
+		hidden_effect = {
+			URL = {
+				country_event = { id = URL.27 days = 1 }
+			}
+		}
+	}
+}
+
+##The Pincer - Success against the League.
+country_event = {
+	id = ORS.273
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.273"}
+	title = ORS.273.t
+	desc = ORS.273.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.273.a
+		ai_chance = { factor = 80 }
+		add_political_power = 150
+		army_experience = 10
+		remove_ideas = ORS_to_the_slaughter
+		add_ideas = ORS_band_exhausted
+	}
+}
+
+##The Pincer - Failure against the League.
+country_event = {
+	id = ORS.274
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.274"}
+	title = ORS.274.t
+	desc = ORS.274.d
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.274.a
+		ai_chance = { factor = 80 }
+		add_political_power = -150
+		army_experience = -10
+		remove_ideas = ORS_to_the_slaughter
+		add_ideas = ORS_band_exhausted
+	}
+}
+
+##Honor the Deal.
+country_event = {
+	id = ORS.275
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.275"}
+	title = ORS.275.t
+	desc = ORS.275.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.275.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 700
+			producer = ORS
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 200
+			producer = ORS
+		}
+	}
+}
+
+##Abandon the Nazi salute?
+country_event = {
+	id = ORS.276
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.276"}
+	title = ORS.276.t
+	desc = ORS.276.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { #drop
+		name = ORS.276.a
+		ai_chance = { factor = 80 }
+		add_stability = 0.05
+		set_country_flag = ORS_drop_heil_f
+		random_list = {
+			70 = { country_event = { id = ORS.332 days = 13}}
+			30 = { country_event = { id = ORS.331 days = 13}}
+		}
+	}
+	option = { #keep
+		name = ORS.276.b
+		ai_chance = { factor = 80 }
+		add_political_power = 25
+		set_country_flag = ORS_keep_heil_f
+		random_list = {
+			70 = { country_event = { id = ORS.332 days = 13}}
+			30 = { country_event = { id = ORS.331 days = 13}}
+		}
+	}
+}
+
+##The oldest of us has died.
+country_event = {
+	id = ORS.277
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.277"}
+	title = ORS.277.t
+	desc = ORS.277.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.277.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Tensions within the band.
+country_event = {
+	id = ORS.278
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.278"}
+	title = ORS.278.t
+	desc = ORS.278.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.278.a
+		ai_chance = { factor = 80 }
+		add_stability = -0.05
+	}
+}
+
+##Downed Luftwaffe pilot captured!
+country_event = {
+	id = ORS.279
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.279"}
+	title = ORS.279.t
+	desc = ORS.279.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.279.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Fire in Orsk!
+country_event = {
+	id = ORS.280
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.280"}
+	title = ORS.280.t
+	desc = ORS.280.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.280.a
+		ai_chance = { factor = 80 }
+		add_stability = -0.05
+	}
+}
+
+##Cholera outbreak in the camp.
+country_event = {
+	id = ORS.281
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.281"}
+	title = ORS.281.t
+	desc = ORS.281.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.281.a
+		ai_chance = { factor = 80 }
+		add_manpower = -53
+	}
+}
+
+##The most dangerous game.
+country_event = {
+	id = ORS.282
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.282"}
+	title = ORS.282.t
+	desc = ORS.282.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.282.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Ural League spy captured.
+country_event = {
+	id = ORS.283
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.283"}
+	title = ORS.283.t
+	desc = ORS.283.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.283.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Is there a doctor in the here?
+country_event = {
+	id = ORS.284
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.284"}
+	title = ORS.284.t
+	desc = ORS.284.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.284.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 100
+			producer = ORS
+		}
+	}
+}
+
+##Excellent hunting season.
+country_event = {
+	id = ORS.285
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.285"}
+	title = ORS.285.t
+	desc = ORS.285.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.285.a
+		ai_chance = { factor = 80 }
+		add_political_power = 75
+	}
+}
+
+##Winter attrition.
+country_event = {
+	id = ORS.286
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.286"}
+	title = ORS.286.t
+	desc = ORS.286.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.286.a
+		ai_chance = { factor = 80 }
+		add_manpower = -27
+	}
+}
+
+##Frozen in time.
+country_event = {
+	id = ORS.287
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.287"}
+	title = ORS.287.t
+	desc = ORS.287.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.287.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##Chase the scraps.
+country_event = {
+	id = ORS.288
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.288"}
+	title = ORS.288.t
+	desc = ORS.288.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.288.a
+		ai_chance = { factor = 80 }
+		add_opinion_modifier = {
+			target = BAS
+			modifier = ORS_fucked_us_over
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 150
+			producer = ORS
+		}
+	}
+}
+
+##King of the Mountain.
+country_event = {
+	id = ORS.300
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.300"}
+	title = ORS.300.t
+	desc = ORS.300.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.300.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+##King of the Mountain - Black Mountain taken!
+country_event = {
+	id = ORS.301
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.301"}
+	title = ORS.301.t
+	desc = ORS.301.d
+	picture = GFX_report_event_dirlewanger
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ORS.301.a
+		ai_chance = { factor = 80 }
+		remove_ideas = ORS_to_the_slaughter
+		hidden_effect = {
+			country_event = {
+				id = ORS.346
+				days = 5
+			}
+		}
+	}
+}
+
+##Post War Raid - Ural League
+country_event = {
+	id = ORS.302
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.302"}
+	title = ORS.302.t
+	desc = ORS.302.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.302.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 10000
+			producer = ORS
+		}
+		remove_building = {
+			type = arms_factory
+			level = 1
+			state = 847
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 847
+		}
+		remove_building = {
+			type = arms_factory
+			level = 1
+			state = 848
+		}
+		remove_building = {
+			type = industrial_complex
+			level = 1
+			state = 848
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 848
+		}
+	}
+}
+
+##Post War Raid - Orenburg
+country_event = {
+	id = ORS.303
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.303"}
+	title = ORS.303.t
+	desc = ORS.303.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.303.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 10000
+			producer = ORS
+		}
+		remove_building = {
+			type = arms_factory
+			level = 1
+			state = 849
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 849
+		}
+		remove_building = {
+			type = arms_factory
+			level = 1
+			state = 652
+		}
+		remove_building = {
+			type = industrial_complex
+			level = 1
+			state = 652
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 652
+		}
+		remove_building = {
+			type = industrial_complex
+			level = 1
+			state = 852
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 852
+		}
+	}
+}
+
+##Post War Raid - Lysenko
+country_event = {
+	id = ORS.304
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.304"}
+	title = ORS.304.t
+	desc = ORS.304.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = ORS.304.a
+		ai_chance = { factor = 80 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 10000
+			producer = ORS
+		}
+		remove_building = {
+			type = arms_factory
+			level = 2
+			state = 582
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 582
+		}
+		remove_building = {
+			type = arms_factory
+			level = 1
+			state = 754
+		}
+		remove_building = {
+			type = industrial_complex
+			level = 2
+			state = 754
+		}
+		remove_building = {
+			type = infrastructure
+			level = 2
+			state = 754
+		}
+	}
+}
+
+country_event = { #more loot to me
+	id = ORS.305
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.305"}
+	title = ORS.305.t
+	desc = ORS.305.d
+	picture = GFX_report_event_russia_bunker_command
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #go for the officers
+		name = ORS.305.a
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.306 days = 3}
+	}
+	option = { #go for him
+		name = ORS.305.b
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.310 days = 7}
+	}
+}
+
+country_event = { #how dare he
+	id = ORS.306
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.306"}
+	title = ORS.306.t
+	desc = ORS.306.d
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #demote the officer
+		name = ORS.306.a
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.307 days = 7}
+	}
+	option = { #shoot
+		name = ORS.306.b
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.314 days = 7}
+		add_manpower = -1
+	}
+}
+
+country_event = { #3 officers are sad
+	id = ORS.307
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.307"}
+	title = ORS.307.t
+	desc = ORS.307.d
+	picture = GFX_report_event_russian_military
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #give in to them
+		name = ORS.307.a
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.308 days = 54}
+	}
+	option = { #shoot them too
+		name = ORS.307.b
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.309 days = 14}
+		add_manpower = -3
+	}
+}
+country_event = { #morale goes up
+	id = ORS.308
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.308"}
+	title = ORS.308.t
+	desc = ORS.308.d
+	picture = GFX_report_event_russia_red_army_march
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.308.a
+		ai_chance = { factor = 80 }
+		add_to_variable = { ORS_Dirlewanger_Officer_Angery_Level = -5 }
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = -5 }
+		custom_effect_tooltip = ORS_officer_anger_down_t
+		custom_effect_tooltip = ORS_soldier_anger_down_t
+	}
+}
+country_event = { #morale goes down
+	id = ORS.309
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.309"}
+	title = ORS.309.t
+	desc = ORS.309.d
+	picture = GFX_report_event_russia_red_army_march
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #he failed so hard
+		name = ORS.309.a
+		ai_chance = { factor = 80 }
+		add_manpower = -138
+	}
+}
+
+country_event = { #communist brigade
+	id = ORS.310
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.310"}
+	title = ORS.310.t
+	desc = ORS.310.d
+	picture = GFX_report_event_socialist_protests
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #shoot them all
+		name = ORS.310.a
+		ai_chance = { factor = 80 }
+		add_manpower = -212
+		add_political_power = 50
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.01
+		}
+	}
+	option = { #detain their leaders
+		name = ORS.310.b
+		ai_chance = { factor = 80 }
+		country_event = {
+			id = ORS.311
+			days = 20
+		}
+	}
+}
+
+country_event = { #communist league
+	id = ORS.311
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.311"}
+	title = ORS.311.t
+	desc = ORS.311.d
+	picture = GFX_report_event_abwehr_intelligence
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #find them all
+		name = ORS.311.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = {
+				id = ORS.313
+				days = 15
+			}
+		}
+	}
+	option = { #fake
+		name = ORS.311.b
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = {
+				id = ORS.312
+				days = 15
+			}
+		}
+	}
+}
+
+country_event = { #fake
+	id = ORS.312
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.312"}
+	title = ORS.312.t
+	desc = ORS.312.d
+	picture = GFX_report_event_cave_entrance
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ORS.312.a
+		ai_chance = { factor = 80 }
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.03
+		}
+		add_political_power = -50
+	}
+}
+
+country_event = { #real
+	id = ORS.313
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.313"}
+	title = ORS.313.t
+	desc = ORS.313.d
+	picture = GFX_report_event_socialist_protests
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #listen
+		name = ORS.313.a
+		ai_chance = { factor = 80 }
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.03
+		}
+		add_stability = -0.01
+	}
+	option = { #shoot
+		name = ORS.313.b
+		ai_chance = { factor = 80 }
+		add_manpower = -374
+	}
+}
+country_event = { #shoot
+	id = ORS.314
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.314"}
+	title = ORS.314.t
+	desc = ORS.314.d
+	picture = GFX_report_event_CAU_execution
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #demote the officer
+		name = ORS.314.a
+		ai_chance = { factor = 80 }
+		add_manpower = -1
+	}
+}
+country_event = { #gun polishing
+	id = ORS.315
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.315"}
+	title = ORS.315.t
+	desc = ORS.315.d
+	picture = GFX_report_event_CAU_execution
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #polish the gun
+		name = ORS.315.a
+		ai_chance = { factor = 80 }
+		add_political_power = 10
+	}
+}
+country_event = { #Clean the truck
+	id = ORS.316
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.316"}
+	title = ORS.316.t
+	desc = ORS.316.d
+	picture = GFX_report_event_generic_truck
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.316.a
+		ai_chance = { factor = 80 }
+		country_event = { id = ORS.317 days = 1 }
+		add_manpower = -1
+	}
+}
+country_event = { #clean the blood
+	id = ORS.317
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.317"}
+	title = ORS.317.t
+	desc = ORS.317.d
+	picture = GFX_report_event_CAU_execution
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.317.a
+		ai_chance = { factor = 80 }
+		add_manpower = -1
+	}
+}
+
+country_event = { #boy arrives
+	id = ORS.318
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.318"}
+	title = ORS.318.t
+	desc = ORS.318.d
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.318.a
+		ai_chance = { factor = 80 }
+		add_manpower = 1
+		hidden_effect = {
+			country_event = { id = ORS.319 days = 192 }
+		}
+	}
+}
+country_event = { #secretary
+	id = ORS.319
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.319"}
+	title = ORS.319.t
+	desc = ORS.319.d
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.319.a
+		ai_chance = { factor = 80 }
+		add_political_power = 10
+		add_stability = 0.01
+		hidden_effect = {
+			country_event = { id = ORS.319 days = 92 }
+		}
+
+	}
+}
+country_event = { #boy gets first kill
+	id = ORS.320
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.320"}
+	title = ORS.320.t
+	desc = ORS.320.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.320.a
+		ai_chance = { factor = 80 }
+		army_experience = 1
+		hidden_effect = {
+			country_event = { id = ORS.321 days = 111 }
+		}
+	}
+}
+country_event = { #boy gets shot
+	id = ORS.321
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.321"}
+	title = ORS.321.t
+	desc = ORS.321.d
+	picture = GFX_report_event_generic_ruins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #poof
+		name = ORS.321.a
+		ai_chance = { factor = 80 }
+		add_manpower = -1
+	}
+	option = { #He'll be fine
+		name = ORS.321.b
+		ai_chance = { factor = 80 }
+	}
+}
+#322-329 is for Lily
+country_event = {
+	id = ORS.322
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.322"}
+	title = ORS.322.t
+	desc = ORS.322.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.322.a
+		ai_chance = { factor = 80 }
+		country_event = {
+			id = ORS.323
+			days = 2
+		}
+	}
+	option = {
+		name = ORS.322.b
+		ai_chance = { factor = 0 }
+		country_event = {
+			id = ORS.324
+			days = 2
+		}
+	}
+}
+country_event = {
+	id = ORS.323
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.323"}
+	title = ORS.323.t
+	desc = ORS.323.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.323.a
+		ai_chance = { factor = 80 }
+		add_manpower = -20
+
+	}
+}
+country_event = {
+	id = ORS.324
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.324"}
+	title = ORS.324.t
+	desc = ORS.324.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.324.a
+		ai_chance = { factor = 80 }
+		country_event = {
+			id = ORS.325
+			days = 2
+		}
+	}
+}
+country_event = {
+	id = ORS.325
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.325"}
+	title = ORS.325.t
+	desc = ORS.325.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.325.a
+		ai_chance = { factor = 80 }
+		random_list = {
+			50 = {
+				country_event = {
+					id = ORS.326
+					days = 2
+				}
+			}
+			50 = {
+				country_event = {
+					id = ORS.327
+					days = 2
+				}
+			}
+		}
+
+	}
+}
+country_event = {
+	id = ORS.326
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.326"}
+	title = ORS.326.t
+	desc = ORS.326.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.326.a
+		ai_chance = { factor = 80 }
+		add_manpower = -8
+	}
+}
+country_event = {
+	id = ORS.327
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.327"}
+	title = ORS.327.t
+	desc = ORS.327.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.327.a
+		ai_chance = { factor = 80 }
+		country_event = {
+			id = ORS.328
+			days = 5
+		}
+
+	}
+}
+country_event = {
+	id = ORS.328
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.328"}
+	title = ORS.328.t
+	desc = ORS.328.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.328.a
+		ai_chance = { factor = 80 }
+		country_event = {
+			id = ORS.328
+			days = 10
+		}
+
+	}
+}
+country_event = {
+	id = ORS.329
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.329"}
+	title = ORS.329.t
+	desc = ORS.329.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.329.a
+		ai_chance = { factor = 80 }
+
+
+	}
+}
+
+country_event = { #failed
+	id = ORS.331
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.331"}
+	title = ORS.331.t
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	desc = {
+		text = ORS.331.d1
+		trigger = { has_country_flag = ORS_drop_heil_f  }
+	}
+	desc = {
+		text = ORS.331.d2
+		trigger = { has_country_flag = ORS_keep_heil_f  }
+	}
+
+	option = { #keep
+		name = ORS.331.a
+		ai_chance = { factor = 80 }
+		trigger = { has_country_flag = ORS_keep_heil_f  }
+		custom_effect_tooltip = ORS_brigade_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = 4 }
+
+	}
+	option = { #dropped
+		name = ORS.331.b
+		ai_chance = { factor = 80 }
+		trigger = { has_country_flag = ORS_drop_heil_f  }
+		custom_effect_tooltip = ORS_brigade_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = 4 }
+
+	}
+}
+
+country_event = { #sucess heiling
+	id = ORS.332
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.332"}
+	title = ORS.332.t
+	picture = GFX_report_event_russia_kazakh_riders_4
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	desc = {
+		text = ORS.332.d1
+		trigger = { has_country_flag = ORS_drop_heil_f  }
+	}
+	desc = {
+		text = ORS.332.d2
+		trigger = { has_country_flag = ORS_keep_heil_f  }
+	}
+
+	option = { #keep
+		name = ORS.332.a
+		ai_chance = { factor = 80 }
+		trigger = { has_country_flag = ORS_keep_heil_f  }
+		custom_effect_tooltip = ORS_brigade_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = -4 }
+
+	}
+	option = { #dropped
+		name = ORS.332.b
+		ai_chance = { factor = 80 }
+		trigger = { has_country_flag = ORS_drop_heil_f  }
+		custom_effect_tooltip = ORS_brigade_anger_up_t
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = -4 }
+
+	}
+}
+
+country_event = { #Tank chain - intro
+	id = ORS.335
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.335"}
+	title = ORS.335.t
+	desc = ORS.335.d
+	picture = GFX_report_event_MAN_truck
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.335.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.336 days = 28}
+		}
+	}
+}
+
+country_event = {  #Tank chain - test
+	id = ORS.336
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.336"}
+	title = ORS.336.t
+	desc = ORS.336.d
+	picture = GFX_report_event_south_african_war_boer_tank3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.336.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			random_list = {
+				25 = {country_event = { id = ORS.337 days = 1}}
+				75 = {country_event = { id = ORS.338 days = 1}}
+			}
+		}
+	}
+}
+
+country_event = {  #Tank chain - fail
+	id = ORS.337
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.337"}
+	title = ORS.337.t
+	desc = ORS.337.d
+	picture = GFX_report_event_generic_mountain
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.337.a
+		ai_chance = { factor = 80 }
+		add_manpower = -6 #PLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEBLIANS
+	}
+}
+
+country_event = {  #Tank chain - epic
+	id = ORS.338
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.338"}
+	title = ORS.338.t
+	desc = ORS.338.d
+	picture = GFX_report_event_exploding_building1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.338.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.336 days = 7}
+		}
+	}
+}
+
+country_event = { #Tank chain - tank
+	id = ORS.339
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.339"}
+	title = ORS.339.t
+	desc = ORS.339.d
+	picture = GFX_report_event_south_african_war_boer_tank3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.339.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.336 days = 132}
+		}
+	}
+}
+
+country_event = { #Tank chain - armored division
+	id = ORS.340
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.340"}
+	title = ORS.340.t
+	desc = ORS.340.d
+	picture = GFX_report_event_tank_battle
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.340.a
+		ai_chance = { factor = 80 }
+		load_oob = ORS_oskarwagen
+		set_country_flag = ORS_oskarwagen
+	}
+}
+
+country_event = { #the missing 300 - intro
+	id = ORS.342
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.342"}
+	title = ORS.342.t
+	desc = ORS.342.d
+	picture = GFX_report_event_russia_bunker_command
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.342.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.343 days = 1}
+		}
+	}
+}
+
+country_event = { #300 are missing
+	id = ORS.343
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.343"}
+	title = ORS.343.t
+	desc = ORS.343.d
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.343.a
+		ai_chance = { factor = 80 }
+		add_manpower = -300
+		hidden_effect = {
+			country_event = { id = ORS.344 days = 31}
+			country_event = { id = ORS.345 days = 13}
+			country_event = { id = ORS.347 days = 70}
+		}
+	}
+}
+
+country_event = { #130 are found making their own group
+	id = ORS.344
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.344"}
+	title = ORS.344.t
+	desc = ORS.344.d
+	picture = GFX_report_event_arab_soldiers1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.344.a
+		ai_chance = { factor = 80 }
+		add_manpower = 115
+	}
+}
+
+country_event = { #50 raiders return
+	id = ORS.345
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.345"}
+	title = ORS.345.t
+	desc = ORS.345.d
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.345.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+country_event = { #50 men in Lysenko
+	id = ORS.346
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.346"}
+	title = ORS.346.t
+	desc = ORS.346.d
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.346.a
+		ai_chance = { factor = 80 }
+		hidden_effect = {
+			country_event = { id = ORS.348 days = 365}
+		}
+	}
+
+}
+
+country_event = { #20 in wrong brigaed
+	id = ORS.347
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.347"}
+	title = ORS.347.t
+	desc = ORS.347.d
+	picture = GFX_report_event_south_african_war_us_soldier
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.347.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+country_event = {  #50 are still gone
+	id = ORS.348
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.348"}
+	title = ORS.348.t
+	desc = ORS.348.d
+	picture = GFX_report_event_generic_mountain
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.348.a
+		ai_chance = { factor = 80 }
+	}
+}
+
+country_event = { #weapon inspection time
+	id = ORS.349
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.349"}
+	title = ORS.349.t
+	desc = ORS.349.d
+	picture = GFX_report_event_italian_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.349.a
+		ai_chance = { factor = 80 }
+	}
+	option = {
+		name = ORS.349.b
+		ai_chance = { factor = 80 }
+	}
+}
+
+#Culture Events
+country_event = { #suicide note
+	id = ORS.351
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.351"}
+	title = ORS.351.t
+	desc = ORS.351.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.351.a
+	}
+}
+
+country_event = { #Black Square
+	id = ORS.352
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.352"}
+	title = ORS.352.t
+	desc = ORS.352.d
+	picture = GFX_report_event_black_square
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.352.a
+	}
+}
+
+country_event = { #Drunken party
+	id = ORS.353
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.353"}
+	title = ORS.353.t
+	desc = ORS.353.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.353.a
+	}
+}
+
+country_event = { #Evacuation
+	id = ORS.354
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.354"}
+	title = ORS.354.t
+	desc = ORS.354.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.354.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.5000
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = { #Follow Up
+	id = ORS.5000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.5000"}
+	title = ORS.5000.t
+	desc = ORS.5000.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.5000.a
+
+	}
+}
+
+country_event = { #Drinking game
+	id = ORS.355
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.355"}
+	title = ORS.355.t
+	desc = ORS.355.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.355.a
+	}
+}
+country_event = { #Drinking game
+	id = ORS.356
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.356"}
+	title = ORS.356.t
+	desc = ORS.356.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.356.a
+	}
+}
+
+#Slasher Movie themed Dirly Chain
+country_event = {
+	id = ORS.376
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.376"}
+	title = ORS.376.t
+	desc = ORS.376.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.376.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.377
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.377
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.377"}
+	title = ORS.377.t
+	desc = ORS.377.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.377.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.378
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.378
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.378"}
+	title = ORS.378.t
+	desc = ORS.378.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.378.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.379
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.379
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.379"}
+	title = ORS.379.t
+	desc = ORS.379.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.379.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.380
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.380
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.380"}
+	title = ORS.380.t
+	desc = ORS.380.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.380.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.381
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.381
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.381"}
+	title = ORS.381.t
+	desc = ORS.381.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.381.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.382
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.382
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.382"}
+	title = ORS.382.t
+	desc = ORS.382.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.382.a
+		hidden_effect = {
+			country_event = {
+				id = ORS.383
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.383
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.383"}
+	title = ORS.383.t
+	desc = ORS.383.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.383.a
+		hidden_effect = {
+			random_list = {
+				50 = {
+					country_event = {
+						id = ORS.384
+						days = 2
+					}
+				}
+				50 = {
+					country_event = {
+						id = ORS.385
+						days = 2
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ORS.384
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.384"}
+	title = ORS.384.t
+	desc = ORS.384.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.384.a
+
+	}
+}
+
+country_event = {
+	id = ORS.385
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.385"}
+	title = ORS.385.t
+	desc = ORS.385.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.385.a
+
+	}
+}
+
+## Dirlewanger Death Events ##############################################################
+
+country_event = {
+	id = ORS.401
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.401"}
+	title = ORS.401.t
+	desc = ORS.401.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.401.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.401
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.401
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.401
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.402
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.402"}
+	title = ORS.402.t
+	desc = ORS.402.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.402.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.402
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.402
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.402
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.403
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.403"}
+	title = ORS.403.t
+	desc = ORS.403.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.403.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.403
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.403
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.403
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.404
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.404"}
+	title = ORS.404.t
+	desc = ORS.404.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.404.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.404
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.404
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.404
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.405
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.405"}
+	title = ORS.405.t
+	desc = ORS.405.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.405.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.405
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.405
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.405
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.406
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.406"}
+	title = ORS.406.t
+	desc = ORS.406.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.406.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.406
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.406
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.406
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.407
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.407"}
+	title = ORS.407.t
+	desc = ORS.407.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.407.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.407
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.407
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.407
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.408
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.408"}
+	title = ORS.408.t
+	desc = ORS.408.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.408.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.408
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.408
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.408
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.409
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.409"}
+	title = ORS.409.t
+	desc = ORS.409.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.409.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.409
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.409
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.409
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.410
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.410"}
+	title = ORS.410.t
+	desc = ORS.410.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.410.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.410
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.410
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.410
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.411
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.411"}
+	title = ORS.411.t
+	desc = ORS.411.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.411.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.411
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.411
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.411
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.412
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.412"}
+	title = ORS.412.t
+	desc = ORS.412.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.412.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.412
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.412
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.412
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.413
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.413"}
+	title = ORS.413.t
+	desc = ORS.413.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.413.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.413
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.413
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.413
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.414
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.414"}
+	title = ORS.414.t
+	desc = ORS.414.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.414.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.414
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.414
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.414
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.415
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.415"}
+	title = ORS.415.t
+	desc = ORS.415.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.415.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.415
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.415
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.415
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.416
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.416"}
+	title = ORS.416.t
+	desc = ORS.416.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.416.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.416
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.416
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.416
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.417
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.417"}
+	title = ORS.417.t
+	desc = ORS.417.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.417.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.417
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.417
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.417
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.418
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.418"}
+	title = ORS.418.t
+	desc = ORS.418.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.418.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.418
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.418
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.418
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.419
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.419"}
+	title = ORS.419.t
+	desc = ORS.419.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.419.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.419
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.419
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.419
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.420
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.420"}
+	title = ORS.420.t
+	desc = ORS.420.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.420.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.420
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.420
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.420
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.421
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.421"}
+	title = ORS.421.t
+	desc = ORS.421.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.421.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.421
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.421
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.421
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.422
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.422"}
+	title = ORS.422.t
+	desc = ORS.422.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.422.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.422
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.422
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.422
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.423
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.423"}
+	title = ORS.423.t
+	desc = ORS.423.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.423.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.423
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.423
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.423
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.424
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.424"}
+	title = ORS.424.t
+	desc = ORS.424.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.424.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.424
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.424
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.424
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.425
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.425"}
+	title = ORS.425.t
+	desc = ORS.425.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.425.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.425
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.425
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.425
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.426
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.426"}
+	title = ORS.426.t
+	desc = ORS.426.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.426.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.426
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.426
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.426
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.427
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.427"}
+	title = ORS.427.t
+	desc = ORS.427.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.427.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.427
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.427
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.427
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.428
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.428"}
+	title = ORS.428.t
+	desc = ORS.428.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.428.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.428
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.428
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.428
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.429
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.429"}
+	title = ORS.429.t
+	desc = ORS.429.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.429.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.429
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.429
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.429
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.430
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.430"}
+	title = ORS.430.t
+	desc = ORS.430.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.430.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.430
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.430
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.430
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.431
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.431"}
+	title = ORS.431.t
+	desc = ORS.431.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.431.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.431
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.431
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.431
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.432
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.432"}
+	title = ORS.432.t
+	desc = ORS.432.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.432.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.432
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.432
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.432
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.433
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.433"}
+	title = ORS.433.t
+	desc = ORS.433.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.433.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.433
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.433
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.433
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.434
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.434"}
+	title = ORS.434.t
+	desc = ORS.434.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.434.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.434
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.434
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.434
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.435
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.435"}
+	title = ORS.435.t
+	desc = ORS.435.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.435.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.435
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.435
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.435
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.436
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.436"}
+	title = ORS.436.t
+	desc = ORS.436.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.436.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.436
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.436
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.436
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.437
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.437"}
+	title = ORS.437.t
+	desc = ORS.437.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.437.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.437
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.437
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.437
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.438
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.438"}
+	title = ORS.438.t
+	desc = ORS.438.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.438.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.438
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.438
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.438
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.439
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.439"}
+	title = ORS.439.t
+	desc = ORS.439.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.439.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.439
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.439
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.439
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.440
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.440"}
+	title = ORS.440.t
+	desc = ORS.440.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.440.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.440
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.440
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.440
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.441
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.441"}
+	title = ORS.441.t
+	desc = ORS.441.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.441.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.441
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.441
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.441
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.442
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.442"}
+	title = ORS.442.t
+	desc = ORS.442.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.442.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.442
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.442
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.442
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.443
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.443"}
+	title = ORS.443.t
+	desc = ORS.443.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.443.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.443
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.443
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.443
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.444
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.444"}
+	title = ORS.444.t
+	desc = ORS.444.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.444.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.444
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.444
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.444
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.445
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.445"}
+	title = ORS.445.t
+	desc = ORS.445.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.445.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.445
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.445
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.445
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.446
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.446"}
+	title = ORS.446.t
+	desc = ORS.446.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.446.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.446
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.446
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.446
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.447
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.447"}
+	title = ORS.447.t
+	desc = ORS.447.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.447.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.447
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.447
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.447
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.448
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.448"}
+	title = ORS.448.t
+	desc = ORS.448.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.448.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.448
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.448
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.448
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.449
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.449"}
+	title = ORS.449.t
+	desc = ORS.449.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.449.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.449
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.449
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.449
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.450
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.450"}
+	title = ORS.450.t
+	desc = ORS.450.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.450.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.450
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.450
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.450
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.451
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.451"}
+	title = ORS.451.t
+	desc = ORS.420.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.451.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.451
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.451
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.451
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.452
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.452"}
+	title = ORS.452.t
+	desc = ORS.452.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.452.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.452
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.452
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.452
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.453
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.453"}
+	title = ORS.453.t
+	desc = ORS.453.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.453.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.453
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.453
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.453
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.454
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.454"}
+	title = ORS.454.t
+	desc = ORS.454.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.454.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.454
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.454
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.454
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.455
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.455"}
+	title = ORS.455.t
+	desc = ORS.455.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.455.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.455
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.455
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.455
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.456
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.456"}
+	title = ORS.456.t
+	desc = ORS.456.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.456.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.456
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.456
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.456
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.457
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.457"}
+	title = ORS.457.t
+	desc = ORS.457.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.457.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.457
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.457
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.457
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.458
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.458"}
+	title = ORS.458.t
+	desc = ORS.458.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.458.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.458
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.458
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.458
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.459
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.459"}
+	title = ORS.459.t
+	desc = ORS.459.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.459.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.459
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.459
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.459
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.460
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.460"}
+	title = ORS.460.t
+	desc = ORS.460.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.460.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.460
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.460
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.460
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.461
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.461"}
+	title = ORS.461.t
+	desc = ORS.461.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.461.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.461
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.461
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.461
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.462
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.462"}
+	title = ORS.462.t
+	desc = ORS.462.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.462.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.462
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.462
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.462
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.463
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.463"}
+	title = ORS.463.t
+	desc = ORS.463.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.463.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.463
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.463
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.463
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.464
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.464"}
+	title = ORS.464.t
+	desc = ORS.464.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.464.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.464
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.464
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.464
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.465
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.465"}
+	title = ORS.465.t
+	desc = ORS.465.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.465.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.465
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.465
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.465
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.466
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.466"}
+	title = ORS.466.t
+	desc = ORS.466.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.466.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.466
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.466
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.466
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.467
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.467"}
+	title = ORS.467.t
+	desc = ORS.467.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.467.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.467
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.467
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.467
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.468
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.468"}
+	title = ORS.468.t
+	desc = ORS.468.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.468.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.468
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.468
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.468
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.469
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.469"}
+	title = ORS.469.t
+	desc = ORS.469.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.469.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.469
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.469
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.469
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.470
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.470"}
+	title = ORS.470.t
+	desc = ORS.470.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.470.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.470
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.470
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.470
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.471
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.471"}
+	title = ORS.471.t
+	desc = ORS.471.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.471.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.471
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.471
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.471
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = { #Death in the Magnitogorsk Pass
+	id = ORS.472
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.472"}
+	title = ORS.472.t
+	desc = ORS.472.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.472.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.472
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.472
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.472
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = { #Capture in the Magnitogorsk Central Planning Centre
+	id = ORS.473
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.473"}
+	title = ORS.473.t
+	desc = ORS.473.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.473.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.473
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.473
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.473
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.474
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.474"}
+	title = ORS.474.t
+	desc = ORS.474.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.474.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.474
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.474
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.474
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.475
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.475"}
+	title = ORS.475.t
+	desc = ORS.475.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.475.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.475
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.475
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.475
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.476
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.476"}
+	title = ORS.476.t
+	desc = ORS.476.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.476.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.476
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.476
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.476
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.477
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.477"}
+	title = ORS.477.t
+	desc = ORS.477.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.477.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.477
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.477
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.477
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.478
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.478"}
+	title = ORS.478.t
+	desc = ORS.478.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.478.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.478
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.478
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.478
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.479
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.479"}
+	title = ORS.479.t
+	desc = ORS.479.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.479.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.479
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.479
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.479
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.480
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.480"}
+	title = ORS.480.t
+	desc = ORS.480.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.480.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.480
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.480
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.480
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.481
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.481"}
+	title = ORS.481.t
+	desc = ORS.481.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.481.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.481
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.481
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.481
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.482
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.482"}
+	title = ORS.482.t
+	desc = ORS.482.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.482.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.482
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.482
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.482
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.483
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.483"}
+	title = ORS.483.t
+	desc = ORS.483.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.483.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.483
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.483
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.483
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.484
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.484"}
+	title = ORS.484.t
+	desc = ORS.484.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.484.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.484
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.484
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.484
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.485
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.485"}
+	title = ORS.485.t
+	desc = ORS.485.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.485.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.485
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.485
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.485
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.486
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.486"}
+	title = ORS.486.t
+	desc = ORS.486.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.486.a
+		if = {
+			limit = { tag = ORS }
+			ORS_Dirlewanger_Death = yes
+		}
+		hidden_effect = {
+			ORE = {
+				country_event = {
+					id = ORS.486
+					days = 2
+				}
+			}
+			URL = {
+				country_event = {
+					id = ORS.486
+					days = 2
+				}
+			}
+			BAS = {
+				country_event = {
+					id = ORS.486
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ORS.487
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.487"}
+	title = ORS.487.t
+	desc = ORS.487.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ORS.487.a
+		ORS_Dirlewanger_Death = yes
+	}
+}
+
+#Dirlewanger Victory Against Lysenko
+country_event = {
+	id = ORS.2000
+	title = ORS.2000.t
+	desc = ORS.2000.desc
+	picture = GFX_report_event_german_pow_russia
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.2000"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = ORS.2000.a
+		set_global_flag = ORS_BAS_LYS_capped
+	}
+}
+
+#Dirlewanger Victory Against The League
+country_event = {
+	id = ORS.2001
+	title = ORS.2001.t
+	desc = ORS.2001.desc
+	picture = GFX_report_event_russian_military
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.2001"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = ORS.2001.a
+		set_global_flag = ORS_URL_capped
+	}
+}
+
+#Dirlewanger Victory Against Orenburg
+country_event = {
+	id = ORS.2002
+	title = ORS.2002.t
+	desc = ORS.2002.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.2002"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = ORS.2002.a
+		set_global_flag = ORS_ORE_capped
+	}
+}
+
+#Dirlewanger Victory Against The NKVD
+country_event = {
+	id = ORS.2003
+	title = ORS.2003.t
+	desc = ORS.2003.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.2003"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = ORS.2003.a
+		set_global_flag = ORS_BAS_NKVD_capped
+	}
+}
+
+country_event = { #schmede is a bitchboi and cannot hold onto power
+	id = ORS.1000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.1000"}
+	title = ORS.1000.t
+	desc = ORS.1000.d
+	picture = GFX_report_event_italian_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #anarchy time
+		name = ORS.1000.a
+		hidden_effect = {
+			set_cosmetic_tag = ORS_DED
+			create_country_leader = {
+				name = "Anarchic"
+				picture = "gfx/leaders/ORS/Portrait_Orsk_No_Authority.dds"
+				expire = "1999.12.25"
+				ideology = socialist_subtype
+				traits = {
+				}
+			}
+			set_politics = {
+				ruling_party = socialist
+			}
+
+			set_popularities = {
+				communist = 0
+				ultranational_socialism = 0
+				national_socialism = 0
+				socialist = 100
+				social_democrat = 0
+				social_liberal = 0
+				market_liberal = 0
+				social_conservative = 0
+				authoritarian_democrat = 0
+				despotism = 0
+				fascism = 0
+				burgundian_system = 0
+			}
+			set_party_name = {
+				ideology = socialist
+				long_name = ORS_DED_socialist_party_long
+				name = ORS_DED_socialist_party
+			}
+			if = {
+				limit = {
+					has_template = "Infanterie-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Infanterie-Division"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Russische Räuber Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Russische Räuber Division"
+				}
+			}
+			#if = {
+				#	limit = {
+					#		has_template = "Motorisierte Division"
+					#	}
+				#	delete_unit_template_and_units = {
+					#		division_template = "Motorisierte Division"
+					#	}
+				#}
+			#if = {
+				#	limit = {
+					#		has_template = "Panzer-Division"
+					#	}
+				#	delete_unit_template_and_units = {
+					#		division_template = "Panzer-Division"
+					#	}
+				#}
+			#if = {
+				#	limit = { has_country_flag = ORS_oskarwagen }
+				#	if = {
+					#		limit = {
+						#			has_template = "Oskarwagen Division"
+						#		}
+					#		delete_unit_template_and_units = {
+						#			division_template = "Oskarwagen Division"
+						#		}
+					#	}
+				#} #commented out to prevent crashes
+			remove_all_ministers = yes
+			remove_ideas = {
+				ORS_bandit_state_1
+				ORS_bandit_state_2
+				ORS_bandit_state_3
+				ORS_bandit_state_4
+				ORS_bandit_state_5
+				ORS_to_the_slaughter
+				ORS_band_exhausted
+				ORS_think_tank_idea
+				ORS_band_collapsed
+				ORS_homemade_body_armor_idea
+				ORS_Soldiers_Extra_Discontent_Idea
+				ORS_Soldiers_Discontent_Idea
+				ORS_Soldiers_Okay_Idea
+				ORS_Soldiers_A_Bit_Happy_Idea
+				ORS_Soldiers_Happy_Idea
+				ORS_Officers_Normal_Idea
+				ORS_Officers_Disrespectful_Idea
+				ORS_Officers_Respect_Idea
+				ORS_Officers_Unswayingly_Loyal_Idea
+				ORS_Officer_Purge
+				ORS_Rage_Inducing_Hormones
+				ORS_Steroids
+			}
+			remove_unit_leader = 667
+			remove_unit_leader = 668
+			remove_unit_leader = 669
+			load_focus_tree = ORS_anarchy
+			add_political_power = -4000
+			country_event = { id = TNO_endscreen.51 }
+		}
+	}
+}
+
+#Cornered Dog
+country_event = {
+	id = ORS.2500
+	title = ORS.2500.t
+	desc = ORS.2500.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ORS.2500"}
+
+	fire_only_once = yes
+	trigger = {
+		BAS = {
+			exists = no
+		}
+		NOT = {
+			owns_state = 582
+		}
+		original_tag = ORS
+	}
+
+	option = { #Send it
+		name = ORS.2500.a
+		add_timed_idea = {
+			idea = ORS_cornered_dog
+			days = 180
+		}
+	}
+}
+

@@ -1,0 +1,777 @@
+scripted_gui = {
+	PAV_Election_GUI = {
+		context_type = decision_category
+		window_name = "PAV_Election_GUI"
+
+		visible = {
+			tag = PAV
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+		}
+
+		effects = {
+
+		}
+
+		triggers = {
+
+		}
+
+		properties = {
+			PAV_Election_GUI_ProgressBar = {
+				frame = PAV_pokryshkin_support
+			}
+			PAV_Election_GUI_Bar_Tick = { # Start is at x = 37 y = 263, end is at x = 481 y = 263
+				x = PAV_pokryshkin_x_axis
+				y = 263
+			}
+		}
+	}
+
+	PAV_Silovik_State_GUI_Opener = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "PAV_Silovik_State_GUI_Opener"
+
+		visible = {
+			tag = PAV
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+		}
+
+		effects = {
+			PAV_Silovik_State_GUI_Open_Button_click = {
+				if = {
+					limit = { has_country_flag = PAV_Silovik_State_GUI_visible_flag }
+					clr_country_flag = PAV_Silovik_State_GUI_visible_flag
+				}
+				else = { set_country_flag = PAV_Silovik_State_GUI_visible_flag }
+				clr_country_flag = gui_alert_visible
+			}
+		}
+
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+	}
+
+	PAV_political_compass_GUI = {
+		context_type = player_context
+		window_name = "PAV_political_compass_GUI"
+
+		visible = {
+			has_country_flag = PAV_compass_open
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+		}
+		effects = {
+			PAV_PC_close_click = { clr_country_flag = PAV_compass_open }
+		}
+		properties = {
+			PAV_Silovik_GUI_PC_circle = {
+				x = PAV_unitary_federal_x
+				y = PAV_corp_collect_y
+			}
+		}
+	}
+
+	PAV_Silovik_State = {
+		context_type = player_context
+		window_name = "PAV_Silovik_State_GUI"
+
+		visible = {
+			has_country_flag = PAV_Silovik_State_GUI_visible_flag
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+		}
+
+		effects = {
+			PAV_Silovik_GUI_state_aldan_click = {
+				set_variable = { PAV_clicked_state = 760.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_amur_click = {
+				set_variable = { PAV_clicked_state = 561.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_bashkiria_click = {
+				set_variable = { PAV_clicked_state = 651.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_berezniki_click = {
+				set_variable = { PAV_clicked_state = 398.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_buryatia_click = {
+				set_variable = { PAV_clicked_state = 564.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_chita_click = {
+				set_variable = { PAV_clicked_state = 563.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_chukotka_click = {
+				set_variable = { PAV_clicked_state = 891.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_dirle_click = {
+				set_variable = { PAV_clicked_state = 846.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_gayny_click = {
+				set_variable = { PAV_clicked_state = 866.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_gorky_click = {
+				set_variable = { PAV_clicked_state = 252.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_irkutsk_click = {
+				set_variable = { PAV_clicked_state = 566.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_kamchatka_click = {
+				set_variable = { PAV_clicked_state = 637.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_kolyma_click = {
+				set_variable = { PAV_clicked_state = 759.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_magadan_click = {
+				set_variable = { PAV_clicked_state = 562.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_magnitogorsk_click = {
+				set_variable = { PAV_clicked_state = 582.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_novosibirsk_click = {
+				set_variable = { PAV_clicked_state = 570.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_omolon_click = {
+				set_variable = { PAV_clicked_state = 644.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_omsk_click = {
+				set_variable = { PAV_clicked_state = 571.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_orenburg_click = {
+				set_variable = { PAV_clicked_state = 652.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_oyrotia_click = {
+				set_variable = { PAV_clicked_state = 654.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_plesetsk_click = {
+				set_variable = { PAV_clicked_state = 861.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_prc_click = {
+				set_variable = { PAV_clicked_state = 329.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_samara_click = {
+				set_variable = { PAV_clicked_state = 850.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_tomsk_click = {
+				set_variable = { PAV_clicked_state = 578.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_sba_click = {
+				set_variable = { PAV_clicked_state = 568.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_kras_click = {
+				set_variable = { PAV_clicked_state = 757.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_kemerovo_click = {
+				set_variable = { PAV_clicked_state = 569.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_tyumen_click = {
+				set_variable = { PAV_clicked_state = 403.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_sverdlovsk_click = {
+				set_variable = { PAV_clicked_state = 653.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_ural_click = {
+				set_variable = { PAV_clicked_state = 848.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_vilyuy_click = {
+				set_variable = { PAV_clicked_state = 890.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_chernyshevsky_click = {
+				set_variable = { PAV_clicked_state = 575.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_vologda_click = {
+				set_variable = { PAV_clicked_state = 351.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_kostroma_click = {
+				set_variable = { PAV_clicked_state = 856.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_ab_click = {
+				set_variable = { PAV_clicked_state = 753.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_vyatka_click = {
+				set_variable = { PAV_clicked_state = 400.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_tatarstan_click = {
+				set_variable = { PAV_clicked_state = 249.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_wrrf_click = {
+				set_variable = { PAV_clicked_state = 214.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_ukhta_click = {
+				set_variable = { PAV_clicked_state = 869.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_onega_click = {
+				set_variable = { PAV_clicked_state = 859.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_yakutia_click = {
+				set_variable = { PAV_clicked_state = 574.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_yugra_click = {
+				set_variable = { PAV_clicked_state = 845.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_fav_click = {
+				set_variable = { PAV_clicked_state = 579.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_vorkuta_click = {
+				set_variable = { PAV_clicked_state = 863.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_zlatoust_click = {
+				set_variable = { PAV_clicked_state = 573.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_state_komi_click = {
+				set_variable = { PAV_clicked_state = 397.owner }
+				PAV_Open_State_UI = yes
+			}
+			PAV_Silovik_GUI_megacorp_1_info_button_click = {
+				set_temp_variable = { temp_show_megacorp_info = show_megacorp_info }
+				clr_country_flag = megacorp_alert_visible
+				set_variable = { show_megacorp_info = 1 }
+				if = {
+					limit = {
+						check_variable = { temp_show_megacorp_info = show_megacorp_info }
+					}
+					clear_variable = show_megacorp_info
+				}
+			}
+			PAV_Silovik_GUI_megacorp_2_info_button_click = {
+				set_temp_variable = { temp_show_megacorp_info = show_megacorp_info }
+				set_variable = { show_megacorp_info = 2 }
+				if = {
+					limit = {
+						check_variable = { temp_show_megacorp_info = show_megacorp_info }
+					}
+					clear_variable = show_megacorp_info
+				}
+			}
+			PAV_Silovik_GUI_megacorp_3_info_button_click = {
+				set_temp_variable = { temp_show_megacorp_info = show_megacorp_info }
+				set_variable = { show_megacorp_info = 3 }
+				if = {
+					limit = {
+						check_variable = { temp_show_megacorp_info = show_megacorp_info }
+					}
+					clear_variable = show_megacorp_info
+				}
+			}
+			PAV_Silovik_GUI_megacorp_4_info_button_click = {
+				set_temp_variable = { temp_show_megacorp_info = show_megacorp_info }
+				set_variable = { show_megacorp_info = 4 }
+				if = {
+					limit = {
+						check_variable = { temp_show_megacorp_info = show_megacorp_info }
+					}
+					clear_variable = show_megacorp_info
+				}
+			}
+			PAV_Silovik_GUI_megacorp_1_option_1_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_1_option_1_cooldown }
+						NOT = { check_variable = { PAV_megacorp1_loyalty = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp1_loyalty = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_1_option_1_cooldown
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_2_option_1_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_2_option_1_cooldown }
+						NOT = { check_variable = { PAV_megacorp2_loyalty = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp2_loyalty = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_2_option_1_cooldown
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_3_option_1_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_3_option_1_cooldown }
+						NOT = { check_variable = { PAV_megacorp3_loyalty = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp3_loyalty = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_3_option_1_cooldown
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_4_option_1_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_4_option_1_cooldown }
+						NOT = { check_variable = { PAV_megacorp4_loyalty = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp4_loyalty = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_4_option_1_cooldown
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+
+			PAV_Silovik_GUI_megacorp_1_option_2_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_1_option_2_cooldown }
+						NOT = { check_variable = { PAV_megacorp1_power = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp1_power = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_1_option_2_cooldown
+						value = 1
+						days = 30
+					}
+					PAV_poli_drift = yes
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_2_option_2_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_2_option_2_cooldown }
+						NOT = { check_variable = { PAV_megacorp2_power = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp2_power = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_2_option_2_cooldown
+						value = 1
+						days = 30
+					}
+					PAV_poli_drift = yes
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_3_option_2_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_3_option_2_cooldown }
+						NOT = { check_variable = { PAV_megacorp3_power = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp3_power = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_3_option_2_cooldown
+						value = 1
+						days = 30
+					}
+				}
+				PAV_poli_drift = yes
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_4_option_2_plus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_4_option_2_cooldown }
+						NOT = { check_variable = { PAV_megacorp4_power = 100 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp4_power = 10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_4_option_2_cooldown
+						value = 1
+						days = 30
+					}
+					PAV_poli_drift = yes
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			##################
+			PAV_Silovik_GUI_megacorp_1_option_1_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_1_option_1_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp1_loyalty = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp1_loyalty = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_1_option_1_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_2_option_1_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_2_option_1_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp2_loyalty = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp2_loyalty = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_2_option_1_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_3_option_1_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_3_option_1_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp3_loyalty = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp3_loyalty = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_3_option_1_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_4_option_1_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_4_option_1_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp4_loyalty = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp4_loyalty = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_4_option_1_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+
+			PAV_Silovik_GUI_megacorp_1_option_2_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_1_option_2_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp1_power = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp1_power = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_1_option_2_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_2_option_2_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_2_option_2_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp2_power = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp2_power = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_2_option_2_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_3_option_2_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_3_option_2_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp3_power = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp3_power = -10 }
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_3_option_2_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_GUI_megacorp_4_option_2_minus_click = {
+				if = {
+					limit = {
+						has_political_power > 34.9
+						NOT = { has_country_flag = PAV_Silovik_GUI_megacorp_4_option_2_cooldown_minus }
+						NOT = { check_variable = { PAV_megacorp4_power = 0 } }
+					}
+					add_political_power = -35
+					add_to_variable = { PAV_megacorp4_power = -10 }
+
+					set_country_flag = {
+						flag = PAV_Silovik_GUI_megacorp_4_option_2_cooldown_minus
+						value = 1
+						days = 30
+					}
+				}
+				PAV_clamp_pol_compass = yes
+			}
+			PAV_Silovik_State_GUI_close_button_click = {
+				clr_country_flag = PAV_Silovik_State_GUI_visible_flag
+			}
+			PAV_Silovik_GUI_extra_button_2_click = {
+				clr_country_flag = compass_alert_visible
+				if = {
+					limit = { has_country_flag = PAV_compass_open }
+					clr_country_flag = PAV_compass_open
+				}
+				else = {
+					set_country_flag = PAV_compass_open
+				}
+			}
+		}
+
+		triggers = {
+			PAV_MC_gui_alert_visible = { has_country_flag = megacorp_alert_visible }
+			#PAV_PC_gui_alert_visible = { has_country_flag = compass_alert_visible }
+		}
+
+		properties = {
+			
+		}
+	}
+
+	PAV_Silovik_State_Interactions = {
+		context_type = player_context
+		window_name = "PAV_Silovik_State_Interactions_GUI"
+
+		visible = {
+			has_variable = PAV_target_country
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+		}
+		triggers = {
+			PAV_Interact_TakeOver_click_enabled = {
+				var:PAV_target_country = {
+					exists = yes
+					is_neighbor_of = PAV
+					if = {
+						limit = { is_far_eastern_nation = yes }
+						date > 1969.1.1
+					}
+					else_if = {
+						limit = { is_central_siberian_nation = no }
+						date > 1971.1.1
+					}
+					check_variable = { PAV_Takeover_Progress > 99.9 }
+				}
+				NOT = {
+					check_variable = { PAV_target_country = PAV }
+				}
+			}
+			PAV_Interact_1_click_enabled = {
+				has_political_power > 29.9
+				NOT = {
+					check_variable = { PAV_target_country = PAV }
+				}
+				OR = {
+					PAV = { has_country_flag = RUS_regional_stage }
+					var:PAV_target_country = { is_central_siberian_nation = yes }
+				}
+				var:PAV_target_country = {
+					check_variable = { PAV_Takeover_Progress < 100 }
+					is_neighbor_of = PAV
+					NOT = { has_country_flag = PAV_interact_1_flag }
+				}
+			}
+			PAV_Interact_2_click_enabled = {
+				command_power > 24.9
+				NOT = {
+					check_variable = { PAV_target_country = PAV }
+				}
+				OR = {
+					PAV = { has_country_flag = RUS_regional_stage }
+					var:PAV_target_country = { is_central_siberian_nation = yes }
+				}
+				var:PAV_target_country = {
+					check_variable = { PAV_Takeover_Progress < 100 }
+					is_neighbor_of = PAV
+					NOT = { has_country_flag = PAV_interact_2_flag }
+				}
+			}
+			PAV_Interact_3_click_enabled = {
+				check_variable = { money_reserves > 99.9 }
+				NOT = {
+					check_variable = { PAV_target_country = PAV }
+				}
+				PAV = { has_country_flag = RUS_regional_stage }
+				var:PAV_target_country = {
+					check_variable = { PAV_Takeover_Progress < 100 }
+					is_neighbor_of = PAV
+					NOT = { has_country_flag = PAV_interact_3_flag }
+				}
+			}
+		}
+		effects = {
+			PAV_Mission_close_button_click = {
+				clear_variable = PAV_target_country
+			}
+			PAV_Interact_TakeOver_click = {
+				var:PAV_target_country = {
+					PAV = {
+						annex_country = { target = PREV transfer_troops = no }
+					}
+				}
+			}
+			PAV_Interact_1_click = {
+				if = {
+					limit = { PAV = { has_political_power > 29.9 } }
+					var:PAV_target_country = {
+						PAV_Increase_Takeover_Progress = yes
+						# tf this actually works
+						set_country_flag = {
+							flag = PAV_interact_1_flag
+							value = 1
+							days = 10
+						}
+					}
+					PAV = { add_political_power = -30 }
+				}
+			}
+			PAV_Interact_2_click = {
+				if = {
+					limit = { PAV = { command_power > 24.9 } }
+					var:PAV_target_country = {
+						PAV_Increase_Takeover_Progress = yes
+						# tf this actually works
+						set_country_flag = {
+							flag = PAV_interact_2_flag
+							value = 1
+							days = 10
+						}
+					}
+					PAV = { add_command_power = -25 }
+				}
+			}
+			PAV_Interact_3_click = {
+				if = {
+					limit = { PAV = { check_variable = { money_reserves > 99.9 } } }
+					var:PAV_target_country = {
+						PAV_Increase_Takeover_Progress = yes
+						# tf this actually works
+						set_country_flag = {
+							flag = PAV_interact_3_flag
+							value = 1
+							days = 10
+						}
+					}
+					PAV = { subtract_from_variable = { money_reserves = 100 } }
+				}
+			}
+		}
+		properties = {
+			PAV_Takeover_ProgressBar = {
+				frame = var:PAV_target_country:PAV_Takeover_Progress
+			}
+		}
+	}
+
+	PAV_Silovik_Megacorp_Info = {
+		context_type = player_context
+		window_name = "PAV_Silovik_Megacorp_Info_GUI"
+
+		visible = { has_variable = show_megacorp_info NOT = {
+			has_global_flag = AFTER_MIDNIGHT_COMMENCED
+		} }
+
+		effects = {
+			Megacorp_Info_Close_Button_click = { clear_variable = show_megacorp_info }
+		}
+
+		properties = {
+			Megacorp_Icon = { image = "[GetNovosibirskMegacorpIcon]"}
+		}
+	}
+}

@@ -1,0 +1,3987 @@
+#this file claimed by uncountably
+#claimed by tex bitch
+
+###########################################
+### BENNETT MORE LIKE BESTNETT (64 tree)###
+###########################################
+
+shared_focus = {
+	id = USA_wfb_64_bennett_presidency
+	icon = GFX_USA_The_Bennett_Presidency
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_bennett_presidency"
+		add_political_power = 50
+		custom_effect_tooltip = WFB_explanation
+		hidden_effect = {
+			set_variable = { WFB_American_Business = 80 }
+			set_variable = { WFB_OFN_Business = 60 }
+			set_variable = { WFB_Mormon_Relationship = 100 }
+			set_variable = { WFB_Protestant_Relationship = 60 }
+			set_variable = { WFB_Dixiecrats_Relationship = 70 }
+			
+			set_variable = { WFB_Republican_Decay_Rate = 5 }
+			set_variable = { WFB_Dixiecrats_Decay_Rate = 5 }
+		
+			# republican setup
+			clamp_variable = {
+				var = USA_RD_Unity
+				min = 0
+				max = 20
+			}
+			set_variable = { WFB_Republican_Relationship = USA_RD_Unity }
+			multiply_variable = { WFB_Republican_Relationship = 5 }
+			set_variable = { WFB_Republican_Relationship_last_month = WFB_Republican_Relationship }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_fire_extinguisher
+	icon = GFX_USA_Nationwide_Riots
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_bennett_presidency
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 8
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_fire_extinguisher"
+		add_to_variable = { USA_RD_Unity = 1 }
+		custom_effect_tooltip = USA_add_RD_unity
+		add_political_power = 50
+		hidden_effect = {
+		country_event = { id = WFB.314 days = 780 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_on_radio
+	icon = GFX_USA_Raise_the_Fear
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_bennett_presidency
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 10
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_on_radio"
+		add_to_variable = { USA_RD_Unity = 1 }
+		custom_effect_tooltip = USA_add_RD_unity
+		add_stability = 0.03
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_maintain_status_quo
+	icon = GFX_USA_Reestablish_Party
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_on_radio
+	}
+	prerequisite = {
+		focus = USA_wfb_64_fire_extinguisher
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 9
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_maintain_status_quo"
+		custom_effect_tooltip = USA_add_RD_popularity_med
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.01
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD__popularity = 0.025 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_financial_reform
+	icon = GFX_COG_american_funding
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_maintain_status_quo
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 4
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_financial_reform"
+		add_political_power = 50
+		set_country_flag = WFB_Currently_Silvering
+		custom_effect_tooltip = USA_start_silvering
+		country_event = { id = WFB.Chains.1 }
+		
+		set_variable = { WFB_FR_SA_Support = 30 }
+		set_variable = { WFB_R_SA_Support = 50 }
+		set_variable = { WFB_C_SA_Support = 30 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_not_too_much
+	icon = GFX_USA_Not_too_Much
+	cost = 2.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_financial_reform
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 3
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_not_too_much"
+		subtract_from_variable = { misc_costs = 20 }
+		add_political_power = -10 
+		add_to_variable = { WFB_FR_SA_Support = 10 }
+		custom_effect_tooltip = WFB_FR_Silver_Act_raise
+		custom_effect_tooltip = econ_misc_expenses_add_medium_decrease
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_not_too_little
+	icon = GFX_USA_Not_too_Little
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_not_too_much
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 2
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_not_too_little"
+		add_to_variable = { GDP_growth 0.0006 }
+		add_political_power = -10
+		custom_effect_tooltip = WFB_C_Silver_Act_raise
+		add_to_variable = { WFB_C_SA_Support = 10 }
+		custom_effect_tooltip = econ_increase_GDP_growth
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_stem_the_tide
+	icon = GFX_SLO_Ease_Price_Controls
+	cost = 2.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_financial_reform
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 5
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_stem_the_tide"
+		country_event = {
+			id = WFB.51
+			days = 3
+		}
+		add_political_power = -10
+		custom_effect_tooltip = WFB_R_Silver_Act_raise
+		add_to_variable = { WFB_R_SA_Support = 10 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_jack_up_prices
+	icon = GFX_Generic_Good_Economy
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_stem_the_tide
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 6
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_jack_up_prices"
+		country_event = {
+			id = WFB.52
+			days = 3
+		}
+		subtract_from_variable = { WFB_C_SA_Support = 10 }
+		subtract_from_variable = { WFB_FR_SA_Support = 10 }
+		subtract_from_variable = { WFB_R_SA_Support = 10 }
+		add_political_power = 60
+		custom_effect_tooltip = WFB_C_Silver_Act_lower
+		custom_effect_tooltip = WFB_R_Silver_Act_lower
+		custom_effect_tooltip = WFB_FR_Silver_Act_lower
+		
+	}
+}
+
+shared_focus = { #civil rights time wooooooooooooooooooooooo
+	id = USA_wfb_64_political_necessity
+	icon = GFX_USA_Civil_Rights_Dilemma
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	prerequisite = {
+		focus = USA_wfb_64_maintain_status_quo
+	}
+	x = 14
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_political_necessity"
+		country_event = {
+			id = WFB.100
+			days = 1
+		}
+		USA_WFB_initialize_CRA_support = yes
+		set_country_flag = WFB_Currently_CRAing
+		add_political_power = 50
+		hidden_effect = {
+		country_event = {
+			id = WFB.Chains.11
+			days = 5
+			}
+		}
+		custom_effect_tooltip = USA_WFB_CRA_political_necessity_tt
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_token_reform
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_political_necessity
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_dont_rock_boat
+	}
+	ai_will_do = {
+		factor = 240
+	}
+	x = 12
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_token_reform"
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower
+		custom_effect_tooltip = WFB_Mormon_Relationship_lower
+		custom_effect_tooltip = WFB_Republican_Relationship_raise
+		add_to_variable = { WFB_Republican_Relationship = 10 }
+		subtract_from_variable = { WFB_Mormon_Relationship = 5 }
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 10 }
+		USA_WFB_Clamp = yes
+		hidden_effect = {
+			every_owned_state = {
+				if = {
+					limit = {
+						check_variable = { nationality = 83 } #Dixie
+					}
+					set_temp_variable = { mult = 0.20 }
+				}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.02 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+		custom_effect_tooltip = USA_WFB_CRA_more_liberal_tt
+ 		set_country_flag = USA_WFB_liberal_civil_rights
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_codified_protections
+	icon = GFX_RAJ_India_Minority_Protections
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_token_reform
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 10
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_codified_protections"
+		add_political_power = 50
+		country_event = {
+			id = WFB.127
+			days = 5
+		}
+		custom_effect_tooltip = USA_WFB_CRA_republican_like_tt
+		add_to_variable = { WFB_CRA_RD_R_sup_sen_per = 0.25 }
+		USA_WFB_calculate_CRA_support = yes
+	}
+}
+
+shared_focus = { #an event
+	id = USA_wfb_64_crack_down_on_resistance
+	icon = GFX_USA_Deploy_the_National_Guard
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_token_reform
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 5
+	select_effect = { add_to_variable = { WFB_Dixiecrats_Decay_Rate = 5 } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_crack_down_on_resistance"
+		country_event = {
+			id = WFB.101
+			days = 3
+		}
+		custom_effect_tooltip = WFB_Select_Effect_Dixiecrats_Quicker
+		subtract_from_variable = { WFB_Dixiecrats_Decay_Rate = 5 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_voting_station_inspection
+	icon = GFX_USA_voting_stations_inspections
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_crack_down_on_resistance
+	}
+	prerequisite = {
+		focus = USA_wfb_64_codified_protections
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_voting_station_inspection"
+		add_political_power = 50
+		country_event = {
+			id = WFB.103
+			days = 3
+		}
+		custom_effect_tooltip = USA_WFB_CRA_republican_like_tt
+		add_to_variable = { WFB_CRA_RD_R_sup_sen_per = 0.25 }
+		USA_WFB_calculate_CRA_support = yes
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_one_great_push
+	icon = GFX_USA_Secure_the_Party
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_voting_station_inspection
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_one_great_push"
+		country_event = {
+			id = WFB.104
+			days = 2
+		}
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower_great
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 20 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_dont_rock_boat
+	icon = GFX_generic_defence
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_political_necessity
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_token_reform
+	}
+	
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			add = 1000
+			BRG = { has_country_flag = BRG_WFB_dont_rock_the_boat_flag }
+		}
+	}
+	x = 16
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_dont_rock_boat"
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_raise
+		custom_effect_tooltip = WFB_Republican_Relationship_lower
+		subtract_from_variable = { WFB_Republican_Relationship = 5 }
+		add_to_variable = { WFB_Dixiecrats_Relationship = 10 }
+		custom_effect_tooltip = USA_WFB_CRA_more_conservative_tt
+		set_country_flag = USA_WFB_conservative_civil_rights
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_check_committees
+	icon = GFX_OST_Friends_in_the_Council
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_token_reform
+		focus = USA_wfb_64_dont_rock_boat
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	x = 14
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_check_committees"
+		custom_effect_tooltip = USA_RFK_temp_2 #no reason to reinvent the wheel
+		hidden_effect = {
+			add_to_variable = { WFB_CRA_independent_sen = 2 }
+			USA_WFB_calculate_CRA_support = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_rally_congress_votes
+	icon = GFX_USA_Wrangle_the_Senate
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_check_committees
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	x = 14
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_rally_congress_votes"
+		custom_effect_tooltip = USA_RFK_temp_3 #no reason to reinvent the wheel
+		hidden_effect = {
+			add_to_variable = { WFB_CRA_independent_sen = 3 }
+			USA_WFB_calculate_CRA_support = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_right_to_free_speech
+	icon = GFX_USA_Raise_the_Fear
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_dont_rock_boat
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	x = 16
+	y = 5
+	select_effect = { add_to_variable = { WFB_Republican_Decay_Rate = 5 } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_right_to_free_speech"
+		country_event = {
+			id = WFB.117
+			days = 3
+		}
+		custom_effect_tooltip = WFB_Select_Effect_Republicans_Quicker
+		subtract_from_variable = { WFB_Republican_Decay_Rate = 5 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_keep_it_vague
+	icon = GFX_RAJ_India_Clarify_Army_Role
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_dont_rock_boat
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_keep_it_vague"
+		add_political_power = 50
+		country_event = {
+			id = WFB.118
+			days = 6
+		}
+		custom_effect_tooltip = USA_WFB_CRA_democrat_like_tt
+		add_to_variable = { WFB_CRA_RD_D_sup_sen_per = 0.25 }
+		USA_WFB_calculate_CRA_support = yes
+	}
+	x = 18
+	y = 5
+}
+
+shared_focus = {
+	id = USA_wfb_64_state_inspections
+	icon = GFX_USA_state_inspections
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_right_to_free_speech
+	}
+	prerequisite = {
+		focus = USA_wfb_64_keep_it_vague
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	x = 16
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_state_inspections"
+		add_political_power = 50
+		country_event = {
+			id = WFB.119
+			days = 5
+		}
+		custom_effect_tooltip = USA_WFB_CRA_democrat_like_tt
+		add_to_variable = { WFB_CRA_RD_D_sup_sen_per = 0.25 }
+		USA_WFB_calculate_CRA_support = yes
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_step_by_step
+	icon = GFX_OST_The_future_frozen
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_state_inspections
+	}
+	ai_will_do = {
+		factor = 40
+	}
+	x = 16
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_step_by_step"
+		country_event = {
+			id = WFB.121
+			days = 4
+		}
+		custom_effect_tooltip = WFB_Republicans_Relationship_lower_great
+		subtract_from_variable = { WFB_Republican_Relationship = 20 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_acceptable_solution
+	icon = GFX_Generic_Bill_of_Rights
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		custom_trigger_tooltip = {
+			USA_WFB_CRA_has_senate_majority = yes
+			tooltip = USA_has_congress_majority_tt
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+		custom_trigger_tooltip = {
+			NOT = { USA_WFB_CRA_has_senate_majority = yes }
+			tooltip = USA_lost_congress_majority_tt
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_one_great_push
+		focus = USA_wfb_64_step_by_step
+	}
+	prerequisite = {
+		focus = USA_wfb_64_rally_congress_votes
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_acceptable_solution"
+		hidden_effect = { USA_WFB_LDS_TEST = yes }
+		add_political_power = 50
+		custom_effect_tooltip = WFB_TEMP_DISABLE
+		set_variable = { WFB_Dixiecrats_Decay_Rate = 0 }
+		set_variable = { WFB_Republican_Decay_Rate = 0 }
+		if = {
+			limit = {
+				has_country_flag = USA_WFB_conservative_civil_rights
+			}
+			country_event = {
+				id = WFB.116
+				days = 1
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = USA_WFB_moderate_civil_rights
+			}
+			country_event = {
+				id = WFB.115
+				days = 1
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = USA_WFB_liberal_civil_rights
+			}
+			country_event = {
+				id = WFB.114
+				days = 1
+			}
+		}
+		else = {
+			custom_effect_tooltip = USA_WFB_acceptable_solution
+		}
+		clr_country_flag = WFB_Currently_CRAing
+	}
+	x = 14
+	y = 8
+}
+
+shared_focus = {
+	id = USA_wfb_64_voices_of_people
+	icon = GFX_USA_Turn_the_People
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_acceptable_solution
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_leave_to_experts
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_voices_of_people"
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower_great
+		custom_effect_tooltip = WFB_Dixiecrats_Lower_Quicker
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 30 }
+		add_to_variable = { WFB_Dixiecrats_Decay_Rate = 4 }
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 88 } #Pacific
+						}
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.2 }
+				subtract_from_variable = { RD_popularity = 0.2 }
+				add_to_variable = { NPP_popularity = 0.2 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+						check_variable = { nationality = 85 } #Steel Belt
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_leave_to_experts
+	icon = GFX_USA_Segregationist_Support
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_acceptable_solution
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_voices_of_people
+	}
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			add = 1000
+			BRG = { has_country_flag = BRG_WFB_dont_rock_the_boat_flag }
+		}
+	}
+	x = 16
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_leave_to_experts"
+		custom_effect_tooltip = WFB_Republicans_Relationship_lower_great
+		custom_effect_tooltip = WFB_Republicans_Lower_Quicker
+		subtract_from_variable = { WFB_Republican_Relationship = 30 }
+		add_to_variable = { WFB_Republican_Decay_Rate = 4 }
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+						OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 88 } #Pacific
+						}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_popularity = 0.1 }
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.05 }
+					else = { add_to_variable = { NPP_popularity = 0.05 }}
+				}
+			}
+		every_owned_state = {
+				limit = {
+						check_variable = { nationality = 85 } #Steel Belt
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.15 }
+				if = { #UNDERDOG BONUS, PRO NPP
+					limit = { check_variable = { NPP_popularity < RD_popularity }}
+						add_to_variable = { NPP_popularity = 0.05 }
+						else = { add_to_variable = { RD_popularity = 0.05 }}
+					}
+				}
+			}
+		}
+}
+
+shared_focus = {
+	id = USA_wfb_64_subcommittees_subcommittees
+	icon = GFX_OST_Twist_the_Council
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_leave_to_experts
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 16
+	y = 10
+	select_effect = { add_to_variable = { WFB_Republican_Decay_Rate = 2 } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_subcommittees_subcommittees"
+		subtract_from_variable = { WFB_Republican_Decay_Rate = 2 }
+		custom_effect_tooltip = WFB_Select_Effect_Republicans_Quicker
+		country_event = {
+			id = WFB.152
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_leave_door_open
+	icon = GFX_USA_Foot_in_Door
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_subcommittees_subcommittees
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_lock_and_key
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 16
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_leave_door_open"
+		custom_effect_tooltip = WFB_Republicans_Lower_Slow
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_raise
+		custom_effect_tooltip = WFB_Republican_Relationship_lower
+		custom_effect_tooltip = USA_add_RD_unity
+		add_to_variable = { USA_RD_Unity = 0.5 }
+		add_to_variable = { WFB_Republican_Relationship = -10 }
+		add_to_variable = { WFB_Dixiecrats_Relationship = 10 }
+		subtract_from_variable = { WFB_Republican_Decay_Rate = 1.5 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { RD_D_bonus_popularity = 0.1}
+				US_underdog_RD_5_5 = yes
+			}
+		}
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		custom_effect_tooltip = WFB_South_Attract
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_lock_and_key
+	icon = GFX_CAU_Lock_down_the_streets
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_subcommittees_subcommittees
+	}
+	prerequisite = {
+		focus = USA_wfb_64_keep_it_vague
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_leave_door_open
+	}
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			add = 1000
+			BRG = { has_country_flag = BRG_WFB_under_lock_and_key_flag }
+		}
+	}
+	
+	x = 18
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_lock_and_key"
+		custom_effect_tooltip = WFB_Dixiecrats_Lower_Slow
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_raise
+		custom_effect_tooltip = WFB_Republicans_Lower_Quicker
+		subtract_from_variable = { WFB_Dixiecrats_Decay_Rate = 4 }
+		add_to_variable = { WFB_Dixiecrats_Relationship = 15 }
+		add_to_variable = { WFB_Republican_Decay_Rate = 3 }
+		subtract_from_variable = { WFB_Republican_Relationship = 15 }
+		subtract_from_variable = { USA_RD_Unity = 2 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.02 }
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.05 }
+					else = { add_to_variable = { NPP_popularity = 0.05 }}
+				}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 85 } #Steel Belt
+						}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.15 }
+				add_to_variable = { RD_popularity = 0.15 }
+				US_underdog_RD_5_5 = yes
+			}
+		}
+		custom_effect_tooltip = USA_subtract_RD_unity
+		custom_effect_tooltip = WFB_South_Super_Attract
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_empower_democrats
+	icon = GFX_USA_Empower_the_Democrats
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_lock_and_key
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_fine_line
+		focus = USA_wfb_64_empower_republicans
+	}
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			add = 1000
+			BRG = { has_country_flag = BRG_WFB_under_lock_and_key_flag }
+		}
+	}
+	x = 17
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_empower_democrats"
+		country_event = {
+			id = WFB.154
+			days = 4
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+		
+		subtract_from_variable = { USA_RD_Unity = 2 }
+		custom_effect_tooltip = USA_add_NPP_popularity_north
+		hidden_effect = {
+		every_owned_state = {
+			limit = {
+				check_variable = { nationality = 82 } #Yankee
+			}
+			subtract_from_variable = { RD_popularity = 0.1 }
+			if = { #UNDERDOG BONUS, PRO RD
+				limit = { check_variable = { RD_popularity < NPP_popularity }}
+				add_to_variable = { RD_popularity = 0.05 }
+				else = { add_to_variable = { NPP_popularity = 0.05 }}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_clarify_terms
+	icon = GFX_USA_make_speeches
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_empower_democrats
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 16
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_clarify_terms"
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.01 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+				add_to_variable = { NPP_popularity = 0.04 }
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.02 }
+					else = { add_to_variable = { NPP_popularity = 0.02 }}
+				}
+			}
+		}
+		custom_effect_tooltip = USA_add_RD_D_popularity_med
+		custom_effect_tooltip = USA_NPP_C_popularity_grows
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_sideline_republicans
+	icon = GFX_Generic_Social_Conservative
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_empower_democrats
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	x = 18
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_sideline_republicans"
+		country_event = {
+			id = WFB.156
+			days = 2
+		}
+		custom_effect_tooltip = WFB_Republicans_Relationship_lower_great
+		subtract_from_variable = { WFB_Republican_Relationship = 30 }
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.15 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.2 }
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.05 }
+					else = { add_to_variable = { NPP_popularity = 0.05 }}
+				}
+			}
+			subtract_from_variable = { USA_RD_Unity = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_through_guidance_stability
+	icon = GFX_USA_We_fight_for_Stability
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_clarify_terms
+	}
+	prerequisite = {
+		focus = USA_wfb_64_sideline_republicans
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 17
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_through_guidance_stability"
+		custom_effect_tooltip = WFB_Disable_Republicans
+		set_country_flag = WFB_NO_REPUBLICANS
+		hidden_effect = {
+		add_stability = -0.05
+		subtract_from_variable = { USA_RD_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_C_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1}
+				subtract_from_variable = { RD_popularity = 0.1 }
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.05 }
+					else = { add_to_variable = { NPP_popularity = 0.05 }}
+				}
+			}
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { RD_D_bonus_popularity = 0.1}
+				}
+			}
+		}
+		custom_effect_tooltip = USA_add_RD_D_popularity_high
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_bipartisan_effort
+	icon = GFX_USA_Calm_Progressives_Lady_Liberty
+	cost = 6.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_stem_the_tide
+	}
+	prerequisite = {
+		focus = USA_wfb_64_not_too_much
+	}
+	x = 4
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_bipartisan_effort"
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+			add_to_variable = { USA_NPP_Unity = 1 }
+		}
+		add_political_power = 100
+		custom_effect_tooltip = USA_add_RD_unity
+		custom_effect_tooltip = USA_add_NPP_unity
+		country_event = { id = WFB.310 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_power_of_handshake
+	icon = GFX_Generic_Liberty_Handshake
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_bipartisan_effort
+	}
+	prerequisite = {
+		focus = USA_wfb_64_not_too_little
+	}
+	x = 3
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_power_of_handshake"
+		
+		custom_effect_tooltip = WFB_C_Silver_Act_raise
+		custom_effect_tooltip = WFB_FR_Silver_Act_raise
+		add_to_variable = { WFB_C_SA_Support = 10 }
+		add_to_variable = { WFB_FR_SA_Support = 15 }
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_print_replacement_notes
+	icon = GFX_COG_The_Cheapest_Prices
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_bipartisan_effort
+	}
+	prerequisite = {
+		focus = USA_wfb_64_jack_up_prices
+	}
+	x = 5
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_print_replacement_notes"
+		custom_effect_tooltip = econ_decrease_money_reserves
+		custom_effect_tooltip = econ_increase_GDP_small
+		hidden_effect = {
+			subtract_from_variable = { money_reserves = 200 }
+			add_to_variable = { GDP = 5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_truly_united_congress
+	icon = GFX_USA_Only_American_Future
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_power_of_handshake
+	}
+	prerequisite = {
+		focus = USA_wfb_64_print_replacement_notes
+	}
+	x = 4
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_truly_united_congress"
+		add_political_power = 50
+		add_to_variable = { USA_unity = 1 }
+		custom_effect_tooltip = USA_add_societal_unity
+		hidden_effect = {
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.025
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 88 } #Pacific
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.02}
+				add_to_variable = { RD_popularity = 0.02}
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.01 }
+					else = { add_to_variable = { NPP_popularity = 0.01 }}
+				}
+
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.02}
+				add_to_variable = { RD_popularity = 0.02}
+				if = { #UNDERDOG BONUS, PRO RD
+					limit = { check_variable = { RD_popularity < NPP_popularity }}
+					add_to_variable = { RD_popularity = 0.01 }
+					else = { add_to_variable = { NPP_popularity = 0.01 }}
+				}
+
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_silver_act
+	icon = GFX_USA_silver_act_2
+	cost = 6.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_truly_united_congress
+	}
+	x = 4
+	y = 8
+	select_effect = { 
+		clr_country_flag = WFB_Currently_Silvering
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_silver_act"
+		custom_effect_tooltip = USA_end_silvering
+		country_event = {
+			id = USA_sen_bill.3
+			days = 1
+		}
+		
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_two_ocean_charter
+	icon = GFX_GER_global_industry
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_silver_act
+	}
+	x = 2
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_two_ocean_charter"
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 2 }
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_build_up_reserves
+	icon = GFX_Generic_Good_Economy
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_silver_act
+	}
+	x = 4
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_build_up_reserves"
+		custom_effect_tooltip = WFB_American_Business_raise
+		add_to_variable = { WFB_American_Business = 15 }
+		add_political_power = 50
+		hidden_effect = {
+			add_to_variable = {
+				money_reserves = 100
+			}
+		}
+		custom_effect_tooltip = econ_increase_money_reserves
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_fix_exchange_rates
+	icon = GFX_RAJ_India_Wealth_Question
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_silver_act
+	}
+	x = 6
+	y = 9
+	select_effect = { OFN_vote_fix_exchange_rates = yes }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_fix_exchange_rates"
+		custom_effect_tooltip = WFB_OFN_Business_raise
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower
+		add_to_variable = { WFB_OFN_Business = 10 }
+		add_to_variable = { WFB_Republican_Relationship = -15 }
+		add_to_variable = { OFN_Unity = 1 }
+		add_to_variable = { interest_rates = -0.00005 }
+		for_each_scope_loop = {
+			array = global.OFN_members
+			add_to_variable = { interest_rates = -0.00005 }
+			}
+		custom_effect_tooltip = USA_add_OFN_unity
+		custom_effect_tooltip = USA_WFB_fix_exchange_rates_tooltip
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_free_access_clause
+	icon = GFX_generic_trade
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_two_ocean_charter
+	}
+	x = 2
+	y = 10
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_free_access_clause"
+		hidden_effect = {
+			for_each_scope_loop = {
+				array = global.OFN_members
+				tno_trade_laws_worsen = yes
+				set_temp_variable = { money_stuff = GDP }
+				multiply_variable = { money_stuff = 0.01 }
+				add_to_variable = { GDP = money_stuff }
+			}
+		}
+		custom_effect_tooltip = WFB_OFN_Business_raise
+		custom_effect_tooltip = WFB_American_Business_lower
+		subtract_from_variable = { WFB_American_Business = 10 }
+		add_to_variable = { WFB_OFN_Business = 15 }
+		custom_effect_tooltip = USA_WFB_free_access_clause
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_gold_standard
+	icon = GFX_TNO_generic_gold_bars
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	bypass = {
+	NOT = {
+	has_idea = USA_WFB_silver_act_4
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_build_up_reserves
+	}
+	x = 4
+	y = 10
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_gold_standard"
+		country_event = {
+			id = WFB.55
+			days = 2
+		}
+		custom_effect_tooltip = USA_NPP_C_popularity_grows
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+					}
+				}
+				add_to_variable = { NPP_C_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+		
+		custom_effect_tooltip = USA_add_RD_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_our_burden
+	icon = GFX_OFN_handshake
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_fix_exchange_rates
+	}
+	x = 6
+	y = 10
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_our_burden"
+		custom_effect_tooltip = WFB_OFN_Business_raise
+		custom_effect_tooltip = WFB_American_Business_lower
+		subtract_from_variable = { WFB_American_Business = 10 }
+		add_to_variable = { WFB_OFN_Business = 15 }
+		hidden_effect = {
+			for_each_scope_loop = {
+				array = global.OFN_members
+				USA = { subtract_from_variable = { money_reserves = 50 } }
+				add_to_variable = { GDP_growth = 0.0002 }
+			}
+		}
+		custom_effect_tooltip = USA_WFB_our_burden_tooltip
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_american_ideals
+	icon = GFX_USA_Crying_Eagle
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_free_access_clause
+	}
+	x = 2
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_american_ideals"
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.01
+		}
+		custom_effect_tooltip = WFB_Protestant_Relationship_raise
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_raise
+		add_to_variable = { WFB_Protestant_Relationship = 10 }
+		add_to_variable = { WFB_Dixiecrats_Relationship = 15 }
+		
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_C_bonus_popularity = 0.01}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_political_realities
+	icon = GFX_generic_self_management
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_our_burden
+	}
+	x = 6
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_political_realities"
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_raise
+		custom_effect_tooltip = WFB_Mormon_Relationship_raise
+		add_to_variable = { WFB_Mormon_Relationship = 10 }
+		add_to_variable = { WFB_Dixiecrats_Relationship = 15 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_death_of_the_tariff
+	icon = GFX_generic_positive_trade_relations
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_american_ideals
+	}
+	prerequisite = {
+		focus = USA_wfb_64_gold_standard
+	}
+	x = 3
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_death_of_the_tariff"
+		country_event = {
+			id = WFB.59
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_part_of_the_whole
+	icon = GFX_align_america
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_political_realities
+	}
+	prerequisite = {
+		focus = USA_wfb_64_gold_standard
+	}
+	x = 5
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_part_of_the_whole"
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 1 }
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_our_dues_to_hull
+	icon = GFX_USA_Cordell_Hull
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_american_ideals
+	}
+	x = 1
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_our_dues_to_hull"
+		hidden_effect = {
+			set_temp_variable = { tvar = NPP_senators }
+			multiply_temp_variable = { tvar = random }
+			multiply_temp_variable = { tvar = 0.25 }
+			add_to_variable = { temporary_congress_votes = tvar }
+			round_variable = temporary_congress_votes
+			USA_get_total_congress_votes = yes
+		}
+		custom_effect_tooltip = USA_random_NPP_votes_tt
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_white_bird_of_peace
+	icon = GFX_dove_of_peace
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_our_dues_to_hull
+	}
+	x = 1
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_white_bird_of_peace"
+		country_event = {
+			id = WFB.57
+			days = 3
+		}
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower
+		add_to_variable = { WFB_Dixiecrats_Relationship = -15 }
+		custom_effect_tooltip = USA_subtract_RD_popularity_low_north
+		custom_effect_tooltip = USA_add_NPP_popularity_low_south
+		hidden_effect = {
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.015
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 85 } #Steel Belt
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.02 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.02 }
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 88 } #Pacific
+				}
+				subtract_from_variable = { RD_R_bonus_popularity = 0.02 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.02 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_never_isolationism
+	icon = GFX_USA_Containment_Theory
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_death_of_the_tariff
+	}
+	x = 3
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_never_isolationism"
+		country_event = {
+			id = WFB.58
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_prevent_devaluation
+	icon = GFX_generic_graph_rising
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_part_of_the_whole
+	}
+	x = 5
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_prevent_devaluation"
+		hidden_effect = {
+			add_to_variable = {
+				GDP = 100
+			}
+			add_to_variable = {
+				GDP_growth = 0.00025
+			}
+		}
+		custom_effect_tooltip = econ_increase_GDP_small
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_national_security_works
+	icon = GFX_TNO_generic_military_contacts
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_political_realities
+	}
+	x = 7
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_national_security_works"
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_popularity = 0.025 }
+				subtract_from_variable = { NPP_popularity = 0.025 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		custom_effect_tooltip = USA_add_RD_popularity_low
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_pegged_to_dollar
+	icon = GFX_endless_money
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_national_security_works
+	}
+	x = 7
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_pegged_to_dollar"
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				country_event = {
+					id = WFB.60
+					days = 1
+				}
+			}
+		}
+		country_event = {
+			id = WFB.60
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_financial_monetary_conference
+	icon = GFX_RAJ_india_diplomatic_usa
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_prevent_devaluation
+	}
+	prerequisite = {
+		focus = USA_wfb_64_never_isolationism
+	}
+	x = 4
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_financial_monetary_conference"
+		country_event = {
+			id = WFB.301
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_freer_markets_freer_people
+	icon = GFX_generic_liberty
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_american_ideals
+	}
+	prerequisite = {
+		focus = USA_wfb_64_white_bird_of_peace
+	}
+	x = 2
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_freer_markets_freer_people"
+		hidden_effect = {
+			subtract_from_variable = {
+				interest_rates = 0.0001
+			}
+		}
+		custom_effect_tooltip = econ_debt_rate_generic_decrease
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_military_keynes
+	icon = GFX_RAJ_India_Army_of_Comprimise
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_pegged_to_dollar
+	}
+	prerequisite = {
+		focus = USA_wfb_64_political_realities
+	}
+	x = 6
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_military_keynes"
+		custom_effect_tooltip = econ_misc_costs_add_2_percent
+		TNO_improve_army_professionalism_low = yes
+		hidden_effect = {
+			set_temp_variable = { money_stuff = GDP }
+			multiply_temp_variable = { money_stuff = 0.02 }
+			add_to_variable = { misc_costs = money_stuff }
+			add_to_variable = { GDP_growth = 0.0003 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_imf_world_bank
+	icon = GFX_USA_money
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_freer_markets_freer_people
+	}
+	prerequisite = {
+		focus = USA_wfb_64_financial_monetary_conference
+	}
+	prerequisite = {
+		focus = USA_wfb_64_military_keynes
+	}
+	x = 4
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_imf_world_bank"
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				add_ideas = USA_WFB_IMF
+			}
+		}
+		custom_effect_tooltip = WFB_American_Business_lower_big
+		custom_effect_tooltip = WFB_OFN_Business_raise
+		add_to_variable = { WFB_OFN_Business = 30 }
+		add_to_variable = { WFB_American_Business = -50 }
+		add_ideas = USA_WFB_IMF
+		
+
+		
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_bretton_woods
+	icon = GFX_USA_Bretton_Woods
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_imf_world_bank
+	}
+	x = 4
+	y = 16
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_bretton_woods"
+		hidden_effect = {
+			set_country_flag = USA_WFB_bennett_diplo_tree
+			USA_reload_presidential_tree = yes
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				country_event = {
+					id = WFB.63
+					days = 1
+				}
+			}
+			951 = {
+				set_temp_variable = { popularity_bonus = 0.1 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_RD_5_5 = yes
+			}
+			add_to_variable = { OFN_Unity = 1 }
+		}
+		country_event = {
+			id = WFB.63
+			days = 1
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_listen_to_stories
+	icon = GFX_USA_anti_segregation_propaganda
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_voices_of_people
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 10
+	select_effect = { add_to_variable = { WFB_Dixiecrats_Decay_Rate = 2 } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_listen_to_stories"
+		custom_effect_tooltip = WFB_Select_Effect_Dixiecrats_Quicker
+		subtract_from_variable = { WFB_Dixiecrats_Decay_Rate = 2 }
+		country_event = {
+			id = WFB.151
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_take_the_floor
+	icon = GFX_USA_Reestablish_Party
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_leave_to_experts
+		focus = USA_wfb_64_voices_of_people
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 14
+	y = 10
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_take_the_floor"
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+			add_to_variable = { OFN_Unity = 1 }
+		}
+		custom_effect_tooltip = USA_add_RD_unity
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_symbols_of_progress
+	icon = GFX_Generic_Social_Conservative
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_listen_to_stories
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_real_change
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_symbols_of_progress"
+		custom_effect_tooltip = WFB_North_Attract
+		subtract_from_variable = { USA_RD_Unity = 1 }
+		hidden_effect = {
+		every_owned_state = {
+				limit = { can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_fine_line
+	icon = GFX_RAJ_India_Comprimise_Constitution
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_leave_door_open
+		focus = USA_wfb_64_symbols_of_progress
+	}
+	prerequisite = {
+		focus = USA_wfb_64_take_the_floor
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_empower_republicans
+		focus = USA_wfb_64_empower_democrats
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 14
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_fine_line"
+		custom_effect_tooltip = USA_wfb_64_fine_line_tt
+		country_event = {
+			id = WFB.157
+			days = 2
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = { 
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.2 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_real_change
+	icon = GFX_Generic_Social_Liberal
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_codified_protections
+	}
+	prerequisite = {
+		focus = USA_wfb_64_listen_to_stories
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_symbols_of_progress
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 10
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_real_change"
+		custom_effect_tooltip = WFB_Republicans_Lower_Slow
+		custom_effect_tooltip = WFB_Republican_Relationship_raise
+		custom_effect_tooltip = WFB_Dixiecrats_Lower_Quicker
+		subtract_from_variable = { WFB_Republican_Decay_Rate = 4 }
+		add_to_variable = { WFB_Republican_Relationship = 15 }
+		add_to_variable = { WFB_Dixiecrats_Decay_Rate = 3 }
+		subtract_from_variable = { WFB_Republican_Relationship = 15 }
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+						OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 88 } #Pacific
+						}
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.2 }
+				subtract_from_variable = { RD_popularity = 0.2 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+						check_variable = { nationality = 85 } #Steel Belt
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+		}
+		custom_effect_tooltip = USA_add_RD_R_popularity_med
+		custom_effect_tooltip = WFB_North_Super_Attract
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_empower_republicans
+	icon = GFX_USA_Empower_the_Republicans
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_real_change
+	}
+	mutually_exclusive = {
+		focus = USA_wfb_64_fine_line
+		focus = USA_wfb_64_empower_democrats
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 11
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_empower_republicans"
+		country_event = {
+			id = WFB.153
+			days = 4
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.01
+		}
+		subtract_from_variable = { USA_RD_Unity = 2 }
+		custom_effect_tooltip = USA_add_NPP_popularity_south
+		hidden_effect = {
+		every_owned_state = {
+					limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.1 }
+					add_to_variable = { RD_popularity = 0.1 }
+					subtract_from_variable = { NPP_popularity = 0.1 }
+					US_underdog_RD_5_5 = yes
+				}
+		every_owned_state = {
+					limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 85 } #Steel Belt
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+					add_to_variable = { NPP_popularity = 0.2 }
+					US_underdog_NPP_5_5 = yes
+				}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_perfectly_broken
+	icon = GFX_USA_The_Party_Splits
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_fine_line
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 14
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_perfectly_broken"
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.1 }
+					subtract_from_variable = { RD_popularity = 0.1 }
+					US_underdog_RD_5_5 = yes
+					}
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.2 }
+
+				US_underdog_NPP_5_5 = yes
+				}
+			}
+		custom_effect_tooltip = USA_add_RD_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_through_fellowship_unity
+	icon = GFX_Generic_Socialism
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_perfectly_broken
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 14
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_through_fellowship_unity"
+		custom_effect_tooltip = WFB_Republicans_Lower_Slow
+		custom_effect_tooltip = WFB_Dixiecrats_Lower_Slow
+		subtract_from_variable = { WFB_Dixiecrats_Decay_Rate = 2 }
+		subtract_from_variable = { WFB_Republican_Decay_Rate = 2 }
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower
+		custom_effect_tooltip = WFB_Republican_Relationship_lower
+		subtract_from_variable = { WFB_Republican_Relationship = 10 }
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 10 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = { 
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1 }
+			}
+		}
+		add_to_variable = { USA_unity = 1 }
+		custom_effect_tooltip = USA_add_societal_unity
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_sideline_democrats
+	icon = GFX_USA_Estrange_the_Democrats
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_empower_republicans
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 12
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_sideline_democrats"
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower_great
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 30 }
+		country_event = {
+			id = WFB.155
+			days = 2
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = -0.01
+		}
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			subtract_from_variable = { USA_RD_Unity = 1 }
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+				}
+			}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_voting_rights_act
+	icon = GFX_Generic_Constitution
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_empower_republicans
+	}
+	ai_will_do = {
+		factor = 120
+	}
+	x = 10
+	y = 13
+	
+	select_effect = { 
+		USA_WFB_voting_act_setup = yes
+		set_country_flag = WFB_Voting_Act
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_voting_rights_act"
+		custom_effect_tooltip = WFB_Starts_Bill
+		custom_effect_tooltip = WFB_Dixiecrats_Relationship_lower_great
+		subtract_from_variable = { WFB_Dixiecrats_Relationship = 30 }
+		hidden_effect = {
+		clr_country_flag = WFB_Voting_Act
+		country_event = {
+			id = USA_sen_bill.1020
+			days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_through_change_progress
+	icon = GFX_MAD_freedom_must_be_found
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_sideline_democrats
+	}
+	prerequisite = {
+		focus = USA_wfb_64_voting_rights_act
+	}
+	ai_will_do = {
+		factor = 160
+	}
+	x = 11
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_through_change_progress"
+		custom_effect_tooltip = USA_add_RD_R_popularity_high
+		custom_effect_tooltip = WFB_Disable_Democrats
+		set_country_flag = WFB_NO_DEMOCRATS
+		hidden_effect = {
+		subtract_from_variable = { USA_RD_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.15 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+					}
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						}
+					}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.15 }
+				US_underdog_RD_5_5 = yes
+					}
+				}
+			}
+		}
+
+
+shared_focus = {
+	id = USA_wfb_64_for_all_the_struggle
+	icon = GFX_AST_end_the_alliance
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_through_change_progress
+		focus = USA_wfb_64_through_fellowship_unity
+		focus = USA_wfb_64_through_guidance_stability
+	}
+	ai_will_do = {
+		factor = 240
+	}
+	x = 14
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_for_all_the_struggle"
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes }
+				set_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+			}
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+		custom_effect_tooltip = USA_add_RD_D_popularity_med
+		custom_effect_tooltip = USA_lower_depression
+		hidden_effect = {
+			USA_decrease_depression = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_we_are_stronger
+	icon = GFX_COG_Our_Friends_Abroad
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_for_all_the_struggle
+	}
+	ai_will_do = {
+		factor = 240
+	}
+	x = 14
+	y = 16
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_we_are_stronger"
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes }
+				set_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+			}
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.01
+		}
+		custom_effect_tooltip = USA_add_RD_R_popularity_med
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_torch_burns_bright
+	icon = GFX_USA_Last_Light_of_Freedom
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_we_are_stronger
+	}
+	prerequisite = {
+		focus = USA_wfb_64_bretton_woods
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 9
+	y = 17
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_torch_burns_bright"
+		custom_effect_tooltip = USA_add_RD_unity
+		custom_effect_tooltip = USA_add_OFN_unity
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+			add_to_variable = { OFN_Unity = 1 }
+			country_event = { id = WFB.flavor.1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_wfb_64_lady_liberty_fights_on
+	icon = GFX_USA_Campaign_in_the_North
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_wfb_64_torch_burns_bright
+	}
+	ai_will_do = {
+		factor = 320
+	}
+	x = 9
+	y = 18
+	completion_reward = {
+		add_political_power = 100
+		add_stability = 0.05
+		hidden_effect = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wfb_64_lady_liberty_fights_on"
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes }
+				add_to_variable = { RD_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+					}
+		USA_decrease_depression = yes
+		custom_effect_tooltip = USA_add_RD_popularity_med
+	}
+}
+
+# Bennett's diplo tree
+shared_focus = {
+	id = USA_WFB_64_economic_integration
+	icon = GFX_American_Funding
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	allow_branch = {
+		has_country_flag = USA_WFB_bennett_diplo_tree
+		has_country_flag = USA_keep_it_clean_flag
+	}
+	x = 27
+	y = 11
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_economic_integration"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_our_friends_across_the_pacific
+	icon = GFX_USA_Reinforce_Oceanic_Armies
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_economic_integration
+	}
+	x = 23
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_our_friends_across_the_pacific"
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 1 }
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_encourage_oceanic_investments
+	icon = GFX_goal_generic_trade
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_our_friends_across_the_pacific
+	}
+	x = 21
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_encourage_oceanic_investments"
+		country_event = {
+			id = WFB.201
+			days = 7
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_developing_our_pacific_ports
+	icon = GFX_goal_generic_construct_naval_dockyard
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_our_friends_across_the_pacific
+	}
+	x = 23
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_developing_our_pacific_ports"
+		1049 = {
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+		1055 = {
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_negotiating_AUSFTA
+	icon = GFX_USA_The_Australian_Plan
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_encourage_oceanic_investments
+	}
+	prerequisite = {
+		focus = USA_WFB_64_developing_our_pacific_ports
+	}
+	x = 23
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_negotiating_AUSFTA"
+		country_event = {
+			id = WFB.204
+			days = 4
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_north_american_free_trade
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_economic_integration
+	}
+	x = 27
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_north_american_free_trade"
+		custom_effect_tooltip = WFB_NAFTA_PreCursor
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_popularity = 0.025 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_tearing_down_trade_barriers
+	icon = GFX_goal_generic_positive_trade_relations
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_north_american_free_trade
+	}
+	x = 26
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_tearing_down_trade_barriers"
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 1 }
+			add_to_variable = { GDP_growth = 0.0002 }
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_convince_the_canadians
+	icon = GFX_USA_Canadian_Facilitation
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_north_american_free_trade
+	}
+	x = 28
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_convince_the_canadians"
+		CAN = {
+			country_event = {
+				id = WFB.203
+				days = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_influencing_mexico
+	icon = GFX_USA_money_wall
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_tearing_down_trade_barriers
+	}
+	prerequisite = {
+		focus = USA_WFB_64_convince_the_canadians
+	}
+	x = 27
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_influencing_mexico"
+		country_event = { id = WFB.200 days = 4 }
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_secure_pacific_trade_routes
+	icon = GFX_TNO_generic_carrier
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_economic_integration
+	}
+	x = 31
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_secure_pacific_trade_routes"
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 1 }
+		}
+		custom_effect_tooltip = USA_add_RD_unity
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_subsidize_shipping_companies
+	icon = GFX_USA_money
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_secure_pacific_trade_routes
+	}
+	x = 33
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_subsidize_shipping_companies"
+		custom_effect_tooltip = WFB_Subsidizing_Shipping
+		hidden_effect = {
+			set_temp_variable = { money_stuff = GDP }
+			multiply_temp_variable = { money_stuff = 0.01 }
+			add_to_variable = { misc_costs = money_stuff }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_expand_our_pacific_naval_presence
+	icon = GFX_USA_Patrol_the_Waters
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_secure_pacific_trade_routes
+	}
+	x = 31
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_expand_our_pacific_naval_presence"
+		1049 = {
+			add_building_construction = {
+				type = naval_base
+				level = 3
+				instant_build = yes
+				province = {
+					all_provinces = yes
+				}
+			}
+		}
+		1055 = {
+			add_building_construction = {
+				type = naval_base
+				level = 3
+				instant_build = yes
+				province = {
+					all_provinces = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_our_trade_secured
+	icon = GFX_RAJ_India_New_Naval_Estimates
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_subsidize_shipping_companies
+	}
+	prerequisite = {
+		focus = USA_WFB_64_expand_our_pacific_naval_presence
+	}
+	x = 31
+	y = 14
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_our_trade_secured"
+		custom_effect_tooltip = WFB_Trade_SEcured
+		hidden_effect = {
+			multiply_variable = { GDP = 1.01 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_merge_the_trade_deals
+	icon = GFX_RAJ_india_diplomatic_usa
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_negotiating_AUSFTA
+	}
+	prerequisite = {
+		focus = USA_WFB_64_influencing_mexico
+	}
+	x = 25
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_merge_the_trade_deals"
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 2 }
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_our_naval_shield
+	icon = GFX_USA_Ready_the_Fleets
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_our_trade_secured
+	}
+	prerequisite = {
+		focus = USA_WFB_64_influencing_mexico
+	}
+	x = 29
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_our_naval_shield"
+		add_ideas = USA_WFB_naval_shield
+	}
+}
+
+shared_focus = {
+	id = USA_WFB_64_the_pacific_common_market
+	icon = GFX_endless_money
+	cost = 7.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_WFB_64_merge_the_trade_deals
+	}
+	prerequisite = {
+		focus = USA_WFB_64_our_naval_shield
+	}
+	x = 27
+	y = 16
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_WFB_64_the_pacific_common_market"
+		hidden_effect = {
+			multiply_variable = { GDP = 1.03 }
+			add_to_variable = { GDP_growth = 0.005 }
+		}
+		add_ideas = USA_WFB_pacific_common_market
+		every_country = {
+			limit = {
+				is_in_faction_with = USA
+			}
+			hidden_effect = {
+				multiply_variable = { GDP = 1.03 }
+				add_to_variable = { GDP_growth = 0.005 }
+			}
+			add_ideas = USA_WFB_pacific_common_market
+		}
+	}
+}

@@ -1,0 +1,2477 @@
+
+################# Demo Branch
+
+SAF_south_african_war_category = {
+	SAF_necessary_integration = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			surrender_progress > 0.2
+			has_manpower < 35000
+		}
+
+		visible = {
+			surrender_progress > 0.1
+			has_manpower < 50000
+			NOT = {
+				OR = {
+					has_idea = tno_racial_integration_integrated_military
+					has_idea = tno_racial_integration_enforced_integration
+				}
+			}
+			has_idea = tno_racial_integration_segregated_regiments
+		}
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				factor = 2
+				surrender_progress > 0.3
+			}
+			modifier = {
+				factor = 2
+				casualties > 10000
+			}
+			modifier = {
+				factor = 0.1
+				has_stability < 0.35
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_necessary_integration"
+			add_stability = -0.10
+			if = {
+				limit = { has_idea = tno_racial_integration_segregated_regiments }
+				swap_ideas = {
+					add_idea = tno_racial_integration_integrated_military
+					remove_idea = tno_racial_integration_segregated_regiments
+				}
+			}
+		}
+	}
+
+	SAF_institute_draft = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_manpower < 35000
+		}
+
+		visible = {
+			surrender_progress > 0.05
+			has_manpower < 50000
+			OR = {
+				has_idea = tno_conscription_volunteer_only
+				has_idea = tno_conscription_disarmed_nation
+				has_idea = tno_conscription_one_year_draft
+				has_idea = tno_conscription_two_year_draft
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				factor = 2
+				surrender_progress > 0.3
+			}
+			modifier = {
+				factor = 2
+				casualties > 10000
+			}
+			modifier = {
+				factor = 0.1
+				has_stability < 0.35
+			}
+		}
+
+		days_re_enable = 120
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_institute_draft"
+			add_stability = -0.05
+			tno_conscription_worsen = yes
+		}
+	}
+
+	SAF_emergency_production = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			surrender_progress > 0.2
+		}
+
+		visible = {
+			surrender_progress > 0.1
+		}
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				factor = 2
+				surrender_progress > 0.3
+			}
+			modifier = {
+				factor = 0.1
+				has_stability < 0.35
+			}
+		}
+
+		days_remove = 90
+		days_re_enable = 120
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_emergency_production"
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.20
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_emergency_production"
+			add_offsite_building = { type = arms_factory level = -1 }
+			add_stability = -0.05
+			add_war_support = -0.03
+		}
+	}
+
+	SAF_american_companies_deal = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_cooperate_with_american_companies
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 30
+		days_re_enable = 120
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_american_companies_deal"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = -0.02
+			}
+			multiply_variable = { GDP = 1.03 }
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.30
+		}
+	}
+
+	SAF_buy_american_guns = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			USA = {
+				has_equipment = {
+					infantry_equipment > 2500
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = SAF_purchase_american_guns
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_buy_american_guns"
+			USA = {
+				country_event = {
+					id = SAF.51
+					days = 1
+				}
+			}
+		}
+	}
+
+	SAF_tech_support_industry = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_american_tech
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_tech_support_industry"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+	}
+
+	SAF_tech_support_infantry = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_american_tech
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_tech_support_infantry"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+
+
+	#bige
+	SAF_american_companies_deal_big = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_cooperate_with_american_companies
+			has_completed_focus = SAF_we_need_more
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 40
+		days_re_enable = 120
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_american_companies_deal_big"
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = -0.05
+			}
+			multiply_variable = { GDP = 1.05 }
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.50
+		}
+	}
+
+	SAF_buy_american_guns_big = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			USA = {
+				has_equipment = {
+					infantry_equipment > 2000
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = SAF_purchase_american_guns
+			has_completed_focus = SAF_we_need_more
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_buy_american_guns_big"
+			
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 10000
+			}
+			
+		}
+	}
+
+	SAF_increased_guerilla_support = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_behind_every_blade_of_grass
+			USA = {
+				has_equipment = {
+					infantry_equipment > 1000
+				}
+			}
+			SAF = {
+				has_equipment = {
+					infantry_equipment > 1000
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 50
+		days_re_enable = 150
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_increased_guerilla_support"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+			USA = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
+				}
+			}
+			BOR = {
+				add_ideas = SAF_Unconventional_Tactics_RK_3 
+				remove_ideas = SAF_Unconventional_Tactics_RK_2 
+			}
+			ANG = {
+				add_ideas = SAF_Unconventional_Tactics_RK_3 
+				remove_ideas = SAF_Unconventional_Tactics_RK_2 
+			}
+			COG = {
+				add_ideas = SAF_Unconventional_Tactics_RK_3 
+				remove_ideas = SAF_Unconventional_Tactics_RK_2 
+			}
+			MZB = {
+				add_ideas = SAF_Unconventional_Tactics_RK_3
+				remove_ideas = SAF_Unconventional_Tactics_RK_2 
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_increased_guerilla_support"
+			BOR = {
+				swap_ideas = {
+					add_idea = SAF_Unconventional_Tactics_RK
+					remove_idea = SAF_Unconventional_Tactics_RK_2
+				}
+			}
+			ANG = {
+				swap_ideas = {
+					add_idea = SAF_Unconventional_Tactics_RK
+					remove_idea = SAF_Unconventional_Tactics_RK_2
+				}
+			}
+			COG = {
+				swap_ideas = {
+					add_idea = SAF_Unconventional_Tactics_RK
+					remove_idea = SAF_Unconventional_Tactics_RK_2
+				}
+			}
+			MZB = {
+				swap_ideas = {
+					add_idea = SAF_Unconventional_Tactics_RK
+					remove_idea = SAF_Unconventional_Tactics_RK_2
+				}
+			}
+		}
+	}
+
+	SAF_chaos_behind_the_lines = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_shatter_the_schild
+			SAF = {
+				has_equipment = {
+					infantry_equipment > 1000
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 49
+		days_re_enable = 150
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_chaos_behind_the_lines"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+			BOR = {
+				add_ideas = SAF_chaos_behind_lines
+			}
+			ANG = {
+				add_ideas = SAF_chaos_behind_lines
+			}
+			COG = {
+				add_ideas = SAF_chaos_behind_lines
+			}
+			MZB = {
+				add_ideas = SAF_chaos_behind_lines
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_chaos_behind_the_lines"
+			BOR = {
+				remove_ideas = SAF_chaos_behind_lines
+			}
+			ANG = {
+				remove_ideas = SAF_chaos_behind_lines
+			}
+			COG = {
+				remove_ideas = SAF_chaos_behind_lines
+			}
+			MZB = {
+				remove_ideas = SAF_chaos_behind_lines
+			}
+		}
+	}
+
+	SAF_identify_insurgents = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_identifying_insurgents
+			SAF = {
+				has_equipment = {
+					infantry_equipment > 1000
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 50
+		days_re_enable = 150
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_identify_insurgents"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_identify_insurgents"
+			SAF = {
+				SAF_decrease_RK_debuff = yes
+			}
+		}
+	}
+	
+		SAF_phoenix_target_general = {
+		available = {
+
+		}
+
+		visible = {
+			OR = {
+				has_government = social_liberal
+				has_government = social_conservative
+			}
+			has_completed_focus = SAF_identifying_insurgents
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_phoenix_target_general"
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -250
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -200
+			}
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+			army_attack_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_phoenix_target_general"
+			SAF = {
+				every_enemy_country = {
+					random_army_leader = {
+						add_timed_unit_leader_trait = {
+							trait = wounded
+							days = 90
+						}
+						add_temporary_buff_to_units = {
+							combat_offense = -0.25
+							combat_breakthrough = -0.25
+							combat_defense = -0.15
+
+							days = 60
+							tooltip = SAF_PHOENIX_PENALTY
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				add = 10
+				date > 1965.3.1
+			}
+			modifier = {
+				add = 10
+				date > 1965.6.1
+			}
+			modifier = {
+				add = 10
+				date > 1965.8.1
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = usa_Wervolf_6
+					has_idea = usa_Wervolf_5
+					has_idea = usa_Wervolf_4
+				}
+			}
+		}
+	}
+
+	SAF_villages_decision = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_win_the_villages
+			SAF = {
+				has_equipment = {
+					infantry_equipment > 500
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 49
+		days_re_enable = 150
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_villages_decision"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+		}
+
+		modifier = {
+			stability_weekly = 0.01
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_villages_decision"
+			SAF = {
+				SAF_decrease_RK_debuff = yes
+			}
+		}
+	}
+
+	SAF_propaganda_encourage_recruitment = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_the_propaganda_war
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 10
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_propaganda_encourage_recruitment"
+			add_manpower = 15000
+			add_war_support = 0.03
+		}
+	}
+
+	SAF_propaganda_demoralization_campaign = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_the_propaganda_war
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 10
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_propaganda_demoralization_campaign"
+			BOR = {
+				add_war_support = -0.15
+			}
+			ANG = {
+				add_war_support = -0.15
+			}
+			COG = {
+				add_war_support = -0.15
+			}
+			MZB = {
+				add_war_support = -0.15
+			}
+		}
+	}
+
+	SAF_propaganda_defection_campaign = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_the_propaganda_war
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 10
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_propaganda_defection_campaign"
+			BOR = {
+				add_manpower = -15000
+			}
+			ANG = {
+				add_manpower = -10000
+			}
+			COG = {
+				add_manpower = -10000
+			}
+			MZB = {
+				add_manpower = -5000
+			}
+		}
+	}
+
+	SAF_terrain_desert_focus = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_all_terrain_training
+			NOT = { has_country_flag = SAF_desert_terrain_focus }
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 80
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_terrain_desert_focus"
+			SAF_remove_terrain_traits = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_terrain_desert_focus"
+			every_unit_leader = {
+				add_unit_leader_trait = desert_fox
+			}
+			set_country_flag = SAF_desert_terrain_focus
+		}
+	}
+
+	SAF_terrain_hill_focus = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_all_terrain_training
+			NOT = { has_country_flag = SAF_hills_terrain_focus }
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 80
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_terrain_hill_focus"
+			SAF_remove_terrain_traits = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_terrain_hill_focus"
+			every_unit_leader = {
+				add_unit_leader_trait = hill_fighter
+			}
+			set_country_flag = SAF_hills_terrain_focus
+		}
+	}
+
+	SAF_terrain_jungle_focus = {
+		icon = generic_prospect_for_resources
+
+		visible = {
+			has_completed_focus = SAF_all_terrain_training
+			NOT = { has_country_flag = SAF_jungle_terrain_focus }
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 80
+		days_re_enable = 150
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_terrain_jungle_focus"
+			SAF_remove_terrain_traits = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SAF_terrain_jungle_focus"
+			every_unit_leader = {
+				add_unit_leader_trait = jungle_rat
+			}
+			set_country_flag = SAF_jungle_terrain_focus
+		}
+	}
+
+	SAF_emergency_weapons_shipment = {
+		available = {
+			SAF = { surrender_progress > 0.15 }
+		}
+
+		visible = {
+			SAF = { surrender_progress > 0.05 }
+		}
+
+		cost = 30
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_emergency_weapons_shipment"
+			send_equipment = {
+				equipment = anti_tank_equipment
+				amount = 1600
+				target = SAF
+			}
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 5000
+				target = SAF
+			}
+			SAF = { add_manpower = 5000 }
+		}
+
+		ai_will_do = {
+			base = 160
+			modifier = {
+				add = 80
+				SAF = {
+					surrender_progress > 0.4
+				}
+			}
+			modifier = {
+				add = 20
+				SAF = {
+					enemies_strength_ratio < 0.5
+				}
+			}
+		}
+	}
+}
+
+ARK_south_african_war_catgeory = {
+	BOR_desperate_defence = {
+		icon = generic_prospect_for_resources
+
+		allowed = {
+			original_tag = BOR
+		}
+
+		visible = {
+			surrender_progress > 0.2
+		}
+
+
+		ai_will_do = {
+			factor = 80
+			modifier = {
+				factor = 2
+				surrender_progress > 0.5
+			}
+			modifier = {
+				factor = 2
+				casualties > 10000
+			}
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision BOR_desperate_defence"
+			custom_effect_tooltip = BOR_desperate_defence_tt
+			hidden_effect = {
+				if = {
+					limit = { NOT = { has_template = "Boer Volunteers" } }
+					division_template = {
+						name = "Boer Volunteers"
+
+						regiments = {
+							light_infantry = { x = 0 y = 0 }
+							light_infantry = { x = 0 y = 1 }
+							light_infantry = { x = 0 y = 2 }
+							light_infantry = { x = 1 y = 0 }
+							light_infantry = { x = 1 y = 1 }
+							light_infantry = { x = 1 y = 2 }
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "name = \"Boer Volunteers\" division_template = \"Boer Volunteers\" start_experience_factor = 0.1 start_equipment_factor = 0.9"
+						owner = BOR
+					}
+					create_unit = {
+						division = "name = \"Boer Volunteers\" division_template = \"Boer Volunteers\" start_experience_factor = 0.1 start_equipment_factor = 0.9"
+						owner = BOR
+					}
+					create_unit = {
+						division = "name = \"Boer Volunteers\" division_template = \"Boer Volunteers\" start_experience_factor = 0.1 start_equipment_factor = 0.9"
+						owner = BOR
+					}
+					create_unit = {
+						division = "name = \"Boer Volunteers\" division_template = \"Boer Volunteers\" start_experience_factor = 0.1 start_equipment_factor = 0.9"
+						owner = BOR
+					}
+					create_unit = {
+						division = "name = \"Boer Volunteers\" division_template = \"Boer Volunteers\" start_experience_factor = 0.1 start_equipment_factor = 0.9"
+						owner = BOR
+					}
+				}
+			}
+		}
+
+		modifier = {
+			army_core_attack_factor = 0.15
+			army_core_defence_factor = 0.3
+			war_support_factor = 0.15
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove BOR_desperate_defence"
+			add_stability = -0.25
+			add_war_support = -0.3
+		}
+	}
+
+	ARK_emergency_production = {
+		icon = generic_prospect_for_resources
+		allowed = {
+			OR = {
+				original_tag = COG
+				original_tag = ANG
+				original_tag = MZB
+			}
+		}
+
+		visible = {
+			surrender_progress > 0.1
+		}
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				factor = 2
+				surrender_progress > 0.3
+			}
+			modifier = {
+				factor = 0.1
+				has_stability < 0.35
+			}
+		}
+
+		days_remove = 90
+		days_re_enable = 120
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ARK_emergency_production"
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.20
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove ARK_emergency_production"
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_stability = -0.05
+			add_war_support = -0.03
+		}
+	}
+
+}
+
+USA_Air_Lift_category = {
+
+	SAF_Air_Rifles = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Rifles"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = USA
+
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+	SAF_Air_Support_Gear = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_Support_Gear"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = support_equipment_1
+					amount = 300
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+	SAF_Air_AT = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_AT"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount = 250
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+
+	SAF_Air_Arty = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_Arty"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = APC_artillery_equipment_1
+					amount = 120
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+
+
+	SAF_Air_motor = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_motor"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = motorized_equipment
+					amount = 375
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+
+
+
+	SAF_Air_MBT = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_MBT"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = MBT_equipment_2
+					amount = 50
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+
+
+	SAF_Air_APC = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+			check_variable = { Logistics_activity > 0 }
+		}
+
+		cost = 10
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+			subtract_from_variable = { Logistics_activity = 1 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_APC"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = APC_equipment_2
+					amount = 100
+					producer = USA
+				}
+				add_to_variable = { Logistics_activity = 1 }
+
+			}
+
+
+		}
+	}
+}
+
+USA_Air_Power_category = {
+
+	SAF_Fighters_shipment = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+		}
+
+		cost = 10
+		days_remove = 10
+		days_re_enable = 120
+		complete_effect = {
+
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Fighters_shipment"
+			send_equipment = {
+				equipment = fighter_equipment
+				amount = 50
+				target = SAF
+			}
+		}
+	}
+
+	SAF_CAS_shipment = {
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+
+		}
+
+		cost = 10
+		days_remove = 10
+		days_re_enable = 150
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_CAS_shipment"
+			add_equipment_to_stockpile = {
+				type = cas_equipment
+				amount = 50
+				producer = USA
+			}
+		}
+	}
+
+	SAF_Tac_Bomber_shipment = {
+
+
+		visible = {
+			has_completed_focus = SAF_our_american_allies
+		}
+		available = {
+
+		}
+
+		cost = 10
+		days_remove = 10
+		days_re_enable = 150
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Tac_Bomber_shipment"
+			add_equipment_to_stockpile = {
+				type = tac_bomber_equipment
+				amount = 50
+				producer = USA
+			}
+
+		}
+
+	}
+}
+
+############################################### Doc's Operations Bellow
+## NOT USED
+#USA_south_african_war_category = {
+#	USA_SAF_war_rising_discontent = {
+#		allowed = { tag = SAF }
+#		available = {
+#			if = {
+#				limit = { check_variable = { USA_discontent_variable = 0 } }
+#				check_variable = { USA_discontent_tracker < 200 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 1 } }
+#				check_variable = { USA_discontent_tracker < 400 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 2 } }
+#				check_variable = { USA_discontent_tracker < 600 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 3 } }
+#				check_variable = { USA_discontent_tracker < 800 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 4 } }
+#				check_variable = { USA_discontent_tracker < 1000 }
+#			}
+#		}
+#		activation = {
+#			if = {
+#				limit = { check_variable = { USA_discontent_variable = 0 } }
+#				check_variable = { USA_discontent_tracker > 200 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 1 } }
+#				check_variable = { USA_discontent_tracker > 400 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 2 } }
+#				check_variable = { USA_discontent_tracker > 600 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 3 } }
+#				check_variable = { USA_discontent_tracker > 800 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 4 } }
+#				check_variable = { USA_discontent_tracker > 1000 }
+#			}
+#		}
+#		is_good = no
+#		days_mission_timeout = 30
+#		timeout_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision timeout USA_SAF_war_rising_discontent"
+#			add_stability = -0.02
+#			add_political_power = -75
+#			add_to_variable = { USA_discontent_variable = 1 }
+#			if = {
+#				limit = { check_variable = { USA_discontent_variable = 0 } }
+#				country_event = { id = SAF.75 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 1 } }
+#				country_event = { id = SAF.76 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 2 } }
+#				country_event = { id = SAF.77 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 3 } }
+#				country_event = { id = SAF.78 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { USA_discontent_variable = 4 } }
+#				country_event = { id = SAF.79 }
+#			}
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_war_rising_discontent"
+#			#Your country doesn't explode, or something
+#			add_to_variable = { USA_discontent_tracker = -30 }
+#			add_political_power = 35
+#			custom_effect_tooltip = USA_decrease_war_discontent_tt
+#		}
+#	}
+#
+#
+#	USA_SAF_invasion_plan_mission = {
+#		allowed = { tag = SAF }
+#		available = {
+#			OR = {
+#				ANG = { has_capitulated = yes }
+#				SAF = { controls_state = 778 }
+#
+#			}
+#
+#		}
+#		activation = {
+#			has_country_flag = invading_in_africa
+#		}
+#		is_good = no
+#		days_mission_timeout = 150
+#		timeout_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision timeout USA_SAF_invasion_plan_mission"
+#			add_to_variable = { USA_discontent_tracker = 50 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#			hidden_effect = {
+#				clr_country_flag = invading_in_africa
+#			}
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_invasion_plan_mission"
+#			add_political_power = 50
+#			add_war_support = 0.05
+#			hidden_effect = {
+#				clr_country_flag = invading_in_africa
+#			}
+#		}
+#	}
+#
+#
+#	USA_SAF_invasion_plan = {
+#		available = {
+#			SAF = {
+#				has_country_flag = help_arrived
+#
+#			}
+#		}
+#		visible = {
+#			NOT = {
+#				SAF = { controls_state = 778 }
+#				has_global_flag = SAF_ceasefire
+#			}
+#		}
+#		cost = 10
+#		fire_only_once = yes
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_invasion_plan"
+#			set_country_flag = invading_in_africa
+#			SAF = {
+#
+#				custom_effect_tooltip = USA_SAF_invade_plan_tt
+#				hidden_effect = {
+#					add_equipment_to_stockpile = {
+#						type = IFV_equipment_1
+#						amount = 350
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = infantry_equipment_3
+#						amount = 600
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = anti_tank_equipment_2
+#						amount = 300
+#						producer = USA
+#					}
+#					if = {
+#						limit = { USA = { is_ai = yes } }
+#						load_oob = SAF_ANG_landing_AI
+#					}
+#					else = {
+#						load_oob = SAF_ANG_landing
+#					}
+#					778 = {
+#						add_building_construction = {
+#							type = naval_base
+#							level = 3
+#							instant_build = yes
+#							province = 2207
+#						}
+#					}
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 5
+#			modifier = {
+#				add = 25
+#				SAF = {
+#					surrender_progress > 0.1
+#				}
+#			}
+#		}
+#
+#	}
+#
+#
+#	ask_the_ofn_for_assistance = {
+#		available = {
+#		}
+#		visible = {
+#			has_global_flag = Nixon_Speech
+#
+#			NOT = {
+#				has_global_flag = SAF_ceasefire
+#			}
+#		}
+#
+#		cost = 20
+#		fire_only_once = yes
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision ask_the_ofn_for_assistance"
+#			set_country_flag = usa_convincing_ofn
+#			##add code
+#			set_variable = {
+#				var = USA_advisor_level
+#				value = 0
+#			}
+#			hidden_effect = {
+#				SAF = {
+#					add_equipment_to_stockpile = {
+#						type = infantry_equipment_3
+#						amount = 4000
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = anti_tank_equipment_2
+#						amount = 1000
+#						producer = USA
+#					}
+#
+#					set_country_flag = help_arrived
+#				}
+#			}
+#
+#			SAF = {
+#				set_technology = {
+#					MBT_1950 = 1
+#					transport_helicopter_1960 = 1
+#					tech_transport_helicopter_company = 1
+#				}
+#				load_oob = SAF_American_Intervention
+#				add_manpower = 10000
+#				add_equipment_to_stockpile = {
+#					type = infantry_equipment_3
+#					amount = 2000
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = anti_tank_equipment_2
+#					amount = 600
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = artillery_equipment_2
+#					amount = 150
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = MBT_equipment
+#					amount = 150
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = motorized_equipment_1
+#					amount = 500
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = transport_helicopter_equipment
+#					amount = 100
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = support_equipment
+#					amount = 150
+#					producer = USA
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 20
+#			modifier = {
+#				add = 25
+#				SAF = {
+#					surrender_progress > 0.1
+#				}
+#			}
+#			modifier = {
+#				add = 30
+#				SAF = {
+#					surrender_progress > 0.3
+#				}
+#			}
+#			modifier = {
+#				add = 40
+#				SAF = {
+#					surrender_progress > 0.4
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					num_divisions > 5
+#				}
+#			}
+#		}
+#	}
+#
+#	###INCREASE ADVISORS
+#	increase_advisor_force = {
+#		available = {
+#		}
+#
+#		visible = {
+#			has_country_flag = usa_convincing_ofn
+#			NOT = { has_idea = advisor_level_5 }
+#		}
+#
+#		cost = 50
+#		days_re_enable = 30
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision increase_advisor_force"
+#			add_to_variable = {
+#				var = USA_advisor_level
+#				value = 1
+#			}
+#			proxy_war_increase_advisors = yes
+#			add_to_variable = { USA_discontent_tracker = 40 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#
+#			SAF = {
+#				add_equipment_to_stockpile = {
+#					type = infantry_equipment_3
+#					amount = 1000
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = anti_tank_equipment_2
+#					amount = 300
+#					producer = USA
+#				}
+#			}
+#
+#
+#
+#			random_list = {
+#				50 = {
+#					SAF = {
+#						load_oob = SAF_American_Marines
+#					}
+#				}
+#				50 = {
+#					SAF = {
+#						load_oob = SAF_American_Infantry
+#					}
+#				}
+#			}
+#			SAF = {
+#				add_manpower = 5000
+#				add_equipment_to_stockpile = {
+#					type = infantry_equipment_3
+#					amount = 2000
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = anti_tank_equipment_2
+#					amount = 300
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = artillery_equipment_2
+#					amount = 75
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = MBT_equipment_1
+#					amount = 100
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = motorized_equipment_1
+#					amount = 200
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = transport_helicopter_equipment
+#					amount = 40
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = support_equipment
+#					amount = 150
+#					producer = USA
+#				}
+#
+#			}
+#		}
+#
+#
+#		ai_will_do = {
+#			base = 80
+#			modifier = {
+#				add = 40
+#				SAF = {
+#					surrender_progress > 0.25
+#				}
+#			}
+#			modifier = {
+#				add = 80
+#				SAF = {
+#					surrender_progress > 0.5
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					num_divisions > 5
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					enemies_strength_ratio > 0.5
+#				}
+#			}
+#		}
+#	}
+#
+#
+#
+#	initiate_policing_action = {
+#		available = {
+#		}
+#
+#		visible = {
+#			check_variable = {
+#				var = USA_advisor_level
+#				value = 5
+#				compare = equals
+#			}
+#			NOT = { has_country_flag = south_africa_policing }
+#		}
+#
+#		cost = 75
+#		days_re_enable = 60
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision initiate_policing_action"
+#			set_country_flag = south_africa_policing
+#			set_variable = {
+#				var = USA_policing_variable
+#				value = 1
+#			}
+#			add_ideas = policing_level_1
+#			add_to_variable = { USA_discontent_tracker = 75 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#			hidden_effect = {
+#				SAF = {
+#					add_equipment_to_stockpile = {
+#						type = infantry_equipment_3
+#						amount = 3500
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = anti_tank_equipment_2
+#						amount = 1000
+#						producer = USA
+#					}
+#				}
+#			}
+#
+#				SAF = {
+#					load_oob = SAF_American_Infantry
+#					load_oob = SAF_American_Marines
+#					add_manpower = 20000
+#					add_equipment_to_stockpile = {
+#						type = infantry_equipment_3
+#						amount = 3000
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = anti_tank_equipment_2
+#						amount = 600
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = artillery_equipment_2
+#						amount = 100
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = MBT_equipment_1
+#						amount = 150
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = motorized_equipment_1
+#						amount = 300
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = transport_helicopter_equipment
+#						amount = 60
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = support_equipment
+#						amount = 200
+#						producer = USA
+#					}
+#				}
+#
+#		}
+#
+#		ai_will_do = {
+#			base = 60
+#			modifier = {
+#				add = 40
+#				SAF = {
+#					surrender_progress > 0.4
+#				}
+#			}
+#			modifier = {
+#				add = 80
+#				SAF = {
+#					surrender_progress > 0.5
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					num_divisions > 5
+#				}
+#			}
+#			modifier = {
+#				add = 160
+#				check_variable = {
+#					USA_advisor_level < 4
+#				}
+#			}
+#		}
+#	}
+#
+#	increase_policing_action = {
+#		available = {
+#		}
+#
+#		visible = {
+#			AND = {
+#				NOT = { has_idea = policing_level_8 }
+#				OR = {
+#					has_war_with = ANG
+#					has_war_with = MZB
+#					has_war_with = COG
+#					has_war_with = BOR
+#				}
+#			}
+#		}
+#		cost = 75
+#
+#		ai_will_do = {
+#			base = 0
+#			modifier = {
+#				add = 25
+#				if = {
+#					has_country_flag = USA_64_R_RD
+#				}
+#			}
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision increase_policing_action"
+#			add_to_variable = {
+#				var = USA_policing_variable
+#				value = 1
+#			}
+#			proxy_war_increase_policing = yes
+#			add_to_variable = { USA_discontent_tracker = 55 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#			hidden_effect = {
+#				SAF = {
+#					add_equipment_to_stockpile = {
+#						type = infantry_equipment_3
+#						amount = 3000
+#						producer = USA
+#					}
+#					add_equipment_to_stockpile = {
+#						type = anti_tank_equipment_2
+#						amount = 1500
+#						producer = USA
+#					}
+#				}
+#			}
+#			SAF = {
+#				load_oob = SAF_American_Infantry
+#				load_oob = SAF_American_Marines
+#				add_manpower = 20000
+#				add_equipment_to_stockpile = {
+#					type = infantry_equipment_3
+#					amount = 3000
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = anti_tank_equipment_2
+#					amount = 600
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = artillery_equipment_2
+#					amount = 100
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = MBT_equipment_1
+#					amount = 150
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = motorized_equipment_1
+#					amount = 300
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = transport_helicopter_equipment
+#					amount = 60
+#					producer = USA
+#				}
+#				add_equipment_to_stockpile = {
+#					type = support_equipment
+#					amount = 200
+#					producer = USA
+#				}
+#			}
+#		}
+#
+#
+#		ai_will_do = {
+#			base = 60
+#			modifier = {
+#				add = 80
+#				SAF = {
+#					surrender_progress > 0.5
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					num_divisions > 10
+#				}
+#			}
+#			modifier = {
+#				add = 20
+#				SAF = {
+#					enemies_strength_ratio > 0.5
+#				}
+#			}
+#		}
+#	}
+#
+#	USA_SAF_loosen_roe = {
+#		available = {
+#			has_idea = tno_military_supervision_military_policing
+#		}
+#
+#		visible = {
+#			OR = {
+#				has_idea = usa_Wervolf_6
+#				has_idea = usa_Wervolf_5
+#				has_idea = usa_Wervolf_4
+#				has_idea = usa_Wervolf_3
+#				has_idea = usa_Wervolf_2
+#				has_idea = usa_Wervolf_1
+#			}
+#			has_idea = tno_military_supervision_military_policing
+#		}
+#
+#		cost = 75
+#		fire_only_once = yes
+#		days_remove = 30
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_loosen_roe"
+#			tno_military_supervision_worsen = yes
+#			add_to_variable = { USA_discontent_tracker = 50 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#
+#		modifier = {
+#			political_power_gain = -0.20
+#			war_support_weekly = -0.0075
+#			army_morale_factor = -0.15
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove USA_SAF_loosen_roe"
+#			SAF_decrease_RK_debuff = yes
+#		}
+#
+#		ai_will_do = {
+#			base = 5
+#			modifier = {
+#				add = 10
+#				date > 1965.3.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.6.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.8.1
+#			}
+#			modifier = {
+#				factor = 2
+#				has_government = authoritarian_democrat
+#			}
+#			modifier = {
+#				factor = 3
+#				OR = {
+#					has_idea = usa_Wervolf_6
+#					has_idea = usa_Wervolf_5
+#					has_idea = usa_Wervolf_4
+#				}
+#			}
+#			modifier = {
+#				factor = 0.5
+#				has_government = social_democrat
+#			}
+#		}
+#	}
+#
+#	USA_SAF_begin_firebombings = {
+#		available = {
+#			date > 1965.3.1
+#		}
+#
+#		visible = {
+#			OR = {
+#				has_idea = usa_Wervolf_6
+#				has_idea = usa_Wervolf_5
+#				has_idea = usa_Wervolf_4
+#				has_idea = usa_Wervolf_3
+#				has_idea = usa_Wervolf_2
+#				has_idea = usa_Wervolf_1
+#			}
+#			OR = {
+#				has_government = social_liberal
+#				has_government = social_conservative
+#			}
+#
+#		}
+#
+#		cost = 35
+#		fire_only_once = yes
+#		days_remove = 30
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_begin_firebombings"
+#			add_to_variable = { USA_discontent_tracker = 30 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#
+#		modifier = {
+#			political_power_gain = -0.15
+#			war_support_weekly = -0.005
+#			army_bonus_air_superiority_factor = -0.25
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove USA_SAF_begin_firebombings"
+#			SAF = {
+#				every_enemy_country = {
+#					add_timed_idea = {
+#						idea = RK_Africa_bombed_forces
+#						days = 30
+#					}
+#					random_owned_controlled_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#					random_owned_controlled_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#				}
+#			}
+#			random_list = {
+#				75 = {
+#
+#				}
+#				25 = {
+#					SAF_decrease_RK_debuff = yes
+#				}
+#			}
+#			hidden_effect = {
+#				random_list = {
+#					80 = {
+#
+#					}
+#					20 = {
+#						country_event = { id = USA.156 days = 20 random = 100 }
+#					}
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 15
+#			modifier = {
+#				add = 10
+#				date > 1965.3.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.6.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.8.1
+#			}
+#			modifier = {
+#				factor = 2
+#				OR = {
+#					has_government = social_liberal
+#					has_government = social_conservative
+#					has_government = authoritarian_democrat
+#				}
+#			}
+#			modifier = {
+#				factor = 3
+#				OR = {
+#					has_idea = usa_Wervolf_6
+#					has_idea = usa_Wervolf_5
+#					has_idea = usa_Wervolf_4
+#				}
+#			}
+#			modifier = {
+#				factor = 0.25
+#				has_government = social_democrat
+#			}
+#		}
+#	}
+#
+#	USA_SAF_increase_firebombings = {
+#		available = {
+#		}
+#
+#		visible = {
+#			OR = {
+#				has_idea = usa_Wervolf_6
+#				has_idea = usa_Wervolf_5
+#				has_idea = usa_Wervolf_4
+#				has_idea = usa_Wervolf_3
+#				has_idea = usa_Wervolf_2
+#				has_idea = usa_Wervolf_1
+#			}
+#			OR = {
+#				has_government = social_liberal
+#				has_government = social_conservative
+#			}
+#
+#		}
+#
+#		cost = 50
+#		days_re_enable = 7
+#		days_remove = 30
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_increase_firebombings"
+#			add_to_variable = { USA_discontent_tracker = 40 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#
+#		modifier = {
+#			political_power_gain = -0.20
+#			war_support_weekly = -0.0075
+#			army_bonus_air_superiority_factor = -0.4
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove USA_SAF_increase_firebombings"
+#			SAF = {
+#				every_enemy_country = {
+#					add_timed_idea = {
+#						idea = RK_Africa_bombed_forces
+#						days = 45
+#					}
+#					random_owned_controlled_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#					random_owned_controlled_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#					random_owned_controlled_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#				}
+#			}
+#			random_list = {
+#				75 = {
+#
+#				}
+#				25 = {
+#					SAF_decrease_RK_debuff = yes
+#				}
+#			}
+#			hidden_effect = {
+#				random_list = {
+#					70 = {
+#
+#					}
+#					30 = {
+#						country_event = { id = USA.156 days = 20 random = 100 }
+#					}
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 5
+#			modifier = {
+#				add = 10
+#				date > 1965.3.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.6.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.8.1
+#			}
+#			modifier = {
+#				factor = 2
+#				OR = {
+#					has_government = social_liberal
+#					has_government = social_conservative
+#					has_government = authoritarian_democrat
+#				}
+#			}
+#			modifier = {
+#				factor = 3
+#				OR = {
+#					has_idea = usa_Wervolf_6
+#					has_idea = usa_Wervolf_5
+#					has_idea = usa_Wervolf_4
+#				}
+#			}
+#			modifier = {
+#				factor = 0.25
+#				has_government = social_democrat
+#			}
+#		}
+#	}
+#
+#	USA_SAF_apply_defoliants = {
+#		available = {
+#
+#		}
+#
+#		visible = {
+#			OR = {
+#				has_idea = usa_Wervolf_6
+#				has_idea = usa_Wervolf_5
+#				has_idea = usa_Wervolf_4
+#				has_idea = usa_Wervolf_3
+#				has_idea = usa_Wervolf_2
+#				has_idea = usa_Wervolf_1
+#			}
+#			OR = {
+#				has_government = social_liberal
+#				has_government = social_conservative
+#			}
+#			has_country_flag = begun_firebombings
+#		}
+#
+#		cost = 50
+#		fire_only_once = yes
+#		days_remove = 30
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_apply_defoliants"
+#			add_to_variable = { USA_discontent_tracker = 45 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#
+#		modifier = {
+#			political_power_gain = -0.20
+#			war_support_weekly = -0.0075
+#			army_bonus_air_superiority_factor = -0.4
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove USA_SAF_apply_defoliants"
+#			SAF = {
+#				every_enemy_country = {
+#					add_timed_idea = {
+#						idea = RK_Africa_bombed_forces
+#						days = 45
+#					}
+#					every_owned_state = {
+#						limit = { NOT = { is_controlled_by = SAF } }
+#						damage_building = {
+#							type = infrastructure
+#							damage = 2
+#						}
+#					}
+#				}
+#			}
+#			random_list = {
+#				60 = {
+#
+#				}
+#				40 = {
+#					SAF_decrease_RK_debuff = yes
+#				}
+#			}
+#			hidden_effect = {
+#				random_list = {
+#					80 = {
+#
+#					}
+#					20 = {
+#						country_event = { id = USA.156 days = 20 random = 100 }
+#					}
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 5
+#			modifier = {
+#				add = 10
+#				date > 1965.3.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.6.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.8.1
+#			}
+#			modifier = {
+#				factor = 2
+#				OR = {
+#					has_government = social_liberal
+#					has_government = social_conservative
+#					has_government = authoritarian_democrat
+#				}
+#			}
+#			modifier = {
+#				factor = 3
+#				OR = {
+#					has_idea = usa_Wervolf_6
+#					has_idea = usa_Wervolf_5
+#					has_idea = usa_Wervolf_4
+#				}
+#			}
+#			modifier = {
+#				factor = 0.25
+#				has_government = social_democrat
+#			}
+#		}
+#	}
+#
+#	USA_SAF_village_program = {
+#		available = {
+#
+#		}
+#
+#		visible = {
+#			OR = {
+#				has_idea = usa_Wervolf_6
+#				has_idea = usa_Wervolf_5
+#				has_idea = usa_Wervolf_4
+#				has_idea = usa_Wervolf_3
+#				has_idea = usa_Wervolf_2
+#				has_idea = usa_Wervolf_1
+#			}
+#			OR = {
+#				has_government = social_liberal
+#				has_government = social_conservative
+#			}
+#			has_country_flag = hearts_and_minds
+#		}
+#
+#		cost = 50
+#		fire_only_once = yes
+#		days_remove = 90
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision USA_SAF_village_program"
+#			add_to_variable = { USA_discontent_tracker = 35 }
+#			custom_effect_tooltip = USA_increase_war_discontent_tt
+#		}
+#
+#		modifier = {
+#			political_power_gain = -0.35
+#			industrial_capacity_factory = -0.1
+#			army_attack_factor = -0.05
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove USA_SAF_village_program"
+#			random_list = {
+#				50 = {
+#
+#				}
+#				50 = {
+#					SAF_decrease_RK_debuff = yes
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			base = 10
+#			modifier = {
+#				add = 10
+#				date > 1965.3.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.6.1
+#			}
+#			modifier = {
+#				add = 10
+#				date > 1965.8.1
+#			}
+#			modifier = {
+#				factor = 0.5
+#				OR = {
+#					has_government = social_liberal
+#					has_government = social_conservative
+#					has_government = authoritarian_democrat
+#				}
+#			}
+#			modifier = {
+#				factor = 2
+#				OR = {
+#					has_idea = usa_Wervolf_6
+#					has_idea = usa_Wervolf_5
+#					has_idea = usa_Wervolf_4
+#				}
+#			}
+#			modifier = {
+#				factor = 3
+#				has_government = social_democrat
+#			}
+#		}
+#	}
+#}

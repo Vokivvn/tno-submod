@@ -1,0 +1,628 @@
+### IRAN CIVIL WAR RESPONSE TREE###
+
+shared_focus = {
+	id = USA_the_iranian_civil_war
+	icon = GFX_jap_iran_trade
+	cost = 1.0
+
+	allow_branch = {
+		has_country_flag = USA_IR_CW_ACTIVE
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_the_iranian_civil_war"
+	}
+	#Republicans
+	offset = { #LBJ
+		x = 4
+		y = 14
+		trigger = {
+			has_country_flag = USA_64_R_RD
+		}
+	}
+	offset = { #Glenn
+		x = -3
+		y = 8
+		trigger = {
+			has_country_flag = USA_68_R_RD
+		}
+	}
+	#Democrats
+	offset = { #Bennett
+		x = 2
+		y = 16
+		trigger = {
+			has_country_flag = USA_64_D_RD
+		}
+	}
+	offset = { #Goldwater
+		x = -6
+		y = 12
+		trigger = {
+			has_country_flag = USA_68_D_RD
+		}
+	}
+	#Far-Right
+	offset = { #Wallace
+		x = 44
+		y = 4
+		trigger = {
+			has_country_flag = USA_64_FR_NPP
+		}
+	}
+	offset = { #Thurmond
+		x = -10
+		y = 0
+		trigger = {
+			has_country_flag = USA_THURMOND_FR_NPP
+		}
+	}
+	offset = { #Smith
+		x = 2
+		y = 14
+		trigger = {
+			has_country_flag = USA_68_FR_NPP
+		}
+	}
+	#Centre
+	offset = { #Kennedy
+		x = -5
+		y = 12
+		trigger = {
+			has_country_flag = USA_64_C_NPP
+		}
+	}
+	offset = { #Harrington
+		x = 0
+		y = 16
+		trigger = {
+			has_country_flag = USA_68_C_NPP
+		}
+	}
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	x = 0
+	y = 0
+}
+
+shared_focus = {
+	id = USA_iranian_aid_bill
+	icon = GFX_Generic_Bill_of_Rights
+	cost = 2
+
+	prerequisite = {
+		focus = USA_the_iranian_civil_war
+	}
+	
+	available = {
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_iranian_aid_bill"
+		set_country_flag = USA_IRCW_sending_help_to_da_iran
+		custom_effect_tooltip = 1_IRCW_USA_tt
+		unlock_decision_category_tooltip = USA_IRCW_aid_iran_category
+		country_event = {
+			id = USA_IR.2
+		}
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_the_iranian_civil_war
+
+}
+
+shared_focus = {
+    id = USA_american_aid_inbound
+    icon = GFX_MAD_the_OFNs_offer
+    cost = 2.0
+
+    prerequisite = {
+        focus = USA_iranian_aid_bill
+    }
+
+    available = { 
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+    completion_reward = {
+        log = "[GetDateText]: [Root.GetName]: Focus USA_american_aid_inbound"
+        add_war_support = 0.01
+        add_political_power = 25
+    }
+
+    x = 0
+    y = 1
+    relative_position_id = USA_iranian_aid_bill
+}
+
+shared_focus = {
+	id = USA_american_military_advisors
+	icon = GFX_USA_Withdraw_American_Soldiers
+	cost = 2
+
+	prerequisite = {
+		focus = USA_american_aid_inbound
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_american_military_advisors"
+		set_country_flag = USA_IRCW_sending_da_advisors
+		add_ideas = USA_IRCW_military_advisors_sent_to_iran
+		IRL = { add_ideas =  IRL_USA_american_military_advisors  }
+		TNO_improve_army_professionalism_low = yes
+		IRL = { TNO_improve_army_professionalism_low = yes }
+	}
+
+	x = -1
+	y = 2
+	relative_position_id = USA_american_aid_inbound
+}
+
+shared_focus = {
+	id = USA_american_equipment
+	icon = GFX_SAF_Buy_American_Guns
+	cost = 2
+
+	prerequisite = {
+		focus = USA_american_aid_inbound
+	}
+
+	available = { 
+		has_country_flag  = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_american_equipment"
+		set_country_flag = USA_IRCW_arming_IRL
+		custom_effect_tooltip = 2_IRCW_USA_tt
+		IRL = { unlock_decision_category_tooltip = IRL_buy_american_equipment_category }
+	}
+
+
+	x = -3
+	y = 2
+	relative_position_id = USA_american_aid_inbound
+
+}
+
+shared_focus = {
+	id = USA_send_in_cia_advisors
+	icon = GFX_USA_CIA
+	cost = 2
+
+	prerequisite = {
+		focus = USA_american_aid_inbound
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_send_in_cia_adviors"
+		set_country_flag = USA_IRCW_da_cia_advisors
+		IRL = { add_ideas = IRL_USA_cia_advisors }
+	}
+
+	x = 3
+	y = 2
+	relative_position_id = USA_american_aid_inbound
+}
+
+shared_focus = {
+	id = USA_american_loans
+	icon = GFX_USA_money_wall
+	cost = 2
+
+	prerequisite = {
+		focus = USA_american_aid_inbound
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE 
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName] Focus USA_american_loans"
+		custom_effect_tooltip = 3_IRCW_USA_tt
+		hidden_effect = {
+			set_country_flag = USA_IRCW_sending_loans
+		}
+		IRL = { set_country_flag = IRL_american_loans_for_us }
+		IRL = { add_ideas = IRL_american_loans }
+	}
+	x = 1
+	y= 2
+	relative_position_id = USA_american_aid_inbound
+}
+
+shared_focus = {
+	id = USA_grand_strategy_of_the_iran_war
+	icon = GFX_BRT_military_academy
+	cost = 2
+
+	prerequisite = {
+		focus = USA_american_military_advisors
+		focus = USA_american_equipment
+		focus = USA_send_in_cia_advisors
+		focus = USA_american_loans
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE 
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]:Focus USA_grand_strategy_of_the_iran_war"
+		country_event =  {
+			id = USA_IR.3
+		}
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_american_loans
+
+}
+
+shared_focus = {
+	id = USA_promise_more_american_soldiers
+	mutually_exclusive = { focus = USA_promise_more_american_equipment }
+	icon = GFX_Generic_Soldiers_Red
+	cost = 2
+
+	prerequisite = {
+		focus = USA_grand_strategy_of_the_iran_war
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	available = {
+		has_country_flag = USA_IR_CW_ACTIVE
+		has_country_flag = USA_IRCW_SOLDIERS
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	completion_reward = {
+		### Increase Advisor Level By 1###
+		log = "[GetDateText]: [Root.GetName]:Focus USA_promise_more_american_soldiers"
+		set_country_flag = USA_IRCW_escalate_volunteers
+		add_manpower = 15000
+		add_war_support = 0.02
+		add_ideas = USA_IRCW_increased_war_effort
+
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_grand_strategy_of_the_iran_war
+}
+
+shared_focus = {
+	id = USA_to_free_the_oppressed
+	icon = GFX_generic_change_law_slavery
+	cost= 6
+
+	prerequisite = {
+		focus = USA_promise_more_american_soldiers
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE 
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]:Focus USA_to_free_the_oppressed"
+		country_event = {
+			id = USA_IR.4
+		}
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_promise_more_american_soldiers
+
+}
+
+shared_focus = {
+	id = USA_promise_more_american_equipment
+	mutually_exclusive = { focus = USA_promise_more_american_soldiers }
+	icon = GFX_MAG_The_Best_Guns_Money_Can_Buy
+	cost = 2
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	prerequisite = {
+		focus = USA_grand_strategy_of_the_iran_war
+	}
+
+	available = {
+		has_country_flag = USA_IR_CW_ACTIVE
+		has_country_flag = USA_IRCW_EQUIPMENT
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]:Focus USA_promise_more_american_equipment"
+		set_country_flag = USA_IRCW_escalate_equipment_shipments
+		IRL = { set_country_flag = IRL_more_american_sales }
+		custom_effect_tooltip = 4_IRCW_USA_tt
+		add_ideas = USA_IRCW_kick_the_factories_into_action
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_grand_strategy_of_the_iran_war
+}
+
+shared_focus = {
+	id = USA_new_contracts_for_military_industral_complex
+	icon = GFX_COG_icon_honor_our_contracts
+	cost = 2
+
+	prerequisite = {
+		focus = USA_promise_more_american_equipment
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE 
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	completion_reward = {
+		set_country_flag = USA_IRCW_new_contracts
+		custom_effect_tooltip = 5_IRCW_USA_tt
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_promise_more_american_equipment
+}
+
+shared_focus = {
+	id = USA_darwin_supply_hub
+	icon = GFX_AST_Advance_Australia_Fair
+	cost = 2
+
+	prerequisite = {
+		focus = USA_grand_strategy_of_the_iran_war
+	}
+
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+
+	completion_reward = {
+		if = {
+			limit = {
+			has_country_flag = USA_IRCW_SOLDIERS
+			}
+			add_ideas = USA_IRCW_secure_suppply_lines
+			custom_effect_tooltip = 9_IRCW_USA_tt
+		}
+
+		if = {
+			limit = {
+				has_country_flag = USA_IRCW_EQUIPMENT
+			}
+			custom_effect_tooltip = 10_IRCW_USA_tt
+			set_country_flag = USA_IRCW_faster_equipment_shipments
+			clr_country_flag = USA_IRCW_arming_IRL
+		}
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_promise_more_american_soldiers
+
+}
+
+shared_focus = {
+	id = USA_the_beacon_of_hope
+	icon = GFX_generic_liberty
+	cost = 2
+
+	prerequisite = {
+		focus = USA_darwin_supply_hub
+		focus = USA_to_free_the_oppressed
+	}
+	prerequisite = {
+		focus = USA_darwin_supply_hub
+		focus = USA_new_contracts_for_military_industral_complex
+	}
+	ai_will_do = {
+		factor = 1000
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	available = { 
+		has_country_flag = USA_IR_CW_ACTIVE
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+	completion_reward = {
+		add_war_support = 0.03
+		add_political_power = 50
+		IRL = { add_war_support = 0.05 }
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_darwin_supply_hub
+
+}

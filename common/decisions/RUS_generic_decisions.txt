@@ -1,0 +1,1220 @@
+russian_raiding_category = {
+	russia_scavenge_for_loot = {
+		icon = GFX_decision_generic_industry
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		modifier = {
+			industrial_capacity_factory = -0.15
+		}
+
+		fire_only_once = no
+
+		days_re_enable = 60
+		days_remove = 30
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove russia_scavenge_for_loot"
+			custom_effect_tooltip = gain_loot_1
+			add_to_variable = { loot_amount = 1 }
+		}
+	}
+
+	russia_prepare_raid = {
+		icon = GFX_decision_border_war
+
+		available = {
+			any_owned_state = {
+				is_fully_controlled_by = ROOT
+				has_ROOT_at_least_1_div_in_current_state_scope = yes
+				any_neighbor_state = {
+					is_fully_controlled_by = FROM
+				}
+			}
+			NOT = { has_country_flag = russia_raid_succeeded }
+			NOT = { has_country_flag = russia_raid_failed }
+			custom_trigger_tooltip = {
+				tooltip = russia_has_loot_tt
+				FROM = {
+					check_variable = { loot_amount > 0 }
+				}
+			}
+			NOT = {
+				FROM = { has_country_flag = russia_is_raid_target }
+			}
+			has_war = no
+			FROM = { has_war = no }
+		}
+
+		visible = {
+			NOT = {
+				has_country_flag = russia_preparing_raid
+				has_country_flag = cannot_raid
+				is_puppet_of = FROM
+				is_in_faction_with = FROM
+				has_non_aggression_pact_with = FROM
+			}
+			is_neighbor_of = FROM
+		}
+
+		target_array = global.russian_warlords
+		target_trigger = {
+			FROM = {
+				is_neighbor_of = ROOT
+				has_war = no
+				is_wasteland = no
+				is_moskowien_splits = no
+				NOT = {
+					has_country_leader = {
+						name = "Yevdokia Bershanskaya"
+						ruling_only = yes
+					}
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+					has_border_war_with = ROOT
+					has_non_aggression_pact_with = ROOT
+				}
+				if = {
+					limit = {
+						is_puppet = yes
+						ROOT = { is_puppet = yes }
+					}
+					OVERLORD = {
+						NOT = { tag = ROOT.OVERLORD }  #Puppets from thee same overlord can't raid each other
+					}
+				}
+			}
+		}
+
+		highlight_states = {
+			OR = {
+				state = FROM.defender_state_vs_@ROOT
+				AND = {
+					is_owned_and_controlled_by = FROM
+					any_neighbor_state = {
+						has_ROOT_at_least_1_div_in_current_state_scope = yes
+						is_fully_controlled_by = ROOT
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 20
+			modifier = {
+				strength_ratio = {
+					tag = FROM
+					ratio < 0.8
+				}
+				factor = 0.66
+			}
+			modifier = {
+				strength_ratio = {
+					tag = FROM
+					ratio < 0.6
+				}
+				factor = 0.33
+			}
+			modifier = {
+				strength_ratio = {
+					tag = FROM
+					ratio < 0.4
+				}
+				factor = 0
+			}
+		}
+
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+
+		fire_only_once = no
+
+		days_re_enable = 30
+		days_remove = 7
+
+		cancel_trigger = {
+			OR = {
+				has_war = yes
+				FROM = { has_war = yes }
+				is_in_faction_with = FROM
+				has_non_aggression_pact_with = FROM
+			}
+		}
+
+		cancel_effect = {
+			clr_country_flag = russia_preparing_raid
+			FROM = { clr_country_flag = russia_is_raid_target}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_prepare_raid target: [From.GetName]"
+			hidden_effect = {
+				add_command_power = -20
+				FROM = {
+					random_owned_controlled_state = {
+						limit = {
+							any_neighbor_state = {
+								is_fully_controlled_by = ROOT
+								has_ROOT_at_least_1_div_in_current_state_scope = yes
+							}
+						}
+						set_state_flag = RUS_DEFENDER_STATE
+						set_variable = { PREV.defender_state_vs_@ROOT = THIS }
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						has_ROOT_at_least_1_div_in_current_state_scope = yes
+						any_neighbor_state = {
+							is_fully_controlled_by = FROM
+							has_state_flag = RUS_DEFENDER_STATE
+						}
+					}
+					set_variable = { FROM.attacker_state_vs_@ROOT = THIS }
+				}
+				set_country_flag = russia_preparing_raid
+				FROM = {
+					set_country_flag = {
+						flag = russia_is_raid_target
+						days = 90
+						value = 1
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove russia_prepare_raid target: [From.GetName]"
+			activate_targeted_decision = { target = FROM decision = russia_initiate_raid }
+			hidden_effect = {
+				FROM = {
+					random_owned_controlled_state = {
+						limit = {
+							has_state_flag = RUS_DEFENDER_STATE
+						}
+						clr_state_flag = RUS_DEFENDER_STATE
+					}
+				}
+			}
+		}
+	}
+
+	russia_initiate_raid = {
+		icon = GFX_decision_border_war
+
+		activation = { always = no } #Activated from effect
+
+		available = {
+			var:FROM.attacker_state_vs_@ROOT = {
+				is_fully_controlled_by = ROOT
+			}
+			divisions_in_border_state = {
+				state = var:FROM.attacker_state_vs_@ROOT
+				border_state = var:FROM.defender_state_vs_@ROOT
+				size > 0
+			}
+		}
+
+		highlight_states = {
+			state = var:FROM.defender_state_vs_@ROOT
+		}
+
+		ai_will_do = {
+			base = 30
+			modifier = {
+				factor = 2
+				strength_ratio = {
+					tag = FROM
+					ratio = 2
+				}
+			}
+		}
+
+		cancel_trigger = {
+			OR = {
+				has_war = yes
+				FROM = { has_war = yes }
+				is_in_faction_with = FROM
+				has_non_aggression_pact_with = FROM
+			}
+		}
+
+		cancel_effect = {
+			clr_country_flag = russia_preparing_raid
+			FROM = { clr_country_flag = russia_is_raid_target}
+		}
+
+		fire_only_once = yes #Reactivation handled in effect
+		selectable_mission = yes
+
+		days_mission_timeout = 30
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout russia_initiate_raid"
+			hidden_effect = {
+				FROM = {
+					clear_variable = attacker_state_vs_@ROOT
+					clear_variable = defender_state_vs_@ROOT
+				}
+				remove_targeted_decision = { target = FROM decision = russia_initiate_raid }
+				activate_targeted_decision = { target = FROM decision = russia_prepare_raid }
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_initiate_raid"
+			FROM = {
+				country_event = {
+					id = raiding.100
+					days = 1
+				}
+			}
+		}
+	}
+
+	russia_raid_in_progress = {
+		icon = GFX_decision_border_war
+
+		allowed = { always = no } #Activated from effect
+
+		available = {
+			NOT = { has_border_war = yes }
+		}
+		highlight_states = {
+			state = var:FROM.attacker_state_vs_@ROOT
+		}
+
+		cancel_trigger = {
+			OR = {
+				is_in_faction_with = FROM
+				has_war_with = FROM
+			}
+		}
+
+		fire_only_once = yes #Reactivation handled in effect
+
+		days_mission_timeout = 180
+
+		timeout_effect = { #inconclusive battle
+			log = "[GetDateText]: [Root.GetName]: Decision timeout russia_raid_in_progress"
+			cancel_border_war = {
+				dont_fire_events = no
+				attacker = var:FROM.attacker_state_vs_@ROOT
+				defender = var:FROM.defender_state_vs_@ROOT
+			}
+			hidden_effect = {
+				FROM = {
+					clear_variable = attacker_state_vs_@ROOT
+					clear_variable = defender_state_vs_@ROOT
+				}
+				clr_country_flag = russia_preparing_raid
+				remove_targeted_decision = { target = FROM decision = russia_raid_in_progress }
+				activate_targeted_decision = { target = FROM decision = russia_prepare_raid }
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_raid_in_progress"
+			hidden_effect = {
+				clr_country_flag = russia_preparing_raid
+				remove_targeted_decision = { target = FROM decision = russia_raid_in_progress }
+				activate_targeted_decision = { target = FROM decision = russia_prepare_raid }
+			}
+		}
+	}
+
+	russia_spend_raid_loot_academic_base = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			always = yes
+		}
+		available = {
+			NOT = { has_country_flag = using_loot }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 1 }
+		}
+
+		custom_cost_text = decision_cost_loot_2
+		days_remove = 60
+		days_re_enable = 180
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_academic_base remove"
+			TNO_improve_academic_base_med = yes #coded with a script
+			add_to_variable = { academic_base_counter = 10 }
+			clr_country_flag = using_loot
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_academic_base"
+			custom_effect_tooltip = spend_loot_2
+			subtract_from_variable = { loot_amount = 2 }
+			add_stability = 0.02
+			set_country_flag = using_loot
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_academic_base_mass_illiteracy
+					has_idea = tno_academic_base_basic_literacy
+				}
+			}
+		}
+	}
+
+	russia_spend_raid_loot_research_facilities = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			always = yes
+		}
+		available = {
+			NOT = { has_country_flag = using_loot }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 1 }
+		}
+
+		custom_cost_text = decision_cost_loot_2
+		days_remove = 60
+		days_re_enable = 180
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_research_facilities remove"
+			TNO_improve_research_facilities_med = yes #coded with a script
+			add_to_variable = { research_facilities_counter = 10 }
+			clr_country_flag = using_loot
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_research_facilities"
+			custom_effect_tooltip = spend_loot_2
+			subtract_from_variable = { loot_amount = 2 }
+			add_stability = 0.02
+			set_country_flag = using_loot
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_research_facilities_makeshift
+					has_idea = tno_research_facilities_basic
+				}
+			}
+		}
+	}
+
+	russia_spend_raid_loot_industrial_equipment = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			always = yes
+		}
+		available = {
+			NOT = { has_country_flag = using_loot }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 1 }
+		}
+
+		custom_cost_text = decision_cost_loot_2
+		days_remove = 60
+		days_re_enable = 180
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_industrial_equipment remove"
+			TNO_improve_industrial_equipment_med = yes #coded with a script
+			add_to_variable = { industrial_equipment_counter = 10 }
+			clr_country_flag = using_loot
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_industrial_equipment"
+			custom_effect_tooltip = spend_loot_2
+			subtract_from_variable = { loot_amount = 2 }
+			add_stability = 0.02
+			set_country_flag = using_loot
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_industrial_equipment_hand_tools
+					has_idea = tno_industrial_equipment_power_tools
+				}
+			}
+		}
+	}
+
+	russia_spend_raid_loot_industrial_expertise = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			always = yes
+		}
+		available = {
+			NOT = { has_country_flag = using_loot }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 1 }
+		}
+
+		custom_cost_text = decision_cost_loot_2
+		days_remove = 60
+		days_re_enable = 180
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_industrial_expertise remove"
+			TNO_improve_industrial_expertise_med = yes #coded with a script
+			add_to_variable = { industrial_expertise_counter = 10 }
+			clr_country_flag = using_loot
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_industrial_expertise"
+			custom_effect_tooltip = spend_loot_2
+			subtract_from_variable = { loot_amount = 2 }
+			add_stability = 0.02
+			set_country_flag = using_loot
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_industrial_expertise_pre_industrial
+					has_idea = tno_industrial_expertise_incompetent
+				}
+			}
+		}
+	}
+
+	russia_spend_raid_loot_agriculture = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			always = yes
+		}
+		available = {
+			NOT = { has_country_flag = using_loot }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 1 }
+		}
+
+		custom_cost_text = decision_cost_loot_2
+		days_remove = 60
+		days_re_enable = 180
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_agriculture remove"
+			TNO_improve_agriculture_med = yes #coded with a script
+			add_to_variable = { agriculture_counter = 10 }
+			clr_country_flag = using_loot
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russia_spend_raid_loot_agriculture"
+			custom_effect_tooltip = spend_loot_2
+			subtract_from_variable = { loot_amount = 2 }
+			add_stability = 0.02
+			set_country_flag = using_loot
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_agriculture_subsistence
+					has_idea = tno_agriculture_centralized
+				}
+			}
+		}
+	}
+}
+
+RUS_nuke_development_category = {
+
+	RUS_advance_development_phase = {
+		icon = GFX_decision_generic_industry
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		visible = {
+			has_country_flag = RUS_started_nukes
+		}
+
+		cost = 15
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_advance_development_phase_tt
+				OR = {
+					AND = {
+						has_country_flag = RUS_nuclear_program_phase_1
+						check_variable = { RUSNukesTheoryProgress = 100 }
+					}
+					AND = {
+						has_country_flag = RUS_nuclear_program_phase_2
+						check_variable = { RUSNukesMatsProgress = 100 }
+					}
+					AND = {
+						has_country_flag = RUS_nuclear_program_phase_3
+						check_variable = { RUSNukesInfraProgress = 100 }
+					}
+					AND = {
+						has_country_flag = RUS_nuclear_program_phase_4
+						check_variable = { RUSNukesRefineProgress = 100 }
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_test"
+			if = {
+				limit = {
+					has_country_flag = RUS_nuclear_program_phase_1
+				}
+				clr_country_flag = RUS_nuclear_program_phase_1
+				set_country_flag = RUS_nuclear_program_phase_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = RUS_nuclear_program_phase_2
+				}
+				clr_country_flag = RUS_nuclear_program_phase_2
+				set_country_flag = RUS_nuclear_program_phase_3
+			}
+			else_if = {
+				limit = {
+					has_country_flag = RUS_nuclear_program_phase_3
+				}
+				clr_country_flag = RUS_nuclear_program_phase_3
+				set_country_flag = RUS_nuclear_program_phase_4
+			}
+			else_if = {
+				limit = {
+					has_country_flag = RUS_nuclear_program_phase_4
+				}
+				clr_country_flag = RUS_nuclear_program_phase_4
+				set_country_flag = RUS_nuclear_program_phase_5
+			}
+			divide_variable = { RUSNukesMonthlyProgress = 2 }
+			round_variable = RUSNukesMonthlyProgress
+		}
+	}
+
+	### STAGE ONE ###
+
+	RUS_nukes_theory_develop_physics_institutes = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_1
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+
+		days_remove = 180
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_develop_physics_institutes"
+			custom_effect_tooltip = RUS_nukes_theory_develop_physics_institutes_cost_tt
+			add_to_variable = { national_debt = 300 }
+			add_to_variable = { misc_costs = 100 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_develop_physics_institutes"
+			custom_effect_tooltip = RUS_nukes_theory_develop_physics_institutes_tt
+			TNO_improve_academic_base_med = yes
+			add_to_variable = { RUSNukesTheoryProgress = 15 }
+			clamp_variable = {
+				var = RUSNukesTheoryProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+	RUS_nukes_theory_issue_research_grants = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_1
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		days_remove = 90
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_issue_research_grants"
+			custom_effect_tooltip = RUS_nukes_theory_issue_research_grants_cost_tt
+			add_to_variable = { national_debt = 100 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_issue_research_grants"
+			custom_effect_tooltip = RUS_nukes_theory_issue_research_grants_tt
+			TNO_improve_research_facilities_med = yes
+			add_to_variable = { RUSNukesTheoryProgress = 10 }
+			clamp_variable = {
+				var = RUSNukesTheoryProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+	RUS_nukes_theory_approach_emigre_scientists = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_1
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_remove = 90
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_approach_emigre_scientists"
+			custom_effect_tooltip = RUS_nukes_theory_approach_emigre_scientists_cost_tt
+			add_to_variable = { national_debt = 75 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_approach_emigre_scientists"
+			custom_effect_tooltip = RUS_nukes_theory_approach_emigre_scientists_tt
+			add_to_variable = { RUSNukesTheoryProgress = 10 }
+			clamp_variable = {
+				var = RUSNukesTheoryProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+	RUS_nukes_theory_study_foreign_developments = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_1
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		days_remove = 180
+
+		days_re_enable = 180
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_theory_study_foreign_developments_cost_tt
+			add_to_variable = { national_debt = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_theory_study_foreign_developments_tt
+			add_to_variable = { RUSNukesTheoryProgress = 10 }
+			add_to_variable = { RUSNukesMonthlyProgress = 1 }
+			clamp_variable = {
+				var = RUSNukesTheoryProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	### STAGE TWO ###
+
+	RUS_nukes_mats_develop_material_extraction_techniques = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_2
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+
+		days_remove = 180
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_develop_material_extraction_techniques_cost_tt
+			add_to_variable = { national_debt = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_develop_material_extraction_techniques_tt
+			add_to_variable = { RUSNukesMatsProgress = 15 }
+			clamp_variable = {
+				var = RUSNukesMatsProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_mats_assemble_processing_facilities = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_2
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		days_remove = 270
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_assemble_processing_facilities_cost_tt
+			add_to_variable = { national_debt = 550 }
+			add_to_variable = { national_debt = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_assemble_processing_facilities_tt
+			add_to_variable = { RUSNukesMatsProgress = 10 }
+			clamp_variable = {
+				var = RUSNukesMatsProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_mats_expand_uranium_mining = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_2
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 35
+
+		days_remove = 270
+
+		days_re_enable = 180
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_expand_uranium_mining_cost_tt
+			add_to_variable = { national_debt = 500 }
+			add_to_variable = { misc_costs = 200 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_expand_uranium_mining_tt
+			add_to_variable = { RUSNukesMatsProgress = 15 }
+			add_to_variable = { RUSNukesMonthlyProgress = 2 }
+			clamp_variable = {
+				var = RUSNukesMatsProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_mats_incentivize_skilled_laborers = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_2
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+
+		days_remove = 90
+
+		days_re_enable = 180
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_incentivize_skilled_laborers_cost_tt
+			add_to_variable = { national_debt = 50 }
+			add_to_variable = { misc_costs = 75 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_incentivize_skilled_laborers_tt
+			add_to_variable = { RUSNukesMatsProgress = 10 }
+			add_to_variable = { RUSNukesMonthlyProgress = 1 }
+			clamp_variable = {
+				var = RUSNukesMatsProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	### STAGE THREE ###
+
+	RUS_nukes_infra_accelerate_plant_approval_processes = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_3
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		days_remove = 45
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_infra_accelerate_plant_approval_processes_cost_tt
+			add_to_variable = { national_debt = 75 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_accelerate_plant_approval_processes_tt
+			add_to_variable = { RUSNukesInfraProgress = 15 }
+			clamp_variable = {
+				var = RUSNukesInfraProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_infra_fund_power_station_construction = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_3
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 50
+
+		days_remove = 270
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_infra_fund_power_station_construction_cost_tt
+			add_to_variable = { national_debt = 500 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_mats_fund_power_station_construction_tt
+			add_to_variable = { RUSNukesInfraProgress = 10 }
+			clamp_variable = {
+				var = RUSNukesInfraProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_infra_commission_additional_research_reactors = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_3
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_re_enable = 180
+
+		days_remove = 365
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_infra_commission_additional_research_reactors_cost_tt
+			add_to_variable = { national_debt = 750 }
+			add_to_variable = { misc_costs = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_commission_additional_research_reactors_tt
+			add_to_variable = { RUSNukesInfraProgress = 5 }
+			add_to_variable = { RUSNukesMonthlyProgress = 2 }
+			clamp_variable = {
+				var = RUSNukesInfraProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_infra_study_foreign_reactor_designs = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_3
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_remove = 90
+
+		days_re_enable = 180
+
+		modifier = {
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_infra_study_foreign_reactor_designs_cost_tt
+			add_to_variable = { national_debt = 100 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_study_foreign_developments"
+			custom_effect_tooltip = RUS_nukes_mats_study_foreign_reactor_designs_tt
+			add_to_variable = { RUSNukesInfraProgress = 10 }
+			add_to_variable = { RUSNukesMonthlyProgress = 1 }
+			clamp_variable = {
+				var = RUSNukesInfraProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	### STAGE FOUR ###
+
+	RUS_nukes_refine_construct_additional_centrifuges = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_4
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_remove = 365
+
+		modifier = {
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_construct_additional_centrifuges_cost_tt
+			add_to_variable = { national_debt = 500 }
+			add_to_variable = { misc_costs = 150 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_construct_additional_centrifuges_tt
+			add_to_variable = { RUSNukesRefineProgress = 10 }
+			clamp_variable = {
+				var = RUSNukesRefineProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_refine_develop_isotope_separation_theory = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_4
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_remove = 180
+
+		modifier = {
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_develop_isotope_separation_theory_cost_tt
+			add_to_variable = { national_debt = 150 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_develop_isotope_separation_theory_tt
+			add_to_variable = { RUSNukesRefineProgress = 5 }
+			clamp_variable = {
+				var = RUSNukesRefineProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	RUS_nukes_refine_expand_nuclear_reprocessing_infrastructure = {
+		icon = GFX_decision_generic_industry
+
+		visible = {
+			has_country_flag = RUS_nuclear_program_phase_4
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 15
+
+		days_remove = 270
+
+		days_re_enable = 180
+
+		modifier = {
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_expand_nuclear_reprocessing_infrastructure_cost_tt
+			add_to_variable = { national_debt = 400 }
+			add_to_variable = { misc_costs = 100 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_nukes_theory_incentivize_atomic_science"
+			custom_effect_tooltip = RUS_nukes_refine_expand_nuclear_reprocessing_infrastructure_tt
+			add_to_variable = { RUSNukesMonthlyProgress = 1 }
+			clamp_variable = {
+				var = RUSNukesRefineProgress
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	### STAGE FIVE ###
+}

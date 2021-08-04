@@ -1,0 +1,4424 @@
+focus_tree = {
+	id = IRK_intro
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = IRK
+		}
+	}
+	default = no
+	focus = {
+		id = IRK_mutiny_the_response
+		icon = GFX_IRK_the_response
+		x = 5
+		y = 0
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_the_response"
+			add_war_support = 0.05
+			country_event = {
+				id = IRK.5
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = IRK_mutiny_in_the_trenches
+		icon = GFX_IRK_in_the_trenches
+		x = 3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_the_response
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_trenches"
+			add_war_support = 0.15
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_ministry_of_defense
+		icon = GFX_IRK_defense
+		x = 1
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_trenches
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_ministry_of_defense"
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = IRK
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_nkvd_guards_detachments
+		icon = GFX_IRK_NKVD_guards_divisions
+		x = 1
+		y = 3
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_ministry_of_defense
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_nkvd_guards_detachments"
+			custom_effect_tooltip = IRK_mutiny_nkvd_guards_detachments_tt
+			hidden_effect = {
+				load_oob = IRK_NKVD_guards
+			}
+			add_manpower = 2500
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_directorate_of_construction
+		icon = GFX_IRK_construction
+		x = 3
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_trenches
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_directorate_of_construction"
+			add_offsite_building = { type = arms_factory level = 1 }
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_supplemental_labor_battalions
+		icon = GFX_IRK_supplemental_labor_battalions
+		x = 3
+		y = 3
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_directorate_of_construction
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_supplemental_labor_battalions"
+			add_timed_idea = { idea = IRK_labor_battalions days = 90 }
+			add_manpower = 1500
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_capital
+		icon = GFX_IRK_institutions
+		x = 5
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_the_response
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_capital"
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_presidium
+		icon = GFX_IRK_central_committee
+		x = 5
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_capital
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_presidium"
+			add_popularity = {
+				ideology = communist
+				popularity = 0.1
+			}
+			add_manpower = 1000
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_an_ironclad_union
+		icon = GFX_IRK_ironclad_union
+		x = 5
+		y = 3
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_presidium
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_an_ironclad_union"
+			add_timed_idea = { idea = IRK_ironclad_union days = 90 }
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_shadows
+		icon = GFX_IRK_in_the_shadows
+		x = 7
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_the_response
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_shadows"
+			add_stability = 0.15
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_directorate_of_state_security
+		icon = GFX_IRK_security
+		x = 7
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_shadows
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_directorate_of_state_security"
+			country_event = {
+				id = IRK.2
+				days = 1
+			}
+			BRY = {
+				country_event = {
+					id = IRK.4
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_mobile_interrogation_centers
+		icon = GFX_IRK_mobile_interrogation_centers
+		x = 7
+		y = 3
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_directorate_of_state_security
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_mobile_interrogation_centers"
+			BRY = {
+				add_manpower = -250
+			}
+			add_timed_idea = { idea = IRK_enhanced_intelligence days = 90 }
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_in_the_ministry_of_propaganda
+		icon = GFX_IRK_propaganda
+		x = 9
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_shadows
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_in_the_ministry_of_propaganda"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			BRY = {
+				country_event = {
+					id = IRK.3
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_remember_the_revolution
+		icon = GFX_IRK_remember_the_revolution
+		x = 9
+		y = 3
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_in_the_ministry_of_propaganda
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_remember_the_revolution"
+			add_timed_idea = { idea = IRK_remember_the_revolution days = 90 }
+			add_manpower = 2500
+		}
+	}
+
+	focus = {
+		id = IRK_mutiny_the_union_forever
+		icon = GFX_IRK_the_union_forever
+		x = 5
+		y = 4
+		cost = 2
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_mutiny_nkvd_guards_detachments
+		}
+		prerequisite = {
+			focus = IRK_mutiny_supplemental_labor_battalions
+		}
+		prerequisite = {
+			focus = IRK_mutiny_an_ironclad_union
+		}
+		prerequisite = {
+			focus = IRK_mutiny_mobile_interrogation_centers
+		}
+		prerequisite = {
+			focus = IRK_mutiny_remember_the_revolution
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_mutiny_the_union_forever"
+			add_timed_idea = { idea = IRK_the_union_forever days = 180 }
+		}
+	}
+}
+
+focus_tree = {
+	id = IRK_postwar
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = IRK
+		}
+	}
+	default = no
+	focus = {
+		id = IRK_postwar_the_union_victorious
+		icon = GFX_TNO_generic_soviet_coat_of_arms
+		x = 5
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_the_union_victorious"
+			add_political_power = 100
+			set_country_flag = IRK_postwar_the_union_victorious_flag
+			hidden_effect = {
+				country_event = { id = IRK.72 days = 150 random = 72 }
+				country_event = { id = IRK.76 days = 14 random = 72 }
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_the_great_purge
+		icon = GFX_CAU_purge_the_bureaucrats
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_union_victorious
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_the_great_purge"
+			country_event = {
+				id = IRK.8
+				days = 1
+			}
+			add_war_support = -0.1
+			hidden_effect = {
+				country_event = {
+					id = IRK.71
+					days = 35
+					random = 72
+				}
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_assemble_the_commission
+		icon = GFX_GER_convene_the_parties
+		x = 0
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_great_purge
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_assemble_the_commission"
+			add_political_power = 25
+			add_stability = 0.025
+		}
+	}
+	focus = {
+		id = IRK_postwar_recall_suspect_personnel
+		icon = GFX_TNO_generic_prison_camp
+		x = 2
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_great_purge
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_recall_suspect_personnel"
+			swap_ideas = {
+				remove_idea = IRK_administrative_shortcomings
+				add_idea = IRK_administrative_shortcomings_2
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_the_investigations
+		icon = GFX_GER_Peer_Review
+		x = 1
+		y = 3
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_assemble_the_commission
+		}
+		prerequisite = {
+			focus = IRK_postwar_recall_suspect_personnel
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_the_investigations"
+			country_event = {
+				id = IRK.9
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_zero_tolerance
+		icon = GFX_IRK_zero_tolerance
+		x = 0
+		y = 4
+		cost = 5
+		mutually_exclusive = {
+			focus = IRK_postwar_opportunities_for_forgiveness
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_investigations
+		}
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 10
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_zero_tolerance"
+			add_stability = 0.1
+			add_manpower = -250
+			IRK_increase_party_influence_low = yes
+		}
+	}
+	focus = {
+		id = IRK_postwar_opportunities_for_forgiveness
+		icon = GFX_ORE_accept_their_aid
+		x = 2
+		y = 4
+		cost = 5
+		mutually_exclusive = {
+			focus = IRK_postwar_zero_tolerance
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_investigations
+		}
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 10
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_opportunities_for_forgiveness"
+			swap_ideas = {
+				remove_idea = IRK_bureaucracy_purged
+				add_idea = IRK_bureaucracy_purged_forgiven
+			}
+			add_political_power = -25
+			add_manpower = -100
+			IRK_increase_nkvd_influence_low = yes
+		}
+	}
+	focus = {
+		id = IRK_postwar_the_irkutsk_trials
+		icon = GFX_generic_show_trials
+		x = 1
+		y = 5
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_zero_tolerance
+			focus = IRK_postwar_opportunities_for_forgiveness
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_the_irkutsk_trials"
+			country_event = {
+				id = IRK.10
+				days = 1
+			}
+			if = {
+				limit = {
+					has_idea = IRK_bureaucracy_purged_forgiven
+				}
+				remove_ideas = IRK_bureaucracy_purged_forgiven
+			}
+			if = {
+				limit = {
+					has_idea = IRK_bureaucracy_purged
+				}
+				remove_ideas = IRK_bureaucracy_purged
+			}
+			add_timed_idea = { idea = IRK_bureaucracy_purged_2 days = 180 }
+			hidden_effect = {
+				country_event = {
+					id = IRK.19
+					days = 14
+				}
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_lessons_from_the_mutiny
+		icon = GFX_IRK_lessons_from_mutiny
+		x = 5
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_union_victorious
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_lessons_from_the_mutiny"
+			country_event = {
+				id = IRK.11
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_lessons_from_their_spirit
+		icon = GFX_IRK_lessons_from_spirit
+		x = 5
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_lessons_from_the_mutiny
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_lessons_from_their_spirit"
+			country_event = {
+				id = IRK.12
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_lessons_from_sablin
+		icon = GFX_IRK_lessons_from_sablin
+		x = 5
+		y = 3
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_lessons_from_their_spirit
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_lessons_from_sablin"
+			country_event = {
+				id = IRK.13
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_rebuilding_our_legitimacy
+		icon = GFX_TNO_generic_soviet_legacy
+		x = 9
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_union_victorious
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_rebuilding_our_legitimacy"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = IRK_postwar_a_union_of_letters
+		icon = GFX_generic_writing
+		x = 8
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 10
+			}
+		}
+		mutually_exclusive = {
+			focus = IRK_postwar_an_internal_affair
+		}
+		prerequisite = {
+			focus = IRK_postwar_rebuilding_our_legitimacy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_a_union_of_letters"
+			add_timed_idea = { idea = IRK_a_union_of_letters days = 365 }
+			IRK_increase_party_influence_med = yes
+		}
+	}
+	focus = {
+		id = IRK_postwar_necessary_reforms
+		icon = GFX_VIN_Education_Reform
+		x = 8
+		y = 3
+		cost = 5
+		ai_will_do = {
+			factor = 40
+		}
+		prerequisite = {
+			focus = IRK_postwar_a_union_of_letters
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_necessary_reforms"
+			add_stability = 0.1
+			add_political_power = 25
+			IRK_increase_party_influence_low = yes
+		}
+	}
+	focus = {
+		id = IRK_postwar_an_internal_affair
+		icon = GFX_GER_Close_The_Books
+		x = 10
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 10
+			}
+		}
+		mutually_exclusive = {
+			focus = IRK_postwar_a_union_of_letters
+		}
+		prerequisite = {
+			focus = IRK_postwar_rebuilding_our_legitimacy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_an_internal_affair"
+			add_political_power = 25
+			add_stability = 0.05
+			IRK_increase_nkvd_influence_med = yes
+		}
+	}
+	focus = {
+		id = IRK_postwar_bolster_nkvd_presence
+		icon = GFX_TNO_generic_soviet_nkvd
+		x = 10
+		y = 3
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_an_internal_affair
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_bolster_nkvd_presence"
+			add_timed_idea = { idea = IRK_bolstered_nkvd days = 365 }
+		}
+	}
+	focus = {
+		id = IRK_postwar_a_peoples_union
+		icon = GFX_socialism_of_the_people
+		x = 7
+		y = 4
+		cost = 5
+		ai_will_do = {
+			factor = 40
+		}
+		prerequisite = {
+			focus = IRK_postwar_necessary_reforms
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_a_peoples_union"
+			add_ideas = IRK_a_peoples_union
+		}
+	}
+	focus = {
+		id = IRK_postwar_renew_central_authority
+		icon = GFX_ORE_codify_central_powers
+		x = 9
+		y = 4
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_necessary_reforms
+			focus = IRK_postwar_bolster_nkvd_presence
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_renew_central_authority"
+			add_manpower = 4500
+			RUS_integration_cost_days_decrease = yes
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = IRK_postwar_a_secure_union
+		icon = GFX_NIK_secure_the_party
+		x = 11
+		y = 4
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_bolster_nkvd_presence
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_a_secure_union"
+			add_ideas = IRK_a_secure_union
+		}
+	}
+	focus = {
+		id = IRK_postwar_a_strengthened_mandate
+		icon = GFX_generic_socialist_constitution
+		x = 9
+		y = 5
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_renew_central_authority
+		}
+		prerequisite = {
+			focus = IRK_postwar_a_peoples_union
+			focus = IRK_postwar_a_secure_union
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_a_strengthened_mandate"
+			add_stability = 0.1
+			add_popularity = {
+				ideology = communist
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = IRK_postwar_continuing_course
+		icon = GFX_ISH_great_popular_triumph
+		x = 5
+		y = 6
+		cost = 5
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = IRK_postwar_a_strengthened_mandate
+		}
+		prerequisite = {
+			focus = IRK_postwar_the_irkutsk_trials
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_postwar_continuing_course"
+			country_event = {
+				id = IRK.7
+				days = 1
+			}
+		}
+	}
+}
+
+focus_tree = {
+	id = IRK_expansion
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = IRK
+		}
+	}
+	default = no
+	shared_focus = IRK_expansion_resecuring_our_hold
+}
+
+shared_focus = {
+	id = IRK_expansion_resecuring_our_hold
+	icon = GFX_Against_The_Opposition
+	x = 7
+	y = 0
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_resecuring_our_hold"
+		add_war_support = 0.05
+		add_political_power = 25
+		army_experience = 25
+		hidden_effect = {
+			country_event = { id = IRK.73 days = 3 }
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_mission_to_aldan
+	icon = GFX_generic_aldan_diplo
+	x = 7
+	y = 1
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_resecuring_our_hold
+	}
+	available = {
+		SEV = {
+			exists = yes
+		}
+	}
+	bypass = {
+		SEV = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_mission_to_aldan"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = FAR_EAST_UNIFYING
+					}
+				}
+				OMO = {
+					country_event = { id = OMO.1 days = 5 random = 10 }
+				}
+				set_global_flag = FAR_EAST_UNIFYING
+			}
+		}
+		SEV = {
+			country_event = {
+				id = IRK.14
+				days = 1
+			}
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_a_negotiated_return
+	icon = GFX_WAL_Talk_with_socialist_militias
+	x = 6
+	y = 2
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		has_country_flag = SEV_will_join
+	}
+	prerequisite = {
+		focus = IRK_expansion_mission_to_aldan
+	}
+	mutually_exclusive = {
+		focus = IRK_expansion_strike_at_the_traitors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_a_negotiated_return"
+		annex_country = {
+			target = SEV
+			transfer_troops = yes
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_our_northern_bastion
+	icon = GFX_BAS_Fortification_Building
+	x = 6
+	y = 3
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_a_negotiated_return
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_our_northern_bastion"
+		760 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_strike_at_the_traitors
+	icon = GFX_generic_aldan_war
+	x = 8
+	y = 2
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		has_country_flag = SEV_will_war
+	}
+	mutually_exclusive = {
+		focus = IRK_expansion_a_negotiated_return
+	}
+	prerequisite = {
+		focus = IRK_expansion_mission_to_aldan
+	}
+	will_lead_to_war_with = SEV
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_strike_at_the_traitors"
+		declare_war_on = {
+			target = SEV
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_trials_for_the_partisans
+	icon = GFX_generic_show_trials
+	x = 8
+	y = 3
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_strike_at_the_traitors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_trials_for_the_partisans"
+		country_event = {
+			id = IRK.18
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_prepare_for_the_struggle
+	icon = GFX_CAU_Prepare_the_Troops
+	x = 7
+	y = 4
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_our_northern_bastion
+		focus = IRK_expansion_trials_for_the_partisans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_prepare_for_the_struggle"
+		add_war_support = 0.15
+		add_manpower = 5500
+	}
+}
+shared_focus = {
+	id = IRK_expansion_streamline_the_supply_chain
+	icon = GFX_GER_Manchurian_Depots
+	x = 5
+	y = 5
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_prepare_for_the_struggle
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_streamline_the_supply_chain"
+		add_timed_idea = { idea = IRK_streamlined_supply_chain days = 1080 }
+	}
+}
+shared_focus = {
+	id = IRK_expansion_dispatch_the_commissars
+	icon = GFX_IRK_NKVD_guards_divisions
+	x = 7
+	y = 5
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_prepare_for_the_struggle
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_dispatch_the_commissars"
+		add_manpower = 1000
+		add_timed_idea = { idea = IRK_frontline_commissars days = 1080 }
+	}
+}
+shared_focus = {
+	id = IRK_expansion_ready_the_industry
+	icon = GFX_CHI_Improving_Factory_Efficiency
+	x = 9
+	y = 5
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_prepare_for_the_struggle
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_ready_the_industry"
+		add_offsite_building = { type = arms_factory level = 1 }
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = IRK_expansion_not_one_step_back
+	icon = GFX_YUN_Not_One_Step_Back
+	x = 7
+	y = 6
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_streamline_the_supply_chain
+	}
+	prerequisite = {
+		focus = IRK_expansion_dispatch_the_commissars
+	}
+	prerequisite = {
+		focus = IRK_expansion_ready_the_industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_not_one_step_back"
+		add_ideas = IRK_not_one_step_back
+	}
+}
+shared_focus = {
+	id = IRK_expansion_the_far_eastern_campaign
+	icon = GFX_SIB_far_east_war_siberia
+	x = 7
+	y = 7
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_not_one_step_back
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_the_far_eastern_campaign"
+		hidden_effect = {
+			set_country_flag = FAR_EASTERN_CAMPAIGN
+			mark_focus_tree_layout_dirty = yes
+		}
+		country_event = {
+			id = IRK.17
+			days = 1
+		}
+		add_timed_idea = { idea = RUS_far_east_war days = 365 }
+	}
+}
+shared_focus = {
+	id = IRK_expansion_operation_uranus
+	icon = GFX_ANG_strike_them_where_it_hurts
+	x = 3
+	y = 8
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	allow_branch = {
+		has_country_flag = FAR_EASTERN_CAMPAIGN
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_far_eastern_campaign
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_uranus"
+		add_war_support = 0.10
+		country_event = {
+			id = IRK.19
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_operation_miranda
+	icon = GFX_generic_magadan_war
+	x = 1
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		MAG = {
+			exists = yes
+		}
+	}
+	bypass = {
+		MAG = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_uranus
+	}
+	will_lead_to_war_with = MAG
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_miranda"
+		add_timed_idea = { idea = IRK_operation_miranda days = 270 }
+		declare_war_on = {
+			target = MAG
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_the_end_of_matkovsky
+	icon = GFX_MAG_The_Man_Who_Sold_the_Vodhz
+	x = 1
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		owns_state = 562
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_miranda
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_the_end_of_matkovsky"
+		country_event = {
+			id = IRK.20
+			days = 1
+		}
+
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_operation_ariel
+	icon = GFX_generic_chita_war
+	x = 3
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		WCH = {
+			exists = yes
+		}
+	}
+	bypass = {
+		WCH = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_uranus
+	}
+	will_lead_to_war_with = WCH
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_ariel"
+		add_timed_idea = { idea = IRK_operation_ariel days = 270 }
+		declare_war_on = {
+			target = WCH
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_second_july
+	icon = GFX_ITA_Annihilate_the_Royalists
+	x = 3
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		owns_state = 563
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_ariel
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_second_july"
+		country_event = {
+			id = IRK.22
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_operation_umbriel
+	icon = GFX_generic_amur_war
+	x = 5
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_uranus
+	}
+	available = {
+		AMR = {
+			exists = yes
+		}
+	}
+	bypass = {
+		AMR = {
+			exists = no
+		}
+	}
+	will_lead_to_war_with = AMR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_umbriel"
+		add_timed_idea = { idea = IRK_operation_umbriel days = 270 }
+		declare_war_on = {
+			target = AMR
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_no_mercy_for_nazis
+	icon = GFX_Generic_Smash_Fasc
+	x = 5
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		owns_state = 886
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_umbriel
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_no_mercy_for_nazis"
+		country_event = {
+			id = IRK.21
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_the_end_of_the_whites
+	icon = GFX_AKT_Russian_Flag_Tatters
+	x = 3
+	y = 11
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_end_of_matkovsky
+		focus = IRK_expansion_second_july
+		focus = IRK_expansion_no_mercy_for_nazis
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_the_end_of_the_whites"
+		add_manpower = -250
+		add_stability = 0.05
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_operation_neptune
+	icon = GFX_generic_yakutia_war
+	x = 7
+	y = 8
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	bypass = {
+		YAK = {
+			exists = no
+		}
+	}
+	allow_branch = {
+		has_country_flag = FAR_EASTERN_CAMPAIGN
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_far_eastern_campaign
+	}
+	will_lead_to_war_with = YAK
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_neptune"
+		add_timed_idea = { idea = IRK_operation_neptune days = 270 }
+		declare_war_on = {
+			target = YAK
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_shining_bright
+	icon = GFX_COG_Blood_Diamonds
+	x = 7
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		owns_state = 574
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_neptune
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_shining_bright"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_operation_pluto
+	icon = GFX_generic_men_invade
+	x = 12
+	y = 8
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	available = {
+		OMO = {
+			has_war_with = IRK
+		}
+	}
+	allow_branch = {
+		has_country_flag = FAR_EASTERN_CAMPAIGN
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_far_eastern_campaign
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_operation_pluto"
+		add_timed_idea = { idea = IRK_operation_pluto days = 270 }
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_the_war_for_the_peasantry
+	icon = GFX_SAM_Dealing_with_Dissent
+	x = 10
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_pluto
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_the_war_for_the_peasantry"
+		swap_ideas = {
+			remove_idea = OMO_peasant_uprisings
+			add_idea = OMO_peasant_uprisings_2
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_honor_the_peasants
+	icon = GFX_NIK_Honor_in_a_Humble_Life
+	x = 9
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			has_country_flag = IRK_AI_REFORM
+			factor = 10
+		}
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_war_for_the_peasantry
+	}
+	mutually_exclusive = {
+		focus = IRK_expansion_commissars_in_the_fields
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_honor_the_peasants"
+		IRK_increase_party_influence_low = yes
+		add_stability = 0.05
+		swap_ideas = {
+			remove_idea = OMO_peasant_uprisings_2
+			add_idea = OMO_peasant_uprisings_3
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_commissars_in_the_fields
+	icon = GFX_IRK_mobile_interrogation_centers
+	x = 11
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+		modifier = {
+			has_country_flag = IRK_AI_YAGODA
+			factor = 10
+		}
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_war_for_the_peasantry
+	}
+	mutually_exclusive = {
+		focus = IRK_expansion_honor_the_peasants
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_commissars_in_the_fields"
+		IRK_increase_nkvd_influence_low = yes
+		add_war_support = 0.05
+		swap_ideas = {
+			remove_idea = OMO_peasant_uprisings_2
+			add_idea = OMO_peasant_uprisings_3
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_the_war_against_the_demagogue
+	icon = GFX_MZB_The_Drums_Echo
+	x = 13
+	y = 9
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_operation_pluto
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_the_war_against_the_demagogue"
+		add_political_power = 50
+		OMO = {
+			add_war_support = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_hostile_weather_conditioning
+	icon = GFX_BAS_Hostile_Weather_Conditioning
+	x = 13
+	y = 10
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	bypass = {
+		OMO = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_war_against_the_demagogue
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_hostile_weather_conditioning"
+		add_ideas = IRK_cold_weather_training
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_just_another_revolt
+	icon = GFX_ISH_proletarian_over_all
+	x = 12
+	y = 11
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		owns_state = 889
+	}
+	prerequisite = {
+		focus = IRK_expansion_commissars_in_the_fields
+		focus = IRK_expansion_honor_the_peasants
+	}
+	prerequisite = {
+		focus = IRK_expansion_hostile_weather_conditioning
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_just_another_revolt"
+		add_popularity = {
+			ideology = despotism
+			popularity = -0.15
+		}
+		remove_ideas = OMO_peasant_uprisings_3
+		add_manpower = -125
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_expansion_back_in_the_ussr
+	icon = GFX_ISH_new_soviet_state
+	x = 7
+	y = 12
+	cost = 3
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_expansion_the_end_of_the_whites
+	}
+	prerequisite = {
+		focus = IRK_expansion_just_another_revolt
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_expansion_back_in_the_ussr"
+		add_stability = 0.1
+		add_ideas = IRK_the_union_triumphant
+	}
+}
+
+focus_tree = {
+	id = IRK_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			tag = IRK
+		}
+	}
+	default = no
+	shared_focus = IRK_regional_the_motherland_resurgent
+	shared_focus = IRK_regional_the_revitalized_economic_plan
+	shared_focus = IRK_regional_the_soviet_armed_forces
+	shared_focus = IRK_regional_the_home_of_the_revolution
+}
+
+##### Regional Politics Tree #####
+shared_focus = {
+	id = IRK_regional_the_motherland_resurgent
+	icon = GFX_TNO_generic_soviet_legacy
+	x = 5
+	y = 0
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_motherland_resurgent"
+		country_event = { id = IRK.26 days = 1 }
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_extend_the_administration
+	icon = GFX_ORE_reordering_politics
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_motherland_resurgent
+	}
+	x = -3
+	y = 1
+	relative_position_id = IRK_regional_the_motherland_resurgent
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_extend_the_administration"
+		RUS_decrease_administrative_strain = yes
+		add_popularity = {
+			ideology = communist
+			popularity = 0.025
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_secure_the_rural_regions
+	icon = GFX_RAJ_National_Land_Reform
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_extend_the_administration
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_extend_the_administration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_secure_the_rural_regions"
+		889 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		759 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_benefits_for_the_people
+	icon = GFX_generic_socialist_constitution
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_extend_the_administration
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_extend_the_administration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_benefits_for_the_people"
+		TNO_improve_poverty_med = yes
+		tno_pensions_improve = yes
+		tno_minimum_wage_improve = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_restore_the_assrs
+	icon = GFX_IRK_central_committee
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_secure_the_rural_regions
+	}
+	prerequisite = {
+		focus = IRK_regional_benefits_for_the_people
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_secure_the_rural_regions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_restore_the_assrs"
+		country_event = {
+			id = IRK.43
+			days = 1
+		}
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_maintain_cultural_restrictions
+	icon = GFX_URL_Teach_Their_Artisans
+	cost = 3.6
+	prerequisite = {
+		focus = IRK_regional_restore_the_assrs
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_sponsor_the_arts
+	}
+	ai_will_do = {
+		factor = 50
+		modifier = {
+			has_country_flag = IRK_AI_YAGODA
+			factor = 10
+		}
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_restore_the_assrs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_maintain_cultural_restrictions"
+		add_war_support = 0.025
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.03
+		}
+		IRK_increase_nkvd_influence_low = yes
+		country_event = {
+			id = IRK.44
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_sponsor_the_arts
+	icon = GFX_GIB_lights_camera
+	cost = 3.6
+	prerequisite = {
+		focus = IRK_regional_restore_the_assrs
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_maintain_cultural_restrictions
+	}
+	ai_will_do = {
+		factor = 50
+		modifier = {
+			has_country_flag = IRK_AI_REFORM
+			factor = 10
+		}
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_restore_the_assrs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_sponsor_the_arts"
+		add_stability = 0.025
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.02
+		}
+		IRK_increase_party_influence_low = yes
+		country_event = {
+			id = IRK.45
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_revitalized_soviet_patriotism
+	icon = GFX_IRK_remember_the_revolution
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_maintain_cultural_restrictions
+		focus = IRK_regional_sponsor_the_arts
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_maintain_cultural_restrictions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_revitalized_soviet_patriotism"
+		add_popularity = {
+			ideology = communist
+			popularity = 0.035
+		}
+		add_war_support = 0.05
+		country_event = {
+			id = IRK.46
+			days = 1
+		}
+	}
+}
+
+##### State Faction #####
+shared_focus = {
+	id = IRK_regional_continue_the_yagodaschina
+	icon = GFX_SAH_lessons_from_yagoda
+	allow_branch = {
+		check_variable = { IRK_state_balance > IRK_party_balance }
+	}
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_country_flag = IRK_state_influence_locked_in
+	}
+	prerequisite = {
+		focus = IRK_regional_the_motherland_resurgent
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_the_motherland_resurgent
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_continue_the_yagodaschina"
+		IRK_increase_nkvd_influence_med = yes
+		add_stability = 0.05
+		set_country_flag = UNLOCK_TIER_TWO_REFORM
+		custom_effect_tooltip = IRK_regional_continue_the_yagodaschina_tt
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_reform_the_securocracy
+	icon = GFX_TNO_generic_soviet_nkvd
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_continue_the_yagodaschina
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_continue_the_yagodaschina
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_reform_the_securocracy"
+		country_event = {
+			id = IRK.47
+			days = 1
+		}
+		TNO_improve_army_professionalism_low = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_rewards_for_service
+	icon = GFX_ORE_accept_their_aid
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_reform_the_securocracy
+	}
+	x = -2
+	y = 1
+	relative_position_id = IRK_regional_reform_the_securocracy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_rewards_for_service"
+		add_political_power = 25
+		IRK_increase_nkvd_influence_low = yes
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_credit_where_it_is_due
+	icon = GFX_YUN_Every_Man_A_Soldier
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_rewards_for_service
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_rewards_for_service
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_credit_where_it_is_due"
+		add_political_power = 50
+		add_stability = 0.035
+		add_war_support = 0.05
+		IRK_increase_party_influence_low = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_universal_policing_coverage
+	icon = GFX_IRK_NKVD_guards_divisions
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_reform_the_securocracy
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_reform_the_securocracy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_universal_policing_coverage"
+		tno_security_improve = yes
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_centralize_the_security_services
+	icon = GFX_IRK_security
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_universal_policing_coverage
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_universal_policing_coverage
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_centralize_the_security_services"
+		if = {
+			limit = {
+				has_idea = IRK_the_kgb
+			}
+			remove_ideas = IRK_the_kgb
+		}
+		add_stability = 0.05
+		IRK_increase_nkvd_influence_med = yes
+		IRK_strengthen_securocracy = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_tighten_bureaucratic_oversight
+	icon = GFX_JAP_Make_Promises_to_the_Bureaucrats
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_reform_the_securocracy
+	}
+	x = 2
+	y = 1
+	relative_position_id = IRK_regional_reform_the_securocracy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_tighten_bureaucratic_oversight"
+		RUS_decrease_administrative_strain = yes
+		country_event = {
+			id = IRK.49
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_rewards_for_public_servants
+	icon = GFX_CNT_meet_the_new_boss
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_tighten_bureaucratic_oversight
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_tighten_bureaucratic_oversight
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_rewards_for_public_servants"
+		add_stability = 0.035
+		IRK_increase_nkvd_influence_low = yes
+		add_to_variable = { misc_costs = 35 }
+		custom_effect_tooltip = IRK_regional_rewards_for_service_tt
+		hidden_effect = {
+			country_event = {
+				id = IRK.48
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_unstoppable_march_of_progress
+	icon = GFX_TNO_generic_Marching_Men_Soviet
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_credit_where_it_is_due
+	}
+	prerequisite = {
+		focus = IRK_regional_centralize_the_security_services
+	}
+	prerequisite = {
+		focus = IRK_regional_rewards_for_public_servants
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_centralize_the_security_services
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_unstoppable_march_of_progress"
+		TNO_improve_poverty_med = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+##### Party Faction #####
+shared_focus = {
+	id = IRK_regional_the_silent_revolution
+	icon = GFX_ISH_great_popular_triumph
+	allow_branch = {
+		check_variable = { IRK_party_balance > IRK_state_balance }
+	}
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_country_flag = IRK_party_influence_locked_in
+	}
+	prerequisite = {
+		focus = IRK_regional_the_motherland_resurgent
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_the_motherland_resurgent
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_silent_revolution"
+		IRK_increase_party_influence_med = yes
+		add_stability = 0.05
+		set_country_flag = UNLOCK_TIER_TWO_REFORM
+		custom_effect_tooltip = IRK_regional_the_silent_revolution_tt
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_a_return_to_leninism
+	icon = GFX_BRY_dreams_of_those_before
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_silent_revolution
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_the_silent_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_a_return_to_leninism"
+		add_popularity = {
+			ideology = communist
+			popularity = 0.015
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.035
+		}
+		add_political_power = -25
+		country_event = {
+			id = IRK.48
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_sideline_the_state
+	icon = GFX_ISH_unity_foremost
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_a_return_to_leninism
+	}
+	x = -2
+	y = 1
+	relative_position_id = IRK_regional_a_return_to_leninism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_sideline_the_state"
+		IRK_increase_party_influence_low = yes
+		add_stability = -0.05
+		add_political_power = 15
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_replace_the_nomenklatura
+	icon = GFX_ISH_eyes_on_nomenklatura
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_sideline_the_state
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_sideline_the_state
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_replace_the_nomenklatura"
+		add_political_power = -25
+		IRK_increase_party_influence_high = yes
+		add_timed_idea = { idea = IRK_bureaucracy_purged days = 90 }
+		country_event = {
+			id = IRK.51
+			days = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = IRK.52
+				days = 90
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_erode_the_security_edifice
+	icon = GFX_KIR_reign_in_the_okhrana
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_a_return_to_leninism
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_a_return_to_leninism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_erode_the_security_edifice"
+		IRK_weaken_securocracy = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_reassess_the_political_imprisonments
+	icon = GFX_TNO_generic_liberating_camps_prisoners
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_erode_the_security_edifice
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_erode_the_security_edifice
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_reassess_the_political_imprisonments"
+		add_political_power = 50
+		add_manpower = 2000
+		hidden_effect = {
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.025
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.035
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.015
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_embrace_democratic_centralism
+	icon = GFX_ISH_consistent_democratism
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_a_return_to_leninism
+	}
+	x = 2
+	y = 1
+	relative_position_id = IRK_regional_a_return_to_leninism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_embrace_democratic_centralism"
+		tno_vote_franchise_improve = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_a_bargain_with_the_officers
+	icon = GFX_ORE_the_best_officer_candidates
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_embrace_democratic_centralism
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_embrace_democratic_centralism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_a_bargain_with_the_officers"
+		add_war_support = 0.075
+		TNO_improve_army_professionalism_low = yes
+		IRK_increase_party_influence_low = yes
+		add_to_variable = { misc_costs = 115 }
+		custom_effect_tooltip = IRK_regional_a_bargain_with_the_officers_tt
+		hidden_effect = {
+			country_event = {
+				id = IRK.54
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_revolution_renewed
+	icon = GFX_TNO_generic_left_unity
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_replace_the_nomenklatura
+	}
+	prerequisite = {
+		focus = IRK_regional_reassess_the_political_imprisonments
+	}
+	prerequisite = {
+		focus = IRK_regional_a_bargain_with_the_officers
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_reassess_the_political_imprisonments
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_revolution_renewed"
+		RUS_decrease_administrative_strain = yes
+		country_event = {
+			id = IRK.53
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_proletarian_dictatorship_forever_state
+	icon = GFX_ISH_uplift_the_proletarian
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_revitalized_soviet_patriotism
+	}
+	prerequisite = {
+		focus = IRK_regional_the_unstoppable_march_of_progress
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_revitalized_soviet_patriotism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_proletarian_dictatorship_forever_state"
+		add_political_power = 75
+		country_event = { id = IRK.27 }
+	}
+}
+
+shared_focus = { #Don't remove, it's not a duplicate - Obsidian
+	id = IRK_regional_the_proletarian_dictatorship_forever_party
+	icon = GFX_IRK_ironclad_union
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_revitalized_soviet_patriotism
+	}
+	prerequisite = {
+		focus = IRK_regional_the_revolution_renewed
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_revitalized_soviet_patriotism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_proletarian_dictatorship_forever_party"
+		add_political_power = 75
+		country_event = { id = IRK.27 }
+	}
+}
+
+##### Regional Economics Tree #####
+shared_focus = {
+	id = IRK_regional_the_revitalized_economic_plan
+	icon = GFX_TNO_generic_socialist_industry
+	x = 24
+	y = 0
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_revitalized_economic_plan"
+		country_event = { id = IRK.28 }
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_industrial_centric_development
+	icon = GFX_Ind_progress_red
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_revitalized_economic_plan
+	}
+	x = -5
+	y = 1
+	relative_position_id = IRK_regional_the_revitalized_economic_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_industrial_centric_development"
+		add_to_variable = { national_debt = 120 }
+		custom_effect_tooltip = IRK_regional_industrial_centric_development_tt
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_a_transitional_approach
+	icon = GFX_generic_socialist_labor
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = IRK_regional_industrial_centric_development
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_echoes_of_the_siberian_plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = IRK_regional_a_transitional_approach_condition_tt
+			check_variable = { IRK_state_balance > IRK_party_balance }
+		}
+	}
+	x = -3
+	y = 1
+	relative_position_id = IRK_regional_industrial_centric_development
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_a_transitional_approach"
+		add_ideas = tno_trade_laws_export_focus
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_partition_of_the_coast
+	icon = GFX_RAJ_National_Land_Reform
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_a_transitional_approach
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_a_transitional_approach
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_partition_of_the_coast"
+		add_to_variable = { GDP = 100 }
+		custom_effect_tooltip = IRK_regional_partition_of_the_coast_tt
+		886 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 1772
+			}
+		}
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 12683
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_invest_in_transportation
+	icon = GFX_SAH_siberian_freight_fleet
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_partition_of_the_coast
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_partition_of_the_coast
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_invest_in_transportation"
+		add_to_variable = { national_debt = 60 }
+		custom_effect_tooltip = IRK_regional_invest_in_transportation_tt
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		886 = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		TNO_improve_industrial_equipment_low = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_form_the_special_economic_sectors
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_a_transitional_approach
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_a_transitional_approach
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_form_the_special_economic_sectors"
+		886 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 10667
+			}
+		}
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 12683
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_invite_boeing
+	icon = GFX_IRK_invite_boeing
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_form_the_special_economic_sectors
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_form_the_special_economic_sectors
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_invite_boeing"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = heavy_air
+		}
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_a_rival_for_the_sphere
+	icon = GFX_JAP_squeeze_the_sphere
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_invest_in_transportation
+	}
+	prerequisite = {
+		focus = IRK_regional_invite_boeing
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_invest_in_transportation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_a_rival_for_the_sphere"
+		add_ideas = IRK_rival_to_the_sphere
+		TNO_improve_poverty_high = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_echoes_of_the_siberian_plan
+	icon = GFX_PAV_fruit_of_siberia
+	cost = 3.6
+	ai_will_do = {
+		factor = 20
+	}
+	prerequisite = {
+		focus = IRK_regional_industrial_centric_development
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_a_transitional_approach
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = IRK_regional_echoes_of_the_siberian_plan_tt
+			check_variable = { IRK_party_balance > IRK_state_balance }
+		}
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_industrial_centric_development
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_echoes_of_the_siberian_plan"
+		add_ideas = IRK_new_siberian_plan
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_import_industrial_machinery
+	icon = GFX_machine_red
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_echoes_of_the_siberian_plan
+	}
+	x = -2
+	y = 1
+	relative_position_id = IRK_regional_echoes_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_import_industrial_machinery"
+		custom_effect_tooltip = IRK_regional_import_industrial_machinery_tt
+		add_to_variable = { national_debt = 60 }
+		TNO_improve_industrial_equipment_high = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_lessons_from_manchukuo
+	icon = GFX_MAG_sponsor_the_liberation_front
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_echoes_of_the_siberian_plan
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_echoes_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_lessons_from_manchukuo"
+		TNO_improve_industrial_expertise_high = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_shipyards_of_amur
+	icon = GFX_Generic_Ship_Trade
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_echoes_of_the_siberian_plan
+	}
+	x = 2
+	y = 1
+	relative_position_id = IRK_regional_echoes_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_shipyards_of_amur"
+		custom_effect_tooltip = IRK_regional_the_shipyards_of_amur_tt
+		add_to_variable = { national_debt = 60 }
+		886 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+		562 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_develop_the_aerospace_industry
+	icon = GFX_TNO_generic_socialist_plane
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_import_industrial_machinery
+	}
+	prerequisite = {
+		focus = IRK_regional_lessons_from_manchukuo
+	}
+	prerequisite = {
+		focus = IRK_regional_the_shipyards_of_amur
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_import_industrial_machinery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_develop_the_aerospace_industry"
+		custom_effect_tooltip = IRK_regional_develop_the_aerospace_industry_tt
+		add_to_variable = { national_debt = 120 }
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_resources_of_siberia
+	icon = GFX_TOB_The_Resources_of_Siberia
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_import_industrial_machinery
+	}
+	prerequisite = {
+		focus = IRK_regional_lessons_from_manchukuo
+	}
+	prerequisite = {
+		focus = IRK_regional_the_shipyards_of_amur
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_lessons_from_manchukuo
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_resources_of_siberia"
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 562
+		}
+		add_resource = {
+			type = chromium
+			amount = 20
+			state = 563
+		}
+		add_resource = {
+			type = tungsten
+			amount = 20
+			state = 564
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_investments_for_the_peasants
+	icon = GFX_CHI_New_Agricultural_Equipment
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_revitalized_economic_plan
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_the_revitalized_economic_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_investments_for_the_peasants"
+		TNO_improve_agriculture_med = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_compromise_on_imports
+	icon = GFX_CHI_Import_Designs
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_investments_for_the_peasants
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_investments_for_the_peasants
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_compromise_on_imports"
+		custom_effect_tooltip = IRK_regional_compromise_on_imports_tt
+		add_to_variable = { GDP_growth = 0.005 }
+		add_to_variable = { GDP = 50 }
+		TNO_improve_agriculture_low = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_paris_of_siberia
+	icon = GFX_ERS_The_City_of_Lights
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_revitalized_economic_plan
+	}
+	x = 3
+	y = 1
+	relative_position_id = IRK_regional_the_revitalized_economic_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_paris_of_siberia"
+		add_ideas = IRK_paris_of_siberia
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_urban_development_initiatives
+	icon = GFX_TNO_generic_public_houses
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_paris_of_siberia
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_the_paris_of_siberia
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_urban_development_initiatives"
+		TNO_improve_poverty_med = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_redirect_the_transsib
+	icon = GFX_TNO_generic_railway_work
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_urban_development_initiatives
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_urban_development_initiatives
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_redirect_the_transsib"
+		561 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		886 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+		}
+		562 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_invest_in_egalitarian_schooling
+	icon = GFX_VIN_Education_Reform
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_urban_development_initiatives
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_urban_development_initiatives
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_invest_in_egalitarian_schooling"
+		TNO_improve_academic_base_med = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_education_is_the_future
+	icon = GFX_CHI_Promote_Higher_Education
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_redirect_the_transsib
+	}
+	prerequisite = {
+		focus = IRK_regional_invest_in_egalitarian_schooling
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_redirect_the_transsib
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_education_is_the_future"
+		TNO_improve_academic_base_med = yes
+		add_ideas = tno_education_public_higher_education
+	}
+}
+
+##### Regional Military Tree #####
+shared_focus = {
+	id = IRK_regional_the_soviet_armed_forces
+	icon = GFX_WRS_The_Red_Junta
+	x = 34
+	y = 0
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_soviet_armed_forces"
+		country_event = { id = IRK.29 }
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_guardians_of_the_revolution
+	icon = GFX_TNO_generic_left_unity_warfare
+	cost = 3.6
+	prerequisite = {
+		focus = IRK_regional_the_soviet_armed_forces
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_trust_in_the_army
+	}
+	ai_will_do = {
+		factor = 50
+		modifier = {
+			has_country_flag = IRK_AI_YAGODA
+			factor = 10
+		}
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_the_soviet_armed_forces
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_guardians_of_the_revolution"
+		IRK_increase_nkvd_influence_med = yes
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_a_coequal_branch
+	icon = GFX_YUN_New_Officers
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_guardians_of_the_revolution
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_the_guardians_of_the_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_a_coequal_branch"
+		add_political_power = 50
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_trust_in_the_army
+	icon = GFX_Generic_Army_Officers
+	cost = 3.6
+	prerequisite = {
+		focus = IRK_regional_the_soviet_armed_forces
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_the_guardians_of_the_revolution
+	}
+	ai_will_do = {
+		factor = 50
+		modifier = {
+			has_country_flag = IRK_AI_REFORM
+			factor = 10
+		}
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_the_soviet_armed_forces
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_trust_in_the_army"
+		IRK_increase_party_influence_med = yes
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_recentralize_the_armed_forces
+	icon = GFX_Ensure_Officers_Loyalty
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_trust_in_the_army
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_trust_in_the_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_recentralize_the_armed_forces"
+		TNO_improve_army_professionalism_high = yes
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_hybrid_training_programs
+	icon = GFX_URL_experimental_training_methods
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_recentralize_the_armed_forces
+		focus = IRK_regional_a_coequal_branch
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_a_coequal_branch
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_hybrid_training_programs"
+		add_ideas = tno_training_combat_schooling
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_tactical_reassessments
+	icon = GFX_URL_Study_History
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_hybrid_training_programs
+	}
+	x = -2
+	y = 1
+	relative_position_id = IRK_regional_hybrid_training_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_tactical_reassessments"
+		army_experience = 30
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_focus_on_equipment_quality
+	icon = GFX_generic_advanced_weapons
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_tactical_reassessments
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_tactical_reassessments
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_focus_on_equipment_quality"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_imports_from_the_west
+	icon = GFX_TOB_Mechanized_Troop_Training
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_focus_on_equipment_quality
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_focus_on_equipment_quality
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_imports_from_the_west"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = MBT
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = IFV
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_procure_antitank_equipment
+	icon = GFX_TOB_Specialized_Weapons
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_tactical_reassessments
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_tactical_reassessments
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_procure_antitank_equipment"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = infantry_anti_tank
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_asymmetrical_strategies
+	icon = GFX_DST_a_gun_under_every_blade_of_grass
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_procure_antitank_equipment
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_procure_antitank_equipment
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_asymmetrical_strategies"
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_partition_the_army_commissariat
+	icon = GFX_KHA_the_black_army
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_hybrid_training_programs
+	}
+	x = 2
+	y = 1
+	relative_position_id = IRK_regional_hybrid_training_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_partition_the_army_commissariat"
+		navy_experience = 30
+		air_experience = 30
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_revive_the_fleet
+	icon = GFX_NIK_new_northern_fleet
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_partition_the_army_commissariat
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_partition_the_army_commissariat
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_revive_the_fleet"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = naval_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_rehabilitate_the_smugglers
+	icon = GFX_generic_writing
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_revive_the_fleet
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_revive_the_fleet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_rehabilitate_the_smugglers"
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 2
+			category = naval_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_wings_over_siberia
+	icon = GFX_ANG_our_own_designs
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_partition_the_army_commissariat
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_partition_the_army_commissariat
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_wings_over_siberia"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = air_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_air_supremacy_doctrine
+	icon = GFX_ANG_planesforfactories
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_wings_over_siberia
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_wings_over_siberia
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_air_supremacy_doctrine"
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 2
+			category = air_doctrine
+		}
+	}
+}
+
+##### Regional Diplomacy Tree #####
+shared_focus = {
+	id = IRK_regional_the_home_of_the_revolution
+	icon = GFX_KHA_revolutionary_reconstruction
+	x = 44
+	y = 0
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_home_of_the_revolution"
+		country_event = { id = IRK.30 }
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_develop_the_merchant_marine
+	icon = GFX_NIK_restore_international_trade
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_the_home_of_the_revolution
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_the_home_of_the_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_develop_the_merchant_marine"
+		add_equipment_to_stockpile = {
+			type = convoy
+			amount = 100
+			producer = IRK
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_peaceful_coexistence
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_develop_the_merchant_marine
+	}
+	x = -2
+	y = 1
+	relative_position_id = IRK_regional_develop_the_merchant_marine
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_peaceful_coexistence"
+		add_stability = 0.1
+		add_war_support = -0.05
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_across_the_pacific
+	icon = GFX_ANG_the_yankee_connection
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_peaceful_coexistence
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_increase_japanese_cooperation
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_peaceful_coexistence
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_across_the_pacific"
+		USA = {
+			country_event = { id = IRK.31 }
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_request_american_recognition
+	icon = GFX_Focus_North_America_Orthographic
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_across_the_pacific
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_across_the_pacific
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_request_american_recognition"
+		USA = {
+			country_event = { id = IRK.32 }
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_apply_for_ofn_funding
+	icon = GFX_ENG_Export_To_The_OFN
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_request_american_recognition
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_request_american_recognition
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_apply_for_ofn_funding"
+		USA = {
+			country_event = { id = IRK.35 }
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_increase_japanese_cooperation
+	icon = GFX_JAP_sphere_reform_generic
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_peaceful_coexistence
+	}
+	mutually_exclusive = {
+		focus = IRK_regional_across_the_pacific
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_peaceful_coexistence
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_increase_japanese_cooperation"
+		JAP = {
+			country_event = { id = IRK.38 }
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_mission_to_tokyo
+	icon = GFX_JAP_Consumerize_the_Sphere_economy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_increase_japanese_cooperation
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_increase_japanese_cooperation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_mission_to_tokyo"
+		JAP = {
+			country_event = { id = IRK.39 }
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_expand_manchurian_trade
+	icon = GFX_Generic_Sphere_mercantilism
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_mission_to_tokyo
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_mission_to_tokyo
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_expand_manchurian_trade"
+		custom_effect_tooltip = IRK_regional_expand_manchurian_trade_tt
+		add_to_variable = { GDP_growth = 0.003 }
+		add_to_variable = { GDP = 10 }
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_sponsor_the_proletarian_movement
+	icon = GFX_ISH_honor_heroes_of_socialism
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_develop_the_merchant_marine
+	}
+	x = 2
+	y = 1
+	relative_position_id = IRK_regional_develop_the_merchant_marine
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_sponsor_the_proletarian_movement"
+		add_political_power = 75
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_revolutionary_aid_funding
+	icon = GFX_Revolutionary_Tourism
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_sponsor_the_proletarian_movement
+	}
+	x = -1
+	y = 1
+	relative_position_id = IRK_regional_sponsor_the_proletarian_movement
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_revolutionary_aid_funding"
+		every_other_country = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = socialist
+				}
+				NOT = {
+					tag = ZZZ
+					tag = DSR
+				}
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.02
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_embassies_in_the_liberated_world
+	icon = GFX_GER_around_the_world_eighty_seconds
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_sponsor_the_proletarian_movement
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_sponsor_the_proletarian_movement
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_embassies_in_the_liberated_world"
+		custom_effect_tooltip = IRK_regional_embassies_in_the_liberated_world_tt
+		hidden_effect = {
+			every_other_country = {
+				limit = {
+					OR = {
+						has_government = communist
+						has_government = socialist
+					}
+					NOT = {
+						tag = ZZZ
+						tag = DSR
+					}
+				}
+				country_event = {
+					id = IRK.42
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_support_to_NAJUA
+	icon = GFX_IRK_in_the_shadows
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_revolutionary_aid_funding
+	}
+	prerequisite = {
+		focus = IRK_regional_embassies_in_the_liberated_world
+	}
+	x = 1
+	y = 1
+	relative_position_id = IRK_regional_revolutionary_aid_funding
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_support_to_NAJUA"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -200
+			producer = IRK
+		}
+		527 = {
+			add_resistance = 10
+		}
+		1024 = {
+			add_resistance = 10
+		}
+	}
+}
+
+shared_focus = {
+	id = IRK_regional_the_international_reborn
+	icon = GFX_TNO_SocIntern
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = IRK_regional_support_to_NAJUA
+	}
+	x = 0
+	y = 1
+	relative_position_id = IRK_regional_support_to_NAJUA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus IRK_regional_the_international_reborn"
+		TNO_run_socintern_script = yes
+	}
+}
+
+focus_tree = {
+	id = IRK_state_superregional
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = IRK
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_a_red_siberia
+		icon = GFX_IRK_Red_Siberia
+		x = 5
+		y = 0
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_a_red_siberia"
+			add_political_power = 50
+			add_stability = 0.05
+			hidden_effect = {
+				country_event = { id = IRK_superregional.1 days = 3 random = 24 }
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_incorporate_the_west
+		icon = GFX_KHA_repair_the_trans_siberian_railway
+		x = -4
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_a_red_siberia
+		prerequisite = {
+			focus = IRK_SR_state_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_incorporate_the_west"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_dispatch_the_commissars
+		icon = GFX_IRK_zero_tolerance
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_incorporate_the_west
+		prerequisite = {
+			focus = IRK_SR_state_incorporate_the_west
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_dispatch_the_commissars"
+			add_timed_idea = { idea = IRK_supplemental_commissars days = 365 }
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_reeducate_the_bureaucrats
+		icon = GFX_IRK_security
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_dispatch_the_commissars
+		prerequisite = {
+			focus = IRK_SR_state_dispatch_the_commissars
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_reeducate_the_bureaucrats"
+			add_political_power = 35
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_opportunities_for_amnesty
+		icon = GFX_GER_convene_the_parties
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_dispatch_the_commissars
+		prerequisite = {
+			focus = IRK_SR_state_dispatch_the_commissars
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_opportunities_for_amnesty"
+			country_event = { id = IRK_superregional.2 }
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_assess_our_progress
+		icon = GFX_generic_socialist_constitution
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_a_red_siberia
+		prerequisite = {
+			focus = IRK_SR_state_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_assess_our_progress"
+			RUS_integration_cost_days_decrease = yes
+			country_event = { id = IRK_superregional.3 }
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_integrate_the_siberian_industry
+		icon = GFX_MAG_Siberian_Factories
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_assess_our_progress
+		prerequisite = {
+			focus = IRK_SR_state_assess_our_progress
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_integrate_the_siberian_industry"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_open_up_manufacturing
+		icon = GFX_ORE_no_more_closed_factories
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_assess_our_progress
+		prerequisite = {
+			focus = IRK_SR_state_assess_our_progress
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_open_up_manufacturing"
+			TNO_improve_industrial_equipment_med = yes
+			TNO_improve_poverty_med = yes
+			custom_effect_tooltip = russia_small_reserve_bonus_tt
+			add_to_variable = { money_reserves = 25 }
+			add_tech_bonus = {
+				bonus = 0.33
+				uses = 2
+				category = industry
+			}
+			hidden_effect = {
+				country_event = { id = IRK_superregional.4 days = 7 }
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_the_international_factory
+		icon = GFX_IRK_The_International_Factory
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_integrate_the_siberian_industry
+		prerequisite = {
+			focus = IRK_SR_state_integrate_the_siberian_industry
+		}
+		prerequisite = {
+			focus = IRK_SR_state_open_up_manufacturing
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_the_international_factory"
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_escalate_the_yagodaschina
+		icon = GFX_SAH_lessons_from_yagoda
+		x = 3
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_a_red_siberia
+		prerequisite = {
+			focus = IRK_SR_state_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_escalate_the_yagodaschina"
+			add_ideas = tno_security_wire_tapping
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_the_peoples_trust
+		icon = GFX_ISH_amnesty_for_redeemable
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_escalate_the_yagodaschina
+		prerequisite = {
+			focus = IRK_SR_state_escalate_the_yagodaschina
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_the_peoples_trust"
+			add_popularity = { ideology = communist popularity = 0.05 }
+			add_manpower = 10000
+			hidden_effect = {
+				country_event = { id = IRK_superregional.4 days = 7 }
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_order_through_prosperity
+		icon = GFX_IRK_Order_Through_Prosperity
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_the_peoples_trust
+		prerequisite = {
+			focus = IRK_SR_state_the_peoples_trust
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_order_through_prosperity"
+			RUS_integration_cost_days_decrease = yes
+			add_stability = 0.035
+			add_war_support = 0.035
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_project_glasnost
+		icon = GFX_IRK_Glasnost
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_the_peoples_trust
+		prerequisite = {
+			focus = IRK_SR_state_the_peoples_trust
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_project_glasnost"
+			country_event = { id = IRK_superregional.6 days = 7 }
+		}
+	}
+
+	focus = {
+		id = IRK_SR_state_the_pride_of_the_union
+		icon = GFX_ISH_soviet_cosmopolitanism
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_SR_state_the_international_factory
+		prerequisite = {
+			focus = IRK_SR_state_reeducate_the_bureaucrats
+		}
+		prerequisite = {
+			focus = IRK_SR_state_opportunities_for_amnesty
+		}
+		prerequisite = {
+			focus = IRK_SR_state_the_international_factory
+		}
+		prerequisite = {
+			focus = IRK_SR_state_order_through_prosperity
+		}
+		prerequisite = {
+			focus = IRK_SR_state_project_glasnost
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_SR_state_the_pride_of_the_union"
+			add_political_power = 75
+			add_stability = 0.075
+			country_event = { id = IRK_superregional.7 }
+		}
+	}
+
+	shared_focus = RUS_SIB_nukes_into_the_atomic_age
+}
+
+focus_tree = {
+	id = IRK_party_superregional
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = IRK
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_a_red_siberia
+		icon = GFX_IRK_Red_Siberia
+		x = 5
+		y = 0
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_a_red_siberia"
+			add_political_power = 50
+			add_stability = 0.075
+			hidden_effect = {
+				country_event = { id = IRK_superregional.1 days = 3 random = 24 }
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_incorporate_the_west
+		icon = GFX_KHA_repair_the_trans_siberian_railway
+		x = -3
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_a_red_siberia
+		prerequisite = {
+			focus = IRK_sr_party_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_incorporate_the_west"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_facilitate_political_recovery
+		icon = GFX_TNO_generic_left_unity_revolution
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_incorporate_the_west
+		prerequisite = {
+			focus = IRK_sr_party_incorporate_the_west
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_facilitate_political_recovery"
+			add_political_power = 35
+			add_popularity = {
+				ideology = communist
+				popularity = 0.035
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_tie_together_the_institutions
+		icon = GFX_IRK_institutions
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_facilitate_political_recovery
+		prerequisite = {
+			focus = IRK_sr_party_facilitate_political_recovery
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_tie_together_the_institutions"
+			RUS_integration_cost_days_decrease = yes
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_lower_bureaucratic_restrictions
+		icon = GFX_JAP_Make_Promises_to_the_Bureaucrats
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_facilitate_political_recovery
+		prerequisite = {
+			focus = IRK_sr_party_facilitate_political_recovery
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_lower_bureaucratic_restrictions"
+			country_event = { id = IRK_superregional.12 }
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_expand_the_gosplan
+		icon = GFX_USA_The_Economic_Opportunity_Act
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_a_red_siberia
+		prerequisite = {
+			focus = IRK_sr_party_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_expand_the_gosplan"
+			add_to_variable = { national_debt = 100 }
+			add_to_variable = { GDP = 400 }
+			custom_effect_tooltip = NIK_socdem_our_own_gosplan_tt
+			TNO_improve_industrial_equipment_med = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_complete_the_siberian_plan
+		icon = GFX_MAG_Siberian_Factories
+		x = -1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_expand_the_gosplan
+		prerequisite = {
+			focus = IRK_sr_party_expand_the_gosplan
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_complete_the_siberian_plan"
+			TNO_improve_industrial_expertise_high = yes
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_extend_the_collective_economy
+		icon = GFX_IRK_construction
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_complete_the_siberian_plan
+		prerequisite = {
+			focus = IRK_sr_party_complete_the_siberian_plan
+		}
+		prerequisite = {
+			focus = IRK_sr_party_complete_the_siberian_plan
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_extend_the_collective_economy"
+			custom_effect_tooltip = IRK_regional_compromise_on_imports_tt
+			add_to_variable = { GDP_growth = 0.005 }
+			add_to_variable = { GDP = 50 }
+			TNO_improve_agriculture_med = yes
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_an_open_cultural_exchange
+		icon = GFX_ISH_workers_culture
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_expand_the_gosplan
+		prerequisite = {
+			focus = IRK_sr_party_expand_the_gosplan
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_an_open_cultural_exchange"
+			add_ideas = tno_minorities_equal_rights
+			hidden_effect = {
+				country_event = { id = IRK_superregional.11 days = 8 random = 24 }
+			}
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_expand_the_institutes
+		icon = GFX_CHI_Promote_Higher_Education
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_an_open_cultural_exchange
+		prerequisite = {
+			focus = IRK_sr_party_an_open_cultural_exchange
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_expand_the_institutes"
+			TNO_improve_academic_base_high = yes
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_continue_the_reforms
+		icon = GFX_ISH_consistent_democratism
+		x = 2
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_a_red_siberia
+		prerequisite = {
+			focus = IRK_sr_party_a_red_siberia
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_continue_the_reforms"
+			add_ideas = tno_penal_system_incarceration
+			country_event = { id = IRK_superregional.8 }
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_curb_the_nomenklatura
+		icon = GFX_ISH_eyes_on_nomenklatura
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_continue_the_reforms
+		prerequisite = {
+			focus = IRK_sr_party_continue_the_reforms
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_curb_the_nomenklatura"
+			tno_vote_franchise_improve = yes
+			country_event = { id = IRK_superregional.9 }
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_stand_against_personalism
+		icon = GFX_IRK_the_response
+		x = 0
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_curb_the_nomenklatura
+		prerequisite = {
+			focus = IRK_sr_party_curb_the_nomenklatura
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_stand_against_personalism"
+			add_political_power = 50
+			country_event = { id = IRK_superregional.10 }
+		}
+	}
+
+	focus = {
+		id = IRK_sr_party_the_pride_of_the_union
+		icon = GFX_ISH_soviet_cosmopolitanism
+		x = 1
+		y = 1
+		cost = 2.3
+		ai_will_do = {
+			factor = 80
+		}
+		relative_position_id = IRK_sr_party_extend_the_collective_economy
+		prerequisite = {
+			focus = IRK_sr_party_tie_together_the_institutions
+		}
+		prerequisite = {
+			focus = IRK_sr_party_lower_bureaucratic_restrictions
+		}
+		prerequisite = {
+			focus = IRK_sr_party_extend_the_collective_economy
+		}
+		prerequisite = {
+			focus = IRK_sr_party_expand_the_institutes
+		}
+		prerequisite = {
+			focus = IRK_sr_party_stand_against_personalism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus IRK_sr_party_the_pride_of_the_union"
+			add_political_power = 75
+			add_stability = 0.075
+			country_event = { id = IRK_superregional.13 }
+		}
+	}
+
+	shared_focus = RUS_SIB_nukes_into_the_atomic_age
+}

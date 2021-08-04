@@ -1,0 +1,1178 @@
+shared_focus = {
+	id =  CZE_a_change_in_the_status_quo
+	icon = GFX_IBR_burning_paperwork
+	cost = 4
+	allow_branch = {
+		has_country_flag = CZE_start_tree
+	}
+	
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_change_in_the_status_quo"
+		country_event = { id = CZE.1 }
+	}
+	x = 2
+	y = 0
+}
+
+shared_focus = {
+	id = CZE_a_toe_in_the_water
+	icon = GFX_VOL_Military_Debate
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_change_in_the_status_quo
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_toe_in_the_water"
+		country_event = { id = CZE.2 }
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 0
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_get_the_hint
+	icon = GFX_NOR_tear_down_the_nazi_codes
+	cost = 5
+	prerequisite = {
+		focus = CZE_a_toe_in_the_water
+	}
+	mutually_exclusive = {
+		focus = CZE_sideline_the_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_get_the_hint"
+		add_stability = 0.05
+		add_war_support = 0.05
+		
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_sideline_the_ss
+	icon = GFX_CZE_Sideline_SS
+	cost = 5
+	prerequisite = {
+		focus = CZE_a_toe_in_the_water
+	}
+	mutually_exclusive = {
+		focus = CZE_get_the_hint
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_sideline_the_ss"
+		swap_ideas = {
+			remove_idea = tno_minorities_oppression
+			add_idea = tno_minorities_segregation
+		}
+		hidden_effect = {
+			GER = {
+				country_event = { id = reich.342 days = 7 }
+			}
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_back_to_business
+	icon = GFX_Generic_Constitution
+	cost = 5
+	prerequisite = {
+		focus = CZE_get_the_hint
+		focus = CZE_sideline_the_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_back_to_business"
+		add_timed_idea = {
+			idea = CZE_back_to_business
+			days = 250
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_revive_skoda_auto
+	icon = GFX_CZE_Revive_Skoda
+	cost = 5
+	prerequisite = {
+		focus = CZE_back_to_business
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_revive_skoda_auto"
+		9 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = -2
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_from_prague_to_germania
+	icon = GFX_TNO_generic_railway_work
+	cost = 5
+	prerequisite = {
+		focus = CZE_revive_skoda_auto
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_from_prague_to_germania"
+		9 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = -2
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_annual_army_checkup
+	icon = GFX_TNO_Generic_Combined_Arms
+	cost = 5
+	prerequisite = {
+		focus = CZE_back_to_business
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_annual_army_checkup"
+		country_event = { id = CZE.4 }
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 0
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_designs_from_the_fatherland
+	icon = GFX_BRG_focus_technical_companies
+	cost = 5
+	prerequisite = {
+		focus = CZE_annual_army_checkup
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_designs_from_the_fatherland"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = infantry_weapons
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_inspect_the_ss
+	icon = GFX_TNO_generic_gun_production
+	cost = 5
+	prerequisite = {
+		focus = CZE_back_to_business
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_inspect_the_ss"
+		country_event = { id = CZE.5 }
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 2
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_calm_the_party
+	icon = GFX_generic_diplomacy_political
+	cost = 5
+	prerequisite = {
+		focus = CZE_inspect_the_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_calm_the_party"
+		country_event = { id = CZE.6 }
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 2
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_the_steady_road_to_germanization
+	icon = GFX_IBR_open_road
+	cost = 5
+	prerequisite = {
+		focus = CZE_from_prague_to_germania
+	}
+	prerequisite = {
+		focus = CZE_designs_from_the_fatherland
+	}
+	prerequisite = {
+		focus = CZE_calm_the_party
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_steady_road_to_germanization"
+		hidden_effect = {
+			country_event = { id = CZE.7 }
+		}
+		9 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		75 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		hidden_effect = {
+			if = { 
+				limit = { has_completed_focus = CZE_for_your_future }
+				country_event = { id = CZE.46 days = 21 }
+			}
+		}
+	}
+	relative_position_id = CZE_a_change_in_the_status_quo
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_the_czech_guard
+	icon = GFX_PRM_the_hooked_cross_advances
+	cost = 4
+	allow_branch = {
+		has_country_flag = CZE_czech_guard
+	}
+	bypass = {
+		has_country_flag = CZE_czech_guard
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_czech_guard"
+	}
+	x = 8
+	y = 0
+}
+
+shared_focus = {
+	id = CZE_follow_the_ss_model
+	icon = GFX_GER_SS_Light
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_czech_guard
+	}
+	mutually_exclusive = {
+		focus = CZE_a_brand_new_system
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_follow_the_ss_model"
+		custom_effect_tooltip = CZE_follow_the_ss_model_tooltip
+		hidden_effect = {
+			country_event = { id = CZE.8 }
+		}
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_a_brand_new_system
+	icon = GFX_new_model_army_goal
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_czech_guard
+	}
+	mutually_exclusive = {
+		focus = CZE_follow_the_ss_model
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_brand_new_system"
+		custom_effect_tooltip = CZE_a_brand_new_system_tooltip
+		hidden_effect = {
+			country_event ={ id = CZE.9 }
+		}
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_a_competent_army
+	icon = GFX_YUN_Every_Man_A_Soldier
+	cost = 5
+	prerequisite = {
+		focus = CZE_follow_the_ss_model
+		focus = CZE_a_brand_new_system
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_competent_army"
+		country_event = { id = CZE.10 }
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = -2
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_a_modern_army
+	icon = GFX_KHA_enhanced_equipment_channels
+	cost = 5
+	prerequisite = {
+		focus = CZE_follow_the_ss_model
+		focus = CZE_a_brand_new_system
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_modern_army"
+		country_event = { id = CZE.11 }
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 0
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_a_loyal_army
+	icon = GFX_redevelop_the_garrison
+	cost = 5
+	prerequisite = {
+		focus = CZE_follow_the_ss_model
+		focus = CZE_a_brand_new_system
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_loyal_army"
+		country_event = { id = CZE.12 }
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 2
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_a_new_life
+	icon = GFX_GER_aryan_generic
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_competent_army
+	}
+	prerequisite = {
+		focus = CZE_a_modern_army
+	}
+	prerequisite = {
+		focus = CZE_a_loyal_army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_new_life"
+		add_manpower = 5000
+		add_war_support = 0.05
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = -1
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_review_the_budget
+	icon = GFX_TNO_generic_gold_coins
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_new_life
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_review_the_budget"
+		custom_effect_tooltip = CZE_review_the_budget_tooltip
+		add_to_variable = { misc_costs = 50 }
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = -1
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_calm_the_fatherland
+	icon = GFX_TNO_generic_germany
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_competent_army
+	}
+	prerequisite = {
+		focus = CZE_a_modern_army
+	}
+	prerequisite = {
+		focus = CZE_a_loyal_army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_calm_the_fatherland"
+		add_stability = 0.10
+		add_political_power = 25
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 1
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_baby_steps
+	icon = GFX_OMS_enhanced_training_programs
+	cost = 4
+	prerequisite = {
+		focus = CZE_calm_the_fatherland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_baby_steps"
+		country_event = { id = CZE.13 }
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 1
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_for_your_future
+	icon = GFX_OST_Military_Industry_Development
+	cost = 4
+	prerequisite = {
+		focus = CZE_review_the_budget
+	}
+	prerequisite = {
+		focus = CZE_baby_steps
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_for_your_future"
+		country_event = { id = CZE.14 }
+		hidden_effect = {
+			if = { 
+				limit = { has_completed_focus = CZE_the_steady_road_to_germanization }
+				country_event = { id = CZE.46 days = 21 }
+			}
+		}
+	}
+	relative_position_id = CZE_the_czech_guard
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_the_lidice_massacre
+	icon = GFX_Generic_Political_Crisis
+	cost = 4
+	allow_branch = {
+		has_country_flag = CZE_lidice_massacre
+	}
+	bypass = {
+		has_country_flag = CZE_lidice_massacre
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_lidice_massacre"
+	}
+	x = 8
+	y = 0
+}
+
+shared_focus = {
+	id = CZE_declare_martial_law
+	icon = GFX_german_advisors
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_lidice_massacre
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_declare_martial_law"
+		add_ideas = CZE_martial_law
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_now_is_the_time
+	icon = GFX_OST_Deploy_Our_Boys
+	cost = 4
+	prerequisite = {
+		focus = CZE_declare_martial_law
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_now_is_the_time"
+		if = {
+			limit = { has_completed_focus = CZE_follow_the_ss_model }
+			country_event = { id = CZE.15 }
+		}
+		if = {
+			limit = { has_completed_focus = CZE_a_brand_new_system }
+			country_event = { id = CZE.16 }
+		}
+		set_variable = { CZE_garrison_control = 10 }
+		set_variable = { CZE_ss_control = 12 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_loyalty_to_the_fatherland
+	icon = GFX_CZE_Loyalty_to_the_Fatherland
+	cost = 4
+	prerequisite = {
+		focus = CZE_now_is_the_time
+	}
+	mutually_exclusive = {
+		focus = CZE_end_of_an_era
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_loyalty_to_the_fatherland"
+		country_event = { id = CZE.17 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -1
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_end_of_an_era
+	icon = GFX_CZE_End_of_an_Era
+	cost = 4
+	prerequisite = {
+		focus = CZE_now_is_the_time
+	}
+	mutually_exclusive = {
+		focus = CZE_loyalty_to_the_fatherland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_end_of_an_era"
+		country_event = { id = CZE.18 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 1
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_assess_the_damage
+	icon = GFX_IBR_paperwork
+	cost = 4
+	allow_branch = {
+		has_country_flag = CZE_player_garrison
+	}
+	prerequisite = {
+		focus = CZE_loyalty_to_the_fatherland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_assess_the_damage"
+		custom_effect_tooltip = garrison_control_rises_good_tooltip
+		add_to_variable = { CZE_garrison_control = 1 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -1
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_consolidate_whats_left
+	icon = GFX_generic_revolutionary_movement
+	cost = 4
+	prerequisite = {
+		focus = CZE_assess_the_damage
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_consolidate_whats_left"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1532
+			producer = CZE
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -1
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_instill_confidence 
+	icon = GFX_IME_fragile_truce
+	cost = 4
+	prerequisite = {
+		focus = CZE_consolidate_whats_left
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_instill_confidence"
+		custom_effect_tooltip = garrison_control_rises_good_tooltip
+		add_political_power = 50
+		add_to_variable = { CZE_garrison_control = 1 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -2
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_the_true_saviors
+	icon = GFX_generic_propaganda
+	cost = 4
+	prerequisite = {
+		focus = CZE_instill_confidence
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_true_saviors"
+		add_war_support = 0.1
+		add_manpower = 9000
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -2
+	y = 7
+}
+
+shared_focus = {
+	id = CZE_fortify_prague
+	icon = GFX_goal_generic_fortify_city
+	cost = 4
+	prerequisite = {
+		focus = CZE_consolidate_whats_left
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_fortify_prague"
+		custom_effect_tooltip = CZE_fortify_prague_tooltip
+		add_to_variable = { CZE_guard_competence = 1 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_bide_our_time
+	icon = GFX_OST_The_future_frozen
+	cost = 4
+	prerequisite = {
+		focus = CZE_consolidate_whats_left
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_bide_our_time"
+		custom_effect_tooltip = CZE_bide_our_time_tooltip
+		custom_effect_tooltip = garrison_control_rises_good_tooltip
+		add_to_variable = { CZE_garrison_control = 1 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 2
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_work_with_skoda
+	icon = GFX_goal_generic_construct_mil_factory
+	cost = 4
+	prerequisite = {
+		focus = CZE_fortify_prague
+		focus = CZE_bide_our_time
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_work_with_skoda"
+		9 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 180
+			producer = CZE
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 1
+	y = 7
+}
+
+shared_focus = {
+	id = CZE_our_prosperous_homeland
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 5
+	prerequisite = {
+		focus = CZE_the_true_saviors
+	}
+	prerequisite = {
+		focus = CZE_work_with_skoda
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_formalize_the_czech_guard"
+		custom_effect_tooltip = CZE_our_prosperous_homeland_tooltip
+		hidden_effect = {
+			country_event = { id = CZE.34 }
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -1
+	y = 8
+}
+
+shared_focus = {
+	id = CZE_burn_lezaky
+	icon = GFX_CAU_torch_the_suburbs
+	cost = 4
+	prerequisite = {
+		focus = CZE_end_of_an_era
+	}
+	allow_branch = {
+		has_country_flag = CZE_player_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_burn_lezaky"
+		custom_effect_tooltip = SS_control_rises_good_tooltip
+		hidden_effect = {
+			country_event = { id = CZE.23 }
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_a_grim_reminder
+	icon = GFX_BRG_focus_war_is_peace
+	cost = 4
+	prerequisite = {
+		focus = CZE_end_of_an_era
+	}
+	allow_branch = {
+		has_country_flag = CZE_player_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_grim_reminder"
+		custom_effect_tooltip = SS_control_rises_good_tooltip
+		add_to_variable = { CZE_ss_control = 1 }
+		add_political_power = 50
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 2
+	y = 4
+}
+
+shared_focus = {
+	id = CZE_in_the_garrison
+	icon = GFX_Generic_Guillotine
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_grim_reminder
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_in_the_garrison"
+		set_temp_variable = { CZE_guard_execution = CZE_guard_safety }
+		subtract_from_temp_variable = { CZE_guard_execution = CZE_guard_competence }
+		if = {
+			limit = { check_variable = { CZE_guard_execution < 0 }}
+			country_event = { id = CZE.23 }
+		}
+		else_if = {
+			limit = { check_variable = { CZE_guard_execution < -3 }}
+			country_event = { id = CZE.24 }
+		}
+		else_if = {
+			limit = { check_variable = { CZE_guard_execution > 0 }}
+			country_event = { id = CZE.25 }
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 2
+	y = 5
+}
+
+shared_focus = {
+	id = CZE_claim_the_throne
+	icon = GFX_ENG_it_happened_here
+	cost = 4
+	prerequisite = {
+		focus = CZE_burn_lezaky
+		focus = CZE_in_the_garrison
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_claim_the_throne"
+		custom_effect_tooltip = CZE_claim_the_throne_tooltip
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = -0.99
+			OR = {
+				has_country_flag = ss_control_prague
+				has_country_flag = garrison_control_prague
+			}
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_contact_himmler
+	icon = GFX_goal_GER_kill_himmler
+	cost = 4
+	prerequisite = {
+		focus = CZE_burn_lezaky
+		focus = CZE_in_the_garrison
+	}
+	bypass = {
+		has_country_flag = CZE_claim_the_throne_tooltip
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_contact_himmler"
+		country_event = { id = CZE.27 days = 6 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 2
+	y = 6
+}
+
+shared_focus = {
+	id = CZE_alone_in_the_dark
+	icon = GFX_GER_anywhere_anyplace
+	cost = 4
+	prerequisite = {
+		focus = CZE_claim_the_throne
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_alone_in_the_dark"
+		custom_effect_tooltip = CZE_claim_the_throne_tooltip
+		hidden_effect = {
+			country_event = { id = CZE.28 }
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = -0.99
+			OR = {
+				has_country_flag = ss_control_prague
+				has_country_flag = garrison_control_prague
+			}
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = -1
+	y = 7
+}
+
+shared_focus = {
+	id = CZE_blood_on_the_horizon
+	icon = GFX_road_to_mefo
+	cost = 4
+	prerequisite = {
+		focus = CZE_claim_the_throne
+	}
+	bypass = {
+		has_country_flag = CZE_claim_the_throne_tooltip
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_blood_on_the_horizon"
+		custom_effect_tooltip = CZE_claim_the_throne_tooltip
+		hidden_effect = {
+			country_event = { id = CZE.29 }
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = -0.99
+			OR = {
+				has_country_flag = ss_control_prague
+				has_country_flag = garrison_control_prague
+			}
+		}
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 1
+	y = 7
+}
+
+shared_focus = {
+	id = CZE_the_black_sun_over_prague
+	icon = GFX_CZE_black_sun_city
+	cost = 4
+	prerequisite = {
+		focus = CZE_alone_in_the_dark
+	}
+	prerequisite = {
+		focus = CZE_blood_on_the_horizon
+	}
+	mutually_exclusive = {
+		focus = CZE_rule_through_fear
+	}
+	available = {
+		has_country_flag = ss_control_prague
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_black_sun_over_prague"
+		country_event = { id = CZE.31 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 0
+	y = 8
+}
+
+shared_focus = {
+	id = CZE_rule_through_fear
+	icon = GFX_RAJ_Agitate_The_Poor
+	cost = 4
+	prerequisite = {
+		focus = CZE_contact_himmler
+		focus = CZE_claim_the_throne
+	}
+	mutually_exclusive = {
+		focus = CZE_the_black_sun_over_prague
+	}
+	available = {
+		set_temp_variable = { CZE_victory_check = CZE_ss_control }
+		subtract_from_temp_variable = { CZE_victory_check = 2 }
+		check_variable = { CZE_victory_check > CZE_garrison_control }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_rule_through_fear"
+		country_event = { id = CZE.32 }
+	}
+	relative_position_id = CZE_the_lidice_massacre
+	x = 2
+	y = 8
+}
+
+shared_focus = {
+	id = CZE_the_traitors_crushed
+	icon = GFX_Speer_Purge_the_Officers
+	cost = 4
+	allow_branch = {
+		has_global_flag = CZE_garrison_victory
+	}
+	bypass = {
+		has_global_flag = CZE_garrison_victory
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_traitors_crushed"
+	}
+	x = 6
+	y = 0
+}
+shared_focus = {
+	id = CZE_public_trials
+	icon = GFX_DOM_The_Trial
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_traitors_crushed
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_public_trials"
+		country_event = { id = CZE.47 }
+	}
+	relative_position_id = CZE_the_traitors_crushed
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_disarm_the_populace
+	icon = GFX_POL_build_our_guns
+	cost = 4
+	prerequisite = {
+		focus = CZE_public_trials
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_public_trials"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 700
+			producer = CZE
+		}
+	}
+	relative_position_id = CZE_the_traitors_crushed
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_end_martial_law
+	icon = GFX_RAJ_India_Diplo_Germany_Power
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_traitors_crushed
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_end_martial_law"
+		remove_ideas = CZE_martial_law
+	}
+	relative_position_id = CZE_the_traitors_crushed
+	x = 1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_ease_the_occupation
+	icon = GFX_Social_Liberalization
+	cost = 4
+	prerequisite = {
+		focus = CZE_end_martial_law
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_ease_the_occupation"
+		add_stability = 0.15
+		add_war_support = -0.08
+		add_political_power = 30
+	}
+	relative_position_id = CZE_the_traitors_crushed
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_freedom_in_servitude
+	icon = GFX_focus_CZE_german_puppet
+	cost = 4
+	prerequisite = {
+		focus = CZE_disarm_the_populace
+	}
+	prerequisite = {
+		focus = CZE_ease_the_occupation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_freedom_in_servitude"
+		add_timed_idea = {
+			idea = CZE_freedom_fever
+			days = 365
+		}
+	}
+	relative_position_id = CZE_the_traitors_crushed
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = CZE_the_reichs_true_sons
+	icon = GFX_unknown
+	cost = 4
+	allow_branch = {
+		has_global_flag = CZE_ss_victory
+	}
+	bypass = {
+		has_global_flag = CZE_ss_victory
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_the_reichs_true_sons"
+	}
+
+	x = 6
+	y = 0
+}
+
+shared_focus = {
+	id = CZE_revenge_is_ours
+	icon = GFX_Generic_Political_Purge
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_reichs_true_sons
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_revenge_is_ours"
+		country_event = { id = CZE.48 }
+	}
+	relative_position_id = CZE_the_reichs_true_sons
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_a_true_german_state
+	icon = GFX_TNO_generic_germany
+	cost = 4
+	prerequisite = {
+		focus = CZE_revenge_is_ours
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_a_true_german_state"
+		add_ideas = CZE_forced_germanization
+	}
+	relative_position_id = CZE_the_reichs_true_sons
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_close_the_borders
+	icon = GFX_TNO_generic_prison_camp
+	cost = 4
+	prerequisite = {
+		focus = CZE_the_reichs_true_sons
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_close_the_borders"
+		swap_ideas = {
+			remove_idea = tno_security_anarchic
+			add_idea = tno_security_preemptive_security
+		}
+	}
+	relative_position_id = CZE_the_reichs_true_sons
+	x = 1
+	y = 1
+}
+
+shared_focus = {
+	id = CZE_sniff_out_the_traitors
+	icon = GFX_VIN_Reduce_Radical_Influence
+	cost = 4
+	prerequisite = {
+		focus = CZE_close_the_borders
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_sniff_out_the_traitors"
+		country_event = { id = CZE.49 }
+	}
+	relative_position_id = CZE_the_reichs_true_sons
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = CZE_no_regrets
+	icon = GFX_CZE_Soldier_Saluting_Rubble
+	cost = 4
+	prerequisite = {
+		focus = CZE_a_true_german_state
+	}
+	prerequisite = {
+		focus = CZE_sniff_out_the_traitors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus CZE_no_regrets"
+		add_ideas = CZE_until_death
+	}
+	relative_position_id = CZE_the_reichs_true_sons
+	x = 0
+	y = 3
+}

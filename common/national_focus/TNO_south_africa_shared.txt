@@ -1,0 +1,2061 @@
+#saf tree by uncountably
+
+shared_focus = {
+	id = SAF_south_africas_situation
+	icon = GFX_USA_The_South_Africa_Plan
+	cost = 2.00
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_south_africas_situation"
+		add_political_power = 50
+
+
+		country_event = {
+			id = SAF.101
+			days = 1
+		}
+	}
+
+}
+shared_focus = {
+	id = SAF_the_issues_we_face
+	icon = GFX_The_Issues_We_face
+	cost = 2.00
+	prerequisite = {
+		focus = SAF_south_africas_situation
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_issues_we_face"
+		add_stability = 0.05
+		country_event = {
+			id = SAF.102
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_the_monarchy_debate
+	icon = GFX_SAF_Monarchy_Debate
+	cost = 2.00
+	prerequisite = {
+		focus = SAF_the_issues_we_face
+	}
+	x = -1
+	y = 2
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_monarchy_debate"
+		country_event = {
+			id = SAF.104
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_the_african_national_congress
+	icon = GFX_African_National_Congress
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_the_issues_we_face
+	}
+	x = 1
+	y = 2
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_african_national_congress"
+		
+		country_event = {
+			id = SAF.103
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_schedule_a_referendum
+	icon = GFX_USA_Keep_It_Clean2
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_the_monarchy_debate
+	}
+	prerequisite = {
+		focus = SAF_the_african_national_congress
+	}
+	x = 0
+	y = 3
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_schedule_a_referendum"
+		country_event = {
+			id = SAF.105
+			days = 5
+		}
+		set_country_flag = SAF_referendum_decisions
+		custom_effect_tooltip = SAF_referendum_decisions_tt
+	}
+}
+
+shared_focus = {
+	id = SAF_a_plan_for_the_future
+	icon = GFX_GER_convene_the_parties
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_schedule_a_referendum
+	}
+	x = 0
+	y = 4
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_a_plan_for_the_future"
+		country_event = {
+			id = SAF.106
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_maintain_the_status_quo
+	icon = GFX_GER_finish_what_we_started
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_a_plan_for_the_future
+	}
+	mutually_exclusive = {
+		focus = SAF_talk_with_the_anc
+	}
+	available = {
+		has_country_flag = SAF_anti_anc
+	}
+	x = -6
+	y = 5
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_maintain_the_status_quo"
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.03
+		}
+		custom_effect_tooltip = SAF_increase_monarchy_support_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 1.1 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_further_investigate_the_anc
+	icon = GFX_TNO_generic_prison
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_maintain_the_status_quo
+	}
+	x = -7
+	y = 6
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_further_investigate_the_anc"
+		country_event = {
+			id = SAF.110
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_restrict_their_protests
+	icon = GFX_SAF_Aim_for_Pacification
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_maintain_the_status_quo
+	}
+	x = -5
+	y = 6
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_restrict_their_protests"
+		add_political_power = 25
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.05
+		}
+		SAF_gain_mothly_diamonds_1 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_who_is_leading_them
+	icon = GFX_IRK_the_response
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_further_investigate_the_anc
+	}
+	x = -8
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_who_is_leading_them"
+		country_event = {
+			id = SAF.107
+			days = 1
+		}
+
+	}
+}
+
+shared_focus = {
+	id = SAF_who_is_funding_them
+	icon = GFX_RAJ_Prevent_Neocolonialism
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_who_is_leading_them
+	}
+	x = -8
+	y = 8
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_who_is_funding_them"
+		tno_security_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_who_is_supporting_them
+	icon = GFX_Who_is_supporting_them
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_who_is_funding_them
+	}
+	x = -8
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_who_is_supporting_them"
+		tno_trade_unions_worsen = yes
+		country_event = {
+			id = SAF.115
+			days = 4
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_crack_down_on_their_publications
+	icon = GFX_SAF_crack_down_on_their_publications
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_further_investigate_the_anc
+	}
+	prerequisite = {
+		focus = SAF_restrict_their_protests
+	}
+	x = -6
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_crack_down_on_their_publications"
+		add_stability = 0.02
+		add_war_support = 0.05
+		add_political_power = 75
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.15
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.15
+		}
+		tno_public_meetings_worsen = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 1.1 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+			country_event = {
+				id = SAF.116
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_broadcast_anti_anc_propaganda
+	icon = GFX_TNO_generic_propaganda
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_crack_down_on_their_publications
+	}
+	x = -6
+	y = 8
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_broadcast_anti_anc_propaganda"
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}
+		tno_press_rights_worsen = yes
+		hidden_effect = {
+			country_event = {
+				id = SAF.117
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_radicalize_the_anc
+	icon = GFX_TNO_generic_hammer_sickle
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_broadcast_anti_anc_propaganda
+	}
+	x = -6
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_radicalize_the_anc"
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+		SAF_gain_mothly_diamonds_2 = yes
+		add_stability = -0.1
+		custom_effect_tooltip = SAF_increase_monarchy_support_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 1.05 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+			country_event = {
+				id = SAF.118
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_army_on_high_alert
+	icon = GFX_generic_victory_parade
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_restrict_their_protests
+	}
+	x = -4
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_army_on_high_alert"
+		add_manpower = 10000
+		add_war_support = 0.10
+		tno_conscription_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_reinforce_the_police
+	icon = GFX_IRK_NKVD_guards_divisions
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_army_on_high_alert
+	}
+	x = -4
+	y = 8
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_reinforce_the_police"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 600
+			producer = USA
+		}
+		hidden_effect = {
+			country_event = {
+				id = SAF.120
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_specialized_riot_training
+	icon = GFX_KHA_black_guards_units
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_reinforce_the_police
+	}
+	x = -4
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_specialized_riot_training"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = military_police_tech
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 375
+			producer = USA
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_the_anc_pacified
+	icon = GFX_ANC_Pacified
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_who_is_supporting_them
+	}
+	prerequisite = {
+		focus = SAF_radicalize_the_anc
+	}
+	prerequisite = {
+		focus = SAF_specialized_riot_training
+	}
+	x = -6
+	y = 11
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_anc_pacified"
+		add_stability = 0.15
+		tno_political_parties_worsen = yes
+		hidden_effect = {
+			country_event = {
+				id = SAF.86
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_talk_with_the_anc
+	icon = GFX_Generic_Bill_of_Rights
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_a_plan_for_the_future
+	}
+	mutually_exclusive = {
+		focus = SAF_maintain_the_status_quo
+	}
+	available = {
+		has_country_flag = SAF_pro_anc
+	}
+	x = 6
+	y = 5
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_talk_with_the_anc"
+		add_stability = 0.02
+
+		country_event = {
+			id = SAF.121
+			days = 5
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SAF_sit_down_with_tambo
+	icon = GFX_Talks_with_Oliver_Tambo
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_talk_with_the_anc
+	}
+	x = 5
+	y = 6
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_sit_down_with_tambo"
+		custom_effect_tooltip = SAF_decrease_monarchy_support_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 0.9 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+		}
+
+		country_event = {
+			id = SAF.122
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_support_moderate_anc_elements
+	icon = GFX_SAF_support_moderates_in_the_anc
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_talk_with_the_anc
+	}
+	x = 7
+	y = 6
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_support_moderate_anc_elements"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.03
+		}
+		SAF_gain_mothly_diamonds_1 = yes
+		add_popularity = {
+			ideology = communist
+			popularity = -0.03
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.03
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_rally_their_support
+	icon = GFX_USA_Select_Integration
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_sit_down_with_tambo
+	}
+	x = 4
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_rally_their_support"
+		add_stability = 0.03
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.05
+		}
+		custom_effect_tooltip = SAF_increase_monarchy_support_tt
+		tno_max_workhours_improve = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 1.1 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_release_political_prisoners
+	icon = GFX_TNO_generic_prison
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_sit_down_with_tambo
+	}
+	prerequisite = {
+		focus = SAF_support_moderate_anc_elements
+	}
+	x = 6
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_release_political_prisoners  "
+		country_event = {
+			id = SAF.123
+			days = 5
+		}
+		SAF_Pakt_Anger_Raise_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_weaken_their_radicals
+	icon = GFX_TNO_generic_global_anti_communism
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_support_moderate_anc_elements
+	}
+	x = 8
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_weaken_their_radicals"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = communist
+			popularity = -0.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = SAF.124
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_agree_to_limited_reforms
+	icon = GFX_SAF_The_winds_of_change
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_rally_their_support
+	}
+	prerequisite = {
+		focus = SAF_release_political_prisoners
+	}
+	prerequisite = {
+		focus = SAF_weaken_their_radicals
+	}
+	x = 6
+	y = 8
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_agree_to_limited_reforms"
+		add_political_power = 50
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.02
+		}
+
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.02
+		}
+		tno_tax_rate_improve = yes
+		tno_pensions_improve = yes
+		custom_effect_tooltip = SAF_decrease_monarchy_support_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = { has_state_flag = SAF_election_state }
+				multiply_variable = { SAF_monarchy_support = 0.85 }
+				round_variable = SAF_monarchy_support
+				clamp_variable = {
+					var = SAF_monarchy_support
+					min = 0
+					max = 100
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_ban_extremist_armed_organizations
+	icon = GFX_NIK_gun_control
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_agree_to_limited_reforms
+	}
+	x = 2
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_ban_extremist_armed_organizations"
+		country_event = {
+			id = SAF.130
+			days = 5
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_africans_in_the_civil_service
+	icon = GFX_USA_Our_Duty_to_the_People
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_agree_to_limited_reforms
+	}
+	x = 4
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_africans_in_the_civil_service"
+		country_event = {
+			id = SAF.125
+			days = 4
+		}
+		tno_racial_integration_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_African_Rifles_Regiment
+	icon = GFX_ENG_Royal_African_Rifles
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_agree_to_limited_reforms
+	}
+	x = 6
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_African_Rifles_Regiment"
+		country_event = {
+			id = SAF.126
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_rights_for_tribal_lands
+	icon = GFX_Rights_for_Tribal_Lands
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_agree_to_limited_reforms
+	}
+	x = 8
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_rights_for_tribal_lands"
+		1050 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			multiply_variable = { SAF_monarchy_support = 1.1 }
+			clamp_variable = {
+				var = SAF_monarchy_support
+				min = 0
+				max = 100
+			}
+		}
+		country_event = {
+			id = SAF.127
+			days = 6
+		}
+		add_to_variable = { GDP = 10 }
+		custom_effect_tooltip = econ_increase_GDP_small
+	}
+}
+
+shared_focus = {
+	id = SAF_deracialize_education
+	icon = GFX_USA_Tackling_the_Causes
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_agree_to_limited_reforms
+	}
+	x = 10
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_deracialize_education"
+		tno_education_clear = yes
+		add_ideas = tno_education_public_education
+		country_event = {
+			id = SAF.128
+			days = 6
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_the_tensions_calmed
+	icon = GFX_generic_change_law_minorities
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_ban_extremist_armed_organizations
+	}
+	prerequisite = {
+		focus = SAF_africans_in_the_civil_service
+	}
+	prerequisite = {
+		focus = SAF_African_Rifles_Regiment
+	}
+	prerequisite = {
+		focus = SAF_rights_for_tribal_lands
+	}
+	prerequisite = {
+		focus = SAF_deracialize_education
+	}
+
+	x = 6
+	y = 11
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_tensions_calmed"
+		swap_ideas = {
+			remove_idea = SAF_Divided_Nation
+			add_idea = SAF_Divided_Nation_2
+		}
+		country_event = {
+			id = SAF.131
+			days = 4
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_maintaining_our_neutrality
+	icon = GFX_SAF_maintain_neutrality
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_maintain_the_status_quo
+		focus = SAF_talk_with_the_anc
+	}
+	x = 0
+	y = 6
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_maintaining_our_neutrality"
+		add_political_power = 50
+		SAF_gain_mothly_diamonds_2 = yes
+		SAF_Pakt_Anger_Lower_6 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_reassure_the_americans
+	icon = GFX_SAF_Reassure_The_Americans
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_maintaining_our_neutrality
+	}
+	x = 0
+	y = 7
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_maintaining_our_neutrality"
+		USA = {
+			add_opinion_modifier = {
+				target = SAF
+				modifier = SAF_reassurances
+			}
+		}
+		681 = {
+			add_building_construction = {
+				type =  fuel_silo
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_and_the_germans
+	icon = GFX_TNO_generic_germany
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_reassure_the_americans
+	}
+	x = 0
+	y = 8
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_and_the_germans"
+		GER = {
+			add_opinion_modifier = {
+				target = SAF
+				modifier = SAF_reassurances
+			}
+		}
+		SAF_Pakt_Anger_Lower_6 = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = GER
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_rebuff_their_diplomats
+	icon = GFX_GER_the_final_meeting
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_and_the_germans
+	}
+	x = 0
+	y = 9
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_rebuff_their_diplomats"
+		add_political_power = 20
+		GER = {
+			add_political_power = -10
+		}
+		USA = {
+			add_political_power = -10
+		}
+		681 = {
+			add_building_construction = {
+				type = air_base
+				level = 4
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		SAF_gain_5_diamonds = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_fortify_just_in_case
+	icon = GFX_BAS_fortification_production_charter
+	cost = 6.00
+	prerequisite = {
+		focus = SAF_rebuff_their_diplomats
+	}
+	x = 0
+	y = 10
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_fortify_just_in_case"
+		if = {
+			limit = {
+				NOT = { has_completed_focus = SAF_rights_for_tribal_lands }
+			}
+			custom_effect_tooltip = SAF_fortify_border_tt
+			hidden_effect = {
+				719 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				933 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				936 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				938 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				939 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				942 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+		else = {
+			custom_effect_tooltip = SAF_fortify_border_bechuanaland_tt
+			hidden_effect = {
+				542 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				719 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				884 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				933 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				936 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				938 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				939 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				942 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1044 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1045 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1046 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1047 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1048 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1049 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+				1050 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_for_south_africa
+	icon = GFX_SAF_South_Africa_Indivisible
+	cost = 4.00
+	prerequisite = {
+		focus = SAF_the_anc_pacified
+		focus = SAF_the_tensions_calmed
+		focus = SAF_fortify_just_in_case
+	}
+	available = {
+		has_country_flag = SAF_schild_formed
+	}
+	x = 0
+	y = 12
+	relative_position_id = SAF_south_africas_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_for_south_africa"
+		add_war_support = 0.15
+		add_stability = 0.1
+		SAF_gain_5_diamonds = yes
+		hidden_effect = {
+			load_focus_tree = SAF_war_tree
+		}
+	}
+}
+
+
+#War tree by uncountably
+
+shared_focus = {
+	id = SAF_our_nation_in_flames
+	icon = GFX_SAF_icon_south_african_war_2
+	cost = 3.00
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_our_nation_in_flames"
+		add_war_support = 0.05
+		SAF_UNCLE_morale_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_our_american_allies
+	icon = GFX_USA_Glenn_A_City_on_a_Hill
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_our_nation_in_flames
+	}
+	x = -5
+	y = 1
+	relative_position_id = SAF_our_nation_in_flames
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_our_american_allies"
+		SAF_UNCLE_manpower_up_150 = yes
+
+		set_variable = { Logistics_activity = 2 }
+	}
+}
+
+shared_focus = {
+	id = SAF_cooperate_with_american_companies
+	icon = GFX_USA_open_up_trade
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_our_american_allies
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_cooperate_with_american_companies"
+		SAF_UNCLE_research_up_5 = yes
+		custom_effect_tooltip = SAF_american_companies_tt
+	}
+}
+
+shared_focus = {
+	id = SAF_purchase_american_guns
+	icon = GFX_TNO_generic_arms_shipments
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_our_american_allies
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_purchase_american_guns"
+		custom_effect_tooltip = SAF_american_guns_tt
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 15000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 2500
+			producer = USA
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_request_additional_advisors
+	icon = GFX_goal_TNO_generic_OFN_light
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_cooperate_with_american_companies
+		focus = SAF_purchase_american_guns
+	}
+	x = -1
+	y = 2
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_request_additional_advisors"
+		SAF = {
+			add_manpower = 15000
+			SAF_UNCLE_manpower_up_150 = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SAF_american_army_training
+	icon = GFX_WRS_rocket_launcher
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_cooperate_with_american_companies
+		focus = SAF_purchase_american_guns
+	}
+	x = 1
+	y = 2
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_american_army_training"
+		army_experience = 50
+		add_ideas = SAF_American_training
+		SAF_UNCLE_army_org_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_air_and_naval_support
+	icon = GFX_SAF_air_and_naval_support
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_request_additional_advisors
+		focus = SAF_american_army_training
+	}
+	x = -1
+	y = 3
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_air_and_naval_support"
+		add_equipment_to_stockpile = {
+			type = cas_equipment
+			amount = 100
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = tac_bomber_equipment
+			amount = 50
+			producer = USA
+		}
+		navy_experience = 25
+		air_experience = 25
+	}
+}
+
+shared_focus = {
+	id = SAF_selling_them_the_war
+	icon = GFX_GER_first_things_first
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_request_additional_advisors
+		focus = SAF_american_army_training
+	}
+	x = 1
+	y = 3
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_selling_them_the_war"
+		SAF_gain_5_diamonds = yes
+		SAF_gain_mothly_diamonds_2 = yes
+		SAF_UNCLE_core_def_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_american_talent
+	icon = GFX_MAD_the_OFNs_offer
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_air_and_naval_support
+		focus = SAF_selling_them_the_war
+	}
+	x = -1
+	y = 4
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_american_talent"
+		army_experience = 50
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = air_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = naval_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_american_tech
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_air_and_naval_support
+		focus = SAF_selling_them_the_war
+	}
+	x = 1
+	y = 4
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_american_tech"
+		custom_effect_tooltip = SAF_american_tech_tt
+	}
+}
+
+shared_focus = {
+	id = SAF_we_need_more
+	icon = GFX_Time_To_Go_To_Work
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_american_talent
+	}
+	prerequisite = {
+		focus = SAF_american_tech
+	}
+	x = 0
+	y = 5
+	relative_position_id = SAF_our_american_allies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_we_need_more"
+		custom_effect_tooltip = SAF_more
+	}
+}
+
+shared_focus = {
+	id = SAF_the_hidden_war
+	icon = GFX_VIN_Modern_Counterinsurgency
+	cost = 2.00
+	prerequisite = {
+		focus = SAF_our_nation_in_flames
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAF_our_nation_in_flames
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_hidden_war"
+		SAF_UNCLE_core_def_up_5 = yes
+		SAF_UNCLE_army_org_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_Project_DELTA
+	icon = GFX_goal_MZB_icon_brudermord
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_the_hidden_war
+	}
+	available = {
+		has_country_flag = SAF_pro_anc
+	}
+	mutually_exclusive = {
+		focus = SAF_focus_on_counterinsurgency
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_Project_DELTA "
+		add_ideas = SAF_Unconventional_Tactics
+	}
+}
+
+shared_focus = {
+	id = SAF_fund_everyone_we_can
+	icon = GFX_BRT_Africa_Beckons
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_Project_DELTA
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAF_Project_DELTA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_fund_everyone_we_can"
+		BOR = {
+			add_ideas = SAF_Unconventional_Tactics_RK
+		}
+		ANG = {
+			add_ideas = SAF_Unconventional_Tactics_RK
+		}
+		COG = {
+			add_ideas = SAF_Unconventional_Tactics_RK
+		}
+		MZB = {
+			add_ideas = SAF_Unconventional_Tactics_RK
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_bring_in_the_americans
+	icon = GFX_USA_CIA
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_fund_everyone_we_can
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAF_Project_DELTA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_bring_in_the_americans"
+		custom_effect_tooltip = SAF_more_anc_guerillas_tt
+		SAF_UNCLE_offence_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_behind_every_blade_of_grass
+	icon = GFX_MAD_take_to_the_jungles
+	cost = 3.00
+	prerequisite = {
+		focus = SAF_bring_in_the_americans
+	}
+	x = 0
+	y = 3
+	relative_position_id = SAF_Project_DELTA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_behind_every_blade_of_grass"
+		BOR = {
+			add_ideas = SAF_Unconventional_Tactics_RK_2 
+			remove_ideas = SAF_Unconventional_Tactics_RK 
+		}
+		ANG = {
+			add_ideas = SAF_Unconventional_Tactics_RK_2 
+			remove_ideas = SAF_Unconventional_Tactics_RK 
+		}
+		COG = {
+			add_ideas = SAF_Unconventional_Tactics_RK_2 
+			remove_ideas = SAF_Unconventional_Tactics_RK 
+		}
+		MZB = {
+			add_ideas = SAF_Unconventional_Tactics_RK_2 
+			remove_ideas = SAF_Unconventional_Tactics_RK 
+		}
+		BOR = {
+			add_stability = -0.10
+			add_war_support = -0.10
+		}
+		ANG = {
+			add_stability = -0.10
+			add_war_support = -0.10
+		}
+		COG = {
+			add_stability = -0.10
+			add_war_support = -0.10
+		}
+		MZB = {
+			add_stability = -0.10
+			add_war_support = -0.10
+		}
+		SAF = {
+			SAF_UNCLE_offence_up_5 = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_shatter_the_schild
+	icon = GFX_SAF_pseudo_operations
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_behind_every_blade_of_grass
+	}
+	x = 0
+	y = 4
+	relative_position_id = SAF_Project_DELTA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_shatter_the_schild"
+		custom_effect_tooltip = SAF_shatter_schild_tt
+		country_event = {
+			id = SAF.144
+			days = 6
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_mass_produce_propaganda
+	icon = GFX_GER_Truck_Speaker
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_Project_DELTA
+		focus = SAF_focus_on_counterinsurgency
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_mass_produce_propaganda"
+		add_war_support = 0.1
+		add_stability = 0.1
+		add_political_power = 50
+		SAF_UNCLE_morale_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_encourage_defections
+	icon = GFX_TNO_generic_forbid_guns
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_fund_everyone_we_can
+		focus = SAF_aim_for_pacification
+	}
+	prerequisite = {
+		focus = SAF_mass_produce_propaganda
+	}
+	x = 0
+	y = 3
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_encourage_defections"
+		BOR = {
+			add_war_support = -0.05
+			add_manpower = -10000
+		}
+		ANC = {
+			add_war_support = -0.05
+			add_manpower = -25000
+		}
+		MZB = {
+			add_war_support = -0.05
+			add_manpower = -5000
+		}
+		COG = {
+			add_war_support = -0.05
+			add_manpower = -15000
+		}
+		ANG = {
+			add_war_support = -0.05
+			add_manpower = -15000
+		}
+		hidden_effect = {
+			country_event = {
+				id = SAF.141
+				days = 5
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_keeping_up_morale
+	icon = GFX_USA_Raise_the_Fear
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_bring_in_the_americans
+		focus = SAF_identifying_insurgents
+	}
+	prerequisite = {
+		focus = SAF_encourage_defections
+	}
+	x = 0
+	y = 4
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_keeping_up_morale"
+		add_war_support = 0.15
+		SAF_UNCLE_morale_up_5 = yes
+		SAF_UNCLE_army_speed_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_the_propaganda_war
+	icon = GFX_GIB_televised_promotions
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_behind_every_blade_of_grass
+		focus = SAF_win_the_villages
+	}
+	prerequisite = {
+		focus = SAF_keeping_up_morale
+	}
+	x = 0
+	y = 5
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_propaganda_war"
+		custom_effect_tooltip = SAF_propaganda_decisions_tt
+	}
+}
+
+shared_focus = {
+	id = SAF_focus_on_counterinsurgency
+	icon = GFX_SAF_Focus_on_Counterinsurgency
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_the_hidden_war
+	}
+	mutually_exclusive = {
+		focus = SAF_Project_DELTA
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAF_the_hidden_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_focus_on_counterinsurgency"
+		SAF_UNCLE_army_speed_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_aim_for_pacification
+	icon = GFX_COG_Through_The_Jungle
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_focus_on_counterinsurgency
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAF_focus_on_counterinsurgency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_aim_for_pacification"
+		SAF_UNCLE_morale_up_5 = yes
+		set_country_flag = hearts_and_minds
+		hidden_effect = {
+			country_event = {
+				id = SAF.150
+				days = 6
+			}
+		
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_identifying_insurgents
+	icon = GFX_NOR_eternal_vigilance
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_aim_for_pacification
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAF_focus_on_counterinsurgency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_identifying_insurgents"
+		custom_effect_tooltip = SAF_identify_insurgents_tt
+		set_country_flag = Phoenix_program
+	}
+}
+
+shared_focus = {
+	id = SAF_win_the_villages
+	icon = GFX_SAF_strategic_hamlet_program
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_identifying_insurgents
+	}
+	x = 0
+	y = 3
+	relative_position_id = SAF_focus_on_counterinsurgency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_win_the_villages"
+		custom_effect_tooltip = SAF_win_villages_tt
+		add_war_support = 0.05
+
+	}
+}
+
+shared_focus = {
+	id = SAF_south_africa_indivisible
+	icon = GFX_SAF_for_south_africa
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_win_the_villages
+	}
+	x = 0
+	y = 4
+	relative_position_id = SAF_focus_on_counterinsurgency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_south_africa_indivisible"
+		add_war_support = 0.1
+		SAF_UNCLE_army_org_up_5 = yes
+		SAF_UNCLE_core_def_up_5 = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_beat_back_the_invaders
+	icon = GFX_GER_leave_without_a_trace
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_our_nation_in_flames
+	}
+	x = 5
+	y = 1
+	relative_position_id = SAF_our_nation_in_flames
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_beat_back_the_invaders"
+		add_political_power = 50
+		SAF_UNCLE_offence_up_5 = yes
+		hidden_effect = {
+			country_event = { id = SAF.154 days = 21 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_increase_our_conscription
+	icon = GFX_goal_ENG_Harsh_Drilling
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_beat_back_the_invaders
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_increase_our_conscription"
+		tno_conscription_worsen = yes
+		if = { limit = { is_ai = yes}
+
+			SAF = {
+				load_oob = SAF_Reserves
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_all_terrain_training
+	icon = GFX_SAF_all_terrain_training
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_beat_back_the_invaders
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_all_terrain_training"
+		custom_effect_tooltip = SAF_all_terrain_tt
+	}
+}
+
+shared_focus = {
+	id = SAF_women_in_the_military
+	icon = GFX_Respect_women_focus_3
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_increase_our_conscription
+		focus = SAF_all_terrain_training
+	}
+	x = -1
+	y = 2
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_women_in_the_military"
+		tno_gender_rights_improve = yes
+		tno_women_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SAF_technological_innovation
+	icon = GFX_CHI_new_tech
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_increase_our_conscription
+		focus = SAF_all_terrain_training
+	}
+	x = 1
+	y = 2
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_technological_innovation"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_militarize_our_economy
+	icon = GFX_ORE_reorganizing_the_militias
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_women_in_the_military
+		focus = SAF_technological_innovation
+	}
+	x = -1
+	y = 3
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_militarize_our_economy"
+		tno_economic_focus_improve = yes
+
+		every_owned_state = {
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_developing_our_tactics
+	icon = GFX_URL_Watch_Their_Troops
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_women_in_the_military
+		focus = SAF_technological_innovation
+	}
+	x = 1
+	y = 3
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_developing_our_tactics"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_build_up_military_industry
+	icon = GFX_CHI_Ramp_Up_Military_Production
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_militarize_our_economy
+		focus = SAF_developing_our_tactics
+	}
+	x = -1
+	y = 4
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_build_up_military_industry"
+		add_offsite_building = { type = arms_factory level = 4 }
+		every_owned_state = {
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAF_improve_our_air_force
+	icon = GFX_Dedicated_Air_Crews
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_militarize_our_economy
+		focus = SAF_developing_our_tactics
+	}
+	x = 1
+	y = 4
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_improve_our_air_force"
+		air_experience = 25
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = air_doctrine
+		}
+
+	}
+}
+
+shared_focus = {
+	id = SAF_the_south_african_military
+	icon = GFX_SAF_The_South_African_Military
+	cost = 5.00
+	prerequisite = {
+		focus = SAF_build_up_military_industry
+	}
+	prerequisite = {
+		focus = SAF_improve_our_air_force
+	}
+	x = 0
+	y = 5
+	relative_position_id = SAF_beat_back_the_invaders
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAF_the_south_african_military"
+		army_experience = 50
+		tno_improve_army_professionalism = yes
+	}
+}

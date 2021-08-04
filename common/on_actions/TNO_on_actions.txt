@@ -1,0 +1,526 @@
+on_actions = {
+
+	######################################################
+	### on_startup goes to TNO__on_startup_actions.txt ###
+	######################################################
+	
+	on_declare_war = { #I am genuinely terrified of this code, and resent the fact that mechanically I need to do this shit at all. I hope it actually works. - Pacifica, Came here to fix what wasn't working - Wendell
+		effect = {
+			if = {
+				limit = {
+					ROOT = { has_border_war = yes }
+				}
+				ROOT = {
+					TNO_cancel_border_war_country_scope = yes
+				}
+			}
+			if = {
+				limit = {
+					FROM = { has_border_war = yes }
+				}
+				FROM = {
+					TNO_cancel_border_war_country_scope = yes
+				}
+			}
+		}
+	}
+
+
+	#on_state_control_changed = { #This is a bootleg hacky backup of a bootleg hacky backup, god help us all. - Pacifica, This code causes a crash with Border war that transfer states + the game doesn't crash when a state with border war is in a effect so I commented out - Wendell
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				FROM.FROM = { has_border_war = yes }
+	#			}
+	#			FROM.FROM = {
+	#				TNO_cancel_border_war_state_scope = yes
+	#			}
+	#		}
+	#	}
+	#}
+
+	#South African War events
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				has_global_flag = south_african_war
+	#				OR = {
+	#					original_tag = SAF
+	#					original_tag = MZB
+	#					original_tag = ANG
+	#					original_tag = COG
+	#				}
+	#			}
+				#Boer Offensive
+				#if = {
+				#	limit = {
+				#		BOR = { has_war_with = SAF }
+				#		BOR = { has_capitulated = no }
+				#		date > 1965.12.16
+				#	}
+				#	BOR = { country_event = { id = GERAF.13 } }
+				#}
+	#			if = {
+	#				limit = {
+	#					country_exists = ANC
+	#					ANC = { NOT = { has_war_with = BOR } }
+	#				}
+	#				ANC = { declare_war_on = { target = BOR type = annex_everything } }
+	#			}
+	#			#Boer Sabotage
+	#			if = {
+	#				limit = {
+	#					SAF = { has_war_with = BOR }
+	#					NOT = { SAF = { has_country_flag = SAF_BOR_insurgency } }
+	#				}
+	#				SAF = { set_country_flag = SAF_BOR_insurgency }
+	#				SAF = { country_event = { id = SAF.17 days = 13 random = 48 } }
+				#}
+				#if = {
+				#	limit = {
+				#		OR = {
+				#			original_tag = COG
+				#			original_tag = MZB
+				#			original_tag = ANG
+				#		}
+				#		surrender_progress > 0.4
+				#	}
+				#	country_event = { id = GERAF.11 }
+				#}
+				#if = {
+				#	limit = {
+				#		OR = {
+				#			original_tag = COG
+				#			original_tag = MZB
+				#			original_tag = ANG
+				#		}
+				#		surrender_progress < 0.15
+				#		has_idea = RK_Wervolf
+				#	}
+				#	country_event = { id = GERAF.12 }
+				#}
+	#		}
+	#	}
+	#}
+
+	#South African boost event checks
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				has_global_flag = south_african_war
+	#			}
+	#			#Remove/add "Our Darkest Hour" as needed
+	#			if = {
+	#				limit = {
+	#					SAF = { surrender_progress > 0.3 }
+	#					NOT = { SAF = { has_idea = SAF_our_darkest_hour } }
+	#				}
+	#				SAF = { country_event = { id = SAF.19 } }
+	#			}
+	#			if = {
+	#				limit = {
+	#					SAF = { surrender_progress < 0.15 }
+	#					SAF = { has_idea = SAF_our_darkest_hour }
+	#				}
+	#				SAF = { country_event = { id = SAF.21 } }
+	#			}
+	#			#Boer Insurgency
+	#			if = {
+	#				limit = {
+	#					SAF = { has_war_with = BOR }
+	#				}
+	#				SAF = { country_event = { id = SAF.22 } }
+	#			}
+	#		}
+	#	}
+	#}
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				original_tag = GER
+	#			}
+	#			set_variable = { average_slave_unrest = 0 }
+	#			GER = {
+	#				every_owned_state = {
+	#					add_to_temp_variable = { var = a value = slave_unrest  }
+	#				}
+	#				set_temp_variable = { states = 0 }
+	#				every_owned_state = {
+	#					add_to_temp_variable = { var = states value = 1 }
+	#				}
+	#				add_to_variable = { var = average_slave_unrest value = a }
+	#				divide_variable = { var = average_slave_unrest value = states }
+	#			}
+	#		}
+	#	}
+	#}
+	#on_daily = {
+	#	effect = {
+	#		GER = {
+	#			random_owned_state = {
+	#				limit = {
+	#					check_variable = { slave_unrest > 40 }
+	#				}
+	#				save_event_target_as = medium_slave_unrest
+	#				#country_event = reich.1020
+	#			}
+	#		}
+	#	}
+	#}
+	#on_daily = {
+	#	effect = {
+	#		GER = {
+	#			random_owned_state = {
+	#				limit = {
+	#					check_variable = { slave_unrest > 70 }
+	#				}
+	#				save_event_target_as = high_slave_unrest
+	#				#country_event = reich.1021
+	#			}
+	#		}
+	#	}
+	#}
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				AND = {
+	#					is_nuclear_armed = yes
+	#					has_war = yes
+	#					surrender_progress > 0.5
+	#				}
+	#			}
+	#			set_variable = { var = capitulation_nukemodifier value = surrender_progress - .5 }
+	#			multiply_variable = { var = capitulation_nukemodifier value = 100}
+	#		}
+	#	}
+	#}
+
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				AND = {
+	#					OR = { tag = ABC tag = ZZZ }
+	#					is_ai = no
+	#				}
+	#				NOT = {
+	#					has_global_flag = NUCLEAR_WAR
+	#				}
+	#			}
+	#			random_other_country = {
+	#				limit = { is_ai = yes }
+	#				change_tag_from = ROOT
+	#			}
+	#		}
+	#	}
+	#}
+
+	on_join_faction = {#Embargos
+		effect = {
+			if = {#OFN countries embargoing UP countries upon faction join
+				limit = {
+					OR = {
+						tag = USA
+						is_in_faction_with = USA
+					}
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = GER
+							tag = GGR
+							tag = BGR
+							tag = HGR
+							tag = SGR
+							is_in_faction_with = GER
+							is_in_faction_with = GGR
+							is_in_faction_with = BGR
+							is_in_faction_with = HGR
+							is_in_faction_with = SGR
+						}
+					}
+					add_opinion_modifier = { target = ROOT modifier = TNO_embargo }
+					set_country_flag = OFN_embargo_target
+					ROOT = {#Event to embargo UP countries
+						country_event = {
+							id = OFN.4
+						}
+					}
+				}
+			}
+
+			if = {#UP countries embargoing OFN countries upon faction join
+				limit = {
+					OR = {
+						tag = GER
+						tag = GGR
+						tag = BGR
+						tag = HGR
+						tag = SGR
+						is_in_faction_with = GER
+						is_in_faction_with = GGR
+						is_in_faction_with = BGR
+						is_in_faction_with = HGR
+						is_in_faction_with = SGR
+					}
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = USA
+							is_in_faction_with = USA
+						}
+					}
+					add_opinion_modifier = { target = ROOT modifier = TNO_embargo }
+					set_country_flag = UP_embargo_target
+					ROOT = {#Event to embargo OFN countries
+						country_event = {
+							id = OFN.6
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	##Wales###
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#			   has_global_flag = WAL_Cultural_Rebirth
+	#				has_global_flag = WAL_Annual_Economic_Assessment
+	#				has_global_flag = WAL_Political_Openness
+	#			}
+	#			WAL = {
+	#				country_event = { id = wales.1 days = 1 }
+	#			}
+	#		}
+	#   }
+	#}
+	######
+	#on_daily = {
+	#	effect = {
+	#		if = {
+	#			limit = {
+	#				GER = {
+	#					controls_state = 1001
+	#					has_war_with = USA
+	#				}
+	#			}
+	#			country_event = { id = WORLD.25 days = 1 }
+	#		}
+	#	}
+	#}
+#	on_daily = {
+#		effect = {
+#			if = {
+#				limit = {
+#					has_global_flag = ICW_yes
+#					tag = CUB
+#				}
+#				every_country = {
+#					add_to_variable = {
+#		   				 var = icwhunger
+#						value = 1
+#					}
+#				}
+#			}
+#		}
+#	}
+#	on_daily = {
+#		effect = {
+#			if = {
+#				limit = {
+#					has_global_flag = ICW_ended
+#					tag = CUB
+#				}
+#				every_country = {
+#					add_to_variable = {
+#		   				 var = icwfallback
+#						value = 1
+#					}
+#				}
+#			}
+#		}
+#	}
+#	
+
+#	on_daily = {
+#		effect = {
+#			USA = {
+#				if = {
+#					limit = { threat > 0.95 }
+#					add_threat = -1
+#				}
+#			}
+#		}
+#	}
+
+
+#	## MODIFIERS FIX ##
+#	on_daily = {
+#		effect = {
+#			if = {
+#				limit = { has_dynamic_modifier = { modifier = research_pre_ironclad_modifier } }
+#				remove_dynamic_modifier = {
+#					modifier = research_pre_ironclad_modifier
+#				}
+#			}
+#			if = {
+#				limit = { has_dynamic_modifier = { modifier = factory_output_modifier } }
+#				remove_dynamic_modifier = {
+#					modifier = factory_output_modifier
+#				}
+#			}
+#			if = {
+#				limit = { has_dynamic_modifier = { modifier = dockyard_output_modifier } }
+#				remove_dynamic_modifier = {
+#					modifier = dockyard_output_modifier
+#				}
+#			}
+#			if = {
+#				limit = { has_dynamic_modifier = { modifier = construction_speed_modifier } }
+#				remove_dynamic_modifier = {
+#					modifier = construction_speed_modifier
+#				}
+#			}
+#			if = {
+#				limit = { has_dynamic_modifier = { modifier = efficiency_cap_modifier } }
+#				remove_dynamic_modifier = {
+#					modifier = efficiency_cap_modifier
+#				}
+#			}
+#
+#			if = {
+#				limit = { check_variable = { modifier@research_speed_factor < 0 } }
+#				adjust_research_modifier = yes
+#			}
+#			if = {
+#				limit = { check_variable = { modifier@industrial_capacity_factory < 0 } }
+#				adjust_factory_output_modifier = yes
+#			}
+#			if = {
+#				limit = { check_variable = { modifier@industrial_capacity_dockyard < 0 } }
+#				adjust_dockyard_output_modifier = yes
+#			}
+#			if = {
+#				limit = { check_variable = { modifier@production_speed_buildings_factor < 0 } }
+#				adjust_construction_speed_modifier = yes
+#			}
+#
+#			#this one is more for the user -- you can still produce things at 0 efficiency, it just looks ugly
+#			#base is 0.5, so give a minimum of 0.05
+#			if = {
+#				limit = { check_variable = { modifier@production_factory_max_efficiency_factor < 0.05 } }
+#				adjust_efficiency_cap_modifier = yes
+#			}
+#		}
+#	}
+
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = NUCLEAR_WAR
+					}
+				}
+				FROM = {
+					set_variable = { transferred_state = FROM.FROM }
+					if = {
+						limit = {
+							check_variable = { FROM.FROM.state_value > 0 }
+						}
+						subtract_from_variable = { GDP = FROM.FROM.state_value }
+					}			
+				}
+				ROOT = {
+					if = {
+						limit = {
+							check_variable = { FROM.FROM.state_value > 0 }
+						}
+						set_variable = { tempstatevalue = FROM.FROM.state_value }
+						multiply_variable = { tempstatevalue = 0.9 }
+						add_to_variable = { GDP = tempstatevalue }
+						log = "[GetDateText]: [FROM.GetName]: [FROM.FROM.GetName] lost. Transferring $[?FROM.FROM.state_value] million to [ROOT.GetName], of which they get $[?ROOT.tempstatevalue] million."
+						set_variable = { FROM.FROM.state_value = tempstatevalue }
+					}	
+				}
+			}
+		}
+	}
+
+	on_monthly_ZZZ = {
+		effect = {
+			first_every_month_script = yes
+		}
+	}
+
+	# Script for nations to get embargoed by the other superpowers once they join one of the three main factions
+	on_join_faction = {
+		effect = {
+			if = {
+				limit = { FROM = { tag = USA } }
+				if = {
+					limit = { has_global_flag = ofn_cps_embargo }
+					for_each_scope_loop = {
+						array = JAP.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+				if = {
+					limit = { has_global_flag = ofn_pakt_embargo }
+					for_each_scope_loop = {
+						array = GER.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { tag = JAP } }
+				if = {
+					limit = { has_global_flag = ofn_cps_embargo }
+					for_each_scope_loop = {
+						array = USA.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+				if = {
+					limit = { has_global_flag = pakt_cps_embargo }
+					for_each_scope_loop = {
+						array = GER.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { tag = GER } }
+				if = {
+					limit = { has_global_flag = ofn_pakt_embargo }
+					for_each_scope_loop = {
+						array = USA.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+				if = {
+					limit = { has_global_flag = pakt_cps_embargo }
+					for_each_scope_loop = {
+						array = JAP.faction_members
+						add_opinion_modifier = { target = PREV modifier = embargo }
+						reverse_add_opinion_modifier = { target = PREV modifier = embargo }
+					}
+				}
+			}
+		}
+	}
+}

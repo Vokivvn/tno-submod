@@ -1,0 +1,289 @@
+﻿add_namespace = OMA
+add_namespace = omacw
+
+country_event = { # Qaboos plans a coup
+	id = OMA.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.1"}
+	title = OMA.1.t
+	desc = OMA.1.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMA.1.a
+		ITA = {
+			country_event = {
+				id = OMA.2
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { # Back Qaboos
+	id = OMA.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.2"}
+	title = OMA.2.t
+	desc = OMA.2.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMA.2.a
+		OMA = {
+			country_event = { id = OMA.3 days = 4 }
+		}
+	}
+}
+
+country_event = { # Qaboos coups
+	id = OMA.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.3"}
+	title = OMA.3.t
+	desc = OMA.3.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMA.3.a
+		create_country_leader = {
+			name = "Qaboos bin Said Al Said"
+			desc = "POLITICS_Qaboos_bin_Said_Al_Said_DESC"
+			picture = "Qaboos_bin_Said_al_Said.dds"
+			expire = "2020.1.10"
+			ideology = social_conservative_subtype
+			traits = {
+
+			}
+		}
+		load_oob = OMA_oil_crisis
+		set_politics = {
+			ruling_party = social_conservative
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.2
+		}
+		hidden_effect = {
+			country_event = { id = OMA.4 days = 4 }
+			country_event = { id = OMA.5 days = 6 }
+		}
+	}
+}
+
+country_event = { # Imamate of Oman
+	id = OMA.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.4"}
+	title = OMA.4.t
+	desc = OMA.4.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMA.4.a
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = WORLD.948
+					days = 1
+				}
+			}
+		}
+		OMI = {
+			transfer_state = 914
+			add_state_core = 914
+			add_state_core = 915
+			add_state_core = 294
+			add_state_core = 913
+			load_oob = OMI_oil_crisis
+		}
+		hidden_effect = {
+			declare_war_on = {
+				target = OMI
+				type = annex_everything
+			}
+			OMI = {
+				declare_war_on = {
+					target = OMB
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = OMA
+					type = annex_everything
+				}
+			}
+		}
+	}
+}
+
+country_event = { # Dhofar Rebellion
+	id = OMA.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.5"}
+	title = OMA.5.t
+	desc = OMA.5.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMA.5.a
+		OMB = {
+			transfer_state = 913
+			add_state_core = 914
+			add_state_core = 915
+			add_state_core = 294
+			add_state_core = 913
+			load_oob = OMB_oil_crisis
+		}
+		hidden_effect = {
+			declare_war_on = {
+				target = OMB
+				type = annex_everything
+			}
+			OMB = {
+				declare_war_on = {
+					target = OMI
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = OMA
+					type = annex_everything
+				}
+			}
+		}
+		set_global_flag = Omman_CW
+	}
+}
+
+country_event = { #OMI joins Arab League
+	id = OMA.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.6"}
+	title = OMA.6.t
+	desc = OMA.6.d
+	picture = GFX_report_event_map
+	trigger = {
+		tag = OMI
+		AND = {
+			owns_state = 913
+			owns_state = 914
+			owns_state = 915
+			owns_state = 294
+		}
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = OMA.6.a
+		SAU = {
+			country_event = { id = OMA.7 }
+		}
+	}
+}
+
+country_event = { #OMI joins Arab League
+	id = OMA.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.7"}
+	title = OMA.7.t
+	desc = OMA.7.d
+	picture = GFX_report_event_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = OMA.7.a
+		SAU = {
+			add_to_faction = OMI
+		}
+	}
+}
+
+country_event = { #OMB joins UAS
+	id = OMA.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMA.8"}
+	title = OMA.8.t
+	desc = OMA.8.d
+	picture = GFX_report_event_map
+	trigger = {
+		tag = OMB
+		owns_state = 913
+		owns_state = 914
+		owns_state = 915
+		owns_state = 294
+		NOT = {
+			is_in_faction = yes
+		}
+		SYR = {
+			exists = yes
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = OMA.8.a
+		SYR = {
+			country_event = { id = Syria.5 }
+		}
+	}
+}
+
+##stuff for world events##
+country_event = { #Dhofar
+	id = omacw.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event omacw.1"}
+	title = omacw.1.t
+	desc = omacw.1.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			OMB = {
+				has_global_flag = Omman_CW
+				NOT = {
+					has_war_with = OMI
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18020
+			days = 1
+		}
+	}
+}
+country_event = { #alhinai
+	id = omacw.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event omacw.2"}
+	title = omacw.2.t
+	desc = omacw.2.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			OMI = {
+				has_global_flag = Omman_CW
+				NOT = {
+					has_war_with = OMB
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18021
+			days = 1
+		}
+	}
+}

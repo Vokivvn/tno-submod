@@ -1,0 +1,3916 @@
+####################################################################################
+## ██████╗ ██╗   ██╗██████╗ ██╗██╗  ██╗    ██╗███╗   ███╗██████╗ ███████╗██████╗  ##
+## ██╔══██╗██║   ██║██╔══██╗██║██║ ██╔╝    ██║████╗ ████║██╔══██╗██╔════╝██╔══██╗ ##
+## ██████╔╝██║   ██║██████╔╝██║█████╔╝     ██║██╔████╔██║██████╔╝█████╗  ██████╔╝ ##
+## ██╔══██╗██║   ██║██╔══██╗██║██╔═██╗     ██║██║╚██╔╝██║██╔═══╝ ██╔══╝  ██╔══██╗ ##
+## ██║  ██║╚██████╔╝██║  ██║██║██║  ██╗    ██║██║ ╚═╝ ██║██║     ███████╗██║  ██║ ##
+## ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝ ##
+####################################################################################
+
+################################################
+##==============| Start tree |==============####
+##============| Design by Targai |===========###
+##====| Code by Thunderslav & Obsidian |======##
+################################################
+shared_focus = {
+	id = KEM_reign_of_the_mad_king
+	icon = GFX_KEM_Reign_of_the_Mad_King
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_reign_of_the_mad_king"
+		unlock_decision_category_tooltip = KEM_kingdom_of_kemerovo_category
+		set_country_flag = KEM_royal_court
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = KEM.2 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kings_industry
+	icon = GFX_KEM_The_Kings_Industry
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_reign_of_the_mad_king
+	}
+	x = -7
+	y = 1
+	relative_position_id = KEM_reign_of_the_mad_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kings_industry"
+		SIB_increase_ic_low = yes
+		569 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		hidden_effect = {
+			country_event = { id = KEM.4 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_support_the_unions
+	icon = GFX_KEM_Support_the_Unions
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_industry
+	}
+	mutually_exclusive = {
+		focus = KEM_a_change_in_course
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_kings_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_support_the_unions"
+		KEM_increase_yuriy_influence_1 = yes
+		SIB_increase_consumer_goods_low = yes
+		SIB_increase_max_efficiency_low = yes
+		SIB_decrease_worker_tension_low = yes
+		hidden_effect = {
+			country_event = { id = KEM.17 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_will_of_the_people
+	icon = GFX_KEM_With_the_Will_of_the_People
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_support_the_unions
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_support_the_unions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_will_of_the_people"
+		TNO_improve_academic_base_low = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = electronics
+		}
+		add_tech_bonus = {
+			category = engineers_tech
+			uses = 1
+			bonus = 0.5
+		}
+		hidden_effect = {
+			country_event = { id = KEM.18 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_and_the_power_of_the_king
+	icon = GFX_KEM_And_the_Power_of_the_King
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_will_of_the_people
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_will_of_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_and_the_power_of_the_king"
+		country_event = { id = KEM.11 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_change_in_course
+	icon = GFX_KEM_A_Change_in_Course
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_industry
+	}
+	mutually_exclusive = {
+		focus = KEM_support_the_unions
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_kings_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_change_in_course"
+		add_political_power = 50
+		KEM_increase_lydia_influence_1 = yes
+		SIB_increase_max_efficiency_low = yes
+		SIB_increase_worker_tension_low = yes
+		hidden_effect = {
+			country_event = { id = KEM.19 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_lean_right
+	icon = GFX_KEM_Lean_Right
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_change_in_course
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_change_in_course
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_lean_right"
+		TNO_improve_industrial_expertise_low = yes
+		SIB_increase_resources_low = yes
+		hidden_effect = {
+			country_event = { id = KEM.20 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_a_truly_free_market
+	icon = GFX_KEM_A_Truly_Free_Market
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_lean_right
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_lean_right
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_truly_free_market"
+		add_political_power = -15
+		SIB_increase_worker_tension_med = yes
+		swap_ideas = {
+			remove_idea = tno_trade_laws_limited_exports
+			add_idea = tno_trade_laws_free_trade
+		}
+		hidden_effect = {
+			country_event = { id = KEM.21 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_an_economy_for_the_modern_age
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_truly_free_market
+		focus = KEM_and_the_power_of_the_king
+	}
+	x = 0
+	y = 4
+	relative_position_id = KEM_the_kings_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_an_economy_for_the_modern_age"
+		custom_effect_tooltip = KEM_an_economy_for_the_modern_age_tt
+		TNO_improve_poverty_low = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = KEM_and_the_power_of_the_king
+				}
+				swap_ideas = {
+					remove_idea = KEM_kings_unions
+					add_idea = KEM_kings_unions_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = KEM_a_truly_free_market
+				}
+				swap_ideas = {
+					remove_idea = KEM_kings_unions
+					add_idea = KEM_unions_subdued
+				}
+			}
+			country_event = { id = KEM.12 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kings_society
+	icon = GFX_KEM_The_Kings_Society
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_reign_of_the_mad_king
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_reign_of_the_mad_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kings_society"
+		add_war_support = 0.05
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = KEM.5 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_prince_yuriys_ideals
+	icon = GFX_KEM_Prince_Yuriys_Ideals
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_society
+	}
+	mutually_exclusive = {
+		focus = KEM_princess_lydias_pragmatism
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_the_kings_society
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_prince_yuriys_ideals"
+		KEM_increase_yuriy_influence_2 = yes
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = KEM_king_ruriks_revolutionary_past
+	icon = GFX_KEM_King_Ruriks_Revolutionary_Past
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_prince_yuriys_ideals
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_prince_yuriys_ideals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_king_ruriks_revolutionary_past"
+		add_political_power = 35
+		add_ideas = KEM_revolutionary_king
+	}
+}
+
+shared_focus = {
+	id = KEM_a_kingdom_of_equals
+	icon = GFX_KEM_A_Kingdom_of_Equals
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_prince_yuriys_ideals
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_prince_yuriys_ideals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_kingdom_of_equals"
+		add_political_power = -25
+		tno_public_meetings_improve = yes
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.035 }
+		hidden_effect = {
+			country_event = { id = KEM.7 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_zemsky_sobor_reborn
+	icon = GFX_KEM_The_Zemsky_Sobor_Reborn
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_king_ruriks_revolutionary_past
+	}
+	prerequisite = {
+		focus = KEM_a_kingdom_of_equals
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_prince_yuriys_ideals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_zemsky_sobor_reborn"
+		add_ideas = KEM_a_new_sobor
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.1 }
+		hidden_effect = {
+			country_event = { id = KEM.8 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_princess_lydias_pragmatism
+	icon = GFX_KEM_Princess_Lydias_Pragmatism
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_society
+	}
+	mutually_exclusive = {
+		focus = KEM_prince_yuriys_ideals
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_the_kings_society
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_princess_lydias_pragmatism"
+		KEM_increase_lydia_influence_2 = yes
+		add_popularity = { ideology = despotism	popularity = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kings_military_heritage
+	icon = GFX_KEM_The_Kings_Military_Heritage
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_princess_lydias_pragmatism
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_princess_lydias_pragmatism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kings_military_heritage"
+		add_war_support = 0.1
+		add_ideas = KEM_militarist_king
+	}
+}
+
+shared_focus = {
+	id = KEM_fire_and_blood
+	icon = GFX_KEM_Fire_and_Blood
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_princess_lydias_pragmatism
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_princess_lydias_pragmatism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_fire_and_blood"
+		add_ideas = KEM_a_new_hierarchy
+		hidden_effect = {
+			country_event = { id = KEM.10 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_kingsguard_primacy
+	icon = GFX_KEM_Kingsguard_Primacy
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_military_heritage
+	}
+	prerequisite = {
+		focus = KEM_fire_and_blood
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_princess_lydias_pragmatism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_kingsguard_primacy"
+		add_ideas = KEM_kingsguard_supremacy
+		add_popularity = { ideology = despotism popularity = 0.05 }
+		hidden_effect = {
+			country_event = { id = KEM.15 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_our_realm_secured
+	icon = GFX_KEM_Our_Realm_Secured
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_zemsky_sobor_reborn
+		focus = KEM_kingsguard_primacy
+	}
+	x = 0
+	y = 4
+	relative_position_id = KEM_the_kings_society
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_our_realm_secured"
+		add_political_power = 75
+		add_stability = 0.15
+		if = {
+			limit = {
+				has_completed_focus = KEM_the_zemsky_sobor_reborn
+			}
+			SIB_decrease_worker_tension_high = yes
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = KEM_kingsguard_primacy
+			}
+			SIB_increase_worker_tension_high = yes
+		}
+		hidden_effect = {
+			country_event = { id = KEM.13 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kings_army
+	icon = GFX_KEM_The_Kings_Army
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_reign_of_the_mad_king
+	}
+	x = 7
+	y = 1
+	relative_position_id = KEM_reign_of_the_mad_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kings_army"
+		add_war_support = 0.1
+		country_event = { id = KEM.3 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_standing_army
+	icon = GFX_KEM_A_Standing_Army
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_army
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_kings_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_standing_army"
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_defensive_doctrine
+	icon = GFX_KEM_Defensive_Doctrine
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_standing_army
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_standing_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_defensive_doctrine"
+		569 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = KEM.24 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_a_conscripted_force
+	icon = GFX_KEM_A_Conscripted_Force
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_army
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_kings_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_conscripted_force"
+		SIB_increase_worker_tension_low = yes
+		add_timed_idea = { idea = KEM_idea_raising_an_army days = 180 }
+	}
+}
+
+shared_focus = {
+	id = KEM_your_life_for_the_king
+	icon = GFX_KEM_Your_Life_for_the_King
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_conscripted_force
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_conscripted_force
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_your_life_for_the_king"
+		add_political_power = -25
+		tno_training_improve = yes
+		hidden_effect = {
+			country_event = { id = KEM.23 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_wartime_industry
+	icon = GFX_Generic_Industry
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_defensive_doctrine
+	}
+	prerequisite = {
+		focus = KEM_your_life_for_the_king
+	}
+	x = 0
+	y = 3
+	relative_position_id = KEM_the_kings_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_wartime_industry"
+		SIB_decrease_consumer_goods_high = yes
+		569 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_lines_of_infantry
+	icon = GFX_KEM_Lines_of_Infantry
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_wartime_industry
+	}
+	mutually_exclusive = {
+		focus = KEM_columns_of_tanks
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_wartime_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_lines_of_infantry"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 250
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 250
+			producer = KEM
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_columns_of_tanks
+	icon = GFX_KEM_Columns_of_Tanks
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_wartime_industry
+	}
+	mutually_exclusive = {
+		focus = KEM_lines_of_infantry
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_wartime_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_columns_of_tanks"
+		add_equipment_to_stockpile = {
+			type = MBT_equipment
+			amount = 250
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = IFV_equipment
+			amount = 250
+			producer = KEM
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_on_the_warpath
+	icon = GFX_KEM_On_the_Warpath
+	cost = 3.45
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_an_economy_for_the_modern_age
+	}
+	prerequisite = {
+		focus = KEM_our_realm_secured
+	}
+	prerequisite = {
+		focus = KEM_lines_of_infantry
+		focus = KEM_columns_of_tanks
+	}
+	x = 0
+	y = 6
+	relative_position_id = KEM_reign_of_the_mad_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_on_the_warpath"
+		add_war_support = 0.1
+		add_political_power = 75
+		569 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		hidden_effect = {
+			country_event = { id = KEM.14 days = 2 }
+		}
+	}
+}
+
+##################################
+##======| Expansion Tree |======##
+##======| By Thunderslav |======##
+##################################
+shared_focus = {
+	id = KEM_hail_the_season_of_war
+	icon = GFX_TNO_generic_spring
+	cost = 1.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SIB_spring_tt
+			date > 1963.5.1
+		}
+	}
+	x = 25
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_hail_the_season_of_war"
+		add_war_support = 0.075
+		country_event = { id = kemexp.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_raise_the_shieldmaidens
+	icon = GFX_Respect_women_focus_1
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_hail_the_season_of_war
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_hail_the_season_of_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_raise_the_shieldmaidens"
+		custom_effect_tooltip = KEM_raise_the_shieldmaidens_tt
+		country_event = { id = kemexp.2 hours = 6 }
+		hidden_effect = {
+			load_oob = KEM_Shieldmaidens
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_reunion_in_krasnoyarsk
+	icon = GFX_SIB_invade_krasnoyarsk
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		SAH = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KEM_raise_the_shieldmaidens
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_raise_the_shieldmaidens
+	will_lead_to_war_with = SAH
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_reunion_in_krasnoyarsk"
+		declare_war_on = {
+			target = SAH
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_oaths_of_loyalty
+	icon = GFX_CZE_Soldier_Saluting_Rubble
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				SAH = {
+					owns_state = 757
+				}
+				KEM = {
+					owns_state = 757
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 757
+	}
+	prerequisite = {
+		focus = KEM_reunion_in_krasnoyarsk
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_reunion_in_krasnoyarsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_oaths_of_loyalty"
+		country_event = { id = kemexp.3 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_trial_of_andreev
+	icon = GFX_generic_trials
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				SAH = {
+					owns_state = 757
+				}
+				KEM = {
+					owns_state = 757
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 757
+	}
+	prerequisite = {
+		focus = KEM_reunion_in_krasnoyarsk
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_reunion_in_krasnoyarsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_trial_of_andreev"
+		country_event = { id = kemexp.4 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_king_for_krasnoyarsk
+	icon = GFX_goal_KIR_Many_Shades_of_Monarchism
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				SAH = {
+					owns_state = 757
+				}
+				KEM = {
+					owns_state = 757
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 757
+	}
+	prerequisite = {
+		focus = KEM_the_trial_of_andreev
+	}
+	prerequisite = {
+		focus = KEM_oaths_of_loyalty
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_reunion_in_krasnoyarsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_king_for_krasnoyarsk"
+		RUS_integration_cost_days_decrease = yes
+		country_event = { id = kemexp.14 }
+	}
+}
+
+shared_focus = {
+	id = KEM_offer_to_oyrotia
+	icon = GFX_SIB_diplo_oyrotia
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		ALT = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KEM_a_king_for_krasnoyarsk
+	}
+	x = -4
+	y = 1
+	relative_position_id = KEM_a_king_for_krasnoyarsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_offer_to_oyrotia"
+		ALT = {
+			country_event = { id = kemexp.5 hours = 12 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_power_of_myth
+	icon = GFX_AKT_Shaman_Guidance
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				ALT = {
+					owns_state = 654
+				}
+				KEM = {
+					owns_state = 654
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 654
+	}
+	prerequisite = {
+		focus = KEM_offer_to_oyrotia
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_offer_to_oyrotia
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_power_of_myth"
+		country_event = { id = kemexp.15 }
+	}
+}
+
+shared_focus = {
+	id = KEM_end_the_revolt
+	icon = GFX_SIB_invade_SBA
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		KHA = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+		is_neighbor_of = KHA
+	}
+	prerequisite = {
+		focus = KEM_a_king_for_krasnoyarsk
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_king_for_krasnoyarsk
+	will_lead_to_war_with = KHA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_end_the_revolt"
+		declare_war_on = {
+			target = KHA
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_retain_the_councils
+	icon = GFX_KHA_the_industrial_security_council
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				KHA = {
+					owns_state = 568
+				}
+				KEM = {
+					owns_state = 568
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 568
+	}
+	prerequisite = {
+		focus = KEM_end_the_revolt
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_end_the_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_retain_the_councils"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex 
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory 
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kemexp.16 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_empty_the_armories
+	icon = GFX_generic_advanced_weapons
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		NOT = {
+			OR = {
+				KHA = {
+					owns_state = 568
+				}
+				KEM = {
+					owns_state = 568
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 568
+	}
+	prerequisite = {
+		focus = KEM_end_the_revolt
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_end_the_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_empty_the_armories"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = KHA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = KHA
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 250
+			producer = KHA
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 250
+			producer = KHA
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_strike_down_the_remnant
+	icon = GFX_SIB_invade_organ
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		SVO = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KEM_a_king_for_krasnoyarsk
+	}
+	x = 4
+	y = 1
+	relative_position_id = KEM_a_king_for_krasnoyarsk
+	will_lead_to_war_with = SVO
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus "
+		declare_war_on = {
+			target = SVO
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_adapt_their_tactics
+	icon = GFX_AKT_Masters_of_Man_and_Horse
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_strike_down_the_remnant
+	}
+	bypass = {
+		NOT = {
+			OR = {
+				SVO = {
+					owns_state = 329
+				}
+				KEM = {
+					owns_state = 329
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 329
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_strike_down_the_remnant
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_adapt_their_tactics"
+		add_tech_bonus = {
+			bonus = 0.33
+			uses = 2
+			category = land_doctrine
+		}
+		hidden_effect = {
+			country_event = { id = kemexp.17 days = 4 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kings_speech
+	icon = GFX_generic_change_law_speech
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_power_of_myth
+	}
+	prerequisite = {
+		focus = KEM_retain_the_councils
+	}
+	prerequisite = {
+		focus = KEM_empty_the_armories
+	}
+	prerequisite = {
+		focus = KEM_adapt_their_tactics
+	}
+	x = -1
+	y = 2
+	relative_position_id = KEM_end_the_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kings_speech"
+		country_event = { id = kemexp.8 hours = 12 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_royal_railway
+	icon = GFX_SAH_siberian_freight_fleet
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_power_of_myth
+	}
+	prerequisite = {
+		focus = KEM_retain_the_councils
+	}
+	prerequisite = {
+		focus = KEM_empty_the_armories
+	}
+	prerequisite = {
+		focus = KEM_adapt_their_tactics
+	}
+	x = 1
+	y = 2
+	relative_position_id = KEM_end_the_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_royal_railway"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure 
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure 
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure 
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_royal_governorates
+	icon = GFX_KHA_expand_administrative_umbrella
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kings_speech
+	}
+	prerequisite = {
+		focus = KEM_the_royal_railway
+	}
+	x = 0
+	y = 3
+	relative_position_id = KEM_end_the_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_royal_governorates"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_return_of_the_king
+	icon = GFX_SIB_invade_tomsk
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		ERS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KEM_royal_governorates
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_royal_governorates
+	will_lead_to_war_with = ERS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_return_of_the_king"
+		declare_war_on = {
+			target = ERS
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_lessons_from_novgorod
+	icon = GFX_generic_monarchist_constitution
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			country_exists = ERS
+		}
+		owns_state = 578
+	}
+	prerequisite = {
+		focus = KEM_return_of_the_king
+	}
+	mutually_exclusive = {
+		focus = KEM_the_iron_crown
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_return_of_the_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_lessons_from_novgorod"
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.1 }
+		KEM_increase_yuriy_influence_3 = yes
+		hidden_effect = {
+			country_event = { id = kemexp.9 days = 3 }
+			country_event = { id = kemexp.13 days = 14 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_iron_crown
+	icon = GFX_generic_authoritarian_constitution
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			country_exists = ERS
+		}
+		owns_state = 578
+	}
+	prerequisite = {
+		focus = KEM_return_of_the_king
+	}
+	mutually_exclusive = {
+		focus = KEM_lessons_from_novgorod
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_return_of_the_king
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_iron_crown"
+		add_popularity = { ideology = despotism popularity = 0.1 }
+		KEM_increase_lydia_influence_3 = yes
+		hidden_effect = {
+			country_event = { id = kemexp.10 days = 3 }
+			country_event = { id = kemexp.13 days = 14 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_silence_the_hawks
+	icon = GFX_SIB_invade_novosibirsk
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	bypass = {
+		PAV = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KEM_royal_governorates
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_royal_governorates
+	will_lead_to_war_with = PAV
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_silence_the_hawks"
+		declare_war_on = {
+			target = PAV
+			type = russian_reclaimation
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_peoples_will
+	icon = GFX_SAM_To_The_People
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			country_exists = PAV
+		}
+		owns_state = 570
+	}
+	prerequisite = {
+		focus = KEM_silence_the_hawks
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_silence_the_hawks
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_peoples_will"
+		add_war_support = 0.1
+		hidden_effect = {
+			country_event = { id = kemexp.12 days = 14 random = 96 }
+			country_event = { id = kemexp.18 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_breadbasket_of_siberia
+	icon = GFX_UPO_secure_the_breadbasket
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			country_exists = PAV
+		}
+		owns_state = 570
+	}
+	prerequisite = {
+		focus = KEM_silence_the_hawks
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_silence_the_hawks
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_breadbasket_of_siberia"
+		TNO_improve_agriculture_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_industrial_consolidation
+	icon = GFX_generic_diplomacy_industrial
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_lessons_from_novgorod
+		focus = KEM_the_iron_crown
+	}
+	prerequisite = {
+		focus = KEM_the_peoples_will
+	}
+	prerequisite = {
+		focus = KEM_the_breadbasket_of_siberia
+	}
+	x = 0
+	y = 3
+	relative_position_id = KEM_royal_governorates
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_industrial_consolidation"
+		TNO_improve_industrial_expertise_low = yes
+		TNO_improve_industrial_equipment_low = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_the_grand_principality_of_siberia
+	icon = GFX_KEM_The_Grand_Principality_of_Siberia
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_industrial_consolidation
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_industrial_consolidation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_grand_principality_of_siberia"
+		add_stability = 0.15
+		add_political_power = 35
+		country_event = { id = kemexp.11 days = 1 }
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+##############################################
+##============| Regional Trees |============##
+##======| By Thunderslav & Obsidian |======###
+##############################################
+
+### Regional Political Tree ###
+shared_focus = {
+	id = KEM_a_kingdom_of_contradictions
+	icon = GFX_KEM_Reign_of_the_Mad_King
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_kingdom_of_contradictions"
+		add_political_power = 50
+		country_event = { id = kemreg.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_new_capital
+	icon = GFX_The_Model_City
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_kingdom_of_contradictions
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_kingdom_of_contradictions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_new_capital"
+		country_event = { id = kemreg.2 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_new_aristocracy
+	icon = GFX_goal_KIR_Cultured_Court
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_kingdom_of_contradictions
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_a_kingdom_of_contradictions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_new_aristocracy"
+		add_stability = 0.05
+		add_political_power = 40
+		hidden_effect = {
+			country_event = { id = kemreg.32 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_monuments_to_our_victories
+	icon = GFX_generic_russian_eagle
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_kingdom_of_contradictions
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_a_kingdom_of_contradictions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_monuments_to_our_victories"
+		add_war_support = 0.075
+		hidden_effect = {
+			country_event = { id = kemreg.31 days = 7 random = 48 }
+			country_event = { id = kemreg.57 days = 75 random = 480 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_affairs_of_the_realm
+	icon = GFX_generic_trials
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_monuments_to_our_victories
+	}
+	prerequisite = {
+		focus = KEM_a_new_capital
+	}
+	prerequisite = {
+		focus = KEM_a_new_aristocracy
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_new_capital
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_affairs_of_the_realm"
+		country_event = { id = kemreg.3 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_administering_the_kingdom
+	icon = GFX_Generic_Admininistration
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_affairs_of_the_realm
+	}
+	x = -6
+	y = 1
+	relative_position_id = KEM_affairs_of_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_administering_the_kingdom"
+		country_event = { id = kemreg.33 }
+		add_political_power = 25
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_bureaucrats_from_the_unions
+	icon = GFX_NOR_but_what_about_the_unions
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_administering_the_kingdom
+	}
+	mutually_exclusive = {
+		focus = KEM_promote_loyal_boyars
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_administering_the_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_bureaucrats_from_the_unions"
+		KEM_increase_yuriy_influence_3 = yes
+		tno_trade_unions_improve = yes
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05	}
+	}
+}
+
+shared_focus = {
+	id = KEM_promote_loyal_boyars
+	icon = GFX_POL_germanys_loyal_sons
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_administering_the_kingdom
+	}
+	mutually_exclusive = {
+		focus = KEM_bureaucrats_from_the_unions
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_administering_the_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_promote_loyal_boyars"
+		KEM_increase_lydia_influence_3 = yes
+		add_popularity = { ideology = despotism	popularity = 0.035 }
+		hidden_effect = {
+			country_event = { id = kemreg.59 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_assemble_a_new_veche
+	icon = GFX_KEM_The_Zemsky_Sobor_Reborn
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_bureaucrats_from_the_unions
+		focus = KEM_promote_loyal_boyars
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_bureaucrats_from_the_unions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_assemble_a_new_veche"
+		if = {
+			limit = {
+				check_variable = { KEM_yuriy_influence > KEM_lydia_influence }
+			}
+			add_ideas = tno_political_parties_controlled_opposition
+		}
+		else_if = {
+			limit = {
+				check_variable = { KEM_lydia_influence > KEM_yuriy_influence }
+			}
+			add_stability = 0.05
+			TNO_improve_industrial_equipment_med = yes
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.34 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_install_regional_posadniks
+	icon = GFX_KHA_expand_administrative_umbrella
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_affairs_of_the_realm
+	}
+	x = -3
+	y = 1
+	relative_position_id = KEM_affairs_of_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_install_regional_posadniks"
+		country_event = { id = kemreg.35 days = 1 }
+		add_political_power = 25
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_render_unto_rurik
+	icon = GFX_KEM_The_Kings_Society
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_assemble_a_new_veche
+	}
+	prerequisite = {
+		focus = KEM_install_regional_posadniks
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_assemble_a_new_veche
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_render_unto_rurik"
+		add_ideas = tno_tax_rate_medium_taxation
+		add_ideas = tno_income_taxation_low_income_weighted
+		hidden_effect = {
+			country_event = { id = kemreg.39 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_royal_edicts
+	icon = GFX_generic_writing
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_affairs_of_the_realm
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_affairs_of_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_royal_edicts"
+		add_political_power = 25
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_repurpose_the_monasteries
+	icon = GFX_Secularists_Appeased
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_royal_edicts
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_royal_edicts
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_repurpose_the_monasteries"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.37 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_king_of_the_people
+	icon = GFX_KEM_And_the_Power_of_the_King
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_repurpose_the_monasteries
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_repurpose_the_monasteries
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_king_of_the_people"
+		country_event = { id = kemreg.38 days = 1 }
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_promote_the_new_culture
+	icon = GFX_CHI_Culture_Studies
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_affairs_of_the_realm
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_affairs_of_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_promote_the_new_culture"
+		country_event = { id = kemreg.36 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_lessons_from_the_kostinshchina
+	icon = GFX_TNO_generic_left_unity_revolution
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_affairs_of_the_realm
+	}
+	x = 6
+	y = 1
+	relative_position_id = KEM_affairs_of_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_lessons_from_the_kostinshchina"
+		add_stability = 0.1
+		SIB_increase_consumer_goods_med = yes
+		hidden_effect = {
+			country_event = { id = kemreg.60 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_russkaya_pravda
+	icon = GFX_generic_change_law_welfare
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_lessons_from_the_kostinshchina
+	}
+	mutually_exclusive = {
+		focus = KEM_a_modern_oprichnina
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_lessons_from_the_kostinshchina
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_russkaya_pravda"
+		add_ideas = tno_public_meetings_regulated
+		KEM_increase_yuriy_influence_3 = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_a_modern_oprichnina
+	icon = GFX_MAG_Acquire_Advisors
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_lessons_from_the_kostinshchina
+	}
+	mutually_exclusive = {
+		focus = KEM_russkaya_pravda
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_lessons_from_the_kostinshchina
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_modern_oprichnina"
+		KEM_increase_lydia_influence_3 = yes
+		add_ideas = tno_security_security_service 
+		RUS_decrease_administrative_strain = yes
+		if = {
+			limit = { has_dlc = "La Resistance" }
+			create_intelligence_agency = { 
+				name = "Oprichniki" 
+				icon = "GFX_intelligence_agency_logo_kir" 
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_peace_in_the_kingdom
+	icon = GFX_NIK_peace
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_russkaya_pravda
+		focus = KEM_a_modern_oprichnina
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_russkaya_pravda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_peace_in_the_kingdom"
+		add_stability = 0.05
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = kemreg.41 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_embrace_modernity_and_tradition
+	icon = GFX_NIK_past_wrongs
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_promote_the_new_culture
+	}
+	prerequisite = {
+		focus = KEM_peace_in_the_kingdom
+	}
+	x = -3
+	y = 1
+	relative_position_id = KEM_peace_in_the_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_embrace_modernity_and_tradition"
+		add_political_power = 25
+		RUS_decrease_administrative_strain = yes
+		hidden_effect = {
+			country_event = { id = kemreg.58 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_clash_of_wolves
+	icon = GFX_KEM_The_Clash_of_Wolves
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			custom_trigger_tooltip = {
+				tooltip = KEM_influence_trigger_tt
+				check_variable = {
+					var = KEM_yuriy_influence
+					value = KEM_lydia_influence
+					compare = equals
+				}
+			}
+		}
+	}
+	select_effect = {
+		hidden_effect = {
+			clr_country_flag = KEM_royal_court
+		}
+	}
+	prerequisite = {
+		focus = KEM_render_unto_rurik
+	}
+	prerequisite = {
+		focus = KEM_the_king_of_the_people
+	}
+	prerequisite = {
+		focus = KEM_embrace_modernity_and_tradition
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_the_king_of_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_clash_of_wolves"
+		custom_effect_tooltip = KEM_the_clash_of_wolves_tt
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { KEM_yuriy_influence > KEM_lydia_influence }
+				}
+				country_event = { id = kemreg.4 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { KEM_lydia_influence > KEM_yuriy_influence }
+				}
+				country_event = { id = kemreg.5 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_spirit_of_rus_reborn
+	icon = GFX_KEM_The_Spirit_of_Rus_Reborn
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_clash_of_wolves
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_the_clash_of_wolves
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_spirit_of_rus_reborn"
+		add_stability = 0.1
+		add_political_power = 100
+		set_country_flag = KEM_reg_politics_done
+		country_event = { id = kemreg.30 }
+	}
+}
+
+### Regional Economy Tree ###
+shared_focus = {
+	id = KEM_the_foundations_of_a_kingdom
+	icon = GFX_KEM_A_Kingdom_of_Equals
+	cost = 3.6
+	available_if_capitulated = no
+	available = {
+		has_country_flag = KEM_reg_politics_done
+	}
+	ai_will_do = { factor = 1 }
+	x = 22
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_foundations_of_a_kingdom"
+		add_political_power = 50
+		country_event = { id = kemreg.6 }
+	}
+}
+
+shared_focus = {
+	id = KEM_a_new_currency
+	icon = GFX_URL_A_Paying_Job
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_foundations_of_a_kingdom
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_the_foundations_of_a_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_new_currency"
+		add_to_variable = { interest_rates = -0.04 }
+		add_to_variable = { GDP_growth = 0.02 }
+		custom_effect_tooltip = KEM_a_new_currency_tt
+	}
+}
+
+shared_focus = {
+	id = KEM_siberian_wealth
+	icon = GFX_TOB_The_Resources_of_Siberia
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_royal_university_charters
+	}
+	prerequisite = {
+		focus = KEM_a_new_currency
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_a_new_currency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_siberian_wealth"
+		add_resource = {
+			type = tungsten
+			amount = 12
+			state = 567
+		}
+		add_resource = {
+			type = chromium
+			amount = 10
+			state = 329
+		}
+		add_resource = {
+			type = oil
+			amount = 15
+			state = 570
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_build_upon_bukharins_plan
+	icon = GFX_PAV_fruit_of_siberia
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_foundations_of_a_kingdom
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_foundations_of_a_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_build_upon_bukharins_plan"
+		SIB_increase_construction_speed_med = yes
+		SIB_increase_resources_high = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_royal_university_charters
+	icon = GFX_CHI_Promote_Higher_Education
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_new_currency
+	}
+	prerequisite = {
+		focus = KEM_build_upon_bukharins_plan
+	}
+	prerequisite = {
+		focus = KEM_work_programs
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_build_upon_bukharins_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_royal_university_charters"
+		TNO_improve_academic_base_med = yes
+		TNO_improve_research_facilities_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_the_knowledge_of_tomsk
+	icon = GFX_VIN_Education_Reform
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_royal_university_charters
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_royal_university_charters
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_knowledge_of_tomsk"
+		TNO_improve_industrial_expertise_med = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = industry
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.43 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_work_programs
+	icon = GFX_PRM_Work_For_Your_Nation
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_foundations_of_a_kingdom
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_the_foundations_of_a_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_work_programs"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.42 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_reestablish_trade_routes
+	icon = GFX_generic_change_law_trade
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_royal_university_charters
+	}
+	prerequisite = {
+		focus = KEM_work_programs
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_work_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_reestablish_trade_routes"
+		country_event = { id = kemreg.44 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KEM_improve_agricultural_mechanization
+	icon = GFX_CHI_New_Agricultural_Equipment
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_siberian_wealth
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_siberian_wealth
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_improve_agricultural_mechanization"
+		TNO_improve_agriculture_high = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_the_foundries_of_novosibirsk
+	icon = GFX_ENG_those_who_burn_factories
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_siberian_wealth
+	}
+	prerequisite = {
+		focus = KEM_the_knowledge_of_tomsk
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_knowledge_of_tomsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_foundries_of_novosibirsk"
+		add_resource = {
+			type = steel
+			amount = 20
+			state = 570
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = arms_factory
+				level = 3
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.45 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_industrial_modernization
+	icon = GFX_JAP_Standardizing_Heavy_Industry
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_siberian_wealth
+	}
+	prerequisite = {
+		focus = KEM_the_knowledge_of_tomsk
+	}
+	prerequisite = {
+		focus = KEM_reestablish_trade_routes
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_reestablish_trade_routes
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_industrial_modernization"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		TNO_improve_industrial_equipment_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_crown_cooperatives
+	icon = GFX_KEM_The_Kings_Industry
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_siberian_wealth
+	}
+	prerequisite = {
+		focus = KEM_the_knowledge_of_tomsk
+	}
+	prerequisite = {
+		focus = KEM_reestablish_trade_routes
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_reestablish_trade_routes
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_crown_cooperatives"
+		TNO_improve_poverty_med = yes
+		add_to_variable = { GDP_growth = 0.01 }
+		custom_effect_tooltip = KEM_crown_cooperatives_tt
+	}
+}
+
+shared_focus = {
+	id = KEM_unshackle_the_unions
+	icon = GFX_TNO_generic_liberating_camps_prisoners
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		has_idea = KEM_Yuriy_Krylov_hog
+	}
+	prerequisite = {
+		focus = KEM_improve_agricultural_mechanization
+	}
+	prerequisite = {
+		focus = KEM_the_foundries_of_novosibirsk
+	}
+	prerequisite = {
+		focus = KEM_industrial_modernization
+	}
+	prerequisite = {
+		focus = KEM_crown_cooperatives
+	}
+	mutually_exclusive = {
+		focus = KEM_from_councils_into_guilds
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_foundries_of_novosibirsk
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_unshackle_the_unions"
+		add_ideas = tno_trade_unions_nonsocialist_allowed
+		if = {
+			limit = {
+				has_idea = KEM_kings_unions_2
+			}
+			swap_ideas = {
+				remove_idea = KEM_kings_unions_2
+				add_idea = KEM_kings_unions_3
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KEM_unions_subdued
+			}
+			swap_ideas = {
+				remove_idea = KEM_unions_subdued
+				add_idea = KEM_kings_unions_3
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.46 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_from_councils_into_guilds
+	icon = GFX_BRT_corporation_with_a_state_focus_icon
+	cost = 3.6
+	available = {
+		has_idea = KEM_Lydia_Krylova_hog
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_improve_agricultural_mechanization
+	}
+	prerequisite = {
+		focus = KEM_the_foundries_of_novosibirsk
+	}
+	prerequisite = {
+		focus = KEM_industrial_modernization
+	}
+	prerequisite = {
+		focus = KEM_crown_cooperatives
+	}
+	mutually_exclusive = {
+		focus = KEM_unshackle_the_unions
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_industrial_modernization
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_from_councils_into_guilds"
+		if = {
+			limit = {
+				has_idea = KEM_kings_unions_2
+			}
+			swap_ideas = {
+				remove_idea = KEM_kings_unions_2
+				add_idea = KEM_unions_subdued2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KEM_unions_subdued
+			}
+			swap_ideas = {
+				remove_idea = KEM_unions_subdued
+				add_idea = KEM_unions_subdued2
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.48 days = 4 random = 48 }
+		}
+	}
+}
+
+### Regional Military Tree ###
+shared_focus = {
+	id = KEM_the_army_of_the_rus
+	icon = GFX_KEM_Army_of_the_Rus
+	cost = 3.6
+	available = {
+		has_country_flag = KEM_reg_politics_done
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 35
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_army_of_the_rus"
+		country_event = { id = kemreg.7 }
+	}
+}
+
+shared_focus = {
+	id = KEM_learning_from_the_siberian_conquest
+	icon = GFX_ITA_Veterans_of_the_World_War
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_army_of_the_rus
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_the_army_of_the_rus
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_learning_from_the_siberian_conquest"
+		army_experience = 20
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_mechanized_infantry_corps
+	icon = GFX_TOB_Mechanized_Troop_Training
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_learning_from_the_siberian_conquest
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_learning_from_the_siberian_conquest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_mechanized_infantry_corps"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = APC
+		}
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = IFV
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_expand_the_shieldmaidens
+	icon = GFX_Respect_women_focus_4
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_learning_from_the_siberian_conquest
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_learning_from_the_siberian_conquest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_expand_the_shieldmaidens"
+		add_ideas = tno_women_combat_roles
+		hidden_effect = {
+			country_event = { id = kemreg.50 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_a_meritocratic_system
+	icon = GFX_Generic_Army_Officers
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_army_of_the_rus
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_the_army_of_the_rus
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_meritocratic_system"
+		TNO_improve_army_professionalism_high = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_train_new_officers
+	icon = GFX_YUN_New_Officers
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_meritocratic_system
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_a_meritocratic_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_train_new_officers"
+		add_ideas = KEM_kingsguard_academy
+	}
+}
+
+shared_focus = {
+	id = KEM_issue_royal_pardons
+	icon = GFX_GER_Close_The_Books
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_a_meritocratic_system
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_a_meritocratic_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_issue_royal_pardons"
+		country_event = { id = kemreg.8 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_kingdoms_finest
+	icon = GFX_URL_experimental_training_methods
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_mechanized_infantry_corps
+	}
+	prerequisite = {
+		focus = KEM_expand_the_shieldmaidens
+	}
+	prerequisite = {
+		focus = KEM_train_new_officers
+	}
+	prerequisite = {
+		focus = KEM_issue_royal_pardons
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_expand_the_shieldmaidens
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_kingdoms_finest"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = para_tech
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = mountaineers_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_armor_improvements
+	icon = GFX_KEM_Columns_of_Tanks
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kingdoms_finest
+	}
+	x = -3
+	y = 1
+	relative_position_id = KEM_the_kingdoms_finest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_armor_improvements"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = armor
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.51 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_study_new_weapon_designs
+	icon = GFX_GER_guns_for_the_future
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kingdoms_finest
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_kingdoms_finest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_study_new_weapon_designs"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_expand_the_arsenals
+	icon = GFX_generic_advanced_weapons
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_armor_improvements
+	}
+	prerequisite = {
+		focus = KEM_study_new_weapon_designs
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_study_new_weapon_designs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_expand_the_arsenals"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 250
+			producer = KEM
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 200
+			producer = KEM
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_falcons_fleet
+	icon = GFX_ANG_planesforfactories
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kingdoms_finest
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_kingdoms_finest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_falcons_fleet"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = air_equipment
+		}
+		569 = {
+			add_building_construction = {
+				type = air_base
+				level = 3
+				instant_build = yes
+			}
+		}
+		567 = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_fund_the_kamov_helicopter_design_bureau
+	icon = GFX_generic_helicopter_1
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_kingdoms_finest
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_the_kingdoms_finest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_fund_the_kamov_helicopter_design_bureau"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = helicopter
+		}
+		hidden_effect = {
+			country_event = { id = kemreg.53 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_to_rule_the_skies
+	icon = GFX_ANG_our_own_designs
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_falcons_fleet
+	}
+	prerequisite = {
+		focus = KEM_fund_the_kamov_helicopter_design_bureau
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_falcons_fleet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_to_rule_the_skies"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = air_doctrine
+		}
+		air_experience = 20
+		hidden_effect = {
+			country_event = { id = kemreg.54 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_pride_of_the_king
+	icon = GFX_KEM_The_Kings_Army
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_expand_the_arsenals
+	}
+	prerequisite = {
+		focus = KEM_to_rule_the_skies
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_expand_the_arsenals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_pride_of_the_king"
+		country_event = { id = kemreg.55 days = 1 }
+	}
+}
+
+### Regional Diplomacy Tree ###
+shared_focus = {
+	id = KEM_rurikid_diplomacy
+	icon = GFX_KEM_A_Rurikid_Diplomacy
+	cost = 3.6
+	available = {
+		has_country_flag = KEM_reg_politics_done
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 48
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_rurikid_diplomacy"
+		add_political_power = 50
+		country_event = { id = kemreg.9 }
+	}
+}
+
+shared_focus = {
+	id = KEM_overtures_to_washington
+	icon = GFX_MAG_city_on_the_hill
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_rurikid_diplomacy
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_rurikid_diplomacy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_overtures_to_washington"
+		USA = {
+			country_event = { id = kemreg.10 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_almighty_dollar
+	icon = GFX_GER_The_Almighty_Dollar
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_overtures_to_washington
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_overtures_to_washington
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_almighty_dollar"
+		USA = {
+			country_event = { id = kemreg.12 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_invite_american_experts
+	icon = GFX_American_Funding
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_almighty_dollar
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_almighty_dollar
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_invite_american_experts"
+		USA = {
+			country_event = { id = kemreg.15 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_emissaries_to_the_rising_sun
+	icon = GFX_JAP_sphere_reform_generic
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_rurikid_diplomacy
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_rurikid_diplomacy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_emissaries_to_the_rising_sun"
+		JAP = {
+			country_event = { id = kemreg.18 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_zaibatsu_investments
+	icon = GFX_VIN_Zaibatsu_Investments
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_emissaries_to_the_rising_sun
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_emissaries_to_the_rising_sun
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_zaibatsu_investments"
+		JAP = {
+			country_event = { id = kemreg.20 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_two_emperors
+	icon = GFX_KEM_The_Two_Emperors
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_zaibatsu_investments
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_zaibatsu_investments
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_two_emperors"
+		country_event = { id = kemreg.23 hours = 6 }
+		JAP = {
+			country_event = { id = kemreg.24 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_friends_in_the_steppes
+	icon = GFX_PAV_Kazakh_Consulate
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_overtures_to_washington
+		focus = KEM_emissaries_to_the_rising_sun
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_overtures_to_washington
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_friends_in_the_steppes"
+		if = {
+			limit = {
+				KZK = {
+					OR = {
+						has_government = communist
+						has_government = fascism
+						has_government = social_conservative
+					}
+				}
+			}
+			KZK = {
+				country_event = { id = kemreg.25 hours = 6 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = KEM_no_friends_in_the_steppes_tt
+			add_opinion_modifier = {
+				target = KZK
+				modifier = TNO_distanced_from_us
+			}
+			add_political_power = 15
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_in_the_halls_of_glory
+	icon = GFX_NIK_Imperial_Opulence
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_invite_american_experts
+	}
+	prerequisite = {
+		focus = KEM_the_two_emperors
+	}
+	prerequisite = {
+		focus = KEM_friends_in_the_steppes
+	}
+	x = 2
+	y = 1
+	relative_position_id = KEM_invite_american_experts
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_in_the_halls_of_glory"
+		add_political_power = 100
+	}
+}
+
+###################################################
+##============| Superregional Trees |============##
+###################################################
+
+### Yuriy tree - design by Dudeis ###
+shared_focus = {
+	id = KEM_rurikid_legacy_preserved
+	icon = GFX_KEM_The_Spirit_of_Rus_Reborn
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_rurikid_legacy_preserved"
+		country_event = { id = KEM_yuriy.1 }
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KEM_dismantle_the_kingsguard
+	icon = GFX_KEM_Kingsguard_Primacy
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_rurikid_legacy_preserved
+	}
+	x = -4
+	y = 1
+	relative_position_id = KEM_rurikid_legacy_preserved
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_dismantle_the_kingsguard"
+		country_event = { id = KEM_yuriy.2 }
+	}
+}
+
+shared_focus = {
+	id = KEM_militarize_the_settlements
+	icon = GFX_KEM_The_Kings_Industry
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_dismantle_the_kingsguard
+	}
+	mutually_exclusive = {
+		focus = KEM_subsidize_loyal_merchants
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_dismantle_the_kingsguard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_militarize_the_settlements"
+		RUS_integration_cost_days_decrease = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory 
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory 
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_democratize_the_druzhina
+	icon = GFX_CZE_Soldier_Saluting_Rubble
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_militarize_the_settlements
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_militarize_the_settlements
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_democratize_the_druzhina"
+		TNO_improve_army_professionalism_med = yes
+		hidden_effect = {
+			country_event = { id = KEM_yuriy.14 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_subsidize_loyal_merchants
+	icon = GFX_KEM_Support_the_Unions
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_dismantle_the_kingsguard
+	}
+	mutually_exclusive = {
+		focus = KEM_militarize_the_settlements
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_dismantle_the_kingsguard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_subsidize_loyal_merchants"
+		RUS_integration_cost_days_decrease = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex 
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex 
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_legacy_of_the_merchant_republic
+	icon = GFX_KEM_The_Zemsky_Sobor_Reborn
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_subsidize_loyal_merchants
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_subsidize_loyal_merchants
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_legacy_of_the_merchant_republic"
+		add_stability = 0.075
+		custom_effect_tooltip = russia_small_reserve_bonus_tt
+		add_to_variable = { money_reserves = 25 }
+	}
+}
+
+shared_focus = {
+	id = KEM_force_compromises
+	icon = GFX_KEM_And_the_Power_of_the_King
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_democratize_the_druzhina
+		focus = KEM_legacy_of_the_merchant_republic
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_democratize_the_druzhina
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_force_compromises"
+		add_political_power = -75
+		tno_press_rights_improve = yes
+		tno_public_meetings_improve = yes
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			country_event = { id = KEM_yuriy.3 days = 14 }
+			country_event = { id = KEM_yuriy.10 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_absorb_the_old_guard
+	icon = GFX_ISH_unpopular_decisions
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_democratize_the_druzhina
+		focus = KEM_legacy_of_the_merchant_republic
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_legacy_of_the_merchant_republic
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_absorb_the_old_guard"
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.025	}
+		add_popularity = { ideology = despotism	popularity = -0.05 }
+		hidden_effect = {
+			country_event = { id = KEM_yuriy.4 days = 14 random = 24 }
+			country_event = { id = KEM_yuriy.11 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_imperial_coinage
+	icon = GFX_TNO_generic_gold_coins
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_rurikid_legacy_preserved
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_rurikid_legacy_preserved
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_imperial_coinage"
+		custom_effect_tooltip = MAG_made_in_russia_tt
+		add_to_variable = { GDP_growth = 0.015 }
+		add_to_variable = { GDP = 200 }
+	}
+}
+
+shared_focus = {
+	id = KEM_reinvent_the_guild_system
+	icon = GFX_generic_change_law_labor
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_imperial_coinage
+	}
+	prerequisite = {
+		focus = KEM_dismantle_the_kingsguard
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_imperial_coinage
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_reinvent_the_guild_system"
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_dragon_ships
+	icon = GFX_KEM_dragon_ships
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_rurikid_legacy_preserved
+	}
+	x = 4
+	y = 1
+	relative_position_id = KEM_rurikid_legacy_preserved
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_dragon_ships"
+		add_timed_idea = { idea = KEM_ship_expansion days = 120	}
+		navy_experience = 15
+		create_navy_leader = {
+			name = "Aleksandr Afanasyev"
+			picture = "Portrait_Kemerovo_Aleksandr_Afanasyev.dds"
+			traits = { gentlemanly fleet_protector }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 3
+			maneuvering_skill = 1
+			coordination_skill = 2
+			id = 7601
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_merchant_marine
+	icon = GFX_Generic_Ship_Trade
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_dragon_ships
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_dragon_ships
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_merchant_marine"
+		add_equipment_to_stockpile = {
+			type = convoy
+			amount = 150
+			producer = KEM
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_wider_world
+	icon = GFX_BRT_Smuggling_Networks
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_dragon_ships
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_dragon_ships
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_wider_world"
+		country_event = { id = KEM_yuriy.13 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_samurais_treachery
+	icon = GFX_JAP_carrier_samurai
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_wider_world
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_wider_world
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_samurais_treachery"
+		add_political_power = 25
+		country_event = { id = KEM_yuriy.5 }
+		JAP = {
+			country_event = { id = KEM_yuriy.5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_enemy_of_my_enemy
+	icon = GFX_CHI_Ramp_Up_Military_Production_Alt
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_samurais_treachery
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_samurais_treachery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_enemy_of_my_enemy"
+		CHI = {
+			country_event = { id = KEM_yuriy.6 }
+		}
+		add_war_support = 0.05
+		custom_effect_tooltip = russia_small_reserve_bonus_tt
+		add_to_variable = { money_reserves = 15 }
+	}
+}
+
+shared_focus = {
+	id = KEM_the_teutons_rage
+	icon = GFX_Generic_Russia_Defeat_Germany
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_wider_world
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_wider_world
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_teutons_rage"
+		country_event = { id = KEM_yuriy.7 }
+		GER = {
+			country_event = { id = KEM_yuriy.7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_a_most_bizarre_visit
+	icon = GFX_AST_maintain_ofn
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_the_teutons_rage
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_teutons_rage
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_most_bizarre_visit"
+		country_event = { id = KEM_yuriy.8 }
+		USA = {
+			country_event = { id = KEM_yuriy.8 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_modern_alexander_nevsky
+	icon = GFX_KEM_Prince_Yuriys_Ideals
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KEM_force_compromises
+	}
+	prerequisite = {
+		focus = KEM_absorb_the_old_guard
+	}
+	prerequisite = {
+		focus = KEM_the_enemy_of_my_enemy
+	}
+	prerequisite = {
+		focus = KEM_a_most_bizarre_visit
+	}
+	x = -2
+	y = 1
+	relative_position_id = KEM_the_enemy_of_my_enemy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_modern_alexander_nevsky"
+		RUS_integration_cost_days_decrease = yes
+		add_war_support = 0.1
+		hidden_effect = {
+			country_event = { id = KEM_yuriy.9 days = 1 }
+		}
+	}
+}
+
+#Lydia
+shared_focus = {
+	id = KEM_the_glorious_kingdom
+	icon = GFX_KEM_The_Kings_Army
+	cost = 2.3
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_glorious_kingdom"
+		add_political_power = 50
+		add_war_support = 0.05
+		hidden_effect = {
+			country_event = { id = KEM_lydia.1 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_grand_royal_army
+	icon = GFX_KEM_A_Conscripted_Force
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_glorious_kingdom
+	}
+	x = -4
+	y = 1
+	relative_position_id = KEM_the_glorious_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_grand_royal_army"
+		army_experience = 20
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_placate_the_companies
+	icon = GFX_CHI_Chinese_Companies_New
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_grand_royal_army
+	}
+	mutually_exclusive = {
+		focus = KEM_purge_the_selfish
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_the_grand_royal_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_placate_the_companies"
+		add_to_variable = { GDP_growth = 0.01 }
+		custom_effect_tooltip = KEM_crown_cooperatives_tt
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_purge_the_selfish
+	icon = GFX_KEM_Your_Life_for_the_King
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_grand_royal_army
+	}
+	mutually_exclusive = {
+		focus = KEM_placate_the_companies
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_grand_royal_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_purge_the_selfish"
+		add_political_power = 15
+		custom_effect_tooltip = russia_small_reserve_bonus_tt
+		add_to_variable = { money_reserves = 25 }
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_land_for_the_loyal
+	icon = GFX_COG_Selling_off_the_Land
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_placate_the_companies
+		focus = KEM_purge_the_selfish
+	}
+	x = -1
+	y = 1
+	relative_position_id = KEM_placate_the_companies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_land_for_the_loyal"
+		add_political_power = -25
+		add_stability = 0.05
+		TNO_improve_agriculture_med = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_royal_foundries
+	icon = GFX_KEM_The_Kings_Industry
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_placate_the_companies
+		focus = KEM_purge_the_selfish
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_placate_the_companies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_royal_foundries"
+		TNO_improve_industrial_equipment_med = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_legacy_of_the_tsardom
+	icon = GFX_goal_KIR_Legacy_of_the_Tsardom
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_placate_the_companies
+		focus = KEM_purge_the_selfish
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_placate_the_companies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_legacy_of_the_tsardom"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_force_our_way
+	icon = GFX_generic_show_trials
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_land_for_the_loyal
+	}
+	prerequisite = {
+		focus = KEM_royal_foundries
+	}
+	prerequisite = {
+		focus = KEM_legacy_of_the_tsardom
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_land_for_the_loyal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_force_our_way"
+		RUS_integration_cost_days_decrease = yes
+		add_popularity = { ideology = despotism popularity = 0.05 }
+		hidden_effect = {
+			country_event = { id = KEM_lydia.2 days = 4 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_preparing_the_queensguard
+	icon = GFX_Respect_women_focus_1
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_land_for_the_loyal
+	}
+	prerequisite = {
+		focus = KEM_royal_foundries
+	}
+	prerequisite = {
+		focus = KEM_legacy_of_the_tsardom
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_land_for_the_loyal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_preparing_the_queensguard"
+		add_stability = -0.075
+		add_ideas = tno_women_total_equality
+		hidden_effect = {
+			country_event = { id = KEM_lydia.3 days = 4 random = 48 }
+			country_event = { id = KEM_lydia.8 days = 21 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_expand_the_guild_system
+	icon = GFX_TNO_generic_gold_coins
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_glorious_kingdom
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_the_glorious_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_expand_the_guild_system"
+		TNO_improve_industrial_expertise_med = yes
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_a_strong_realm
+	icon = GFX_MAG_A_Local_Force
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_expand_the_guild_system
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_expand_the_guild_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_a_strong_realm"
+		add_stability = 0.05
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			country_event = { id = KEM_lydia.4 days = 8 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_subsidize_healthcare_expansion
+	icon = GFX_generic_change_law_healthcare
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_a_strong_realm
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_a_strong_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_subsidize_healthcare_expansion"
+		tno_health_care_improve = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_maternal_services
+	icon = GFX_generic_change_law_women
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_subsidize_healthcare_expansion
+	}
+	x = 0
+	y = 1
+	relative_position_id = KEM_subsidize_healthcare_expansion
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_maternal_services"
+		add_political_power = -20
+		tno_gender_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = KEM_the_icebreakers_of_magadan
+	icon = GFX_COG_Shipping_Expansion
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_glorious_kingdom
+	}
+	x = 3
+	y = 1
+	relative_position_id = KEM_the_glorious_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_icebreakers_of_magadan"
+		add_equipment_to_stockpile = {
+			type = convoy
+			amount = 500
+			producer = KEM
+		}
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+		navy_experience = 15
+		create_navy_leader = {
+			name = "Aleksandr Afanasyev"
+			picture = "Portrait_Kemerovo_Aleksandr_Afanasyev.dds"
+			traits = { gentlemanly fleet_protector }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 3
+			maneuvering_skill = 1
+			coordination_skill = 2
+			id = 7601
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_the_varyags_of_rus
+	icon = GFX_TNO_generic_marine
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_glorious_kingdom
+	}
+	x = 5
+	y = 1
+	relative_position_id = KEM_the_glorious_kingdom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_varyags_of_rus"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = special_forces_tech
+		}
+		hidden_effect = {
+			country_event = { id = KEM_lydia.5 days = 14 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_our_friends_in_the_sphere
+	icon = GFX_JAP_sphere_reform_generic
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_the_icebreakers_of_magadan
+	}
+	prerequisite = {
+		focus = KEM_the_varyags_of_rus
+	}
+	x = 1
+	y = 1
+	relative_position_id = KEM_the_icebreakers_of_magadan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_our_friends_in_the_sphere"
+		JAP = {
+			country_event = { id = KEM_lydia.6 days = 1 }
+		}
+		hidden_effect = {
+			country_event = { id = KEM_lydia.6 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KEM_lucrative_trade_deals
+	icon = GFX_generic_diplomacy_trade
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_our_friends_in_the_sphere
+	}
+	x = 0
+	y = 2
+	relative_position_id = KEM_our_friends_in_the_sphere
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_lucrative_trade_deals"
+		add_ideas = KEM_trade_deals
+	}
+}
+
+shared_focus = {
+	id = KEM_the_modern_catherine
+	icon = GFX_KEM_Princess_Lydias_Pragmatism
+	cost = 2.3
+	prerequisite = {
+		focus = KEM_lucrative_trade_deals
+	}
+	prerequisite = {
+		focus = KEM_maternal_services
+	}
+	prerequisite = {
+		focus = KEM_preparing_the_queensguard
+	}
+	prerequisite = {
+		focus = KEM_force_our_way
+	}
+	x = -4
+	y = 1
+	relative_position_id = KEM_lucrative_trade_deals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KEM_the_modern_catherine"
+		add_political_power = 75
+		add_war_support = 0.075
+		hidden_effect = {
+			country_event = { id = KEM_lydia.7 days = 1 }
+		}
+	}
+}

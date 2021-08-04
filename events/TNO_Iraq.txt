@@ -1,0 +1,447 @@
+﻿add_namespace = IraqCW
+add_namespace = CWIraq #speech100
+
+country_event = { #Qasim's death
+	id = IraqCW.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.1"}
+	title = IraqCW.1.t
+	desc = IraqCW.1.desc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IraqCW.1.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Iraqi Command Council"
+			desc = ""
+			picture = "Portrait_Afghanistan_Mohammed_Zahir_Shah.dds"
+			expire = "1999.1.1"
+			ideology = authoritarian_democrat_subtype
+			traits = {
+
+			}
+		}
+		hidden_effect = {
+			ITA = {
+				country_event = { id = empiremanagement_IRQ.8 days = 3 }
+			}
+			country_event = { id = IraqCW.2 days = 20 }
+		}
+	}
+}
+
+country_event = { #The coming storm
+	id = IraqCW.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.2"}
+	title = IraqCW.2.t
+	desc = IraqCW.2.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.2.a
+		hidden_effect = {
+			country_event = { id = IraqCW.3 days = 5 }
+			if = {
+				limit = {
+					GUL = {
+						has_government = despotism
+					}
+				}
+				GUL = {
+					country_event = { id = GUL.31 days = 8 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Miceli's ascention
+	id = IraqCW.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.3"}
+	title = IraqCW.3.t
+	desc = IraqCW.3.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.3.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = despotism
+		}
+		create_country_leader = {
+			name = "Vito Miceli"
+			desc = "POLITICS_Vito_Miceli_DESC"
+			picture = "Vito_Miceli.dds"
+			expire = "1999.1.1"
+			ideology = despotism_subtype
+			traits = {
+
+			}
+		}
+		country_event = { id = empiremanagement_IRQ.9 days = 5 }
+		hidden_effect = {
+			country_event = {
+				id = IraqCW.4
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #Dawa opposition breaks off
+	id = IraqCW.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.4"}
+	title = IraqCW.4.t
+	desc = IraqCW.4.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.4.a
+		hidden_effect = {
+			country_event = {
+				id = IraqCW.5
+				days = 5
+			}
+		}
+		SNI = {
+			transfer_state = 1333
+			transfer_state = 916
+			add_state_core = 1333
+			add_state_core = 916
+			add_state_core = 924
+			add_state_core = 675
+			add_state_core = 676
+			add_state_core = 781
+			add_state_core = 1334
+			load_oob = SNI_oil_crisis
+		}
+	}
+}
+
+country_event = { #Ba'ath opposition breaks off
+	id = IraqCW.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.5"}
+	title = IraqCW.5.t
+	desc = IraqCW.5.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.5.a
+		hidden_effect = {
+			# if = {
+				# limit = {
+				# 	owns_state = 781
+				# 	owns_state = 1334
+				# }
+				country_event = {
+					id = IraqCW.6
+					days = 5
+				}
+				set_country_flag = IRQ_kurds_gone
+			# }
+			# if = {
+			# 	limit = {
+			# 		NOT = {
+			# 			owns_state = 781
+			# 			owns_state = 1334
+			# 		}
+			# 	}
+			# 	country_event = {
+			# 		id = IraqCW.7
+			# 		days = 5
+			# 	}
+			# }
+		}
+		BIR = {
+			transfer_state = 924
+			transfer_state = 675
+			add_state_core = 1333
+			add_state_core = 916
+			add_state_core = 924
+			add_state_core = 675
+			add_state_core = 676
+			add_state_core = 781
+			add_state_core = 1334
+			load_oob = BIR_oil_crisis
+		}
+	}
+}
+
+country_event = { #Kurds breaks off
+	id = IraqCW.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.6"}
+	title = IraqCW.6.t
+	desc = IraqCW.6.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.6.a
+		hidden_effect = {
+			country_event = {
+				id = IraqCW.7
+				days = 5
+			}
+		}
+		KUR = {
+			transfer_state = 781
+			transfer_state = 1334
+			add_state_core = 781
+			add_state_core = 1334
+			load_oob = KUR_oil_crisis
+		}
+	}
+}
+
+country_event = { #Democratic opposition breaks off
+	id = IraqCW.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.7"}
+	title = IraqCW.7.t
+	desc = IraqCW.7.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.7.a
+		hidden_effect = {
+			country_event = {
+				id = IraqCW.8
+				days = 5
+			}
+		}
+		IRP = {
+			transfer_state = 676
+			add_state_core = 1333
+			add_state_core = 916
+			add_state_core = 924
+			add_state_core = 675
+			add_state_core = 676
+			add_state_core = 781
+			add_state_core = 1334
+			load_oob = IRP_oil_crisis
+		}
+	}
+}
+
+country_event = { #War
+	id = IraqCW.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.8"}
+	title = IraqCW.8.t
+	desc = IraqCW.8.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = IraqCW.8.a
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = WORLD.947
+					days = 1
+				}
+			}
+			set_global_flag = Iraq_CW
+		}
+		IRP = {
+			declare_war_on = { target = IRQ type = annex_everything }
+			declare_war_on = { target = BIR type = annex_everything }
+			declare_war_on = { target = SNI type = annex_everything }
+			declare_war_on = { target = KUR type = annex_everything }
+		}
+		IRQ = {
+			declare_war_on = { target = IRP type = annex_everything }
+			declare_war_on = { target = BIR type = annex_everything }
+			declare_war_on = { target = SNI type = annex_everything }
+			declare_war_on = { target = KUR type = annex_everything }
+			load_oob = IRQ_oil_crisis
+		}
+		BIR = {
+			declare_war_on = { target = IRQ type = annex_everything }
+			declare_war_on = { target = IRP type = annex_everything }
+			declare_war_on = { target = SNI type = annex_everything }
+			declare_war_on = { target = KUR type = annex_everything }
+		}
+		SNI = {
+			declare_war_on = { target = IRQ type = annex_everything }
+			declare_war_on = { target = BIR type = annex_everything }
+			declare_war_on = { target = IRP type = annex_everything }
+			declare_war_on = { target = KUR type = annex_everything }
+		}
+	}
+}
+
+country_event = { #Baathist Iraq joings UAS
+	id = IraqCW.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IraqCW.9"}
+	title = IraqCW.9.t
+	desc = IraqCW.9.desc
+	trigger = {
+		tag = BIR
+		owns_state = 916
+		owns_state = 291
+		owns_state = 676
+		has_war = no
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = IraqCW.9.a
+		SYR = {
+			country_event = { id = Syria.4 days = 1 }
+		}
+	}
+}
+
+##Civil War victory events##
+country_event = { #Kurdistan Victorious
+	id = CWIraq.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event CWIraq.1"}
+	title = CWIraq.1.t
+	desc = CWIraq.1.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			KUR = {
+				has_global_flag = Iraq_CW
+				NOT = {
+					has_war_with = IRP
+					has_war_with = IRQ
+					has_war_with = BIR
+					has_war_with = SNI
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18015
+			days = 1
+		}
+	}
+}
+country_event = { #Vito Victorious
+	id = CWIraq.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event CWIraq.2"}
+	title = CWIraq.2.t
+	desc = CWIraq.2.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			IRQ = {
+				has_global_flag = Iraq_CW
+				NOT = {
+					has_war_with = KUR
+					has_war_with = IRP
+					has_war_with = BIR
+					has_war_with = SNI
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18016
+			days = 1
+		}
+	}
+}
+country_event = { #Saddam oh no
+	id = CWIraq.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event CWIraq.3"}
+	title = CWIraq.3.t
+	desc = CWIraq.3.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			IRP = {
+				has_global_flag = Iraq_CW
+				NOT = {
+					has_war_with = KUR
+					has_war_with = IRQ
+					has_war_with = BIR
+					has_war_with = SNI
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18017
+			days = 1
+		}
+	}
+}
+country_event = { #Baathist wins
+	id = CWIraq.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event CWIraq.4"}
+	title = CWIraq.4.t
+	desc = CWIraq.4.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			BIR = {
+				has_global_flag = Iraq_CW
+				NOT = {
+					has_war_with = KUR
+					has_war_with = IRQ
+					has_war_with = IRP
+					has_war_with = SNI
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18018
+			days = 1
+		}
+	}
+}
+country_event = { #Islamist wins
+	id = CWIraq.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event CWIraq.5"}
+	title = CWIraq.5.t
+	desc = CWIraq.5.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			SNI = {
+				has_global_flag = Iraq_CW
+				NOT = {
+					has_war_with = KUR
+					has_war_with = IRQ
+					has_war_with = IRP
+					has_war_with = BIR
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18019
+			days = 1
+		}
+	}
+}

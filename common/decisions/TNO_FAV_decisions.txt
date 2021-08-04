@@ -1,0 +1,558 @@
+#FAV_tutorial_category = {
+#
+#	FAV_minimize_tutorial = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#		visible = {
+#			NOT = {
+#				has_country_flag = FAV_TUTORIAL_MINIMIZE
+#			}
+#		}
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_minimize_tutorial"
+#			set_country_flag = FAV_TUTORIAL_MINIMIZE
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_maximize_tutorial = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#		visible = {
+#			has_country_flag = FAV_TUTORIAL_MINIMIZE
+#		}
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_maximize_tutorial"
+#			clr_country_flag = FAV_TUTORIAL_MINIMIZE
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#}
+#
+#FAV_production_category = {
+#
+#	FAV_gathering_mission = {
+#		allowed = {
+#			original_tag = FAV
+#		}
+#		available = {
+#			hidden_trigger = {
+#				always = no
+#			}
+#		}
+#		activation = {
+#			always = yes
+#		}
+#		is_good = yes
+#		days_mission_timeout = 30
+#		timeout_effect = {
+#			activate_mission = FAV_gathering_mission
+#			add_to_variable = { FAVScrapMetalBank = FAVScrapMetalGain }
+#		}
+#	}
+#
+#	FAV_produce_basic_aircraft = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#		visible = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVScrapMetalBank > 19 }
+#		}
+#
+#		days_remove = 7
+#
+#		complete_effect = {
+#			custom_effect_tooltip = FAV_produce_basic_aircraft_tt
+#			subtract_from_variable = { FAVScrapMetalBank = 20 }
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_produce_basic_aircraft"
+#			add_equipment_to_stockpile = {
+#				type = fighter_equipment_1
+#				amount = 1
+#				producer = FAV
+#			}
+#			add_to_variable = { FAVBasicAirReserves = 1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_produce_advanced_aircraft = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVScrapMetalBank > 44 }
+#		}
+#		days_remove = 10
+#
+#		complete_effect = {
+#			custom_effect_tooltip = FAV_produce_advanced_aircraft_tt
+#			subtract_from_variable = { FAVScrapMetalBank = 45 }
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_produce_advanced_aircraft"
+#			add_equipment_to_stockpile = {
+#				type = interceptor_equipment_1
+#				amount = 1
+#				producer = FAV
+#			}
+#			add_to_variable = { FAVAdvancedAirReserves = 1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_produce_5_basic_aircraft = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVScrapMetalBank > 99 }
+#		}
+#
+#		days_remove = 35
+#
+#		complete_effect = {
+#			custom_effect_tooltip = FAV_produce_5_basic_aircraft_tt
+#			subtract_from_variable = { FAVScrapMetalBank = 100 }
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_produce_5_basic_aircraft"
+#			add_equipment_to_stockpile = {
+#				type = fighter_equipment_1
+#				amount = 5
+#				producer = FAV
+#			}
+#			add_to_variable = { FAVBasicAirReserves = 5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_produce_5_advanced_aircraft = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVScrapMetalBank > 224 }
+#		}
+#
+#		days_remove = 50
+#
+#		complete_effect = {
+#			custom_effect_tooltip = FAV_produce_5_advanced_aircraft_tt
+#			subtract_from_variable = { FAVScrapMetalBank = 225 }
+#		}
+#
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_produce_5_advanced_aircraft"
+#			add_equipment_to_stockpile = {
+#				type = interceptor_equipment_1
+#				amount = 5
+#				producer = FAV
+#			}
+#			add_to_variable = { FAVAdvancedAirReserves = 5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#}
+#
+#FAV_training_category = {
+#
+#	FAV_training_mission = {
+#		allowed = {
+#			original_tag = FAV
+#		}
+#		available = {
+#			hidden_trigger = {
+#				always = no
+#			}
+#		}
+#		activation = {
+#			always = yes
+#		}
+#		is_good = yes
+#		days_mission_timeout = 30
+#		timeout_effect = {
+#			activate_mission = FAV_training_mission
+#		}
+#	}
+#
+#	FAV_prioritize_pilot_training = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			tag = FAV
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_prioritize_pilot_training"
+#			add_to_variable = { FAVCrewPriority = 1 }
+#
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_prioritize_ground_crew_training = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			tag = FAV
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_reduce_pilot_training"
+#			add_to_variable = { FAVCrewPriority = -1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_balance_training_priorities = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_reduce_pilot_training"
+#			set_variable = { FAVCrewPriority = 0 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#}
+#
+#
+#FAV_deployment_category = {
+#	FAV_next_wave_mission = {
+#		allowed = {
+#			original_tag = FAV
+#		}
+#		available = {
+#			hidden_trigger = {
+#				always = no
+#			}
+#		}
+#		activation = {
+#			always = yes
+#		}
+#		is_good = yes
+#		days_mission_timeout = 30
+#		timeout_effect = {
+#			activate_mission = FAV_next_wave_mission
+#			hidden_effect = {
+#				country_event = {
+#					id = FAV.5
+#					days = 25
+#				}
+#			}
+#		}
+#	}
+#
+#	FAV_increase_basic_aircraft_deployment = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVBasicAirReserves > 0 }
+#			check_variable = { FAVRecruitedPilots > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_deployment_placeholder"
+#			add_to_variable = { FAVBasicAirDeployed = 1 }
+#			add_to_variable = { FAVBasicAirReserves = -1 }
+#			add_to_variable = { FAVAirStrength = 2 }
+#			add_to_variable = { FAVDeployedPilots = 1 }
+#			add_to_variable = { FAVUsablePilots = -1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_increase_basic_aircraft_deployment_5 = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVBasicAirReserves > 0 }
+#			check_variable = { FAVRecruitedPilots > 5 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_increase_basic_aircraft_deployment_5"
+#			add_to_variable = { FAVBasicAirDeployed = 5 }
+#			add_to_variable = { FAVBasicAirReserves = -5 }
+#			add_to_variable = { FAVDeployedPilots = 5 }
+#			add_to_variable = { FAVUsablePilots = -5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_increase_advanced_aircraft_deployment = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVAdvancedAirReserves > 0 }
+#			check_variable = { FAVRecruitedPilots > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_deployment_placeholder"
+#			add_to_variable = { FAVAdvancedAirDeployed = 1 }
+#			add_to_variable = { FAVAdvancedAirReserves = -1 }
+#			add_to_variable = { FAVDeployedPilots = 1 }
+#			add_to_variable = { FAVUsablePilots = -1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_increase_advanced_aircraft_deployment_5 = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVAdvancedAirReserves > 0 }
+#			check_variable = { FAVRecruitedPilots > 4 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_increase_advanced_aircraft_deployment_5"
+#			add_to_variable = { FAVAdvancedAirDeployed = 5 }
+#			add_to_variable = { FAVAdvancedAirReserves = -5 }
+#			add_to_variable = { FAVDeployedPilots = 5 }
+#			add_to_variable = { FAVUsablePilots = -5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_decrease_basic_aircraft_deployment = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVBasicAirDeployed > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_deployment_placeholder"
+#			add_to_variable = { FAVBasicAirDeployed = -1 }
+#			add_to_variable = { FAVBasicAirReserves = 1 }
+#			add_to_variable = { FAVDeployedPilots = -1 }
+#			add_to_variable = { FAVUsablePilots = 1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_decrease_basic_aircraft_deployment_5 = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVBasicAirDeployed > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_decrease_basic_aircraft_deployment_5"
+#			add_to_variable = { FAVBasicAirDeployed = -5 }
+#			add_to_variable = { FAVBasicAirReserves = 5 }
+#			add_to_variable = { FAVDeployedPilots = -5 }
+#			add_to_variable = { FAVUsablePilots = 5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_decrease_advanced_aircraft_deployment = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVAdvancedAirDeployed > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_deployment_placeholder"
+#			add_to_variable = { FAVAdvancedAirDeployed = -1 }
+#			add_to_variable = { FAVAdvancedAirReserves = 1 }
+#			add_to_variable = { FAVDeployedPilots = -1 }
+#			add_to_variable = { FAVUsablePilots = 1 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_decrease_advanced_aircraft_deployment_5 = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			check_variable = { FAVAdvancedAirDeployed > 0 }
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_decrease_advanced_aircraft_deployment_5"
+#			add_to_variable = { FAVAdvancedAirDeployed = -5 }
+#			add_to_variable = { FAVAdvancedAirReserves = 5 }
+#			add_to_variable = { FAVDeployedPilots = -5 }
+#			add_to_variable = { FAVUsablePilots = 5 }
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#
+#	FAV_clear_deployments = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		available = {
+#			tag = FAV
+#		}
+#
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_decrease_advanced_aircraft_deployment_5"
+#			add_to_variable = { FAVAdvancedAirReserves = FAVAdvancedAirDeployed }
+#			set_variable = { FAVAdvancedAirDeployed = 0 }
+#			add_to_variable = { FAVBasicAirReserves = FAVBasicAirDeployed }
+#			set_variable = { FAVBasicAirDeployed = 0 }
+#
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#}
+#
+#
+#FAV_diplomacy_category = {
+#
+#	FAV_diplomacy_placeholder = {
+#
+#		fire_only_once = no
+#
+#		allowed = { tag = FAV }
+#
+#		custom_cost_trigger = { always = yes } #no cost
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision FAV_diplomacy_placeholder"
+#
+#		}
+#
+#		ai_will_do = {
+#			factor = 10
+#		}
+#	}
+#}
+#
+#

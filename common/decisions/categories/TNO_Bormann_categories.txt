@@ -1,0 +1,165 @@
+GER_Bormann_CW_category = {
+	icon = generic_crisis
+	picture = GFX_decision_GER_decision_political_situation
+
+	allowed = { tag = BGR }
+}
+
+GER_Bormann_SAF_War_category = {
+	icon = decision_category_border_war
+	picture = GFX_SAF_decision_category_war
+	
+	allowed = { original_tag = GER }
+	available = {
+		hidden_trigger = {
+			OR = {
+				AND = {
+					has_country_flag = GER_SAW_intervention
+					has_global_flag = german_civil_war_bormannvic
+					has_global_flag = south_african_war
+				}
+				has_country_flag = BOR_DBG_SAF_war
+			}
+		}
+	}
+	visible = {
+		OR = {
+			AND = {
+				has_country_flag = GER_SAW_intervention
+				has_global_flag = german_civil_war_bormannvic
+				has_global_flag = south_african_war
+			}
+			has_country_flag = BOR_DBG_SAF_war
+		}
+	}
+	
+	visible_when_empty = yes
+	priority = 50
+}
+
+GER_Bormann_NOR_coup_category = {
+	icon = generic_fascism
+	picture = GFX_GER_decision_map
+
+	allowed = { original_tag = GER }
+	available = { hidden_trigger = { has_country_flag = BOR_NOR_preparing_coup } }
+	visible = { has_country_flag = BOR_NOR_preparing_coup }
+
+	priority = 160
+}
+
+GER_Bormann_oil_crisis_support_category = {
+	icon = border_conflicts
+	picture = GFX_DER_decision_islamic_anti_bandit_brigades
+	
+	allowed = { original_tag = GER }
+	available = { hidden_trigger = { has_country_flag = GER_OC_intervention } }
+	visible = { has_country_flag = GER_OC_intervention }
+
+	on_map_area = {
+		target_array = EGB.controlled_states
+		target_array = SYR.controlled_states
+		target_array = BIR.controlled_states
+		target_array = NYM.controlled_states
+		target_array = OMB.controlled_states
+		target_array = GUL.controlled_states
+		target_array = PAL.controlled_states
+		target_trigger = {
+			FROM = {
+				is_capital = yes
+				owner = {
+					has_war = yes
+					if = {
+						limit = { tag = GUL }
+						has_government = social_democrat
+					}
+					else_if = {
+						limit = { tag = PAL }
+						OR = {
+							has_government = communist
+							has_government = ultranational_socialism
+						}
+					}
+				}
+			}
+		}
+		name = GER_Bormann_oil_crisis_support_category_map_category_name
+		zoom = 250
+	}
+
+	visible_when_empty = yes
+	priority = 160
+}
+
+GER_Bormann_EconMech_category = {
+	icon = ger_reichskommissariats
+	picture = GFX_GER_decision_category_zollverein
+	scripted_gui = TNO_Bormann_EconMech_DecisionGui
+	
+	allowed = { original_tag = GER }
+	available = { hidden_trigger = { has_country_flag = BOR_EconomyMechanic_Active } }
+	visible = { has_country_flag = BOR_EconomyMechanic_Active }
+
+	visible_when_empty = yes
+	priority = 250
+}
+
+GER_Bormann_Foreign_Policy_category = {
+	icon = ger_reichskommissariats
+	picture = GFX_GER_decision_map
+	
+	allowed = { original_tag = GER }
+	available = {
+		hidden_trigger = {
+			has_global_flag = german_civil_war_bormannvic
+			has_country_flag = BOR_InfluenceMechanic_Active
+			NOT = { has_country_flag = BOR_SchornerCoup }
+		}
+	}
+	visible = {
+		has_global_flag = german_civil_war_bormannvic
+		has_country_flag = BOR_InfluenceMechanic_Active
+		NOT = { has_country_flag = BOR_SchornerCoup }
+	}
+
+	priority = 100
+}
+
+GER_Bormann_Fall_Rollo_category = {
+	icon = generic_prepare_civil_war
+	picture = GFX_decision_SCO_decision_paranoia
+	
+	allowed = { original_tag = GER }
+	available = {
+		hidden_trigger = {
+			has_country_flag = BOR_fall_rollo_unlocked
+			NOT = { has_global_flag = FRA_post_breton_war_collapse }
+		}
+	}
+	visible = {
+		has_country_flag = BOR_fall_rollo_unlocked
+		NOT = { has_global_flag = FRA_post_breton_war_collapse }
+	}
+
+	priority = 170
+}
+
+GER_Bormann_Sphere_Trade_category = {
+	icon = generic_foreign_policy
+	picture = GFX_decision_JAP_decision_political_situation
+
+	allowed = { original_tag = GER }
+	available = {
+		hidden_trigger = {
+			has_idea = GER_BOR_sphere_trade
+			NOT = { has_war_with = JAP }
+		}
+	}
+	visible = {
+		has_idea = GER_BOR_sphere_trade
+		NOT = { has_war_with = JAP }
+	}
+
+	visible_when_empty = yes
+	priority = 210
+}

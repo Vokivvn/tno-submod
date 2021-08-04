@@ -1,0 +1,644 @@
+﻿#######################
+##  MALDIVES EVENTS  ##
+##   MADE BY MUPPER  ##
+#######################
+
+add_namespace = maldives
+
+country_event = {
+	id = maldives.1 #A Maldivian Independence Referendum?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.1"}
+ 	title = maldives.1.t
+ 	desc = maldives.1.desc
+ 	picture = GFX_report_event_generic_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = {
+		RAJ = {
+			OR = {
+				has_government = socialist
+				has_government = social_democrat
+				has_government = social_liberal
+				has_government = social_conservative
+				has_government = authoritarian_democrat
+			}
+		}
+	}
+
+ 	option = { #ok
+ 		name = maldives.1.a
+		hidden_effect = {
+			country_event = {
+				id = maldives.2
+				days = 365
+			}
+		}
+ 	}
+	option = { #no
+ 		name = maldives.1.b
+ 	}
+}
+
+country_event = {
+	id = maldives.2 #The Maldivian Independence Referendum
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.2"}
+ 	title = maldives.2.t
+ 	desc = maldives.2.desc
+ 	picture = GFX_report_event_generic_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.2.a
+		hidden_effect = {
+			random_list = {
+				74 = {
+					country_event = {
+						id = maldives.3
+						days = 1
+					}
+				}
+				26 = {
+					country_event = {
+						id = maldives.4
+						days = 1
+					}
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.3 #The Referendum Succeeds!
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event maldives.3"
+		hidden_effect = {
+			MLD = {
+				transfer_state = 281
+				transfer_state = 710
+				add_state_core = 281
+				add_state_core = 710
+			}
+			RAJ = {
+				diplomatic_relation = {
+					country = MLD
+					relation = guarantee
+					active = yes
+				}
+			}
+		}
+	}
+ 	title = maldives.3.t
+ 	desc = maldives.3.desc
+ 	picture = GFX_report_event_generic_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.3.a
+ 	}
+	option = { #Maldives Time
+ 		name = maldives.3.b
+		MLD = { change_tag_from = ROOT }
+ 	}
+}
+
+country_event = {
+	id = maldives.4 #The Referendum Fails
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.4"}
+ 	title = maldives.4.t
+ 	desc = maldives.4.desc
+ 	picture = GFX_report_event_generic_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.4.a
+ 	}
+}
+
+country_event = {
+	id = maldives.5 #Azad Hind - Liberating the Maldives?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.5"}
+ 	title = maldives.5.t
+ 	desc = maldives.5.desc
+ 	picture = GFX_report_event_bengal_freedom_day
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #yes
+ 		name = maldives.5.a
+		hidden_effect = {
+			MLD = {
+				country_event = {
+					id = maldives.6
+					days = 3
+				}
+			}
+		}
+ 	}
+	option = { #no
+ 		name = maldives.5.b
+ 	}
+}
+
+country_event = {
+	id = maldives.6 #Enemy Approaching!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.6"}
+ 	title = maldives.6.t
+ 	desc = maldives.6.desc
+ 	picture = GFX_report_event_generic_submarine
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ask america for help
+ 		name = maldives.6.a
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = maldives.9
+					hours = 7
+				}
+			}
+		}
+ 	}
+	option = { #we dont need any help
+ 		name = maldives.6.b
+		hidden_effect = {
+			country_event = {
+				id = maldives.7
+				days = 5
+			}
+			BEN = {
+				country_event = {
+					id = maldives.8
+					days = 5
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.7 #The Battle of Malé
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.7"}
+ 	title = maldives.7.t
+ 	desc = maldives.7.desc
+ 	picture = GFX_report_event_bengal_ina
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.7.a
+		hidden_effect = {
+			RAJ = {
+				diplomatic_relation = {
+					country = MLD
+					relation = guarantee
+					active = no
+				}
+			}
+			set_cosmetic_tag = MLD_BEN
+			set_politics = {
+				ruling_party = authoritarian_democrat
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Mike Hoare"
+				desc = "POLITICS_MALDIVES_MIKE_HOARE_DESC"
+				expire = "1999.1.1"
+				picture = "Portrait_Maldives_Mike_Hoare.dds"
+				ideology = authoritarian_democrat_subtype
+				traits = {
+				}
+			}
+			BEN = {
+				puppet = MLD
+			}
+			set_popularities = {
+				communist = 0
+				ultranational_socialism = 0
+				socialist = 0
+				social_democrat = 0
+				social_liberal = 52
+				market_liberal = 0
+				social_conservative = 19
+				authoritarian_democrat = 29
+				despotism = 0
+				fascism = 0
+				national_socialism = 0
+				burgundian_system = 0
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.8 #Azad Hind - The Battle of Malé
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.8"}
+ 	title = maldives.8.t
+ 	desc = maldives.8.desc
+ 	picture = GFX_report_event_bengal_ina
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.8.a
+ 	}
+}
+
+country_event = {
+	id = maldives.9 #USA - The Maldives Cries For Help!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.9"}
+ 	title = maldives.9.t
+ 	desc = maldives.9.desc
+ 	picture = GFX_report_event_italy_naval_ship
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #support them
+ 		name = maldives.9.a
+		hidden_effect = {
+			BEN = {
+				country_event = {
+					id = maldives.10
+					days = 1
+				}
+			}
+		}
+ 	}
+	option = { #we cant support them
+ 		name = maldives.9.b
+		hidden_effect = {
+			MLD = {
+				country_event = {
+					id = maldives.7
+					days = 4
+				}
+			}
+			BEN = {
+				country_event = {
+					id = maldives.8
+					days = 4
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.10 #Azad Hind - The OFN Backs Up the Maldives!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.10"}
+ 	title = maldives.10.t
+ 	desc = maldives.10.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier8
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #use the mercs
+ 		name = maldives.10.a
+		hidden_effect = {
+			BEN = {
+				country_event = {
+					id = maldives.11
+					days = 10
+				}
+			}
+		}
+ 	}
+	option = { #retreat!
+ 		name = maldives.10.b
+		hidden_effect = {
+			MLD = {
+				country_event = {
+					id = maldives.16
+					days = 1
+				}
+			}
+			USA = {
+				country_event = {
+					id = maldives.16
+					days = 1
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.11 #Refugees From Tamil Nadu
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.11"}
+ 	title = maldives.11.t
+ 	desc = maldives.11.desc
+ 	picture = GFX_report_event_india_migration
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #they're no harm
+ 		name = maldives.11.a
+		hidden_effect = {
+			country_event = {
+				id = maldives.12
+				days = 3
+			}
+		}
+ 	}
+	option = { #maldives for maldivians
+ 		name = maldives.11.b
+ 	}
+}
+
+country_event = {
+	id = maldives.12 #The Battle of Malé
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.12"}
+ 	title = maldives.12.t
+ 	desc = maldives.12.desc
+ 	picture = GFX_report_event_bengal_war
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #Hoare Succeeds
+ 		name = maldives.12.a
+		hidden_effect = {
+			random_list = {
+				60 = {
+					BEN = {
+						country_event = {
+							id = maldives.13
+							hours = 7
+						}
+					}
+					USA = {
+						country_event = {
+							id = maldives.14
+							hours = 7
+						}
+					}
+				}
+				40 = {
+					BEN = {
+						country_event = {
+							id = maldives.15
+							hours = 7
+						}
+					}
+					MLD = {
+						country_event = {
+							id = maldives.16
+							hours = 7
+						}
+					}
+					USA = {
+						country_event = {
+							id = maldives.16
+							hours = 7
+						}
+					}
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.13 #Azad Hind - Victory in the Maldives!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.13"}
+ 	title = maldives.13.t
+ 	desc = maldives.13.desc
+ 	picture = GFX_report_event_bengal_ina2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.13.a
+		hidden_effect = {
+			RAJ = {
+				diplomatic_relation = {
+					country = MLD
+					relation = guarantee
+					active = no
+				}
+			}
+			BEN = {
+				puppet = MLD
+			}
+			MLD = {
+				set_cosmetic_tag = MLD_BEN
+				set_politics = {
+					ruling_party = authoritarian_democrat
+					elections_allowed = no
+				}
+				create_country_leader = {
+					name = "Mike Hoare"
+					desc = "POLITICS_MALDIVES_MIKE_HOARE_DESC"
+					expire = "1999.1.1"
+					picture = "Portrait_Maldives_Mike_Hoare.dds"
+					ideology = authoritarian_democrat_subtype
+					traits = {
+					}
+				}
+				set_popularities = {
+					communist = 0
+					ultranational_socialism = 0
+					socialist = 0
+					social_democrat = 0
+					social_liberal = 52
+					market_liberal = 0
+					social_conservative = 19
+					authoritarian_democrat = 29
+					despotism = 0
+					fascism = 0
+					national_socialism = 0
+					burgundian_system = 0
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.14 #OFN - Failure in the Maldives
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.14"}
+ 	title = maldives.14.t
+ 	desc = maldives.14.desc
+ 	picture = GFX_report_event_facepalm
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.14.a
+ 	}
+}
+
+country_event = {
+	id = maldives.15 #OFN - Victory in the Maldives!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.15"}
+ 	title = maldives.15.t
+ 	desc = maldives.15.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.15.a
+		hidden_effect = {
+			MLD = {
+				country_event = {
+					id = maldives.17
+					days = 100
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.16 #Azad Hind - Failure in the Maldives
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.16"}
+ 	title = maldives.16.t
+ 	desc = maldives.16.desc
+ 	picture = GFX_report_event_south_african_war_us_helicopter
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.16.a
+ 	}
+}
+
+country_event = {
+	id = maldives.17 #Transfer of Diego Garcia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.17"}
+ 	title = maldives.17.t
+ 	desc = maldives.17.desc
+ 	picture = GFX_report_event_diego_garcia
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.17.a
+		hidden_effect = {
+			AST = {
+				country_event = {
+					id = maldives.18
+				}
+			}
+			country_event = {
+				id = maldives.19
+				days = 365
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.18 #Australia - Transfer of Diego Garcia
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.18"}
+ 	title = maldives.18.t
+ 	desc = maldives.18.desc
+ 	picture = GFX_report_event_diego_garcia
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.18.a
+		transfer_state = 710
+		MLD = {
+			remove_state_core = 710
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.19 #Request OFN Membership?
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.19"}
+ 	title = maldives.19.t
+ 	desc = maldives.19.desc
+ 	picture = GFX_report_event_diego_garcia
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #yes
+ 		name = maldives.19.a
+		ai_chance = {
+			factor = 100
+		}
+		USA = {
+			country_event = {
+				id = maldives.20
+			}
+		}
+ 	}
+	option = { #no
+ 		name = maldives.19.b
+		ai_chance = {
+			factor = 0
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.20 #USA - The Maldives Requests OFN Membership
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.20"}
+ 	title = maldives.20.t
+ 	desc = maldives.20.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier10
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #yes
+ 		name = maldives.20.a
+		ai_chance = {
+			factor = 90
+		}
+		add_to_faction = MLD
+ 	}
+	option = { #no
+ 		name = maldives.20.b
+		ai_chance = {
+			factor = 10
+		}
+		MLD = {
+			country_event = {
+				id = maldives.21
+				hours = 7
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = maldives.21 #America Declines Our Request
+	immediate = {log = "[GetDateText]: [Root.GetName]: event maldives.21"}
+ 	title = maldives.20.t
+ 	desc = maldives.20.desc
+ 	picture = GFX_report_event_south_african_war_us_soldier
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+ 	option = { #ok
+ 		name = maldives.21.a
+ 	}
+}

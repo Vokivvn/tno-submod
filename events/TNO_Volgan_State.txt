@@ -1,0 +1,406 @@
+add_namespace = VLG
+
+country_event = { # starting election event
+	id = VLG.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event VLG.1"}
+	title = "Wolgastaat elections" #VLG.1.t
+	desc = "This country isn't supposed to be playable btw" #VLG.1.d
+	#picture = GFX_report_event_crate_of_guns
+
+	fire_only_once = yes
+	trigger = {
+		tag = VLG
+		VLG = {
+			owns_state = 217 #Paulusburg
+		}
+	}
+
+	option = { #election time
+		name = "And the winner is..." #VLG.1.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			random_list = { #type1
+				1 = {
+					remove_all_ministers = yes
+					add_ideas = {
+						VLG_minister_Dominik_Hollmann_hog
+						VLG_minister_Wilfried_Strik_Strikfeld_for
+						VLG_minister_Alexander_Hasselbach_eco
+						VLG_minister_Werner_Ebeling_sec
+					}
+				}
+				1 = { #type2
+					remove_all_ministers = yes
+					add_ideas = {
+						VLG_minister_Dominik_Hollmann_hog
+						VLG_minister_Mischa_Wilkzer_for
+						VLG_minister_Nikolay_Fyodorov_eco
+						VLG_minister_Werner_Ebeling_sec
+					}
+				}
+				1 = { #type3
+					remove_all_ministers = yes
+					add_ideas = {
+						VLG_minister_Theodor_Busse_hog
+						VLG_minister_Dominik_Hollmann_for
+						VLG_minister_Mischa_Wilkzer_eco
+						VLG_minister_Werner_Ebeling_sec
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { # 2ss setup event
+	id = VLG.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event VLG.2"}
+	title = "event to switch tags to MCW" #VLG.2.t
+	desc = VLG.2.d
+	#picture = GFX_report_event_crate_of_guns
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok"
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			MCW = {
+				annex_country = {
+					target = VLG
+				}
+
+				#country_event = { id = MCW.109 days = 100 }
+
+				if = {
+					limit = {
+						has_global_flag = MCW_2SS_Russian_Pref
+					}
+					load_oob = "VLG_2SS_Russian_Pref"
+				}
+				else = {
+					load_oob = "VLG_2SS_German_Pref"
+				}
+				
+
+
+				add_ideas = {
+					##IDEAS##
+					MCW_unruly_russian_minority
+					MCW_disconnected_lands
+					VLG_volga_autonomous_region
+					##MINISTERS##
+					PET_minister_Wend_von_Wietersheim_hog
+					VLG_minister_Alexander_Hasselbach_eco
+					PET_minister_Hans_Speth_for
+					VLG_minister_Helmuth_von_Pannwitz_sec
+					##SOCIETAL DEVELOPMENT##
+					tno_academic_base_secondary_schooling
+					tno_research_facilities_outdated
+					tno_agriculture_modern
+					tno_industrial_equipment_modern
+					tno_industrial_expertise_experienced
+					tno_army_professionalism_reluctant_conscripts
+					tno_nuclear_stockpile_none
+					tno_poverty_rate_10
+					##POLITICAL LAWS##
+					tno_political_parties_one_party_state
+					tno_religious_rights_state_atheism
+					tno_trade_unions_illegal
+					tno_immigration_quota_immigration
+					tno_slavery_allowed
+					tno_public_meetings_regulated
+					##MILITARY LAWS###
+					tno_conscription_two_year_draft
+					tno_women_banned
+					tno_military_supervision_kill_em_all
+					tno_military_spending_large_spending 
+					tno_training_basic_training
+					tno_racial_integration_none
+					##SOCIAL LAWS##
+					tno_safety_minimal_regulations
+					tno_health_care_private_health_care
+					tno_pollution_no_controls
+					tno_education_public_education
+					tno_penal_system_penal_slavery
+					tno_lgbt_rights_lgbt_outlawed
+					tno_security_police
+					##ECONOMIC LAWS##
+					tno_trade_laws_limited_exports
+					tno_economic_focus_early_mobilization
+					tno_tax_rate_high_taxes
+					tno_income_taxation_elite_tax_exemptions
+					tno_minimum_wage_trinket_minimum_wage
+					tno_max_workhours_14_hour_work_day
+				}	
+				remove_ideas = {
+					MCW_apathetic_rule
+					MCW_unified_ostvolk_council
+					MCW_the_porous_border
+				}
+				set_research_slots = 3
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = 200
+				}
+				#set_convoys = 200
+				set_stability = 0.6
+
+				drop_cosmetic_tag = yes
+				set_politics = {
+					ruling_party = fascism
+					last_election = "1935.10.22"
+					election_frequency = 48
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					communist = 0
+					ultranational_socialism = 0
+					socialist = 0
+					social_democrat = 0
+					social_liberal = 0
+					market_liberal = 0
+					social_conservative = 0
+					authoritarian_democrat = 0
+					despotism = 0
+					fascism = 60
+					national_socialism = 40
+				}
+
+				create_country_leader = {
+					name = "Erich von dem Bach"
+					desc = ""
+					picture = "Portrait_Moskowien_Erich_von_dem_Bach.dds"
+					expire = "1999.10.12"
+					ideology = fascism_subtype
+					traits = {
+						
+					}
+				}
+
+				create_corps_commander = { 
+					name = "Helmuth von Pannwitz"
+					picture = "Portrait_VLG_Helmuth_von_Pannwitz.dds"
+					traits = {  }
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+					id = 1802
+				}
+
+				create_corps_commander = { 
+					name = "Werner Ebeling"
+					#picture = "" #TODO: add picture
+					traits = {  }
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+					id = 1803
+				}
+
+				create_corps_commander = {
+					name = "Theodor Busse"
+					#picture = "" #TODO: add picture
+					traits = {  }
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+					id = 1804
+				}
+			}
+		}
+	}
+}
+
+country_event = { # 3ss setup event
+	id = VLG.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event VLG.3"}
+	title = "3ss setup event" #VLG.2.t
+	desc = VLG.2.d
+	#picture = GFX_report_event_crate_of_guns
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok"
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			set_global_flag = MCW_3SS
+			add_ideas = {
+				MCW_oestliche_wirtschaftsgemeinschaft
+			}
+			MCW = {
+				add_ideas = {
+					MCW_oestliche_wirtschaftsgemeinschaft
+				}
+			}
+			MOS = {
+				add_ideas = {
+					MCW_oestliche_wirtschaftsgemeinschaft
+				}
+			}
+			remove_ideas = {
+				VLG_volga_settler_conflict
+				VLG_local_russian_resistance
+				VLG_NSDAP_meddling
+			}
+			add_ideas = {
+				VLG_volga_autonomous_region
+				MCW_unruly_russian_minority
+			}
+			set_politics = {
+				ruling_party = despotism
+			}
+			create_country_leader = {
+				name = "Helmuth von Pannwitz"
+				desc = "POLITICS_Helmuth_von_Pannwitz_DESC"
+				picture = "Portrait_VLG_Helmuth_von_Pannwitz.dds"
+				expire = "1999.10.12"
+				ideology = despotism_subtype
+				traits = {
+					
+				}
+			}
+			set_popularities = {
+				communist = 0
+				ultranational_socialism = 0
+				socialist = 1
+				social_democrat = 2
+				social_liberal = 3
+				market_liberal = 0
+				social_conservative = 0
+				authoritarian_democrat = 3
+				despotism = 60
+				fascism = 12
+				national_socialism = 19
+			}
+		}
+	}
+}
+
+country_event = {#Anti Pannwitz Coup during Slave Revolt
+	id = VLG.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event VLG.4" }
+	title = VLG.4.t
+	desc = VLG.4.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Libtards
+		name = VLG.4.a
+		ai_chance = { factor = 0.5 }
+		hidden_effect = {
+			remove_unit_leader = 1802
+			load_oob = VLG_Slave_Revolt
+			set_politics = {
+				ruling_party = social_liberal
+			}
+			GER = {
+				end_puppet = VLG
+			}
+			leave_faction = yes
+			create_country_leader = {
+				name = "Dominik Hollmann"
+				desc = "POLITICS_DOMINIK_HOLLMANN_DESC"
+				picture = "Portrait_VLG_Dominik_Hollmann.dds"
+				expire = "1999.10.12"
+				ideology = social_liberal_subtype
+				traits = {
+					
+				}
+			}
+			set_popularities = {
+				communist = 0
+				ultranational_socialism = 0
+				socialist = 0
+				social_democrat = 36
+				social_liberal = 46
+				market_liberal = 0
+				social_conservative = 0
+				authoritarian_democrat = 0
+				despotism = 0
+				fascism = 0
+				national_socialism = 18
+			}		
+		}
+	}
+	option = { #Socdems
+		name = VLG.4.b
+		ai_chance = { factor = 0.5 }
+		hidden_effect = {
+			remove_unit_leader = 1802
+			load_oob = VLG_Slave_Revolt
+			set_politics = {
+				ruling_party = social_democrat
+			}
+			GER = {
+				end_puppet = VLG
+			}
+			leave_faction = yes
+			create_country_leader = {
+				name = "Nikolay Fyodorov"
+				desc = "POLITICS_NIKOLAY_FYODOROV_DESC"
+				picture = "Portrait_VLG_Nikolay_Fyodorov.dds"
+				expire = "1999.10.12"
+				ideology = social_democrat_subtype
+				traits = {
+					
+				}
+			}
+			set_popularities = {
+				communist = 0
+				ultranational_socialism = 0
+				socialist = 0
+				social_democrat = 46
+				social_liberal = 36
+				market_liberal = 0
+				social_conservative = 0
+				authoritarian_democrat = 0
+				despotism = 0
+				fascism = 0
+				national_socialism = 18
+			}		
+		}
+	}
+}
+
+country_event = {#Freikorps attacks
+	id = VLG.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event VLG.5" }
+	title = VLG.5.t
+	desc = VLG.5.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #War time
+		name = VLG.5.a
+		ai_chance = { factor = 0.5 }
+		hidden_effect = {
+			DFK = {
+				declare_war_on = {
+					target = VLG
+					type = annex_everything
+				}
+			}
+		}
+	}
+}

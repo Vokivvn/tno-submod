@@ -1,0 +1,955 @@
+### All-Russian Congress stuff ###
+defined_text = {
+	name = GetARC_unity
+	text = {
+		trigger = {
+			check_variable = { global.ARC_unity = -5 }
+		}
+		localization_key = ARC_unity_brink
+	}
+	text = {
+		trigger = {
+			check_variable = { global.ARC_unity < -2 }
+			NOT = {
+				check_variable = { global.ARC_unity = -5 }
+			}
+		}
+		localization_key = ARC_unity_low
+	}
+	text = {
+		trigger = {
+			check_variable = { global.ARC_unity > -3 }
+			check_variable = { global.ARC_unity < 3 }
+		}
+		localization_key = ARC_unity_medium
+	}
+	text = {
+		trigger = {
+			check_variable = { global.ARC_unity > 2 }
+		}
+		localization_key = ARC_unity_high
+	}
+}
+
+
+### Legacy Of The Siberian Plan ###
+
+### Prestige ###
+defined_text = {
+	name = GetRussianUnifierDominant
+	text = {
+		trigger = {
+			check_variable = { WSR.RUS_diplo_prestige > WSB.RUS_diplo_prestige }
+		}
+		localization_key = WSR_DOMINANT
+	}
+	text = {
+		trigger = {
+			check_variable = { WSR.RUS_diplo_prestige < WSB.RUS_diplo_prestige }
+		}
+		localization_key = WSB_DOMINANT
+	}
+	text = {
+		trigger = {
+			check_variable = { WSR.RUS_diplo_prestige = WSB.RUS_diplo_prestige }
+		}
+		localization_key = RUS_NONE_DOMINANT
+	}
+}
+
+defined_text = {
+	name = GetSiberianUnifierDominant
+	text = {
+		trigger = {
+			check_variable = { CSB.RUS_diplo_prestige > FST.RUS_diplo_prestige }
+		}
+		localization_key = CSB_DOMINANT
+	}
+	text = {
+		trigger = {
+			check_variable = { CSB.RUS_diplo_prestige < FST.RUS_diplo_prestige }
+		}
+		localization_key = FST_DOMINANT
+	}
+	text = {
+		trigger = {
+			check_variable = { CSB.RUS_diplo_prestige = FST.RUS_diplo_prestige }
+		}
+		localization_key = SIB_NONE_DOMINANT
+	}
+}
+
+defined_text = {
+	name = GetOtherRegionalAdj
+	text = {
+		trigger = {
+			OR = {
+				is_far_eastern_nation = yes
+				is_central_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = region_name_adj_SIB
+	}
+	text = {
+		trigger = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = region_name_adj_RUS
+	}
+	text = {
+		trigger = {
+			is_central_russian_nation = yes
+		}
+		localization_key = region_name_adj_WSB
+	}
+	text = {
+		trigger = {
+			is_west_siberian_nation = yes
+		}
+		localization_key = region_name_adj_WSR
+	}
+	text = {
+		trigger = {
+			is_central_siberian_nation = yes
+		}
+		localization_key = region_name_adj_FST
+	}
+	text = {
+		trigger = {
+			is_far_eastern_nation = yes
+		}
+		localization_key = region_name_adj_CSB
+	}
+}
+
+defined_text = {
+	name = GetOtherRegionalName
+	text = {
+		trigger = {
+			OR = {
+				is_far_eastern_nation = yes
+				is_central_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = "[RWS.GetName]"
+	}
+	text = {
+		trigger = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = "[SIB.GetName]"
+	}
+	text = {
+		trigger = {
+			is_central_russian_nation = yes
+		}
+		localization_key = "[WSB.GetName]"
+	}
+	text = {
+		trigger = {
+			is_west_siberian_nation = yes
+		}
+		localization_key = "[WSR.GetName]"
+	}
+	text = {
+		trigger = {
+			is_central_siberian_nation = yes
+		}
+		localization_key = "[FST.GetName]"
+	}
+	text = {
+		trigger = {
+			is_far_eastern_nation = yes
+		}
+		localization_key = "[CSB.GetName]"
+	}
+}
+
+defined_text = {
+	name = GetOtherRegionalDef
+	text = {
+		trigger = {
+			OR = {
+				is_far_eastern_nation = yes
+				is_central_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = "[RWS.GetNameDef]"
+	}
+	text = {
+		trigger = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		localization_key = "[SIB.GetNameDef]"
+	}
+	text = {
+		trigger = {
+			is_central_russian_nation = yes
+		}
+		localization_key = "[WSB.GetNameDef]"
+	}
+	text = {
+		trigger = {
+			is_west_siberian_nation = yes
+		}
+		localization_key = "[WSR.GetNameDef]"
+	}
+	text = {
+		trigger = {
+			is_central_russian_nation = yes
+		}
+		localization_key = "[FST.GetNameDef]"
+	}
+	text = {
+		trigger = {
+			is_far_eastern_nation = yes
+		}
+		localization_key = "[CSB.GetNameDef]"
+	}
+}
+
+### Nuclear Program Names
+defined_text = {
+	name = RUSGetNuclearProgramName
+	text = {
+		trigger = {
+			original_tag = IRK
+		}
+		localization_key = RUS_nuclear_program_name_IRK
+	}
+	text = {
+		trigger = {
+			original_tag = OMS
+		}
+		localization_key = RUS_nuclear_program_name_OMS
+	}
+	text = {
+		trigger = {
+			original_tag = TOB
+		}
+		localization_key = RUS_nuclear_program_name_TOB
+	}
+	text = {
+		trigger = {
+			original_tag = AMR
+		}
+		localization_key = RUS_nuclear_program_name_AMR
+	}
+	text = {
+		trigger = {
+			original_tag = MAG
+		}
+		localization_key = RUS_nuclear_program_name_MAG
+	}
+	text = {
+		trigger = {
+			original_tag = NIK
+			has_government = ultranational_socialism
+		}
+		localization_key = RUS_nuclear_program_name_NIK_gummy
+	}
+	text = {
+		trigger = {
+			original_tag = PRM
+			has_government = ultranational_socialism
+		}
+		localization_key = RUS_nuclear_program_name_PRM_hyperborea
+	}
+	text = {
+		trigger = {
+			original_tag = KEM
+		}
+		localization_key = RUS_nuclear_program_name_KEM
+	}
+	text = {
+		trigger = {
+			original_tag = KHA
+			has_government = socialist
+		}
+		localization_key = RUS_nuclear_program_name_KHA_LibSoc
+	}
+	text = {
+		trigger = {
+			original_tag = KHA
+			has_government = despotism
+		}
+		localization_key = RUS_nuclear_program_name_KHA_Despotist
+	}
+	text = {
+		trigger = {
+			is_russian_nation = yes
+		}
+		localization_key = RUS_nuclear_program_name_generic
+	}
+}
+
+defined_text = {
+	name = RUSGetNuclearProgramStage
+	text = {
+		trigger = {
+			has_country_flag = RUS_nuclear_program_phase_5
+		}
+		localization_key = RUS_nuclear_program_phase_5_loc
+	}
+	text = {
+		trigger = {
+			has_country_flag = RUS_nuclear_program_phase_4
+		}
+		localization_key = RUS_nuclear_program_phase_4_loc
+	}
+	text = {
+		trigger = {
+			has_country_flag = RUS_nuclear_program_phase_3
+		}
+		localization_key = RUS_nuclear_program_phase_3_loc
+	}
+	text = {
+		trigger = {
+			has_country_flag = RUS_nuclear_program_phase_2
+		}
+		localization_key = RUS_nuclear_program_phase_2_loc
+	}
+	text = {
+		trigger = {
+			has_country_flag = RUS_nuclear_program_phase_1
+		}
+		localization_key = RUS_nuclear_program_phase_1_loc
+	}
+}
+
+defined_text = {
+	name = RUSGetNuclearProgramProcess
+	text = {
+		trigger = {
+			check_variable = { RUSNukesMonthlyProgress < 3 }
+		}
+		localization_key = RUS_nuclear_program_process_slow
+	}
+	text = {
+		trigger = {
+			check_variable = { RUSNukesMonthlyProgress > 2.99 }
+		}
+		localization_key = RUS_nuclear_program_process_moderate
+	}
+	text = {
+		trigger = {
+			check_variable = { RUSNukesMonthlyProgress > 4.99 }
+		}
+		localization_key = RUS_nuclear_program_process_fast
+	}
+	text = {
+		trigger = {
+			check_variable = { RUSNukesMonthlyProgress > 6.99 }
+		}
+		localization_key = RUS_nuclear_program_process_rapid
+	}
+}
+
+defined_text = {
+	name = GetNowaPoslkaText
+	text = {
+		trigger = {
+			DON = {	exists = yes }
+			has_global_flag = RUS_shattered_kazakhstan
+		}
+		localization_key = DON_fire_string
+	}
+}
+
+defined_text = {
+	name = GetOpponentDONInfluence
+	text = {
+		trigger = {
+			tag = RWS
+		}
+		localization_key = SIB_opponent_DON_influence
+	}
+	text = {
+		trigger = {
+			tag = SIB
+		}
+		localization_key = RWS_opponent_DON_influence
+	}
+}
+
+defined_text = {
+	name = GetDONInfluenceInvestment
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_DON_INFLUENCE_0
+		}
+		localization_key = RUS_influence_0
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_DON_INFLUENCE_1
+		}
+		localization_key = RUS_influence_1
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_DON_INFLUENCE_2
+		}
+		localization_key = RUS_influence_2
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_DON_INFLUENCE_3
+		}
+		localization_key = RUS_influence_3
+	}
+}
+
+defined_text = {
+	name = GetDONRelations
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetDONOpponentRelations
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			DON = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			DON = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetKazakhText
+	text = {
+		trigger = {
+			KZK = {	exists = yes }
+		}
+		localization_key = KZK_fire_string
+	}
+}
+
+defined_text = {
+	name = GetOpponentKAZInfluence
+	text = {
+		trigger = {
+			tag = RWS
+		}
+		localization_key = SIB_opponent_KAZ_influence
+	}
+	text = {
+		trigger = {
+			tag = SIB
+		}
+		localization_key = RWS_opponent_KAZ_influence
+	}
+}
+
+defined_text = {
+	name = GetKAZInfluenceInvestment
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_KAZ_INFLUENCE_0
+		}
+		localization_key = RUS_influence_0
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_KAZ_INFLUENCE_1
+		}
+		localization_key = RUS_influence_1
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_KAZ_INFLUENCE_2
+		}
+		localization_key = RUS_influence_2
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_KAZ_INFLUENCE_3
+		}
+		localization_key = RUS_influence_3
+	}
+}
+
+defined_text = {
+	name = GetKAZRelations
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetKAZOpponentRelations
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = RWS
+			KZK = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = SIB
+			KZK = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = Get_after_midnight_68_corporation
+	text = {
+		trigger = {
+			GER = {
+				has_country_flag = IGFarben_dismantled
+				has_country_flag = Reichswerke_dismantled
+				has_country_flag = Daimler_dismantled
+				has_country_flag = Siemens_dismantled
+			}
+		}
+		localization_key = "corporation"
+	}
+	text = {
+		localization_key = "megacorporation"
+	}
+}
+
+defined_text = {
+	name = Get_after_midnight_64_english_hos
+	text = {
+		trigger = {
+			ENG = { has_idea = TNO_ParliamentMechanic_Monarch_Elizabeth_II }
+		}
+		localization_key = "King - or was it Queen now? -"
+	}
+	text = {
+		trigger = {
+			ENG = { has_idea = TNO_ParliamentMechanic_Monarch_NoMonarch }
+		}
+		localization_key = "King - or were they a republic now? -"
+	}
+	text = {
+		localization_key = "... King"
+	}
+}

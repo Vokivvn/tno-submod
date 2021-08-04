@@ -1,0 +1,984 @@
+﻿#######################
+#Turkish - Italian war#
+#######################
+
+add_namespace = itatur
+add_namespace = itatur.world
+
+country_event = {	#Turkey: Declare war?
+	id = itatur.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.1"}
+	title = itatur.1.t
+	desc = itatur.1.d
+	picture = GFX_report_event_desert_tank
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #yea
+		name = itatur.1.a
+		hidden_effect = {
+			ITA = {
+				end_puppet = IME
+			}
+			IME = {
+				set_country_flag = ime_italy_turkey_war
+			}
+			every_country = {
+				news_event = {
+					id = itatur.100
+				}
+			}
+		}
+
+		set_global_flag = italy_turkey_war
+
+		TUR = {
+			declare_war_on = {
+				type = take_state_focus
+				target = IME
+				generator = { 553 782 }
+			}
+		}
+
+		hidden_effect = {
+			add_named_threat = {
+				threat = 5
+				name = threat.59.t
+			}
+			TNO_World_Tension_add_5 = yes
+			country_event = {
+				id = itatur.511
+				days = 200
+			}
+		}
+	}
+}
+
+country_event = { #Turkey Offers Peace
+	id = itatur.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.2"}
+	title = itatur.2.t
+	desc = itatur.2.d
+	picture = GFX_report_event_generic_read_write
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #ok
+		name = itatur.2.a
+		ITA = {
+			country_event = {
+				id = itatur.4
+				hours = 12
+			}
+		}
+	}
+}
+
+country_event = { #Ciano Considers Peace Deal
+	id = itatur.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.3"}
+	title = itatur.3.t
+	desc = itatur.3.d
+	picture = GFX_report_event_generic_read_write
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #Send Ciano's deal!
+		name = itatur.3.a
+		TUR = {
+			country_event = {
+				id = itatur.5
+				hours = 6
+			}
+		}
+	}
+	option = { #Listen to Scorza, push further!
+		name = itatur.3.b
+		hidden_effect = {
+			set_country_flag = ITA_wait_scorza
+		}
+	}
+}
+
+country_event = { #Scorza's Sends Peace Deal
+	id = itatur.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.30"}
+	title = itatur.30.t
+	desc = itatur.30.d
+	picture = GFX_report_event_generic_read_write
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #send scorza's deal!
+		name = itatur.30.a
+		TUR = {
+			country_event = {
+				id = itatur.6
+				hours = 3
+			}
+		}
+	}
+}
+
+
+country_event = { #Turkey's deal- Turkey gets Dodecanese, Dar'a and Lebanon
+	id = itatur.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.4"}
+	title = itatur.4.t
+	desc = itatur.4.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #we have no choice but to accept.
+		name = itatur.4.a
+		ITA = {
+			remove_ideas = {
+				advisor_level_1
+				advisor_level_2
+				advisor_level_3
+				advisor_level_4
+				advisor_level_5
+			}
+		}
+		IME = {
+			white_peace = TUR
+		}
+		TUR = {
+			transfer_state = 553
+			transfer_state = 782
+		}
+		hidden_effect = {
+			set_global_flag = IME_TUR_peace_deal
+			add_named_threat = {
+				threat = -5
+				name = threat.60.t
+			}
+			TNO_World_Tension_subtract_5 = yes
+			TUR = {
+				save_global_event_target_as = winning_country
+				white_peace = IME
+			}
+			IME = { save_global_event_target_as = losing_country }
+			set_global_flag = war_won
+			set_global_flag = show_peace_popup_alert
+
+			IME = {
+				transfer_state = 453
+				transfer_state = 1247
+				transfer_state = 1246
+				transfer_state = 1244
+				transfer_state = 455
+				transfer_state = 1245
+				transfer_state = 1248
+				transfer_state = 454
+			}
+		}
+		add_stability = -0.05
+		add_war_support = -0.05
+		news_event = {
+			id = itatur.102
+			hours = 3
+		}
+		hidden_effect = {
+			IME = {
+				country_event = { id = ita.1005 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #Ciano's deal- reparations and demilitarising
+	id = itatur.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.5"}
+	title = itatur.5.t
+	desc = itatur.5.d
+	picture = GFX_report_event_generic_sign_treaty3
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #guess we'll accept
+		name = itatur.5.a
+		ITA = {
+			remove_ideas = {
+				advisor_level_1
+				advisor_level_2
+				advisor_level_3
+				advisor_level_4
+				advisor_level_5
+			}
+		}
+
+		white_peace = IME
+
+		news_event = {
+			id = itatur.101
+			hours = 3
+		}
+		hidden_effect = {
+			set_global_flag = IME_TUR_peace_deal
+			add_named_threat = {
+				threat = -5
+				name = threat.60.t
+			}
+			TNO_World_Tension_subtract_5 = yes
+			IME = {
+				save_global_event_target_as = winning_country
+				white_peace = TUR
+			}
+			TUR = { save_global_event_target_as = losing_country }
+			set_global_flag = war_won
+			set_global_flag = show_peace_popup_alert
+
+
+			1240 = {
+				set_demilitarized_zone = yes
+			}
+			554 = {
+				set_demilitarized_zone = yes
+			}
+			1372 = {
+				set_demilitarized_zone = yes
+			}
+			IME = {
+				clr_country_flag = ime_italy_turkey_war
+				country_event = { id = ita.1005 days = 1}
+				country_event = { id = ime.48 days = 3 }
+				country_event = { id = ime.114 days = 1 }
+			}
+			BRG = {
+				set_country_flag = BRG_itw_won
+			}
+		}
+	}
+}
+
+country_event = { #Ciano's deal- reparations and demilitarising - logic
+	id = itatur.511
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.511"}
+	title = itatur.511.t
+	desc = itatur.511.d
+	hidden = yes
+	picture = GFX_report_event_generic_sign_treaty3
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #guess we'll accept
+		name = itatur.511.a
+		if = {
+			limit = {
+				IME = {
+					has_war = yes
+				}
+				TUR = {
+					has_war = yes
+				}
+			}
+			TUR = {
+				country_event = { id = itatur.5 days = 4}
+			}
+		}
+	}
+}
+
+country_event = { #scorza's deal sent- attempt 1
+	id = itatur.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.6"}
+	title = itatur.6.t
+	desc = itatur.6.d
+	picture = GFX_report_event_generic_congress
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #lol nice joke, refuse
+		name = itatur.6.a
+		ITA = {
+			country_event = {
+				id = itatur.7
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #turks refuse!
+	id = itatur.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.7"}
+	title = itatur.7.t
+	desc = itatur.7.d
+	picture = GFX_report_event_generic_read_write
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #okay, send it again
+		name = itatur.7.a
+		TUR = {
+			country_event = {
+				id = itatur.8
+				days = 3
+			}
+		}
+	}
+	option = { #they clearly won't accept the deal, send Ciano's instead
+		name = itatur.7.b
+		TUR = {
+			country_event = {
+				id = itatur.5
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #scorza's deal sent, again
+	id = itatur.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.8"}
+	title = itatur.8.t
+	desc = itatur.8.d
+	picture = GFX_report_event_generic_congress
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #they sent it again? they're in no position to negotiate! refuse!
+		name = itatur.8.a
+		ITA = {
+			country_event = {
+				id = itatur.9
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #turks refuse, again
+	id = itatur.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.9"}
+	title = itatur.9.t
+	desc = itatur.9.d
+	picture = GFX_report_event_generic_read_write
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #third times the charm, send it again
+		name = itatur.9.a
+		TUR = {
+			country_event = {
+				id = itatur.10
+				days = 3
+			}
+		}
+	}
+	option = { #they're clearly not taking that deal, send cianos
+		name = itatur.9.b
+		TUR = {
+			country_event = {
+				id = itatur.5
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Turkey accepts the Scorza deal, lose Damascus and Mosul
+	id = itatur.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.10"}
+	title = itatur.10.t
+	desc = itatur.10.d
+	picture = GFX_report_event_generic_sign_treaty3
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = { #wait shit we can't negotiate either, take the deal
+		name = itatur.10.a
+		ITA = {
+			remove_ideas = {
+				advisor_level_1
+				advisor_level_2
+				advisor_level_3
+				advisor_level_4
+				advisor_level_5
+			}
+		}
+		white_peace = IME
+
+		IME = {
+			add_state_core = 554
+			transfer_state = 554
+			add_state_core = 1240
+			transfer_state = 1240
+			clr_country_flag = ime_italy_turkey_war
+			country_event = { id = ime.48 days = 3 }
+		}
+		IRQ = {
+			transfer_state = 781
+			transfer_state = 1334
+		}
+		news_event = {
+			id = itatur.103
+		}
+		hidden_effect = {
+			set_global_flag = IME_TUR_peace_deal
+			add_named_threat = {
+				threat = -5
+				name = threat.60.t
+			}
+			TNO_World_Tension_subtract_5 = yes
+			IME = {
+				save_global_event_target_as = winning_country
+				white_peace = TUR
+			}
+			TUR = { save_global_event_target_as = losing_country }
+			set_global_flag = war_won
+			set_global_flag = show_peace_popup_alert
+			IME = {
+				country_event = { id = ita.1005 days = 1}
+				country_event = { id = ime.114 days = 1 }
+			}
+			BRG = {
+				set_country_flag = BRG_itw_lost
+			}
+			TUR = {
+				add_state_core = 184
+				transfer_state = 184
+				add_state_core = 1266
+				transfer_state = 1266
+				add_state_core = 1267
+				transfer_state = 1267
+				add_state_core = 341
+				transfer_state = 341
+				add_state_core = 347
+				transfer_state = 347
+				add_state_core = 340
+				transfer_state = 340
+				add_state_core = 339
+				transfer_state = 339
+				add_state_core = 342
+				transfer_state = 342
+				add_state_core = 343
+				transfer_state = 343
+				add_state_core = 49
+				transfer_state = 49
+				add_state_core = 346
+				transfer_state = 346
+				add_state_core = 345
+				transfer_state = 345
+				add_state_core = 355
+				transfer_state = 355
+				add_state_core = 348
+				transfer_state = 348
+				add_state_core = 344
+				transfer_state = 344
+				add_state_core = 349
+				transfer_state = 349
+				add_state_core = 354
+				transfer_state = 354
+				add_state_core = 783
+				transfer_state = 783
+				add_state_core = 230
+				transfer_state = 230
+				add_state_core = 353
+				transfer_state = 353
+				add_state_core = 350
+				transfer_state = 350
+				transfer_state = 1243
+				transfer_state = 680
+				transfer_state = 1241
+				transfer_state = 1242
+				add_state_core = 356
+				transfer_state = 356
+				add_state_core = 352
+				transfer_state = 352
+				transfer_state = 677
+			}
+		}
+	}
+}
+news_event = {	#World Event
+	id = itatur.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.100"}
+	title = itatur.100.t
+	desc = itatur.100.d
+	picture = GFX_news_event_turkish_soldiers
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Another imperialist war."
+		trigger = {
+			OR = {
+				has_government = socialist
+				has_government = communist
+			}
+			NOT = {
+				OR = {
+					tag = TUR
+					tag = ITA
+				}
+			}
+		}
+	}
+	option = {
+		name = "We will crush them."
+		trigger = {
+			OR = {
+				tag = TUR
+				tag = ITA
+			}
+		}
+	}
+
+	option = {
+		name = "What a way to treat a former ally."
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = socialist
+					has_government = communist
+					tag = TUR
+					tag = ITA
+				}
+			}
+		}
+	}
+}
+
+news_event = { #Italy wins turkish italian war- cianos deal
+	id = itatur.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.101"}
+	title = WORLD.345.t
+	desc = WORLD.345.d
+	picture = GFX_news_event_soldiers_in_ruins
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = WORLD.345.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = TUR
+					tag = ITA
+				}
+			}
+		}
+	}
+	option = {
+		name = WORLD.345.b
+		trigger = {
+			tag = ITA
+		}
+		ITA = {
+			country_event = { id = ITAENI.2 days = 30 }
+		}
+	}
+	option = {
+		name = WORLD.345.c
+		trigger = {
+			tag = TUR
+		}
+	}
+}
+
+news_event = { #Turkey wins turkish italian war
+	id = itatur.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.102"}
+	title = WORLD.346.t
+	desc = WORLD.346.d
+	picture = GFX_news_event_turkish_soldier_with_flag
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = WORLD.346.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = TUR
+					tag = ITA
+				}
+			}
+		}
+	}
+	option = {
+		name = WORLD.346.b
+		trigger = {
+			tag = ITA
+		}
+		IME = {
+			white_peace = TUR
+		}
+		TUR = {
+			transfer_state = 553
+			transfer_state = 782
+		}
+		IME = {
+			transfer_state = 453
+			transfer_state = 454
+			transfer_state = 455
+		}
+		add_stability = -0.05
+		add_war_support = -0.05
+		hidden_effect = {
+			IME = {
+				country_event = { id = ita.1005 days = 1}
+				country_event = { id = ime.100 days = 14 }
+				country_event = { id = ime.114 days = 1 }
+			}
+		}
+		set_global_flag = ita_tur_ita_lose
+		ITA = {
+			country_event = { id = ITAENI.1 days = 30 }
+		}
+	}
+	option = {
+		name = WORLD.346.c
+		trigger = {
+			tag = TUR
+		}
+	}
+
+}
+
+news_event = { #Italy wins the Italo-Turkish war- Scorza deal
+	id = itatur.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.103"}
+	title = WORLD.355.t
+	desc = WORLD.355.d
+	picture = GFX_news_event_soldiers_in_ruins
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = WORLD.355.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = TUR
+					tag = ITA
+				}
+			}
+		}
+	}
+	option = {
+		name = WORLD.355.b
+		set_global_flag = ita_tur_ita_win
+		trigger = {
+			tag = ITA
+		}
+		ITA = {
+			country_event = { id = ITAENI.2 days = 30 }
+		}
+		IME = {
+			clr_country_flag = ime_italy_turkey_war
+		}
+	}
+	option = {
+		name = WORLD.355.c
+		trigger = {
+			tag = TUR
+		}
+	}
+}
+
+country_event = { #Dodacenese skirmish
+	id = itatur.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.11"}
+	title = itatur.11.t
+	desc = itatur.11.d
+	picture = GFX_report_event_italy_naval_ship
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.11.a
+	}
+}
+
+country_event = { #Middle east border conflict
+	id = itatur.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.12"}
+	title = itatur.12.t
+	desc = itatur.12.d
+	picture = GFX_report_event_generic_mountain
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.12.a
+	}
+}
+
+country_event = { #Tensions in Cyprus
+	id = itatur.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.13"}
+	title = itatur.13.t
+	desc = itatur.13.d
+	picture = GFX_report_event_german_bunker
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.13.a
+		hidden_effect = {
+			TUR = {
+				transfer_state = 1328
+				add_state_core = 1328
+			}
+		}
+	}
+}
+
+country_event = { #Turkey gets volunteers
+	id = itatur.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.14"}
+	title = itatur.14.t
+	desc = itatur.14.d
+	picture = GFX_report_event_mujahideen
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.14.a
+		hidden_effect = { load_oob = "TUR_Volunteers" }
+	}
+}
+
+country_event = { #IME gets volunteers
+	id = itatur.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.15"}
+	title = itatur.15.t
+	desc = itatur.15.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.15.a
+		hidden_effect = { load_oob = "IME_Volunteers" }
+	}
+}
+
+country_event = { #Turkish attempt to occupy Rhodes
+	id = itatur.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.16"}
+	title = itatur.16.t
+	desc = itatur.16.d
+	picture = GFX_unknown
+
+	trigger = {
+		AND = {
+			tag = TUR
+			has_global_flag = italy_turkey_war
+		}
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = itatur.16.a
+
+		TUR = {
+			start_border_war = {
+				change_state_after_war = yes
+				attacker = {
+					state = 342
+					num_provinces = 2
+					on_win = itatur.17
+					on_lose = itatur.18
+					on_cancel = itatur.19
+				}
+
+				defender = {
+					state = 164
+					num_provinces = 2
+					on_win = itatur.21
+					on_lose = itatur.20
+					on_cancel = itatur.22
+				}
+			}
+
+			set_border_war_data = {
+				attacker = 342
+				defender = 164
+				attacker_modifier = 0.025
+				combat_width = 40
+			}
+		}
+	}
+}
+
+country_event = { #Turkey wins and occupies Rhodes Turkish view
+	id = itatur.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.17"}
+	title = itatur.17.t
+	desc = itatur.17.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.17.a
+		finalize_border_war = {
+			attacker_win = yes
+			attacker = 342
+			defender = 164
+		}
+	}
+}
+
+country_event = { #Turkey loses and is beaten back from Rhodes Turkish view
+	id = itatur.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.18"}
+	title = itatur.18.t
+	desc = itatur.18.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.18.a
+		finalize_border_war = {
+			attacker_win = no
+			attacker = 342
+			defender = 164
+		}
+		TUR = {
+			add_stability = -0.02
+			add_war_support = -0.02
+		}
+	}
+}
+
+country_event = { #Stalemate at Rhodes Turkish view
+	id = itatur.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.19"}
+	title = itatur.19.t
+	desc = itatur.19.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.19.a
+		cancel_border_war = {
+			dont_fire_events = yes
+			defender = 164
+			attacker = 342
+		}
+	}
+}
+
+country_event = { #Turkey wins and occupies Rhodes Italian View
+	id = itatur.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.20"}
+	title = itatur.20.t
+	desc = itatur.20.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.20.a
+		finalize_border_war = {
+			attacker_win = yes
+			attacker = 342
+			defender = 164
+		}
+		hidden_effect = {
+			TUR = {
+				transfer_state = 164
+				add_state_core = 164
+			}
+		}
+	}
+}
+
+country_event = { #Italy wins and defends Rhodes Italian View
+	id = itatur.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.21"}
+	title = itatur.21.t
+	desc = itatur.21.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.21.a
+		finalize_border_war = {
+			attacker_win = no
+			attacker = 342
+			defender = 164
+		}
+	}
+}
+
+country_event = { #Stalemate at Rhodes Italian view
+	id = itatur.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event itatur.19"}
+	title = itatur.22.t
+	desc = itatur.22.d
+	picture = GFX_report_event_generic_battle
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = itatur.22.a
+		cancel_border_war = {
+			dont_fire_events = yes
+			defender = 164
+			attacker = 342
+		}
+	}
+}

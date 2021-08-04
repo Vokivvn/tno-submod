@@ -1,0 +1,8780 @@
+####Intro Tree + Logistics Tree#####
+shared_focus = {
+	id = SAM_Our_Guide
+	icon = GFX_SAM_Our_Guide
+	cost = 3
+	x = 8
+	y = 0
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_Guide"
+		country_event = {
+			id = SAM.1
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Our_Voice
+	icon = GFX_SAM_Our_Voice
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Our_Guide
+	prerequisite = {
+		focus = SAM_Our_Guide
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_Voice"
+		country_event = {
+			id = SAM.2
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Our_General
+	icon = GFX_SAM_Our_General
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Our_Guide
+	prerequisite = {
+		focus = SAM_Our_Guide
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_General"
+		country_event = {
+			id = SAM.3
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Their_Puppet
+	icon = GFX_SAM_Their_Puppet
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Our_Guide
+	prerequisite = {
+		focus = SAM_Our_Guide
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Their_Puppet"
+		country_event = {
+			id = SAM.4
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_It_Never_Ends
+	icon = GFX_SAM_It_Never_Ends
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Their_Puppet
+	prerequisite = {
+		focus = SAM_Their_Puppet
+	}
+	prerequisite = {
+		focus = SAM_Our_General
+	}
+	prerequisite = {
+		focus = SAM_Our_Voice
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_It_Never_Ends"
+		country_event = {
+			id = SAM.5
+			days = 1
+		}
+		hidden_effect = {
+			country_event = { id = SAM.101 days = 12 }
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Take_What_is_There
+	icon = GFX_SAM_Take_What_Is_There
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_It_Never_Ends
+	mutually_exclusive = { focus = SAM_Take_What_is_Ours }
+	mutually_exclusive = { focus = SAM_Take_What_is_Theirs }
+	prerequisite = {
+		focus = SAM_It_Never_Ends
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Take_What_is_There"
+		country_event = {
+			id = SAM.6
+			days = 1
+		}
+		SAM_increase_civilian_morale_small = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Scavenge_for_Vehicles
+	icon = GFX_SAM_Scavenge_For_Vehicles
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Take_What_is_There
+	prerequisite = {
+		focus = SAM_Take_What_is_There
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Scavenge_for_Vehicles"
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 250
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = GER
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Looking_For_Treasure
+	icon = GFX_SAM_Looking_for_Treasure
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Scavenge_for_Vehicles
+	prerequisite = {
+		focus = SAM_Scavenge_for_Vehicles
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Looking_for_Treasure"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 200
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 150
+			producer = GER
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Take_What_is_Ours
+	icon = GFX_SAM_Take_What_is_Ours
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_It_Never_Ends
+	mutually_exclusive = { focus = SAM_Take_What_is_There }
+	mutually_exclusive = { focus = SAM_Take_What_is_Theirs }
+	prerequisite = {
+		focus = SAM_It_Never_Ends
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Take_What_is_Ours"
+		country_event = {
+			id = SAM.7
+		}
+		SAM_increase_military_morale_small = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_People_Provide
+	icon = GFX_SAM_The_People_Provide
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Take_What_is_Ours
+	prerequisite = {
+		focus = SAM_Take_What_is_Ours
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_People_Provide"
+		add_stability = 0.05
+		add_war_support = 0.05
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = SAM
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1250
+			producer = SAM
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 100
+			producer = SAM
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Russian_People_Deliver_Us
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_People_Provide
+	prerequisite = {
+		focus = SAM_The_People_Provide
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Russian_People_Deliver_Us"
+		add_stability = 0.05
+		add_war_support = 0.075
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 100
+			producer = SAM
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 250
+			producer = SAM
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Take_What_is_Theirs
+	icon = GFX_SAM_Take_What_is_Theirs
+	cost = 4
+	x = 2
+	y = 1
+	relative_position_id = SAM_It_Never_Ends
+	mutually_exclusive = { focus = SAM_Take_What_is_There }
+	mutually_exclusive = { focus = SAM_Take_What_is_Ours }
+	prerequisite = {
+		focus = SAM_It_Never_Ends
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Take_What_is_Their's"
+		country_event = {
+			id = SAM.8
+		}
+		SAM_increase_corruption_small = yes
+		hidden_effect = {
+			SAM_change_corruption_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_German_Arms
+	icon = GFX_SAM_German_Arms
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Take_What_is_Theirs
+	prerequisite = {
+		focus = SAM_Take_What_is_Theirs
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_German_Arms"
+		add_stability = -0.05
+		add_political_power = -50
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 250
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 1500
+			producer = GER
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Moskowien_Contacts
+	icon = GFX_SAM_Moskowien_Contacts
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_German_Arms
+	prerequisite = {
+		focus = SAM_German_Arms
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Moskowien_Contacts"
+		add_popularity = {
+			ideology = national_socialism
+			popularity = 0.025
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 350
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 250
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 500
+			producer = GER
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Dealing_with_Dissent
+	icon = GFX_SAM_Dealing_with_Dissent
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Moskowien_Contacts
+	prerequisite = {
+		focus = SAM_Moskowien_Contacts
+		focus = SAM_The_Russian_People_Deliver_Us
+		focus = SAM_Looking_For_Treasure
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Dealing_with_Dissent"
+		country_event = {
+			id = SAM.9
+		}
+		hidden_effect = {
+			country_event = { id = SAM.100 days = 4 }
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Smart_Way
+	icon = GFX_SAM_The_Smart_Way
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_Dealing_with_Dissent
+	mutually_exclusive = { focus = SAM_The_Easy_Way }
+	mutually_exclusive = { focus = SAM_The_Hard_Way }
+	prerequisite = {
+		focus = SAM_Dealing_with_Dissent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Smart_Way"
+		country_event = {
+			id = SAM.10
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Hearing_the_People_Out
+	icon = GFX_SAM_Hearing_the_People_Out
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Smart_Way
+	prerequisite = {
+		focus = SAM_The_Smart_Way
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Hearing_the_People_Out"
+		add_timed_idea = { idea = SAM_Village_Councils days = 540 }
+		country_event = {
+			id = SAM.300
+		}
+		SAM_increase_civilian_morale_medium = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Easy_Way
+	icon = GFX_SAM_The_Easy_Way
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Dealing_with_Dissent
+	mutually_exclusive = { focus = SAM_The_Smart_Way }
+	mutually_exclusive = { focus = SAM_The_Hard_Way }
+	prerequisite = {
+		focus = SAM_Dealing_with_Dissent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Easy_Way"
+		country_event = {
+			id = SAM.11
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Food_for_All
+	icon = GFX_SAM_Food_For_All
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Easy_Way
+	prerequisite = {
+		focus = SAM_The_Easy_Way
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Food_for_All"
+		add_timed_idea = { idea = SAM_Bread_for_All days = 90 }
+		SAM_increase_civilian_morale_small = yes
+		SAM_increase_military_morale_small = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Hard_Way
+	icon = GFX_SAM_The_Hard_Way
+	cost = 4
+	x = 2
+	y = 1
+	relative_position_id = SAM_Dealing_with_Dissent
+	mutually_exclusive = { focus = SAM_The_Smart_Way }
+	mutually_exclusive = { focus = SAM_The_Easy_Way }
+	prerequisite = {
+		focus = SAM_Dealing_with_Dissent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Hard_Way"
+		country_event = {
+			id = SAM.12
+		}
+	}
+}
+shared_focus = {
+	id = SAM_No_Soup_for_You
+	icon = GFX_SAM_No_Soup_For_You
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Hard_Way
+	prerequisite = {
+		focus = SAM_The_Hard_Way
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_No_Soup"
+		add_timed_idea = { idea = SAM_Soup_for_Service days = 540 }
+		SAM_increase_military_morale_small = yes
+		SAM_increase_corruption_small = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+			SAM_change_corruption_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Our_Loyalty
+	icon = GFX_SAM_Our_Loyalty
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_No_Soup_for_You
+	prerequisite = {
+		focus = SAM_No_Soup_for_You
+		focus = SAM_Food_for_All
+		Focus = SAM_Hearing_the_People_Out
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_Loyalty"
+		country_event = { id = SAM.13 days = 1 }
+	}
+}
+shared_focus = {
+	id = SAM_To_the_Committee
+	icon = GFX_SAM_To_The_Committee
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Our_Loyalty
+	prerequisite = {
+		focus = SAM_Our_Loyalty
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_To_The_Committe"
+		add_political_power = 25
+		country_event = {
+			id = SAM.14
+		}
+	}
+}
+shared_focus = {
+	id = SAM_To_the_People
+	icon = GFX_SAM_To_The_People
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Our_Loyalty
+	prerequisite = {
+		focus = SAM_Our_Loyalty
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_To_The_People"
+		add_stability = 0.025
+		country_event = {
+			id = SAM.15
+		}
+	}
+}
+shared_focus = {
+	id = SAM_To_the_Reich
+	icon = GFX_SAM_To_The_Reich
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Our_Loyalty
+	prerequisite = {
+		focus = SAM_Our_Loyalty
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_To_The_People"
+		add_stability = -0.025
+		country_event = {
+			id = SAM.16
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Who_Shall_Stand_Beside_Vlasov
+	icon = GFX_SAM_Who_Shall_Stand_Beside_Vlasov
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_To_the_Committee
+	prerequisite = {
+		focus = SAM_To_the_Committee
+	}
+	prerequisite = {
+		focus = SAM_To_the_People
+	}
+	prerequisite = {
+		focus = SAM_To_the_Reich
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Who_Shall_Stand_Behind_Vlasov"
+		country_event = {
+			id = SAM.17
+		}
+	}
+}
+
+###### Economic Tree #####
+shared_focus = {
+	id = SAM_Rebuilding_Samara
+	icon = GFX_CHI_Modern_Construction_Equipment
+	cost = 4
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Rebuilding_Samara"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = industry
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Zykov_Plan
+	icon = GFX_generic_socdem_constitution
+	cost = 4
+	x = -6
+	y = 2
+	relative_position_id = SAM_Rebuilding_Samara
+	available = {
+		has_country_flag = SAM_Zykov
+	}
+	prerequisite = {
+		focus = SAM_Rebuilding_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Zykov_Plan"
+		country_event = {
+			id = SAM.94
+			days = 1
+		}
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Develop_Samara
+	icon = GFX_TNO_generic_public_houses
+	cost = 4
+	x = -1
+	y = 1
+	relative_position_id = SAM_The_Zykov_Plan
+	prerequisite = {
+		focus = SAM_The_Zykov_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Develop_Samara"
+		850 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction  = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Connecting_Our_Lands
+	icon = GFX_IBR_open_road
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_Develop_Samara
+	prerequisite = {
+		focus = SAM_Develop_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Connecting_Our_Lands"
+		851 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		251 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		250 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		755 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Making_a_Better_Samara
+	icon = GFX_RAJ_Autonomous_Industry
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Develop_Samara
+	prerequisite = {
+		focus = SAM_Develop_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Building_up_the_Outer_States"
+		250 = {
+			add_building_construction  = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		755 = {
+			add_building_construction  = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Creating_an_Arms_Industry
+	icon = GFX_Generic_Industry
+	cost = 4
+	x = 1
+	y = 1
+	relative_position_id = SAM_The_Zykov_Plan
+	prerequisite = {
+		focus = SAM_The_Zykov_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Creating_an_Arms_Industry"
+		850 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction  = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_We_Need_Weapons
+	icon = GFX_Generic_Industry_Tanks
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Creating_an_Arms_Industry
+	prerequisite = {
+		focus = SAM_Creating_an_Arms_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_We_Need_Weapons"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = SAM
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Preparing_for_the_Unification
+	icon = GFX_Generic_Strike
+	cost = 4
+	x = 2
+	y = 1
+	relative_position_id = SAM_Creating_an_Arms_Industry
+	prerequisite = {
+		focus = SAM_Creating_an_Arms_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Preparing_for_the_Unification"
+		add_timed_idea = { idea = SAM_Russian_Industry days = 720 }
+	}
+}
+shared_focus = {
+	id = SAM_A_New_Samara
+	icon = GFX_Generic_Good_Economy
+	cost = 4
+	x = -1
+	y = 1
+	relative_position_id = SAM_We_Need_Weapons
+	prerequisite = {
+		focus = SAM_We_Need_Weapons
+	}
+	prerequisite = {
+		focus = SAM_Preparing_for_the_Unification
+	}
+	prerequisite = {
+		focus = SAM_Connecting_Our_Lands
+	}
+	prerequisite = {
+		focus = SAM_Making_a_Better_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_New_Samara"
+		add_timed_idea = { idea = SAM_The_Zykov_Plan_Complete days = 720 }
+		country_event = {
+			id = SAM.95
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Committee_Plan
+	icon = GFX_ORE_establish_the_planning_commission
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Rebuilding_Samara
+	available = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	prerequisite = {
+		focus = SAM_Rebuilding_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Committee_Plan"
+		country_event = {
+			id = SAM.96
+			days = 1
+		}
+		add_stability = 0.075
+		add_war_support = 0.075
+	}
+}
+shared_focus = {
+	id = SAM_Creating_Civilian_Industry
+	icon = GFX_GER_revive_german_industry
+	cost = 4
+	x = -1
+	y = 1
+	relative_position_id = SAM_The_Committee_Plan
+	prerequisite = {
+		focus = SAM_The_Committee_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Creating_Civilian_Industry"
+		850 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction  = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		851 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction  = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Making_an_Efficient_Samara
+	icon = GFX_generic_diplomacy_industrial
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Creating_Civilian_Industry
+	prerequisite = {
+		focus = SAM_Creating_Civilian_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Making_an_Efficient_Samara"
+		add_timed_idea = { idea = SAM_Committee_Oversight days = 720 }
+	}
+}
+shared_focus = {
+	id = SAM_Let_us_Build_Roads
+	icon = GFX_IBR_road_investigation
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Making_an_Efficient_Samara
+	prerequisite = {
+		focus = SAM_Making_an_Efficient_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Let_us_Build_Roads"
+		850 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		250 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		755 = {
+			add_building_construction  = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_A_Military_Industrial_Complex
+	icon = GFX_RAJ_India_Nurture_Heavy_Industry
+	cost = 4
+	x = 1
+	y = 1
+	relative_position_id = SAM_The_Committee_Plan
+	prerequisite = {
+		focus = SAM_The_Committee_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_Military_Industrial_Complex"
+		add_timed_idea = { idea = SAM_The_RMIC days = 720 }
+	}
+}
+shared_focus = {
+	id = SAM_Motorized_Contracts
+	icon = GFX_Generic_Industry_Tanks
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_A_Military_Industrial_Complex
+	prerequisite = {
+		focus = SAM_A_Military_Industrial_Complex
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Motorized_Contracts"
+		add_timed_idea = { idea = SAM_Motorized_Contracts_idea days = 450 }
+	}
+}
+shared_focus = {
+	id = SAM_Radar_Defences
+	icon = GFX_GER_new_radar
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Motorized_Contracts
+	prerequisite = {
+		focus = SAM_Motorized_Contracts
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Radar_Defences"
+		850 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Making_A_Greater_Samara
+	icon = GFX_USA_We_fight_for_Stability
+	cost = 4
+	x = -1
+	y = 1
+	relative_position_id = SAM_Radar_Defences
+	prerequisite = {
+		focus = SAM_Radar_Defences
+	}
+	prerequisite = {
+		focus = SAM_Let_us_Build_Roads
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Making_A_Greater_Samara"
+		add_timed_idea = { idea = SAM_The_Committee_Plan_Completed days = 720 }
+		country_event = {
+			id = SAM.97
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Officer_Plan
+	icon = GFX_Generic_Fascism
+	cost = 4
+	x = 5
+	y = 2
+	relative_position_id = SAM_Rebuilding_Samara
+	Available = {
+		has_country_flag = SAM_Oktan
+	}
+	prerequisite = {
+		focus = SAM_Rebuilding_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Officer_Plan"
+		country_event = {
+			id = SAM.98
+			days = 1
+		}
+		add_war_support = 0.1
+		army_experience = 10
+	}
+}
+shared_focus = {
+	id = SAM_Put_the_Women_to_Work
+	icon = GFX_generic_change_law_women
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_The_Officer_Plan
+	prerequisite = {
+		focus = SAM_The_Officer_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Put_the_Women_to_Work"
+		tno_gender_rights_clear = yes
+		add_ideas = tno_gender_rights_women_in_the_workplace
+	}
+}
+shared_focus = {
+	id = SAM_Integrated_Civilian_And_Military_Sectors
+	icon = GFX_generic_diplomacy_industrial
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Put_the_Women_to_Work
+	prerequisite = {
+		focus = SAM_Put_the_Women_to_Work
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_I_Must_Have_Results"
+		add_stability = -0.05
+		850 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction  = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		755 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction  = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Guns_for_the_Motherland
+	icon = GFX_POL_build_our_guns
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Officer_Plan
+	prerequisite = {
+		focus = SAM_The_Officer_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Guns_for_the_Motherland"
+		add_timed_idea = { idea = SAM_Guns_for_Russia days = 720 }
+	}
+}
+shared_focus = {
+	id = SAM_Bigger_Guns_for_Our_Boys
+	icon = GFX_generic_artillery_warfare
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Guns_for_the_Motherland
+	prerequisite = {
+		focus = SAM_Guns_for_the_Motherland
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Bigger_Guns_for_Our_Boys"
+		add_timed_idea = { idea = SAM_Bigger_Guns_for_Maltsev days = 720 }
+	}
+}
+shared_focus = {
+	id = SAM_I_Want_Planes
+	icon = GFX_BRG_focus_by_air
+	cost = 4
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_Officer_Plan
+	prerequisite = {
+		focus = SAM_The_Officer_Plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_I_Want_Planes"
+		add_equipment_to_stockpile = {
+			type = fighter_equipment_1
+			amount = 100
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = CAS_equipment_1
+			amount = 100
+			producer = GER
+		}
+	}
+}
+shared_focus = {
+	id = SAM_They_Need_Bases
+	icon = GFX_Dedicated_Air_Crews
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_I_Want_Planes
+	prerequisite = {
+		focus = SAM_I_Want_Planes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_They_Need_Bases"
+		850 = {
+			add_building_construction = {
+				type = air_base
+				level = 3
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Making_My_Samara
+	icon = GFX_Generic_Ultranationalism
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_They_Need_Bases
+	prerequisite = {
+		focus = SAM_They_Need_Bases
+	}
+	prerequisite = {
+		focus = SAM_Bigger_Guns_for_Our_Boys
+	}
+	prerequisite = {
+		focus = SAM_Integrated_Civilian_And_Military_Sectors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Making_My_Samara"
+		add_timed_idea = { idea = SAM_The_Officer_Plan_Completed days = 720 }
+		country_event = {
+			id = SAM.99
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Now_We_Fix_Our_Politics
+	icon = GFX_Generic_Political_Crisis
+	cost = 4
+	x = -5
+	y = 1
+	relative_position_id = SAM_Making_My_Samara
+	prerequisite = {
+		focus = SAM_Making_My_Samara
+		focus = SAM_Making_A_Greater_Samara
+		focus = SAM_A_New_Samara
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Now_We_Fix_Our_Politics"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = electronics
+		}
+		set_country_flag = SAM_Economic_Readiness
+	}
+}
+
+###### Zykov Tree #####
+shared_focus = {
+	id = SAM_The_Voice_of_Reason
+	icon = GFX_generic_socdem
+	cost = 4
+	x = 22
+	y = 0
+	available = {
+		has_country_flag = SAM_Economic_Readiness
+		has_country_flag = SAM_Zykov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_Voice_of_Reason"
+		country_event = {
+			id = SAM.33
+			days = 1
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.025
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Dealing_with_Bunyachenko
+	icon = GFX_Generic_Shady_Deal
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_The_Voice_of_Reason
+	prerequisite = {
+		focus = SAM_The_Voice_of_Reason
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Dealing_with_Bunyachenko"
+		country_event = {
+			id = SAM.18
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Speak_with_Bunyachenko
+	icon = GFX_Generic_Army_Officers
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Dealing_with_Bunyachenko
+	prerequisite = {
+		focus = SAM_Dealing_with_Bunyachenko
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Speak_with_Bunyachenko"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.05
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Speak_with_the_Committee
+	icon = GFX_generic_diplomacy_political
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Dealing_with_Bunyachenko
+	prerequisite = {
+		focus = SAM_Dealing_with_Bunyachenko
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Speak_with_the_Committee"
+		add_political_power = 25
+		army_experience = 15
+	}
+}
+shared_focus = {
+	id = SAM_Bureaucratic_Allies
+	icon = GFX_Generic_Socialism
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Speak_with_the_Committee
+	prerequisite = {
+		focus = SAM_Speak_with_the_Committee
+	}
+	prerequisite = {
+		focus = SAM_Speak_with_Bunyachenko
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Bureaucratic_Allies"
+		add_stability = 0.05
+		add_timed_idea = { idea = SAM_Bureaucratic_Allies_idea days = 365 }
+		SAM_increase_military_morale_large = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Dealing_with_Maltsev
+	icon = GFX_Generic_National_Socialism
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_Voice_of_Reason
+	prerequisite = {
+		focus = SAM_The_Voice_of_Reason
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Dealing_with_Maltsev"
+		country_event = {
+			id = SAM.19
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Speak_with_Maltsev
+	icon = GFX_german_advisors
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Dealing_with_Maltsev
+	prerequisite = {
+		focus = SAM_Dealing_with_Maltsev
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Speak_with_Maltsev"
+		add_war_support = 0.035
+		army_experience = 15
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.05
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Speak_with_the_Germans
+	icon = GFX_align_germany
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Dealing_with_Maltsev
+	prerequisite = {
+		focus = SAM_Dealing_with_Maltsev
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Speak_with_the_Germans"
+		add_war_support = 0.035
+		TNO_improve_army_professionalism_low = yes
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.025
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Strenuous_Frenemies
+	icon = GFX_SIA_Traitors_in_The_Army
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Speak_with_the_Germans
+	prerequisite = {
+		focus = SAM_Speak_with_the_Germans
+	}
+	prerequisite = {
+		focus = SAM_Speak_with_Maltsev
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Strenuous_Frenemies"
+		add_war_support = 0.05
+		swap_ideas = {
+			add_idea = SAM_Renewed_Military_Trust
+			remove_idea = SAM_german_bootlickers
+		}
+		SAM_decrease_corruption_large = yes
+		hidden_effect = {
+			SAM_change_corruption_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Making_Use_of_Vlasov
+	icon = GFX_generic_change_law_speech
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Voice_of_Reason
+	prerequisite = {
+		focus = SAM_The_Voice_of_Reason
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Making_Use_of_Vlasov"
+		country_event = {
+			id = SAM.20
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Power_of_Radio
+	icon = GFX_fatherland_lies_silent
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Making_Use_of_Vlasov
+	prerequisite = {
+		focus = SAM_Making_Use_of_Vlasov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Power_of_Radio"
+		SAM_increase_civilian_morale_small = yes
+		SAM_increase_military_morale_small = yes
+	}
+}
+shared_focus = {
+	id = SAM_A_Renewed_Spirit
+	icon = GFX_BRT_A_New_Life
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Power_of_Radio
+	prerequisite = {
+		focus = SAM_The_Power_of_Radio
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_Renewed_Spirit"
+		add_manpower = 1500
+		remove_ideas = SAM_Turncoat_General
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.05
+		}
+		SAM_increase_civilian_morale_large = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Begin_the_Unification
+	icon = GFX_generic_diplomacy_expansion
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_A_Renewed_Spirit
+	prerequisite = {
+		focus = SAM_A_Renewed_Spirit
+	}
+	prerequisite = {
+		focus = SAM_Strenuous_Frenemies
+	}
+	prerequisite = {
+		focus = SAM_Bureaucratic_Allies
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Begin_the_Unification"
+		add_war_support = 0.05
+		add_timed_idea = { idea = SAM_slipped_leash days = 720 }
+	}
+}
+
+##### Bunyachenko Tree #####
+shared_focus = {
+	id = SAM_The_Committee_Prevails
+	icon = GFX_SAM_To_The_Committee
+	cost = 4
+	x = 21
+	y = 0
+	available = {
+		has_country_flag = SAM_Economic_Readiness
+		has_country_flag = SAM_Bunyachenko
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Committee_Prevails"
+		country_event = {
+			id = SAM.34
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Work_with_Zykov
+	icon = GFX_SAM_Our_Voice
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_The_Committee_Prevails
+	prerequisite = {
+		focus = SAM_The_Committee_Prevails
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Work_with_Zykov"
+		country_event = {
+			id = SAM.21
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Nominate_Him
+	icon = GFX_SAM_Hearing_the_People_Out
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Work_with_Zykov
+	prerequisite = {
+		focus = SAM_Work_with_Zykov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Nominate_Him"
+		add_stability = 0.05
+		SAM_increase_civilian_morale_large = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Celebrate_Vlasov
+	icon = GFX_SAM_Our_Guide
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Committee_Prevails
+	prerequisite = {
+		focus = SAM_The_Committee_Prevails
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Celebrate_Vlasov"
+		country_event = {
+			id = SAM.22
+			days = 1
+		}
+		SAM_increase_military_morale_large = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_First_Among_Equals
+	icon = GFX_SAM_To_The_People
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Celebrate_Vlasov
+	prerequisite = {
+		focus = SAM_Celebrate_Vlasov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_First_Among_Equals"
+		swap_ideas = {
+			remove_idea = SAM_Turncoat_General
+			add_idea = SAM_Our_Founding_Member
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Demote_Maltsev
+	icon = GFX_SAM_Our_Loyalty
+	cost = 4
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_Committee_Prevails
+	prerequisite = {
+		focus = SAM_The_Committee_Prevails
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Demote_Maltsev"
+		country_event = {
+			id = SAM.23
+			days = 1
+		}
+		SAM_decrease_corruption_large = yes
+		hidden_effect = {
+			SAM_change_corruption_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Sideline_the_Germans
+	icon = GFX_SAM_Moskowien_Contacts
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Demote_Maltsev
+	prerequisite = {
+		focus = SAM_Demote_Maltsev
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Sideline_the_Germans"
+		add_stability = -0.10
+		add_war_support = 0.10
+		TNO_improve_army_professionalism_low = yes
+		swap_ideas = {
+			remove_idea = SAM_german_bootlickers
+			add_idea = SAM_slipped_leash
+		}
+	}
+}
+
+##### Oktan Tree #####
+shared_focus = {
+	id = SAM_The_Kormchiy_Rises
+	icon = GFX_national_socialist_male
+	cost = 3
+	x = 21
+	y = 0
+	available = {
+		has_country_flag = SAM_Economic_Readiness
+		has_country_flag = SAM_Oktan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Kormchiy_Rises"
+		country_event = {
+			id = SAM.37
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Sideline_Our_Rivals
+	icon = GFX_BAS_Let_Slip_The_Hounds_Of_War
+	available = {
+		has_country_flag = SAM_Oktan_Sideline
+	}
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_The_Kormchiy_Rises
+	mutually_exclusive = { focus = SAM_Use_My_Foes }
+	prerequisite = {
+		focus = SAM_The_Kormchiy_Rises
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Sideline_Our_Rivals"
+		country_event = {
+			id = SAM.24
+			days = 1
+		}
+		SAM_decrease_civilian_morale_medium = yes
+		SAM_decrease_military_morale_medium = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Erase_Their_Legacies
+	icon = GFX_BAS_destroy_league
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Sideline_Our_Rivals
+	prerequisite = {
+		focus = SAM_Sideline_Our_Rivals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Erase_Their_Legacies"
+		add_political_power = 100
+		add_war_support = -0.10
+		add_stability = -0.10
+	}
+}
+shared_focus = {
+	id = SAM_Turn_Their_Supporters
+	icon = GFX_SAM_Take_What_is_Ours
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Erase_Their_Legacies
+	prerequisite = {
+		focus = SAM_Erase_Their_Legacies
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Turn_Their_Supporters"
+		country_event = {
+			id = SAM.25
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Our_Eternal_Leader
+	icon = GFX_BRG_focus_der_schattenkrieg
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_Turn_Their_Supporters
+	prerequisite = {
+		focus = SAM_Turn_Their_Supporters
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_Eternal_Leader"
+		add_war_support = 0.05
+		add_ideas = SAM_Our_Eternal_Leader_idea
+	}
+}
+shared_focus = {
+	id = SAM_Use_My_Foes
+	icon = GFX_BAS_Acquirement_Of_Subjects
+	available = {
+		has_country_flag = SAM_Oktan_Use
+	}
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_Kormchiy_Rises
+	mutually_exclusive = { focus = SAM_Sideline_Our_Rivals }
+	prerequisite = {
+		focus = SAM_The_Kormchiy_Rises
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Use_My_Foes"
+		country_event = {
+			id = SAM.26
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = SAM_My_Voice
+	icon = GFX_BAS_acquire_subjects_urban
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Use_My_Foes
+	prerequisite = {
+		focus = SAM_Use_My_Foes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_My_Voice"
+		add_stability = 0.05
+		add_political_power = 100
+		SAM_increase_civilian_morale_small = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_My_Generals
+	icon = GFX_SAM_Our_Loyalty
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_My_Voice
+	prerequisite = {
+		focus = SAM_My_Voice
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_My_Generals"
+		add_war_support = 0.05
+		TNO_improve_army_professionalism_low = yes
+		army_experience = 25
+		SAM_increase_military_morale_small = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_My_Committee
+	icon = GFX_generic_authoritarian_constitution
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = SAM_My_Generals
+	prerequisite = {
+		focus = SAM_My_Generals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_My_Committee"
+		add_timed_idea = { idea = SAM_The_ROA_is_MINE days = 1080 }
+	}
+}
+shared_focus = {
+	id = SAM_My_Russia
+	icon = GFX_GER_handle_the_russias
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_My_Committee
+	prerequisite = {
+		focus = SAM_My_Committee
+		focus = SAM_Our_Eternal_Leader
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_My_Russia"
+		add_timed_idea = { idea = SAM_Russia_in_my_Sights days = 720 }
+		remove_ideas = SAM_Turncoat_General
+	}
+}
+
+#Zykov Expansion#
+
+shared_focus = {
+	id = SAM_Tactful_Expansion
+	icon = GFX_Generic_Political_Purge
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Begin_the_Unification
+	allow_branch = {always = yes}
+	prerequisite = {
+		focus = SAM_Begin_the_Unification
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Tactful_Expansion"
+		add_war_support = 0.05
+		country_event = { id = SAM.91 }
+	}
+}
+shared_focus = {
+	id = SAM_The_Russians_of_Cheboksary
+	icon = GFX_AKT_Russian_Flag_Tatters
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Tactful_Expansion
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Tactful_Expansion
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Russians_of_Cheboksary"
+		add_war_support = 0.025
+		add_manpower = 1000
+	}
+}
+shared_focus = {
+	id = SAM_Trash_the_Tatars
+	icon = GFX_generic_tatarstan_war
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Russians_of_Cheboksary
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Russians_of_Cheboksary
+	}
+	will_lead_to_war_with = TAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Trash_the_Tatars"
+		SAM = {
+			declare_war_on = {
+				target = TAR
+				type = annex_everything
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Tatar_Horsemen
+	icon = GFX_AKT_Masters_of_Man_and_Horse
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Trash_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = TAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Trash_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Tatar_Horsemen"
+		add_timed_idea = { idea = SAM_Tartar_Horsemen days = 365 }
+	}
+}
+shared_focus = {
+	id = SAM_Tatar_Rights
+	icon = GFX_generic_liberal_constitution
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Trash_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = TAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Trash_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Tatar_Rights"
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Tatar_Bravery
+	icon = GFX_Generic_Red_Army
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Trash_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = TAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Trash_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Tatar_Bravery"
+		add_war_support = 0.03
+		add_manpower = 1500
+	}
+}
+shared_focus = {
+	id = SAM_Sabotage_their_Tanks
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Tatar_Horsemen
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Tatar_Horsemen
+	}
+	prerequisite = {
+		focus = SAM_Tatar_Rights
+	}
+	prerequisite = {
+		focus = SAM_Tatar_Bravery
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Sabotage_their_Tanks"
+		CHU = {
+			add_timed_idea = {
+				idea = CHU_Sabotage
+				days = 95
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Gun_Down_Gorki
+	icon = GFX_generic_tank_warfare
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Sabotage_their_Tanks
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Sabotage_their_Tanks
+	}
+	will_lead_to_war_with = CHU
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Gun_Down_Gorki"
+		declare_war_on = {
+			target = CHU
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Open_the_Factories_Once_More
+	icon = GFX_Generic_Industry_Tanks
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Gun_Down_Gorki
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = CHU
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Gun_Down_Gorki
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Open_the_Factories_Once_More"
+		252 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Rally_the_populace
+	icon = GFX_Generic_Liberty_Handshake
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Gun_Down_Gorki
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = CHU
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Gun_Down_Gorki
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Rally_the_populace"
+		add_stability = 0.05
+		RUS_integration_cost_days_decrease = yes
+		SAM_increase_civilian_morale_small = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Secure_Their_Stockpiles
+	icon = GFX_generic_artillery_warfare
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Gun_Down_Gorki
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = CHU
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Gun_Down_Gorki
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Secure_Their_Stockpiles"
+		add_equipment_to_stockpile = {
+			type = APC_equipment_1
+			amount = 250
+			producer = SAM
+		}
+		add_equipment_to_stockpile = {
+			type = IFV_equipment_1
+			amount = 200
+			producer = SAM
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_The_False_Czar
+	icon = GFX_SAM_The_False_Czar
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Open_the_Factories_Once_More
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Open_the_Factories_Once_More
+	}
+	prerequisite = {
+		focus = SAM_Rally_the_populace
+	}
+	prerequisite = {
+		focus = SAM_Secure_Their_Stockpiles
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_False_Czar"
+		add_war_support = 0.1
+	}
+}
+shared_focus = {
+	id = SAM_Land_and_Freedom
+	icon = GFX_RAJ_Decentralized_Land_Reform
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_False_Czar
+
+	allow_branch = {always = yes}
+
+	prerequisite = {
+		focus = SAM_The_False_Czar
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Land_and_Freedom"
+		add_stability = 0.1
+		add_war_support = 0.05
+		RUS_integration_cost_days_decrease = yes
+		SAM_increase_civilian_morale_medium = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Remember_February
+	icon = GFX_ITA_Annihilate_the_Royalists
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Land_and_Freedom
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Land_and_Freedom
+	}
+	will_lead_to_war_with = KIR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Remember_February"
+		declare_war_on = {
+			target = KIR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_True_Traitor
+	icon = GFX_generic_execute_royals
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Remember_February
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KIR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Remember_February
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_True_Traitor"
+		add_stability = -0.05
+		add_political_power = 75
+		country_event = {
+			id = SAM.35
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Grain_of_the_People
+	icon = GFX_WRS_Agriculture_Situation
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Remember_February
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KIR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Remember_February
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_True_Traitor"
+		TNO_improve_agriculture_med = yes
+	}
+}
+shared_focus = {
+	id = SAM_Acquiring_Kirov
+	icon = GFX_RAJ_The_Optimal_Distribution
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Remember_February
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KIR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Remember_February
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Acquiring_Kirov"
+		add_timed_idea = { idea = SAM_The_Kirov_Distillery days = 720 }
+	}
+}
+
+shared_focus = {
+	id = SAM_Scouting_Vologda
+	icon = GFX_BAS_redoubt_preperations
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_True_Traitor
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_True_Traitor
+	}
+	prerequisite = {
+		focus = SAM_The_Grain_of_the_People
+	}
+	prerequisite = {
+		focus = SAM_Acquiring_Kirov
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Scouting_Vologda"
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Can_We_Find_Common_Ground
+	icon = GFX_ORE_common_responsabilities
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Scouting_Vologda
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Scouting_Vologda
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Can_We_Find_Common_Ground"
+		country_event = {
+			id = SAM.27
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Peaceful_Integration
+	icon = GFX_JAP_Integrate_reformists
+	cost = 3
+	x = -3
+	y = 1
+	relative_position_id = SAM_Can_We_Find_Common_Ground
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	available = {
+		has_country_flag = SAM_Peaceful_Integration
+	}
+	mutually_exclusive = { focus = SAM_The_Longest_Knife }
+	prerequisite = {
+		focus = SAM_Can_We_Find_Common_Ground
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Peaceful_Integration"
+		country_event = {
+			id = SAM.31
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Longest_Knife
+	icon = GFX_MAD_the_burglars_plot
+	cost = 3
+	x = 3
+	y = 1
+	relative_position_id = SAM_Can_We_Find_Common_Ground
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	available = {
+		has_country_flag = SAM_No_Peaceful_Integration
+	}
+	mutually_exclusive = { focus = SAM_Peaceful_Integration }
+	prerequisite = {
+		focus = SAM_Can_We_Find_Common_Ground
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Longest_Knife"
+		country_event = {
+			id = SAM.32
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Onto_Kostroma
+	icon = GFX_COG_Blood_Diamonds
+	cost = 2
+	x = -3
+	y = 1
+	relative_position_id = SAM_The_Longest_Knife
+	available = {
+		has_war = no
+	}
+	bypass = {
+		KST = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Longest_Knife
+		focus = SAM_Peaceful_Integration
+	}
+	will_lead_to_war_with = KST
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Longest_Knife"
+		declare_war_on = {
+			target = KST
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Wealth_of_Kostroma
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Onto_Kostroma
+	available = {
+		owns_state = 856
+	}
+	bypass = {
+		856 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KST
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Onto_Kostroma
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Wealth_of_Kostroma"
+		add_timed_idea = { idea = SAM_The_Wealth_of_Kostroma_idea days = 180 }
+		SAM_increase_civilian_morale_small = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Vologdan_Defensive_Tactics
+	icon = GFX_generic_diplomacy_defense
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Onto_Kostroma
+	available = {
+		owns_state = 351
+	}
+	bypass = {
+		351 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = VOL
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Onto_Kostroma
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Vologdan_Defensive_Tactics"
+		add_timed_idea = { idea = SAM_Vologdan_Tactics days = 365 }
+	}
+}
+shared_focus = {
+	id = SAM_Bribe_Local_Politicians
+	icon = GFX_IBR_Bribe_Their_Leaders
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Onto_Kostroma
+	available = {
+		owns_state = 351
+	}
+	bypass = {
+		351 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = VOL
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Onto_Kostroma
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Bribe_Local_Politicians"
+		add_political_power = -100
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_The_False_Aryans
+	icon = GFX_Generic_National_Socialism
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_The_Wealth_of_Kostroma
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Wealth_of_Kostroma
+	}
+	prerequisite = {
+		focus = SAM_Vologdan_Defensive_Tactics
+	}
+	prerequisite = {
+		focus = SAM_Bribe_Local_Politicians
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Acquiring_Kirov"
+		add_war_support = 0.1
+	}
+}
+shared_focus = {
+	id = SAM_End_This_Nonsense
+	icon = GFX_GER_end_aryan_lineage_studies
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_False_Aryans
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_False_Aryans
+	}
+	will_lead_to_war_with = PRM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_End_This_Nonsense"
+		declare_war_on = {
+			target = PRM
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Destroy_Their_Icons
+	icon = GFX_Generic_Smash_Fasc
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_End_This_Nonsense
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = PRM
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_End_This_Nonsense
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Destroy_Their_Icons"
+		country_event = {
+			id = SAM.39
+		}
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.10
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Equality_for_All
+	icon = GFX_Generic_Refugees
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_End_This_Nonsense
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = PRM
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_End_This_Nonsense
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Equality_for_All"
+		add_stability = 0.05
+		add_ideas = tno_minorities_equal_rights
+		SAM_increase_civilian_morale_medium = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Execute_Their_Leaders
+	icon = GFX_generic_execute
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_End_This_Nonsense
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = PRM
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_End_This_Nonsense
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Equality_for_All"
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_The_Remaining_Fools
+	icon = GFX_DSR_pigs_to_slaughter
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Execute_Their_Leaders
+	prerequisite = {
+		focus = SAM_Execute_Their_Leaders
+	}
+	prerequisite = {
+		focus = SAM_Equality_for_All
+	}
+	prerequisite = {
+		focus = SAM_Destroy_Their_Icons
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Remaining_Fools"
+		every_neighbor_country = {
+			limit = {
+				is_central_russian_nation = yes
+			}
+			add_war_support = -0.05
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Muslim_Tatars
+	icon = GFX_generic_islam
+	cost = 2
+	x = -3
+	y = 1
+	relative_position_id = SAM_The_Remaining_Fools
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Remaining_Fools
+	}
+	will_lead_to_war_with = BKR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Muslim_Tatars"
+		declare_war_on = {
+			target = BKR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Extending_Our_Hand
+	icon = GFX_FSR_Only_God_And_His_Servants
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Muslim_Tatars
+	bypass = {
+		651 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = BKR
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 651
+	}
+	prerequisite = {
+		focus = SAM_The_Muslim_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Extending_Our_Hand"
+		add_political_power = 50
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_The_Fractured_State
+	icon = GFX_NIK_attack_komi
+	cost = 2
+	x = -1
+	y = 1
+	relative_position_id = SAM_The_Remaining_Fools
+	bypass = {
+		NIK = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Remaining_Fools
+	}
+	will_lead_to_war_with = NIK
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Fractured_State"
+		declare_war_on = {
+			target = NIK
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Piecing_Komi_Together
+	icon = GFX_NIK_affairs_legislature
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Fractured_State
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = NIK
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Fractured_State
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Piecing_Komi_Together"
+		add_political_power = 50
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.02
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Fanatical_Monks
+	icon = GFX_GAY_Spirit_Of_Saint_George
+	cost = 2
+	x = 1
+	y = 1
+	relative_position_id = SAM_The_Remaining_Fools
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Remaining_Fools
+	}
+	will_lead_to_war_with = GAY
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Fanatical_Monks"
+		declare_war_on = {
+			target = GAY
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Christ_Loves_All
+	icon = GFX_generic_christianity
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Fanatical_Monks
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = GAY
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Fanatical_Monks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Christ_Loves_All"
+		add_stability = 0.03
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_The_Syncretists
+	icon = GFX_generic_berezniki
+	cost = 2
+	x = 3
+	y = 1
+	relative_position_id = SAM_The_Remaining_Fools
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Remaining_Fools
+	}
+	will_lead_to_war_with = MAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Syncretists"
+		declare_war_on = {
+			target = MAR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Show_Them_the_Way
+	icon = GFX_BRG_focus_a_ray_of_hope
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Syncretists
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = MAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Syncretists
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Remaining_Fools"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_The_Western_Finale
+	icon = GFX_WRS_The_Red_Junta
+	cost = 3
+	x = 3
+	y = 1
+	relative_position_id = SAM_Extending_Our_Hand
+	prerequisite = {
+		focus = SAM_Extending_Our_Hand
+	}
+	prerequisite = {
+		focus = SAM_Piecing_Komi_Together
+	}
+	prerequisite = {
+		focus = SAM_Christ_Loves_All
+	}
+	prerequisite = {
+		focus = SAM_Show_Them_the_Way
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Western_Finale"
+		add_war_support = 0.05
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_Build_up_Fortifications
+	icon = GFX_BAS_Fortification_Building
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Western_Finale
+	prerequisite = {
+		focus = SAM_The_Western_Finale
+	}
+	allow_branch = {always = yes}
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Western_Finale"
+		add_timed_idea = {
+			idea = SAM_Build_Defences
+			days = 180
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Assail_Archangelesk
+	icon = GFX_Generic_Red_Army
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Build_up_Fortifications
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Build_up_Fortifications
+	}
+	will_lead_to_war_with = WRS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Assail_Archangelesk"
+		declare_war_on = {
+			target = WRS
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Freedom_of_Expression
+	icon = GFX_MAD_freedom_must_be_found
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Assail_Archangelesk
+	available = {
+		owns_state = 214
+	}
+	prerequisite = {
+		focus = SAM_Assail_Archangelesk
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Enemy_of_the_People"
+		add_stability = 0.1
+		tno_press_rights_improve = yes
+	}
+}
+shared_focus = {
+	id = SAM_Freedom_of_Religion
+	icon = GFX_generic_change_law_religion
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Assail_Archangelesk
+	available = {
+		owns_state = 214
+	}
+	prerequisite = {
+		focus = SAM_Assail_Archangelesk
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Enemy_of_the_People"
+		add_war_support = 0.1
+		tno_religious_rights_improve = yes
+	}
+}
+shared_focus = {
+	id = SAM_Freedom_for_All
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Assail_Archangelesk
+	available = {
+		owns_state = 214
+	}
+	prerequisite = {
+		focus = SAM_Assail_Archangelesk
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Freedom_for_All"
+		add_stability = -0.1
+		add_political_power = -35
+		RUS_integration_cost_days_decrease = yes
+		TNO_improve_poverty_med = yes
+	}
+}
+shared_focus = {
+	id = SAM_The_Finnish_Stooges
+	icon = GFX_goal_KIR_Invade_Onega
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		VTY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+		has_country_flag = RUS_regional_stage
+	}
+	prerequisite = {
+		focus = SAM_Freedom_for_All
+	}
+	prerequisite = {
+		focus = SAM_Freedom_of_Religion
+	}
+	prerequisite = {
+		focus = SAM_Freedom_of_Expression
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_Freedom_for_All
+	will_lead_to_war_with = VTY
+	will_lead_to_war_with = FIN
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Finnish_Stooges"
+		FIN = {
+			country_event = {
+				id = russiadiplo.37
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_The_Western_Warlords_Subdued
+	icon = GFX_GER_handle_the_russias
+	cost = 3
+	select_effect = {
+		hidden_effect = {
+			country_event = { id = SAM.311 days = 1 }
+		}
+	}
+	available = {
+		has_war = no
+		has_country_flag = RUS_regional_stage
+		AND = {
+			NOT = {
+				has_war_with = FIN
+			}
+			NOT = {
+				has_war_with = VTY
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Freedom_for_All
+	}
+	prerequisite = {
+		focus = SAM_Freedom_of_Religion
+	}
+	prerequisite = {
+		focus = SAM_Freedom_of_Expression
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_Freedom_for_All
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Western_Warlords_Subdued"
+		add_stability = 0.10
+		add_war_support = -0.1
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.025
+		}
+		hidden_effect = {
+			country_event = { id = SAM.41 days = 1 }
+		}
+	}
+}
+
+####Bunyachenko Expansion Tree####
+shared_focus = {
+	id = SAM_The_Committee_Looks_to_Tatarstan
+	icon = GFX_generic_tatarstan_war
+	cost = 4
+	x = -2
+	y = 1
+	relative_position_id = SAM_Sideline_the_Germans
+	prerequisite = {
+		focus = SAM_Sideline_the_Germans
+	}
+	prerequisite = {
+		focus = SAM_First_Among_Equals
+	}
+	prerequisite = {
+		focus = SAM_Nominate_Him
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Committee_Looks_to_Tatarstan"
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Trounce_the_Tatars
+	icon = GFX_TNO_generic_attack
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Committee_Looks_to_Tatarstan
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Committee_Looks_to_Tatarstan
+	}
+	will_lead_to_war_with = TAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Trounce_the_Tatars"
+		declare_war_on = {
+			target = TAR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Secure_the_Lands
+	icon = GFX_KHA_the_industrial_security_council
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Trounce_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = TAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Trounce_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Secure_the_Lands"
+		add_stability = -0.05
+		add_political_power = -25
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_Earn_Their_Loyalty
+	icon = GFX_POL_germanys_loyal_sons
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Trounce_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = TAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Trounce_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Earn_Their_Loyalty"
+		add_timed_idea = { idea = SAM_Tartar_Subsidies days = 365 }
+	}
+}
+shared_focus = {
+	id = SAM_The_Treasures_of_Gorki
+	icon = GFX_generic_gorki
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Secure_the_Lands
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Secure_the_Lands
+	}
+	prerequisite = {
+		focus = SAM_Earn_Their_Loyalty
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Treasures_of_Gorki"
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Anti_Armor_Tactics
+	icon = GFX_TOB_Mechanized_Troop_Training
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Treasures_of_Gorki
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Treasures_of_Gorki
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Anti_Armor_Tactics"
+		add_timed_idea = { idea = SAM_Anti_Armor_Tactics_idea days = 70 }
+	}
+}
+shared_focus = {
+	id = SAM_Grind_Gorki_Into_Dust
+	icon = GFX_YUN_The_Best_Defense
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Anti_Armor_Tactics
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Anti_Armor_Tactics
+	}
+	will_lead_to_war_with = CHU
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Grind_Gorki_Into_Dust"
+		declare_war_on = {
+			target = CHU
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Exile_Their_Leaders
+	icon = GFX_TOB_Temporary_Fully_Controlled_Economy
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Grind_Gorki_Into_Dust
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = CHU
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Grind_Gorki_Into_Dust
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Exile_Their_Leaders"
+		add_political_power = 100
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Offer_the_Loot
+	icon = GFX_TNO_generic_gold_coins
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Grind_Gorki_Into_Dust
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = CHU
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Grind_Gorki_Into_Dust
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Offer_the_Loot"
+		add_stability = -0.05
+		add_political_power = 25
+		SAM_increase_military_morale_medium = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Lying_Monarch
+	icon = GFX_generic_republican_movement
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Offer_the_Loot
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Offer_the_Loot
+	}
+	prerequisite = {
+		focus = SAM_Exile_Their_Leaders
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Lying_Monarch"
+		add_war_support = 0.025
+	}
+}
+shared_focus = {
+	id = SAM_A_New_Revolution
+	icon = GFX_SAM_The_False_Czar
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Lying_Monarch
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_The_Lying_Monarch
+	}
+	will_lead_to_war_with = KIR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_New_Revolution"
+		declare_war_on = {
+			target = KIR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Recruit_White_Officers
+	icon = GFX_MAG_White_Army_Tactics
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_A_New_Revolution
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = KIR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_A_New_Revolution
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Recruit_White_Officers"
+		army_experience = 25
+		add_timed_idea = { idea = SAM_White_Army_Training days = 365 }
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+shared_focus = {
+	id = SAM_Put_the_Czar_on_Trial
+	icon = GFX_generic_show_trials
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_A_New_Revolution
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = KIR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_A_New_Revolution
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Put_the_Czar_on_Trial"
+		country_event = {
+			id = SAM.35
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Vologda_Will_be_Ours
+	icon = GFX_YUN_Create_Volunteers
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Recruit_White_Officers
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = SAM_Recruit_White_Officers
+	}
+	prerequisite = {
+		focus = SAM_Put_the_Czar_on_Trial
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Vologda_Will_be_Ours"
+		add_war_support = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Infantry_Assault_Tactics
+	icon = GFX_YUN_Every_Man_A_Soldier
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Vologda_Will_be_Ours
+	prerequisite = {
+		focus = SAM_Vologda_Will_be_Ours
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Infantry_Assault_Tactics"
+		add_timed_idea = { idea = SAM_Infantry_Assault_Tactics_idea days = 70 }
+	}
+}
+shared_focus = {
+	id = SAM_Neutral_no_Longer
+	icon = GFX_generic_neutrality_focus
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Infantry_Assault_Tactics
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Infantry_Assault_Tactics
+	}
+	will_lead_to_war_with = VOL
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Neutral_no_Longer"
+		declare_war_on = {
+			target = VOL
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Silence_Their_Voices
+	icon = GFX_WAL_Democracy_is_dead
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Neutral_no_Longer
+	bypass = {
+		351 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = VOL
+
+				}
+
+			}
+
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = SAM_Neutral_no_Longer
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Silence_Their_Voices"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_Seize_the_Wealth
+	icon = GFX_MAG_The_Best_Guns_Money_Can_Buy
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Neutral_no_Longer
+	bypass = {
+		351 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = VOL
+
+				}
+
+			}
+
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = SAM_Neutral_no_Longer
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Seize_the_Wealth"
+		add_timed_idea = { idea = SAM_The_Trade_of_Kostroma days = 365 }
+		SAM_increase_civilian_morale_medium = yes
+		hidden_effect = {
+			SAM_change_civilian_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Mopping_up_the_Rest
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Silence_Their_Voices
+	prerequisite = {
+		focus = SAM_Silence_Their_Voices
+	}
+	prerequisite = {
+		focus = SAM_Seize_the_Wealth
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Mopping_up_the_Rest"
+		add_war_support	= 0.1
+	}
+}
+shared_focus = {
+	id = SAM_Destroy_the_Muslim_Tatars
+	icon = GFX_generic_bashkir_war
+	cost = 2
+	x = -4
+	y = 1
+	relative_position_id = SAM_Mopping_up_the_Rest
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Mopping_up_the_Rest
+	}
+	will_lead_to_war_with = BKR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Destroy_the_Muslim_Tatars"
+		declare_war_on = {
+			target = BKR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_ROA_Imans
+	icon = GFX_TNO_generic_islam_community_center
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Destroy_the_Muslim_Tatars
+	available = {
+		owns_state = 651
+	}
+	bypass = {
+		651 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = BKR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Destroy_the_Muslim_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_ROA_Imans"
+		army_experience = 15
+	}
+}
+shared_focus = {
+	id = SAM_Wipe_out_the_Fractured_State
+	icon = GFX_NIK_attack_komi
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Mopping_up_the_Rest
+	bypass = {
+		NIK = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Mopping_up_the_Rest
+	}
+	will_lead_to_war_with = NIK
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Wipe_out_the_Fractured_State"
+		declare_war_on = {
+			target = NIK
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Incorporating_Komi
+	icon = GFX_SAM_Take_What_is_Ours
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Wipe_out_the_Fractured_State
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = NIK
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Wipe_out_the_Fractured_State
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Piecing_Komi_Together"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = national_socialism
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.02
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Frag_the_Fanatical_Monks
+	icon = GFX_generic_gayny
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Mopping_up_the_Rest
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Mopping_up_the_Rest
+	}
+	will_lead_to_war_with = GAY
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Frag_the_Fanatical_Monks"
+		declare_war_on = {
+			target = GAY
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Redirecting_Their_Anger
+	icon = GFX_GAY_Blessed_Are_The_Peacekeepers
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Frag_the_Fanatical_Monks
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = GAY
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Frag_the_Fanatical_Monks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Redirecting_Their_Anger"
+		add_war_support = 0.05
+		add_manpower = 750
+	}
+}
+shared_focus = {
+	id = SAM_Silence_the_Syncretists
+	icon = GFX_generic_berezniki
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Mopping_up_the_Rest
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Mopping_up_the_Rest
+	}
+	will_lead_to_war_with = MAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Silence_the_Syncretists"
+		declare_war_on = {
+			target = MAR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Imprison_the_Syncretists
+	icon = GFX_TNO_generic_prison
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Silence_the_Syncretists
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = MAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Silence_the_Syncretists
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Imprison_the_Syncretists"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.075
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Neutralize_the_Nazis
+	icon = GFX_generic_perm
+	cost = 2
+	x = 4
+	y = 1
+	relative_position_id = SAM_Mopping_up_the_Rest
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Mopping_up_the_Rest
+	}
+	will_lead_to_war_with = PRM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Neutralize_the_Nazis"
+		declare_war_on = {
+			target = PRM
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Get_Rid_of_the_German_Lovers
+	icon = GFX_UPO_Friends_in_Russia
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_Neutralize_the_Nazis
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = PRM
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_Neutralize_the_Nazis
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Get_Rid_of_the_German_Lovers"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.1
+		}
+		add_manpower = -500
+	}
+}
+
+shared_focus = {
+	id = SAM_An_Old_Score_to_Settle
+	icon = GFX_generic_socialist_movement
+	cost = 3
+	x = -4
+	y = 1
+	relative_position_id = SAM_Get_Rid_of_the_German_Lovers
+	prerequisite = {
+		focus = SAM_Get_Rid_of_the_German_Lovers
+	}
+	prerequisite = {
+		focus = SAM_Imprison_the_Syncretists
+	}
+	prerequisite = {
+		focus = SAM_Redirecting_Their_Anger
+	}
+	prerequisite = {
+		focus = SAM_Incorporating_Komi
+	}
+	prerequisite = {
+		focus = SAM_ROA_Imans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_An_Old_Score_to_Settle"
+		add_war_support = 0.1
+	}
+}
+shared_focus = {
+	id = SAM_Our_Winter_War
+	icon = GFX_BAS_Hostile_Weather_Conditioning
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_An_Old_Score_to_Settle
+	prerequisite = {
+		focus = SAM_An_Old_Score_to_Settle
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Our_Winter_War"
+		add_timed_idea = { idea = SAM_Winter_Warriors days = 182 }
+	}
+}
+shared_focus = {
+	id = SAM_This_One_is_for_1922
+	icon = GFX_generic_smash_communists
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Our_Winter_War
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Our_Winter_War
+	}
+	will_lead_to_war_with = WRS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_This_One_is_for_1922"
+		declare_war_on = {
+			target = WRS
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Put_the_Reds_to_Bed
+	icon = GFX_generic_execute_communists
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_This_One_is_for_1922
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = WRS
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_This_One_is_for_1922
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Put_the_Reds_to_Bed"
+		add_political_power = -25
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_Private_State_Enterprise
+	icon = GFX_RAJ_The_Private_Sector
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_This_One_is_for_1922
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = SAM
+
+					tag = WRS
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = SAM_This_One_is_for_1922
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Private_State_Enterprise"
+		add_timed_idea = { idea = SAM_Private_Enterprise days = 720 }
+	}
+}
+
+#shared_focus = {
+#	id = SAM_Back_To_Thirty_Six
+#	icon = GFX_FIN_karelian_question
+#	cost = 3.00
+#	available_if_capitulated = no
+#	ai_will_do = {
+#		factor = 10
+#		modifier = {
+#			has_offensive_war = yes
+#			factor = 0
+#		}
+#	}
+#	bypass = {
+#		VTY = {
+#			exists = no
+#		}
+#	}
+#	available = {
+#		has_war = no
+#		has_country_flag = RUS_regional_stage
+#	}
+#	prerequisite = {
+#		focus = SAM_Private_State_Enterprise
+#	}
+#	prerequisite = {
+#		focus = SAM_Put_the_Reds_to_Bed
+#	}
+#	x = -2
+#	y = 1
+#	relative_position_id = SAM_Private_State_Enterprise
+#	will_lead_to_war_with = VTY
+#	will_lead_to_war_with = FIN
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus SAM_Back_To_Thirty_Six"
+#		declare_war_on = {
+#			target = VTY
+#			type = annex_everything
+#		}
+#		#hidden_effect = {
+#			#	FIN = {
+#				#		country_event = {
+#					#			id = FIN.3
+#					#			days = 1
+#					#		}
+#				#	}
+#			#}
+#	}
+#}
+
+
+shared_focus = {
+	id = SAM_The_West_is_Ours
+	icon = GFX_SAM_The_Hard_Way
+	cost = 3
+	select_effect = {
+		hidden_effect = {
+			country_event = { id = SAM.311 days = 1 }
+		}
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_Private_State_Enterprise
+	#prerequisite = {
+	#	focus = SAM_Back_To_Thirty_Six
+	#}
+	available = {
+		has_war = no
+		has_country_flag = RUS_regional_stage
+	}
+	prerequisite = {
+		focus = SAM_Private_State_Enterprise
+	}
+	prerequisite = {
+		focus = SAM_Put_the_Reds_to_Bed
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_West_is_Ours"
+		add_stability = 0.15
+		add_war_support = 0.15
+		hidden_effect = {
+			country_event = { id = SAM.41 days = 1 }
+			country_event = { id = SAM.428 days = 30 random_days = 10 }
+		}
+	}
+}
+
+####Oktan Expansion Tree####
+shared_focus = {
+	id = SAM_Expand_my_Domain
+	icon = GFX_Quantity_Recruitment
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_My_Russia
+	prerequisite = {
+		focus = SAM_My_Russia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Expand_my_Domain"
+		add_war_support = 0.10
+	}
+}
+shared_focus = {
+	id = SAM_Crush_the_Tatars
+	icon = GFX_RAJ_India_A_Socialist_Society
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Expand_my_Domain
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Expand_my_Domain
+	}
+	will_lead_to_war_with = TAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Crush_the_Tatars"
+		declare_war_on = {
+			target = TAR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Restrict_Tatar_Rights
+	icon = GFX_generic_change_law_slavery
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = SAM_Crush_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = TAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Crush_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Restrict_Tatar_Rights"
+		add_stability = -0.05
+		add_political_power = 50
+		add_manpower = -1000
+	}
+}
+shared_focus = {
+	id = SAM_Send_in_Russian_Settlers
+	icon = GFX_Generic_Refugees
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = SAM_Crush_the_Tatars
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = TAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Crush_the_Tatars
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Send_in_Russian_Settlers"
+		add_political_power = -35
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_Stop_Their_Engines
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 2
+	x = 0
+	y = 2
+	relative_position_id = SAM_Crush_the_Tatars
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Restrict_Tatar_Rights
+	}
+	prerequisite = {
+		focus = SAM_Send_in_Russian_Settlers
+	}
+	will_lead_to_war_with = CHU
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Stop_Their_Engines"
+		declare_war_on = {
+			target = CHU
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Enslave_Their_Mechanics
+	icon = GFX_GER_reapers
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = SAM_Stop_Their_Engines
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = CHU
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Stop_Their_Engines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Enslave_Their_Mechanics"
+		TNO_improve_industrial_expertise_med = yes
+		add_equipment_to_stockpile = {
+			type = IFV_equipment
+			amount = 100
+			producer = CHU
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_equipment
+			amount = 50
+			producer = CHU
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Strip_Their_Vehicles
+	icon = GFX_IEA_Its_Nothing_Personal
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = SAM_Stop_Their_Engines
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = CHU
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Stop_Their_Engines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Strip_Their_Vehicles"
+		SAM = {
+			add_equipment_to_stockpile = {
+				type = APC_equipment
+				amount = 200
+				producer = CHU
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment_1
+				amount = 250
+				producer = CHU
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Death_to_the_False_Emperor
+	icon = GFX_KIR_All_Roads_Lead_to_Romanov
+	cost = 2
+	x = 0
+	y = 2
+	relative_position_id = SAM_Stop_Their_Engines
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Enslave_Their_Mechanics
+	}
+	prerequisite = {
+		focus = SAM_Strip_Their_Vehicles
+	}
+	will_lead_to_war_with = KIR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Death_to_the_False_Emperor"
+		declare_war_on = {
+			target = KIR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Parade_Him_Through_Samara
+	icon = GFX_ITA_Annihilate_the_Royalists
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = SAM_Death_to_the_False_Emperor
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KIR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Death_to_the_False_Emperor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Parade_Him_Through_Samara"
+		add_political_power = 75
+		add_popularity = {
+			ideology = despotism
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		country_event = {
+			id = SAM.35
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Imperial_Guard_to_Kormchiy_Guard
+	icon = GFX_underground_metropolis
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = SAM_Death_to_the_False_Emperor
+	available = {
+		owns_state = 400
+	}
+	bypass = {
+		400 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = KIR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Death_to_the_False_Emperor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Parade_Him_Through_Samara"
+		add_ideas = SAM_Kormchiy_Guard
+	}
+}
+shared_focus = {
+	id = SAM_I_Hate_Neutrals
+	icon = GFX_INS_japanese_neutrality
+	cost = 2
+	x = 0
+	y = 2
+	relative_position_id = SAM_Death_to_the_False_Emperor
+	bypass = {
+		VOL = {
+			exists = no
+		}
+		KST = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Parade_Him_Through_Samara
+	}
+	prerequisite = {
+		focus = SAM_Imperial_Guard_to_Kormchiy_Guard
+	}
+	will_lead_to_war_with = VOL
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_I_Hate_Neutrals"
+		declare_war_on = {
+			target = VOL
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_They_Are_All_Reds
+	icon = GFX_generic_execute_communists
+	cost = 3
+	x = -1
+	y = 1
+	relative_position_id = SAM_I_Hate_Neutrals
+	bypass = {
+		351 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = VOL
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = SAM_I_Hate_Neutrals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_They_Are_All_Reds"
+		add_political_power = 25
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+shared_focus = {
+	id = SAM_The_Rape_of_Kostroma
+	icon = GFX_FSR_Execute_The_Carlists
+	cost = 3
+	x = 1
+	y = 1
+	relative_position_id = SAM_I_Hate_Neutrals
+	bypass = {
+		351 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = VOL
+				}
+			}
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = SAM_I_Hate_Neutrals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Rape_of_Kostroma"
+		add_timed_idea = { idea = SAM_The_Rape_of_Kostroma_idea days = 90 }
+		SAM_increase_military_morale_medium = yes
+		hidden_effect = {
+			SAM_change_military_spirit = yes
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Comsume_the_Remaining_Prey
+	icon = GFX_BAS_acquire_subjects_urban
+	cost = 2
+	x = 0
+	y = 2
+	relative_position_id = SAM_I_Hate_Neutrals
+	prerequisite = {
+		focus = SAM_They_Are_All_Reds
+	}
+	prerequisite = {
+		focus = SAM_The_Rape_of_Kostroma
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Comsume_the_Remaining_Prey"
+		add_war_support = 0.10
+	}
+}
+shared_focus = {
+	id = SAM_The_Braindead_of_Bashkir
+	icon = GFX_generic_islam
+	cost = 2
+	x = -2
+	y = 1
+	relative_position_id = SAM_Comsume_the_Remaining_Prey
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Comsume_the_Remaining_Prey
+	}
+	will_lead_to_war_with = BKR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Braindead_of_Bashkir"
+		declare_war_on = {
+			target = BKR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Execute_Their_Imans
+	icon = GFX_BAS_destroy_league
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Braindead_of_Bashkir
+	available = {
+		owns_state = 651
+	}
+	bypass = {
+		651 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = BKR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Braindead_of_Bashkir
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Execute_Their_Imans"
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = SAM_The_Clowns_of_Komi
+	icon = GFX_NIK_attack_komi
+	cost = 2
+	x = -4
+	y = 1
+	relative_position_id = SAM_Comsume_the_Remaining_Prey
+	bypass = {
+		NIK = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Comsume_the_Remaining_Prey
+	}
+	will_lead_to_war_with = NIK
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Clowns_of_Komi"
+		declare_war_on = {
+			target = NIK
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Incorporate_the_Komi_Right
+	icon = GFX_NIK_komi_fascist
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Clowns_of_Komi
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = NIK
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Clowns_of_Komi
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Incorporate_the_Komi_Right"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = national_socialism
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.10
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Gallows_of_Gaysynky
+	icon = GFX_GAY_Spirit_Of_Saint_George
+	cost = 2
+	x = 2
+	y = 1
+	relative_position_id = SAM_Comsume_the_Remaining_Prey
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Comsume_the_Remaining_Prey
+	}
+	will_lead_to_war_with = GAY
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Gays_of_Gaysynky"
+		declare_war_on = {
+			target = GAY
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Maltsev_is_Your_Master
+	icon = GFX_GAY_Blessed_Are_The_Peacekeepers
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Gallows_of_Gaysynky
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = GAY
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Gallows_of_Gaysynky
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Maltsev_is_Your_Master"
+		add_stability = 0.05
+		add_manpower = -250
+	}
+}
+shared_focus = {
+	id = SAM_The_Savage_Syncretists
+	icon = GFX_KIR_Gulag_Industry
+	cost = 2
+	x = 4
+	y = 1
+	relative_position_id = SAM_Comsume_the_Remaining_Prey
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Comsume_the_Remaining_Prey
+	}
+	will_lead_to_war_with = MAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Savage_Syncretists"
+		declare_war_on = {
+			target = MAR
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Kill_Them_All
+	icon = GFX_BAS_SVV
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Savage_Syncretists
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = MAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Savage_Syncretists
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Kill_Them_All"
+		add_manpower = -1200
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.025
+		}
+	}
+}
+shared_focus = {
+	id = SAM_The_Nutjob_Nazis
+	icon = GFX_confused_nazi
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_Comsume_the_Remaining_Prey
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_Comsume_the_Remaining_Prey
+	}
+	will_lead_to_war_with = PRM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Nutjob_Nazis"
+		declare_war_on = {
+			target = PRM
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_I_am_Your_Fuhrer
+	icon = GFX_RAJ_Hitler_Cult
+	cost = 3
+	x = 0
+	y = 1
+	relative_position_id = SAM_The_Nutjob_Nazis
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = PRM
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_The_Nutjob_Nazis
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_I_am_Your_Fuhrer"
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.05
+		}
+		add_war_support = 0.10
+	}
+}
+
+shared_focus = {
+	id = SAM_Ravage_the_Reds
+	icon = GFX_generic_execute_communists
+	cost = 2
+	x = 0
+	y = 1
+	relative_position_id = SAM_I_am_Your_Fuhrer
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SAM_I_am_Your_Fuhrer
+	}
+	prerequisite = {
+		focus = SAM_Kill_Them_All
+	}
+	prerequisite = {
+		focus = SAM_Maltsev_is_Your_Master
+	}
+	prerequisite = {
+		focus = SAM_Execute_Their_Imans
+	}
+	prerequisite = {
+		focus = SAM_Incorporate_the_Komi_Right
+	}
+	will_lead_to_war_with = WRS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Ravage_the_Reds"
+		declare_war_on = {
+			target = WRS
+			type = annex_everything
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Make_it_Hurt
+	icon = GFX_MAD_the_burglars_plot
+	cost = 3
+	x = -2
+	y = 1
+	relative_position_id = SAM_Ravage_the_Reds
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = WRS
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Ravage_the_Reds
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Make_it_Hurt"
+		add_stability = -0.05
+		add_political_power = 75
+		add_manpower = -2500
+	}
+}
+shared_focus = {
+	id = SAM_Recruit_Their_Commissars
+	icon = GFX_TNO_generic_socialist_recruitment
+	cost = 3
+	x = 2
+	y = 1
+	relative_position_id = SAM_Ravage_the_Reds
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+			owner = {
+				NOT = {
+					tag = SAM
+					tag = WRS
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = SAM_Ravage_the_Reds
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Recruit_Their_Commissars"
+		add_political_power = -50
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+
+#shared_focus = {
+#	id = SAM_Operatsiya_Yeet_Onega
+#	icon = GFX_goal_KIR_Invade_Onega
+#	cost = 3.00
+#	available_if_capitulated = no
+#	ai_will_do = {
+#		factor = 10
+#		modifier = {
+#			has_offensive_war = yes
+#			factor = 0
+#		}
+#	}
+#	bypass = {
+#		VTY = {
+#			exists = no
+#		}
+#	}
+#	available = {
+#		has_war = no
+#		has_country_flag = RUS_regional_stage
+#	}
+#	prerequisite = {
+#		focus = SAM_Recruit_Their_Commissars
+#	}
+#	prerequisite = {
+#		focus = SAM_Make_it_Hurt
+#	}
+#	x = -2
+#	y = 1
+#	relative_position_id = SAM_Recruit_Their_Commissars
+#	will_lead_to_war_with = VTY
+#	will_lead_to_war_with = FIN
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus SAM_Operatsiya_Yeet_Onega"
+#		remove_ideas = SAM_german_bootlickers
+#		declare_war_on = {
+#			target = VTY
+#			type = annex_everything
+#		}
+#		hidden_effect = {
+#			FIN = {
+#				country_event = {
+#					id = FIN.3
+#					days = 1
+#				}
+#			}
+#		}
+#	}
+#}
+
+shared_focus = {
+	id = SAM_My_Western_Domain
+	icon = GFX_generic_victory_parade
+	cost = 3
+	select_effect = {
+		hidden_effect = {
+			country_event = { id = SAM.311 days = 1 }
+		}
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_Recruit_Their_Commissars
+	available = {
+		has_war = no
+		has_country_flag = RUS_regional_stage
+	}
+	prerequisite = {
+		focus = SAM_Recruit_Their_Commissars
+	}
+	prerequisite = {
+		focus = SAM_Make_it_Hurt
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_My_Western_Domain"
+		add_stability = 0.15
+		add_war_support = -0.2
+		hidden_effect = {
+			country_event = { id = SAM.41 days = 1 }
+		}
+	}
+}
+
+
+##### Regional Samara #####
+shared_focus = {
+	id = SAM_the_death_of_vlasov
+	icon = GFX_SAM_Our_Guide
+	cost = 3.42
+	x = 8
+	y = 0
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_death_of_vlasov"
+		add_stability = -0.2
+		add_war_support = -0.2
+	}
+}
+
+shared_focus = {#Chaos follows vlasov's death
+	#TODO Ramp up the bad national spirits to the max
+	id = SAM_friends_and_enemies
+	icon = GFX_GGR_Prolonged_Occupation
+	cost = 2
+	prerequisite = {
+		focus = SAM_the_death_of_vlasov
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_the_death_of_vlasov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_friends_and_enemies"
+		country_event = { id = SAM.42 }
+	}
+}
+
+shared_focus = {#Zykov response to vlasov death 1
+	id = SAM_by_the_people
+	icon = GFX_SAM_Our_Voice
+	cost = 2
+	prerequisite = {
+		focus = SAM_friends_and_enemies
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_friends_and_enemies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_by_the_people"
+		country_event = { id = SAM.43 }
+	}
+}
+
+shared_focus = {#Zykov response to vlasov death 2
+	id = SAM_for_the_people
+	icon = GFX_SAM_To_The_People
+	cost = 2
+	prerequisite = {
+		focus = SAM_by_the_people
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_by_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_for_the_people"
+		country_event = { id = SAM.44 }
+	}
+}
+
+shared_focus = {
+	id = SAM_the_roa_fights_on_zykov
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 2
+	prerequisite = {
+		focus = SAM_for_the_people
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_for_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_roa_fights_on_zykov"
+		set_country_flag = SAM_ROA_Ready
+		add_stability = 0.2
+		add_war_support = 0.1
+		country_event = { id = SAM.49 }
+	}
+}
+
+shared_focus = {#Bunya response to vlasov death 1
+	id = SAM_peace_bunya
+	icon = GFX_SAM_Our_General
+	cost = 2
+	prerequisite = {
+		focus = SAM_friends_and_enemies
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_friends_and_enemies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_peace_bunya"
+		country_event = { id = SAM.45 }
+	}
+}
+
+shared_focus = {#Bunya response to vlasov death 2
+	id = SAM_and_order_bunya
+	icon = GFX_generic_change_law_enforcement
+	cost = 2
+	prerequisite = {
+		focus = SAM_peace_bunya
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_peace_bunya
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_and_order_bunya"
+		country_event = { id = SAM.46 }
+	}
+}
+
+shared_focus = {
+	id = SAM_the_roa_fights_on_bunyachenko
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 2
+	prerequisite = {
+		focus = SAM_and_order_bunya
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_and_order_bunya
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_roa_fights_on_bunyachenko"
+		set_country_flag = SAM_ROA_Ready
+		add_stability = 0.2
+		add_war_support = 0.1
+		country_event = { id = SAM.49 }
+	}
+}
+
+shared_focus = {#Maltsev response to vlasov death 1
+	id = SAM_money_maltsev
+	icon = GFX_SAM_Money
+	cost = 2
+	prerequisite = {
+		focus = SAM_friends_and_enemies
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_friends_and_enemies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_money_maltsev"
+		country_event = { id = SAM.47 }
+	}
+}
+
+shared_focus = {#Maltsev response to vlasov death 2
+	id = SAM_and_power_maltsev
+	icon = GFX_GER_CN_invite_secondary_powers
+	cost = 2
+	prerequisite = {
+		focus = SAM_money_maltsev
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_money_maltsev
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_and_power_maltsev"
+		country_event = { id = SAM.48 }
+	}
+}
+
+shared_focus = {#The roa fights on
+	id = SAM_the_roa_fights_on_oktan
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 2
+	prerequisite = {
+		focus = SAM_and_power_maltsev
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_and_power_maltsev
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_roa_fights_on_oktan"
+		set_country_flag = SAM_ROA_Ready
+		add_stability = 0.2
+		add_war_support = 0.1
+		country_event = { id = SAM.49 }
+	}
+}
+
+###### General Regional Military Tree #####
+shared_focus = {#Cutting the chaff
+	id = SAM_Cutting_the_chaff
+	icon = GFX_Generic_Political_Purge
+	cost = 3.42
+	x = 11
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Cutting_the_chaff"
+		add_manpower = -500
+		army_experience = -10
+		add_stability = 0.1
+		SAM_increase_ROA_support_medium = yes
+		SAM_change_officers_spirit = yes
+	}
+}
+
+shared_focus = {#Reformed officer corp
+	id = SAM_Reformed_officer_corp
+	icon = GFX_Generic_Army_Officers
+	cost = 3.42
+	x = 13
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Reformed_officer_corp"
+		army_experience = 5
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+shared_focus = {#Swords and Plowshares
+	id = SAM_Swords_and_plowshares
+	icon = GFX_GER_SGR_feed_the_soldiers
+	cost = 3.42
+	x = 15
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Swords_and_plowshares"
+		add_stability = 0.05
+		TNO_improve_agriculture_med = yes
+	}
+}
+
+shared_focus = {#An outward looking army
+	id = SAM_An_outward_looking_army
+	icon = GFX_Generic_Army_Focus_Green
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Reformed_officer_corp
+	}
+	prerequisite = {
+		focus = SAM_Swords_and_plowshares
+	}
+	prerequisite = {
+		focus = SAM_Cutting_the_chaff
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_Reformed_officer_corp
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_An_outward_looking_army"
+		add_political_power = 50
+		country_event = { id = SAM.50 hours = 6 }
+	}
+}
+
+shared_focus = {#Gun Smithing Program
+	id = SAM_Gun_smithing_program
+	icon = GFX_CHI_Ramp_Up_Military_Production
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_An_outward_looking_army
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_An_outward_looking_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Gun_smithing_program"
+		add_ideas = SAM_gunsmithing
+	}
+}
+
+shared_focus = {#A modern air force
+	id = SAM_A_Modern_air_force
+	icon = GFX_Dedicated_Air_Crews
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_An_outward_looking_army
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_An_outward_looking_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_Modern_air_force"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = air_equipment
+		}
+	}
+}
+
+shared_focus = {#Getting our toes wet
+	id = SAM_Getting_our_toes_wet
+	icon = GFX_KIR_imperial_navy
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Gun_smithing_program
+	}
+	prerequisite = {
+		focus = SAM_A_Modern_air_force
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_Gun_smithing_program
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Getting_our_toes_wet"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = naval_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Standardization_of_the_ROA
+	icon = GFX_SAM_Standartization_Of_The_ROA
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Getting_our_toes_wet
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_Getting_our_toes_wet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Standardization_of_the_ROA"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = artillery
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = motorized_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Modernization_of_the_ROA
+	icon = GFX_SAM_Modernisation_Of_The_ROA
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Getting_our_toes_wet
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_Getting_our_toes_wet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Modernization_of_the_ROA"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Mechanization_of_the_ROA
+	icon = GFX_SAM_Mechanization_Of_The_ROA
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Getting_our_toes_wet
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_Getting_our_toes_wet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Mechanization_of_the_ROA"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = APC
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = IFV
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = MBT
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Fortifying_West_Russia
+	icon = GFX_COG_Fortify_The_Border
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Standardization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Modernization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Mechanization_of_the_ROA
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_Standardization_of_the_ROA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Fortifying_West_Russia"
+		custom_effect_tooltip = SAM_Fortifying_West_Russia_tt
+		hidden_effect = {
+			755 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			250 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			252 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = SAM_Value_for_Money
+	icon = GFX_generic_money_handout
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Standardization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Modernization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Mechanization_of_the_ROA
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_Standardization_of_the_ROA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Value_for_Money"
+		swap_ideas = {
+			remove_idea = SAM_gunsmithing
+			add_idea = SAM_gunsmithing2
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Future_Warfare
+	icon = GFX_RAJ_rifles_guns_cannons
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Standardization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Modernization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Mechanization_of_the_ROA
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_Mechanization_of_the_ROA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Future_Warfare"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = electronics
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_A_Brown_Water_Navy
+	icon = GFX_NIK_new_northern_fleet
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Standardization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Modernization_of_the_ROA
+	}
+	prerequisite = {
+		focus = SAM_Mechanization_of_the_ROA
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_Mechanization_of_the_ROA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_A_Brown_Water_Navy"
+		214 = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = dockyard
+				level = 4
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Harmonization
+	icon = GFX_Generic_Soldiers_Red
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Fortifying_West_Russia
+	}
+	prerequisite = {
+		focus = SAM_Value_for_Money
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_Fortifying_West_Russia
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Harmonization"
+		army_experience = 20
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_Full_Mobilization
+	icon = GFX_YUN_Every_Man_A_Soldier
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Future_Warfare
+	}
+	prerequisite = {
+		focus = SAM_A_Brown_Water_Navy
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_Future_Warfare
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_Full_Mobilization"
+		add_ideas = tno_economic_focus_total_mobilization
+	}
+}
+
+shared_focus = {
+	id = SAM_The_Army_of_National_Liberation
+	icon = GFX_SAM_The_Army_of_National_Liberation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Harmonization
+	}
+	prerequisite = {
+		focus = SAM_Full_Mobilization
+	}
+	allow_branch = {
+		OR = {
+			has_country_flag = SAM_Zykov
+			has_country_flag = SAM_Bunyachenko
+		}
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_Harmonization
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Army_of_National_Liberation"
+		swap_ideas = {
+			remove_idea = SAM_slipped_leash
+			add_idea = SAM_army_of_national_liberation
+		}
+		country_event = { id = SAM.69 hours = 6 }
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+shared_focus = {
+	id = SAM_The_Army_of_National_Liberation_Oktan
+	icon = GFX_SAM_The_Army_of_National_Liberation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_Harmonization
+	}
+	prerequisite = {
+		focus = SAM_Full_Mobilization
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_Harmonization
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_The_Army_of_National_Liberation_Oktan"
+		swap_ideas = {
+			remove_idea = SAM_slipped_leash
+			add_idea = SAM_army_of_national_liberation
+		}
+		country_event = { id = SAM.70 hours = 6 }
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+##### Regional Diplomacy Tree #####
+shared_focus = {
+	id = SAM_foreign_observers
+	icon = GFX_Focus_Europe_Orthographic
+	cost = 3.42
+	x = 27
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_foreign_observers"
+		add_political_power = 50
+		country_event = { id = SAM.51 hours = 6 }
+	}
+}
+
+shared_focus = {
+	id = SAM_the_samara_declaration
+	icon = GFX_generic_change_law_speech
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_foreign_observers
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_foreign_observers
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_samara_declaration"
+		swap_ideas = {
+			remove_idea = SAM_The_Smolensk_Manifesto
+			add_idea = SAM_The_Samara_Manifesto
+		}
+		country_event = { id = SAM.68 hours = 6 }
+	}
+}
+
+shared_focus = {
+	id = SAM_charm_offensive
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_samara_declaration
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_the_samara_declaration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_charm_offensive"
+		set_country_flag = SAM_no_smuggling
+		GER = {
+			country_event = { id = SAM.84 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_nordic_help
+	icon = GFX_GER_Towards_Sweden
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_samara_declaration
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_the_samara_declaration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_nordic_help"
+		SWE = {
+			country_event = { id = SAM.85 hours = 6 }
+		}
+		NOR = {
+			country_event = { id = SAM.88 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_foreign_business
+	icon = GFX_Generic_Business
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_samara_declaration
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_the_samara_declaration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_foreign_business"
+		add_to_variable = { GDP_growth = 0.002 }
+		custom_effect_tooltip = SAM_gdp_growth_tt
+	}
+}
+
+##### Bunyachenko Regional Diplomacy ######
+shared_focus = {
+	id = SAM_business_contacts
+	icon = GFX_generic_diplomacy_trade
+	cost = 3.42
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	prerequisite = {
+		focus = SAM_charm_offensive
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_charm_offensive
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_business_contacts"
+		add_to_variable = { GDP_growth = 0.01 }
+		add_to_variable = { GDP = 200 }
+		custom_effect_tooltip = SAM_business_contacts_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_contacts_with_moskowien_bunyachenko
+	icon = GFX_SAM_Moskowien_Contacts
+	cost = 3.42
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	prerequisite = {
+		focus = SAM_foreign_business
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_foreign_business
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_contacts_with_moskowien_bunyachenko"
+		add_ideas = tno_immigration_open_immigration
+		add_ideas = tno_refugees_open
+	}
+}
+
+shared_focus = {
+	id = SAM_russia_stable_and_orderly
+	icon = GFX_UPO_rally_the_russians
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_business_contacts
+	}
+	prerequisite = {
+		focus = SAM_contacts_with_moskowien_bunyachenko
+	}
+	prerequisite = {
+		focus = SAM_nordic_help
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAM_nordic_help
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_russia_stable_and_orderly"
+		add_stability = 0.15
+	}
+}
+
+##### Regional Diplomacy Zykov #####
+shared_focus = {
+	id = SAM_open_our_doors
+	icon = GFX_UPO_An_Open_Door
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_charm_offensive
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_charm_offensive
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_open_our_doors"
+		add_political_power = 75
+	}
+}
+
+shared_focus = {
+	id = SAM_contacts_with_moskowien_zykov
+	icon = GFX_SAM_Moskowien_Contacts
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_foreign_business
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_foreign_business
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_contacts_with_moskowien_zykov"
+		add_ideas = tno_immigration_open_immigration
+		add_ideas = tno_refugees_open
+	}
+}
+
+shared_focus = {
+	id = SAM_russia_strong_and_free
+	icon = GFX_UPO_rally_the_russians
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_open_our_doors
+	}
+	prerequisite = {
+		focus = SAM_nordic_help
+	}
+	prerequisite = {
+		focus = SAM_contacts_with_moskowien_zykov
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAM_nordic_help
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: SAM_russia_strong_and_free"
+		add_political_power = 50
+		add_stability = 0.05
+		add_war_support = 0.05
+	}
+}
+
+##### Regional Diplomacy Oktan #####
+shared_focus = {
+	id = SAM_contacts_abroad
+	icon = GFX_Focus_Europe_Orthographic
+	cost = 3.42
+	x = 27
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_contacts_abroad"
+		add_political_power = 50
+		country_event = { id = SAM.52 hours = 6 }
+		hidden_effect = {
+			country_event = { id = SAM_oktan.18 days = 48 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_the_samara_declaration_oktan
+	icon = GFX_generic_change_law_speech
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_contacts_abroad
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_contacts_abroad
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_samara_declaration_oktan"
+		swap_ideas = {
+			remove_idea = SAM_The_Smolensk_Manifesto
+			add_idea = SAM_The_Samara_Manifesto
+		}
+		country_event = { id = SAM.68 hours = 6 }
+	}
+}
+
+shared_focus = {
+	id = SAM_banking_partners
+	icon = GFX_generic_change_law_trade
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_samara_declaration_oktan
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_the_samara_declaration_oktan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_banking_partners"
+		add_to_variable = { money_reserves = 100 }
+		add_to_variable = { GDP_growth = 0.005 }
+		custom_effect_tooltip = SAM_banking_partners_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_cashing_out_deals_with_the_fritzes
+	icon = GFX_Generic_Shady_Deal
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_samara_declaration_oktan
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_the_samara_declaration_oktan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_cashing_out_deals_with_the_fritzes"
+		TNO_improve_industrial_equipment_low = yes
+		add_to_variable = { money_reserves = 50 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 400
+			producer = GER
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_food_and_books_for_russia
+	icon = GFX_RAJ_India_Food
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_banking_partners
+	}
+	prerequisite = {
+		focus = SAM_cashing_out_deals_with_the_fritzes
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_banking_partners
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_food_and_books_for_russia"
+		add_political_power = 50
+		add_to_variable = { money_reserves = 30 }
+		TNO_improve_poverty_low = yes
+		custom_effect_tooltip = SAM_food_and_books_for_russia_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_the_tired_the_poor
+	icon = GFX_ORE_reform_the_peoples_tribunal
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_banking_partners
+	}
+	prerequisite = {
+		focus = SAM_cashing_out_deals_with_the_fritzes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_banking_partners
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_tired_the_poor"
+		add_ideas = tno_immigration_open_immigration
+		add_ideas = tno_refugees_vetted_entry
+		add_manpower = 2000
+	}
+}
+
+shared_focus = {
+	id = SAM_new_business_relationship
+	icon = GFX_Generic_Business
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_banking_partners
+	}
+	prerequisite = {
+		focus = SAM_cashing_out_deals_with_the_fritzes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_cashing_out_deals_with_the_fritzes
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_new_business_relationship"
+		add_to_variable = { GDP_growth = 0.012 }
+		custom_effect_tooltip = SAM_gdp_growth_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_the_homeless_tempest_tost
+	icon = GFX_GER_The_Peoples_coup
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_food_and_books_for_russia
+	}
+	prerequisite = {
+		focus = SAM_the_tired_the_poor
+	}
+	prerequisite = {
+		focus = SAM_new_business_relationship
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_the_tired_the_poor
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_homeless_tempest_tost"
+		add_manpower = 10000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1200
+			producer = GER
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_all_beside_the_golden_lamp
+	icon = GFX_UPO_rally_the_russians
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_the_homeless_tempest_tost
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_the_homeless_tempest_tost
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_all_beside_the_golden_lamp"
+		add_political_power = 50
+		add_stability = 0.1
+	}
+}
+
+##### Regional Political Tree #####
+shared_focus = {
+	id = SAM_scaling_down_emergency_rule
+	icon = GFX_VIN_Depoliticize_Politics
+	cost = 3.42
+	x = 3
+	y = 0
+	ai_will_do = {
+		factor = 80
+	}
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_scaling_down_emergency_rule"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.54 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.53 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.55 }
+		}
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = SAM_a_constitutional_convention
+	icon = GFX_generic_constitution
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_scaling_down_emergency_rule
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_scaling_down_emergency_rule
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_constitutional_convention"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.57 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.56 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.58 }
+		}
+		add_political_power = 75
+	}
+}
+
+shared_focus = {
+	id = SAM_legislative_matters
+	icon = GFX_generic_change_law_enforcement
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_constitutional_convention
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_a_constitutional_convention
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_legislative_matters"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.63 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.62 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.64 }
+		}
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_judiciary_matters
+	icon = GFX_generic_judicial_opinion
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_constitutional_convention
+	}
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_a_constitutional_convention
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_judiciary_matters"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.60 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.59 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.61 }
+		}
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_executive_matters
+	icon = GFX_ORE_call_the_council_to_order
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_constitutional_convention
+	}
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_a_constitutional_convention
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_executive_matters"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.81 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.80 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.82 }
+		}
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_ministry_of_truth
+	icon = GFX_CAU_purge_the_bureaucrats
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_legislative_matters
+	}
+	prerequisite = {
+		focus = SAM_judiciary_matters
+	}
+	prerequisite = {
+		focus = SAM_executive_matters
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_legislative_matters
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_ministry_of_truth"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.72 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.71 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.73 }
+		}
+		add_stability = 0.05
+		add_war_support = 0.05
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_education
+	icon = GFX_generic_change_law_education
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_ministry_of_truth
+	}
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_ministry_of_truth
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_education"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.75 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.74 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.76 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_social_net
+	icon = GFX_SLO_Social_Liberalization
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_ministry_of_truth
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_ministry_of_truth
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_social_net"
+		add_ideas = tno_minimum_wage_low_minimum_wage
+		add_ideas = tno_pensions_trinket_pensions
+	}
+}
+
+##### Regional Political Bunyachenko #####
+shared_focus = {
+	id = SAM_perfect_our_history
+	icon = GFX_GER_Close_The_Books
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_perfect_our_history"
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.05
+		}
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = SAM_the_loyal_opposition
+	icon = GFX_generic_diplomacy_political
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_loyal_opposition"
+		add_ideas = tno_political_parties_controlled_opposition
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SAM_protect_our_veterans
+	icon = GFX_ITA_Veterans_of_the_World_War
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_social_net
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_protect_our_veterans"
+		add_ideas = tno_pensions_acceptable_pensions
+		add_political_power = 30
+	}
+}
+
+shared_focus = {
+	id = SAM_a_modern_state_bunyachenko
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_perfect_our_history
+	}
+	prerequisite = {
+		focus = SAM_the_loyal_opposition
+	}
+	prerequisite = {
+		focus = SAM_protect_our_veterans
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_the_loyal_opposition
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_modern_state_bunyachenko"
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		country_event = { id = SAM.78 }
+		add_stability = 0.1
+		RUS_decrease_administrative_strain = yes	
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+##### Regional Political Zykov #####
+shared_focus = {
+	id = SAM_elite_schooling
+	icon = GFX_VIN_Education_Reform
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_elite_schooling"
+		TNO_improve_academic_base_low = yes
+		TNO_improve_industrial_expertise_low = yes
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_a_party_for_the_people
+	icon = GFX_SAM_To_The_People
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_party_for_the_people"
+		unlock_decision_category_tooltip = SAM_unity_party_category
+		set_country_flag = SAM_unity_party
+		set_variable = { SAM_ROA_faction_strength = 33 }
+		set_variable = { SAM_business_faction_strength = 33 }
+		set_variable = { SAM_democrat_faction_strength = 33 }
+		Zykovtangle_calc_XY = yes
+		set_party_name = {
+			ideology = authoritarian_democrat
+			long_name = SAM_reg_authoritatian_democrat_party_long
+			name = SAM_reg_authoritatian_democrat_party
+		}
+		hidden_effect = {
+			country_event = { id = SAM.93 days = 58 random = 96 }
+			country_event = { id = SAM_zykov.10 days = 35 random = 96 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_regional_associations
+	icon = GFX_PRM_contacts_among_the_russians
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_social_net
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_regional_associations"
+		TNO_improve_poverty_med = yes
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SAM_a_modern_state_zykov
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_elite_schooling
+	}
+	prerequisite = {
+		focus = SAM_a_party_for_the_people
+	}
+	prerequisite = {
+		focus = SAM_regional_associations
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_a_party_for_the_people
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_modern_state_zykov"
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		country_event = { id = SAM.77 }
+		add_stability = 0.1
+		RUS_decrease_administrative_strain = yes
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+##### Regional Political Oktan #####
+shared_focus = {
+	id = SAM_nationwide_talent_drive
+	icon = GFX_PRM_Work_For_Your_Nation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_nationwide_talent_drive"
+		TNO_improve_academic_base_low = yes
+		TNO_improve_industrial_expertise_low = yes
+		add_stability = -0.025
+		add_political_power = -35
+		hidden_effect = {
+			country_event = { id = SAM_oktan.17 days = 21 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_ministry_of_the_interior
+	icon = GFX_generic_paperwork
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_education
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_education
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_ministry_of_the_interior"
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = SAM_nationalist_fervor
+	icon = GFX_MCW_Compensation_For_Russians
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_social_net
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_nationalist_fervor"
+		add_stability = 0.025
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = SAM_oktan.16 days = 21 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_expand_the_committee_of_national_liberation
+	icon = GFX_SAM_The_Russian_People_Deliver_Us
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_social_net
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_social_net
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_expand_the_committee_of_national_liberation"
+		add_war_support = 0.1
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = SAM_oktan.10 days = 21 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_a_modern_state_oktan
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_nationwide_talent_drive
+	}
+	prerequisite = {
+		focus = SAM_nationalist_fervor
+	}
+	prerequisite = {
+		focus = SAM_expand_the_committee_of_national_liberation
+	}
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 80
+	}
+	relative_position_id = SAM_ministry_of_the_interior
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_modern_state_oktan"
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		country_event = { id = SAM.79 }
+		add_stability = 0.1
+		RUS_decrease_administrative_strain = yes
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+	}
+}
+
+##### Regional Economy #####
+shared_focus = {
+	id = SAM_bread_on_the_table
+	icon = GFX_UPO_secure_the_breadbasket
+	cost = 3.42
+	x = 20
+	y = 0
+	available = {
+		has_country_flag = SAM_ROA_Ready
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bread_on_the_table"
+		add_stability = 0.05
+		TNO_improve_poverty_med = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_infrastructure
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_bread_on_the_table
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_bread_on_the_table
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_infrastructure"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_industrial_policy
+	icon = GFX_KHA_industrial_data_consolidation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_bread_on_the_table
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bread_on_the_table
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_industrial_policy"
+		if = {
+			limit = {
+				has_country_flag = SAM_Bunyachenko
+			}
+			country_event = { id = SAM.66 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Zykov
+			}
+			country_event = { id = SAM.65 }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SAM_Oktan
+			}
+			country_event = { id = SAM.67 }
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_a_chicken_in_every_pot
+	icon = GFX_USA_More_Food_Stamps
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_bread_on_the_table
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_bread_on_the_table
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_chicken_in_every_pot"
+		TNO_improve_poverty_med = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_a_national_economy
+	icon = GFX_JAP_a_streamlined_economy
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_infrastructure
+	}
+	prerequisite = {
+		focus = SAM_industrial_policy
+	}
+	prerequisite = {
+		focus = SAM_a_chicken_in_every_pot
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_industrial_policy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_national_economy"
+		TNO_improve_industrial_equipment_med = yes
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_import_and_export
+	icon = GFX_generic_diplomacy_trade
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_infrastructure
+	}
+	prerequisite = {
+		focus = SAM_industrial_policy
+	}
+	prerequisite = {
+		focus = SAM_a_chicken_in_every_pot
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_industrial_policy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_import_and_export"
+		850 = {
+			add_building_construction = {
+				type = air_base
+				level = 3
+				instant_build = yes
+			}
+		}
+		397 = {
+			add_building_construction = {
+				type = air_base
+				level = 3
+				instant_build = yes
+			}
+		}
+		214 = {
+			add_building_construction = {
+				type = naval_base
+				level = 3
+				instant_build = yes
+				province = 3338
+			}
+		}
+		if = {
+			limit = {
+				owns_state = 1359
+			}
+			1359 = {
+				add_building_construction = {
+					type = naval_base
+					level = 3
+					instant_build = yes
+					province = 3134
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_jam_and_tea_bunyachenko_zykov
+	icon = GFX_SAM_Food_For_All
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_chicken_in_every_pot
+	}
+	allow_branch = {
+		OR = {
+			has_country_flag = SAM_Zykov
+			has_country_flag = SAM_Bunyachenko
+		}
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_a_chicken_in_every_pot
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_jam_and_tea_bunyachenko_zykov"
+		add_stability = 0.075
+		add_political_power = 50
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_jam_and_tea_oktan
+	icon = GFX_SAM_Food_For_All
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_chicken_in_every_pot
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_a_chicken_in_every_pot
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_jam_and_tea_oktan"
+		add_stability = 0.075
+		add_political_power = 50
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+	}
+}
+
+##### Regional Economics Bunyachenko #####
+shared_focus = {
+	id = SAM_import_substitution
+	icon = GFX_GER_industry_calls
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_import_and_export
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_import_substitution"
+		TNO_improve_industrial_equipment_med = yes
+		TNO_improve_industrial_expertise_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_sector_wide_bargaining
+	icon = GFX_USA_tone_back_trade
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_import_and_export
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_sector_wide_bargaining"
+		add_ideas = tno_minimum_wage_trinket_minimum_wage
+		add_ideas = tno_safety_limited_regulations
+		add_political_power = 30
+	}
+}
+
+shared_focus = {
+	id = SAM_labor_police
+	icon = GFX_generic_change_law_labor
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Bunyachenko
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_a_national_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_labor_police"
+		add_ideas = SAM_labor_police_idea
+	}
+}
+
+shared_focus = {
+	id = SAM_bread_or_stick
+	icon = GFX_RAJ_we_failed_the_poor
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_labor_police
+	}
+	prerequisite = {
+		focus = SAM_sector_wide_bargaining
+	}
+	prerequisite = {
+		focus = SAM_import_substitution
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_sector_wide_bargaining
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bread_or_stick"
+		TNO_improve_poverty_med = yes
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = SAM_a_national_bank
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_labor_police
+	}
+	prerequisite = {
+		focus = SAM_sector_wide_bargaining
+	}
+	prerequisite = {
+		focus = SAM_import_substitution
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_sector_wide_bargaining
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_national_bank"
+		add_to_variable = { interest_rates = -0.03 }
+		add_to_variable = { GDP_growth = 0.015 }
+		custom_effect_tooltip = SAM_a_national_bank_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_the_future_can_begin
+	icon = GFX_MAG_Desperate_Times
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_bread_or_stick
+	}
+	prerequisite = {
+		focus = SAM_a_national_bank
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bread_or_stick
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_future_can_begin"
+		add_ideas = SAM_industrialized_economy
+		set_country_flag = SAM_kombinats_founded
+		unlock_decision_category_tooltip = SAM_kombinats_category
+		add_dynamic_modifier = { modifier = SAM_kombinats_dynamic_modifier }
+		set_variable = { SAM_kombinats_resources = 0.05 }
+		set_variable = { SAM_kombinats_political_power = -0.05 }
+		set_variable = { SAM_kombinats_construction = 0.05 }
+		set_variable = { SAM_kombinats_max_efficiency = 0.05 }
+		set_variable = { SAM_kombinats_research_speed = 0.01 }
+	}
+}
+
+##### Regional Economics Zykov #####
+shared_focus = {
+	id = SAM_legal_unions
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_a_national_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_legal_unions"
+		add_ideas = tno_trade_unions_state_controlled
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = SAM.83 days = 7 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_small_and_medium_enterprises
+	icon = GFX_BRG_focus_technical_companies
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_a_national_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_small_and_medium_enterprises"
+		TNO_improve_poverty_low = yes
+		TNO_improve_industrial_equipment_low = yes
+		add_to_variable = { GDP_growth = 0.001 }
+		custom_effect_tooltip = SAM_gdp_growth_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_proper_land_grants
+	icon = GFX_MZB_Southern_Land_Grants
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Zykov
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_import_and_export
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_proper_land_grants"
+		TNO_improve_agriculture_med = yes
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.075
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_end_internal_controls
+	icon = GFX_JAP_Get_to_Work
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_legal_unions
+	}
+	prerequisite = {
+		focus = SAM_small_and_medium_enterprises
+	}
+	prerequisite = {
+		focus = SAM_proper_land_grants
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_small_and_medium_enterprises
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_end_internal_controls"
+		add_ideas = tno_public_meetings_allowed
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SAM_land_reforms
+	icon = GFX_RAJ_National_Land_Reform
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_legal_unions
+	}
+	prerequisite = {
+		focus = SAM_small_and_medium_enterprises
+	}
+	prerequisite = {
+		focus = SAM_proper_land_grants
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_small_and_medium_enterprises
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_land_reforms"
+		TNO_improve_agriculture_med = yes
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_a_moral_economy
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_end_internal_controls
+	}
+	prerequisite = {
+		focus = SAM_land_reforms
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_end_internal_controls
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_a_moral_economy"
+		add_ideas = {
+			tno_safety_limited_regulations
+			tno_pollution_some_regulations
+			SAM_moral_economy
+		}
+	}
+}
+
+##### Regional Economics Oktan #####
+shared_focus = {
+	id = SAM_eminent_domain
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_a_national_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_eminent_domain"
+		add_to_variable = { national_debt = 50 }
+		custom_effect_tooltip = SAM_eminent_domain_tt
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = SAM_oktan.7 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_the_proper_channels
+	icon = GFX_USA_tone_back_trade
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_a_national_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_the_proper_channels"
+		add_ideas = tno_tax_rate_high_taxes
+		add_to_variable = { money_reserves = 80 }
+		custom_effect_tooltip = SAM_the_proper_channels_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_internal_border_control_streamlining
+	icon = GFX_generic_diplomacy_defense
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_a_national_economy
+	}
+	prerequisite = {
+		focus = SAM_import_and_export
+	}
+	allow_branch = {
+		has_country_flag = SAM_Oktan
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_import_and_export
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_internal_border_control_streamlining"
+		add_to_variable = { GDP_growth = 0.015 }
+		custom_effect_tooltip = SAM_gdp_growth_tt
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_end_laziness
+	icon = GFX_PRM_Work_For_Your_Nation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_eminent_domain
+	}
+	prerequisite = {
+		focus = SAM_the_proper_channels
+	}
+	prerequisite = {
+		focus = SAM_internal_border_control_streamlining
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_the_proper_channels
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_end_laziness"
+		add_ideas = tno_max_workhours_14_hour_work_day
+		add_ideas = tno_safety_no_regulations
+		add_manpower = 5000
+	}
+}
+
+shared_focus = {
+	id = SAM_corporate_exclaves
+	icon = GFX_VIN_Rights_of_Corporation
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_eminent_domain
+	}
+	prerequisite = {
+		focus = SAM_the_proper_channels
+	}
+	prerequisite = {
+		focus = SAM_internal_border_control_streamlining
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_the_proper_channels
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_corporate_exclaves"
+		add_ideas = tno_income_taxation_elite_tax_exemptions
+		TNO_improve_industrial_equipment_med = yes
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_everyone_back_to_work
+	icon = GFX_YUN_Every_Woman_A_Worker
+	cost = 3.42
+	prerequisite = {
+		focus = SAM_end_laziness
+	}
+	prerequisite = {
+		focus = SAM_corporate_exclaves
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_end_laziness
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_everyone_back_to_work"
+		add_ideas = SAM_back_to_work
+	}
+}
+
+##### Superregional Zykov #####
+shared_focus = {
+	id = SAM_zykov_new_territories
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_new_territories"
+		SAM_increase_civilian_morale_medium = yes
+		SAM_change_civilian_spirit = yes
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_partial_elections_for_the_east
+	icon = GFX_generic_elections_rigged
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_new_territories
+	}
+	mutually_exclusive = {
+		focus = SAM_zykov_let_the_easterner_run
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_zykov_new_territories
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_partial_elections_for_the_east"
+		SAM_zykov_increase_ROA_low = yes
+		SAM_increase_military_morale_small = yes
+		SAM_change_military_spirit = yes
+		RUS_integration_cost_days_decrease = yes
+		country_event = { id = SAM_zykov.7 days = 4 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_backroom_deals
+	icon = GFX_Generic_Shady_Deal
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_partial_elections_for_the_east
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_zykov_partial_elections_for_the_east
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_backroom_deals"
+		country_event = { id = SAM.425 }
+		country_event = { id = SAM_zykov.6 days = 8 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_preparing_the_elections
+	icon = GFX_generic_election
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_new_territories
+	}
+	x = 0
+	y = 2
+	relative_position_id = SAM_zykov_new_territories
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_preparing_the_elections"
+		add_ideas = tno_political_parties_controlled_opposition
+		add_ideas = tno_vote_franchise_registered_voting
+		country_event = { id = SAM_zykov.1 days = 4 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_let_the_easterner_run
+	icon = GFX_SAM_Our_Voice
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_new_territories
+	}
+	mutually_exclusive = {
+		focus = SAM_zykov_partial_elections_for_the_east
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_zykov_new_territories
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_let_the_easterner_run"
+		SAM_zykov_increase_democrat_high = yes
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_under_restraints
+	icon = GFX_generic_conservative_constitution
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_let_the_easterner_run
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_zykov_let_the_easterner_run
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_under_restraints"
+		country_event = { id = SAM.426 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_from_chairman_to_president
+	icon = GFX_SAM_Our_Voice
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_preparing_the_elections
+	}
+	prerequisite = {
+		focus = SAM_zykov_backroom_deals
+		focus = SAM_zykov_under_restraints
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_zykov_preparing_the_elections
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_from_chairman_to_president"
+		SAM_zykov_increase_democrat_high = yes
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity= 0.05
+		}
+		country_event = { id = SAM_zykov.3 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_consolidating_business
+	icon = GFX_Generic_Business
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_from_chairman_to_president
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_zykov_from_chairman_to_president
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_consolidating_business"
+		SAM_zykov_increase_business_low = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_assessing_the_army
+	icon = GFX_new_model_army_goal
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_from_chairman_to_president
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_zykov_from_chairman_to_president
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_assessing_the_army"
+		army_experience = 20
+		SAM_zykov_increase_ROA_low = yes
+		country_event = { id = SAM_zykov.8 days = 4 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_improving_the_unity_party
+	icon = GFX_generic_diplomacy_political
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_from_chairman_to_president
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_zykov_from_chairman_to_president
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_improving_the_unity_party"
+		add_stability = 0.05
+		RUS_integration_cost_days_decrease = yes
+		country_event = { id = SAM_zykov.4 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_new_partners_in_the_east
+	icon = GFX_Focus_Europe_Orthographic
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_consolidating_business
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_zykov_consolidating_business
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_new_partners_in_the_east"
+		SAM_zykov_increase_business_low = yes
+		add_to_variable = { GDP_growth = 0.005 }
+		custom_effect_tooltip = SAM_gdp_growth_tt
+		RUS_integration_cost_days_decrease = yes
+		country_event = { id = SAM_zykov.2 days = 4 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_military_business_oversight
+	icon = GFX_VOL_Industry_Debate
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_consolidating_business
+	}
+	prerequisite = {
+		focus = SAM_zykov_assessing_the_army
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_zykov_assessing_the_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_military_business_oversight"
+		country_event = { id = SAM.427 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_democratic_officers
+	icon = GFX_YUN_New_Officers
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_assessing_the_army
+	}
+	prerequisite = {
+		focus = SAM_zykov_improving_the_unity_party
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_zykov_assessing_the_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_democratic_officers"
+		SAM_decrease_ROA_officers_small = yes
+		SAM_change_officers_spirit = yes
+		SAM_increase_ROA_support_small = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_investing_in_talent
+	icon = GFX_ITA_Veterans_of_the_World_War
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_improving_the_unity_party
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_zykov_improving_the_unity_party
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_investing_in_talent"
+		TNO_improve_academic_base_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_army_on_the_march
+	icon = GFX_generic_victory_parade
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_new_partners_in_the_east
+	}
+	prerequisite = {
+		focus = SAM_zykov_military_business_oversight
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_zykov_new_partners_in_the_east
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_army_on_the_march"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = artillery
+		}
+		country_event = { id = SAM_zykov.5 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_healthy_society
+	icon = GFX_SAM_To_The_People
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_democratic_officers
+	}
+	prerequisite = {
+		focus = SAM_zykov_investing_in_talent
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_zykov_democratic_officers
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_healthy_society"
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+		SAM_increase_military_morale_small = yes
+		SAM_change_military_spirit = yes
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_zykov_statement_to_the_world
+	icon = GFX_TNO_generic_world
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_zykov_army_on_the_march
+	}
+	prerequisite = {
+		focus = SAM_zykov_healthy_society
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_zykov_army_on_the_march
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_zykov_statement_to_the_world"
+		add_stability = 0.05
+		add_political_power = 40
+	}
+}
+
+##### Bunyachenko Superregional #####
+shared_focus = {
+	id = SAM_bunyachenko_beyond_the_urals
+	icon = GFX_Focus_Russia_Orthographic
+	cost = 2.3
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_beyond_the_urals"
+		add_political_power = 25
+		580 = {
+			add_resource = {
+				type = oil
+				amount = 12
+			}
+		}
+		hidden_effect = {
+			country_event = { id = SAM_bunyachenko.9 days = 12 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_monitor_dissent
+	icon = GFX_Generic_Espionage
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_beyond_the_urals
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_bunyachenko_beyond_the_urals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_monitor_dissent"
+		SAM_decrease_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+		add_stability = 0.05
+		tno_security_improve = yes
+		country_event = { id = SAM_bunyachenko.7 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_business_opportunity
+	icon = GFX_GER_Promoting_Small_Businesses
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_beyond_the_urals
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bunyachenko_beyond_the_urals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_business_opportunity"
+		754 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		653 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		country_event = { id = SAM_bunyachenko.5 days = 4 random = 24 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_growing_prestige
+	icon = GFX_MAN_The_Conference_Begins
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_beyond_the_urals
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_bunyachenko_beyond_the_urals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_growing_prestige"
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.05
+		}
+		249 = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_new_propaganda_tide
+	icon = GFX_IBR_paperwork
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_monitor_dissent
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_bunyachenko_monitor_dissent
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_new_propaganda_tide"
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.03
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_financial_stress_test
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_monitor_dissent
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_business_opportunity
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bunyachenko_monitor_dissent
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_financial_stress_test"
+		add_to_variable = { SAM_kombinats_political_power = 0.04 }
+		custom_effect_tooltip = SAM_bunyachenko_financial_stress_test_tt
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_feeding_the_kombinats
+	icon = GFX_Generic_Industry
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_business_opportunity
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_growing_prestige
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_bunyachenko_growing_prestige
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_feeding_the_kombinats"
+		SAM_bunyachenko_feed_the_kombinats = yes
+		country_event = { id = SAM_bunyachenko.4 days = 4 random = 24 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_feelers_to_foreigners
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_business_opportunity
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_growing_prestige
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bunyachenko_growing_prestige
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_feelers_to_foreigners"
+		TNO_improve_academic_base_low = yes
+		country_event = { id = SAM_bunyachenko.6 days = 4 random = 24 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_second_act_continues
+	icon = GFX_VIN_Education_Reform
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_new_propaganda_tide
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_financial_stress_test
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_feeding_the_kombinats
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_feelers_to_foreigners
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bunyachenko_financial_stress_test
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_second_act_continues"
+		add_stability = 0.03
+		add_political_power = 25
+		country_event = { id = SAM_bunyachenko.1 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_legislative_shuffling
+	icon = GFX_generic_paperwork
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_second_act_continues
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_bunyachenko_second_act_continues
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_legislative_shuffling"
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.01
+		}
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_ending_the_armys_political_role
+	icon = GFX_GER_Round_Up_The_Militias
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_legislative_shuffling
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bunyachenko_legislative_shuffling
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_ending_the_armys_political_role"
+		TNO_improve_army_professionalism_low = yes
+		SAM_increase_ROA_support_small = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_rnr_for_the_troops
+	icon = GFX_new_model_army_goal
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_second_act_continues
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bunyachenko_second_act_continues
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_rnr_for_the_troops"
+		country_event = { id = SAM_bunyachenko.3 }
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_strategic_thinking
+	icon = GFX_NIK_next_generation
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_rnr_for_the_troops
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bunyachenko_rnr_for_the_troops
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_strategic_thinking"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = interceptor
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = air_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_mission_to_tokyo
+	icon = GFX_TNO_generic_japan
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_second_act_continues
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_bunyachenko_second_act_continues
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_mission_to_tokyo"
+		JAP = {
+			country_event = { id = SAM.419 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_sharing_the_playing_field
+	icon = GFX_MAG_The_Siberian_Bill_Of_Rights
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_mission_to_tokyo
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_bunyachenko_mission_to_tokyo
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_sharing_the_playing_field"
+		add_ideas = tno_trade_laws_export_focus
+		hidden_effect = {
+			country_event = { id = SAM_bunyachenko.2 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_industrial_defence_act
+	icon = GFX_RAJ_India_Nurture_Heavy_Industry
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_ending_the_armys_political_role
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_strategic_thinking
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_bunyachenko_strategic_thinking
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_industrial_defence_act"
+		252 = {
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		252 = {
+			remove_building = {
+				type = arms_factory
+				level = 3
+			}
+		}
+		857 = {
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		351 = {
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		250 = {
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		250 = {
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		573 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			}
+		}
+		871 = {
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = industrial_complex
+				level = 5
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_japanese_toys
+	icon = GFX_JAP_Made_in_Japan
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_strategic_thinking
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_sharing_the_playing_field
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bunyachenko_strategic_thinking
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_japanese_toys"
+		JAP = {
+			country_event = { id = SAM.422 hours = 6 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_bunyachenko_preparing_the_endgame
+	icon = GFX_generic_victory_parade
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_bunyachenko_industrial_defence_act
+	}
+	prerequisite = {
+		focus = SAM_bunyachenko_japanese_toys
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_bunyachenko_industrial_defence_act
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_bunyachenko_preparing_the_endgame"
+		add_war_support = 0.1
+		579 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		571 = {
+			add_building_construction = {
+				type = bunker
+				province = 12580
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 1835
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 10626
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 10696
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 12546
+				level = 1
+			}
+		}
+	}
+}
+
+##### Oktan Superregional #####
+shared_focus = {
+	id = SAM_oktan_rebirth_continues
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_rebirth_continues"
+		573 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		754 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		403 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		country_event = { id = SAM_oktan.8 days = 4 random = 48 }
+		hidden_effect = {
+			country_event = { id = SAM_oktan.20 days = 35 random = 48 }
+			country_event = { id = SAM_oktan.21 days = 49 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_situation_at_home
+	icon = GFX_generic_diplomacy_political
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_rebirth_continues
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_oktan_rebirth_continues
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_situation_at_home"
+		add_stability = 0.05
+		tno_security_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_situation_abroad
+	icon = GFX_Focus_Europe_Orthographic
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_rebirth_continues
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_rebirth_continues
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_situation_abroad"
+		army_experience = 25
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_web_of_tensions
+	icon = GFX_goal_KIR_A_Tangled_Web
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_situation_at_home
+	}
+	prerequisite = {
+		focus = SAM_oktan_situation_abroad
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_situation_at_home
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_web_of_tensions"
+		SAM_oktan_decrease_military_tension_low = yes
+		SAM_oktan_decrease_civilian_tension_low = yes
+		SAM_oktan_decrease_inner_circle_tension_low = yes
+		country_event = { id = SAM_oktan.3 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_industrial_effort
+	icon = GFX_Generic_Industry
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_web_of_tensions
+	}
+	x = -2
+	y = 1
+	relative_position_id = SAM_oktan_web_of_tensions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_industrial_effort"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		SAM_decrease_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+		country_event = { id = SAM_oktan.2 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_chairmans_court
+	icon = GFX_goal_KIR_Cultured_Court
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_web_of_tensions
+	}
+	x = 0
+	y = 1
+	relative_position_id = SAM_oktan_web_of_tensions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_chairmans_court"
+		add_political_power = 50
+		SAM_oktan_decrease_inner_circle_tension_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_out_in_the_provinces
+	icon = GFX_BRY_hope
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_web_of_tensions
+	}
+	x = 2
+	y = 1
+	relative_position_id = SAM_oktan_web_of_tensions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_out_in_the_provinces"
+		SAM_oktan_decrease_military_tension_low = yes
+		SAM_decrease_military_morale_small = yes
+		SAM_change_military_spirit = yes
+		hidden_effect = {
+			country_event = { id = SAM_oktan.11 days = 14 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_good_chairman
+	icon = GFX_SAM_Hearing_the_People_Out
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_industrial_effort
+	}
+	prerequisite = {
+		focus = SAM_oktan_chairmans_court
+	}
+	prerequisite = {
+		focus = SAM_oktan_out_in_the_provinces
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_oktan_chairmans_court
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_good_chairman"
+		SAM_oktan_decrease_civilian_tension_low = yes
+		country_event = { id = SAM_oktan.6 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_cracking_down_on_bad_boyars
+	icon = GFX_IME_crackdown_on_illegal_settlements
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_industrial_effort
+	}
+	prerequisite = {
+		focus = SAM_oktan_chairmans_court
+	}
+	prerequisite = {
+		focus = SAM_oktan_out_in_the_provinces
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_chairmans_court
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_cracking_down_on_bad_boyars"
+		SAM_increase_civilian_morale_small = yes
+		SAM_change_civilian_spirit = yes
+		country_event = { id = SAM_oktan.1 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_keep_our_heads_in_the_game
+	icon = GFX_SAM_The_Smart_Way
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_good_chairman
+	}
+	prerequisite = {
+		focus = SAM_oktan_cracking_down_on_bad_boyars
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_good_chairman
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_keep_our_heads_in_the_game"
+		SAM_increase_ROA_support_small = yes
+		SAM_increase_military_morale_small = yes
+		SAM_change_military_spirit = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_shape_up_the_boys
+	icon = GFX_SAM_Our_Loyalty
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_keep_our_heads_in_the_game
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_oktan_keep_our_heads_in_the_game
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_shape_up_the_boys"
+		army_experience = 10
+		add_manpower = -15000
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_remind_the_masses
+	icon = GFX_SAM_Dealing_with_Dissent
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_keep_our_heads_in_the_game
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_keep_our_heads_in_the_game
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_remind_the_masses"
+		add_manpower = 5000
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_were_all_in_this_together
+	icon = GFX_SAM_To_The_People
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_shape_up_the_boys
+	}
+	prerequisite = {
+		focus = SAM_oktan_remind_the_masses
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_shape_up_the_boys
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_were_all_in_this_together"
+		add_manpower = 5000
+		add_stability = 0.03
+		add_war_support = 0.05
+		country_event = { id = SAM_oktan.5 days = 7 random = 48 }
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_moscow_in_sight
+	icon = GFX_Moskowien_Plan
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_were_all_in_this_together
+	}
+	x = -1
+	y = 1
+	relative_position_id = SAM_oktan_were_all_in_this_together
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_moscow_in_sight"
+		add_war_support = 0.05
+		add_political_power = 60
+		MCW = {
+			add_war_support = -0.05
+		}
+		JAP = {
+			add_opinion_modifier = { target = SAM modifier = SAM_anti_german_gang }
+		}
+		USA = {
+			add_opinion_modifier = { target = SAM modifier = SAM_anti_german_gang }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SAM_oktan_pacific_shore
+	icon = GFX_Focus_Russia_Orthographic
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_were_all_in_this_together
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_were_all_in_this_together
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_pacific_shore"
+		add_war_support = 0.05
+		579 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		571 = {
+			add_building_construction = {
+				type = bunker
+				province = 12580
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 1835
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 10626
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 10696
+				level = 1
+			}
+			add_building_construction = {
+				type = bunker
+				province = 12546
+				level = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SAM_oktan_russia_one_and_indivisible
+	icon = GFX_generic_victory_parade
+	cost = 2.3
+	prerequisite = {
+		focus = SAM_oktan_moscow_in_sight
+	}
+	prerequisite = {
+		focus = SAM_oktan_pacific_shore
+	}
+	x = 1
+	y = 1
+	relative_position_id = SAM_oktan_moscow_in_sight
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SAM_oktan_russia_one_and_indivisible"
+		add_country_leader_trait = marshall_and_chairman
+		add_political_power = 40
+	}
+}

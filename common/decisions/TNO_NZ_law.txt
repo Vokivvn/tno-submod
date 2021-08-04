@@ -1,0 +1,83 @@
+Parliament_nz = {
+
+	dummy_NZ = {
+		allowed = { tag = NZL }
+		available = {
+			tag = NZL
+		}
+		custom_cost_trigger = { always = yes } #no cost
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision dummy_NZ"
+			custom_effect_tooltip = dummy_NZ_tooltip #just here to make sure the category does not disappear
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ban_far_left_NZ = {
+  	allowed = { tag = NZL } #Enter the tag here
+
+    available = {
+			NOT = { has_country_flag = law_passing } #Leave this
+    }
+    visible = {
+			NOT = { has_country_flag = law_passing } #Hides the law for other governments and if you are already passing othe law
+		}
+		custom_cost_trigger = { always = yes } #no cost
+    fire_only_once = yes #Leave this for now
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ban_far_left_NZ"
+	  	set_country_flag = law_passing #Hides other laws
+      set_country_flag = ban_far_left_category #Determines category of the law, for negotiation events
+			custom_effect_tooltip = will_vote #Informs what will happen
+			add_to_variable = {var = supseat value = consv_seats}#supseat variable adjusted with ruling party seats
+      add_to_variable = {var = supseat value = marlib_seats}
+			add_to_variable = {var = supseat value = autdem_seats}
+			hidden_effect = {
+			    country_event = { id = newzealand.3 days = 5 } #Right will support the law, add if any ideology will support by negotiation
+			}
+      effect_tooltip = { #Effect of the law if approved
+			add_political_power = 30
+		  }
+    }
+		days_remove = 30 #Time to vote
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove ban_far_left_NZ"
+	  	clr_country_flag = law_passing #Shows other laws again
+		clr_country_flag = ban_far_left_category #Clears this
+		hidden_effect = {
+			if = {
+				limit = { check_variable = { supseat > majority_seats } #Effect if the law passes, change the number depending on seats in your parliament
+				}
+				add_political_power = 30
+				country_event = { id = newzealand.2 }
+				set_variable = { communist_seats = 0 }
+   
+			 	if = { #If the law passes and you negotiated something
+			  	limit = {
+				  	has_country_flag = negotiated_socialist_ban
+				  }
+				 	set_country_flag = socialists_banned
+					set_variable = { socialist_seats = 0 }
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						check_variable = { supseat < majority_seats } #Effect if you lose
+						check_variable = { supseat = majority_seats }
+					}
+				}
+				country_event = { id = newzealand.1 } #Event We Lost the Vote!
+			}
+				set_variable = { supseat = 0 } #Supseats variable goes back to 0
+            }
+        }
+		ai_will_do = {
+			factor = 0
+		}
+  }
+}

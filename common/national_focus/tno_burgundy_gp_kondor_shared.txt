@@ -1,0 +1,538 @@
+#Globalplan KONDOR (Iberia)
+
+#Remember to remove various country flags added as part of this tree at some point, either at the final focus or when Iberia's civil war either happens or passes the point of unable to happen
+shared_focus = { #focus desc gives brief overview of Iberia, action unlocked by completing this is infiltrating Iberia for recon, gives bigger picture and some PP representing new earned knowledge of Iberia
+	id = BRG_globalplan_kondor
+	icon = GFX_BRG_globalplan_kondor
+	cost = 5
+	x = 21
+	y = 10
+	allow_branch = {
+		check_variable = {BRG_GP_Kondor_Status_Var = 2}
+		has_country_flag = view_Kondor_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	offset = {
+		x = 0
+		y = 8
+		trigger = {
+			has_country_flag = BRG_infrastructure_phase_2
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_kondor"
+		country_event = { id = BRG_kondor.1 }
+		set_country_flag = BRG_kondor_visible
+		set_country_flag = BRG_globalplan_kondor_started_flag
+		custom_effect_tooltip = BRG_globalplan_kondor_tt
+	}
+}
+
+shared_focus = { #actions focused on wedging open the spanish side of the divide, causes losses to Iberian stability variable, some other misc gains to Burgundy
+	id = BRG_exploit_spanish_arrogance
+	icon = GFX_BRG_Foucs_Exploit_Spanish_Arrogance
+	cost = 5
+	prerequisite = {
+		focus = BRG_globalplan_kondor
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	relative_position_id = BRG_globalplan_kondor
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_exploit_spanish_arrogance"
+		country_event = { id = BRG_kondor.16 }
+		set_country_flag = BRG_exploit_spanish_arrogance_flag
+		custom_effect_tooltip = BRG_exploit_spanish_arrogance_tt
+	}
+}
+shared_focus = {# decisions/events around creating chaos in morocco for it's seperation, not currently sure how that's possible mechanically
+	id = BRG_morocco_aflame
+	icon = GFX_BRG_Focus_Morocco_Aflame
+	cost = 5
+	prerequisite = {
+		focus = BRG_exploit_spanish_arrogance
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	relative_position_id = BRG_exploit_spanish_arrogance
+	x = -1
+	y = 1
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_morocco_aflame"
+		set_country_flag = BRG_globalplan_kondor_morocco_aflame_flag
+		custom_effect_tooltip = BRG_morocco_aflame_tt
+	}
+}
+
+shared_focus = { #unlock action for major event revealing various major stuff buried to preserve the iberian union, causes AI chance to have a higher chance to choose to iberian divorce
+	id = BRG_skeletons_in_the_closet
+	icon = GFX_BRG_Focus_Skeletons_In_The_Closet
+	cost = 5
+	prerequisite = {
+		focus = BRG_exploit_spanish_arrogance
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	relative_position_id = BRG_exploit_spanish_arrogance
+	x = 1
+	y = 1
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_skeletons_in_the_closet"
+		set_country_flag = BRG_skeletons_in_the_closet_flag
+		custom_effect_tooltip = BRG_skeletons_in_the_closet_tt
+	}
+}
+
+shared_focus = { #actions focused on wedging open the pourtuguese side of the divide, causes losses to Iberian stability variable, some other misc gains to Burgundy
+	id = BRG_weaponize_portuguese_idiocy
+	icon = GFX_BRG_Focus_Weaponize_Portuguese_Idiocy
+	cost = 5
+	prerequisite = {
+		focus = BRG_globalplan_kondor
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	relative_position_id = BRG_globalplan_kondor
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_weaponize_portuguese_idiocy"
+		country_event = { id = BRG_kondor.15 }
+		set_country_flag = BRG_weaponize_portuguese_idiocy_flag
+		custom_effect_tooltip = BRG_weaponize_portuguese_idiocy_tt
+
+	}
+}
+
+shared_focus = { #kondor likely happens after the algerian war/joint puppet. Therefore have three different options for the three outcomes. 1. Joint puppet, Burgundy fucks with the oil supply to cause tensions and siphons off some for themselves. 2. Iberian puppet, event chain where Burgundy convinces Yves to break for indepedance, causes small war, get money from arms running. 3. Italian puppet, cause issues for Iberia by riling up tensions about their loss in the region, false flag attacks on italians ect
+	id = BRG_algerian_opportunities
+	icon = GFX_BRG_Focus_Algerian_Oppertunities
+	cost = 5
+	prerequisite = {
+		focus = BRG_weaponize_portuguese_idiocy
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_2 }
+	relative_position_id = BRG_weaponize_portuguese_idiocy
+	x = -1
+	y = 1
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_algerian_opportunities"
+		set_country_flag = BRG_algerian_opportunities_flag
+		custom_effect_tooltip = BRG_algerian_opportunities_tt
+	}
+}
+
+shared_focus = { # Trying to escelate the Algerian War
+	id = BRG_light_the_spark
+	icon = GFX_BRG_Focus_Algerian_Oppertunities
+	cost = 5
+	prerequisite = {
+		focus = BRG_weaponize_portuguese_idiocy
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		OR = {
+			has_country_flag = BRG_kondor_phase_2
+			NOT = {
+				country_exists = SLG
+				country_exists = ILG
+			}
+		}
+	}
+	relative_position_id = BRG_weaponize_portuguese_idiocy
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_ignite_the_powder_keg"
+		custom_effect_tooltip = BRG_algeria_lean
+		set_country_flag = BRG_light_the_spark_flag
+	}
+}
+
+shared_focus = { #gaining a foothold for supplying or manipulating the various terrorist factions
+	id = BRG_division_all_around
+	icon = GFX_BRG_Focus_Division_All_Around
+	cost = 5
+	prerequisite = {
+		focus = BRG_skeletons_in_the_closet
+		focus = BRG_morocco_aflame
+	}
+	prerequisite = {
+		focus = BRG_algerian_opportunities
+		focus = BRG_light_the_spark
+	}
+	allow_branch = { has_country_flag = BRG_kondor_phase_2 }
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_globalplan_kondor
+	x = 0
+	y = 3
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_division_all_around"
+		country_event = BRG_kondor.3
+		custom_effect_tooltip = BRG_division_all_around_tt
+		set_country_flag = BRG_division_all_around_flag
+		set_variable = { BRG_minor_smuggling_cost = 10 }
+		set_variable = { BRG_major_smuggling_cost = 20 }
+		set_variable = { BRG_minor_inciting_cost = 20 }
+		set_variable = { BRG_major_inciting_cost = 40 }
+	}
+}
+
+shared_focus = { # low cost decisions to supply contacted terroist factions
+	id = BRG_provide_the_fuel
+	icon = GFX_BRG_Focus_Provide_The_Fuel
+	cost = 5
+	prerequisite = {
+		focus = BRG_division_all_around
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_division_all_around
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_provide_the_fuel"
+		set_country_flag = BRG_provide_the_fuel_flag
+		custom_effect_tooltip = BRG_provide_the_fuel_tt
+	}
+}
+
+shared_focus = { #high cost decisions to supply the contacted terrorist factions, boosting them politicaly slightly as well due to Burgundian advice/assistance
+	id = BRG_terrorism_is_a_racket
+	icon = GFX_BRG_Focus_Terrorism_Is_A_Racket
+	cost = 5
+	prerequisite = {
+		focus = BRG_provide_the_fuel
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_provide_the_fuel
+	x = 0
+	y = 1
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_terrorism_is_a_racket"
+		set_country_flag = BRG_terrorism_is_a_racket_flag
+		custom_effect_tooltip = BRG_terrorism_is_a_racket_tt
+	}
+}
+
+shared_focus = { #minor  decisions to boost activity and support of contacted terroist factions
+	id = BRG_blowing_on_the_sparks
+	icon = GFX_BRG_Focus_Blowing_On_Sparks
+	cost = 5
+	prerequisite = {
+		focus = BRG_division_all_around
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_division_all_around
+	x = 2
+	y = 1
+	completion_reward = { # need to clear flag Action_10_Available at end of globalplan
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_blowing_on_the_sparks"
+		set_country_flag = BRG_blowing_on_the_sparks_flag
+		custom_effect_tooltip = BRG_blowing_on_the_sparks_tt
+	}
+}
+
+shared_focus = { #Major decisions for boosting activity
+	id = BRG_puppeting_the_terrorists
+	icon = GFX_BRG_Focus_The_Hidden_Menace
+	cost = 5
+	prerequisite = {
+		focus = BRG_blowing_on_the_sparks
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_blowing_on_the_sparks
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_puppeting_the_terrorists"
+		country_event = BRG_kondor.17
+		set_country_flag = BRG_puppeting_the_terrorists_flag
+		custom_effect_tooltip = BRG_puppeting_the_terrorists_tt
+	}
+}
+
+shared_focus = { # Major disruption operation on Iberia, either causes Iberian stability loss and boosts terrorists enabling them to go further, or create's a flashpoint of it's own to possibly trigger Iberian civil war
+	id = BRG_ignite_the_powder_keg
+	icon = GFX_BRG_Focus_Ignite_The_Powderkeg
+	cost = 5
+	prerequisite = {
+		focus = BRG_puppeting_the_terrorists
+	}
+	prerequisite = {
+		focus = BRG_terrorism_is_a_racket
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_division_all_around
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_ignite_the_powder_keg"
+		country_event = BRG_kondor.18
+		custom_effect_tooltip = BRG_unlock_false_flag
+		set_country_flag = BRG_ignite_the_powder_keg_flag
+	}
+}
+shared_focus = { #Kondor Phase 3 for use during the Iberian Wars
+	id = BRG_the_grand_finale
+	icon = GFX_BRG_the_grand_finale
+	cost = 5
+	prerequisite = {
+		focus = BRG_ignite_the_powder_keg
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	allow_branch = { has_country_flag = BRG_kondor_phase_3 }
+	relative_position_id = BRG_ignite_the_powder_keg
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_grand_finale"
+		country_event = { id = BRG_kondor.9 }
+		add_political_power = 75
+		add_war_support = 0.03
+		set_variable = { BRG_kondor_invested_supplies_phase_3 = 0 }
+	}
+}
+shared_focus = { #Debuffing the main Portugal
+	id = BRG_cripple_the_rooster
+	icon = GFX_BRG_cripple_the_rooster
+	cost = 5
+	prerequisite = {
+		focus = BRG_the_grand_finale
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		country_exists = POR
+		POR = { has_war = yes }
+	}
+	relative_position_id = BRG_the_grand_finale
+	x = -3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_cripple_the_rooster"
+		POR = { 
+			add_timed_idea = {
+				days = 180
+				idea = BRG_iberian_wars_cripple
+			}
+		}
+	}
+}
+shared_focus = { #Debuffing the main Spain
+	id = BRG_strike_the_bull
+	icon = GFX_BRG_provoke_the_bull
+	cost = 5
+	prerequisite = {
+		focus = BRG_the_grand_finale
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		NOT = {
+			country_exists = FZL
+		}
+		country_exists = SPS
+	}
+	relative_position_id = BRG_the_grand_finale
+	x = 3
+	y = 1
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_strike_the_bull"
+		SPS = { 
+			add_timed_idea = {
+				days = 180
+				idea = BRG_iberian_wars_cripple
+			}
+		}
+	}
+}
+shared_focus = { #Buffing seperatist factions
+	id = BRG_aid_the_splitters
+	icon = GFX_BRG_aid_the_splitters
+	cost = 5
+	prerequisite = {
+		focus = BRG_the_grand_finale
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_grand_finale
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_aid_the_splitters"
+		custom_effect_tooltip = BRG_unlock_splitter_buffs
+		set_country_flag = BRG_aid_the_splitters_flag
+
+	}
+}
+shared_focus = { #Buffing the weakest faction
+	id = BRG_aid_the_successors
+	icon = GFX_BRG_aid_the_successors
+	cost = 5
+	prerequisite = {
+		focus = BRG_aid_the_splitters
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_aid_the_splitters
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_aid_the_successors"
+		custom_effect_tooltip = BRG_unlock_successor_buffs
+		set_country_flag = BRG_support_successors_flag
+	}
+}
+shared_focus = { #Buffing TBA
+	id = BRG_useful_fools
+	icon = GFX_BRG_exploit_corruption
+	cost = 5
+	prerequisite = {
+		focus = BRG_the_grand_finale
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		country_exists = TBA
+	}
+	relative_position_id = BRG_the_grand_finale
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_useful_fools"
+		country_event = BRG_kondor.19
+		custom_effect_tooltip = BRG_unlock_tba_buffs
+		set_country_flag = BRG_useful_fools_flag
+		hidden_effect = {
+			every_owned_state = {
+				if = {
+					limit = { check_variable = { nationality = 140 } }
+					subtract_from_variable = { HimmlerSupport = 5 }
+				}
+				else = {
+					subtract_from_variable = { HimmlerSupport = 10 }
+				}
+			}
+		}
+	}
+}
+shared_focus = { #Extracting cash from the puppets
+	id = BRG_harvest_that_which_was_sowed
+	icon = GFX_BRG_salt_the_earth
+	cost = 5
+	prerequisite = {
+		focus = BRG_useful_fools
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		country_exists = TBA
+	}
+	relative_position_id = BRG_useful_fools
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_harvest_that_which_was_sowed"
+		custom_effect_tooltip = BRG_activate_tba_extraction
+	}
+}
+shared_focus = { #Pulling out and retrieving supplies while you are at it
+	id = BRG_an_end
+	icon = GFX_BRG_an_end
+	cost = 5
+	prerequisite = {
+		focus = BRG_aid_the_successors
+		focus = BRG_harvest_that_which_was_sowed
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_grand_finale
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_an_end"
+		country_event = BRG_kondor.20
+		custom_effect_tooltip = BRG_iberia_pullout
+		hidden_effect = {
+			TNO_BRG_Activate_GP_Complete_Cooldown = yes
+			set_variable = { BRG_GP_Kondor_Status_Var = 3 }
+			divide_variable = { BRG_kondor_invested_supplies_phase_3 = 3 }
+			round_variable = BRG_kondor_invested_supplies_phase_3
+			add_to_variable = { BRG_supplies = BRG_kondor_invested_supplies_phase_3 }
+		}
+	}
+}

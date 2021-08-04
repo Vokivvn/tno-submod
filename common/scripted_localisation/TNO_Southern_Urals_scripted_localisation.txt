@@ -1,0 +1,976 @@
+defined_text = { #Orenburg centralization
+	name = GetOrenburgCentralisation
+	text = {
+		trigger = {
+			AND = {
+				check_variable = {
+					var = ORECentralizedPower
+					value = 5
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		localization_key = orenburg_complete_centralisation
+	}
+	text = {
+		trigger = {
+			AND = {
+				check_variable = {
+					var = ORECentralizedPower
+					value = 3
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					ORECentralizedPower < 5
+				}
+			}
+		}
+		localization_key = orenburg_high_centralisation
+	}
+	text = {
+		trigger = {
+			AND = {
+				check_variable = {
+					ORECentralizedPower < 3
+				}
+				check_variable = {
+					ORECentralizedPower > -2
+				}
+			}
+		}
+		localization_key = orenburg_medium_centralisation
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				var = ORECentralizedPower
+				value = -2
+				compare = less_than_or_equals
+			}
+		}
+		localization_key = orenburg_low_centralisation
+	}
+}
+
+defined_text = { #orenburg reformist
+	name = GetOrenburgReformist
+	text = {
+		trigger = {
+			check_variable = {
+				party_popularity@authoritarian_democrat > party_popularity@communist
+			}
+		}
+		localization_key = orenburg_reformist_burba
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				party_popularity@communist > party_popularity@authoritarian_democrat
+			}
+		}
+		localization_key = orenburg_reformist_malenkov
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				party_popularity@authoritarian_democrat = party_popularity@communist
+			}
+		}
+		localization_key = orenburg_reformist_undecided
+	}
+}
+
+defined_text = { #For dynamism
+	name = GetOrenburgText
+	text = {
+		trigger = {
+			ORE = {
+				exists = yes
+			}
+		}
+		localization_key = ORE_fire_string
+	}
+	text = {
+		trigger = {
+			ORE = {
+				exists = no
+			}
+		}
+		localization_key = ORE_nonexistent
+	}
+}
+
+defined_text = { #For dynamism
+	name = GetUralText
+	text = {
+		trigger = {
+			URL = {
+				exists = yes
+			}
+		}
+		localization_key = URL_fire_string
+	}
+	text = {
+		trigger = {
+			URL = {
+				exists = no
+			}
+		}
+		localization_key = URL_nonexistent
+	}
+}
+
+defined_text = { #For dynamism
+	name = GetMagnitogorskText
+	text = {
+		trigger = {
+			BAS = {
+				exists = yes
+			}
+		}
+		localization_key = BAS_fire_string
+	}
+	text = {
+		trigger = {
+			ORE = {
+				exists = no
+			}
+		}
+		localization_key = BAS_nonexistent
+	}
+}
+
+defined_text = { #Get Race to the Urals opponent name
+	name = GetOpponentName
+	text = {
+		trigger = {
+			tag = WSB
+			WSR = {
+				exists = yes
+			}
+		}
+		localization_key = opponent_is_WSR
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			WSB = {
+				exists = yes
+			}
+		}
+		localization_key = opponent_is_WSB
+	}
+	text = {
+		trigger = {
+			always = yes
+		}
+		localization_key = opponent_is_nonexistent
+	}
+}
+
+defined_text = {
+	name = GetOpponentOREInfluence
+	text = {
+		trigger = {
+			tag = WSB
+		}
+		localization_key = WSB_opponent_ORE_influence
+	}
+	text = {
+		trigger = {
+			tag = WSR
+		}
+		localization_key = WSR_opponent_ORE_influence
+	}
+}
+
+defined_text = {
+	name = GetOpponentURLInfluence
+	text = {
+		trigger = {
+			tag = WSB
+		}
+		localization_key = WSB_opponent_URL_influence
+	}
+	text = {
+		trigger = {
+			tag = WSR
+		}
+		localization_key = WSR_opponent_URL_influence
+	}
+}
+
+
+defined_text = {
+	name = GetOpponentBASInfluence
+	text = {
+		trigger = {
+			tag = WSB
+		}
+		localization_key = WSB_opponent_BAS_influence
+	}
+	text = {
+		trigger = {
+			tag = WSR
+		}
+		localization_key = WSR_opponent_BAS_influence
+	}
+}
+
+
+defined_text = {
+	name = GetOREInfluenceInvestment
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+		}
+		localization_key = RUS_influence_0
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+		}
+		localization_key = RUS_influence_1
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+		}
+		localization_key = RUS_influence_2
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+		}
+		localization_key = RUS_influence_3
+	}
+}
+
+defined_text = {
+	name = GetURLInfluenceInvestment
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+		}
+		localization_key = RUS_influence_0
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+		}
+		localization_key = RUS_influence_1
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+		}
+		localization_key = RUS_influence_2
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+		}
+		localization_key = RUS_influence_3
+	}
+}
+
+
+defined_text = {
+	name = GetBASInfluenceInvestment
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+		}
+		localization_key = RUS_influence_0
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+		}
+		localization_key = RUS_influence_1
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+		}
+		localization_key = RUS_influence_2
+	}
+	text = {
+		trigger = {
+			has_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+		}
+		localization_key = RUS_influence_3
+	}
+}
+
+defined_text = {
+	name = GetORERelations
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetURLRelations
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetBASRelations
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetOREOpponentRelations
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			ORE = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			ORE = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetURLOpponentRelations
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			URL = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			URL = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}
+
+defined_text = {
+	name = GetBASOpponentRelations
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSR
+			BAS = {
+				has_country_flag = WSB_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_1
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_2
+			}
+		}
+		localization_key = RUS_influence_opposed
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_3
+			}
+		}
+		localization_key = RUS_influence_neutral
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_4
+			}
+		}
+		localization_key = RUS_influence_cordial
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_5
+			}
+		}
+		localization_key = RUS_influence_friendly
+	}
+	text = {
+		trigger = {
+			tag = WSB
+			BAS = {
+				has_country_flag = WSR_INFLUENCE_LEVEL_6
+			}
+		}
+		localization_key = RUS_influence_in_sphere
+	}
+}

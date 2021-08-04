@@ -1,0 +1,358 @@
+﻿######################################################################################
+#                                                                                    #
+#  ################################################################################  #
+#  ################################################################################  #
+#  ################################################################################  #
+#  ################################################################################  #
+#  ################################################################################  #
+#  ################################################################################  #
+#                                        ,,% /                                       #
+#                                     %.  / , &%#                                    #
+#                                     %( %,*,,                                       #
+#                                     %(  / .  %,                                    #
+#                                        %   %                                       #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  #
+#                                                                                    #
+#                                    Paraguay Events                                 #
+######################################################################################
+
+add_namespace = paraguay
+add_namespace = par_skelie
+
+#####################
+## SKELETON EVENTS ##
+#####################
+
+#GCW Begun, Colorados Coup
+country_event = {
+	id = par_skelie.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event par_skelie.1" }
+
+	title = "Don't Care, also, you're Italian."
+	desc = "This is a skeleton event for Paraguay, if you're seeing this you're playing a country you shouldn't be."
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	#Colorados Coup Succeeds
+	option = {
+		name = "Colorados Coup Succeeds"
+
+		#Wuh-oh what's going on in Chaco??
+		688 = { set_demilitarized_zone = yes }
+
+		kill_country_leader = yes
+
+		#Chávez solidies 'control' of the Colorados
+		create_country_leader = {
+			name = "Frederico Chávez"
+			picture = "Portrait_Paraguay_Frederico_Chavez.dds"
+			desc = "Paraguay_Frederico_Chavez_desc"
+			expire = "1990.1.1"
+			ideology = despotism_subtype
+			traits = { strongman }
+		}
+		create_country_leader = {
+			name = "Frederico Chávez"
+			picture = "Portrait_Paraguay_Frederico_Chavez.dds"
+			desc = "Paraguay_Frederico_Chavez_desc"
+			expire = "1990.1.1"
+			ideology = authoritarian_democrat_subtype
+			traits = { strongman }
+		}
+		set_politics = { ruling_party = authoritarian_democrat }
+
+		#Yes. Do not ask.
+		remove_ideas = {
+			PAR_disciplina_jerarquia_y_orden
+			PAR_coloradan_dissidence
+			PAR_coloradans_shattered
+			PAR_fulna_insurgency
+			PAR_new_state_chavez
+			PAR_new_state_stroessner
+			PAR_new_state_franco
+			PAR_coloradans_ascendant
+			PAR_coloradans_secured
+			PAR_fulna_ascendant
+		}
+		add_ideas = {
+			PAR_new_state_chavez
+			PAR_coloradans_ascendant
+			PAR_fulna_insurgency
+		}
+
+		##Rename Some Parties
+		#Guión Rojo Purged, now AuthDem is for the main arm of the Colorados
+		set_party_name = {
+			ideology = authoritarian_democrat 
+			name = PAR_social_conservative_party
+			long_name = PAR_social_conservative_party_long
+		}
+		#GDJO couped, now just a disgraced part of the Colorados
+		set_party_name = {
+			ideology = despotism
+			name = PAR_social_conservative_party
+			long_name = PAR_social_conservative_party_long 
+		}
+		
+		##Change up popularity to reflect new political reality
+		set_popularities = {
+			communist = 11
+			socialist = 0
+			social_democrat = 19
+			social_liberal = 8
+			market_liberal = 0
+			social_conservative = 19
+			authoritarian_democrat = 31
+			despotism = 12
+			fascism = 0
+			national_socialism = 0
+			ultranational_socialism = 0
+			burgundian_system = 0
+		}
+		#RIP Despotists, slight ouch to ConDem & Big boost to AuthDem
+
+		##Possible Collapse
+		#First to Stroessner
+		country_event = { id = par_skelie.2 days = 6 }
+		#Then to the Radicals
+		country_event = { id = par_skelie.3 days = 40 }
+	}
+}
+
+#Stroessner Coup Attempt
+country_event = {
+	id = par_skelie.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event par_skelie.2" }
+
+	title = "Don't Care, also, you're Italian."
+	desc = "This is a skeleton event for Paraguay, if you're seeing this you're playing a country you shouldn't be."
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "Stroessner takes the stage"
+
+		#To ensure he can't randomly oust FULNA after being removed *by* FULNA
+		#Also by chance ensures there's not an endless loop of Stroessner and FULNA ousting eachother
+		trigger = { NOT = { has_country_flag = PAR_SKL_Stroessner_Couped } }
+
+		#Chance, decreased if FULNA took power
+		ai_chance = {
+			base = 40
+			
+			#If FULNA's in power
+			modifier = {
+				add = -10
+				has_government = social_democrat
+			}
+		}
+
+		kill_country_leader = yes
+
+		#Stroessner solidifes control over the Colorados
+		create_country_leader = {
+			name = "Alfredo Stroessner"
+			picture = "Portrait_Paraguay_Alfredo_Stroessner.dds"
+			desc = "Paraguay_Alfredo_Stroessner_desc"
+			expire = "1990.1.1"
+			ideology = despotism_subtype
+			traits = { little_caudillo flippant_ideologue }
+		}
+		create_country_leader = {
+			name = "Alfredo Stroessner"
+			picture = "Portrait_Paraguay_Alfredo_Stroessner.dds"
+			desc = "Paraguay_Alfredo_Stroessner_desc"
+			expire = "1990.1.1"
+			ideology = authoritarian_democrat_subtype
+			traits = { little_caudillo flippant_ideologue }
+		}
+		create_country_leader = {
+			name = "Alfredo Stroessner"
+			picture = "Portrait_Paraguay_Alfredo_Stroessner.dds"
+			desc = "Paraguay_Alfredo_Stroessner_desc"
+			expire = "1990.1.1"
+			ideology = social_conservative_subtype
+			traits = { little_caudillo flippant_ideologue }
+		}
+
+		set_politics = { ruling_party = despotism }
+
+
+		#Yes. Do not ask.
+		remove_ideas = {
+			PAR_disciplina_jerarquia_y_orden
+			PAR_coloradan_dissidence
+			PAR_coloradans_shattered
+			PAR_fulna_insurgency
+			PAR_new_state_chavez
+			PAR_new_state_stroessner
+			PAR_new_state_franco
+			PAR_coloradans_ascendant
+			PAR_coloradans_secured
+			PAR_fulna_ascendant
+		}
+		add_ideas = {
+			PAR_new_state_stroessner
+			PAR_coloradans_secured
+			PAR_fulna_insurgency
+		}
+		
+		##Rename Some Parties
+		#OwO- what's this??
+		set_party_name = {
+			ideology = fascism
+			name = PAR_social_conservative_party
+			long_name = PAR_social_conservative_party_long
+		}
+		
+		##Change up popularity to reflect new political reality
+		set_popularities = {
+			communist = 10 #-1
+			socialist = 0
+			social_democrat = 17 #-2
+			social_liberal = 7 #-1
+			market_liberal = 0
+			social_conservative = 11 #-8
+			authoritarian_democrat = 13 #-19
+			despotism = 36 #+24
+			fascism = 7	#+7
+			national_socialism = 0
+			ultranational_socialism = 0
+			burgundian_system = 0
+		}
+		#Big Boost to Despotist, big oof to AuthDem, slight boost to Fascism
+
+		#To ensure he can't randomly countercoup FULNA after being removed *by* FULNA
+		set_country_flag = PAR_SKL_Stroessner_Couped
+	}
+
+	option = {
+		name = "Stroessner, Schmoessner"
+		ai_chance = {
+			base = 40
+			
+			modifier = {
+				add = 10
+				has_government = social_democrat
+			}
+		}
+
+		#Literally nothing changes
+	}
+}
+
+#FULNA Oust Attempt
+country_event = {
+	id = par_skelie.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event par_skelie.3" }
+
+	title = "Don't Care, also, you're Italian."
+	desc = "This is a skeleton event for Paraguay, if you're seeing this you're playing a country you shouldn't be."
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "FULNA ousts the competition!"
+
+		#Chance, decreased if FULNA took power
+		ai_chance = {
+			base = 30
+			
+			#If Stroessner's in power
+			modifier = {
+				add = -10
+				has_government = despotism
+			}
+		}
+
+		kill_country_leader = yes
+
+		#Franco comes to power
+		set_politics = { ruling_party = social_democrat }
+
+		#Yes. Do not ask.
+		remove_ideas = {
+			PAR_disciplina_jerarquia_y_orden
+			PAR_coloradan_dissidence
+			PAR_coloradans_shattered
+			PAR_fulna_insurgency
+			PAR_new_state_chavez
+			PAR_new_state_stroessner
+			PAR_new_state_franco
+			PAR_coloradans_ascendant
+			PAR_coloradans_secured
+			PAR_fulna_ascendant
+		}
+		add_ideas = {
+			PAR_new_state_franco
+			PAR_fulna_ascendant
+			PAR_coloradans_shattered
+		}
+		
+		##Change up popularity to reflect new political reality
+		set_popularities = {
+			communist = 15 #+4
+			socialist = 0
+			social_democrat = 27 #+8
+			social_liberal = 13 #+5
+			market_liberal = 0
+			social_conservative = 15 #-4
+			authoritarian_democrat = 21 #-10
+			despotism = 9 #-3
+			fascism = 0
+			national_socialism = 0
+			ultranational_socialism = 0
+			burgundian_system = 0
+		}
+		#Big Boost to Despotist, big oof to AuthDem, slight boost to Fascism
+
+		#Stroessner time 2 (assuming he wasn't already in power)
+		country_event = { id = par_skelie.2 days = 30 }
+		#Last lil cleanup event
+		country_event = { id = par_skelie.4 days = 35 }
+	}
+
+	option = {
+		name = "FULNA? More like Full a' shit lmao"
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 10
+				has_government = despotism
+			}
+		}
+
+		#Chaco OWNED
+		688 = { set_demilitarized_zone = no }
+	}
+}
+
+#Cleanup Crew
+country_event = {
+	id = par_skelie.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event par_skelie.4" }
+
+	title = "Don't Care, also, you're Italian."
+	desc = "This is a skeleton event for Paraguay, if you're seeing this you're playing a country you shouldn't be."
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "the only option"
+
+		clr_country_flag = PAR_SKL_Stroessner_Couped
+	}
+}

@@ -1,0 +1,204 @@
+﻿#############################################
+#### Iberian Governate of Algeria events ####
+#############################################
+
+add_namespace = SLG
+
+country_event = { #Election Results
+	id = SLG.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SLG.8"}
+	title = SLG.8.t
+	desc = SLG.8.d
+	picture = GFX_report_event_usa_election_generic
+
+	trigger = {
+		AND = {
+			tag = SLG 
+			date > 1962.8.1
+		}
+	}
+	fire_only_once = yes
+
+	option = { #Jardim wins
+		name = SLG.8.a
+		hidden_effect = {
+			set_politics = {
+				ruling_party = authoritarian_democrat
+			}
+			create_country_leader = {
+				name = "Jorge Pereira Jardim"
+				desc = "POLITICS_JORGE_JARDIM_DESC"
+				picture = "Portrait_SLG_Jorge_Pereira_Jardim.dds"
+				expire = "1990.10.20"
+				ideology = authoritarian_democrat_subtype
+				traits = {
+					#
+				}
+			}
+			swap_ideas = {
+				remove_idea = SLG_Jorge_Jardim_hog
+				add_idea = SLG_Orlando_Cristina_hog
+			}
+		}
+	}
+}
+country_event = {#
+	id = SLG.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SLG.21"}
+	title = SLG.21.t
+	desc = SLG.21.desc
+	#picture =
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {#
+		name = SLG.21.a
+		IBR = {
+			transfer_state = 1006
+			transfer_state = 459
+			1154 = { set_demilitarized_zone = no }
+			1147 = { set_demilitarized_zone = no }
+			513 = { set_demilitarized_zone = no }
+			1007 = { set_demilitarized_zone = no }
+			if = {
+				limit = {
+					IBR_Can_Remove_ALG_Advisor = yes
+				}
+				remove_ideas = {
+					advisor_level_3
+				}
+			}
+			remove_ideas = {
+				advisor_level_4
+				advisor_level_5
+			}
+		}
+		SLG = {
+			add_state_core = 460
+			add_state_core = 1161
+			add_state_core = 785
+			add_state_core = 1149
+			add_state_core = 1148
+			add_state_core = 1146
+			add_state_core = 1145
+			add_state_core = 1144
+			add_state_core = 514
+			add_state_core = 1143
+			785 = { set_demilitarized_zone = no }
+			1149 = { set_demilitarized_zone = no }
+			1148 = { set_demilitarized_zone = no }
+			1146 = { set_demilitarized_zone = no }
+			1161 = { set_demilitarized_zone = no }
+		}
+		hidden_effect = {
+			IBR = {
+				puppet = SLG
+			}
+		}
+		SLG = {
+			set_politics = {
+				ruling_party = fascism
+			}
+			set_popularities = {
+				despotism = 23
+				fascism = 57
+				authoritarian_democrat = 20
+			}
+			add_ideas = {
+				SLG_Philippe_Marcais_hog 
+				SLG_Edmond_Jouhaud_mil 
+				SLG_Pierre_Descaves_eco 
+				SLG_Jean_Claude_Perez_for
+			}
+			create_corps_commander = {
+				name = "Albert Dovecar"
+				portrait_path = "gfx/leaders/SLG/Portrait_SLG_Albert_Dovecar.dds"
+				traits = { }
+				id = 1404
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Claude Piegts"
+				portrait_path = "gfx/leaders/SLG/Portrait_SLG_Claude_Piegts.dds"
+				traits = { }
+				id = 1405
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Pierre Delhomme"
+				portrait_path = "gfx/leaders/SLG/Portrait_SLG_Pierre_Delhomme.dds"
+				traits = { }
+				id = 1406
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			if = {
+				limit = {
+					has_unit_leader = 1401 
+				}
+				remove_unit_leader = 1401
+			}
+			if = {
+				limit = {
+					has_unit_leader = 1402 
+				}
+				remove_unit_leader = 1402
+			}
+		}
+
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = WORLD.959
+					days = 1
+				}
+			}
+		}
+	}
+}
+country_event = { #Hidden event to remove advisors for Iberia if Italy wins Algeria
+	id = SLG.1000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SLG.1000"}
+	title = SLG.1000.t
+	desc = SLG.1000.d
+	picture = GFX_report_event_usa_election_generic
+	hidden = yes
+	trigger = {
+		AND = {
+			tag = IBR 
+			NOT = { 
+				country_exists = SLG
+			}
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = SLG.1000.a
+		if = {
+			limit = {
+				IBR_Can_Remove_ALG_Advisor = yes
+			}
+			remove_ideas = {
+				advisor_level_3
+			}
+		}
+		remove_ideas = {
+			advisor_level_4
+			advisor_level_5
+		}
+	}
+}

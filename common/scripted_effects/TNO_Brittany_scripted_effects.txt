@@ -1,0 +1,923 @@
+tno_brt_calculate_bnc = {
+
+	if = {
+		limit = {
+			has_country_flag = BRT_SAV_exists
+		}
+		set_variable = {
+			var = brt_sav_total_support_var
+			value = party_popularity@authoritarian_democrat
+		}
+		add_to_variable = {
+			var = brt_sav_total_support_var
+			value = party_popularity@social_conservative
+		}
+		add_to_variable = {
+			var = brt_sav_total_support_var
+			value = party_popularity@social_liberal
+		}
+		multiply_variable = {
+			var = brt_sav_total_support_var
+			value = 100
+		}
+	}
+	
+	if = {
+		limit = {
+			has_country_flag = BRT_SBB_exists
+		}
+		set_variable = {
+			var = brt_sbb_total_support_var
+			value = party_popularity@fascism
+		}
+		add_to_variable = {
+			var = brt_sbb_total_support_var
+			value = party_popularity@national_socialism
+		}
+		add_to_variable = {
+			var = brt_sbb_total_support_var
+			value = party_popularity@burgundian_system
+		}
+		multiply_variable = {
+			var = brt_sbb_total_support_var
+			value = 100
+		}
+	}
+	
+	if = {
+		limit = {
+			has_country_flag = BRT_left_exists
+		}
+		set_variable = {
+			var = brt_left_total_support_var
+			value = party_popularity@social_democrat
+		}
+		add_to_variable = {
+			var = brt_left_total_support_var
+			value = party_popularity@socialist
+		}
+		multiply_variable = {
+			var = brt_left_total_support_var
+			value = 100
+		}
+	}
+	
+	if = {
+		limit = {
+			burgundian_system > 0
+		}
+		set_variable = {
+			var = brt_sbb_hardline_support_var
+			value = party_popularity@national_socialism
+		}
+		add_to_variable = {
+			var = brt_sbb_hardline_support_var
+			value = party_popularity@burgundian_system
+		}
+	}
+
+}
+
+
+
+
+tno_brt_increase_black_market = {
+
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = black_market_is_present
+			}
+		}
+		add_ideas = BRT_black_market_present_one
+		set_country_flag = black_market_is_present
+	}
+	
+	else_if = {
+		limit = {
+			has_country_flag = black_market_is_present
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one
+					has_idea = BRT_black_market_present_two
+					has_idea = BRT_black_market_present_three
+					has_idea = BRT_black_market_present_four
+				}
+			}
+		}
+		add_ideas = BRT_black_market_present_one
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_one
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_one
+			add_idea = BRT_black_market_present_two
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two
+			add_idea = BRT_black_market_present_three
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_three
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_three
+			add_idea = BRT_black_market_present_four
+		}
+	}
+	
+}
+
+tno_brt_increase_black_market_luxury = {
+
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = black_market_is_present
+			}
+		}
+		add_ideas = BRT_black_market_present_one_luxury
+		set_country_flag = black_market_is_present
+	}
+	
+	else_if = {
+		limit = {
+			has_country_flag = black_market_is_present
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one_luxury
+					has_idea = BRT_black_market_present_two_luxury
+					has_idea = BRT_black_market_present_three_luxury
+				}
+			}
+		}
+		add_ideas = BRT_black_market_present_one_luxury
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_one_luxury
+			add_idea = BRT_black_market_present_two_luxury
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two_luxury
+			add_idea = BRT_black_market_present_three_luxury
+		}
+	}
+	
+}
+
+tno_brt_decrease_black_market = {
+
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_four
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_four
+			add_idea = BRT_black_market_present_three
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_three
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_three
+			add_idea = BRT_black_market_present_two
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two
+			add_idea = BRT_black_market_present_one
+		}
+	}
+	
+	else_if = {
+		limit = {
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one_luxury
+					has_idea = BRT_black_market_present_two_luxury
+					has_idea = BRT_black_market_present_three_luxury
+				}
+			}
+			has_idea = BRT_black_market_present_one
+		}
+		remove_ideas = BRT_black_market_present_one
+		clr_country_flag = black_market_is_present
+	}
+	
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = BRT_black_market_present_one_luxury
+				has_idea = BRT_black_market_present_two_luxury
+				has_idea = BRT_black_market_present_three_luxury
+			}
+			has_idea = BRT_black_market_present_one
+		}
+		remove_ideas = BRT_black_market_present_one
+	}
+	
+}
+
+tno_brt_decrease_black_market_luxury = {
+
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_three_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_three_luxury
+			add_idea = BRT_black_market_present_two_luxury
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two_luxury
+			add_idea = BRT_black_market_present_one_luxury
+		}
+	}
+	
+	else_if = {
+		limit = {
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one
+					has_idea = BRT_black_market_present_two
+					has_idea = BRT_black_market_present_three
+					has_idea = BRT_black_market_present_four
+				}
+			}
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		remove_ideas = BRT_black_market_present_one_luxury
+		clr_country_flag = black_market_is_present
+	}
+	
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = BRT_black_market_present_one
+				has_idea = BRT_black_market_present_two
+				has_idea = BRT_black_market_present_three
+				has_idea = BRT_black_market_present_four
+			}
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		remove_ideas = BRT_black_market_present_one_luxury
+	}
+	
+}
+
+tno_brt_shut_down_black_market = {
+
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_four
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_four
+			add_idea = BRT_black_market_present_three
+		}
+		hidden_effect = {
+			country_event = {
+				id = brtblack.11
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_three
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_three
+			add_idea = BRT_black_market_present_two
+		}
+		hidden_effect = {
+			country_event = {
+				id = brtblack.11
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two
+			add_idea = BRT_black_market_present_one
+		}
+		hidden_effect = {
+			country_event = {
+				id = brtblack.11
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = BRT_black_market_present_one_luxury
+				has_idea = BRT_black_market_present_two_luxury
+				has_idea = BRT_black_market_present_three_luxury
+			}
+			has_idea = BRT_black_market_present_one
+		}
+		remove_ideas = BRT_black_market_present_one
+		hidden_effect = {
+			country_event = {
+				id = brtblack.11
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one_luxury
+					has_idea = BRT_black_market_present_two_luxury
+					has_idea = BRT_black_market_present_three_luxury
+				}
+			}
+			has_idea = BRT_black_market_present_one
+		}
+		remove_ideas = BRT_black_market_present_one
+		clr_country_flag = black_market_is_present
+		hidden_effect = {
+			country_event = {
+				id = brtblack.10
+			}
+		}
+		add_opinion_modifier = {
+			target = BRT
+			modifier = BRT_black_market_voluntary_shutdown
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_three_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_three_luxury
+			add_idea = BRT_black_market_present_two_luxury
+		}
+		hidden_effect = {
+			country_event = {
+				id = brtblack.37
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two_luxury
+		}
+		swap_ideas = {
+			remove_idea = BRT_black_market_present_two_luxury
+			add_idea = BRT_black_market_present_one_luxury
+		}
+		hidden_effect = {
+			country_event = {
+				id = brtblack.37
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = BRT_black_market_present_one
+				has_idea = BRT_black_market_present_two
+				has_idea = BRT_black_market_present_three
+				has_idea = BRT_black_market_present_four
+			}
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		remove_ideas = BRT_black_market_present_one_luxury
+		hidden_effect = {
+			country_event = {
+				id = brtblack.37
+			}
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+	else_if = {
+		limit = {
+			NOT = {
+				OR = {
+					has_idea = BRT_black_market_present_one
+					has_idea = BRT_black_market_present_two
+					has_idea = BRT_black_market_present_three
+					has_idea = BRT_black_market_present_four
+				}
+			}
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		remove_ideas = BRT_black_market_present_one_luxury
+		clr_country_flag = black_market_is_present
+		hidden_effect = {
+			country_event = {
+				id = brtblack.10
+			}
+		}
+		add_opinion_modifier = {
+			target = BRT
+			modifier = BRT_black_market_voluntary_shutdown
+		}
+		BRT = {
+			subtract_from_variable = {
+				misc_costs = 5
+			}
+			custom_effect_tooltip = BRT_black_market_presence_expansion_misc_cost_decrease
+		}
+	}
+	
+}
+
+tno_brt_cancel_black_market = {
+
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_four
+		}
+		remove_ideas = BRT_black_market_present_four
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_three
+		}
+		remove_ideas = BRT_black_market_present_three
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two
+		}
+		remove_ideas = BRT_black_market_present_two
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_one
+		}
+		remove_ideas = BRT_black_market_present_one
+	}
+	
+}
+
+tno_brt_cancel_black_market_luxury = {
+
+	if = {
+		limit = {
+			has_idea = BRT_black_market_present_three_luxury
+		}
+		remove_ideas = BRT_black_market_present_three_luxury
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_two_luxury
+		}
+		remove_ideas = BRT_black_market_present_two_luxury
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_black_market_present_one_luxury
+		}
+		remove_ideas = BRT_black_market_present_one_luxury
+	}
+	
+}
+
+tno_brt_increase_refugee_aid = {
+
+	if = {
+		limit = {
+			NOT = {
+				has_idea = BRT_refugee_aid_one
+				has_idea = BRT_refugee_aid_two
+				has_idea = BRT_refugee_aid_three
+			}
+		}
+		#BRT = {
+		#	add_stability = 0.005
+		#}
+		add_ideas = BRT_refugee_aid_one
+		add_opinion_modifier = {
+			target = BRT
+			modifier = BRT_humanitarian_aid_efforts
+		}
+		TNO_improve_agriculture_med = yes
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_one
+		}
+		#BRT = {
+		#	add_stability = 0.01
+		#	TNO_improve_agriculture_low = yes
+		#}
+		swap_ideas = {
+			remove_idea = BRT_refugee_aid_one
+			add_idea = BRT_refugee_aid_two
+		}
+		TNO_improve_industrial_equipment_med = yes
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_two
+		}
+		#BRT = {
+		#	add_stability = 0.015
+		#	TNO_improve_industrial_expertise_low = yes
+		#}
+		swap_ideas = {
+			remove_idea = BRT_refugee_aid_two
+			add_idea = BRT_refugee_aid_three
+		}
+		TNO_improve_industrial_expertise_med = yes
+	}
+	
+}
+
+tno_brt_decrease_refugee_aid = {
+
+	if = {
+		limit = {
+			has_idea = BRT_refugee_aid_three
+		}
+		#BRT = {
+		#	add_stability = -0.015
+		#	TNO_worsen_industrial_expertise_low = yes
+		#}
+		swap_ideas = {
+			remove_idea = BRT_refugee_aid_three
+			add_idea = BRT_refugee_aid_two
+		}
+		TNO_worsen_industrial_expertise_med = yes
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_two
+		}
+		#BRT = {
+		#	add_stability = -0.01
+		#	TNO_worsen_agriculture_low = yes
+		#}
+		swap_ideas = {
+			remove_idea = BRT_refugee_aid_two
+			add_idea = BRT_refugee_aid_one
+		}
+		TNO_worsen_industrial_equipment_med = yes
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_one
+		}
+		#BRT = {
+		#	add_stability = -0.005
+		#}
+		remove_ideas = BRT_refugee_aid_one
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_humanitarian_aid_efforts
+		}
+		TNO_worsen_agriculture_med = yes
+	}
+	
+}
+
+tno_brt_cancel_refugee_aid = {
+
+	if = {
+		limit = {
+			has_idea = BRT_refugee_aid_three
+		}
+		remove_ideas = BRT_refugee_aid_three
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_humanitarian_aid_efforts
+		}
+		TNO_worsen_industrial_expertise_med = yes
+		TNO_worsen_industrial_equipment_med = yes
+		TNO_worsen_agriculture_med = yes
+		BRT = {
+			add_stability = -0.015
+			TNO_worsen_industrial_expertise_low = yes
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_two
+		}
+		remove_ideas = BRT_refugee_aid_two
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_humanitarian_aid_efforts
+		}
+		TNO_worsen_industrial_equipment_med = yes
+		TNO_worsen_agriculture_med = yes
+		BRT = {
+			add_stability = -0.01
+			TNO_worsen_agriculture_low = yes
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_refugee_aid_one
+		}
+		remove_ideas = BRT_refugee_aid_one
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_humanitarian_aid_efforts
+		}
+		TNO_worsen_agriculture_med = yes
+		BRT = {
+			add_stability = -0.005
+		}
+	}
+	
+}
+
+tno_brt_increase_trafficking = {
+
+	if = {
+		limit = {
+			NOT = {
+				has_idea = BRT_trafficking_operation_one
+				has_idea = BRT_trafficking_operation_two
+				has_idea = BRT_trafficking_operation_three
+			}
+		}
+		add_ideas = BRT_trafficking_operation_one
+		add_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+		BRT = {
+			add_to_variable = {
+				misc_income = 15
+			}
+			custom_effect_tooltip = econ_misc_income_add_small_increase
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_one
+		}
+		swap_ideas = {
+			remove_idea = BRT_trafficking_operation_one
+			add_idea = BRT_trafficking_operation_two
+		}
+		BRT = {
+			add_to_variable = {
+				misc_income = 30
+			}
+			custom_effect_tooltip = econ_misc_income_add_medium_increase
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_two
+		}
+		swap_ideas = {
+			remove_idea = BRT_trafficking_operation_two
+			add_idea = BRT_trafficking_operation_three
+		}
+		BRT = {
+			add_to_variable = {
+				misc_income = 50
+			}
+			custom_effect_tooltip = econ_misc_income_add_large_increase
+		}
+	}
+	
+}
+
+tno_brt_increase_trafficking_mordrel = {
+
+	if = {
+		limit = {
+			NOT = {
+				has_idea = BRT_trafficking_operation_one
+				has_idea = BRT_trafficking_operation_two
+			}
+		}
+		add_ideas = BRT_trafficking_operation_one
+		add_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+		BRT = {
+			add_to_variable = {
+				misc_income = 15
+			}
+			custom_effect_tooltip = econ_misc_income_add_small_increase
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_one
+		}
+		swap_ideas = {
+			remove_idea = BRT_trafficking_operation_one
+			add_idea = BRT_trafficking_operation_two
+		}
+		BRT = {
+			add_to_variable = {
+				misc_income = 30
+			}
+			custom_effect_tooltip = econ_misc_income_add_medium_increase
+		}
+	}
+	
+}
+
+tno_brt_decrease_trafficking = {
+
+	if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_three
+		}
+		swap_ideas = {
+			remove_idea = BRT_trafficking_operation_three
+			add_idea = BRT_trafficking_operation_two
+		}
+		hidden_effect = {
+			BRT = {
+				subtract_from_variable = {
+					misc_income = 50
+				}
+			}
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_two
+		}
+		swap_ideas = {
+			remove_idea = BRT_trafficking_operation_two
+			add_idea = BRT_trafficking_operation_one
+		}
+		hidden_effect = {
+			BRT = {
+				subtract_from_variable = {
+					misc_income = 30
+				}
+			}
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_one
+		}
+		remove_ideas = BRT_trafficking_operation_one
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+		hidden_effect = {
+			BRT = {
+				subtract_from_variable = {
+					misc_income = 15
+				}
+			}
+		}
+	}
+	
+}
+
+tno_brt_cancel_dark_market = {
+
+	if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_three
+		}
+		remove_ideas = BRT_trafficking_operation_three
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_two
+		}
+		remove_ideas = BRT_trafficking_operation_two
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_idea = BRT_trafficking_operation_one
+		}
+		remove_ideas = BRT_trafficking_operation_one
+		remove_opinion_modifier = {
+			target = BRT
+			modifier = BRT_trafficking_operation_opinion
+		}
+	}
+	
+}

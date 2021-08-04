@@ -1,0 +1,370 @@
+#mcpog
+
+shared_focus = {
+	id = USA_gov_72_the_mcgovern_presidency
+	icon = GFX_USA_Reestablish_Party
+	x = 4
+	y = 1
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_the_mcgovern_presidency"
+		country_event = {
+			id = mcgovern.1
+			days = 1
+		}
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_there_is_no_time_for_celebration
+	icon = GFX_GER_a_moment_of_time
+	x = 0
+	y = 1
+	relative_position_id = USA_gov_72_the_mcgovern_presidency
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_the_mcgovern_presidency
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_there_is_no_time_for_celebration"
+		country_event = {
+			id = mcgovern.2
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_the_poor
+	icon = GFX_USA_The_Other_America
+	x = -1
+	y = 1
+	relative_position_id = USA_gov_72_there_is_no_time_for_celebration
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_there_is_no_time_for_celebration
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_the_poor"
+		country_event = {
+			id = mcgovern.3
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_and_the_armed
+	icon = GFX_TNO_generic_gun_production
+	x = 1
+	y = 1
+	relative_position_id = USA_gov_72_there_is_no_time_for_celebration
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_there_is_no_time_for_celebration
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_and_the_armed"
+		custom_effect_tooltip = USA_GOV_introduce_USAFREEDOM
+		country_event = {
+			id = USA_sen_bill.331
+			days = 1
+		}
+		random_owned_state = {
+			limit = { arms_factory > 1 }
+			remove_building = {
+				type = arms_factory
+				level = 2
+			}
+			PREV = {
+				random_owned_state = {
+					limit = {
+						NOT = {
+							state = PREV.PREV
+						}
+						arms_factory > 0
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_a_new_food_for_peace
+	icon = GFX_RAJ_religious_peace
+	x = -1
+	y = 2
+	relative_position_id = USA_gov_72_there_is_no_time_for_celebration
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_the_poor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_a_new_food_for_peace"
+		custom_effect_tooltip = USA_RD_R_popularity_decrease
+		custom_effect_tooltip = USA_NPP_FR_popularity_grows
+		custom_effect_tooltip = USA_add_RD_D_popularity_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 }
+						check_variable = { nationality = 84 }
+						check_variable = { nationality = 86 }
+						check_variable = { nationality = 87 }
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1 }
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							check_variable = { nationality = 83 }
+							check_variable = { nationality = 84 }
+							check_variable = { nationality = 86 }
+							check_variable = { nationality = 87 }
+						}
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+			}
+		}
+		if = {
+			limit = { country_exists = NYM }
+			reverse_add_opinion_modifier = {
+				target = NYM
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = EGB }
+			reverse_add_opinion_modifier = {
+				target = EGB
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = PAL }
+			reverse_add_opinion_modifier = {
+				target = PAL
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = SYR }
+			reverse_add_opinion_modifier = {
+				target = SYR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = BIR }
+			reverse_add_opinion_modifier = {
+				target = BIR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = OMB }
+			reverse_add_opinion_modifier = {
+				target = OMB
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = GUL }
+			reverse_add_opinion_modifier = {
+				target = GUL
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = KUR }
+			reverse_add_opinion_modifier = {
+				target = KUR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = TUR }
+			reverse_add_opinion_modifier = {
+				target = TUR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = JOR }
+			reverse_add_opinion_modifier = {
+				target = JOR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = EGY }
+			reverse_add_opinion_modifier = {
+				target = EGY
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = RPS }
+			reverse_add_opinion_modifier = {
+				target = RPS
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = IRQ }
+			reverse_add_opinion_modifier = {
+				target = IRQ
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = YEM }
+			reverse_add_opinion_modifier = {
+				target = YEM
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = OMA }
+			reverse_add_opinion_modifier = {
+				target = OMA
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = HJZ }
+			reverse_add_opinion_modifier = {
+				target = HJZ
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = UAE }
+			reverse_add_opinion_modifier = {
+				target = UAE
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = KUW }
+			reverse_add_opinion_modifier = {
+				target = KUW
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = SNI }
+			reverse_add_opinion_modifier = {
+				target = SNI
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = ISR }
+			reverse_add_opinion_modifier = {
+				target = ISR
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+		if = {
+			limit = { country_exists = SAU }
+			reverse_add_opinion_modifier = {
+				target = SAU
+				modifier = USA_GOV_food_for_peace
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_begin_the_withdrawals
+	icon = GFX_USA_Withdraw_American_Soldiers
+	x = 1
+	y = 2
+	relative_position_id = USA_gov_72_there_is_no_time_for_celebration
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_and_the_armed
+	}
+	select_effect = { USA_mcgovern_withdrawal_setup = yes }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_begin_the_withdrawals"
+		custom_effect_tooltip = USA_GOV_vote_on_USAFREEDOM
+		hidden_effect = {
+			country_event = {
+				id = USA_sen_bill.332
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gov_72_we_shall_make_our_presence_known
+	icon = GFX_USA_Into_the_light
+	x = 0
+	y = 3
+	relative_position_id = USA_gov_72_there_is_no_time_for_celebration
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = USA_gov_72_a_new_food_for_peace
+	}
+	prerequisite = {
+		focus = USA_gov_72_begin_the_withdrawals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gov_72_we_shall_make_our_presence_known"
+		country_event = {
+			id = mcgovern.4
+			days = 1
+		}
+		#GER = { #TODO uncomment later
+		#	country_event = {
+		#		id = mcgovern.5
+		#		days = 1
+		#	}
+		#}
+		#JAP = {
+		#	country_event = {
+		#		id = mcgovern.5
+		#		days = 1
+		#	}
+		#}
+	}
+}

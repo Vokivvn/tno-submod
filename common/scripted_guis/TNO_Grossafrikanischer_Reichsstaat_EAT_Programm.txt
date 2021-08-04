@@ -1,0 +1,84 @@
+scripted_gui = {
+	MZB_REICHSTAAT_eat_programm_container = {
+		context_type = selected_state_context
+		window_name = "MZB_REICHSTAAT_eat_programm_screen"
+		parent_window_token = selected_state_view 
+
+		visible = {
+			ROOT = {
+				original_tag = MZB
+			}
+			MZB = {
+				has_completed_focus = MZB_a_system_of_efficiency
+				# has_country_flag = MZB_REICHSTAAT_soe_construction_visible
+			}
+			THIS = {
+				owner = { tag = MZB }
+			}
+		}
+
+		effects = {
+			MZB_REICHSTAAT_construction_infra_button_click = {
+                #activate_targeted_decision = {
+				#	target = ROOT
+		    	#	decision = MZB_REICHSTAAT_soe_build_infra
+				#}
+				#save_event_target_as = MZB_REICHSTAAT_infra_build_state
+				#state_event = {
+				#	id = MZB_REICHSTAAT.60
+				#	trigger_for = controller
+				#}
+				#state_event = {
+				#	id = MZB_REICHSTAAT.61
+				#	trigger_for = controller
+				#	days = 1
+				#}
+
+				# state_event sucks -Atomic
+
+				MZB = { add_to_variable = { MZB.MZB_REICHSTAAT_num_slave_workers = -200 } }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+
+            MZB_REICHSTAAT_construction_mil_factory_button_click = {
+                #activate_targeted_decision = {
+				#	target = ROOT
+		    	#	decision = MZB_REICHSTAAT_soe_build_infra
+				#}
+				#MZB = { add_political_power = 500 }
+				#save_event_target_as = MZB_REICHSTAAT_mil_factory_build_state
+				#state_event = {
+				#	id = MZB_REICHSTAAT.62
+				#	trigger_for = controller
+				#}
+				#state_event = {
+				#	id = MZB_REICHSTAAT.63
+				#	trigger_for = controller
+				#	days = 1
+				#}
+
+				MZB = { add_to_variable = { MZB.MZB_REICHSTAAT_num_slave_workers = -500 } }
+				set_state_flag = MZB_REICHSTAAT_has_built_mil_factory_here
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+		}
+
+		triggers = {
+			MZB_REICHSTAAT_construction_infra_button_click_enabled = {
+				check_variable = { MZB.MZB_REICHSTAAT_num_slave_workers > 199 }
+			    is_demilitarized_zone = no
+			    is_owned_by = MZB
+			    infrastructure < 10
+			}
+
+			MZB_REICHSTAAT_construction_mil_factory_button_click_enabled = {
+				NOT = {
+					has_state_flag = MZB_REICHSTAAT_has_built_mil_factory_here
+				}
+				check_variable = { MZB.MZB_REICHSTAAT_num_slave_workers > 799 }
+			    is_demilitarized_zone = no
+			    is_owned_by = MZB
+			}
+		}
+	}
+}

@@ -1,0 +1,119 @@
+#####################################################
+# ON ACTIONS FOR THE SECOND SOUTH AFRICAN CIVIL WAR #
+#####################################################
+
+on_actions = {
+	on_annex = {
+		effect = {
+			if = {
+				limit = {
+					has_global_flag = second_south_african_civil_war
+					ROOT = { tag = SLF }
+					NOT = { country_exists = BOR }
+				}
+				SLF = {
+					country_event = { 
+						id = SEC_SAF_CW.1
+						days = 7
+					}
+					country_event = { 
+						id = SEC_SAF_CW.8
+						days = 20
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_global_flag = second_south_african_civil_war
+					OR = {
+						ROOT = { tag = SLF }
+						ROOT = { tag = CDL }
+						ROOT = { tag = ZUL }
+					}
+					NOT = { country_exists = BOR }
+					NOT = { country_exists = SAF }
+					SLF = { has_country_flag = SAA_formed_flag }
+				}
+				SLF = {
+					country_event = { 
+						id = SEC_SAF_CW_ENDING.1
+						days = 7
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_global_flag = second_south_african_civil_war
+					OR = {
+						ROOT = { tag = SAF }
+					}
+					NOT = { country_exists = ZUL }
+					NOT = { country_exists = BOR }
+					OR = {
+						country_exists = CDL
+						country_exists = SLF
+					}
+					OR = {
+						CDL = { NOT = { has_war_with = SAF } }
+						SLF = { NOT = { has_war_with = SAF } }
+					}
+				}
+				SLF = {
+					country_event = { 
+						id = SEC_SAF_CW.8
+						days = 7
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_global_flag = second_south_african_civil_war
+					OR = {
+						ROOT = { tag = SAF }
+					}
+					NOT = { country_exists = ZUL }
+					NOT = { country_exists = BOR }
+					OR = {
+						country_exists = CDL
+						country_exists = SLF
+					}
+					OR = {
+						CDL = { NOT = { has_war_with = SAF } }
+						SLF = { NOT = { has_war_with = SAF } }
+					}
+				}
+				SLF = {
+					country_event = { 
+						id = SEC_SAF_CW.9
+						days = 7
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_global_flag = second_south_african_civil_war
+					OR = {
+						ROOT = { tag = SFG }
+					}
+					NOT = { country_exists = ZUL }
+					NOT = { country_exists = BOR }
+					NOT = { country_exists = CDL }
+					NOT = { country_exists = SLF }
+					NOT = { country_exists = SAF }
+					NOT = { country_exists = LTH }
+					NOT = { country_exists = SWZ }
+				}
+				MZB = {
+					country_event = { 
+						id = SEC_SAF_CW_ENDING.3
+						days = 7
+					}
+				}
+			}
+		}
+	}
+}

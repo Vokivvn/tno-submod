@@ -1,0 +1,300 @@
+TNO_socintern_category = {
+
+	TNO_found_comecon = {
+
+		fire_only_once = yes
+
+		visible = {
+			has_idea = NIK_socintern_member
+			has_country_flag = SOCINTERN_LEADER
+			NOT = {
+				has_global_flag = SOCINTERN_VOTE_IN_PROGRESS
+			}
+		}
+
+		cost = 25
+
+		available = {
+			has_idea = NIK_socintern_member
+			has_country_flag = SOCINTERN_LEADER
+			NOT = {
+				has_global_flag = COMECON_FOUNDED
+			}
+			any_other_country = {
+				OR = {
+					has_idea = NIK_socintern_member
+					has_idea = NIK_socintern_associate
+				}
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TNO_found_fourth_international_test"
+			set_global_flag = COMECON_FOUNDED
+			set_variable = { global.COMECON_monetary_fund_value = 3500 }
+		}
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				add = 10
+				date > 1972.1.1
+			}
+		}
+	}
+
+	COM_invite_country = {
+
+		fire_only_once = no
+
+		cost = 25
+
+		days_re_enable = 180
+
+		target_trigger = {
+			FROM = {
+				NOT = {
+					OR = {
+						has_idea = NIK_socintern_member
+						has_idea = NIK_socintern_associate
+					}
+				}
+				NOT = {
+					OR = {
+						tag = ZZZ
+						tag = USA
+					}
+				}
+				OR = {
+					has_government = socialist
+					has_government = communist
+				}
+				NOT = {
+					has_country_flag = COM_invited_country
+				}
+				exists = yes
+			}
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = SOCINTERN_VOTE_IN_PROGRESS
+			}
+			has_global_flag = SOCINTERN_MOTIONS_UNLOCK
+			FROM = {
+				NOT = {
+					OR = {
+						has_idea = NIK_socintern_member
+						has_idea = NIK_socintern_associate
+					}
+				}
+				NOT = {
+					OR = {
+						tag = ZZZ
+						tag = USA
+					}
+				}
+				OR = {
+					has_government = socialist
+					has_government = communist
+				}
+				NOT = {
+					has_country_flag = COM_invited_country
+				}
+				exists = yes
+			}
+		}
+
+		available = {
+			has_idea = NIK_socintern_member
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TNO_send_comecon_aid"
+			custom_effect_tooltip = COM_invite_country_tt
+			FROM = {
+				country_event = {
+					id = socintern.1
+					days = 1
+				}
+				set_country_flag = { flag = COM_invited_country days = 365 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	COM_invite_country_associate = {
+
+		fire_only_once = no
+
+		visible = {
+			NOT = {
+				has_global_flag = SOCINTERN_VOTE_IN_PROGRESS
+			}
+			has_global_flag = SOCINTERN_MOTIONS_UNLOCK
+		}
+
+		cost = 25
+
+		days_re_enable = 90
+
+		target_trigger = {
+			FROM = {
+				NOT = {
+					OR = {
+						has_idea = NIK_socintern_member
+						has_idea = NIK_socintern_associate
+					}
+				}
+				NOT = {
+					OR = {
+						tag = ZZZ
+						tag = USA
+					}
+				}
+				OR = {
+					has_government = socialist
+					has_government = communist
+					has_government = social_democrat
+				}
+				NOT = {
+					has_country_flag = COM_invited_country
+				}
+				exists = yes
+			}
+		}
+
+		visible = {
+			FROM = {
+				NOT = {
+					OR = {
+						has_idea = NIK_socintern_member
+						has_idea = NIK_socintern_associate
+					}
+				}
+				NOT = {
+					OR = {
+						tag = ZZZ
+						tag = USA
+					}
+				}
+				OR = {
+					has_government = socialist
+					has_government = communist
+					has_government = social_democrat
+				}
+				NOT = {
+					has_country_flag = COM_invited_country
+				}
+				exists = yes
+			}
+		}
+
+		available = {
+			has_idea = NIK_socintern_member
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision COM_invite_country_associate"
+			custom_effect_tooltip = COM_invite_country_associate_tt
+			FROM = {
+				country_event = {
+					id = socintern.2
+					days = 1
+				}
+				set_country_flag = { flag = COM_invited_country days = 365 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	COM_propose_mutual_nap = {
+
+		fire_only_once = no
+
+		visible = {
+			NOT = {
+				has_global_flag = SOCINTERN_VOTE_IN_PROGRESS
+			}
+			has_global_flag = SOCINTERN_MOTIONS_UNLOCK
+			NOT = {
+				has_global_flag = COM_SOCINTERN_NAP
+			}
+		}
+
+		cost = 25 
+
+		days_re_enable = 365
+
+		available = {
+			has_idea = NIK_socintern_member
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision COM_propose_mutual_nap"
+			every_country = {
+				limit = {
+					has_idea = NIK_socintern_member
+				}
+				country_event = {
+					id = socintern.14
+					days = 3
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+
+TNO_COMECON_GUI = {
+	COM_invest_in_cooperative_research = {
+
+		fire_only_once = yes
+
+		visible = {
+			has_global_flag = COMECON_FOUNDED
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		available = {
+			OR = {
+				has_idea = NIK_socintern_member
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TNO_send_comecon_aid"
+			add_to_tech_sharing_group = comecon_tech_group
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_in_tech_sharing_group = comecon_tech_group
+						NOT = {
+							tag = ROOT
+						}
+					}
+					country_event = {
+						id = comecon.10
+						days = 1
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 30
+		}
+	}
+}

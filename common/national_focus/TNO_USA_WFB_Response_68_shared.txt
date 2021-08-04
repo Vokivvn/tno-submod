@@ -1,0 +1,491 @@
+################################################
+########## Bennett 68 (response) tree ##########
+################################################
+
+
+shared_focus = {
+	id = USA_BFW_68_Carelessness_of_Bennett
+	icon = GFX_USA_The_Bennett_Presidency
+	cost = 1.00
+	x = 6
+	y = 0
+	allow_branch = {
+		OR = {
+			has_country_flag = USA_test_response_tree
+			has_country_flag = USA_64_D_RD_Past
+		}
+		NOT = {
+			has_country_flag = USA_finished_response
+		}
+	}
+	offset = {
+		x = -6
+		y = 1
+		trigger = {
+			has_government = social_democrat
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	offset = {
+		x = -8
+		y = 0
+		trigger = {
+			has_government = social_liberal
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Carelessness_of_Bennett"
+		add_political_power = 30
+		country_event = { id = WFB.response.1 days = 2 }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Reigning_in_the_Market
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 1.00
+	x = -1
+	y = 1
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Carelessness_of_Bennett
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Reigning_in_the_Market"
+		add_stability = 0.01
+		add_political_power = 50
+		set_variable = { USA_WFB_Response_Negoations_Var = 0 }
+		set_variable = { USA_WFB_Response_Crop_Export_Points = 0 }
+		hidden_effect = {
+			country_event = { id = WFB.response.3 days = 3 }
+		}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_End_of_Voodoo_Economics
+	icon = GFX_USA_end_vodoo_economics
+	cost = 1.00
+	x = 1
+	y = 1
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Carelessness_of_Bennett
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_End_of_Voodoo_Economics"
+
+		custom_effect_tooltip = WFB_Response_Go_After_Bankers
+		hidden_effect = {
+			country_event = { id = WFB.response.2 days = 3 }
+		}
+
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Reregulate_Wall_Street
+	icon = GFX_generic_change_law_immigration
+	cost = 1.00
+	x = -2
+	y = 2
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Reigning_in_the_Market
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Reregulate_Wall_Street"
+		add_to_variable = {
+			var = GDP_growth
+			value = -0.02
+		}
+		if = {
+			limit = { has_country_flag = USA_68_C_NPP }
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.01
+			}
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_R_RD }
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.01
+			}
+		}
+
+		add_popularity = {
+			ideology = social_conservative
+			popularity = -0.01
+		}
+		hidden_effect = {
+		country_event = { id = WFB.response.4 days = 3}
+			}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Desecration_of_Average_American
+	icon = GFX_USA_Last_Light_of_Freedom
+	cost = 1.00
+	x = 0
+	y = 2
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Reigning_in_the_Market
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_BFW_68_End_of_Voodoo_Economics
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Desecration_of_Average_American"
+		country_event = { id = WFB.response.5 days = 2 }
+
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Reel_in_Military
+	icon = GFX_JAP_the_military_is_enough
+	cost = 1.00
+	x = 2
+	y = 2
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_End_of_Voodoo_Economics
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		custom_effect_tooltip = WFB_Reponse_Revenue_Up
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Reel_in_Military"
+		add_to_variable = { var = GDP_growth value = -0.01 }
+		add_to_variable = { var = misc_income value = 100 }
+
+		360 = {
+			remove_building = {
+    	type = arms_factory
+    	level = 1
+			}
+		}
+
+		393 = {
+			remove_building = {
+		 	type = arms_factory
+		  level = 1
+						}
+					}
+
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Tone_Back_Trade
+	icon = GFX_USA_tone_back_trade
+	cost = 1.00
+	x = -1
+	y = 3
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Reregulate_Wall_Street
+	}
+	prerequisite = {
+		focus = USA_BFW_68_Desecration_of_Average_American
+	}
+	mutually_exclusive = {
+		focus = USA_BFW_68_Let_it_Run_its_Course
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Tone_Back_Trade"
+		custom_effect_tooltip = WFB_Response_Revenue_Down
+
+		add_timed_idea = {
+			idea = USA_WFB_decrease_in_trade
+			days = 60
+		}
+
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Let_it_Run_its_Course
+	icon = GFX_USA_open_up_trade
+	cost = 1.00
+	x = 1
+	y = 3
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Desecration_of_Average_American
+	}
+	prerequisite = {
+		focus = USA_BFW_68_Reel_in_Military
+	}
+	mutually_exclusive = {
+		focus = USA_BFW_68_Tone_Back_Trade
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Let_it_Run_its_Course"
+		custom_effect_tooltip = WFB_Response_Revenue_Up
+		add_timed_idea = {
+			idea = USA_WFB_let_trade_run_its_course
+			days = 60
+		}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Slam_the_Deals
+	icon = GFX_RAJ_Close_the_Economy
+	cost = 1.00
+	x = -2
+	y = 4
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Tone_Back_Trade
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Slam_the_Deals"
+		country_event = { id = WFB.response.6 days = 3 }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_a_Good_Deal_is_a_Good_Deal
+	icon = GFX_goal_generic_trade_good
+	cost = 1.00
+	x = 2
+	y = 4
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Let_it_Run_its_Course
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_a_Good_Deal_is_a_Good_Deal"
+		add_political_power = -50
+
+		if = {
+			limit = { has_country_flag = USA_68_C_NPP }
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+		}
+		if = {
+			limit = { has_country_flag = USA_68_R_RD }
+			add_popularity = {
+				ideology = social_liberal
+				popularity = -0.01
+			}
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.01
+		}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Slap_on_the_Tarrifs
+	icon = GFX_USA_slap_on_the_tarrifs
+	cost = 1.00
+	x = -3
+	y = 5
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Slam_the_Deals
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Slap_on_the_Tarrifs"
+		custom_effect_tooltip = USA_subtract_OFN_unity
+
+		if = { limit = { has_idea = USA_WFB_bretton_woods_1 } remove_ideas = USA_WFB_bretton_woods_1 }
+		if = { limit = { has_idea = USA_WFB_bretton_woods_2 } remove_ideas = USA_WFB_bretton_woods_2 }
+		if = { limit = { has_idea = USA_WFB_bretton_woods_3 } remove_ideas = USA_WFB_bretton_woods_3 }
+		if = { limit = { has_idea = USA_WFB_bretton_woods_4 } remove_ideas = USA_WFB_bretton_woods_4 }
+
+
+		subtract_from_variable = { OFN_Unity = 1 }
+		add_to_variable = {
+			var = money_reserves_billion
+			value = 1
+		}
+		add_to_variable = {
+			var = GDP_billion
+			value = -0.01
+		}
+			country_event = { id = WFB.response.8 days = 1 }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Americans_Come_First
+	icon = GFX_USA_Only_American_Future
+	available = { has_completed_focus = USA_BFW_68_Slap_on_the_Tarrifs }
+	cost = 1.00
+	x = -1
+	y = 5
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Slam_the_Deals
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Slap_on_the_Tarrifs"
+		add_stability = 0.01
+		custom_effect_tooltip = WFB_Response_New_Deals
+		hidden_effect = {
+			country_event = { id = WFB.response.7 days = 2 }
+		}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Fight_for_our_Crops
+	icon = GFX_XSM_The_Little_Farmland_that_we_Have
+	cost = 1.00
+	x = 1
+	y = 5
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_a_Good_Deal_is_a_Good_Deal
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Fight_for_our_Crops"
+		add_political_power = 50
+		country_event = { id = WFB.response.16 days = 2 }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Crank_Up_Exports
+	icon = GFX_endless_money
+	cost = 1.00
+	x = 3
+	y = 5
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_a_Good_Deal_is_a_Good_Deal
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Crank_Up_Exports"
+		custom_effect_tooltip = WFB_Response_Cranking_up_exports
+		if = { limit = { has_idea = USA_WFB_bretton_woods_1 }
+			remove_ideas = USA_WFB_bretton_woods_1
+			add_ideas = USA_WFB_bretton_woods_5
+		}
+		if = { limit = { has_idea = USA_WFB_bretton_woods_2 }
+			remove_ideas = USA_WFB_bretton_woods_1
+			add_ideas = USA_WFB_bretton_woods_5
+		}
+		if = { limit = { has_idea = USA_WFB_bretton_woods_3 }
+			remove_ideas = USA_WFB_bretton_woods_1
+			add_ideas = USA_WFB_bretton_woods_5
+		}
+		if = { limit = { has_idea = USA_WFB_bretton_woods_4 }
+			remove_ideas = USA_WFB_bretton_woods_1
+			add_ideas = USA_WFB_bretton_woods_5
+		}
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Free_at_Last
+	icon = GFX_USA_A_Great_Society
+	cost = 1.00
+	x = -2
+	y = 6
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Slap_on_the_Tarrifs
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_BFW_68_Americans_Come_First
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Free_at_Last"
+		add_stability = 0.02
+		add_political_power = 50
+		remove_ideas = tno_trade_laws_free_trade
+		add_ideas = tno_trade_laws_export_focus
+		hidden_effect = { country_event = { id = WFB.response.14 days = 3 } }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_the_Profits_Roll_in
+	icon = GFX_generic_diplomacy_trade
+	cost = 1.00
+	x = 2
+	y = 6
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Fight_for_our_Crops
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_BFW_68_Crank_Up_Exports
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_the_Profits_Roll_in"
+
+		custom_effect_tooltip = WFB_Response_Revenue_Up
+
+		add_to_variable = {
+			var = GDP_billion
+			value = 0.01
+		}
+		add_to_variable = { money_reserves = 250 }
+	}
+}
+shared_focus = {
+	id = USA_BFW_68_Back_to_Work
+	icon = GFX_generic_diplomacy_trade
+	cost = 1.00
+	x = 0
+	y = 7
+	relative_position_id = USA_BFW_68_Carelessness_of_Bennett
+	prerequisite = {
+		focus = USA_BFW_68_Free_at_Last
+		focus = USA_BFW_68_the_Profits_Roll_in
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_BFW_68_Back_to_Work"
+		add_timed_idea = {
+			idea = USA_WFB_bennetts_mistakes_fixed
+			days = 70
+		}
+		set_country_flag = USA_finished_response
+	}
+}

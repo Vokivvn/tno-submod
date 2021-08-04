@@ -1,0 +1,297 @@
+find_3_max_from_8 = {
+    find_3_max_from_8_prepare_array = yes
+    find_3_max_from_8_find_max_1_idx = yes
+    find_3_max_from_8_find_max_2_idx = yes
+    find_3_max_from_8_find_max_3_idx = yes
+    find_3_max_from_8_check_max_1_var = yes
+    find_3_max_from_8_check_max_2_var = yes
+    find_3_max_from_8_check_max_3_var = yes
+    find_3_max_from_8_cleanup = yes
+}
+ 
+find_3_max_from_8_prepare_array = {
+    set_variable = { idx = 0 }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_commies }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_socialists }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_socdems }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_soclibs }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_marklibs }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_soccons }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_fascists }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    random_state = {
+        limit = { NOT = { has_state_flag = temp_array_state } }
+        set_variable = { index = PREV.idx }
+        set_variable = { temp_var = PREV.india_muslims }
+        add_to_variable = { PREV.idx = 1 }
+        set_state_flag = temp_array_state
+    }
+    clear_variable = idx
+}
+ 
+find_3_max_from_8_find_max_1_idx = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_variable = { PREV.max = temp_var }
+        set_variable = { PREV.maxIdx = index }
+    }
+    every_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        if = {
+            limit = { check_variable = { temp_var > PREV.max } }
+            set_variable = { PREV.max = temp_var }
+            set_variable = { PREV.maxIdx = index }
+        }
+    }
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            check_variable = { index = PREV.maxIdx }
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_state_flag = temp_array_max_found
+        set_state_flag = temp_array_max_1
+    }
+}
+ 
+find_3_max_from_8_find_max_2_idx = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_variable = { PREV.max = temp_var }
+        set_variable = { PREV.maxIdx = index }
+    }
+    every_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        if = {
+            limit = { check_variable = { temp_var > PREV.max } }
+            set_variable = { PREV.max = temp_var }
+            set_variable = { PREV.maxIdx = index }
+        }
+    }
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            check_variable = { index = PREV.maxIdx }
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_state_flag = temp_array_max_found
+        set_state_flag = temp_array_max_2
+    }
+}
+ 
+find_3_max_from_8_find_max_3_idx = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_variable = { PREV.max = temp_var }
+        set_variable = { PREV.maxIdx = index }
+    }
+    every_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        if = {
+            limit = { check_variable = { temp_var > PREV.max } }
+            set_variable = { PREV.max = temp_var }
+            set_variable = { PREV.maxIdx = index }
+        }
+    }
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            check_variable = { index = PREV.maxIdx }
+            NOT = { has_state_flag = temp_array_max_found }
+        }
+        set_state_flag = temp_array_max_found
+        set_state_flag = temp_array_max_3
+    }
+}
+ 
+find_3_max_from_8_check_max_1_var = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            has_state_flag = temp_array_max_1
+        }
+        if = {
+            limit = { check_variable = { index = 0 } }
+            PREV = { set_country_flag = india_commies_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 1 } }
+            PREV = { set_country_flag = india_socialists_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 2 } }
+            PREV = { set_country_flag = india_socdems_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 3 } }
+            PREV = { set_country_flag = india_soclibs_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 4 } }
+            PREV = { set_country_flag = india_marklibs_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 6 } }
+            PREV = { set_country_flag = india_fascists_max_1 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 7 } }
+            PREV = { set_country_flag = india_muslims_max_1 }
+        }
+    }
+}
+ 
+find_3_max_from_8_check_max_2_var = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            has_state_flag = temp_array_max_2
+        }
+        if = {
+            limit = { check_variable = { index = 0 } }
+            PREV = { set_country_flag = india_commies_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 1 } }
+            PREV = { set_country_flag = india_socialists_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 2 } }
+            PREV = { set_country_flag = india_socdems_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 3 } }
+            PREV = { set_country_flag = india_soclibs_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 4 } }
+            PREV = { set_country_flag = india_marklibs_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 6 } }
+            PREV = { set_country_flag = india_fascists_max_2 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 7 } }
+            PREV = { set_country_flag = india_muslims_max_2 }
+        }
+    }
+}
+ 
+find_3_max_from_8_check_max_3_var = {
+    random_state = {
+        limit = {
+            has_state_flag = temp_array_state
+            has_state_flag = temp_array_max_3
+        }
+        if = {
+            limit = { check_variable = { index = 0 } }
+            PREV = { set_country_flag = india_commies_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 1 } }
+            PREV = { set_country_flag = india_socialists_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 2 } }
+            PREV = { set_country_flag = india_socdems_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 3 } }
+            PREV = { set_country_flag = india_soclibs_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 4 } }
+            PREV = { set_country_flag = india_marklibs_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 6 } }
+            PREV = { set_country_flag = india_fascists_max_3 }
+        }
+        else_if = {
+            limit = { check_variable = { index = 7 } }
+            PREV = { set_country_flag = india_muslims_max_3 }
+        }
+    }
+}
+ 
+find_3_max_from_8_cleanup = {
+    every_state = {
+        limit = { has_state_flag = temp_array_state }
+        clear_variable = index
+        clear_variable = temp_var
+        clr_state_flag = temp_array_state
+        clr_state_flag = temp_array_max_found
+        clr_state_flag = temp_array_max_1
+        clr_state_flag = temp_array_max_2
+        clr_state_flag = temp_array_max_3
+    }
+    clear_variable = max
+    clear_variable = maxIdx
+}
+ 
+find_3_max_from_8_printvars = {
+    every_state = {
+        limit = { has_state_flag = temp_array_state }
+        print_variables = { file = log_file text = header_text append = yes }
+    }
+}

@@ -1,0 +1,1089 @@
+IRE_debug = {
+
+	IRE_load_initial_tree = {
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_spleodar
+		}
+	}
+
+	IRE_load_economic_collapse_tree = { 
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_the_worst_case_scenario
+		}
+	}
+
+	IRE_load_economic_collapse_tree_2 = {  
+		icon = GFX_decision_generic_form_nation
+ 
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_the_irish_depression
+		}
+	}
+
+	IRE_load_IRE_FT_Operation_Banner = {
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_FT_Operation_Banner
+		}
+	}
+
+	IRE_load_IRE_FT_Military_Government = {
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_FT_Military_Government
+		}
+	}
+
+	IRE_load_IRE_FT_Investigation_Failed = {
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_FT_Investigation_Failed
+		}
+	}
+
+	IRE_load_IRE_Peaceful_Resolution = {
+		icon = GFX_decision_generic_form_nation
+
+		allowed = {
+			tag = IRE
+		}
+		complete_effect = {
+			load_focus_tree = IRE_Peaceful_Resolution
+		}
+	}
+}
+
+IRE_DECCAT_AdWil = { # AdWil (Aufsichtsrat der Wehrwirtschaftsführer in Irland)
+	#IRE_MIS_1_1 = {
+	#	days_mission_timeout = 15
+	#	selectable_mission = yes
+	#	available = {
+	#		custom_trigger_tooltip = {
+	#			tooltip = IRE_MIS_1_trigger_tt_HAR
+	#			check_variable = { IREArrFFContent^2 > 2 }
+	#		}
+	#	}
+	#	allowed = {
+	#		always = no
+	#	}
+	#	complete_effect = {
+	#	}
+#	}
+
+	IRE_DEC_2_1 = {  #civfac mission
+		allowed = {
+			tag = IRE
+		}
+		fixed_random_seed = no
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_MinFunding_5_tt
+				OR = {
+					check_variable = { IRE.AdWilAvFund > 5 }
+					check_variable = { IRE.AdWilAvFund = 5 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = AdWilStart_tt
+				NOT = {
+					check_variable = { IRE.IRE_GUI_AdWilstate = 0 } #no state
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = AdWil_GerTrust_20_tt
+				check_variable = { IRE.AdWilGerTrust > 0.20 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = Adwil_started_tt
+				check_variable = { IRE.project_stage = 0 }
+			}
+		}
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { IRE.project_stage = 4 } #civfac
+				IRE_AdWilGoal_civ = yes
+			}
+			activate_mission = IRE_MIS_2_1
+			IRE_SE_AdWil_AvFund_minus_5 = yes
+			IRE_Investor_Presence_plus_5 = yes
+		}
+	}
+	IRE_MIS_2_1 = {
+		days_mission_timeout = 400
+		selectable_mission = yes
+		available = {	
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_2_1_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal = industrial_complex_level }
+						check_variable = { IRE.AdWilgoal < industrial_complex_level }
+					}
+				}
+			}
+		}
+		allowed = {
+			always = no
+		}
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_plus_10 = yes
+			add_to_variable = { GDP = 4 }
+			IRE_Investor_Presence_plus_5 = yes
+			custom_effect_tooltip = gdp_increase_tt
+			AdWilEnd = yes
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_10 = yes
+			AdWilEnd = yes
+		}
+	}
+
+	IRE_MIS_2_2 = {
+		days_mission_timeout = 450
+		selectable_mission = yes
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_2_2_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal2 = industrial_complex_level }
+						check_variable = { IRE.AdWilgoal2 < industrial_complex_level }
+					}
+				}
+			}
+		}
+		allowed = {
+			always = no
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_5 = yes
+			AdWilEnd = yes
+		}
+		complete_effect = {
+			AdWilEnd = yes
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			add_to_variable = { GDP = 2 }
+			IRE_Investor_Presence_plus_5 = yes
+			custom_effect_tooltip = gdp_increase_tt	
+		}
+	}
+
+	IRE_MIS_2_3 = {
+		days_mission_timeout = 600
+		selectable_mission = yes
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_2_3_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal3 = industrial_complex_level }
+						check_variable = { IRE.AdWilgoal3 < industrial_complex_level }
+					}
+				}
+			}
+		}
+
+		allowed = {
+			always = no
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_5 = yes
+			AdWilEnd = yes
+		}
+		complete_effect = {
+			AdWilEnd = yes
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			add_to_variable = { GDP = 4 }
+			IRE_Investor_Presence_plus_10 = yes
+			custom_effect_tooltip = gdp_increase_tt	
+		}
+	}
+
+	IRE_DEC_1_1 = {
+		allowed = {
+			tag = IRE
+		}
+		fixed_random_seed = no
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_MinFunding_5_tt
+				OR = {
+					check_variable = { IRE.AdWilAvFund > 5 }
+					check_variable = { IRE.AdWilAvFund = 5 }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = AdWilStart_tt
+				NOT = {
+					check_variable = { IRE.IRE_GUI_AdWilstate = 0 } #no state
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = AdWil_GerTrust_20_tt
+				check_variable = { IRE.AdWilGerTrust > 0.20}
+			}
+			custom_trigger_tooltip = {
+				tooltip = Adwil_started_tt
+				check_variable = { IRE.project_stage = 0 }
+			}
+		}
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { IRE.abandoned_project = 0 }
+				set_variable = { IRE.project_stage = 1 }
+				IRE_AdWilGoal = yes
+			}
+			activate_mission = IRE_MIS_1_1
+			IRE_SE_AdWil_AvFund_minus_5 = yes
+			IRE_Investor_Presence_plus_5 = yes
+		}
+	}
+	IRE_MIS_1_1 = {
+		days_mission_timeout = 130
+		selectable_mission = yes
+		available = {	
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_1_1_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal = infrastructure_level }
+						check_variable = { IRE.AdWilgoal < infrastructure_level }
+					}
+				}	
+			}
+		}
+		allowed = {
+			always = no
+		}
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			add_to_variable = { GDP = 2 }
+			IRE_Investor_Presence_plus_2 = yes
+			custom_effect_tooltip = gdp_increase_tt	
+			AdWilEnd = yes
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_5 = yes
+			AdWilEnd = yes
+		}
+	} 
+
+	IRE_MIS_1_2 = {
+		days_mission_timeout = 200
+		selectable_mission = yes
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_1_2_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal2 = infrastructure_level }
+						check_variable = { IRE.AdWilgoal2 < infrastructure_level }
+					}
+				}	
+			}
+		}
+		allowed = {
+			always = no
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_5 = yes
+			AdWilEnd = yes
+		}
+		complete_effect = {
+			AdWilEnd = yes
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			add_to_variable = { GDP = 2 }
+			IRE_Investor_Presence_plus_5 = yes
+			custom_effect_tooltip = gdp_increase_tt	
+		}
+	}
+
+	IRE_MIS_1_3 = {
+		days_mission_timeout = 300
+		selectable_mission = yes
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_stage_1_3_tt
+				any_owned_state = {
+					has_state_flag = AdWilGoal
+					OR = {
+						check_variable = { IRE.AdWilgoal3 = infrastructure_level }
+						check_variable = { IRE.AdWilgoal3 < infrastructure_level }
+					}
+				}	
+			}
+		}
+
+		allowed = {
+			always = no
+		}
+		cancel_trigger = {
+			check_variable = { IRE.abandoned_project = 1 }
+		}
+		timeout_effect = {
+			IRE_SE_AdWil_GerTrust_minus_5 = yes
+			AdWilEnd = yes
+		}
+		complete_effect = {
+			AdWilEnd = yes
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			add_to_variable = { GDP = 4 }
+			IRE_Investor_Presence_plus_10 = yes
+			custom_effect_tooltip = gdp_increase_tt	
+		}
+	}
+
+	
+
+	IRE_MIS_efficiency_up = {
+		days_mission_timeout = 50
+		selectable_mission = no
+		available = {
+			always = yes
+		}
+		allowed = {
+			always = no
+		}
+		modifier = {
+			production_speed_buildings_factor = 0.1
+		}
+		days_remove = 50
+	}
+
+	IRE_show_hide_approval = {
+		complete_effect = {
+			if = {
+				limit = { has_variable = show_IRE_approval }
+				clear_variable = show_IRE_approval
+				custom_effect_tooltip = show_IRE_approval_tt
+			}
+			else = {
+				set_variable = { show_IRE_approval = 1 }
+				custom_effect_tooltip = show_IRE_approval_tt
+			}
+		}
+	}
+	IRE_dinner_with_corporates = { ##Invite German corporate members to have a dinner
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		days_re_enable = 50
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_plus_5 = yes
+			IRE_Investor_Presence_plus_1 = yes
+		}
+	}
+	IRE_privatize = { ##Privatize factories and sell them to German corporates
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		modifier = {
+			consumer_goods_factor = 0.05
+			production_factory_max_efficiency_factor = -0.05
+		}
+		days_remove = 30
+		ai_will_do = {
+			factor = 0
+		}
+		days_re_enable = 75
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_plus_20 = yes
+			IRE_Investor_Presence_plus_10 = yes
+		}
+	}
+	IRE_lower_tariffs = { ##lower tariffs for German corporates
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		modifier = {
+			consumer_goods_factor = 0.05
+			industrial_capacity_factory = -0.1
+		}
+		days_remove = 30
+		ai_will_do = {
+			factor = 0
+		}
+		days_re_enable = 75
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_plus_30 = yes
+			IRE_Investor_Presence_plus_20 = yes
+		}
+	}
+	IRE_raise_tax = { ##Raise taxes for German corporates
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		modifier = {
+			industrial_capacity_factory = 0.2
+			production_factory_max_efficiency_factor = 0.1
+		}
+		days_remove = 15
+		days_re_enable = 50
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_minus_20 = yes
+			IRE_Investor_Presence_minus_10 = yes
+		}
+	}
+	IRE_raise_tariff = { ##Raise tariffs for German corporates
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		modifier = {
+			consumer_goods_factor = -0.05
+		}
+		days_remove = 5
+		days_re_enable = 50
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_minus_30 = yes
+			IRE_Investor_Presence_minus_10 = yes
+		}
+	}
+	IRE_nationalize = { ##Nationalize some factories that we previously gave to German corporates
+		available = {
+		}
+		visible = {
+			check_variable = { show_IRE_approval > 0 }
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		modifier = {
+			consumer_goods_factor = -0.05
+			production_factory_max_efficiency_factor = 0.05
+		}
+		days_remove = 5
+		days_re_enable = 50
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_minus_40 = yes
+			IRE_Investor_Presence_minus_10 = yes
+		}
+	}
+	IRE_spend_approval = { ##10 app = 5 fund
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_GerTrust_10_tt
+				check_variable = { AdWilGerTrust > 0.1 }
+			}
+		}
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 0
+		}
+		days_re_enable = 1
+		complete_effect = {
+			IRE_SE_AdWil_GerTrust_minus_10 = yes
+			IRE_SE_AdWil_AvFund_plus_5 = yes
+			IRE_Investor_Presence_plus_2 = yes
+		}
+	}
+}
+IRE_DECCAT_MOG = {
+	#IRE_MOG_reduce_support = {
+	#	available = {
+	#		always = no
+	#	}
+	#	activation = {has_country_flag = IRE_bill_in_progress }
+	#	is_good = no
+	#	days_mission_timeout = 25
+	#	timeout_effect = {
+	#		IRE_MOG_reduce_support_random = yes
+	#		IRE_SE_MOG_tds_fry_calc = yes
+	#	}
+	#}
+
+	IRE_DEC_radicalize_bill_left_wing_bill = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRE_MOG_bill_changed_tt
+				NOT = { has_country_flag = Bill_Changed }
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = IRE_bill_complete }
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = Bill_Deradicalized }
+			OR = {
+				check_variable = { ARR_mog_bil_stats^0 = 2 }
+				check_variable = { ARR_mog_bil_stats^0 = 1 }
+			}
+			check_variable = { ARR_mog_bil_stats^1 = -1 }
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			set_country_flag = { flag = Bill_Changed value = 1 days = 14 }
+			IRE_MOG_bill_radicalization = yes
+			add_to_variable = { ARR_mog_tds_fry^0 = 2 }
+			add_to_variable = { ARR_mog_tds_fry^1 = 3 }
+			add_to_variable = { ARR_mog_tds_fry^2 = -1 }
+			add_to_variable = { ARR_mog_tds_fry^3 = -2 }
+			IRE_SE_MOG_tds_fry_calc = yes
+			custom_effect_tooltip = bill_pro_left_anti_right.tt
+		}
+	}
+	IRE_DEC_radicalize_bill_right_wing_bill = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRE_MOG_bill_changed_tt
+				NOT = { has_country_flag = Bill_Changed }
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = IRE_bill_complete }
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = Bill_Deradicalized }
+			OR = {
+				check_variable = { ARR_mog_bil_stats^0 = 2 }
+				check_variable = { ARR_mog_bil_stats^0 = 1 }
+			}
+			check_variable = { ARR_mog_bil_stats^1 = 1 }
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			set_country_flag = { flag = Bill_Changed value = 1 days = 14 }
+			IRE_MOG_bill_radicalization = yes
+			add_to_variable = { ARR_mog_tds_fry^0 = -1 }
+			add_to_variable = { ARR_mog_tds_fry^1 = -2 }
+			add_to_variable = { ARR_mog_tds_fry^2 = 2 }
+			add_to_variable = { ARR_mog_tds_fry^3 = 3 }
+			IRE_SE_MOG_tds_fry_calc = yes
+			custom_effect_tooltip = bill_pro_right_anti_left.tt
+		}
+	}
+	IRE_DEC_deradicalize_bill_right_wing_bill = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRE_MOG_bill_changed_tt
+				NOT = { has_country_flag = Bill_Changed }
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = IRE_bill_complete }
+			}
+		}
+		visible = {
+			OR = {
+				check_variable = { ARR_mog_bil_stats^0 = 2 }
+				check_variable = { ARR_mog_bil_stats^0 = 3 }
+			}
+			check_variable = { ARR_mog_bil_stats^1 = 1 }
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		days_re_enable = 1
+		complete_effect = {
+			set_country_flag = { flag = Bill_Changed value = 1 days = 14 }
+			set_country_flag = Bill_Deradicalized
+			IRE_MOG_bill_deradicalization = yes
+			add_to_variable = { ARR_mog_tds_fry^0 = 2 }
+			add_to_variable = { ARR_mog_tds_fry^1 = 3 }
+			add_to_variable = { ARR_mog_tds_fry^2 = -1 }
+			add_to_variable = { ARR_mog_tds_fry^3 = -2 }
+			IRE_SE_MOG_tds_fry_calc = yes
+			custom_effect_tooltip = bill_pro_left_anti_right.tt
+			custom_effect_tooltip = bill_no_reradicalize.tt
+		}
+	}
+	IRE_DEC_deradicalize_bill_left_wing_bill = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRE_MOG_bill_changed_tt
+				NOT = { has_country_flag = Bill_Changed }
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = IRE_bill_complete }
+			}
+		}
+		visible = {
+			OR = {
+				check_variable = { ARR_mog_bil_stats^0 = 2 }
+				check_variable = { ARR_mog_bil_stats^0 = 3 }
+			}
+			check_variable = { ARR_mog_bil_stats^1 = -1 }
+		}
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		days_re_enable = 1
+		complete_effect = {
+			set_country_flag = { flag = Bill_Changed value = 1 days = 14 }
+			set_country_flag = Bill_Deradicalized
+			IRE_MOG_bill_deradicalization = yes
+			add_to_variable = { ARR_mog_tds_fry^0 = -1 }
+			add_to_variable = { ARR_mog_tds_fry^1 = -2 }
+			add_to_variable = { ARR_mog_tds_fry^2 = 2 }
+			add_to_variable = { ARR_mog_tds_fry^3 = 3 }
+			IRE_SE_MOG_tds_fry_calc = yes
+			custom_effect_tooltip = bill_pro_right_anti_left.tt
+			custom_effect_tooltip = bill_no_reradicalize.tt
+		}
+	}
+	IRE_bill_stats = {
+		visible = {
+			original_tag = IRE
+			has_country_flag = IRE_bill_in_progress
+		}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRE_bill_stats"
+		}
+	}
+}
+IRE_funding_category = {
+	IRE_fund_civfac = { ##Build civfac
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_MinFunding_2_tt
+				OR = {
+					check_variable = { IRE.AdWilAvFund > 2 }
+					check_variable = { IRE.AdWilAvFund = 2 }
+				}
+			}
+		}
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		days_re_enable = 1
+		complete_effect = {
+			IRE_SE_AdWil_AvFund_minus_2 = yes
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_to_variable = { IRE.offsiteciv = -1 }
+		}
+	}
+	IRE_fund_milfac = { ##Build milfac
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_MinFunding_2_tt
+				OR = {
+					check_variable = { IRE.AdWilAvFund > 2 }
+					check_variable = { IRE.AdWilAvFund = 2 }
+				}
+			}
+		}
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		days_re_enable = 1
+		complete_effect = {
+			IRE_SE_AdWil_AvFund_minus_2 = yes
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_to_variable = { IRE.offsitemil = -1 }
+		}
+	}
+	IRE_fund_dock = { ##Build dockyard duh
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AdWil_MinFunding_2_tt
+				OR = {
+					check_variable = { IRE.AdWilAvFund > 2 }
+					check_variable = { IRE.AdWilAvFund = 2 }
+				}
+			}
+		}
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1
+		}
+		days_re_enable = 1
+		complete_effect = {
+			IRE_SE_AdWil_AvFund_minus_2 = yes
+			add_offsite_building = { type = dockyard level = 1 }
+			add_to_variable = { IRE.offsitedock = -1 }
+		}
+	}
+}
+
+IRE_arms_crisis_groups = { 
+	IRE_arms_crisi_repress_UVF = { 
+		custom_cost_trigger = { command_power > 5 }
+		custom_cost_text = cp_more_than_5
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				check_variable = { UVF_Power > 1 }
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -5
+			}
+			IRE_Decrease_UVF_Power = yes
+			IRE_Increase_UVF_Anger = yes
+		}
+	}
+	IRE_arms_crisi_repress_IRA = { 
+		custom_cost_trigger = { command_power > 5 }
+		custom_cost_text = cp_more_than_5
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				check_variable = { IRA_Power > 1 }
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -5
+			}
+			IRE_Decrease_IRA_Power = yes
+			IRE_Increase_IRA_Anger = yes
+		}
+	}
+
+	IRE_arms_crisi_repress_ICG = { 
+		custom_cost_trigger = { command_power > 5 }
+		custom_cost_text = cp_more_than_5
+		visible = {
+			always = yes
+		}
+		cost = 0
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				check_variable = { ICG_Power > 1 }
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -5
+			}
+			IRE_Decrease_ICG_Power = yes
+			IRE_Increase_ICG_Anger = yes
+		}
+	}
+}
+
+
+
+IRE_arms_crisis_NIC = {
+
+	IRE_arms_crisi_send_weapons_to_NIC = { 
+		custom_cost_trigger = {
+			has_equipment = {
+				infantry_equipment > 99
+			}
+			has_political_power > 19
+		}
+		custom_cost_text = 20_pp_100_gun
+		visible = {
+			always = yes
+		}
+		cost = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				check_variable = { IRE_Groups_NIC_Opinion < 100 }
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			IRE_Increase_NIC_Opinion = yes
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -100
+				}
+				add_political_power = -20
+			}
+		}
+	}
+
+	IRE_arms_crisi_raise_officer_salaries = { 
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+		cost = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				OR = {
+					check_variable = { IRE_Groups_NIC_Opinion < 100 }
+					check_variable = { IRE_Groups_NIC_Corruption > 1 }
+				}
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			IRE_Increase_NIC_Opinion = yes
+			IRE_Decrease_NIC_Corruption = yes
+		}
+	}
+	
+	IRE_arms_crisi_root_out_corruption = { 
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+		cost = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				OR = {
+					check_variable = { IRE_Groups_NIC_Opinion < 100 }
+					check_variable = { IRE_Groups_NIC_Corruption > 1 }
+				}
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						IRE_Groups_NIC_Corruption > 40
+					}
+				}
+				IRE_Decrease_NIC_Opinion = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						IRE_Groups_NIC_Corruption < 41
+					}
+				}
+				IRE_Increase_NIC_Opinion = yes
+			}
+			IRE_Decrease_NIC_Corruption = yes
+		}
+	}
+}
+IRE_war_in_ulster = {
+	IRE_crush_the_UVF = {
+		allowed = { tag = IRE }
+
+		icon = decision_generic_assault
+
+		available = {  
+			custom_trigger_tooltip = {
+				NOT = {
+					has_country_flag = IRE_UVF_uprising
+				}
+				tooltip = IRE_UVF_crushed.tt
+			}
+		}
+		activation = {
+			always = no
+		}
+
+		visible = {
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 60
+		is_good = no
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout IRE_crush_the_UVF"
+			custom_effect_tooltip = IRE_crush_uvf_tt
+			hidden_effect = {
+				white_peace = ULS
+				country_event = { id = IRE_crisis.40 }
+				ULS = {
+					set_cosmetic_tag = ULS_orange_state
+					set_political_party = {
+						ideology = ultranational_socialism
+						popularity = 0
+					}
+					create_country_leader = {
+						name = "Ian Paisley"
+						desc = "POLITICS_Ian_Paisley"
+						picture = "Ian_Paisely.dds"
+						expire = "1995.1.1"
+						ideology = authoritarian_democrat_subtype
+						traits = {}
+					}
+					set_politics = { ruling_party = authoritarian_democrat }
+					set_party_name = {
+						ideology = authoritarian_democrat
+						long_name = ULS_DUP_long
+						name = ULS_DUP
+					}
+				}
+			}
+		}
+	}
+
+	IRE_negotiate_with_twomey = {
+		allowed = { tag = IRE }
+
+		icon = decision_generic_assault
+
+		available = {
+			custom_trigger_tooltip = {
+				NOT = {
+					has_country_flag = IRE_SE_uprising
+				}
+				tooltip = IRE_IRA_crushed.tt
+			}
+		}
+		activation = {
+			always = no
+		}
+
+		visible = {
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 120
+		is_good = no
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout negotiate_with_twomey"
+			hidden_effect = {
+				country_event = {
+					id = IRE_twomey.1
+				}
+			}
+			custom_effect_tooltip = IRE_se_takeover.tt
+		}
+	}
+
+	IRE_crush_the_SE = {
+		allowed = { tag = IRE }
+
+		icon = decision_generic_assault
+
+		available = {
+			custom_trigger_tooltip = {
+				ULS = { exists = no }
+				tooltip = IRE_IRA_crushed.tt
+			}
+		}
+		activation = {
+			always = no
+		}
+
+		visible = {
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 60
+		is_good = no
+		fire_only_once = yes
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout IRE_crush_the_SE"
+			hidden_effect = {
+				white_peace = ULS
+				country_event = {
+					id = IRE_twomey.1
+				}
+			}
+			custom_effect_tooltip = IRE_se_takeover.tt
+		}
+	}
+}

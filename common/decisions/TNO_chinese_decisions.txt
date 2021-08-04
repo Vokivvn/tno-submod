@@ -1,0 +1,4290 @@
+#Chinese decisions, by Sino, Valrin, BFK, and Wendell.
+
+CHI_gov_legitimacy_category = {
+	CHI_update_faction_opinion_weekly = {
+		allowed = {
+			original_tag = CHI
+		}
+		
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+	
+		activation = {
+			always = yes
+		}
+	
+		is_good = yes 
+	
+		days_mission_timeout = 7
+	
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_update_faction_opinion_weekly mission timer elapsed" 
+			CHI_update_opinion_change_rate = yes
+			CHI_update_pro_japan_opinion = yes
+			CHI_update_old_guard_opinion = yes
+			CHI_update_reformist_opinion = yes
+			CHI_Update_Leg_Yuan_Modifier = yes
+			hidden_effect = {
+				activate_mission = CHI_update_faction_opinion_weekly
+			}
+		}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_update_faction_opinion_weekly"
+		}
+	}
+
+  	CHI_pro_japan_takeover = {
+		allowed = {
+			original_tag = CHI
+		}
+		
+		activation = {
+			check_variable = {
+				var = faction_pro_japan_influence
+				value = 0.80
+				compare = greater_than_or_equals 
+			}
+			check_variable = {
+				faction_pro_japan_opinion < 50
+			}
+			CHI_is_not_in_crisis = yes
+		}
+	
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_pro_japan_takeover_trigger_tt_1
+					check_variable = {
+					  faction_pro_japan_influence < 0.70
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_pro_japan_takeover_trigger_tt_2
+					check_variable = {
+						var = faction_pro_japan_opinion
+						value = 60
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_pro_japan_takeover_trigger_tt_3
+					AND = {
+						check_variable = {faction_pro_japan_influence < faction_reformist_influence}
+						check_variable = {faction_pro_japan_influence < faction_old_guard_influence}
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_takeover_trigger_tt_crisis
+				CHI_is_not_in_crisis = no
+			}
+		}
+	
+		is_good = no
+		fire_only_once = no
+	
+		days_mission_timeout = 7
+	
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission timeout CHI_pro_japan_takeover"
+			country_event = {id = chi.2010}
+		}    
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission completed CHI_pro_japan_takeover"
+		}
+ 	}
+
+  	CHI_old_guard_takeover = {
+		allowed = {
+			original_tag = CHI
+		}
+		 
+		activation = {
+			check_variable = {
+				var = faction_old_guard_influence
+				value = 0.60
+				compare = greater_than_or_equals 
+			}
+			check_variable = {
+				faction_old_guard_opinion < 15
+			}
+			CHI_is_not_in_crisis = yes
+		}
+	
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_old_guard_takeover_trigger_tt_1
+					check_variable = {
+						faction_old_guard_influence < 0.50
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_old_guard_takeover_trigger_tt_2
+					check_variable = {
+						var = faction_old_guard_opinion
+						value = 25
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_old_guard_takeover_trigger_tt_3
+					AND = {
+						check_variable = {faction_old_guard_influence < faction_pro_japan_influence}
+						check_variable = {faction_old_guard_influence < faction_reformist_influence}
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_takeover_trigger_tt_crisis
+				CHI_is_not_in_crisis = no
+			}
+		}
+	
+		is_good = no
+		fire_only_once = no
+	
+		days_mission_timeout = 7
+	
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission timeout CHI_old_guard_takeover"
+			country_event = {id = chi.2001}
+		}    
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission completed CHI_old_guard_takeover"
+		}
+	}
+
+  	CHI_reformists_takeover = {
+		allowed = {
+			original_tag = CHI
+		}
+		
+		activation = {
+			check_variable = {
+				var = faction_reformist_influence
+				value = 0.80
+				compare = greater_than_or_equals 
+			}
+			OR = {
+				check_variable = {
+					faction_reformist_influence > faction_pro_japan_influence
+				}
+				check_variable = {
+					faction_reformist_influence > faction_old_guard_influence
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+	
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_reformists_takeover_trigger_tt_1
+					check_variable = {faction_reformist_influence < 0.70}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_reformists_takeover_trigger_tt_2
+					AND = {
+						check_variable = {faction_reformist_influence < faction_pro_japan_influence}
+						check_variable = {faction_reformist_influence < faction_old_guard_influence}
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_takeover_trigger_tt_crisis
+				CHI_is_not_in_crisis = no
+			}
+		}
+	
+		is_good = no
+		fire_only_once = no
+	
+		days_mission_timeout = 7
+	
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission timeout CHI_reformists_takeover"
+			country_event = {id = chi.2002}
+		}    
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission completed CHI_reformists_takeover"
+		}
+  	}
+
+	CHI_show_hide_japanophile_interactions = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+
+		}
+
+		days_re_enable = -1
+		fire_only_once = no
+
+		complete_effect = {
+			if = {
+				limit = {
+					has_country_flag = CHI_japanophile_visible
+				}
+				clr_country_flag = CHI_japanophile_visible
+				custom_effect_tooltip = CHI_japanophile_hide
+			}
+			else = {
+				set_country_flag = CHI_japanophile_visible
+				custom_effect_tooltip = CHI_japanophile_show
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				has_country_flag = CHI_japanophile_visible
+			}
+		}
+	}
+
+	CHI_Increase_JAP_Resource_Shipments = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_japanophile_visible
+		}
+		available = {
+
+		}
+
+		fire_only_once = no
+		cost = 50
+		days_re_enable = 540
+		days_remove = 360
+		fixed_random_seed = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Increase_JAP_Resource_Shipments"
+			add_to_variable = {faction_pro_jap_influence = 0.025}
+			add_to_variable = {faction_pro_jap_opinion = 10}
+			add_to_variable = {faction_reformist_opinion = -15}
+			add_to_variable = {faction_old_guard_opinion = -10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			JAP = {
+				multiply_variable = {GDP = 1.005}
+			}
+			set_variable = {CHI_extra_resource_shipments_profit_calc = GDP}
+			multiply_variable = {CHI_extra_resource_shipments_profit_calc = 0.01}
+			add_to_variable = {misc_income = CHI_extra_resource_shipments_profit_calc}
+			custom_effect_tooltip = CHI_Increase_JAP_Resource_Shipments_complete
+			random_owned_state = {
+				limit = {
+					OR = {
+						has_resources_amount = {
+							resource = oil
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = rubber
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = steel
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = aluminium
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = tungsten
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = chromium
+							amount > 0
+						}
+					}
+				}
+				set_state_flag = CHI_state_extra_trade_rights
+				CHI = {
+					give_resource_rights = {receiver = JAP state = PREV}
+				}
+			}
+			random_owned_state = {
+				limit = {
+					OR = {
+						has_resources_amount = {
+							resource = oil
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = rubber
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = steel
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = aluminium
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = tungsten
+							amount > 0
+						}
+						has_resources_amount = {
+							resource = chromium
+							amount > 0
+						}
+					}
+					NOT = {
+						state = 606
+						state = 600
+						state = 613
+						state = 1020
+						state = 1021
+						state = 615
+						state = 608
+					}
+				}
+				set_state_flag = CHI_state_extra_trade_rights
+				CHI = {
+					give_resource_rights = {receiver = JAP state = PREV}
+				}
+			}
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		targeted_modifier = {
+			tag = JAP
+			extra_trade_to_target_factor = 0.2
+		}
+
+		modifier = {
+			consumer_goods_factor = -0.05
+		}
+
+		remove_effect = {
+			every_owned_state = {
+				limit = {
+					has_state_flag = CHI_state_extra_trade_rights
+				}
+				JAP = {
+					remove_resource_rights = PREV
+				}
+			}
+			subtract_from_variable = {misc_income = CHI_extra_resource_shipments_profit_calc}
+			clear_variable = CHI_extra_resource_shipments_profit_calc
+		}
+
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = {
+						faction_pro_japan_influence > 0.70
+					}
+					has_active_mission = CHI_pro_japan_takeover
+					AND = {
+						check_variable = {
+							faction_old_guard_opinion < 20
+						}
+						check_variable = {
+							faction_old_guard_influence > 0.60
+						}
+					}
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					faction_pro_japan_opinion < 40
+				}
+				check_variable = {
+					faction_pro_japan_influence < 0.70
+				}
+			}
+		}
+	}
+
+	CHI_Invite_Japanese_Companies = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_japanophile_visible
+		}
+		available = {
+
+		}
+
+		fire_only_once = no
+		cost = 25
+		days_re_enable = 540
+		days_remove = 360
+		fixed_random_seed = no
+
+		complete_effect = {
+			add_to_variable = {faction_pro_japan_opinion = 10}
+			add_to_variable = {faction_reformist_opinion = -10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+			custom_effect_tooltip = CHI_Invite_Japanese_Companies_complete
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			production_speed_buildings_factor = 0.05
+			industrial_capacity_factory = 0.05
+		}
+
+		remove_effect = {
+			random_list = {
+				25 = {
+					multiply_variable = {GDP = 1.005}
+					custom_effect_tooltip = CHI_Invite_Japanese_Companies_econ_1
+				}
+				25 = {
+					multiply_variable = {GDP = 1.005}
+					add_to_variable = {GDP_growth = 0.003}
+					custom_effect_tooltip = CHI_Invite_Japanese_Companies_econ_2
+				}
+				25 = {
+					multiply_variable = {GDP = 1.01}
+					add_to_variable = {GDP_growth = 0.003}
+					custom_effect_tooltip = CHI_Invite_Japanese_Companies_econ_3
+				}
+				25 = {
+					multiply_variable = {GDP = 1.01}
+					add_to_variable = {GDP_growth = 0.005}
+					custom_effect_tooltip = CHI_Invite_Japanese_Companies_econ_4
+				}
+			}
+			TNO_worsen_industrial_expertise_low = yes #coded with a script
+		}
+	}
+
+	CHI_Sabotage_Japanophiles = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_japanophile_visible
+		}
+		available = {
+
+		}
+
+		cost = 100
+		days_re_enable = 180
+		fire_only_once = no
+
+		complete_effect = {
+			add_to_variable = {faction_pro_japan_influence = -0.10}
+			add_to_variable = {faction_pro_japan_opinion = -20}
+			add_to_variable = {faction_reformist_opinion = 5}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Sabotage_Japanophiles_complete
+			add_opinion_modifier = {
+				target = JAP
+				modifier = CHI_sabotaged_japanophiles
+			}
+			reverse_add_opinion_modifier = {
+				target = JAP
+				modifier = CHI_sabotaged_japanophiles
+			}
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = {
+					faction_pro_japan_opinion > 0.65
+				}
+			}
+			modifier = {
+				factor = 2
+				check_variable = {
+					faction_pro_japan_opinion > 0.70
+				}
+			}
+			modifier = {
+				factor = 5
+				check_variable = {
+					faction_pro_japan_opinion > 0.75
+				}
+			}
+		}
+	}
+
+	CHI_Pursue_Inter_Sphere_Cooperation = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_japanophile_visible
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_Pursue_Inter_Sphere_Cooperation_trigger_tt_1
+				check_variable = {
+					var = faction_pro_japan_influence 
+					value = 0.60
+					compare = greater_than_or_equals
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_Pursue_Inter_Sphere_Cooperation_trigger_tt_2
+				check_variable = {
+					faction_old_guard_influence < 0.40
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_Pursue_Inter_Sphere_Cooperation_trigger_tt_3
+				check_variable = {
+					faction_reformist_influence < 0.40
+				}
+			}
+		}
+
+		fire_only_once = no
+		cost = 50
+		days_re_enable = 720
+
+		complete_effect = {
+			add_to_variable = {faction_pro_japan_influence = 0.10}
+			add_to_variable = {faction_pro_japan_opinion = 15}
+			add_to_variable = {faction_reformist_opinion = -25}
+			add_to_variable = {faction_old_guard_opinion = -10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Pursue_Inter_Sphere_Cooperation_complete
+			country_event = {id = chi.2006}
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 20
+				check_variable = {
+					faction_pro_japan_influence < 0.65
+				}
+				check_variable = {
+					faction_pro_japan_opinion < 20
+				}
+			}
+		}
+	}
+
+	CHI_Japanophiles_in_Government = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_japanophile_visible
+		}
+		available = {
+			NOT = {
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = CHI_Japanophiles_in_Government_trigger_tt_1
+						has_decision = CHI_Reformists_in_Cabinet
+					}
+					custom_trigger_tooltip = {
+						tooltip = CHI_Japanophiles_in_Government_trigger_tt_2
+						has_decision = CHI_Old_Guard_in_Cabinet
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+		cost = 100
+		days_re_enable = 720
+		days_remove = 360
+
+		complete_effect = {
+			add_to_variable = {faction_pro_japan_opinion = 15}
+			add_to_variable = {faction_pro_japan_influence = 0.15}
+			add_to_variable = {faction_pro_japan_modifier_increase = 0.20}
+			add_to_variable = {faction_pro_japan_modifier_decrease = -0.20}
+			add_to_variable = {faction_old_guard_influence = -0.05}
+			add_to_variable = {faction_old_guard_opinion = -5}
+			add_to_variable = {faction_old_guard_modifier_increase = -0.10}
+			add_to_variable = {faction_reformist_influence = -0.05}
+			add_to_variable = {faction_reformist_opinion = -20}
+			add_to_variable = {faction_reformist_modifier_increase = -0.20}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Japanophiles_in_Government_complete
+			CHI_update_opinion_change_rate = yes
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.10
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			add_to_variable = {faction_pro_japan_modifier_increase = -0.20}
+			add_to_variable = {faction_pro_japan_modifier_decrease = 0.20}
+			add_to_variable = {faction_reformist_modifier_increase = 0.20}
+			add_to_variable = {faction_old_guard_modifier_increase = 0.10}
+			custom_effect_tooltip = CHI_Japanophiles_in_Government_remove
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					faction_pro_japan_opinion < 40
+				}
+				check_variable = {
+					faction_pro_japan_influence < 0.40
+				}
+			}
+			modifier = {
+				add = 10
+				check_variable = {
+					faction_reformist_influence > 0.65
+				}
+			}
+			modifier = {
+				factor = 2
+				check_variable = {
+					faction_reformist_influence > 0.70
+				}
+			}
+			modifier = {
+				factor = 3
+				check_variable = {
+					faction_reformist_influence > 0.75
+				}
+			}
+			modifier = {
+				factor = 2
+				check_variable = {
+					faction_pro_japan_opinion < 30
+				}
+				check_variable = {
+					faction_pro_japan_influence < 0.40
+				}
+			}
+			modifier = {
+				factor = 3
+				check_variable = {
+					faction_pro_japan_opinion < 15
+				}
+				check_variable = {
+					faction_pro_japan_influence < 0.50
+				}
+			}
+		}
+	}
+
+	CHI_show_hide_old_guard_interactions = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+
+		}
+
+		days_re_enable = -1
+		fire_only_once = no
+
+		complete_effect = {
+			if = {
+				limit = {
+					has_country_flag = CHI_old_guard_visible
+				}
+				clr_country_flag = CHI_old_guard_visible
+				custom_effect_tooltip = CHI_old_guard_hide
+			}
+			else = {
+				set_country_flag = CHI_old_guard_visible
+				custom_effect_tooltip = CHI_old_guard_show
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				has_country_flag = CHI_old_guard_visible
+			}
+		}
+	}
+
+	CHI_Bribe_Old_Guard = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_old_guard_visible
+		}
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Bribe_Old_Guard_trigger_tt_1
+					check_variable = {money_reserves > 100}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Bribe_Old_Guard_trigger_tt_2
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		cost = 15
+		days_re_enable = 360
+		days_remove = 360
+
+		complete_effect = {
+			add_to_variable = {money_reserves = -100}
+			if = {
+				limit = {
+					check_variable = {money_reserves < 0}
+				}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {money_reserves = 0}
+			}
+			add_to_variable = {faction_old_guard_opinion = 10}
+			add_to_variable = {faction_reformist_opinion = -2.5}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Bribe_Old_Guard_complete
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.025
+		}
+
+		ai_will_do = {
+			factor = 0
+
+			modifier = {
+				add = 50
+				check_variable = {
+					faction_old_guard_opinion < 35
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					faction_old_guard_opinion < 25
+				}
+			}
+
+			modifier = {
+				factor = 1000
+				check_variable = {
+					faction_old_guard_opinion < 15
+				}
+			}			
+		}
+	}
+
+	CHI_Limit_Old_Guard_Influence = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_old_guard_visible
+		}
+		available = {
+			
+		}
+
+		fire_only_once = no
+		cost = 150
+		days_re_enable = 360
+		days_remove = 240
+
+		complete_effect = {
+			clamp_variable = {
+				var = faction_old_guard_influence
+				max = 0.60
+				min = 0
+			}
+			if = {
+				limit = {
+					check_variable = {
+						faction_old_guard_influence < 0.70
+					}
+				}
+				add_to_variable = {
+					faction_old_guard_opinion = -10
+					tooltip = CHI_Limit_Old_Guard_Influence_complete_1
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						faction_old_guard_influence < 0.75
+					}
+				}
+				add_to_variable = {
+					faction_old_guard_opinion = -20
+					tooltip = CHI_Limit_Old_Guard_Influence_complete_2
+				}
+			}
+			else = {
+				add_to_variable = {
+					faction_old_guard_opinion = -30
+					tooltip = CHI_Limit_Old_Guard_Influence_complete_3
+				}
+			}
+			add_to_variable = {faction_reformist_influence = 0.05}
+			add_to_variable = {faction_pro_japan_influence = 0.05}
+			add_to_variable = {faction_old_guard_modifier_increase = -0.10}
+			add_to_variable = {faction_old_guard_modifier_decrease = 0.10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Limit_Old_Guard_Influence_complete
+			CHI_update_opinion_change_rate = yes
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.35
+			stability_factor = -0.10
+			consumer_goods_factor = 0.10
+		}
+
+		remove_effect = {
+			add_to_variable = {faction_old_guard_modifier_increase = 0.10}
+			add_to_variable = {faction_old_guard_modifier_decrease = -0.10}
+			custom_effect_tooltip = CHI_Limit_Old_Guard_Influence_remove
+		}
+
+		ai_will_do = {
+			factor = 0
+
+			modifier = {
+				add = 50
+				check_variable = {faction_old_guard_influence > 0.55}
+				check_variable = {faction_old_guard_opinion < 15}
+			}
+
+			modifier = {
+				factor = 3
+				check_variable = {faction_old_guard_influence > 0.60}
+			}
+
+			modifier = {
+				factor = 5
+				check_variable = {faction_old_guard_influence > 0.70}
+			}
+		}
+	}
+
+	CHI_Support_Old_Guard_Interests = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_old_guard_visible
+		}
+		available = {
+			
+		}
+
+		fire_only_once = no
+		cost = 50
+		days_re_enable = 720
+		days_remove = 540
+
+		complete_effect = {
+			add_to_variable = {faction_old_guard_opinion = 10}
+			add_to_variable = {faction_old_guard_influence = 0.10}
+			add_to_variable = {faction_reformist_opinion = -2.5}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			set_variable = {calc_og_support_costs = GDP}
+			multiply_variable = {calc_og_support_costs = 0.01}
+			add_to_variable = {misc_costs = calc_og_support_costs}
+			add_to_variable = {GDP_growth = -0.005}
+			custom_effect_tooltip = CHI_Support_Old_Guard_Interests_complete
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			industrial_capacity_factory = -0.15
+			production_speed_buildings_factor = -0.15
+			production_factory_max_efficiency_factor  = -0.15
+		}
+
+		remove_effect = {
+			subtract_from_variable = {misc_costs = calc_og_support_costs}
+			clear_variable = calc_og_support_costs
+			custom_effect_tooltip = CHI_Support_Old_Guard_Interests_remove
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 30
+				check_variable = {faction_old_guard_opinion < 35}
+			}
+			modifier = {
+				factor = 2
+				check_variable = {faction_old_guard_opinion < 25}
+			}
+			modifier = {
+				factor = 5
+				check_variable = {faction_old_guard_opinion < 15}
+			}
+		}
+	}
+
+	CHI_Clamp_Down_Corruption = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_old_guard_visible
+		}
+		available = {
+			
+		}
+
+		days_re_enable = 360
+		days_remove = 360
+		fire_only_once = no
+
+		complete_effect = {
+			add_to_variable = {faction_old_guard_opinion = -15}
+			add_to_variable = {faction_old_guard_modifier_increase = -0.30}
+			add_to_variable = {faction_old_guard_modifier_decrease = 0.30}
+			add_to_variable = {faction_reformist_opinion = 10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Clamp_Down_Corruption_complete
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.10
+			production_speed_buildings_factor = 0.10
+			consumer_goods_factor = -0.05
+			political_power_gain = -0.25
+		}
+
+		remove_effect = {
+			add_to_variable = {faction_old_guard_modifier_increase = 0.30}
+			add_to_variable = {faction_old_guard_modifier_decrease = -0.30}
+			custom_effect_tooltip = CHI_Clamp_Down_Corruption_remove	
+		}
+
+		ai_will_do = {
+			factor = 50 
+
+			modifier = {
+				factor = 0
+				check_variable = {faction_old_guard_influence > 0.60}
+				check_variable = {faction_old_guard_opinion < 30}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {faction_reformist_opinion < 50}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {faction_old_guard_opinion > 60}
+			}
+		}
+	}
+
+	CHI_Old_Guard_in_Cabinet = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_old_guard_visible
+		}
+		available = {
+			NOT = {
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = CHI_Old_Guard_in_Cabinet_trigger_tt_1
+						has_decision = CHI_Japanophiles_in_Government
+					}
+					custom_trigger_tooltip = {
+						tooltip = CHI_Old_Guard_in_Cabinet_trigger_tt_2
+						has_decision = CHI_Reformists_in_Cabinet
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_re_enable = 720
+		days_remove = 360
+		cost = 100
+
+		complete_effect = {
+			add_to_variable = {faction_old_guard_opinion = 10}
+			add_to_variable = {faction_old_guard_influence = 0.10}
+			add_to_variable = {faction_old_guard_modifier_increase = 0.20}
+			add_to_variable = {faction_old_guard_modifier_decrease = -0.20}
+			add_to_variable = {faction_pro_japan_influence = -0.05}
+			add_to_variable = {faction_pro_japan_opinion = -5}
+			add_to_variable = {faction_pro_japan_modifier_increase = -0.10}
+			add_to_variable = {faction_reformist_influence = -0.05}
+			add_to_variable = {faction_reformist_opinion = -5}
+			add_to_variable = {faction_reformist_modifier_increase = -0.10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Old_Guard_in_Cabinet_complete
+			CHI_update_opinion_change_rate = yes
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			stability_factor = 0.05
+			political_power_gain = -0.20
+		}
+
+		remove_effect = {
+			add_to_variable = {faction_old_guard_modifier_increase = -0.20}
+			add_to_variable = {faction_old_guard_modifier_decrease = 0.20}
+			add_to_variable = {faction_reformist_modifier_increase = 0.10}
+			add_to_variable = {faction_pro_japan_modifier_increase = 0.10}
+			custom_effect_tooltip = CHI_Old_Guard_in_Cabinet_remove
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 20
+				OR = {
+					check_variable = {
+						faction_pro_japan_influence > 0.65
+					}
+					check_variable = {
+						faction_reformist_influence > 0.65
+					}
+				}
+			}
+
+			modifier = {
+				factor = 10
+				OR = {
+					check_variable = {
+						faction_pro_japan_influence > 0.75
+					}
+					check_variable = {
+						faction_reformist_influence > 0.75
+					}
+				}
+			}
+		}
+	}
+
+	CHI_show_hide_reformist_interactions = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+
+		}
+
+		days_re_enable = -1
+		fire_only_once = no
+
+		complete_effect = {
+			if = {
+				limit = {
+					has_country_flag = CHI_reformists_visible
+				}
+				clr_country_flag = CHI_reformists_visible
+				custom_effect_tooltip = CHI_reformists_hide
+			}
+			else = {
+				set_country_flag = CHI_reformists_visible
+				custom_effect_tooltip = CHI_reformists_show
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				has_country_flag = CHI_reformists_visible
+			}
+		}
+	}
+
+	CHI_Encourage_Domestic_Consumption = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_reformists_visible
+		}
+		available = {
+			
+		}
+
+		days_re_enable = 360
+		days_remove = 360
+		cost = 50
+		fire_only_once = no
+
+		complete_effect = {
+			set_variable = {CHI_encourage_domestic_costs = GDP}
+			multiply_variable = {CHI_encourage_domestic_costs = 0.02}
+			add_to_variable = {misc_costs = CHI_encourage_domestic_costs}
+			add_to_variable = {GDP_growth = 0.003}
+			add_to_variable = {faction_reformist_opinion = 10}
+			add_to_variable = {faction_reformist_influence = 0.03}
+			add_to_variable = {faction_pro_japan_opinion = -15}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Encourage_Domestic_Consumption_complete
+		}
+		modifier = {
+			consumer_goods_factor = 0.10
+			industrial_capacity_factory = 0.10
+			production_factory_max_efficiency_factor = 0.10
+		}
+
+		remove_effect = {
+			subtract_from_variable = {misc_costs = CHI_encourage_domestic_costs}
+			clear_variable = CHI_encourage_domestic_costs
+			custom_effect_tooltip = CHI_Encourage_Domestic_Consumption_remove
+		}
+		ai_will_do = {
+			factor = 35
+			modifier = {
+				factor = 0
+				check_variable = {faction_reformist_influence > 0.75}
+			}
+		}
+	}
+
+	CHI_Stamp_Out_Overzealous_Nationalists = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_reformists_visible
+		}
+		available = {
+			
+		}
+
+		days_re_enable = 360
+		days_remove = 360
+		cost = 75
+		fire_only_once = no
+
+		complete_effect = {
+			add_to_variable = {faction_reformist_influence = -0.10}
+			add_to_variable = {faction_reformist_opinion = -20}
+			add_to_variable = {faction_reformist_modifier_increase = -0.25}
+			add_to_variable = {faction_reformist_modifier_decrease = 0.25}
+			add_to_variable = {faction_pro_japan_opinion = 10}
+			add_to_variable = {faction_pro_japan_opinion = 0.05}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Stamp_Out_Overzealous_Nationalists_complete
+		}
+
+		modifier = {
+			war_support_factor = -0.05
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = CHI_Stamp_Out_Overzealous_Nationalists_remove
+			add_to_variable = {faction_reformist_modifier_increase = 0.25}
+			add_to_variable = {faction_reformist_modifier_decrease = -0.25}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 100
+				check_variable = {faction_reformist_influence > 0.65}
+			}
+			modifier = {
+				add = 1000
+				check_variable = {faction_reformist_influence > 0.75}
+			}
+		}
+	}
+
+	CHI_Invest_in_Chinese_Companies = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_reformists_visible
+		}
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_in_Chinese_Companies_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_in_Chinese_Companies_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+		}
+
+		days_re_enable = 1080
+		days_remove = 720
+		fire_only_once = no
+		fixed_random_seed = no
+		cost = 50
+
+		complete_effect = {
+			add_to_variable = {money_reserves = -500}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {money_reserves = 0}
+			}
+			set_variable = {CHI_Invest_Companies_Reformists_costs = GDP}
+			multiply_variable = {CHI_Invest_Companies_Reformists_costs = 0.02}
+			add_to_variable = {misc_costs = CHI_Invest_Companies_Reformists_costs}
+			add_to_variable = {GDP_growth = 0.003}
+			add_to_variable = {faction_reformist_opinion = 10}
+			add_to_variable = {faction_old_guard_opinion = 5}
+			add_to_variable = {faction_pro_japan_opinion = -15}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Invest_Private_Business_complete
+		}
+		modifier = {
+			industrial_capacity_factory = 0.10
+			production_factory_max_efficiency_factor = 0.10
+		}
+		remove_effect = {
+			subtract_from_variable = {misc_costs = CHI_Invest_Companies_Reformists_costs}
+			clear_variable = CHI_Invest_Companies_Reformists_costs
+			random_list = {
+				15 = {
+					multiply_variable = {GDP = 1.003}
+					custom_effect_tooltip = CHI_Invest_Private_Business_remove_1					
+				}
+				25 = {
+					multiply_variable = {GDP = 1.005}
+					custom_effect_tooltip = CHI_Invest_Private_Business_remove_2
+				}
+				30 = {
+					multiply_variable = {GDP = 1.005}
+					add_to_variable = {GDP_growth = 0.001}
+					custom_effect_tooltip = CHI_Invest_Private_Business_remove_3
+				}
+				20 = {
+					multiply_variable = {GDP = 1.005}
+					add_to_variable = {GDP_growth = 0.003}
+					custom_effect_tooltip = CHI_Invest_Private_Business_remove_4
+					hidden_effect = {
+						random_owned_state = {
+							limit = {
+								free_building_slots = {
+									building = industrial_complex
+									size > 1
+								}
+							}
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+							}
+						}
+					}
+				}
+				10 = {
+					multiply_variable = {GDP = 1.01}
+					add_to_variable = {GDP_growth = 0.005}
+					custom_effect_tooltip = CHI_Invest_Private_Business_remove_5
+					hidden_effect = {
+						random_owned_state = {
+							random_list = {
+								50 = {
+									add_building_construction = {
+										type = industrial_complex
+										level = 1
+										instant_build = yes
+									}
+									add_building_construction = {
+										type = industrial_complex
+										level = 1
+										instant_build = yes
+									}
+								}
+								50 = {
+									add_building_construction = {
+										type = arms_factory
+										level = 1
+										instant_build = yes
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 50
+		}	
+	}
+
+	CHI_Modernisation_Awareness_Campaigns = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_reformists_visible
+		}
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Modernisation_Awareness_Campaigns_trigger_tt_1
+					check_variable = {
+						money_reserves > 400
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Modernisation_Awareness_Campaigns_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+		}
+
+		days_re_enable = 360
+		days_remove = 720
+		fire_only_once = no
+		cost = 75
+
+		complete_effect = {
+			add_to_variable = {money_reserves = -400}
+			if = {
+				limit = {
+					check_variable = {money_reserves < 0}
+				}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {money_reserves = 0}
+			}
+			add_to_variable = {misc_costs = 750}
+			add_to_variable = {faction_reformist_opinion = 10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Modernisation_Awareness_Campaigns_complete
+		}
+		modifier = {
+			stability_factor = 0.05
+			war_support_factor = 0.025
+		}
+		remove_effect = {
+			add_to_variable = {misc_costs = -750}
+			random_list = {
+				20 = {	
+					add_to_variable = {academic_base_counter_monthly_change = 1}
+					custom_effect_tooltip = CHI_Modernisation_Awareness_Campaigns_remove_1
+				}
+				20 = {
+			TNO_improve_research_facilities_low = yes #coded with a script
+					custom_effect_tooltip = CHI_Modernisation_Awareness_Campaigns_remove_2
+				}
+				20 = {
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+					custom_effect_tooltip = CHI_Modernisation_Awareness_Campaigns_remove_3
+				}
+				20 = {
+					add_to_variable = {agriculture_counter_monthly_change = 1}
+					custom_effect_tooltip = CHI_Modernisation_Awareness_Campaigns_remove_4
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	CHI_Reformists_in_Cabinet = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_reformists_visible
+		}
+		available = {
+			NOT = {
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = CHI_Reformists_in_Cabinet_trigger_tt_1
+						has_decision = CHI_Japanophiles_in_Government
+					}
+					custom_trigger_tooltip = {
+						tooltip = CHI_Reformists_in_Cabinet_trigger_tt_2
+						has_decision = CHI_Old_Guard_in_Cabinet
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_re_enable = 720
+		days_remove = 360
+		cost = 100
+
+		complete_effect = {
+			add_to_variable = {faction_reformist_opinion = 10}
+			add_to_variable = {faction_reformist_influence = 0.10}
+			add_to_variable = {faction_reformist_modifier_increase = 0.20}
+			add_to_variable = {faction_reformist_modifier_decrease = -0.20}
+			add_to_variable = {faction_pro_japan_influence = -0.10}
+			add_to_variable = {faction_pro_japan_opinion = -15}
+			add_to_variable = {faction_pro_japan_modifier_increase = -0.20}
+			add_to_variable = {faction_old_guard_influence = -0.05}
+			add_to_variable = {faction_old_guard_opinion = -5}
+			add_to_variable = {faction_old_guard_modifier_increase = -0.10}
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			custom_effect_tooltip = CHI_Reformists_in_Cabinet_complete
+			CHI_update_opinion_change_rate = yes
+			CHI_Update_Leg_Yuan_Modifier = yes
+		}
+
+		modifier = {
+			stability_factor = -0.05
+			war_support_factor = 0.05
+			political_power_gain = -0.30
+		}
+
+		remove_effect = {
+			add_to_variable = {faction_reformist_modifier_increase = -0.20}
+			add_to_variable = {faction_reformist_modifier_decrease = 0.20}
+			add_to_variable = {faction_old_guard_modifier_increase = 0.10}
+			add_to_variable = {faction_pro_japan_modifier_increase = 0.20}
+			custom_effect_tooltip = CHI_Reformists_in_Cabinet_remove
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = {
+					faction_reformist_influence > 0.75
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					faction_pro_japan_influence > 0.65
+				}
+			}
+		}
+	}
+
+	CHI_Discuss_Excess_Budget_Possibilities = {#Dam intro decision
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Discuss_Excess_Budget_Possibilities_successful
+				}
+			}
+			#date > 1.1.1963
+			has_country_flag = CHI_budget_excess_discovered
+		}
+		available = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Discuss_Excess_Budget_Possibilities_successful
+				}
+			}
+		}
+
+		days_re_enable = 270
+		fire_only_once = no
+		cost = 250
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_Discuss_Excess_Budget_Possibilities decision taken" 
+			custom_effect_tooltip = CHI_Discuss_Excess_Budget_Possibilities_tt
+			hidden_effect = {
+				set_variable = {dam_start_reformist_calc = faction_reformist_influence}
+				add_to_variable = {dam_start_reformist_calc = 0.10}
+				set_variable = {dam_start_pro_japan_calc = faction_pro_japan_influence}
+				add_to_variable = {dam_start_pro_japan_calc = 0.10}
+				set_variable = {dam_start_old_guard_calc = faction_old_guard_influence}
+				add_to_variable = {dam_start_old_guard_calc = 0.10}
+				if = {
+					limit = {
+						has_country_flag = CHI_dam_introduced
+					}
+					if = {#Japanophiles
+						limit = {
+							check_variable = {
+								var = faction_pro_japan_influence
+								value = dam_start_old_guard_calc
+								compare = greater_than_or_equals
+							}
+							check_variable = {
+								var = faction_pro_japan_influence
+								value = dam_start_reformist_calc
+								compare = greater_than_or_equals
+							}
+						}
+						country_event = {id = chi.2016}
+					}
+					else_if = {#Old Guard
+						limit = {
+							check_variable = {
+								var = faction_old_guard_influence
+								value = dam_start_pro_japan_calc
+								compare = greater_than_or_equals
+							}
+							check_variable = {
+								var = faction_old_guard_influence
+								value = dam_start_reformist_calc
+								compare = greater_than_or_equals
+							}
+						}
+					}
+					else_if = {#Reformists
+						limit = {
+							check_variable = {
+								var = faction_reformist_influence
+								value = dam_start_old_guard_calc
+								compare = greater_than_or_equals
+							}
+							check_variable = {
+								var = faction_reformist_influence
+								value = dam_start_pro_japan_calc
+								compare = greater_than_or_equals
+							}
+						}
+					}
+					else = {#Inconclusive
+
+					}
+				}
+				else = {
+					country_event = {
+						id = chi.2014
+					}
+				}
+			}
+		}
+	}
+	CHI_Discuss_The_Kenpeitai_Exchange = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			
+		}
+	}
+	CHI_Discuss_The_Matter_of_Land_Reform = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			
+		}
+	}
+	CHI_Discuss_Possible_Economic_Police_Force = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			
+		}
+	}
+	CHI_Discuss_Limited_Liberalisation = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			
+		}
+	}
+	CHI_Discuss_Expansion_Of_Infrastructure = {
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			
+		}
+	}
+}
+
+# Mechanic to modernise Chinese Technology
+CHI_tech_modernisation_category = {
+	CHI_self_sufficiency_tick = {
+		allowed = {
+			original_tag = CHI
+		}
+		
+		available = {
+			hidden_trigger = {has_country_flag = CHI_tech_modernisation_complete}
+		}
+
+		activation = {
+			has_completed_focus = CHI_Technology
+			NOT = { has_country_flag = CHI_tech_modernisation_complete }
+		}
+
+		is_good = yes 
+
+		days_mission_timeout = 30
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_self_sufficiency_tick mission timer elapsed" 
+			add_to_variable = {
+				  tech_innovation = innovation_gain
+			}
+	
+			clamp_variable = {
+					var = tech_innovation
+					min = 0
+					max = 1
+			}
+	
+			hidden_effect = {
+			  if = {
+				 limit = {
+					NOT = {has_country_flag = CHI_tech_modernisation_complete}
+				 }
+				 activate_mission = CHI_self_sufficiency_tick
+			  }
+			}    
+	 	}    
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_self_sufficiency_tick"
+		}
+  	}
+
+  	CHI_self_sufficient = {
+		visible = {
+			has_completed_focus = CHI_Technology
+			check_variable = {
+				tech_self_sufficiency = 5
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_self_sufficient_trigger_tt
+				check_variable = {
+					tech_self_sufficiency = 5
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_self_sufficient_trigger_tt_money_1
+					check_variable = {
+						var = money_reserves 
+						value = 1000
+						compare = greater_than_or_equals 
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_self_sufficient_trigger_tt_money_2
+					NOT = {
+						check_variable = {
+							national_debt > GDP
+						}
+					}
+				}
+			}
+		}
+
+		cost = 150
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_self_sufficient"
+			add_to_variable = {CHI_research_var = 0.05}
+			clear_variable = tech_innovation
+			clear_variable = innovation_gain
+			clear_variable = tech_self_sufficiency 
+			if = {
+				limit = {
+					check_variable = {
+						var = money_reserves 
+						value = 1000
+						compare = greater_than_or_equals 
+					}
+				}
+				add_to_variable = {
+					money_reserves = -1000
+				}
+			}
+			else = {
+				add_to_variable = {
+					money_reserves = -1000
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			custom_effect_tooltip = CHI_self_sufficient_tt
+			force_update_dynamic_modifier = yes
+			set_country_flag = CHI_tech_modernisation_complete
+			remove_mission = CHI_self_sufficiency_tick
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+ 	CHI_increase_Self_Sufficiency = {
+	 	visible = {
+			has_completed_focus = CHI_Technology
+			check_variable = {
+				  tech_self_sufficiency < 5
+			}
+	 	}
+	 	available = {
+	 		custom_trigger_tooltip = {
+	 			tooltip = CHI_increase_Self_Sufficiency_trigger_tt
+				check_variable = {
+					var = tech_innovation
+					value = 1
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					tech_self_sufficiency < 5
+				}
+	 		}
+	 		OR = {
+	 			custom_trigger_tooltip = {
+					tooltip = CHI_increase_self_sufficiency_trigger_tt_money_1
+					check_variable = {
+						var = money_reserves 
+						value = 250
+						compare = greater_than_or_equals 
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_increase_self_sufficiency_trigger_tt_money_2
+					NOT = {
+						check_variable = {
+							national_debt > GDP
+						}
+					}
+				}
+	 		}
+	 	}
+
+	 	cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_increase_Self_Sufficiency"
+			add_to_variable = {
+				tech_self_sufficiency = 1
+			}
+			set_variable = {
+				tech_innovation = 0
+			}
+			hidden_effect = {
+			 	country_event = {
+					id = chi.213
+			 	}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = money_reserves 
+						value = 250
+						compare = greater_than_or_equals 
+					}
+				}
+				add_to_variable = {
+					money_reserves = -250
+				}
+			}
+			else = {
+				add_to_variable = {
+					money_reserves = -250
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			custom_effect_tooltip = CHI_increase_Self_Sufficiency_tt
+			add_to_variable = {research_facilities_counter = 96}
+			custom_effect_tooltip = CHI_Technology_Boost_tt
+	 	}
+
+	 	ai_will_do = {
+	 		factor = 1000
+	 	}
+  	}
+}
+
+#Education modernisation decisions
+CHI_education_modernisation_category = {
+	CHI_education_tick = {
+		allowed = {
+			original_tag = CHI
+		}
+		
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_edu_modernisation_complete
+			}
+		}
+	
+		activation = {
+			has_completed_focus = CHI_Education
+			NOT = { has_country_flag = CHI_edu_modernisation_complete }
+		}
+	
+		is_good = yes 
+	
+		days_mission_timeout = 30
+	
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_education_tick mission timer elapsed" 
+	
+			add_to_variable = {
+				 edu_modernisation = edu_modernisation_gain
+			}
+	
+			clamp_variable = {
+				 var = edu_modernisation
+				 min = 0
+				 max = 1
+			}
+	
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = CHI_edu_modernisation_complete }
+					}
+					activate_mission = CHI_education_tick
+				}
+			}
+		}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_education_tick"
+		}
+	}
+
+  	CHI_increase_Education_Efficiency = {
+	 	visible = {
+			has_completed_focus = CHI_Education
+			check_variable = {
+				edu_efficiency < 6
+			}
+	 	}
+	 	available = {
+	 		custom_trigger_tooltip = {
+	 			tooltip = CHI_increase_Education_Efficiency_trigger_tt
+				check_variable = {
+					var = edu_modernisation
+					value = 1
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					edu_efficiency < 6
+				}
+	 		}
+	 		OR = {
+	 			custom_trigger_tooltip = {
+					tooltip = CHI_increase_Education_Efficiency_trigger_tt_money_1
+					check_variable = {
+						var = money_reserves 
+						value = 400
+						compare = greater_than_or_equals 
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_increase_Education_Efficiency_trigger_tt_money_2
+					NOT = {
+						check_variable = {
+							national_debt > GDP
+						}
+					}
+				}
+	 		}
+	 	}
+
+	 	cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_increase_Education_Efficiency" 
+			hidden_effect = {country_event = {id = chi.97}}
+			add_to_variable = {
+				edu_efficiency = 1
+			}
+			subtract_from_variable = {
+				edu_modernisation = 1
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = money_reserves 
+						value = 400
+						compare = greater_than_or_equals 
+					}
+				}
+				add_to_variable = {
+					money_reserves = -400
+				}
+			}
+			else = {
+				add_to_variable = {
+					money_reserves = -400
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			custom_effect_tooltip = CHI_increase_Self_Sufficiency_tt
+			add_to_variable = {academic_base_counter = 120}
+			add_to_variable = {academic_base_monthly_gain = 4}
+			custom_effect_tooltip = CHI_Education_Boost_tt
+			if = {
+				limit = {
+					check_variable = {
+						edu_efficiency > 5
+					}
+				}
+				set_country_flag = CHI_edu_modernisation_complete
+				remove_mission = CHI_education_tick
+			}
+	 	}
+
+	 	ai_will_do = {
+	 		factor = 1000
+	 	}
+  	}
+}
+
+CHI_talk_with_long_yun_category = {
+	CHI_try_again = {
+		available = {
+			always = yes
+		}
+
+		visible = {
+			NOT = {has_global_flag = CHI_Western_Insurrection_Crisis}
+			has_country_flag = CHI_Western_Insurrection_Warmup
+			has_country_flag = CHI_Talks_with_Long_Yun
+		}		
+
+		custom_cost_trigger = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = CHI_try_again_tt
+			hidden_effect = {
+				YUN = {
+					country_event = {id = yun.149 hours = 3}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+	CHI_bring_the_stick = {
+		available = {
+			always = yes
+		}
+
+		visible = {
+			NOT = {has_global_flag = CHI_Western_Insurrection_Crisis}
+			has_country_flag = CHI_Western_Insurrection_Warmup
+			has_country_flag = CHI_Talks_with_Long_Yun
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = CHI_bring_the_stick_tt
+			hidden_effect = {
+				YUN = {
+					country_event = {id = yun.150 hours = 3}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+	CHI_offer_the_carrot = {
+		available = {
+			always = yes
+		}
+
+		visible = {
+			NOT = {has_global_flag = CHI_Western_Insurrection_Crisis}
+			has_country_flag = CHI_Western_Insurrection_Warmup
+			has_country_flag = CHI_Talks_with_Long_Yun
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = CHI_offer_the_carrot_tt
+			hidden_effect = {
+				YUN = {
+					country_event = {id = yun.151 hours = 3}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+	CHI_declare_war_on_long_yun = {
+	
+		available = {
+			always = yes
+		}
+		visible = {
+			NOT = { has_global_flag = CHI_Western_Insurrection_Crisis }
+			has_country_flag = CHI_Western_Insurrection_Warmup
+			has_completed_focus = CHI_Put_Down_The_Mad_Dog
+		}
+
+		custom_cost_trigger = { 
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		days_remove = 7
+
+		war_with_on_remove = YUN
+		
+		remove_effect = {
+			set_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_Western_Insurrection_Warmup
+			CHI_reload_tree = yes
+			declare_war_on = {
+				target = YUN
+				type = annex_everything
+			}
+			custom_effect_tooltip = chi.451.tt
+			hidden_effect = {
+				WI_Start_effects = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+}
+
+CHI_Western_Insurrection_category = {
+	CHI_Western_Insurrection_timeout_1 = {
+
+		#icon = 
+		
+		available = {
+			NOT = { has_war_with = YUN }
+		}
+
+		days_mission_timeout = 100
+
+		fire_only_once = yes
+		is_good = no
+		
+		activation = {
+			tag = CHI
+			has_war_with = YUN
+			has_country_flag = CHI_WI_Timeout1
+		}
+		visible = {
+			has_country_flag = CHI_WI_Timeout1
+			has_war_with = YUN         
+		}
+		complete_effect = {
+			custom_effect_tooltip = CHI_Western_Insurrection_timeout_tt
+			clr_country_flag = CHI_WI_Timeout1        
+		}
+		
+		timeout_effect = {
+			clr_country_flag = CHI_WI_Timeout1
+			activate_decision = CHI_Western_Insurrection_timeout_2
+			set_country_flag = CHI_timeout_2
+			add_war_support = -0.10
+			add_to_variable = { faction_pro_japan_influence = 0.03 }
+			add_to_variable = { faction_old_guard_influence = -0.03 }
+			CHI_Leg_Yuan_Clamp_Everything = yes
+		}
+	}
+	
+	CHI_Western_Insurrection_timeout_2 = {
+ 
+		available = {
+			NOT = { has_war_with = YUN }
+		}
+		
+		activation = {
+			tag = CHI
+			has_war_with = YUN
+			has_country_flag = CHI_WI_Timeout2
+		}
+ 
+		days_mission_timeout = 100
+ 
+		fire_only_once = yes
+ 
+		visible = { 
+			has_country_flag = CHI_WI_Timeout2
+			has_war_with = YUN
+		}
+ 
+		cancel_if_not_visible = yes
+ 
+		is_good = no
+ 
+		complete_effect = {
+			custom_effect_tooltip = CHI_Western_Insurrection_timeout_tt
+			clr_country_flag = CHI_timeout_2
+		}
+		
+		timeout_effect = {
+			activate_decision = CHI_Western_Insurrection_timeout_3   
+			clr_country_flag = CHI_timeout_2
+			set_country_flag = CHI_timeout_3
+			add_war_support = -0.10
+			add_to_variable = { faction_pro_japan_influence = 0.08 }
+			add_to_variable = { faction_old_guard_influence = -0.06 }
+			add_to_variable = { faction_reformist_influence = -0.02 }   
+			CHI_Leg_Yuan_Clamp_Everything = yes      
+		}
+	}
+	
+	CHI_Western_Insurrection_timeout_3 = {
+ 
+		available = {
+			NOT = { has_war_with = YUN }
+		}
+		
+		activation = {
+			tag = CHI
+			has_war_with = YUN
+			has_country_flag = CHI_timeout_3
+		}
+ 
+		days_mission_timeout = 100
+ 
+		fire_only_once = yes
+ 
+		visible = {
+			has_country_flag = CHI_timeout_3
+			has_war_with = YUN
+		}
+ 
+		cancel_if_not_visible = yes
+ 
+		is_good = no
+ 
+		complete_effect = {
+			custom_effect_tooltip = CHI_Western_Insurrection_timeout_tt
+			clr_country_flag = CHI_timeout_3
+		}
+		
+		timeout_effect = {  #you fucked up
+			add_war_support = -0.10
+			add_to_variable = { faction_pro_japan_influence = 0.10 }
+			add_to_variable = { faction_old_guard_influence = -0.08 }
+			add_to_variable = { faction_reformist_influence = -0.02 }
+			CHI_Leg_Yuan_Clamp_Everything = yes
+			clr_country_flag = CHI_timeout_3             
+		}
+	}
+	CHI_request_japanese_officers = {
+	
+		visible = {
+			NOT = { has_war_with = JAP }
+			has_war_with = YUN 
+		}
+
+		days_remove = 70
+
+		cost = 25
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_increase_ija_tt  
+			add_to_variable = { faction_pro_japan_influence = 0.02 }
+			add_to_variable = { faction_old_guard_influence = -0.02 }
+			CHI_Leg_Yuan_Clamp_Everything = yes         
+			army_experience = 20
+		}
+	}
+
+	CHI_request_japanese_weapons = {
+
+		visible = {
+			NOT = { has_war_with = JAP }
+			has_war_with = YUN 
+		}
+
+		days_remove = 60
+
+		custom_cost_trigger = { 
+			has_army_experience > 25
+		}
+		
+		custom_cost_text = CHI_experience_cost_tt
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_increase_ija_tt        
+			if = {
+				limit = {
+					has_completed_focus = CHI_Keep_A_Steady_Hand
+				}        
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1000
+					producer = JAP
+				}
+				add_to_variable = { faction_pro_japan_influence = 0.02 }
+				add_to_variable = { faction_old_guard_influence = -0.02 }
+				CHI_Leg_Yuan_Clamp_Everything = yes
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = JAP
+				}
+				add_to_variable = { faction_pro_japan_influence = 0.04 }
+				add_to_variable = { faction_old_guard_influence = -0.03 }
+				add_to_variable = { faction_reformist_influence = -0.01 }
+				CHI_Leg_Yuan_Clamp_Everything = yes
+			}
+		}
+	}
+}
+
+CHI_Industry_Resources = {
+	CHI_General_Civ_Industry = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Industrialization
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_General_Civ_Industry_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_General_Civ_Industry_trigger_tt_2
+					check_variable = {
+						debt < GDP
+					}
+				}
+			}
+			any_owned_state = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 1
+					include_locked = no
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 120
+		fixed_random_seed = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_General_Civ_Industry taken"
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 750
+			}
+			custom_effect_tooltip = CHI_General_Civ_Industry_complete
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_General_Civ_Industry removed"
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = no
+					}
+				}
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			multiply_variable = {GDP = 1.005}
+			add_to_variable = {GDP_growth = 0.001}
+			custom_effect_tooltip = econ_increase_GDP_small
+			add_to_variable = {
+				misc_costs = -750
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 1000
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					money_reserves > 5000
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					money_reserves < 750
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+		}
+	}
+
+	CHI_Additional_Civ_Industry = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_New_Civilian_Factories
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Additional_Civ_Industry_trigger_tt_1
+					check_variable = {
+						money_reserves > 800
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Additional_Civ_Industry_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			any_owned_state = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 1
+					include_locked = no
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 40
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 120
+		fixed_random_seed = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Additional_Civ_Industry taken"
+			add_to_variable = {
+				money_reserves = -800
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 1250
+			}
+			custom_effect_tooltip = CHI_Additional_Civ_Industry_complete
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Additional_Civ_Industry removed"
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = no
+					}
+				}
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			multiply_variable = {GDP = 1.005}
+			add_to_variable = {GDP_growth = 0.001}
+			custom_effect_tooltip = econ_increase_GDP_small
+			add_to_variable = {
+				misc_costs =  -1250
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 1600
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					money_reserves > 6400
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					money_reserves < 1000
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+		}
+	}
+
+	CHI_General_Mil_Industry = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Ramp_up_Military_Production
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_General_Mil_Industry_trigger_tt_1
+					check_variable = {
+						money_reserves > 1000
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_General_Mil_Industry_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			any_owned_state = {
+				free_building_slots = {
+					building = arms_factory
+					size > 1
+					include_locked = no
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 120
+		fixed_random_seed = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_General_Mil_Industry taken"
+			add_to_variable = {
+				money_reserves = -1000
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 1500
+			}
+			custom_effect_tooltip = CHI_General_Mil_Industry_complete
+			add_to_variable = {
+				faction_pro_japan_influence = 0.10
+			}
+			add_to_variable = {
+				faction_reformist_influence = -0.05
+			}
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_General_Mil_Industry removed"
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = no
+					}
+				}
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			multiply_variable = {GDP = 1.005}
+			add_to_variable = {GDP_growth = 0.001}
+			custom_effect_tooltip = econ_increase_GDP_small
+			add_to_variable = {
+				misc_costs = -1500
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 2000
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					money_reserves > 10000
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					money_reserves < 1500
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+		}
+	}
+
+	CHI_Invest_Private_Business = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Industrialization
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_Private_Business_trigger_tt_1
+					check_variable = {
+						money_reserves > 300
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_Private_Business_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+		fixed_random_seed = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Invest_Private_Business taken"
+			add_to_variable = {
+				money_reserves = -300
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			custom_effect_tooltip = CHI_Invest_Private_Business_complete
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.03
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Invest_Private_Business removed"
+			random_list = {
+				15 = {
+					multiply_variable = {
+						GDP = 1.03
+					}
+					add_to_variable = {
+						GDP_growth = 0.002
+					}
+					random_owned_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					custom_effect_tooltip = econ_increase_GDP
+				}
+
+				30 = {
+					multiply_variable = {
+						GDP = 1.03
+					}
+					add_to_variable = {
+						GDP_growth = 0.001
+					}
+					custom_effect_tooltip = econ_increase_GDP
+				}
+
+				35 = {
+					multiply_variable = {
+						GDP = 1.015
+					}
+					custom_effect_tooltip = econ_increase_GDP_small
+				}
+
+				20 = {
+					custom_effect_tooltip = CHI_Invest_Private_Business_Fail
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 400
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					money_reserves > 1000
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					money_reserves < 400
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+		}	
+	}
+
+	CHI_Divert_Funds_Construction = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Industrialization
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Divert_Funds_Construction_trigger_tt_1
+					check_variable = {
+						money_reserves > 400
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Divert_Funds_Construction_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		days_remove = 270
+		fire_only_once = no
+
+		cost = 15
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Divert_Funds_Construction taken"
+			add_to_variable = {
+				money_reserves = -400
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 500
+			}
+			custom_effect_tooltip = CHI_Divert_Funds_Construction_complete
+		}
+
+		modifier = {
+			consumer_goods_factor = -0.05
+			production_speed_buildings_factor = 0.25
+			industrial_capacity_factory = -0.30
+			army_org_factor = -0.30
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Divert_Funds_Construction removed"
+			add_to_variable = {
+				misc_costs = -500
+			}
+		}
+	}
+
+	CHI_Invest_Industrial_Tech = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Faster_Industrialization
+			check_variable = {
+				CHI_Invest_Industrial_Tech_tracker < 3
+			}
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_Industrial_Tech_trigger_tt_1
+					check_variable = {
+						money_reserves > 750
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Invest_Industrial_Tech_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_Invest_Industrial_Tech_trigger_tt_3
+				OR = {
+					NOT = {
+						has_variable = CHI_Invest_Industrial_Tech_tracker
+					}
+					AND = {
+						has_variable = CHI_Invest_Industrial_Tech_tracker
+						check_variable = {
+							CHI_Invest_Industrial_Tech_tracker < 3
+						}
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		days_remove = 360
+		fire_only_once = no
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Invest_Industrial_Tech taken"
+			if = {
+				limit = {
+					has_variable = CHI_Invest_Industrial_Tech_tracker
+				}
+				add_to_variable = {
+					CHI_Invest_Industrial_Tech_tracker = 1
+				}
+			}
+			else = {
+				set_variable = {
+					CHI_Invest_Industrial_Tech_tracker = 1
+				}
+			}
+			add_to_variable = {
+				money_reserves = -750
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 500
+			}
+			set_variable = {
+				industrial_equipment_tempsave = industrial_equipment_monthly_change
+			}
+			set_variable = {
+				industrial_expertise_tempsave = industrial_expertise_monthly_change
+			}
+			TNO_improve_industrial_equipment_med = yes #coded with a script
+			TNO_improve_industrial_expertise_med = yes #coded with a script
+			custom_effect_tooltip = CHI_Invest_Industrial_Tech_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Invest_Industrial_Tech removed"
+			add_to_variable = {
+				misc_costs = -500
+			}
+			set_variable = {
+				industrial_equipment_monthly_change = industrial_equipment_tempsave
+			}
+			set_variable = {
+				industrial_expertise_monthly_change = industrial_expertise_tempsave
+			}
+			clear_variable = industrial_equipment_tempsave
+			clear_variable = industrial_expertise_tempsave
+			random_list = {
+				20 = {
+			TNO_improve_industrial_equipment_med = yes #coded with a script
+			TNO_improve_industrial_expertise_med = yes #coded with a script
+					custom_effect_tooltip = CHI_Invest_Industrial_Tech_remove_1
+				}
+				30 = {
+			TNO_improve_industrial_equipment_low = yes #coded with a script
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+					custom_effect_tooltip = CHI_Invest_Industrial_Tech_remove_2
+				}
+				50 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = industry
+					}
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+					custom_effect_tooltip = CHI_Invest_Industrial_Tech_remove_3
+				}
+			}
+		}
+	}
+
+	CHI_Wuhan_Military_Complex = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Ramp_up_Military_Production
+			date > 1967.6.1
+		}
+
+		highlight_states = {
+			state = 1016
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Wuhan_Military_Complex_trigger_tt_1
+					check_variable = {
+						money_reserves > 800
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Wuhan_Military_Complex_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 15
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Wuhan_Military_Complex taken"
+			add_to_variable = {
+				money_reserves = -800
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}			
+			add_to_variable = {
+				misc_costs = 1000
+			}
+			custom_effect_tooltip = CHI_Wuhan_Military_Complex_complete
+			add_to_variable = {
+				faction_pro_japan_influence = 0.05
+			}
+			add_to_variable = {
+				faction_reformist_influence = -0.05
+			}
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Wuhan_Military_Complex removed"
+			1016 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			multiply_variable = {GDP = 1.01}
+			add_to_variable = {GDP_growth = 0.001}
+			custom_effect_tooltip = econ_increase_GDP_small
+			add_to_variable = {
+				misc_costs = -1000
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 2000
+				}
+			}
+			modifier = {
+				factor = 10
+				check_variable = {
+					money_reserves > 10000
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					money_reserves < 1500
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+		}
+	}
+
+	CHI_Found_Huguang_Metal_Company = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Adapting_the_Resources
+			date > 1968.3.1
+			602 = {
+				has_state_flag = CHI_state_mined	
+			}
+			961 = {
+				has_state_flag = CHI_state_mined
+			}
+		}
+
+		highlight_states = {
+			state = 961
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Found_Huguang_Metal_Company_tt_1
+					check_variable = {
+						money_reserves > 1500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Found_Huguang_Metal_Company_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 25
+
+		days_remove = 120
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Found_Huguang_Metal_Company taken"
+			add_to_variable = {
+				money_reserves = -1500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 2000
+			}
+			custom_effect_tooltip = CHI_Found_Huguang_Metal_Company_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Found_Huguang_Metal_Company removed"
+			602 = {
+				add_resource = {
+					type = tungsten
+					amount = 12
+				}
+				add_resource = {
+					type = chromium
+					amount = 8
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			961 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				misc_costs = -2000
+			}
+		}
+	}
+
+	CHI_Nanjing_Steel = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			613 = {
+				has_state_flag = CHI_state_mined
+				has_state_flag = CHI_resources_nationalised
+			}
+			date > 1968.3.1
+		}
+
+		highlight_states = {
+			state = 613
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Nanjing_Steel_trigger_tt_1
+					check_variable = {
+						money_reserves > 1500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Nanjing_Steel_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 40
+
+		days_remove = 120
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Nanjing_Steel taken"
+			add_to_variable = {
+				money_reserves = -1500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 1000
+			}
+			custom_effect_tooltip = CHI_Nanjing_Steel_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Nanjing_Steel removed"
+			613 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 25
+				}
+			}
+			add_to_variable = {
+				misc_costs = -1000
+			}
+		}
+	}
+
+
+	CHI_Create_Hebei_Industrial_Network = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Center_of_Production
+			date > 1969.9.1
+		}
+
+		highlight_states = {
+			state = 614
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Create_Hebei_Industrial_Network_trigger_tt_1
+					check_variable = {
+						money_reserves > 2000
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Create_Hebei_Industrial_Network_trigger_tt_2
+					check_variable = {
+						national_debt < GDP 
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 75
+
+		days_remove = 240
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Create_Hebei_Industrial_Network taken"
+			add_to_variable = {
+				money_reserves = -2000
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 3000
+			}
+			custom_effect_tooltip = CHI_Create_Hebei_Industrial_Network_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Create_Hebei_Industrial_Network removed"
+			608 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			614 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					province = 10068
+					level = 2
+					instant_build = yes
+				}
+			}
+			609 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				misc_costs = -3000
+			}
+		}
+	}
+}
+
+CHI_Resource_Exploitation = {
+	CHI_Geological_Survey = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_completed_focus = CHI_Digging_Deep
+			NOT = {
+				has_country_flag = CHI_all_surveyed
+			}
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Geological_Survey_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Geological_Survey_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = no
+		fixed_random_seed = no
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Geological_Survey taken"
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 250
+			}
+			custom_effect_tooltip = CHI_Geological_Survey_complete
+		}
+
+		modifier = {
+			local_resources_factor = 0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Geological_Survey removed"
+			add_to_variable = {
+				misc_costs = -250
+			}
+			hidden_effect = {
+				random_list = {
+					50 = {
+						custom_effect_tooltip = CHI_Geological_Survey_fail
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_changde_surveyed
+						}
+						set_country_flag = CHI_changde_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_fujian_surveyed
+						}
+						set_country_flag = CHI_fujian_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_shanxi_surveyed
+						}
+						set_country_flag = CHI_shanxi_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_hebei_surveyed
+						}
+						set_country_flag = CHI_hebei_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_jinan_surveyed
+						}
+						set_country_flag = CHI_jinan_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_huangshan_surveyed
+						}
+						set_country_flag = CHI_huangshan_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_anhui_surveyed
+						}
+						set_country_flag = CHI_anhui_surveyed
+					}
+					25 = {
+						modifier = {
+							factor = 0
+							has_country_flag = CHI_Yellow_River_Delta_Oil
+						}
+						modifier = {
+							factor = 0
+							NOT = {has_completed_focus = CHI_Energy_for_the_Sphere}
+						}
+						set_country_flag = CHI_Yellow_River_Delta_Oil
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = CHI_changde_surveyed
+						has_country_flag = CHI_hunan_surveyed
+						has_country_flag = CHI_shanxi_surveyed
+						has_country_flag = CHI_hebei_surveyed
+						has_country_flag = CHI_jinan_surveyed
+						has_country_flag = CHI_huangshan_surveyed
+						has_country_flag = CHI_anhui_surveyed
+						has_country_flag = CHI_Yellow_River_Delta_Oil
+					}
+					set_country_flag = CHI_all_surveyed
+				}
+			}
+			custom_effect_tooltip = CHI_Geological_Survey_remove
+		}
+	}
+
+	CHI_exploit_changde = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_changde_surveyed
+		}
+		
+		highlight_states = {
+			state = 961
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_changde_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_changde_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_changde taken"
+			custom_effect_tooltip = CHI_exploit_changde_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+			local_resources_factor = 0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_changde removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			961 = {
+				add_resource = {
+					type = tungsten
+					amount = 7
+				}
+				add_resource = {
+					type = aluminium
+					amount = 5
+				}
+			}
+			add_to_variable = {misc_income = 300}
+			custom_effect_tooltip = CHI_exploit_changde_remove
+		}
+	}
+
+	CHI_exploit_fujian = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_fujian_surveyed
+		}
+
+		highlight_states = {
+			state = 595
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_fujian_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_fujian_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_fujian taken"
+			custom_effect_tooltip = CHI_exploit_fujian_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_fujian removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			595 = {
+				add_resource = {
+					type = chromium
+					amount = 5
+				}
+				add_resource = {
+					type = tungsten
+					amount = 8
+				}
+			}
+			add_to_variable = {misc_income = 250}
+			custom_effect_tooltip = CHI_exploit_fujian_remove
+		}
+	}
+
+	CHI_exploit_shanxi = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_shanxi_surveyed
+		}
+
+		highlight_states = {
+			state = 615
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_shanxi_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_shanxi_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_shanxi taken"
+			custom_effect_tooltip = CHI_exploit_shanxi_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_shanxi removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			615 = {
+				add_resource = {
+					type = steel
+					amount = 12
+				}
+				add_resource = {
+					type = aluminium
+					amount = 8
+				}
+			}
+			add_to_variable = {misc_income = 300}
+			multiply_variable = {GDP = 1.005}
+			custom_effect_tooltip = econ_increase_GDP_small
+			custom_effect_tooltip = CHI_exploit_shanxi_remove
+		}
+	}
+
+	CHI_exploit_hebei = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_hebei_surveyed
+		}
+
+		highlight_states = {
+			state = 614
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_hebei_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_hebei_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_hebei taken"
+			custom_effect_tooltip = CHI_exploit_hebei_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_hebei removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			614 = {
+				add_resource = {
+					type = steel
+					amount = 12
+				}
+				add_resource = {	
+					type = oil
+					amount = 3
+				}
+			}
+			add_to_variable = {misc_income = 450}
+			multiply_variable = {GDP = 1.005}
+			custom_effect_tooltip = econ_increase_GDP_small
+			custom_effect_tooltip = CHI_exploit_hebei_remove
+		}
+	}
+
+	CHI_exploit_jinan = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_jinan_surveyed
+		}
+
+		highlight_states = {
+			state = 1020
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_jinan_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_jinan_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_jinan taken"
+			custom_effect_tooltip = CHI_exploit_jinan_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_jinan removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			1020 = {
+				add_resource = {
+					type = steel 
+					amount = 12
+				}
+				add_resource = {
+					type = aluminium
+					amount = 4
+				}
+			}
+			add_to_variable = {misc_income = 300}
+			custom_effect_tooltip = CHI_exploit_jinan_remove
+		}
+	}
+
+	CHI_exploit_huangshan = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_huangshan_surveyed
+		}
+
+		highlight_states = {
+			state = 959
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_huangshan_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_huangshan_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_huangshan taken"
+			custom_effect_tooltip = CHI_exploit_huangshan_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_huangshan removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			959 = {
+				add_resource = {
+					type = steel
+					amount = 12
+				}
+			}
+			add_to_variable = {
+				misc_income = 100
+			}
+			custom_effect_tooltip = CHI_exploit_huangshan_remove
+		}
+	}
+
+	CHI_exploit_anhui = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_anhui_surveyed
+		}
+
+		highlight_states = {
+			state = 606
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_anhui_trigger_tt_1
+					check_variable = {
+						money_reserves > 500
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_exploit_anhui_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_anhui taken"
+			custom_effect_tooltip = CHI_exploit_anhui_complete
+			add_to_variable = {
+				money_reserves = -500
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 350
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_exploit_anhui removed"
+			add_to_variable = {
+				misc_costs = -350
+			}
+			606 = {
+				add_resource = {
+					type = tungsten
+					amount = 14
+				}
+			}
+			add_to_variable = {
+				misc_income = 150
+			}
+			custom_effect_tooltip = CHI_exploit_anhui_remove
+		}
+	}
+
+	CHI_Oil_of_Yellow_River_Delta = {
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			has_country_flag = CHI_Yellow_River_Delta_Oil
+			has_completed_focus = CHI_Energy_for_the_Sphere
+		}
+
+		highlight_states = {
+			state = 1021
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CHI_Oil_of_Yellow_River_Delta_trigger_tt_1
+					check_variable = {
+						money_reserves > 750
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_Oil_of_Yellow_River_Delta_trigger_tt_2
+					check_variable = {
+						national_debt < GDP
+					}
+				}
+			}
+			CHI_is_not_in_crisis = yes
+		}
+
+		fire_only_once = yes
+		days_remove = 240
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Yellow_River_Delta_Oil taken"
+			custom_effect_tooltip = CHI_Oil_of_Yellow_River_Delta_complete
+			add_to_variable = {
+				money_reserves = -750
+			}
+			if = {
+				limit = {
+					check_variable = {
+						money_reserves < 0
+					}
+				}
+				subtract_from_variable = {
+					national_debt = money_reserves
+				}
+				set_variable = {
+					money_reserves = 0
+				}
+			}
+			add_to_variable = {
+				misc_costs = 475
+			}
+		}
+
+		modifier = {
+
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHI_Yellow_River_Delta_Oil removed"
+			add_to_variable = {
+				misc_costs = -475
+			}
+			1021 = {
+				add_resource = {
+					type = oil
+					amount = 15
+				}
+			}
+			add_to_variable = {misc_income = 400}
+			multiply_variable = {GDP = 1.005}
+			custom_effect_tooltip = econ_increase_GDP_small
+			custom_effect_tooltip = CHI_Oil_of_Yellow_River_Delta_remove
+		}
+	}
+}
+

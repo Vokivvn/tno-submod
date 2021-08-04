@@ -1,0 +1,2002 @@
+initiate_display_vars = {
+	#PURELY FOR DISPLAY PURPOSES
+	set_variable = { GDP_billion = 0 }
+	set_variable = { GDP_thousand = 0 }
+	set_variable = { total_budget_billion = 0 }
+	set_variable = { total_budget_thousand = 0 }
+	set_variable = { total_expenditures_billion = 0 }
+	set_variable = { total_expenditures_thousand = 0 }
+	set_variable = { civilian_expenditures_billion = 0 }
+	set_variable = { civilian_expenditures_thousand = 0 }
+	set_variable = { military_expenditures_billion = 0 }
+	set_variable = { military_expenditures_thousand = 0 }
+	set_variable = { construction_expenditures_billion = 0 }
+	set_variable = { construction_expenditures_thousand = 0 }
+	set_variable = { money_reserves_billion = 0 }
+	set_variable = { money_reserves_thousand = 0 }
+	set_variable = { national_debt_billion = 0 }
+	set_variable = { national_debt_thousand = 0 }
+	set_variable = { deficit_billion = 0 }
+	set_variable = { deficit_thousand = 0 }
+	set_variable = { manpower_costs_billion = 0 }
+	set_variable = { manpower_costs_thousand = 0 }
+	set_variable = { military_factory_costs_billion = 0 }
+	set_variable = { military_factory_costs_thousand = 0 }
+	set_variable = { misc_costs_billion = 0 }
+	set_variable = { misc_costs_thousand = 0 }
+	set_variable = { misc_income_billion = 0 }
+	set_variable = { misc_income_thousand = 0 }
+	set_variable = { annual_debt_payments_thousand = 0 }
+	set_variable = { annual_debt_payments_billion = 0 }
+}
+calculate_total_budget = {
+	calculate_taxable_population = yes
+	set_variable = { ROOT.total_pop = 0 }
+	set_variable = { gdp_contribution = GDP }
+	calculate_industrial_contribution = yes
+	multiply_variable = { gdp_contribution = 0.135 }
+	every_owned_state = {
+		add_to_variable = { ROOT.total_pop = state_population_k }
+	}
+	multiply_variable = { taxable_population = ROOT.total_pop }
+	set_temp_variable = { gdp_and_tax = taxable_population }
+	calculate_income_rate = yes
+	multiply_temp_variable = { gdp_and_tax = income_rate }
+	set_temp_variable = { debt_calc = national_debt }
+	multiply_temp_variable = { debt_calc = interest_rates }
+	set_variable = { annual_debt_payments = debt_calc }
+	if = {
+		limit = { NOT = { check_variable = { debt_calc = 0 } } }
+		divide_temp_variable = { debt_calc = 12 }
+	}
+
+	set_temp_variable = { budget_calc = gdp_and_tax }
+	add_to_temp_variable = { budget_calc = misc_income }
+	add_to_temp_variable = { budget_calc = modifier@misc_income_modifier }
+	add_to_temp_variable = { budget_calc = gdp_contribution }
+	add_to_temp_variable = { budget_calc = industrial_contribution }
+	subtract_from_temp_variable = { budget_calc = debt_calc }
+
+	set_variable = { total_budget = budget_calc }
+	resolve_negative_cases = yes
+}
+
+calculate_industrial_contribution = {
+	set_variable = { industrial_contribution = 100 }
+	set_variable = { industrial_tax_rate = 0.1 }
+	if = {
+		limit = { has_idea = tno_tax_rate_no_taxation }
+		add_to_variable = { industrial_tax_rate = 0.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_tax_rate_low_taxation }
+		add_to_variable = { industrial_tax_rate = 0.2 }
+	}
+	else_if = {
+		limit = { has_idea = tno_tax_rate_medium_taxation }
+		add_to_variable = { industrial_tax_rate = 0.3 }
+	}
+	else_if = {
+		limit = { has_idea = tno_tax_rate_high_taxes }
+		add_to_variable = { industrial_tax_rate = 0.4 }
+	}
+	else_if = {
+		limit = { has_idea = tno_tax_rate_exploitative_taxation }
+		add_to_variable = { industrial_tax_rate = 0.5 }
+	}
+	
+	if = {
+		limit = { has_idea = tno_industrial_expertise_pre_industrial }
+		multiply_variable = { industrial_tax_rate = 0.5 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_incompetent }
+		multiply_variable = { industrial_tax_rate = 0.75 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_nascent }
+		multiply_variable = { industrial_tax_rate = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_experienced }
+		multiply_variable = { industrial_tax_rate = 1.25 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_innovative }
+		multiply_variable = { industrial_tax_rate = 1.50 }
+	}
+	
+	if = {
+		limit = { has_idea = tno_industrial_equipment_hand_tools }
+		multiply_variable = { industrial_tax_rate = 0.4 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_power_tools }
+		multiply_variable = { industrial_tax_rate = 0.6 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_manufacturing_lines }
+		multiply_variable = { industrial_tax_rate = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_factory_complexes }
+		multiply_variable = { industrial_tax_rate = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_modern }
+		multiply_variable = { industrial_tax_rate = 1.20 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_cutting_edge }
+		multiply_variable = { industrial_tax_rate = 1.40 }
+	}
+	
+	multiply_variable = { industrial_contribution = industrial_tax_rate }
+	multiply_variable = { industrial_contribution = num_of_civilian_factories }
+}
+
+calculate_taxable_population = {
+	set_variable = { taxable_population = 0.40 }
+	add_to_variable = { taxable_population = modifier@taxable_population_modifier } # Education, women's rights and child labor modifies this
+	multiply_variable = { taxable_population = modifier@taxable_population_factor } # Poverty socdev affects how much people you can actually tax
+}
+
+#Budget and expenditures are calculated as if they were ticked annually (and for display purposes), but are recalculated monthly with temp variables for the purposes of actual calculations
+
+calculate_income_rate = {
+	set_variable = { income_rate = 0 }
+	add_to_variable = { income_rate = modifier@income_rate_modifier } # Modified by taxation and such
+	multiply_variable = { income_rate = modifier@income_rate_factor } # Which is then multiplied by the poverty socdev
+}
+
+calculate_civilian_expenditures = {
+	set_variable = { civilian_expenditures = GDP }
+	multiply_variable = { civilian_expenditures = modifier@proportional_gdp_cost } # Proportional costs, like healthcare and education
+	add_to_variable = { civilian_expenditures = modifier@civilian_annual_cost } # Adds any extra fixed cost
+	multiply_variable = { civilian_expenditures = modifier@civilian_expenditures_factor } # Used by Civ Boost/Austerity ideas, applied on top of total civ spending
+}
+
+calculate_construction_expenditures = {
+	set_variable = { construction_expenditures = GDP }
+	set_variable = { construction_expenditures_factor = modifier@construction_costs_modifier } # Set up by the construction budget
+
+	#These laws multiply the expenditure factor#
+
+	#Safety
+	if = {
+		limit = { has_idea = tno_safety_no_regulations }
+		multiply_variable = { construction_expenditures_factor = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_safety_minimal_regulations }
+		multiply_variable = { construction_expenditures_factor = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_safety_limited_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_safety_acceptable_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_safety_excellent_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.2 }
+	}
+
+	#Pollution
+	if = {
+		limit = { has_idea = tno_pollution_no_controls }
+		multiply_variable = { construction_expenditures_factor = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_pollution_few_regulations }
+		multiply_variable = { construction_expenditures_factor = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_pollution_some_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_pollution_good_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_pollution_strict_regulations }
+		multiply_variable = { construction_expenditures_factor = 1.2 }
+	}
+
+	#Penal System
+	if = {
+		limit = { has_idea = tno_penal_system_penal_slavery }
+		multiply_variable = { construction_expenditures_factor = 0.7 }
+	}
+	else_if = {
+		limit = { has_idea = tno_penal_system_capital_punishment }
+		multiply_variable = { construction_expenditures_factor = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_penal_system_penal_labor }
+		multiply_variable = { construction_expenditures_factor = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_penal_system_incarceration }
+		multiply_variable = { construction_expenditures_factor = 0.95 }
+	}
+	else_if = {
+		limit = { has_idea = tno_penal_system_rehabilitation }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+
+	#Minimum Wage
+	if = {
+		limit = { has_idea = tno_minimum_wage_no_minimum_wage }
+		multiply_variable = { construction_expenditures_factor = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_minimum_wage_trinket_minimum_wage }
+		multiply_variable = { construction_expenditures_factor = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_minimum_wage_low_minimum_wage }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_minimum_wage_acceptable_minimum }
+		multiply_variable = { construction_expenditures_factor = 1.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_minimum_wage_good_minimum_wage }
+		multiply_variable = { construction_expenditures_factor = 1.2 }
+	}
+
+	#Max Workhours
+	if = {
+		limit = { has_idea = tno_max_workhours_unlimited_work_day }
+		multiply_variable = { construction_expenditures_factor = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_max_workhours_14_hour_work_day }
+		multiply_variable = { construction_expenditures_factor = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_max_workhours_12_hour_work_day }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_max_workhours_8_hour_work_day }
+		multiply_variable = { construction_expenditures_factor = 1.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_max_workhours_6_hour_work_day }
+		multiply_variable = { construction_expenditures_factor = 1.2 }
+	}
+
+	#Child Labor
+	if = {
+		limit = { has_idea = tno_child_labor_legal }
+		multiply_variable = { construction_expenditures_factor = 0.7 }
+	}
+	else_if = {
+		limit = { has_idea = tno_child_labor_restricted }
+		multiply_variable = { construction_expenditures_factor = 0.85 }
+	}
+	else_if = {
+		limit = { has_idea = tno_child_labor_illegal }
+		multiply_variable = { construction_expenditures_factor = 1.0 }
+	}
+
+	multiply_variable = { construction_expenditures = construction_expenditures_factor }
+}
+
+calculate_military_expenditures = {
+	set_temp_variable = { num_mil_facs = num_of_military_factories }
+	set_temp_variable = { num_available_mil_facs = num_of_available_military_factories }
+
+	if = {
+		limit = {
+			check_variable = { num_available_mil_facs = 0 }
+		}
+		set_variable = { used_mil_facs = num_mil_facs }
+	}
+	else = {
+		set_variable = { used_mil_facs = num_mil_facs }
+		subtract_from_variable = { used_mil_facs = num_available_mil_facs }
+	}
+	calculate_fielded_manpower = yes
+	set_variable = { manpower_costs = approx_fielded_manpower }
+	multiply_variable = { manpower_costs = 0.011 }
+
+	#training level
+	if = {
+		limit = { has_idea = tno_training_none }
+		multiply_variable = { manpower_costs = 0.2 }
+	}
+	else_if = {
+		limit = { has_idea = tno_training_minimal_training }
+		multiply_variable = { manpower_costs = 0.4 }
+	}
+	else_if = {
+		limit = { has_idea = tno_training_basic_training }
+		multiply_variable = { manpower_costs = 0.6 }
+	}
+	else_if = {
+		limit = { has_idea = tno_training_combat_schooling }
+		multiply_variable = { manpower_costs = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_training_advanced_training_methods }
+		multiply_variable = { manpower_costs = 1.0 }
+	}
+
+	#supervision level
+	if = {
+		limit = { has_idea = tno_military_supervision_kill_em_all }
+		multiply_variable = { manpower_costs = 0.7 }
+	}
+	else_if = {
+		limit = { has_idea = tno_military_supervision_no_supervision }
+		multiply_variable = { manpower_costs = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_military_supervision_military_policing }
+		multiply_variable = { manpower_costs = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_military_supervision_rules_of_engagement }
+		multiply_variable = { manpower_costs = 1.0 }
+	}
+	else_if = {
+		limit = { has_idea = tno_military_supervision_watchdog_groups }
+		multiply_variable = { manpower_costs = 1.1 }
+	}
+	else_if = {
+		limit = { has_idea = tno_military_supervision_total_supervision }
+		multiply_variable = { manpower_costs = 1.2 }
+	}
+
+	set_variable = { military_expenditures = used_mil_facs }
+	multiply_variable = { military_expenditures = 100 }
+
+	set_variable = { military_factory_costs = military_expenditures }
+
+	#Industrial expertise
+	if = {
+		limit = { has_idea = tno_industrial_expertise_pre_industrial }
+		multiply_variable = { military_expenditures = 0.2 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_incompetent }
+		multiply_variable = { military_expenditures = 0.4 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_nascent }
+		multiply_variable = { military_expenditures = 0.6 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_experienced }
+		multiply_variable = { military_expenditures = 0.8 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_expertise_innovative }
+		multiply_variable = { military_expenditures = 1.0 }
+	}
+
+	#Industrial equipment
+	if = {
+		limit = { has_idea = tno_industrial_equipment_hand_tools }
+		multiply_variable = { military_expenditures = 0.3 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_power_tools }
+		multiply_variable = { military_expenditures = 0.45 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_manufacturing_lines }
+		multiply_variable = { military_expenditures = 0.6 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_factory_complexes }
+		multiply_variable = { military_expenditures = 0.75 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_modern }
+		multiply_variable = { military_expenditures = 0.9 }
+	}
+	else_if = {
+		limit = { has_idea = tno_industrial_equipment_cutting_edge }
+		multiply_variable = { military_expenditures = 1.05 }
+	}
+
+	#Extra fixed military costs, like nuclear stockpiles
+	add_to_variable = { military_expenditures = modifier@military_annual_cost }
+
+	#Multiplicative factor currently only used by the Oil Crisis modifier
+	multiply_variable = { manpower_costs = modifier@personnel_cost_modifier }
+
+	#Boosts/Austerity
+	multiply_variable = { manpower_costs = modifier@military_expenditures_factor }
+	multiply_variable = { military_factory_costs = modifier@military_expenditures_factor }
+
+	add_to_variable = { military_expenditures = manpower_costs }
+
+	set_variable = { military_expenditures_factor = total_budget }
+	divide_variable = { military_expenditures_factor = military_expenditures }
+}
+
+calculate_total_expenditures = {
+	add_country_specific_idea_costs = yes
+	set_variable = { total_expenditures = civilian_expenditures }
+	add_to_variable = { total_expenditures = construction_expenditures }
+	add_to_variable = { total_expenditures = military_expenditures }
+	add_to_variable = { total_expenditures = misc_costs }
+	add_to_variable = { total_expenditures = modifier@misc_costs_modifier }
+}
+
+calculate_total_expenditures_factor = {
+	set_variable = { total_expenditures_factor = total_expenditures }
+	divide_variable = { total_expenditures_factor = total_budget }
+}
+
+calculate_GDP_growth = {
+	#Finding the ratio of deficit to total budget
+	set_variable = { deficit_ratio = deficit }
+	set_temp_variable = { deficit_ratio_temp = deficit_ratio }
+
+	if = {
+		limit = { NOT = { check_variable = { deficit_ratio = 0 } } }
+		divide_temp_variable = { deficit_ratio_temp = total_budget }
+	}
+
+	set_temp_variable = { actual_GDP_growth = GDP_growth }
+	add_to_temp_variable = { actual_GDP_growth = modifier@gdp_growth_modifier }
+
+	#Growth Benefits from deficit spending
+	if = {
+		limit = { NOT = { check_variable = { deficit_ratio_temp = 0 } } }
+		divide_temp_variable = { deficit_ratio_temp = 4 }
+	}
+	if = { #Checking that there is deficit spending and that the country isn't in economic crisis
+		limit = { NOT = { check_variable = { deficit_ratio_temp < 0 } } }
+		add_to_temp_variable = { deficit_ratio_temp = 1 }
+		multiply_temp_variable = { actual_GDP_growth = deficit_ratio_temp }
+	}
+
+	# Annual growth modifier
+	multiply_variable = { actual_GDP_growth = modifier@annual_gdp_growth_factor }
+
+	divide_temp_variable = { actual_GDP_growth = 12 }
+	add_to_temp_variable = { actual_GDP_growth = 1 } #need to add 1 because GDP growth is given between 0 and 1
+
+
+	#GDP growth checks
+	multiply_variable = { GDP = actual_GDP_growth }
+}
+
+calculate_deficit = {
+	set_variable = { deficit = 0 }
+	set_variable = { deficit = total_expenditures }
+	subtract_from_variable = { deficit = total_budget }
+
+	#deficit is calculated for annual cycles, while monthly deficit is what is actually used for calculations (and is recalculated every month)
+
+	set_temp_variable = { monthly_deficit = deficit }
+	if = {
+		limit = { NOT = { check_variable = { monthly_deficit = 0 } } }
+		divide_temp_variable = { monthly_deficit = 12 }
+	}
+
+	if = { #running a deficit
+		limit = {
+			check_variable = { monthly_deficit > 0 }
+		}
+		if = {
+			limit = {
+				check_variable = { money_reserves > 0 }
+			}
+			subtract_from_temp_variable = { monthly_deficit = money_reserves }
+			if = {
+				limit = {
+					check_variable = { monthly_deficit < 0 }
+				}
+				#add money back to reserves if we haven't used all of them
+				set_temp_variable = { deficit_to_reserves = monthly_deficit }
+				multiply_temp_variable = { deficit_to_reserves = -1 }
+				set_variable = { money_reserves = deficit_to_reserves }
+			}
+			else_if = {
+				limit = {
+					check_variable = { monthly_deficit > 0 }
+				}
+				#use the national debt to make up the rest if we've used up all our reserves
+				set_variable = { money_reserves = 0 }
+				add_to_variable = { national_debt = monthly_deficit }
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { check_variable = { money_reserves > 0 } } 
+			}
+			add_to_variable = { national_debt = monthly_deficit }
+		}
+	}
+	else = { #in the black
+		multiply_temp_variable = { monthly_deficit = -1 }
+#		if = {
+#			limit = { check_variable = { national_debt > 0 } }
+#			subtract_from_variable = { national_debt = monthly_deficit }
+#			if = {
+#				limit = { check_variable = { national_debt < 0 } }
+#				#put money into monthly reserves if we paid off all our national debt
+#				add_to_variable = { money_reserves = monthly_deficit }
+#				set_variable = { national_debt = 0 }
+#			}
+#		}
+#		else_if = {
+#			limit = { NOT = { check_variable = { national_debt > 0 } } }
+#			add_to_variable = { money_reserves = monthly_deficit }
+#		}
+		add_to_variable = { money_reserves = monthly_deficit }
+	}
+}
+
+resolve_negative_cases = {
+	if = { 
+		limit = {
+			check_variable = { ROOT.money_reserves < -1000000 }
+		}
+		set_variable = { money_reserves = 100 }
+		log = "[GetDateText]: [THIS.GetName]: a pretty obvious overflow bug occured - money reserves reset to 100."		
+	}
+	if = { 
+		limit = {
+			check_variable = { ROOT.money_reserves < 0 }
+		}
+		set_variable = { liquidinverter = 0 }
+		subtract_from_variable = { liquidinverter = ROOT.money_reserves }
+		add_to_variable = { national_debt = liquidinverter } 
+		set_variable = { ROOT.money_reserves = 0 }
+	}
+	if = { 
+		limit = {
+			check_variable = { ROOT.national_debt < -1000000 }
+		}
+		set_variable = { national_debt = 100 }
+		log = "[GetDateText]: [THIS.GetName]: a pretty obvious overflow bug occured - national debt reset to 100."
+	}
+	if = { 
+		limit = {
+			check_variable = { ROOT.national_debt < 0 }
+		}
+		set_variable = { debtinverter = 0 }
+		subtract_from_variable = { debtinverter = ROOT.national_debt }
+		add_to_variable = { money_reserves = debtinverter } 
+		set_variable = { ROOT.national_debt = 0 }
+	}
+	if = { 
+		limit = {
+			check_variable = { ROOT.GDP < 0 }
+		}
+		set_variable = { GDP = 100 }
+	}
+
+	### Debt Ratio ###
+	set_variable = { debt_ratio = national_debt }
+	divide_variable = { debt_ratio = GDP }
+}
+
+calculate_fielded_manpower = {
+	#fuck you paradox why can't we just have an army_manpower variable?
+	#this gives you a rough estimate of how much manpower is in the field
+	set_variable = { approx_fielded_manpower = 1 }
+	if = {
+		limit = { has_army_manpower = { size < 500000 } }
+		#For those with small armies, between 0 and 500k men
+		if = {
+			limit = { has_army_manpower = { size = 0 } }
+			set_variable = { approx_fielded_manpower = 0 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 25000 } }
+			set_variable = { approx_fielded_manpower = 12500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 50000 } }
+			set_variable = { approx_fielded_manpower = 37500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 75000 } }
+			set_variable = { approx_fielded_manpower = 62500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 100000 } }
+			set_variable = { approx_fielded_manpower = 87500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 125000 } }
+			set_variable = { approx_fielded_manpower = 112500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 150000 } }
+			set_variable = { approx_fielded_manpower = 137500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 175000 } }
+			set_variable = { approx_fielded_manpower = 162500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 200000 } }
+			set_variable = { approx_fielded_manpower = 187500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 225000 } }
+			set_variable = { approx_fielded_manpower = 212500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 250000 } }
+			set_variable = { approx_fielded_manpower = 237500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 275000 } }
+			set_variable = { approx_fielded_manpower = 262500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 300000 } }
+			set_variable = { approx_fielded_manpower = 287500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 325000 } }
+			set_variable = { approx_fielded_manpower = 312500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 350000 } }
+			set_variable = { approx_fielded_manpower = 337500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 375000 } }
+			set_variable = { approx_fielded_manpower = 362500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 400000 } }
+			set_variable = { approx_fielded_manpower = 387500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 425000 } }
+			set_variable = { approx_fielded_manpower = 412500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 450000 } }
+			set_variable = { approx_fielded_manpower = 437500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 475000 } }
+			set_variable = { approx_fielded_manpower = 462500 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 500000 } }
+			set_variable = { approx_fielded_manpower = 487500 }
+		}
+	}
+	else_if = {
+		limit = { has_army_manpower = { size < 1000000 } }
+		#Medium sized armies, between 500k and 1M men
+		if = {
+			limit = { has_army_manpower = { size < 550000 } }
+			set_variable = { approx_fielded_manpower = 525000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 600000 } }
+			set_variable = { approx_fielded_manpower = 575000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 650000 } }
+			set_variable = { approx_fielded_manpower = 625000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 700000 } }
+			set_variable = { approx_fielded_manpower = 675000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 750000 } }
+			set_variable = { approx_fielded_manpower = 725000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 800000 } }
+			set_variable = { approx_fielded_manpower = 775000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 850000 } }
+			set_variable = { approx_fielded_manpower = 825000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 900000 } }
+			set_variable = { approx_fielded_manpower = 875000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 950000 } }
+			set_variable = { approx_fielded_manpower = 925000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1000000 } }
+			set_variable = { approx_fielded_manpower = 975000 }
+		}
+	}
+	else_if = {
+		limit = { has_army_manpower = { size < 2000000 } }
+		#Large armies, between 1M and 2M men
+		if = {
+			limit = { has_army_manpower = { size < 1100000 } }
+			set_variable = { approx_fielded_manpower = 1050000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1200000 } }
+			set_variable = { approx_fielded_manpower = 1150000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1300000 } }
+			set_variable = { approx_fielded_manpower = 1250000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1400000 } }
+			set_variable = { approx_fielded_manpower = 1350000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1500000 } }
+			set_variable = { approx_fielded_manpower = 1450000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1600000 } }
+			set_variable = { approx_fielded_manpower = 1550000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1700000 } }
+			set_variable = { approx_fielded_manpower = 1650000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1800000 } }
+			set_variable = { approx_fielded_manpower = 1750000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 1900000 } }
+			set_variable = { approx_fielded_manpower = 1850000 }
+		}
+		else_if = {
+			limit = { has_army_manpower = { size < 2000000 } }
+			set_variable = { approx_fielded_manpower = 1950000 }
+		}
+	}
+	else = {
+		#2M and above (fucking integer limit)
+		set_variable = { approx_fielded_manpower = 2000000 }
+	}
+}
+
+
+#These variables are just here to look pretty, and not have a billion places after numbers
+#i.e. they're purely for display so if they overflow sometimes that's ok it's just life
+calculate_display_variables = {
+	set_variable = { GDP_billion = GDP }
+	set_variable = { GDP_thousand = GDP }
+	set_variable = { total_budget_billion = total_budget }
+	set_variable = { total_budget_thousand = total_budget }
+	set_variable = { total_expenditures_billion = total_expenditures }
+	set_variable = { total_expenditures_thousand = total_expenditures }
+	set_variable = { civilian_expenditures_billion = civilian_expenditures }
+	set_variable = { civilian_expenditures_thousand = civilian_expenditures }
+	set_variable = { military_expenditures_billion = military_expenditures }
+	set_variable = { military_expenditures_thousand = military_expenditures }
+	set_variable = { construction_expenditures_billion = construction_expenditures }
+	set_variable = { construction_expenditures_thousand = construction_expenditures }
+	set_variable = { money_reserves_billion = money_reserves }
+	set_variable = { money_reserves_thousand = money_reserves }
+	set_variable = { national_debt_billion = national_debt }
+	set_variable = { national_debt_thousand = national_debt }
+	set_variable = { deficit_billion = deficit }
+	set_variable = { deficit_thousand = deficit }
+	set_variable = { manpower_costs_billion = manpower_costs }
+	set_variable = { manpower_costs_thousand = manpower_costs }
+	set_variable = { military_factory_costs_billion = military_factory_costs }
+	set_variable = { military_factory_costs_thousand = military_factory_costs }
+	set_variable = { misc_costs_billion = misc_costs }
+	add_to_variable = { misc_costs_billion = modifier@misc_costs_modifier }
+	set_variable = { misc_costs_thousand = misc_costs }
+	add_to_variable = { misc_costs_thousand = modifier@misc_costs_modifier }
+	set_variable = { misc_income_billion = misc_income }
+	add_to_variable = { misc_income_billion = modifier@misc_income_modifier }
+	set_variable = { misc_income_thousand = misc_income }
+	add_to_variable = { misc_income_thousand = modifier@misc_income_modifier }
+	set_variable = { annual_debt_payments_thousand = annual_debt_payments }
+	set_variable = { annual_debt_payments_billion = annual_debt_payments }
+
+	set_variable = { COMECON_collective_defense_value_billion = misc_costs }
+	add_to_variable = { COMECON_collective_defense_value_billion = modifier@misc_costs_modifier }
+	set_variable = { COMECON_collective_defense_value_thousand = misc_costs }
+	add_to_variable = { COMECON_collective_defense_value_thousand = modifier@misc_costs_modifier }
+	set_variable = { COMECON_monetary_fund_value_billion = misc_costs }
+	add_to_variable = { COMECON_monetary_fund_value_billion = modifier@misc_costs_modifier }
+	set_variable = { COMECON_monetary_fund_value_thousand = misc_costs }
+	add_to_variable = { COMECON_monetary_fund_value_thousand = modifier@misc_costs_modifier }
+
+	multiply_variable = { GDP_billion = 0.001 }
+	multiply_variable = { GDP_thousand = 1000 }
+	multiply_variable = { total_budget_billion = 0.001 }
+	multiply_variable = { total_budget_thousand = 1000 }
+	multiply_variable = { total_expenditures_billion = 0.001 }
+	multiply_variable = { total_expenditures_thousand = 1000 }
+	multiply_variable = { civilian_expenditures_billion = 0.001 }
+	multiply_variable = { civilian_expenditures_thousand = 1000 }
+	multiply_variable = { military_expenditures_billion = 0.001 }
+	multiply_variable = { military_expenditures_thousand = 1000 }
+	multiply_variable = { construction_expenditures_billion = 0.001 }
+	multiply_variable = { construction_expenditures_thousand = 1000 }
+	multiply_variable = { money_reserves_billion = 0.001 }
+	multiply_variable = { money_reserves_thousand = 1000 }
+	multiply_variable = { national_debt_billion = 0.001 }
+	multiply_variable = { national_debt_thousand = 1000 }
+	multiply_variable = { deficit_billion = 0.001 }
+	multiply_variable = { deficit_thousand = 1000 }
+	multiply_variable = { manpower_costs_billion = 0.001 }
+	multiply_variable = { manpower_costs_thousand = 1000 }
+	multiply_variable = { military_factory_costs_billion = 0.001 }
+	multiply_variable = { military_factory_costs_thousand = 1000 }
+	multiply_variable = { misc_costs_billion = 0.001 }
+	multiply_variable = { misc_costs_thousand = 1000 }
+	multiply_variable = { misc_income_billion = 0.001 }
+	multiply_variable = { misc_income_thousand = 1000 }
+	multiply_variable = { annual_debt_payments_billion = 0.001 }
+	multiply_variable = { annual_debt_payments_thousand = 1000 }
+
+	multiply_variable = { COMECON_collective_defense_value_billion = 0.001 }
+	multiply_variable = { COMECON_collective_defense_value_thousand = 1000 }
+	multiply_variable = { COMECON_monetary_fund_value_billion = 0.001 }
+	multiply_variable = { COMECON_monetary_fund_value_thousand = 1000 }
+
+	set_variable = { GDP_growth_display = GDP_growth }
+	add_to_variable = { GDP_growth_display = modifier@gdp_growth_modifier }
+	multiply_variable = { GDP_growth_display = modifier@annual_gdp_growth_factor }
+	set_variable = { misc_income_display = misc_income }
+	add_to_variable = { misc_income_display = modifier@misc_income_modifier }
+	set_variable = { misc_costs_display = misc_costs }
+	add_to_variable = { misc_costs_display = modifier@misc_costs_modifier }
+}
+
+#Covert money reserves to GDP at a 1:2 ratio
+invest_money_reserves = {
+	set_temp_variable = { temp_money_reserves = money_reserves }
+	multiply_temp_variable = { temp_money_reserves = 0.5 }
+	add_to_variable = { GDP = temp_money_reserves }
+	set_variable = { money_reserves = 0 }
+}
+
+#using your money reserves to pay off any debt you have
+money_reserves_to_debt = {
+	subtract_from_variable = { national_debt = money_reserves }
+	if = {
+		limit = { check_variable = { national_debt < 0 } } #more reserves than national debt
+		set_variable = { money_reserves = national_debt }
+		multiply_variable = { money_reserves = -1 }
+		set_variable = { national_debt = 0 }
+	}
+	else = {
+		set_variable = { money_reserves = 0 }
+	}
+}
+
+increase_construction_budget = {
+	if = {
+		limit = { has_idea = construction_level_0 }
+		swap_ideas = {
+			remove_idea = construction_level_0
+			add_idea = construction_level_1
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_1 }
+		swap_ideas = {
+			remove_idea = construction_level_1
+			add_idea = construction_level_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_2 }
+		swap_ideas = {
+			remove_idea = construction_level_2
+			add_idea = construction_level_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_3 }
+		swap_ideas = {
+			remove_idea = construction_level_3
+			add_idea = construction_level_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_4 }
+		swap_ideas = {
+			remove_idea = construction_level_4
+			add_idea = construction_level_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_5 }
+		swap_ideas = {
+			remove_idea = construction_level_5
+			add_idea = construction_level_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_6 }
+		swap_ideas = {
+			remove_idea = construction_level_6
+			add_idea = construction_level_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_7 }
+		swap_ideas = {
+			remove_idea = construction_level_7
+			add_idea = construction_level_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_8 }
+		swap_ideas = {
+			remove_idea = construction_level_8
+			add_idea = construction_level_9
+		}
+	}
+}
+
+decrease_construction_budget = {
+	if = {
+		limit = { has_idea = construction_level_9 }
+		swap_ideas = {
+			remove_idea = construction_level_9
+			add_idea = construction_level_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_8 }
+		swap_ideas = {
+			remove_idea = construction_level_8
+			add_idea = construction_level_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_7 }
+		swap_ideas = {
+			remove_idea = construction_level_7
+			add_idea = construction_level_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_6 }
+		swap_ideas = {
+			remove_idea = construction_level_6
+			add_idea = construction_level_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_5 }
+		swap_ideas = {
+			remove_idea = construction_level_5
+			add_idea = construction_level_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_4 }
+		swap_ideas = {
+			remove_idea = construction_level_4
+			add_idea = construction_level_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_3 }
+		swap_ideas = {
+			remove_idea = construction_level_3
+			add_idea = construction_level_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_2 }
+		swap_ideas = {
+			remove_idea = construction_level_2
+			add_idea = construction_level_1
+		}
+	}
+	else_if = {
+		limit = { has_idea = construction_level_1 }
+		swap_ideas = {
+			remove_idea = construction_level_1
+			add_idea = construction_level_0
+		}
+	}
+}
+
+#A purely visual update, for whenever you change things/open the econ tab
+update_economy_tab = {
+	calculate_total_budget = yes
+	calculate_civilian_expenditures = yes
+	calculate_construction_expenditures = yes
+	calculate_military_expenditures = yes
+	calculate_total_expenditures = yes
+
+	set_variable = { deficit = 0 }
+	set_variable = { deficit = total_expenditures }
+	subtract_from_variable = { deficit = total_budget }
+
+	set_variable = { deficit_ratio = deficit }
+	divide_variable = { deficit_ratio = total_budget }
+
+
+	calculate_display_variables = yes
+}
+
+
+
+
+#####################################
+## COUNTRY-SPECIFIC MODIFIERS HERE ##
+#####################################
+
+## EXAMPLE
+#china_idea_costs = {
+#	if = {
+#		limit = { has_idea = idea_1 }
+#		add_to_variable = { military_expenditures = 100 }
+#	}
+#	else_if = {
+#		limit = { has_idea = idea_2 }
+#		add_to_variable = { military_expenditures = 50 }
+#	}
+#}
+
+# SUGGESTED VARIABLES TO ADD TO:
+# civilian_expenditures
+# military_expenditures
+# construction_expenditures
+# total_budget
+
+# NOTE:
+# DO NOT ADD TO misc_costs or misc_income
+# This fires monthly, or even more, and those two ARE NOT reset every month, meaning it will compound
+# Example: Adding 50 to misc_costs this way will have a 50 misc_costs the first month, 100 the second month, etc. etc.
+# You can do that if that's intentional
+
+
+add_country_specific_idea_costs = {
+	if = {
+		limit = { original_tag = USA }
+		USA_idea_costs = yes
+	}
+	else_if = {
+		limit = { original_tag = GER }
+		germany_idea_costs = yes
+	}
+	else_if = {
+		limit = { original_tag = JAP }
+		japan_idea_costs = yes
+		japan_master_idea_income = yes
+	}
+	else_if = {
+		limit = {
+			OR = {
+				original_tag = RAJ 
+				original_tag = INC
+				original_tag = INF
+				original_tag = RAO
+				original_tag = BEN
+			}
+		}
+		india_idea_costs = yes
+	}
+	else_if = {
+		limit = { original_tag = ITA }
+		italy_idea_costs = yes
+	}
+	else_if = {
+		limit = { original_tag = IBR }
+		iberia_idea_costs = yes
+	}
+	else_if = {
+		limit = {
+			is_in_faction_with = JAP
+			NOT = {
+				original_tag = JAP
+			}
+		}
+		if = {
+			limit = { original_tag = CHI }
+			china_idea_costs = yes
+		}
+		sphere_puppet_idea_costs = yes
+	}
+}
+
+#Chinese idea costs
+china_idea_costs = {
+	if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_1
+				has_idea = CHI_Excavation_Projects_1_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 1440}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_2
+				has_idea = CHI_Excavation_Projects_2_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 1200}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_3
+				has_idea = CHI_Excavation_Projects_3_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 960}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_4
+				has_idea = CHI_Excavation_Projects_4_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 720}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_5
+				has_idea = CHI_Excavation_Projects_5_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 480}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_idea = CHI_Excavation_Projects_6
+				has_idea = CHI_Excavation_Projects_6_w
+			}
+		}
+		add_to_variable = {civilian_expenditures = 240}
+	}
+	if = {
+		limit = {has_idea = CHI_slave_of_the_samurai_0}
+		add_to_variable = {civilian_expenditures = 2500}
+	}
+	else_if = {
+		limit = {has_idea = CHI_slave_of_the_samurai_1}
+		add_to_variable = {civilian_expenditures = 2000}
+	}
+	else_if = {
+		limit = {has_idea = CHI_slave_of_the_samurai_2}
+		add_to_variable = {civilian_expenditures = 1500}
+	}
+	else_if = {
+		limit = {has_idea = CHI_slave_of_the_samurai_3}
+		add_to_variable = {civilian_expenditures = 1000}
+	}
+	else_if = {
+		limit = {has_idea = CHI_slave_of_the_samurai_4}
+		add_to_variable = {civilian_expenditures = 500}
+	}
+	if = {
+		limit = {has_idea = CHI_Sphere_Energy}
+		add_to_variable = {total_budget = 750}
+	}
+}
+
+japan_idea_costs = {
+	
+}
+
+sphere_puppet_idea_costs = {
+	if = {
+		limit = {has_idea = Sphere_Economic_Dependent} #15% of income deducted
+		if = {
+			limit = {
+					original_tag = CHI
+					check_variable = {var = CHI.faction_pro_japan_opinion value = 40 compare = less_than_or_equals}
+				}
+				if = {
+					limit = {
+						check_variable = {var = CHI.faction_pro_japan_influence value = 0.70 compare = greater_than_or_equals}
+					}
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.35}
+					add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+				}
+				else_if = {
+					limit = {
+						check_variable = {var = CHI.faction_pro_japan_influence value = 0.50 compare = greater_than_or_equals}
+					}
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.25}
+					add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+				}
+				else = {
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.20}
+					add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+				}
+		}
+		else = {
+			set_temp_variable = {sphere_member_payment_calc = total_budget}
+			multiply_temp_variable = {sphere_member_payment_calc = 0.15}
+			add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+		}
+	}
+	else_if = {
+		limit = {has_idea = Sphere_Fully_Dependent} #25% of income deducted
+		set_temp_variable = {sphere_member_payment_calc = total_budget}
+		multiply_temp_variable = {sphere_member_payment_calc = 0.25}
+		add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+	}
+	else_if = {
+		limit = {has_idea = Sphere_Imp_Protectorate} #40% of income deducted
+		set_temp_variable = {sphere_member_payment_calc = total_budget}
+		multiply_temp_variable = {sphere_member_payment_calc = 0.40}
+		add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+	}
+	else_if = {
+		limit = {has_idea = Sphere_Special_Econ_Zone} #60% of income deducted
+		set_temp_variable = {sphere_member_payment_calc = total_budget}
+		multiply_temp_variable = {sphere_member_payment_calc = 0.60}
+		add_to_variable = {civilian_expenditures = sphere_member_payment_calc}
+	}
+}
+
+japan_master_idea_income = {
+	set_variable = {JAP_calc_sphere_member_income = 0}
+	every_country = {
+		limit = {
+			is_in_faction_with = JAP
+			NOT = {
+				original_tag = JAP
+			}
+		}
+		if = {
+			limit = {
+				has_idea = Sphere_Economic_Dependent
+			}
+			if = {
+				limit = {
+					original_tag = CHI
+					check_variable = {var = CHI.faction_pro_japan_opinion value = 40 compare = less_than_or_equals}
+				}
+				if = {
+					limit = {
+						check_variable = {var = CHI.faction_pro_japan_influence value = 0.70 compare = greater_than_or_equals}
+					}
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.35}
+					add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+				}
+				else_if = {
+					limit = {
+						check_variable = {var = CHI.faction_pro_japan_influence value = 0.50 compare = greater_than_or_equals}
+					}
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.25}
+					add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+				}
+				else = {
+					set_temp_variable = {sphere_member_payment_calc = total_budget}
+					multiply_temp_variable = {sphere_member_payment_calc = 0.20}
+					add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+				}
+			}
+			else = {
+				set_temp_variable = {sphere_member_payment_calc = total_budget}
+				multiply_temp_variable = {sphere_member_payment_calc = 0.15}
+				add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = Sphere_Fully_Dependent
+			}
+			set_temp_variable = {sphere_member_payment_calc = total_budget}
+			multiply_temp_variable = {sphere_member_payment_calc = 0.25}
+			add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+		}
+		else_if = {
+			limit = {
+				has_idea = Sphere_Imp_Protectorate
+			}
+			set_temp_variable = {sphere_member_payment_calc = total_budget}
+			multiply_temp_variable = {sphere_member_payment_calc = 0.40}
+			add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+		}
+		else_if = {
+			limit = {
+				has_idea = Sphere_Special_Econ_Zone
+			}
+			set_temp_variable = {sphere_member_payment_calc = total_budget}
+			multiply_temp_variable = {sphere_member_payment_calc = 0.60}
+			add_to_variable = {JAP.JAP_calc_sphere_member_income = sphere_member_payment_calc}
+		}
+	}
+	if = {
+		limit = {
+			has_completed_focus = JAP_tampering_with_national_renovationists
+		}
+		multiply_variable = {JAP_calc_sphere_member_income = 0.95}
+	}
+	add_to_variable = {total_budget = JAP_calc_sphere_member_income}
+	clear_variable = JAP_calc_sphere_member_income
+}
+
+USA_idea_costs = {
+	if = {
+		limit = { has_idea = USA_HAR_the_hunger_bill }
+		add_to_variable = { civilian_expenditures = 1000 }
+	}
+	if = {
+		limit = { has_idea = USA_HAR_OFN_welfare_fund }
+		add_to_variable = { civilian_expenditures = 100 }
+	}
+	if = {
+		limit = {
+			RAJ = {
+				has_idea = RAJ_perth_subsidies_poor
+			}
+		}
+		set_variable = {india_subsidies = RAJ.gdp}
+		multiply_variable = {india_subsidies = 0.01}
+		add_to_variable = {civilian_expenditures = india_subsidies}
+	}
+	if = {
+		limit = {has_idea = USA_minutemen}
+		subtract_from_variable = { military_expenditures = 30}
+	}
+}
+
+germany_idea_costs = {
+	
+}
+
+india_idea_costs = {
+	if = {
+		limit = {has_idea = RAJ_perth_subsidies_poor}
+		subtract_from_variable = {misc_income = old_subsidy_value}
+		set_variable = {india_subsidies = RAJ.gdp}
+		multiply_variable = {india_subsidies = 0.01}
+		add_to_variable = {misc_income = india_subsidies}
+		set_variable = {old_subsidy_value = india_subsidies}
+		clear_variable = india_subsidies
+	}
+}
+
+italy_idea_costs = {
+	if = {
+		limit = { has_idea = ITA_socdem_66_agsub }
+		add_to_variable = { civilian_expenditures = 3 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_socdem_66_work_harder }
+		add_to_variable = { civilian_expenditures = 10 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_scorza_bureaucrats_and_barons1 }
+		add_to_variable = { construction_expenditures = 300 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_scorza_bureaucrats_and_barons2 }
+		add_to_variable = { construction_expenditures = 750 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_scorza_bureaucrats_and_barons3 }
+		add_to_variable = { construction_expenditures = 1100 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_scorza_bureaucrats_and_barons4 }
+		add_to_variable = { construction_expenditures = 1600 }
+	}
+	else_if = {
+		limit = { has_idea = ITA_scorza_bureaucrats_and_barons5 }
+		add_to_variable = { construction_expenditures = 2000 }
+	}
+}
+
+iberia_idea_costs = {
+
+}
+
+
+
+# Other handy effects #
+
+#HOW TO USE:
+#First enter the scope of the country the GDP is being TAKEN FROM
+#Then enter the scope of the country the GDP is being transfered to
+
+#EXAMPLE:
+#
+#MEX = {
+#	USA = {
+#		transfer_GDP = yes
+#	}
+#}
+#This will transfer Mexico's GDP to the US
+
+#transfer_GDP = {
+#	set_temp_variable = { temp_GDP = PREV.GDP }
+#	multiply_temp_variable = { temp_GDP = 0.6 }
+
+#	set_variable = { PREV.GDP = 0 }
+#	add_to_variable = { GDP = temp_GDP }
+#}
+
+debug_grow_civs = {
+	every_country = {
+		limit = {
+			NOT = { is_warlord = yes }
+		}
+		save_event_target_as = my_country	
+		#log = "[GetDateText]: [This.GetName]: running civ growth effect"
+		set_temp_variable = { civs_to_build = 0 }
+		add_to_variable = { civ_buildup = GDP_growth }
+		set_temp_variable = { civ_proportion = 1 }
+		set_temp_variable = { num_civs = num_of_civilian_factories }
+		add_to_temp_variable = { num_civs = 1 }
+		divide_temp_variable = { civ_proportion = num_civs }
+		#log = "[GetDateText]: [This.GetName]: civ_buildup = [?civ_buildup]; civ_proportion = [?civ_proportion];"
+		resize_array = {
+    		array = while_array
+    		size = 100
+		}
+		for_each_loop = {
+			array = while_array
+			if = {
+				limit = {
+						check_variable = { civ_buildup > civ_proportion }
+				}
+				subtract_from_variable = { civ_buildup = civ_proportion }
+				add_to_temp_variable = { civs_to_build = 1 }
+				else = {
+					set_temp_variable = { break = 0 }
+				}
+			}
+		}
+		clear_array = while_array
+		#log = "[GetDateText]: [This.GetName]: civ_buildup = [?civ_buildup]; civ_proportion = [?civ_proportion];"
+		#log = "[GetDateText]: [This.GetName]: civs_to_build = [?civs_to_build];"
+		for_each_scope_loop = {
+			array = owned_controlled_states
+
+			set_temp_variable = { civ_weight = industrial_complex_level }
+			divide_temp_variable = { civ_weight = event_target:my_country.num_civs }
+			set_temp_variable = { civ_chance = random }
+			divide_temp_variable = { civ_chance = 2 }
+			clamp_temp_variable = {
+    			var = civ_chance
+				min = 0
+    			max = 0.5
+			}
+			if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = megalopolis }
+				}
+				multiply_temp_variable = { civ_weight = 5 }
+			}
+			else_if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = metropolis }
+				}
+				multiply_temp_variable = { civ_weight = 4 }
+			}
+			else_if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = large_city }
+				}
+				multiply_temp_variable = { civ_weight = 3 }
+				else = {
+					multiply_temp_variable = { civ_weight = 2 }
+				}
+			}
+			#log = "[GetDateText]: [This.Owner.GetName]: [This.GetName]: civ_chance = [?civ_chance]; civ_weight = [?civ_weight]"
+			if = {
+				limit = {
+					check_variable = { event_target:my_country.civs_to_build > 0 }
+					var:owned_controlled_states^v = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+					check_variable = { civ_chance < civ_weight }
+				}
+				#log = "[GetDateText]: [This.Owner.GetName]: all criteria met."
+				var:owned_controlled_states^v = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					subtract_from_temp_variable = { event_target:my_country.civs_to_build = 1 }
+					log = "[GetDateText]: [This.Owner.GetName]: Civilian Factory Built in [This.GetName]"
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { PREV.civs_to_build < 1 }
+				}
+				#log = "[GetDateText]: [This.Owner.GetName]: No Civilian Factory Built in [This.GetName]"
+				set_temp_variable = { break = 0 }
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { civs_to_build > 0 }
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = civs_to_build
+				add_building_construction = {
+					type = industrial_complex
+					level = civs_to_build
+					instant_build = yes
+				}
+				log = "[GetDateText]: [This.Owner.GetName]: Backup Civilian Factories Built in [This.GetName]"
+				set_temp_variable = { civs_to_build = 0 }
+			}
+		}
+	}
+}
+
+generate_state_gdps = {
+		set_variable = { THIS.state_value = 25 }
+		set_variable = { THIS.state_value_factor = 1 }
+		#State population block
+		set_variable = { state_population_value_factor = 1 }
+		set_variable = { state_population_value = state_population_k }
+		if = {
+			limit = { owner = { has_idea = tno_poverty_rate_spartan_ideal } }
+			multiply_variable = { state_population_value_factor = 0.5 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_80 } }
+			multiply_variable = { state_population_value_factor = 0.1 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_50 } }
+			multiply_variable = { state_population_value_factor = 0.3 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_25 } }
+			multiply_variable = { state_population_value_factor = 0.7 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_15 } }
+			multiply_variable = { state_population_value_factor = 1 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_10 } }
+			multiply_variable = { state_population_value_factor = 1.3 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_10 } }
+			multiply_variable = { state_population_value_factor = 1.5 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_10 } }
+			multiply_variable = { state_population_value_factor = 1.7 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_poverty_rate_10 } }
+			multiply_variable = { state_population_value_factor = 2 }
+		}
+		else = {
+			multiply_variable = { state_population_value_factor = 0.7 }
+		}
+		divide_variable = { state_population_value = 100 }
+		multiply_variable = { state_population_value = state_population_value_factor }
+		
+		#industry block
+		if = {
+			limit = {
+				THIS = {
+					arms_factory > 9
+				}
+			}
+			add_to_variable = { state_value_factor = 2 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 8
+				}
+			}
+			add_to_variable = { state_value_factor = 1.75 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 7
+				}
+			}
+			add_to_variable = { state_value_factor = 1.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 6
+				}
+			}
+			add_to_variable = { state_value_factor = 1.25 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 5
+				}
+			}
+			add_to_variable = { state_value_factor = 1 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 4
+				}
+			}
+			add_to_variable = { state_value_factor = 0.75 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 3
+				}
+			}
+			add_to_variable = { state_value_factor = 0.6 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 2
+				}
+			}
+			add_to_variable = { state_value_factor = 0.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					arms_factory > 1
+				}
+			}
+			add_to_variable = { state_value_factor = 0.4 }
+		}
+		else = {
+			add_to_variable = { state_value_factor = 0 }
+		}
+		
+		if = {
+			limit = {
+				THIS = {
+					infrastructure > 9
+				}
+			}
+			add_to_variable = { state_value_factor = 1.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 8
+				}
+			}
+			add_to_variable = { state_value_factor = 1.25 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 7
+				}
+			}
+			add_to_variable = { state_value_factor = 1 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 6
+				}
+			}
+			add_to_variable = { state_value_factor = 0.8 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 5
+				}
+			}
+			add_to_variable = { state_value_factor = 0.6 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 4
+				}
+			}
+			add_to_variable = { state_value_factor = 0.4 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 3
+				}
+			}
+			add_to_variable = { state_value_factor = 0.2 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 2
+				}
+			}
+			add_to_variable = { state_value_factor = -0.2 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					infrastructure > 1
+				}
+			}
+			add_to_variable = { state_value_factor = -0.4 }
+		}
+		else = {
+			add_to_variable = { state_value_factor = -1 }
+		}
+		
+		if = {
+			limit = {
+				THIS = {
+					industrial_complex > 9
+				}
+			}
+			add_to_variable = { state_value_factor = 2 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 8
+				}
+			}
+			add_to_variable = { state_value_factor = 1.75 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 7
+				}
+			}
+			add_to_variable = { state_value_factor = 1.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 6
+				}
+			}
+			add_to_variable = { state_value_factor = 1.25 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 5
+				}
+			}
+			add_to_variable = { state_value_factor = 1 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 4
+				}
+			}
+			add_to_variable = { state_value_factor = 0.75 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 3
+				}
+			}
+			add_to_variable = { state_value_factor = 0.6 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 2
+				}
+			}
+			add_to_variable = { state_value_factor = 0.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					industrial_complex > 1
+				}
+			}
+			add_to_variable = { state_value_factor = 0.4 }
+		}
+		else = {
+			add_to_variable = { state_value_factor = 0 }
+		}
+		
+		#Various socdev blocks
+		
+		#Industrial expertise
+		if = {
+			limit = { owner = { has_idea = tno_industrial_expertise_pre_industrial } }
+			add_to_variable = { state_value_factor = -1.9 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_industrial_expertise_incompetent } }
+			add_to_variable = { state_value_factor = -1.5 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_industrial_expertise_nascent } }
+			add_to_variable = { state_value_factor = -0.75 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_industrial_expertise_experienced } }
+			add_to_variable = { state_value_factor = 1 }
+		}
+		else_if = {
+			limit = { owner = { has_idea = tno_industrial_expertise_innovative } }
+			add_to_variable = { state_value_factor = 1.75 }
+		}
+		else = {
+			add_to_variable = { state_value_factor = 0 }
+		}
+		
+		#State category block
+		if = {
+			limit = {
+				THIS = {
+					has_state_category = megalopolis
+				}
+			}
+			multiply_variable = { state_value_factor = 3 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					has_state_category = metropolis
+				}
+			}
+			multiply_variable = { state_value_factor = 2 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					has_state_category = large_city
+				}
+			}
+			multiply_variable = { state_value_factor = 1.5 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					has_state_category = city
+				}
+			}
+			multiply_variable = { state_value_factor = 1.25 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					has_state_category = large_town
+				}
+			}
+			multiply_variable = { state_value_factor = 0.8 }
+		}
+		else_if = {
+			limit = {
+				THIS = {
+					has_state_category = town
+				}
+			}
+			multiply_variable = { state_value_factor = 0.7 }
+		}
+		else = {
+			multiply_variable = { state_value_factor = 0.2 }
+		}
+		if = {
+			limit = {
+				check_variable = { state_value_factor < 0 }
+			}
+			set_variable = { state_value_factor = 0.1 }
+		}
+		multiply_variable = { state_value_factor = state_population_value }
+		multiply_variable = { state_value = state_value_factor }
+		
+}
+
+generate_country_gdp = {
+	set_variable = { tempGDP = 0 }
+	every_owned_state = {
+		add_to_variable = { PREV.tempGDP = state_value }
+	}
+	set_variable = { GDP = tempGDP }
+	set_variable = { GDP_growth = 0.03 }
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = log_spammed_with_gdp
+			}
+		}
+		log = "[GetDateText]: [THIS.GetName]: ran GDP generation script - GDP is $[?GDP] million. GDP growth is [?GDP_growth]%."
+	}
+}
+
+calculate_total_gdp = {
+	set_variable = { totalstateGDP = 0 }
+	every_owned_state = {
+		add_to_variable = { PREV.totalstateGDP = state_value }
+	}
+	#log = "[GetDateText]: [THIS.GetName]: ran total state GDP calculation script - GDP is $[?totalstateGDP] million. GDP growth is [?GDP_growth]%."
+}
+
+resolve_excessive_state_gdp = {
+	if = {
+		limit = { 
+			check_variable = { totalstateGDP > GDP } 
+		}
+		set_variable = { formerGDP = totalstateGDP }
+		set_variable = { excessGDP = totalstateGDP }
+		subtract_from_variable = { excessGDP = GDP }
+		set_temp_variable = { excessGDPtemp = excessGDP }
+		divide_variable = { excessGDP = num_owned_controlled_states }
+		every_owned_state = {
+			subtract_from_variable = { state_value = PREV.excessGDP }
+			if = {
+				limit = {	
+					check_variable = { state_value < 0 }
+				}
+				set_variable = { state_value = 0 }
+			}
+		}
+		#log = "[GetDateText]: [THIS.GetName]: ran excess GDP removal script - excess GDP is $[?excessGDPtemp] million. Former GDP was $[?formerGDP] million."
+		calculate_total_gdp = yes
+	}
+	if = {
+		limit = { 
+			check_variable = { GDP > totalstateGDP } 
+		}
+		set_variable = { formerGDP = totalstateGDP }
+		set_variable = { GDP2 = GDP }
+		subtract_from_variable = { GDP2 = totalstateGDP }
+		set_variable = { neededGDP = GDP2 }
+		divide_variable = { neededGDP = num_owned_controlled_states }
+		every_owned_state = {
+			add_to_variable = { state_value = PREV.neededGDP }
+		}
+		#log = "[GetDateText]: [THIS.GetName]: ran underestimated GDP addition script - additional GDP is $[?GDP2] million. Former GDP was $[?formerGDP] million."
+		calculate_total_gdp = yes
+	}
+}
+
+generate_russia_state_gdp = {
+	hidden_effect = {
+		every_owned_state = {
+			generate_state_gdps = yes
+		}
+		calculate_total_gdp = yes
+		generate_country_gdp = yes
+		set_variable = { GDP_growth = 0.05 }
+		set_variable = { interest_rates = 0.12 }
+		multiply_variable = { GDP = 25 }
+		resolve_excessive_state_gdp = yes
+	}
+}

@@ -1,0 +1,5552 @@
+focus_tree = {
+	id = NIK_pre_election
+	country = {
+		factor = 0
+		modifier = {
+			add = 25
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_the_minutes_of_the_congress
+		icon = GFX_NIK_minutes_of_the_congress
+		cost = 4.00
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_minutes_of_the_congress"
+			add_political_power = 50
+			add_stability = -0.05
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.1
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_last_years_of_the_voznesentsi
+		icon = GFX_NIK_the_last_year_of_the_voznesenstsi
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_minutes_of_the_congress
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_the_minutes_of_the_congress
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_minutes_of_the_congress"
+			country_event = {
+				id = NIK.149
+				days = 1
+			}
+			add_political_power = -25
+		}
+	}
+
+	focus = {
+		id = NIK_speak_with_stalina
+		icon = GFX_NIK_speak_with_stalina
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_last_years_of_the_voznesentsi
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_the_last_years_of_the_voznesentsi
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_speak_with_bukharina"
+			NIK_increase_center_power_med = yes
+			NIK_increase_Stalina_influence_med = yes
+			country_event = {
+				id = NIK.150
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_our_paramilitaries_reports
+		icon = GFX_NIK_our_paramilitaries_reports
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_last_years_of_the_voznesentsi
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_the_last_years_of_the_voznesentsi
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_our_paramilitaries_reports"
+			army_experience = 15
+			country_event = {
+				id = NIK.151
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_government_in_check
+		icon = GFX_NIK_the_government_in_check
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_speak_with_stalina
+		}
+		prerequisite = {
+			focus = NIK_our_paramilitaries_reports
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_speak_with_stalina
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_government_in_check"
+			country_event = {
+				id = NIK.200
+				days = 3
+			}
+			country_event = {
+				id = komi.32
+				days = 45
+				random = 240
+			}
+			add_stability = -0.035
+			NIK_decrease_center_power_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_eyes_to_the_left
+		icon = GFX_NIK_eyes_to_the_left
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_government_in_check
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_straight_ahead
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_to_the_right
+		}
+		available = {
+			always = no
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_the_government_in_check
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_eyes_to_the_left"
+			custom_effect_tooltip = NIK_eyes_to_the_left_tt
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.5
+					days = 1
+				}
+			}
+			hidden_effect = {
+				NIK_decrease_Suslov_influence_high = yes
+				NIK_decrease_Zhdanov_influence_med = yes
+				NIK_increase_gumilyov_influence_med = yes
+				NIK_increase_right_power_low = yes
+				NIK_decrease_left_power_high = yes
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_observe_leftist_paramilitaries
+		icon = GFX_NIK_observe_leftist_paramilitaries
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_eyes_to_the_left
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_eyes_to_the_left
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_observe_leftist_paramilitaries"
+			country_event = {
+				id = NIK.107
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_spreading_red_influence
+		icon = GFX_NIK_the_spreading_red_influence
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_eyes_to_the_left
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_eyes_to_the_left
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_spreading_red_influence"
+			NIK_decrease_Suslov_influence_random = yes
+			add_political_power = -25
+			NIK_decrease_Voznesensky_influence_low = yes
+			hidden_effect = {
+				if = {
+					limit = {
+						NIK_zhdanov_favors_enabled = yes
+						check_variable = { NIKZhdanovFavors > 9 }
+					}
+					set_country_flag = NIK_ZHD_DEMAND_FLAG_4
+					activate_mission = NIK_zhdanov_demand
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_strike_from_the_right
+		icon = GFX_NIK_strike_from_the_right
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_observe_leftist_paramilitaries
+		}
+		prerequisite = {
+			focus = NIK_the_spreading_red_influence
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_observe_leftist_paramilitaries
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_strike_from_the_right"
+			country_event = {
+				id = NIK.95
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_a_new_face_question
+		icon = GFX_NIK_a_new_face
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_strike_from_the_right
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_the_strike_from_the_right
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_a_new_face_question"
+			country_event = {
+				id = NIK.113
+				days = 1
+			}
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.11
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_eyes_straight_ahead
+		icon = GFX_NIK_eyes_straight_ahead
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_government_in_check
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_to_the_left
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_to_the_right
+		}
+		available = {
+			always = no
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_the_government_in_check
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_eyes_straight_ahead"
+			custom_effect_tooltip = NIK_eyes_straight_ahead_tt
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.6
+					days = 1
+				}
+			}
+			set_country_flag = NIK_CHOSE_CENTER
+			hidden_effect = {
+				NIK_increase_center_power_high = yes
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NIK_zhdanov_favors_enabled = yes
+						check_variable = { NIKZhdanovFavors > 9 }
+					}
+					set_country_flag = NIK_ZHD_DEMAND_FLAG_4
+					activate_mission = NIK_zhdanov_demand
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_distance_from_zhdanov
+		icon = GFX_NIK_distance_from_zhdanov
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_eyes_straight_ahead
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_eyes_straight_ahead
+		bypass = {
+			has_country_flag = NIK_VOZNESENSKY_CUT_TIES
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_distance_from_zhdanov"
+			country_event = {
+				id = NIK.7
+				days = 5
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_reinforce_the_center
+		icon = GFX_NIK_reinforce_the_center
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_distance_from_zhdanov
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_distance_from_zhdanov
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_reinforce_the_center"
+			add_political_power = 50
+			add_stability = 0.05
+			country_event = {
+				id = NIK.142
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_face_of_the_movement
+		icon = GFX_NIK_the_face_of_the_movement
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_distance_from_zhdanov
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_distance_from_zhdanov
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_face_of_the_movement"
+			add_stability = 0.05
+			add_political_power = 25
+			country_event = {
+				id = NIK.1
+				days = 5
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_let_them_burn_themselves_out
+		icon = GFX_NIK_let_them_burn_themselves_out
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_face_of_the_movement
+		}
+		prerequisite = {
+			focus = NIK_reinforce_the_center
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_the_face_of_the_movement
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_let_them_burn_themselves_out"
+			country_event = {
+				id = NIK.43
+				days = 1
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						check_variable = { NIKZhdanovFavors > 3 }
+						NIK_zhdanov_favors_enabled = yes
+					}
+					country_event = {
+						id = NIK.42
+						days = 3
+					}
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = NIK_eyes_to_the_right
+		icon = GFX_NIK_eyes_to_the_right
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_government_in_check
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_to_the_left
+		}
+		mutually_exclusive = {
+			focus = NIK_eyes_straight_ahead
+		}
+		available = {
+			always = no
+		}
+		x = -3
+		y = 1
+		relative_position_id = NIK_the_government_in_check
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_eyes_to_the_right"
+			custom_effect_tooltip = NIK_eyes_to_the_right_tt
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.7
+					days = 1
+				}
+			}
+			hidden_effect = {
+				NIK_increase_Suslov_influence_med = yes
+				NIK_increase_Zhdanov_influence_med = yes
+				NIK_decrease_gumilyov_influence_high = yes
+				NIK_decrease_right_power_high = yes
+				NIK_increase_left_power_low = yes
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_armed_activities
+		icon = GFX_NIK_armed_activities
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_eyes_to_the_right
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_eyes_to_the_right
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_armed_activities"
+			army_experience = 15
+			hidden_effect = {
+				if = {
+					limit = {
+						NIK_zhdanov_favors_enabled = yes
+						check_variable = { NIKZhdanovFavors > 9 }
+					}
+					set_country_flag = NIK_ZHD_DEMAND_FLAG_4
+					activate_mission = NIK_zhdanov_demand
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_extent_of_the_shadow
+		icon = GFX_NIK_extent_of_the_shadow
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_eyes_to_the_right
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_eyes_to_the_right
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_extent_of_the_shadow"
+			add_political_power = 25
+			add_stability = 0.08
+		}
+	}
+
+	focus = {
+		id = NIK_the_strike_from_the_left
+		icon = GFX_NIK_strike_from_the_left
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_extent_of_the_shadow
+		}
+		prerequisite = {
+			focus = NIK_armed_activities
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_the_extent_of_the_shadow
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_strike_from_the_left"
+			country_event = {
+				id = NIK.78
+				days = 8
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_believe_in_svetlana
+		icon = GFX_NIK_believe_in_svetlana
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_the_strike_from_the_left
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_the_strike_from_the_left
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_believe_in_svetlana"
+			country_event = {
+				id = NIK.58
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_the_interlude
+		icon = GFX_NIK_the_interlude
+		cost = 4.00
+		prerequisite = {
+			focus = NIK_believe_in_svetlana
+			focus = NIK_let_them_burn_themselves_out
+			focus = NIK_a_new_face_question
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_believe_in_svetlana
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_interlude"
+			add_stability = -0.025
+			add_political_power = 15
+			country_event = {
+				id = NIK.201
+				days = 1
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = NIK_VOZNESENSKY_CUT_TIES
+							check_variable = { NIKZhdanovFavors > 7 }
+						}
+					}
+					set_country_flag = NIK_ZHD_DEMAND_FLAG_4
+					country_event = {
+						id = komi_zhdanov_demand.4
+						days = 1
+					}
+				}
+				country_event = {
+					id = komi.34
+					days = 20
+				}
+			}
+		}
+	}
+
+	shared_focus  = NIK_the_affairs_of_the_legislature
+}
+
+focus_tree = {
+	id = NIK_interlude
+	country = {
+		factor = 0
+		modifier = {
+			add = 5000
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_the_1963_assembly
+		icon = GFX_NIK_affairs_legislature
+		cost = 5.00
+		x = 5
+		y = 0
+		select_effect = {
+			country_event = {
+				id = NIK.152
+				days = 2
+			}
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.12
+					days = 7
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_the_1963_assembly"
+			custom_effect_tooltip = NIK_the_1963_assembly_tt
+		}
+	}
+
+	focus = {
+		id = NIK_election_day_preparations
+		icon = GFX_generic_elections
+		cost = 3.00
+		x = 5
+		y = 1
+		prerequisite = {
+			focus = NIK_the_1963_assembly
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_election_day_preparations"
+			country_event = {
+				id = NIK.169
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_ensure_internal_stability
+		icon = GFX_USA_We_fight_for_Stability
+		cost = 3.00
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = NIK_election_day_preparations
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ensure_internal_stability"
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = NIK_calculate_the_bombing_intervals
+		icon = GFX_GER_Refocus_The_Bombings
+		cost = 3.00
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = NIK_election_day_preparations
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_calculate_the_bombing_intervals"
+			add_war_support = 0.05
+			country_event = {
+				id = NIK.170
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_protect_the_people
+		icon = GFX_BAS_Fortification_Building
+		cost = 3.00
+		x = 6
+		y = 2
+		prerequisite = {
+			focus = NIK_election_day_preparations
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_protect_the_people"
+			NIK_increase_center_power_low = yes
+			397 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 99
+				}
+			}
+			868 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3177
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_watch_the_radicals
+		icon = GFX_USA_Wiretap_the_NPP
+		cost = 3.00
+		x = 8
+		y = 2
+		prerequisite = {
+			focus = NIK_election_day_preparations
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_watch_the_radicals"
+			country_event = {
+				id = NIK.171
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_something_wicked_this_way_comes
+		icon = GFX_USA_Voting_Rights_Act
+		cost = 3.00
+		x = 5
+		y = 3
+		prerequisite = {
+			focus = NIK_ensure_internal_stability
+		}
+		prerequisite = {
+			focus = NIK_calculate_the_bombing_intervals
+		}
+		prerequisite = {
+			focus = NIK_protect_the_people
+		}
+		prerequisite = {
+			focus = NIK_watch_the_radicals
+		}
+		select_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NIK_zhdanov_favors_enabled = yes
+						check_variable = { NIKZhdanovFavors > 4 }
+					}
+					country_event = {
+						id = komi_zhdanov_demand.9
+						days = 1
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = komi_friendship.17
+					days = 1
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_something_wicked_this_way_comes"
+			country_event = {
+				id = NIK.172
+				days = 1
+			}
+		}
+	}
+
+	shared_focus  = NIK_the_affairs_of_the_legislature
+}
+
+focus_tree = {
+	id = NIK_democratic_expansion
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	shared_focus = NIK_demexpansion_the_republic_saved
+	shared_focus = NIK_demexpansion_restoring_order
+}
+
+focus_tree = {
+	id = NIK_stalina_expansion
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	shared_focus = NIK_demexpansion_the_republic_saved
+	shared_focus = NIK_stalexpansion_restoring_order
+}
+
+### SECOND ELECTION TREE ###
+focus_tree = {
+	id = NIK_second_election_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_second_election_start
+		icon = GFX_NIK_democratic_flag
+		cost = 3
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_start"
+			custom_effect_tooltip = NIK_second_election_start_tt
+			add_stability = 0.20
+			hidden_effect = {
+				country_event = {
+					id = yakovlev.3
+					days = 180
+					random = 24
+				}
+				country_event = {
+					id = katushev.3
+					days = 150
+					random = 24
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_the_DSNP_campaign
+		icon = GFX_NIK_DSNP_campaign
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_PSD_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_the_DSNP_campaign"
+			custom_effect_tooltip = NIK_second_election_the_DSNP_campaign_tt
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_socdem_pop = 0.04 }
+					add_to_variable = { RUS_state_liberal_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_auth_pop = -0.015 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.42
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_tour_the_industrial_centers
+		icon = GFX_CNT_meet_the_new_boss
+		cost = 3
+		x = -2
+		y = 2
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_the_DSNP_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_tour_the_industrial_centers"
+			custom_effect_tooltip = NIK_second_election_tour_the_industrial_centers_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						check_variable = { TNO_combined_factory_total > 6 }
+					}
+					add_to_variable = { RUS_state_socdem_pop = 0.085 }
+					add_to_variable = { RUS_state_auth_pop = -0.03 }
+					add_to_variable = { RUS_state_liberal_pop = -0.03 }
+					add_to_variable = { RUS_state_conservative_pop = -0.03 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.43
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_present_a_workers_agenda
+		icon = GFX_goal_workers_fist
+		cost = 3
+		x = -2
+		y = 3
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_tour_the_industrial_centers
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_present_a_workers_agenda"
+			custom_effect_tooltip = NIK_second_election_present_a_workers_agenda_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						NOT = {
+							OR = {
+								has_state_category = large_town
+								has_state_category = city
+								has_state_category = large_city
+								has_state_category = metropolis
+								has_state_category = megalopolis
+							}
+						}
+					}
+					add_to_variable = { RUS_state_socdem_pop = 0.05 }
+					add_to_variable = { RUS_state_conservative_pop = -0.05 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.44
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_the_PSD_campaign
+		icon = GFX_NIK_PSD_campaign
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_DSNP_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_the_PSD_campaign"
+			custom_effect_tooltip = NIK_second_election_the_PSD_campaign_tt
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_auth_pop = 0.04 }
+					add_to_variable = { RUS_state_liberal_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_socdem_pop = -0.015 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.45
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_a_platform_for_a_modern_russia
+		icon = GFX_NIK_defense_of_the_republic_act
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_the_PSD_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_a_platform_for_a_modern_russia"
+			custom_effect_tooltip = NIK_second_election_a_platform_for_a_modern_russia_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							has_state_category = large_town
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = metropolis
+							has_state_category = megalopolis
+						}
+					}
+					add_to_variable = { RUS_state_auth_pop = 0.05 }
+					add_to_variable = { RUS_state_liberal_pop = -0.05 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.46
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_an_appeal_to_force
+		icon = GFX_NIK_komi_infantry
+		cost = 3
+		x = 0
+		y = 3
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_a_platform_for_a_modern_russia
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_an_appeal_to_force"
+			add_war_support = 0.05
+			custom_effect_tooltip = NIK_second_election_an_appeal_to_force_tt
+			hidden_effect = {
+				755 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				250 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				252 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				855 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				856 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				857 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				859 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				858 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.47
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_the_SMR_campaign
+		icon = GFX_NIK_SMR_campaign
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_PSD_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_second_election_the_DSNP_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_the_SMR_campaign"
+			custom_effect_tooltip = NIK_second_election_the_SMR_campaign_tt
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_liberal_pop = 0.04 }
+					add_to_variable = { RUS_state_socdem_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_auth_pop = -0.015 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.48
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_meet_with_the_youth
+		icon = GFX_USA_Secondary_Education_Act
+		cost = 3
+		x = 2
+		y = 2
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_meet_with_the_youth"
+			RUS_encourage_urban_voting = yes
+			custom_effect_tooltip = NIK_second_election_meet_with_the_youth_tt
+			hidden_effect = {
+				850 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				249 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				753 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				252 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.49
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_hope_for_a_radiant_future
+		icon = GFX_NIK_constitutional_convention
+		cost = 3
+		x = 2
+		y = 3
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_meet_with_the_youth
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_hope_for_a_radiant_future"
+			custom_effect_tooltip = NIK_second_election_hope_for_a_radiant_future_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							has_state_category = large_town
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = metropolis
+							has_state_category = megalopolis
+						}
+					}
+					add_to_variable = { RUS_state_liberal_pop = 0.05 }
+					add_to_variable = { RUS_state_auth_pop = -0.05 }
+				}
+			}
+			country_event = {
+				id = komi_dem_generic.50
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_second_election_let_the_race_begin
+		icon = GFX_NIK_lady_justice
+		cost = 3
+		x = 0
+		y = 4
+		relative_position_id = NIK_second_election_start
+		prerequisite = {
+			focus = NIK_second_election_present_a_workers_agenda
+			focus = NIK_second_election_an_appeal_to_force
+			focus = NIK_second_election_hope_for_a_radiant_future
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_second_election_let_the_race_begin"
+			custom_effect_tooltip = NIK_second_election_let_the_race_begin_tt
+			country_event = {
+				id = russian_democracy_helpers.6
+				days = 1
+			}
+		}
+	}
+
+}
+
+### THIRD ELECTION TREE ###
+focus_tree = {
+	id = NIK_third_election_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_third_election_start
+		icon = GFX_RUS_russia_superregional
+		cost = 3
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 10
+		}
+		select_effect = {
+			hidden_effect = {
+				country_event = {
+					id = yakovlev.5
+					days = 3
+				}
+				country_event = {
+					id = katushev.5
+					days = 15
+				}
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_start"
+			custom_effect_tooltip = NIK_third_election_start_tt
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_the_DSNP_campaign
+		icon = GFX_NIK_DSNP_campaign
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_PSD_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_the_DSNP_campaign"
+			custom_effect_tooltip = NIK_third_election_the_DSNP_campaign_tt
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			country_event = {
+				id = yakovlev.6
+				days = 1
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_socdem_pop = 0.04 }
+					add_to_variable = { RUS_state_liberal_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_auth_pop = -0.015 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_tour_the_industrial_centers
+		icon = GFX_Hardhat_red
+		cost = 3
+		x = -2
+		y = 2
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_the_DSNP_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_tour_the_industrial_centers"
+			custom_effect_tooltip = NIK_third_election_tour_the_industrial_centers_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						check_variable = { TNO_combined_factory_total > 6 }
+					}
+					add_to_variable = { RUS_state_socdem_pop = 0.085 }
+					add_to_variable = { RUS_state_auth_pop = -0.03 }
+					add_to_variable = { RUS_state_liberal_pop = -0.03 }
+					add_to_variable = { RUS_state_conservative_pop = -0.03 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_present_a_workers_agenda
+		icon = GFX_RAJ_India_Worker_Rights
+		cost = 3
+		x = -2
+		y = 3
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_tour_the_industrial_centers
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_present_a_workers_agenda"
+			custom_effect_tooltip = NIK_third_election_present_a_workers_agenda_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						NOT = {
+							has_state_category = large_town
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = metropolis
+							has_state_category = megalopolis
+						}
+					}
+					add_to_variable = { RUS_state_socdem_pop = 0.05 }
+					add_to_variable = { RUS_state_conservative_pop = -0.05 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_the_PSD_campaign
+		icon = GFX_NIK_PSD_campaign
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_DSNP_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_the_PSD_campaign"
+			custom_effect_tooltip = NIK_third_election_the_PSD_campaign_tt
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_auth_pop = 0.04 }
+					add_to_variable = { RUS_state_liberal_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_socdem_pop = -0.015 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_a_platform_for_a_modern_russia
+		icon = GFX_generic_russian_eagle
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_the_PSD_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_a_platform_for_a_modern_russia"
+			custom_effect_tooltip = NIK_third_election_a_platform_for_a_modern_russia_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							has_state_category = large_town
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = metropolis
+							has_state_category = megalopolis
+						}
+					}
+					add_to_variable = { RUS_state_auth_pop = 0.05 }
+					add_to_variable = { RUS_state_liberal_pop = -0.05 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_an_appeal_to_force
+		icon = GFX_NIK_past_wrongs
+		cost = 3
+		x = 0
+		y = 3
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_a_platform_for_a_modern_russia
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_an_appeal_to_force"
+			add_war_support = 0.05
+			custom_effect_tooltip = NIK_third_election_an_appeal_to_force_tt
+			hidden_effect = {
+				755 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				250 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				252 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				855 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				856 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				857 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				859 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				858 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				571 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+				572 = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.075 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_the_SMR_campaign
+		icon = GFX_NIK_SMR_campaign
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_start
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_PSD_campaign
+		}
+		mutually_exclusive = {
+			focus = NIK_third_election_the_DSNP_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_the_SMR_campaign"
+			custom_effect_tooltip = NIK_third_election_the_SMR_campaign_tt
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.05
+			}
+			country_event = {
+				id = katushev.6
+				days = 1
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_liberal_pop = 0.04 }
+					add_to_variable = { RUS_state_socdem_pop = -0.015 }
+					add_to_variable = { RUS_state_conservative_pop = -0.015 }
+					add_to_variable = { RUS_state_auth_pop = -0.015 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_meet_with_the_youth
+		icon = GFX_CHI_Encourage_Intellectuals
+		cost = 3
+		x = 2
+		y = 2
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_the_SMR_campaign
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_meet_with_the_youth"
+			RUS_encourage_urban_voting = yes
+			custom_effect_tooltip = NIK_third_election_meet_with_the_youth_tt
+			hidden_effect = {
+				850 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				249 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				753 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				252 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				653 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				572 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				871 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+				573 = {
+					add_to_variable = { RUS_state_liberal_temp_pop = 0.075 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_hope_for_a_radiant_future
+		icon = GFX_RAJ_Detailed_Planning_Proposals
+		cost = 3
+		x = 2
+		y = 3
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_meet_with_the_youth
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_hope_for_a_radiant_future"
+			custom_effect_tooltip = NIK_third_election_hope_for_a_radiant_future_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							has_state_category = large_town
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = metropolis
+							has_state_category = megalopolis
+						}
+					}
+					add_to_variable = { RUS_state_liberal_pop = 0.05 }
+					add_to_variable = { RUS_state_auth_pop = -0.05 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_third_election_let_the_race_begin
+		icon = GFX_NIK_lady_justice
+		cost = 3
+		x = 0
+		y = 4
+		relative_position_id = NIK_third_election_start
+		prerequisite = {
+			focus = NIK_third_election_present_a_workers_agenda
+			focus = NIK_third_election_an_appeal_to_force
+			focus = NIK_third_election_hope_for_a_radiant_future
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_third_election_let_the_race_begin"
+			custom_effect_tooltip = NIK_third_election_let_the_race_begin_tt
+			country_event = {
+				id = russian_democracy_helpers.61
+				days = 1
+			}
+		}
+	}
+
+}
+
+focus_tree = {
+	id = NIK_stalina_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 500
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_stalina_freedom_sovereignty_patriotism
+		icon = GFX_NIK_PSD_campaign
+		cost = 3.6
+		x = 3
+		y = 0
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_freedom_sovereignty_patriotism"
+			add_political_power = 100
+			country_event = {
+				id = komi_authdem.12
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_a_democratic_centre
+		icon = GFX_NIK_reinforce_the_center
+		cost = 3.6
+		x = -4
+		y = 1
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_freedom_sovereignty_patriotism
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_democratic_centre"
+			country_event = {
+				id = komi_authdem.1
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_survey_republic_elections
+		icon = GFX_generic_elections
+		cost = 3.6
+		x = -5
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_a_democratic_centre
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_centralize_election_administration
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_survey_republic_elections"
+			NIK_PSD_empower_right_med = yes
+			RUS_decrease_administrative_strain = yes
+			custom_effect_tooltip = NIK_stalina_centralize_election_administration_tt
+			add_political_power = 25
+			hidden_effect = {
+				855 = {
+					add_to_variable = { RUS_state_auth_pop = 0.02 }
+				}
+				256 = {
+					add_to_variable = { RUS_state_auth_pop = 0.02 }
+				}
+				854 = {
+					add_to_variable = { RUS_state_auth_pop = 0.02 }
+				}
+				851 = {
+					add_to_variable = { RUS_state_auth_pop = 0.02 }
+				}
+				752 = {
+					add_to_variable = { RUS_state_auth_pop = 0.02 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_centralize_election_administration
+		icon = GFX_ORE_establish_the_planning_commission
+		cost = 3.6
+		x = -3
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_a_democratic_centre
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_survey_republic_elections
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_survey_republic_elections
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_centralize_election_administration"
+			NIK_PSD_empower_left_med = yes
+			RUS_decrease_administrative_strain = yes
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.03
+			}
+			custom_effect_tooltip = NIK_stalina_survey_republic_elections_tt
+			hidden_effect = {
+				651 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+				249 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+				399 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+				869 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+				262 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+				859 = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_no_room_for_corruption
+		icon = GFX_generic_trials
+		cost = 3.6
+		x = -4
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_survey_republic_elections
+			focus = NIK_stalina_centralize_election_administration
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_no_room_for_corruption"
+			TNO_improve_poverty_med = yes
+			country_event = {
+				id = komi_authdem.2
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_the_paramount_civic_duty
+		icon = GFX_NIK_defense_of_the_republic_act
+		cost = 3.6
+		x = -4
+		y = 4
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_no_room_for_corruption
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_paramount_civic_duty"
+			custom_effect_tooltip = NIK_stalina_the_paramount_civic_duty_tt
+			country_event = {
+				id = komi_authdem.3
+				days = 1
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_general_state_turnout = 0.05 }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_the_new_russian_century
+		icon = GFX_NIK_declare_free_republic
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_freedom_sovereignty_patriotism
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_new_russian_century"
+			RUS_decrease_administrative_strain = yes
+			country_event = {
+				id = komi_authdem.4
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_accept_the_big_tent_model
+		icon = GFX_Generic_Authoritarian_Democracy
+		cost = 3.6
+		x = -1
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		mutually_exclusive = {
+			focus = NIK_stalina_the_oppositions_finest
+		}
+		prerequisite = {
+			focus = NIK_stalina_the_new_russian_century
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_accept_the_big_tent_model"
+			country_event = {
+				id = komi_authdem.5
+				days = 1
+			}
+			add_stability = 0.025
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_justice_before_compromise
+		icon = GFX_NIK_lady_justice
+		cost = 3.6
+		x = -1
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_accept_the_big_tent_model
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_justice_before_compromise"
+			custom_effect_tooltip = NIK_stalina_justice_before_compromise_tt
+			NIK_PSD_increase_unity_high = yes
+			add_stability = -0.05
+			add_political_power = 200
+			hidden_effect = {
+				add_popularity = {
+					ideology = authoritarian_democrat
+					popularity = -0.05
+				}
+				every_owned_state = {
+					RUS_decrease_ruling_party_temp_pop_medium = yes
+				}
+				RUS_increase_urban_liberal_pop = yes
+				RUS_increase_urban_socdem_pop = yes
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_the_oppositions_finest
+		icon = GFX_NIK_affairs_legislature
+		cost = 3.6
+		x = 1
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		mutually_exclusive = {
+			focus = NIK_stalina_accept_the_big_tent_model
+		}
+		prerequisite = {
+			focus = NIK_stalina_the_new_russian_century
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_oppositions_finest"
+			country_event = {
+				id = komi_authdem.6
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_roots_for_healthy_competition
+		icon = GFX_ORE_accept_their_aid
+		cost = 3.6
+		x = 1
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_the_oppositions_finest
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_roots_for_healthy_competition"
+			add_stability = 0.05
+			custom_effect_tooltip = NIK_stalina_roots_for_healthy_competition_tt
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					RUS_increase_ruling_party_state_pop = yes
+				}
+			}
+			hidden_effect = {
+				RUS_increase_rural_socdem_pop = yes
+				random_owned_controlled_state = {
+					RUS_socdem_campaign_effects = yes
+				}
+				random_owned_controlled_state = {
+					RUS_socdem_campaign_effects = yes
+				}
+				random_owned_controlled_state = {
+					RUS_socdem_campaign_effects = yes
+				}
+				random_owned_controlled_state = {
+					RUS_liberal_campaign_effects = yes
+				}
+				random_owned_controlled_state = {
+					RUS_liberal_campaign_effects = yes
+				}
+				random_owned_controlled_state = {
+					RUS_liberal_campaign_effects = yes
+				}
+				RUS_increase_urban_liberal_pop = yes
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_towards_a_sovereign_future
+		icon = GFX_NIK_a_sovereign_future
+		cost = 3.6
+		x = 0
+		y = 4
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_justice_before_compromise
+			focus = NIK_stalina_roots_for_healthy_competition
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_towards_a_sovereign_future"
+			country_event = {
+				id = komi_despotism.15
+				days = 1
+			}
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_redeeming_our_history
+		icon = GFX_SAM_The_Russian_People_Deliver_Us
+		cost = 3.6
+		x = 6
+		y = 1
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_freedom_sovereignty_patriotism
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_right_the_pasts_wrongs
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_redeeming_our_history"
+			NIK_PSD_empower_right_med = yes
+			add_war_support = 0.05
+			country_event = {
+				id = komi_authdem.11
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_right_the_pasts_wrongs
+		icon = GFX_NIK_past_wrongs
+		cost = 3.6
+		x = 4
+		y = 1
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_freedom_sovereignty_patriotism
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_redeeming_our_history
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_right_the_pasts_wrongs"
+			NIK_PSD_empower_left_med = yes
+			RUS_encourage_minority_voting = yes
+			country_event = {
+				id = komi_authdem.8
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_emphasize_shared_identity
+		icon = GFX_UPO_Friends_in_Russia
+		cost = 3.6
+		x = 6
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_redeeming_our_history
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_emphasize_shared_identity"
+			add_political_power = 25
+			RUS_integration_cost_days_decrease = yes
+			country_event = {
+				id = komi_authdem.10
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_campaign_against_discrimination
+		icon = GFX_NIK_anti_discrimination_laws
+		cost = 3.6
+		x = 4
+		y = 2
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_right_the_pasts_wrongs
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_campaign_against_discrimination"
+			add_ideas = tno_minorities_affirmative_action
+			add_stability = -0.05
+			custom_effect_tooltip = NIK_voznesensky_an_all_russian_autonomy_commission_tt
+			651 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			249 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			399 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			869 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			262 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			859 = {
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+			252 = {
+				add_to_variable = { RUS_state_auth_pop = -0.02 }
+			}
+			256 = {
+				add_to_variable = { RUS_state_auth_pop = -0.02 }
+			}
+			854 = {
+				add_to_variable = { RUS_state_auth_pop = -0.02 }
+			}
+			250 = {
+				add_to_variable = { RUS_state_auth_pop = -0.02 }
+			}
+			850 = {
+				add_to_variable = { RUS_state_auth_pop = -0.02 }
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_charter_of_universal_rights
+		icon = GFX_NIK_minority_representation_act
+		cost = 3.6
+		x = 3
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_campaign_against_discrimination
+			focus = NIK_stalina_emphasize_shared_identity
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_charter_of_universal_rights"
+			custom_effect_tooltip = NIK_stalina_charter_of_universal_rights_tt
+			NIK_PSD_empower_left_high = yes
+			tno_women_improve = yes
+			RUS_decrease_administrative_strain = yes
+			add_stability = -0.05
+			hidden_effect = {
+				every_owned_state = {
+					RUS_decrease_ruling_party_temp_pop_small = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_honor_the_republics_heroes
+		icon = GFX_GER_SGR_feed_the_soldiers
+		cost = 3.6
+		x = 5
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_campaign_against_discrimination
+			focus = NIK_stalina_emphasize_shared_identity
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_honor_the_republics_heroes"
+			NIK_PSD_increase_unity_low = yes
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_decommunization_and_dewarlordization
+		icon = GFX_generic_smash_communists
+		cost = 3.6
+		x = 7
+		y = 3
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_campaign_against_discrimination
+			focus = NIK_stalina_emphasize_shared_identity
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_decommunization_and_dewarlordization"
+			custom_effect_tooltip = NIK_stalina_decommunization_and_dewarlordization_tt
+			NIK_PSD_empower_right_high = yes
+			RUS_integration_cost_days_decrease = yes
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+			hidden_effect = {
+				RUS_increase_rural_socdem_pop = yes
+				RUS_increase_urban_socdem_pop = yes
+				every_owned_state = {
+					RUS_decrease_ruling_party_temp_pop_small = yes
+				}
+				country_event = {
+					id = komi_authdem.9
+					days = 5
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_a_united_russia
+		icon = GFX_generic_russian_eagle
+		cost = 3.6
+		x = 5
+		y = 4
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_charter_of_universal_rights
+			focus = NIK_stalina_honor_the_republics_heroes
+			focus = NIK_stalina_decommunization_and_dewarlordization
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_united_russia"
+			NIK_PSD_increase_unity_low = yes
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+
+	focus = {
+		id = NIK_stalina_a_shining_precedent
+		icon = GFX_NIK_a_shining_precedent_stalina
+		cost = 3.6
+		x = 0
+		y = 5
+		relative_position_id = NIK_stalina_freedom_sovereignty_patriotism
+		prerequisite = {
+			focus = NIK_stalina_the_paramount_civic_duty
+		}
+		prerequisite = {
+			focus = NIK_stalina_towards_a_sovereign_future
+		}
+		prerequisite = {
+			focus = NIK_stalina_a_united_russia
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_shining_precedent"
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+			add_political_power = 50
+		}
+	}
+
+	shared_focus = NIK_authdem_the_russian_economy
+	shared_focus  = NIK_democratic_the_russian_republican_army
+	shared_focus  = NIK_democratic_onto_the_world_stage
+}
+
+
+### STALINA TREE - DESPOTIST ###
+focus_tree = {
+	id = NIK_stalina_despot_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	### STALINA REGIONAL POLITICAL TREE ###
+	focus = { #One thing I've always wondered is how the real-life people that the leaders were would react to what they do in TNOTL. Even if they're dead, or rightfully wouldn't care.
+		id = NIK_stalina_the_reconstruction_government
+		icon = GFX_generic_russian_eagle
+		cost = 3.6
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_reconstruction_government"
+			add_political_power = 25
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.1
+			}
+			country_event = {
+				id = komi_despotism.1
+				days = 1
+			}
+		}
+	}
+	focus = { #Stalina, especially, for some reason, interests me, since her personality is more or less a TNO invention based on how the conditions of Russia could affect her.
+		id = NIK_stalina_strengthen_the_institutions
+		icon = GFX_JAP_Make_Promises_to_the_Bureaucrats
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_government
+		}
+		x = -4
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_strengthen_the_institutions"
+			RUS_decrease_administrative_strain = yes
+			add_stability = 0.05
+			hidden_effect = {
+				country_event = { id = komi.19 days = 170 random = 4000 }
+			}
+		}
+	}
+	focus = { #In her memoirs, she was horrified by the authoritarian actions taken by her father. In interviews, she condemned the USSR for not delivering on its promises of freedom.
+		id = NIK_stalina_crack_down_on_corruption
+		icon = GFX_VIN_Depoliticize_Politics
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_strengthen_the_institutions
+		}
+		x = -4
+		y = 2
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_crack_down_on_corruption"
+			country_event = {
+				id = komi_despotism.2
+				days = 1
+			}
+		}
+	}
+	focus = { #This makes me wonder. Am I, as a creator, doing her justice? Would she, and her family, be accepting of what the player can make her do, in TNO?
+		id = NIK_stalina_a_stabilizing_thaw
+		icon = GFX_TNO_generic_liberating_camps_prisoners
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_crack_down_on_corruption
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_a_supervised_state
+		}
+		x = -5
+		y = 3
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_stabilizing_thaw"
+			custom_effect_tooltip = NIK_stalina_a_stabilizing_thaw_tt
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			tno_press_rights_improve = yes
+			tno_public_meetings_improve = yes
+		}
+	}
+	focus = { #Personally, I think it's questionable. It's obvious that she doesn't want to go full dictator, and that she's doing this because she sees it as the only path forward.
+		id = NIK_stalina_a_supervised_state
+		icon = GFX_generic_suspend_constitution
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_crack_down_on_corruption
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_a_stabilizing_thaw
+		}
+		x = -3
+		y = 3
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_supervised_state"
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.05
+			}
+			add_political_power = 50
+		}
+	}
+	focus = { #But that raises the question - how much can she justify to herself? How much can she compartmentalize her actions away, explain it as all for the greater good, and avoid feeling pain for all of it?
+		id = NIK_stalina_the_militarys_approval
+		icon = GFX_KEM_A_Standing_Army
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_a_stabilizing_thaw
+			focus = NIK_stalina_a_supervised_state
+		}
+		x = -4
+		y = 4
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_militarys_approval"
+			army_experience = 5
+			country_event = {
+				id = komi_despotism.3
+				days = 1
+			}
+		}
+	}
+	focus = { #My answer would be that this is not the case. She doesn't avoid pain, if she has gone this far, something has made her do it, and believe that it's justified. But that doesn't mean that she likes it.
+		id = NIK_stalina_the_renewed_defense_of_the_republic_act
+		icon = GFX_NIK_defense_of_the_republic_act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_government
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_renewed_defense_of_the_republic_act"
+			army_experience = 10
+			country_event = {
+				id = komi_despotism.4
+				days = 1
+			}
+		}
+	}
+	focus = { #Even if someone believes that their actions are justified, that does not mean that the psychological impact of their actions is negligable. Perhaps she's being slowly eaten away by all of this.
+		id = NIK_stalina_the_national_sovereignty_act
+		icon = GFX_NIK_national_sovereignty_act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_renewed_defense_of_the_republic_act
+		}
+		x = 0
+		y = 2
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_national_sovereignty_act"
+			country_event = {
+				id = komi_despotism.15
+				days = 1
+			}
+		}
+	}
+	focus = { #In a way, when the player makes Stalina go full dictator, they're hurting her on a deep and personal level. Every time they choose to double down, they are doing more harm.
+		id = NIK_stalina_the_executive_directive_act
+		icon = GFX_generic_trials
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_national_sovereignty_act
+		}
+		x = 0
+		y = 3
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_executive_directive_act"
+			add_political_power = 50
+			RUS_decrease_administrative_strain = yes
+			country_event = {
+				id = komi_despotism.6
+				days = 1
+			}
+		}
+	}
+	focus = { #It's hardly an ethical thing to do. Couldn't you imagine her growing distant from her family and friends, unable to truly look them in the eye? It's terrible that someone would make her do that.
+		id = NIK_stalina_the_party_registry_act
+		icon = GFX_CAN_secure_vote
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_executive_directive_act
+		}
+		x = 0
+		y = 4
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_party_registry_act"
+			country_event = {
+				id = komi_despotism.7
+				days = 1
+			}
+		}
+	}
+	focus = { #Make no mistake, you should feel bad for making her go full Despotist. Stalina was more or less innocent, and deserves so much better than to be forced into being a brutal dictator.
+		id = NIK_stalina_empower_the_party
+		icon = GFX_NIK_PSD_campaign
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_government
+		}
+		x = 4
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_empower_the_party"
+			custom_effect_tooltip = NIK_stalina_empower_the_party_tt
+			RUS_decrease_administrative_strain = yes
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_auth_temp_pop = 0.05 }
+				}
+			}
+		}
+	}
+	focus = { #The morality behind certain paths is very much notable, not only in the perspective of how they affect ingame stats and modifiers, but how they affect people.
+		id = NIK_stalina_public_concessions
+		icon = GFX_RAJ_The_Public_Sector
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_empower_the_party
+		}
+		x = 4
+		y = 2
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_public_concessions"
+			tno_pensions_improve = yes
+			add_to_variable = { misc_costs = 350 }
+			TNO_improve_poverty_low = yes
+
+		}
+	}
+	focus = { #This being TNO, unfortunately, 'affect people' usually means 'wreck unholy hell upon their lives'. Not everybody who dies or gets mistreated deserves it. One could argue nobody 'deserves it'.
+		id = NIK_stalina_allow_for_a_split
+		icon = GFX_Democacy_Saved
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_public_concessions
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_keep_the_big_tent_model
+		}
+		x = 3
+		y = 3
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_allow_for_a_split"
+			country_event = {
+				id = komi_despotism.8
+				days = 1
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = -0.1
+			}
+			custom_effect_tooltip = NIK_stalina_allow_for_a_split_tt
+			hidden_effect = {
+				RUS_increase_urban_liberal_pop = yes
+				RUS_increase_rural_socdem_pop = yes
+				every_owned_state = {
+					add_to_variable = { RUS_state_auth_pop = -0.07 }
+				}
+			}
+		}
+	}
+	focus = { #Death is a terrible thing, and, make no mistake, it makes me think, when I write in effects with "add_manpower = -250". It implies a casual loss of life, one great in scope.
+		id = NIK_stalina_keep_the_big_tent_model
+		icon = GFX_Generic_Authoritarian_Democracy
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_public_concessions
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_allow_for_a_split
+		}
+		x = 5
+		y = 3
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_keep_the_big_tent_model"
+			country_event = {
+				id = komi_despotism.9
+				days = 1
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+			custom_effect_tooltip = NIK_stalina_keep_the_big_tent_model_tt
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = { RUS_state_socdem_pop = -0.07 }
+					add_to_variable = { RUS_state_liberal_pop = -0.07 }
+				}
+			}
+		}
+	}
+	focus = { #Those 250 people, if you think about it, all lived full lives, with experiences equivalent to our own. All of them had their own unique thoughts, feelings, memories, and ideas. An incredible amount.
+		id = NIK_stalina_ensure_free_elections
+		icon = GFX_generic_elections
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_allow_for_a_split
+			focus = NIK_stalina_keep_the_big_tent_model
+		}
+		x = 4
+		y = 4
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_ensure_free_elections"
+			add_political_power = 50
+			add_stability = 0.025
+			add_ideas = tno_vote_franchise_registered_voting
+		}
+	}
+	focus = { #It may seem absurd to care about all of this, especially since there's no true NPCs in this game. Perhaps the manpower statistic is just that - a statistic, and shouldn't be considered too heavily.
+		id = NIK_stalina_the_constitution_of_national_reconstruction
+		icon = GFX_generic_authoritarian_constitution
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_militarys_approval
+		}
+		prerequisite = {
+			focus = NIK_stalina_the_party_registry_act
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_faith_in_democracy
+		}
+		x = -2
+		y = 5
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_constitution_of_national_reconstruction"
+			custom_effect_tooltip = NIK_stalina_the_constitution_of_national_reconstruction_tt
+			hidden_effect = {
+				add_ideas = tno_vote_franchise_no_voting
+			}
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.10
+			}
+			RUS_decrease_administrative_strain = yes
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		}
+	}
+	focus = { #But it's still worth it to think about, sometimes. Death is all too glorified as a means to an end. Perhaps one should turn off the computer and enrich a life, instead of ending them.
+		id = NIK_stalina_faith_in_democracy
+		icon = GFX_NIK_constitutional_convention
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_stalina_the_party_registry_act
+		}
+		prerequisite = {
+			focus = NIK_stalina_ensure_free_elections
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_the_constitution_of_national_reconstruction
+		}
+		x = 2
+		y = 5
+		relative_position_id = NIK_stalina_the_reconstruction_government
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_faith_in_democracy"
+			custom_effect_tooltip = NIK_stalina_faith_in_democracy_tt
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.07
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.05
+			}
+			RUS_decrease_administrative_strain = yes
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		}
+	}
+	shared_focus = NIK_authdem_the_russian_economy
+	shared_focus = NIK_democratic_the_russian_republican_army
+	shared_focus = NIK_democratic_onto_the_world_stage
+}
+
+### VOZNESENSKY TREE ###
+focus_tree = {
+	id = NIK_socdem_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	### VOZNESENSKY REGIONAL POLITICAL TREE ###
+	focus = {
+		id = NIK_voznesensky_a_socialist_mandate
+		icon = GFX_NIK_DSNP_campaign
+		cost = 3.6
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_socialist_mandate"
+			add_political_power = 75
+			country_event = { id = komi_socdem.2 }
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_new_republic
+		icon = GFX_NIK_declare_free_republic
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_socialist_mandate
+		}
+		x = -4
+		y = 1
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_new_republic"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_free_electoral_commission
+		icon = GFX_generic_elections
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_new_republic
+		}
+		x = -5
+		y = 2
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_free_electoral_commission"
+			country_event = { id = komi_socdem.4 }
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_an_urban_rural_platform
+		icon = GFX_Generic_Agrarianism02
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_new_republic
+		}
+		x = -3
+		y = 2
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_an_urban_rural_platform"
+			RUS_increase_rural_socdem_pop = yes
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_stand_for_democracy
+		icon = GFX_NIK_democratic_foundation
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_free_electoral_commission
+		}
+		prerequisite = {
+			focus = NIK_voznesensky_an_urban_rural_platform
+		}
+		x = -4
+		y = 3
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_stand_for_democracy"
+			RUS_decrease_administrative_strain = yes
+			every_owned_state = {
+				add_to_variable = { RUS_general_state_turnout = 0.015 }
+			}
+			custom_effect_tooltip = NIK_voznesensky_stand_for_democracy_tt
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_democratic_idealism
+		icon = GFX_Generic_Libertarian_Socialism
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_stand_for_democracy
+		}
+		x = -4
+		y = 4
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_democratic_idealism"
+			country_event = { id = komi_socdem.5 }
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_united_government
+		icon = GFX_JAP_Make_Promises_to_the_Bureaucrats
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_socialist_mandate
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_united_government"
+			add_ideas = NIK_Socdem_United_Government
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_party_consensus
+		icon = GFX_GER_convene_the_parties
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_united_government
+		}
+		x = 0
+		y = 2
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_party_consensus"
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_relentless_progress
+		icon = GFX_RAJ_red_shift
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_party_consensus
+		}
+		mutually_exclusive = {
+			focus = NIK_voznesensky_a_doctrine_of_compromise
+		}
+		x = -1
+		y = 3
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_relentless_progress"
+			add_stability = -0.1
+			RUS_increase_urban_socdem_pop = yes
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_doctrine_of_compromise
+		icon = GFX_Labour_Coal
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_party_consensus
+		}
+		mutually_exclusive = {
+			focus = NIK_voznesensky_relentless_progress
+		}
+		x = 1
+		y = 3
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_doctrine_of_compromise"
+			add_political_power = 100
+			RUS_increase_urban_auth_pop = yes
+			RUS_increase_urban_liberal_pop = yes
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_past_the_scandals
+		icon = GFX_ENG_the_gavel_strikes
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_relentless_progress
+			focus = NIK_voznesensky_a_doctrine_of_compromise
+		}
+		x = 0
+		y = 4
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_past_the_scandals"
+			country_event = { id = komi_socdem.6 }
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_populist_agenda
+		icon = GFX_ISH_uplift_the_proletarian
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_socialist_mandate
+		}
+		x = 4
+		y = 1
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_populist_agenda"
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.03
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_an_all_russian_autonomy_commission
+		icon = GFX_TNO_generic_islam_quran
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_populist_agenda
+		}
+		mutually_exclusive = {
+			focus = NIK_voznesensky_prioritize_majoritarian_concerns
+		}
+		x = 3
+		y = 2
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_an_all_russian_autonomy_commission"
+			RUS_decrease_administrative_strain = yes
+			custom_effect_tooltip = NIK_voznesensky_an_all_russian_autonomy_commission_tt
+			651 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			249 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			399 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			869 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			262 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			859 = {
+				add_to_variable = { RUS_state_socdem_pop = 0.05 }
+			}
+			252 = {
+				add_to_variable = { RUS_state_socdem_pop = -0.02 }
+			}
+			256 = {
+				add_to_variable = { RUS_state_socdem_pop = -0.02 }
+			}
+			854 = {
+				add_to_variable = { RUS_state_socdem_pop = -0.02 }
+			}
+			250 = {
+				add_to_variable = { RUS_state_socdem_pop = -0.02 }
+			}
+			850 = {
+				add_to_variable = { RUS_state_socdem_pop = -0.02 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_prioritize_majoritarian_concerns
+		icon = GFX_UPO_rally_the_russians
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_a_populist_agenda
+		}
+		mutually_exclusive = {
+			focus = NIK_voznesensky_an_all_russian_autonomy_commission
+		}
+		x = 5
+		y = 2
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_prioritize_majoritarian_concerns"
+			RUS_decrease_administrative_strain = yes
+			custom_effect_tooltip = NIK_voznesensky_prioritize_majoritarian_concerns_tt
+			hidden_effect = {
+				651 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				249 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				399 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				869 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				262 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				859 = {
+					add_to_variable = { RUS_state_socdem_pop = -0.05 }
+				}
+				252 = {
+					add_to_variable = { RUS_state_socdem_pop = 0.02 }
+				}
+				256 = {
+					add_to_variable = { RUS_state_socdem_pop = 0.02 }
+				}
+				854 = {
+					add_to_variable = { RUS_state_socdem_pop = 0.02 }
+				}
+				250 = {
+					add_to_variable = { RUS_state_socdem_pop = 0.02 }
+				}
+				850 = {
+					add_to_variable = { RUS_state_socdem_pop = 0.02 }
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_extend_social_welfare
+		icon = GFX_generic_change_law_welfare
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_an_all_russian_autonomy_commission
+			focus = NIK_voznesensky_prioritize_majoritarian_concerns
+		}
+		x = 4
+		y = 3
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_extend_social_welfare"
+			#add_ideas = tno_income_taxation_flat_taxes
+			add_ideas = tno_unemployment_generous_subsidies
+			RUS_increase_urban_socdem_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_campaign_for_the_disadvantaged
+		icon = GFX_USA_The_Workplace_Healthcare_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_extend_social_welfare
+		}
+		x = 4
+		y = 4
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_campaign_for_the_disadvantaged"
+			#add_ideas = tno_tax_rate_medium_taxation
+			add_ideas = tno_pensions_acceptable_pensions
+			add_to_variable = { RUS_socdem_global_bonus_pop = 0.01 }
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.03
+			}
+		}
+	}
+	focus = {
+		id = NIK_voznesensky_a_shining_precedent
+		icon = GFX_NIK_a_sovereign_future
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_voznesensky_past_the_scandals
+		}
+		prerequisite = {
+			focus = NIK_voznesensky_democratic_idealism
+		}
+		prerequisite = {
+			focus = NIK_voznesensky_campaign_for_the_disadvantaged
+		}
+		x = 0
+		y = 5
+		relative_position_id = NIK_voznesensky_a_socialist_mandate
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_voznesensky_a_shining_precedent"
+			add_political_power = 75
+			RUS_decrease_administrative_strain = yes
+			country_event = { id = komi_socdem.3 }
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+			hidden_effect = {
+				country_event = {
+					id = yakovlev.4
+					days = 180
+					random = 24
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_socdem_the_russian_economy
+		icon = GFX_ITA_The_Road_To_Democratic_Socialism
+		cost = 3.6
+		x = 17
+		y = 0
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_the_russian_economy"
+			country_event = { id = komi_socdem.1 }
+		}
+	}
+	focus = {
+		id = NIK_socdem_public_sector_investments
+		icon = GFX_RAJ_The_Public_Sector
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_the_russian_economy
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_public_sector_investments"
+			add_to_variable = { GDP_growth = 0.01 }
+			add_to_variable = { national_debt = 40 }
+			custom_effect_tooltip = NIK_socdem_public_sector_investments_tt
+		}
+	}
+	focus = {
+		id = NIK_socdem_lessons_from_the_reds
+		icon = GFX_TNO_generic_socialist_industry
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_public_sector_investments
+		}
+		x = 0
+		y = 2
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_lessons_from_the_reds"
+			add_ideas = NIK_Socdem_Economic_Plan
+		}
+	}
+	focus = {
+		id = NIK_socdem_our_own_gosplan
+		icon = GFX_RAJ_India_Nurture_Heavy_Industry
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_lessons_from_the_reds
+		}
+		x = -2
+		y = 3
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_our_own_gosplan"
+			add_to_variable = { national_debt = 100 }
+			add_to_variable = { GDP = 400 }
+			custom_effect_tooltip = NIK_socdem_our_own_gosplan_tt
+			TNO_improve_industrial_equipment_low = yes
+			hidden_effect = {
+				252 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+				399 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+				850 = {
+					add_extra_state_shared_building_slots = 4
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_rights_for_the_worker
+		icon = GFX_RAJ_India_Worker_Rights
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_lessons_from_the_reds
+		}
+		x = -1
+		y = 4
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_rights_for_the_worker"
+			add_ideas = tno_safety_acceptable_regulations
+			RUS_increase_ruling_party_industrial_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_socdem_the_national_resource_directorate
+		icon = GFX_RAJ_Our_Available_Resources
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_lessons_from_the_reds
+		}
+		x = 0
+		y = 3
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_the_national_resource_directorate"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = excavation_tech
+			}
+			214 = {
+				add_resource = {
+					type = chromium
+					amount = 20
+				}
+			}
+			753 = {
+				add_resource = {
+					type = tungsten
+					amount = 8
+				}
+			}
+			398 = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_expand_the_key_facilities
+		icon = GFX_GER_industry_calls
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_lessons_from_the_reds
+		}
+		x = 1
+		y = 4
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_expand_the_key_facilities"
+			add_to_variable = { national_debt = 250 }
+			custom_effect_tooltip = NIK_socdem_expand_the_key_facilities_tt
+			TNO_improve_industrial_equipment_low = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_the_public_works_boom
+		icon = GFX_NIK_infrastructure_repair_act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_lessons_from_the_reds
+		}
+		x = 2
+		y = 3
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_the_public_works_boom"
+			add_to_variable = { national_debt = 40 }
+			add_to_variable = { GDP = 200 }
+			TNO_improve_poverty_low = yes
+			custom_effect_tooltip = NIK_socdem_the_public_works_boom_tt
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_small = yes
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_small = yes
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_small = yes
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_private_sector_supplements
+		icon = GFX_RAJ_The_Private_Sector
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_the_russian_economy
+		}
+		x = -4
+		y = 1
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_private_sector_supplements"
+			add_to_variable = { national_debt = 200 }
+			add_to_variable = { GDP = 800 }
+			add_to_variable = { GDP_growth = 0.01 }
+			custom_effect_tooltip = NIK_socdem_private_sector_supplements_tt
+		}
+	}
+	focus = {
+		id = NIK_socdem_open_to_enterprise
+		icon = GFX_Generic_Business
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_private_sector_supplements
+		}
+		x = -5
+		y = 2
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_open_to_enterprise"
+			set_variable = { interest_rates = 0.05 }
+			TNO_improve_poverty_low = yes
+			custom_effect_tooltip = NIK_socdem_open_to_enterprise_tt
+		}
+	}
+	focus = {
+		id = NIK_socdem_stimulate_local_economies
+		icon = GFX_BRT_Mind_the_Economy
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_private_sector_supplements
+		}
+		x = -3
+		y = 2
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_stimulate_local_economies"
+			add_to_variable = { national_debt = 250 }
+			add_to_variable = { GDP_growth = 0.02 }
+			TNO_improve_poverty_med = yes
+			custom_effect_tooltip = NIK_socdem_stimulate_local_economies_tt
+			random_owned_controlled_state = {
+				limit = {
+					check_variable = { TNO_combined_factory_total < 3 }
+				}
+				RUS_increase_ruling_party_state_pop = yes
+			}
+			random_owned_controlled_state = {
+				limit = {
+					check_variable = { TNO_combined_factory_total < 3 }
+				}
+				RUS_increase_ruling_party_state_pop = yes
+			}
+			random_owned_controlled_state = {
+				limit = {
+					check_variable = { TNO_combined_factory_total < 3 }
+				}
+				RUS_increase_ruling_party_state_pop = yes
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_regulations_against_exploitation
+		icon = GFX_generic_change_law_labor
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_open_to_enterprise
+		}
+		prerequisite = {
+			focus = NIK_socdem_stimulate_local_economies
+		}
+		x = -4
+		y = 3
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_regulations_against_exploitation"
+			add_ideas = tno_minimum_wage_low_minimum_wage
+			RUS_increase_ruling_party_industrial_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_socdem_an_educated_populace
+		icon = GFX_USA_Secondary_Education_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_the_russian_economy
+		}
+		x = 4
+		y = 1
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_an_educated_populace"
+			add_ideas = tno_draft_exemptions_educational_deferment
+			country_event = {
+				id = komi_socdem.7
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = NIK_socdem_standardize_the_schools
+		icon = GFX_USA_Primary_Education_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_an_educated_populace
+		}
+		x = 4
+		y = 2
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_standardize_the_schools"
+			TNO_improve_academic_base_high = yes
+		}
+	}
+	focus = {
+		id = NIK_socdem_a_generation_of_engineers
+		icon = GFX_GER_new_science
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_socdem_standardize_the_schools
+		}
+		x = 4
+		y = 3
+		relative_position_id = NIK_socdem_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_socdem_a_generation_of_engineers"
+			TNO_improve_industrial_expertise_high = yes
+			TNO_improve_research_facilities_high = yes
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+
+	shared_focus  = NIK_democratic_the_russian_republican_army
+	shared_focus  = NIK_democratic_onto_the_world_stage
+}
+
+### KOSYGIN TREE ###
+focus_tree = {
+	id = NIK_kosygin_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	### KOSYGIN REGIONAL POLITICAL TREE ###
+	focus = {
+		id = NIK_kosygin_springtime_in_russia
+		icon = GFX_NIK_SMR_campaign
+		cost = 3.6
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_springtime_in_russia"
+			add_political_power = 75
+			country_event = { id = komi_soclib.2 }
+		}
+	}
+	focus = {
+		id = NIK_kosygin_a_platform_for_democracy
+		icon = GFX_NIK_democratic_flag
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_springtime_in_russia
+		}
+		x = -4
+		y = 1
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_a_platform_for_democracy"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_kosygin_freedom_and_fairness
+		icon = GFX_OST_Fight_for_Freedom
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_platform_for_democracy
+		}
+		x = -3
+		y = 2
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_freedom_and_fairness"
+			RUS_encourage_rural_voting = yes
+			RUS_encourage_urban_voting = yes
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = NIK_kosygin_survey_republic_elections
+		icon = GFX_generic_elections
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_platform_for_democracy
+		}
+		x = -5
+		y = 2
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_survey_republic_elections"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_kosygin_learn_from_past_mistakes
+		icon = GFX_RAJ_Electrification_Failed
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_freedom_and_fairness
+		}
+		prerequisite = {
+			focus = NIK_kosygin_survey_republic_elections
+		}
+		x = -4
+		y = 3
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_learn_from_past_mistakes"
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_towards_a_shining_future
+		icon = GFX_ENG_Onwards_to_Democracy
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_learn_from_past_mistakes
+		}
+		x = -4
+		y = 4
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_towards_a_shining_future"
+			add_stability = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = NIK_kosygin_a_platform_for_unity
+		icon = GFX_NIK_constitutional_convention
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_springtime_in_russia
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_a_platform_for_unity"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_kosygin_the_violet_platform
+		icon = GFX_RAJ_a_hill_of_flowers
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_platform_for_unity
+		}
+		mutually_exclusive = {
+			focus = NIK_kosygin_the_sovereign_coalition
+		}
+		x = -1
+		y = 2
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_violet_platform"
+			RUS_decrease_administrative_strain = yes
+			RUS_increase_urban_socdem_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_for_the_worker
+		icon = GFX_generic_socialist_labor
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_violet_platform
+		}
+		x = -1
+		y = 3
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_for_the_worker"
+			RUS_increase_urban_liberal_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_the_sovereign_coalition
+		icon = GFX_NIK_a_shining_precedent_stalina
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_platform_for_unity
+		}
+		mutually_exclusive = {
+			focus = NIK_kosygin_the_violet_platform
+		}
+		x = 1
+		y = 2
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_sovereign_coalition"
+			RUS_decrease_administrative_strain = yes
+			RUS_increase_urban_auth_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_for_the_people
+		icon = GFX_SAM_To_The_People
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_sovereign_coalition
+		}
+		x = 1
+		y = 3
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_sovereign_coalition"
+			RUS_increase_rural_liberal_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_a_show_of_cooperation
+		icon = GFX_NIK_the_face_of_the_movement
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_for_the_people
+			focus = NIK_kosygin_for_the_worker
+		}
+		x = 0
+		y = 4
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_past_the_scandals"
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_a_platform_for_reform
+		icon = GFX_ORE_a_scientific_approach
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_springtime_in_russia
+		}
+		x = 4
+		y = 1
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_a_platform_for_reform"
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.03
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_kosygin_assist_the_republics
+		icon = GFX_NIK_minority_representation_act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_platform_for_reform
+		}
+		x = 4
+		y = 2
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_assist_the_republics"
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_cultural_exhibits
+		icon = GFX_NIK_anti_discrimination_laws
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_assist_the_republics
+		}
+		x = 3
+		y = 3
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_prioritize_majoritarian_concerns"
+			RUS_increase_ruling_party_minority_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_protect_natural_beauty
+		icon = GFX_CHI_Competing_With_The_World
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_assist_the_republics
+		}
+		x = 5
+		y = 3
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_prioritize_majoritarian_concerns"
+			add_ideas = tno_pollution_some_regulations
+		}
+	}
+	focus = {
+		id = NIK_kosygin_uplift_minority_rights
+		icon = GFX_USA_Voting_Rights_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_cultural_exhibits
+		}
+		prerequisite = {
+			focus = NIK_kosygin_protect_natural_beauty
+		}
+		x = 4
+		y = 4
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_extend_social_welfare"
+			add_ideas = tno_vote_franchise_support_disenfranchised
+			RUS_increase_ruling_party_minority_pop = yes
+			RUS_encourage_minority_voting = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_the_march_of_progress
+		icon = GFX_NIK_a_sovereign_future
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_a_show_of_cooperation
+		}
+		prerequisite = {
+			focus = NIK_kosygin_towards_a_shining_future
+		}
+		prerequisite = {
+			focus = NIK_kosygin_uplift_minority_rights
+		}
+		x = 0
+		y = 5
+		relative_position_id = NIK_kosygin_springtime_in_russia
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_march_of_progress"
+			add_political_power = 75
+			RUS_decrease_administrative_strain = yes
+			country_event = { id = komi_soclib.3 }
+			hidden_effect = {
+				country_event = {
+					id = katushev.4
+					days = 180
+					random = 24
+				}
+			}
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		}
+	}
+
+	#KOSYGIN REGIONAL ECONOMIC TREE
+
+	focus = {
+		id = NIK_kosygin_the_russian_economy
+		icon = GFX_GER_Let_The_Money_Flow
+		cost = 3.6
+		x = 16
+		y = 0
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_russian_economy"
+			country_event = { id = komi_soclib.1 }
+		}
+	}
+	focus = {
+		id = NIK_kosygin_establish_the_economic_zones
+		icon = GFX_USA_The_Economic_Opportunity_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_russian_economy
+		}
+		x = -3
+		y = 1
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_establish_the_economic_zones"
+			add_ideas = NIK_Special_Economic_Zones
+		}
+	}
+	focus = {
+		id = NIK_kosygin_the_contract_responsiblity_system
+		icon = GFX_RAJ_security_in_farming
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_establish_the_economic_zones
+		}
+		x = -3
+		y = 2
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_contract_responsiblity_system"
+			TNO_improve_agriculture_med = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_aid_for_the_farmers
+		icon = GFX_ITA_Conclude_the_Mechanization_of_Agriculture
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_contract_responsiblity_system
+		}
+		x = -3
+		y = 3
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_aid_for_the_farmers"
+			add_to_variable = { GDP_growth = 0.005 }
+			add_to_variable = { national_debt = 40 }
+			TNO_improve_agriculture_high = yes
+			RUS_increase_rural_liberal_pop = yes
+			custom_effect_tooltip = NIK_kosygin_aid_for_the_farmers_tt
+		}
+	}
+	focus = {
+		id = NIK_kosygin_open_the_republic
+		icon = GFX_generic_change_law_trade
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_russian_economy
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_open_the_republic"
+			add_ideas = tno_trade_laws_free_trade
+		}
+	}
+	focus = {
+		id = NIK_kosygin_the_developmental_industry_sector
+		icon = GFX_Generic_Industry
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_open_the_republic
+		}
+		x = -1
+		y = 2
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_the_developmental_industry_sector"
+			add_to_variable = { national_debt = 100 }
+			add_to_variable = { GDP = 400 }
+			custom_effect_tooltip = NIK_kosygin_the_developmental_industry_sector_tt
+			hidden_effect = {
+				252 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+				399 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+				850 = {
+					add_extra_state_shared_building_slots = 4
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					RUS_add_ruling_party_temp_pop_medium = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_exploit_southern_oil_reserves
+		icon = GFX_JAP_subcontinental_oil
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_open_the_republic
+		}
+		x = 1
+		y = 2
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_exploit_southern_oil_reserves"
+			651 = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			853 = {
+				add_resource = {
+					type = oil
+					amount = 8
+				}
+			}
+			851 = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_comprehensive_refinement_program
+		icon = GFX_Refinery_blue
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_developmental_industry_sector
+		}
+		prerequisite = {
+			focus = NIK_kosygin_exploit_southern_oil_reserves
+		}
+		x = 0
+		y = 3
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_comprehensive_refinement_program"
+			add_to_variable = { national_debt = 80 }
+			add_to_variable = { GDP = 200 }
+			add_to_variable = { GDP_growth = 0.01 }
+			custom_effect_tooltip = NIK_kosygin_comprehensive_refinement_program_tt
+			651 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fuel_silo
+					level = 2
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+			853 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fuel_silo
+					level = 2
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+			851 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_foreign_investment_incentives
+		icon = GFX_TNO_Generic_Foreign_Investment
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_comprehensive_refinement_program
+		}
+		x = -2
+		y = 4
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_foreign_investment_incentives"
+			add_ideas = tno_income_taxation_elite_tax_exemptions
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.02
+			}
+			hidden_effect = {
+				every_owned_state = {
+					RUS_add_ruling_party_temp_pop_small = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_project_kibersin
+		icon = GFX_GER_invest_in_the_future
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_comprehensive_refinement_program
+		}
+		x = 0
+		y = 4
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_project_kibersin"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = electronics
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_managerial_socialism
+		icon = GFX_CHI_Support_Innovation
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_comprehensive_refinement_program
+		}
+		x = 2
+		y = 4
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_managerial_socialism"
+			add_ideas = NIK_Managerial_Socialism
+		}
+	}
+	focus = {
+		id = NIK_kosygin_for_our_prosperity
+		icon = GFX_Generic_Good_Economy
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_foreign_investment_incentives
+		}
+		prerequisite = {
+			focus = NIK_kosygin_project_kibersin
+		}
+		prerequisite = {
+			focus = NIK_kosygin_managerial_socialism
+		}
+		x = 0
+		y = 5
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_for_our_prosperity"
+			add_to_variable = { national_debt = 200 }
+			add_to_variable = { GDP = 800 }
+			add_to_variable = { GDP_growth = 0.01 }
+			TNO_improve_poverty_high = yes
+			custom_effect_tooltip = NIK_kosygin_for_our_prosperity_tt
+		}
+	}
+	focus = {
+		id = NIK_kosygin_an_educated_populace
+		icon = GFX_RAJ_The_Education
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_the_russian_economy
+		}
+		x = 4
+		y = 1
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_an_educated_populace"
+			add_ideas = tno_draft_exemptions_educational_deferment
+			country_event = {
+				id = komi_soclib.6
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = NIK_kosygin_standardize_the_schools
+		icon = GFX_USA_Primary_Education_Act
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_an_educated_populace
+		}
+		x = 3
+		y = 2
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_standardize_the_schools"
+			TNO_improve_academic_base_high = yes
+		}
+	}
+	focus = {
+		id = NIK_kosygin_unity_in_science
+		icon = GFX_TNO_Generic_Science
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_an_educated_populace
+		}
+		x = 5
+		y = 2
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_unity_in_science"
+			TNO_improve_industrial_expertise_high = yes
+		}
+	}
+
+	focus = {
+		id = NIK_kosygin_a_bright_generation
+		icon = GFX_GER_revitalizing_science
+		cost = 3.6
+		prerequisite = {
+			focus = NIK_kosygin_standardize_the_schools
+		}
+		prerequisite = {
+			focus = NIK_kosygin_unity_in_science
+		}
+		x = 4
+		y = 3
+		relative_position_id = NIK_kosygin_the_russian_economy
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_kosygin_a_bright_generation"
+			TNO_improve_research_facilities_high = yes
+			RUS_increase_urban_liberal_pop = yes
+		}
+	}
+
+	shared_focus  = NIK_democratic_the_russian_republican_army
+	shared_focus  = NIK_democratic_onto_the_world_stage
+}
+
+### Superregionals ###
+#SocDem superregional
+focus_tree = {
+	id = NIK_superregional_dsnp
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_dsnp_socialism_for_the_people
+		icon = GFX_ISH_uplift_the_proletarian
+		cost = 2.5
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_socialism_for_the_people"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_dsnp_reconstructing_the_wasteland
+		icon = GFX_CHI_Modern_Construction_Equipment_New
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_socialism_for_the_people
+		}
+		x = -3
+		y = 1
+		relative_position_id = NIK_dsnp_socialism_for_the_people
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_reconstructing_the_wasteland"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_dsnp_strengthen_the_social_economy
+		icon = GFX_generic_socdem_constitution
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_reconstructing_the_wasteland
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_dsnp_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_strengthen_the_social_economy"
+			tno_pensions_improve = yes
+			tno_unemployment_improve = yes
+		}
+	}
+	focus = {
+		id = NIK_dsnp_consolidate_the_energy_sector
+		icon = GFX_RAJ_The_Power_of_Electricity
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_reconstructing_the_wasteland
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_dsnp_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_consolidate_the_energy_sector"
+			add_ideas = NIK_state_run_energy
+		}
+	}
+	focus = {
+		id = NIK_dsnp_establish_the_russian_sovereign_wealth_fund
+		icon = GFX_TNO_generic_gold_coins
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_strengthen_the_social_economy
+		}
+		prerequisite = {
+			focus = NIK_dsnp_consolidate_the_energy_sector
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_dsnp_strengthen_the_social_economy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_establish_the_russian_sovereign_wealth_fund"
+			add_to_variable = { money_reserves = 100 }
+			custom_effect_tooltip = NIK_dsnp_establish_the_russian_sovereign_wealth_fund_tt
+		}
+	}
+	focus = {
+		id = NIK_dsnp_a_fruitful_reunification
+		icon = GFX_RUS_russia_superregional
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_socialism_for_the_people
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_socialism_for_the_people
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_a_fruitful_reunification"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = NIK_dsnp_staff_the_bureaucracy
+		icon = GFX_JAP_Make_Promises_to_the_Bureaucrats
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_a_fruitful_reunification
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_a_fruitful_reunification
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_staff_the_bureaucracy"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_dsnp_answer_the_autonomy_question
+		icon = GFX_NIK_minority_representation_act
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_staff_the_bureaucracy
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_staff_the_bureaucracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_answer_the_autonomy_question"
+			country_event = { id = NIK_DNSP_superregional.1 }
+		}
+	}
+	focus = {
+		id = NIK_dsnp_approaching_the_dawn
+		icon = GFX_RAJ_Agricultural_Miracle
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_socialism_for_the_people
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_dsnp_socialism_for_the_people
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_approaching_the_dawn"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_dsnp_lessons_from_the_sibplan
+		icon = GFX_TOB_The_Resources_of_Siberia
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_approaching_the_dawn
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_dsnp_approaching_the_dawn
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_lessons_from_the_sibplan"
+			249 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_dsnp_ensure_industrial_equality
+		icon = GFX_MAG_Siberian_Factories
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_lessons_from_the_sibplan
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_lessons_from_the_sibplan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_ensure_industrial_equality"
+			571 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_dsnp_a_hand_to_the_west
+		icon = GFX_CAN_praise_the_ofn
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_approaching_the_dawn
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_dsnp_approaching_the_dawn
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_a_hand_to_the_west"
+			USA = {
+				country_event = { id = NIK_DNSP_superregional.2 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_dsnp_flying_together
+		icon = GFX_SCO_Scotland_In_The_OFN
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_a_hand_to_the_west
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_a_hand_to_the_west
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_flying_together"
+			USA = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			AST = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_dsnp_onwards_to_the_future
+		icon = GFX_Focus_Russia_Orthographic
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_dsnp_establish_the_russian_sovereign_wealth_fund
+		}
+		prerequisite = {
+			focus = NIK_dsnp_answer_the_autonomy_question
+		}
+		prerequisite = {
+			focus = NIK_dsnp_ensure_industrial_equality
+		}
+		prerequisite = {
+			focus = NIK_dsnp_flying_together
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_dsnp_answer_the_autonomy_question
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dsnp_onwards_to_the_future"
+			add_political_power = 25
+			add_war_support = 0.05
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}
+
+#LibDem superregional
+focus_tree = {
+	id = NIK_superregional_smr
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_smr_reforms_for_russia
+		icon = GFX_JAP_Integrate_reformists
+		cost = 2.5
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_reforms_for_russia"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_smr_reconstructing_the_wasteland
+		icon = GFX_CHI_Modern_Construction_Equipment
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_reforms_for_russia
+		}
+		x = -3
+		y = 1
+		relative_position_id = NIK_smr_reforms_for_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_reconstructing_the_wasteland"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_smr_expand_on_kibersin
+		icon = GFX_goal_computer_assisted_design
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_reconstructing_the_wasteland
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_smr_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_expand_on_kibersin"
+			TNO_improve_research_facilities_low = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_consolidate_the_energy_sector
+		icon = GFX_RAJ_The_Power_of_Electricity
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_reconstructing_the_wasteland
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_smr_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_consolidate_the_energy_sector"
+			add_ideas = NIK_state_run_energy
+		}
+	}
+	focus = {
+		id = NIK_smr_establish_the_russian_sovereign_wealth_fund
+		icon = GFX_TNO_generic_gold_coins
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_expand_on_kibersin
+		}
+		prerequisite = {
+			focus = NIK_smr_consolidate_the_energy_sector
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_smr_expand_on_kibersin
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_establish_the_russian_sovereign_wealth_fund"
+			add_to_variable = { money_reserves = 100 }
+			custom_effect_tooltip = NIK_dsnp_establish_the_russian_sovereign_wealth_fund_tt
+		}
+	}
+	focus = {
+		id = NIK_smr_a_fruitful_reunification
+		icon = GFX_RUS_russia_superregional
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_reforms_for_russia
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_reforms_for_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_a_fruitful_reunification"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_approach_the_siberian_liberals
+		icon = GFX_Generic_Liberty_Handshake
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_a_fruitful_reunification
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_a_fruitful_reunification
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_approach_the_siberian_liberals"
+			RUS_increase_ruling_party_state_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_reestablish_the_siberian_republics
+		icon = GFX_generic_liberal_constitution
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_approach_the_siberian_liberals
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_approach_the_siberian_liberals
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_reestablish_the_siberian_republics"
+			RUS_increase_ruling_party_minority_pop = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_crafting_our_future
+		icon = GFX_CHI_Adapt_Computer_Designs
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_reforms_for_russia
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_smr_reforms_for_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_crafting_our_future"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_smr_expanding_university_funding
+		icon = GFX_USA_Secondary_Education_Act
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_crafting_our_future
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_smr_crafting_our_future
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_expanding_university_funding"
+			tno_education_improve = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_new_conservationism
+		icon = GFX_OST_A_better_world
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_expanding_university_funding
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_expanding_university_funding
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_new_conservationism"
+			tno_pollution_improve = yes
+		}
+	}
+	focus = {
+		id = NIK_smr_a_hand_to_the_west
+		icon = GFX_CAN_praise_the_ofn
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_crafting_our_future
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_smr_crafting_our_future
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_a_hand_to_the_west"
+			USA = {
+				country_event = { id = NIK_SMR_superregional.1 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_smr_flying_together
+		icon = GFX_SCO_Scotland_In_The_OFN
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_a_hand_to_the_west
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_a_hand_to_the_west
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_flying_together"
+			USA = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			AST = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_smr_onwards_to_the_future
+		icon = GFX_Focus_Russia_Orthographic
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_smr_establish_the_russian_sovereign_wealth_fund
+		}
+		prerequisite = {
+			focus = NIK_smr_reestablish_the_siberian_republics
+		}
+		prerequisite = {
+			focus = NIK_smr_new_conservationism
+		}
+		prerequisite = {
+			focus = NIK_smr_flying_together
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_smr_reestablish_the_siberian_republics
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_smr_onwards_to_the_future"
+			add_political_power = 25
+			add_war_support = 0.05
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}
+
+#AuthDem Stalina superregional
+focus_tree = {
+	id = NIK_superregional_psd
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_psd_the_sovereign_mandate
+		icon = GFX_generic_russian_eagle
+		cost = 2.5
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_the_sovereign_mandate"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_psd_reconstructing_the_wasteland
+		icon = GFX_CHI_Modern_Construction_Equipment
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_the_sovereign_mandate
+		}
+		x = -3
+		y = 1
+		relative_position_id = NIK_psd_the_sovereign_mandate
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_reconstructing_the_wasteland"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_psd_extend_the_welfarist_model
+		icon = GFX_generic_socdem_constitution
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_reconstructing_the_wasteland
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_psd_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_extend_the_welfarist_model"
+			tno_unemployment_improve = yes
+		}
+	}
+	focus = {
+		id = NIK_psd_consolidate_the_energy_sector
+		icon = GFX_RAJ_The_Power_of_Electricity
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_reconstructing_the_wasteland
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_psd_reconstructing_the_wasteland
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_consolidate_the_energy_sector"
+			add_ideas = NIK_state_run_energy
+		}
+	}
+	focus = {
+		id = NIK_psd_establish_the_russian_sovereign_wealth_fund
+		icon = GFX_TNO_generic_gold_coins
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_extend_the_welfarist_model
+		}
+		prerequisite = {
+			focus = NIK_psd_consolidate_the_energy_sector
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_psd_extend_the_welfarist_model
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_establish_the_russian_sovereign_wealth_fund"
+			add_to_variable = { money_reserves = 100 }
+			custom_effect_tooltip = NIK_dsnp_establish_the_russian_sovereign_wealth_fund_tt
+		}
+	}
+	focus = {
+		id = NIK_psd_siberian_security
+		icon = GFX_RUS_russia_superregional
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_the_sovereign_mandate
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_the_sovereign_mandate
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_siberian_security"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = NIK_psd_the_association_registry_act
+		icon = GFX_NIK_national_sovereignty_act
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_siberian_security
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_siberian_security
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_the_association_registry_act"
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = ultranational_socialism
+				popularity = -0.05
+			}
+			hidden_effect = {
+				country_event = { id = komi.13 days = 110 random = 4380 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_psd_partnerships_in_zlatoust
+		icon = GFX_Generic_Liberty_Handshake
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_the_association_registry_act
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_the_association_registry_act
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_partnerships_in_zlatoust"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_psd_extending_democracy
+		icon = GFX_JAP_Blood_Iron_and_Representative_Democracy
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_the_sovereign_mandate
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_psd_the_sovereign_mandate
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_extending_democracy"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_psd_encourage_local_democracy
+		icon = GFX_generic_elections
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_extending_democracy
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_psd_extending_democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_encourage_local_democracy"
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+	}
+	focus = {
+		id = NIK_psd_a_framework_for_popular_involvement
+		icon = GFX_generic_conservative_constitution
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_encourage_local_democracy
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_encourage_local_democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_a_framework_for_popular_involvement"
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+	}
+	focus = {
+		id = NIK_psd_further_ofn_ties
+		icon = GFX_AST_maintain_ofn
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_extending_democracy
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_psd_extending_democracy
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_further_ofn_ties"
+			USA = {
+				country_event = { id = NIK_PSD_superregional.1 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_psd_the_twin_eagles
+		icon = GFX_SCO_Scotland_In_The_OFN
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_further_ofn_ties
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_further_ofn_ties
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_the_twin_eagles"
+			USA = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			AST = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_psd_onwards_to_the_future
+		icon = GFX_Focus_Russia_Orthographic
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_psd_establish_the_russian_sovereign_wealth_fund
+		}
+		prerequisite = {
+			focus = NIK_psd_partnerships_in_zlatoust
+		}
+		prerequisite = {
+			focus = NIK_psd_a_framework_for_popular_involvement
+		}
+		prerequisite = {
+			focus = NIK_psd_the_twin_eagles
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_psd_partnerships_in_zlatoust
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_psd_onwards_to_the_future"
+			add_political_power = 25
+			add_war_support = 0.05
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}
+
+#Despotist Stalina superregional
+focus_tree = {
+	id = NIK_superregional_despotist_stalina
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+	focus = {
+		id = NIK_stalina_the_reconstruction_of_russia
+		icon = GFX_generic_russian_eagle
+		cost = 2.5
+		x = 6
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_reconstruction_of_russia"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_stalina_securing_the_peoples_faith
+		icon = GFX_UPO_Friends_in_Russia
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_of_russia
+		}
+		x = -4
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_of_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_securing_the_peoples_faith"
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = NIK_stalina_extend_the_welfarist_model
+		icon = GFX_generic_socdem_constitution
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_securing_the_peoples_faith
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_escalate_the_national_defense_projects
+		}
+		x = -2
+		y = 1
+		relative_position_id = NIK_stalina_securing_the_peoples_faith
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_extend_the_welfarist_model"
+			tno_unemployment_improve = yes
+		}
+	}
+	focus = {
+		id = NIK_stalina_escalate_the_national_defense_projects
+		icon = GFX_ITA_Modernize_the_Infrastructures
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_securing_the_peoples_faith
+		}
+		mutually_exclusive = {
+			focus = NIK_stalina_extend_the_welfarist_model
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_securing_the_peoples_faith
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_escalate_the_national_defense_projects"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_stalina_consolidate_the_energy_sector
+		icon = GFX_RAJ_The_Power_of_Electricity
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_securing_the_peoples_faith
+		}
+		x = 2
+		y = 1
+		relative_position_id = NIK_stalina_securing_the_peoples_faith
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_consolidate_the_energy_sector"
+			add_ideas = NIK_state_run_energy
+		}
+	}
+	focus = {
+		id = NIK_stalina_establish_the_russian_sovereign_welfare_fund
+		icon = GFX_TNO_generic_gold_coins
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_extend_the_welfarist_model
+			focus = NIK_stalina_escalate_the_national_defense_projects
+		}
+		prerequisite = {
+			focus = NIK_stalina_consolidate_the_energy_sector
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_escalate_the_national_defense_projects
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_establish_the_russian_sovereign_welfare_fund"
+			add_to_variable = { money_reserves = 100 }
+			custom_effect_tooltip = NIK_dsnp_establish_the_russian_sovereign_wealth_fund_tt
+		}
+	}
+	focus = {
+		id = NIK_stalina_a_hand_towards_the_east
+		icon = GFX_RUS_russia_superregional
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_of_russia
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_of_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_hand_towards_the_east"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = NIK_stalina_break_the_hidden_circles
+		icon = GFX_OMS_against_the_old_guard
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_a_hand_towards_the_east
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_a_hand_towards_the_east
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_break_the_hidden_circles"
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = ultranational_socialism
+				popularity = -0.05
+			}
+			hidden_effect = {
+				country_event = { id = komi.13 days = 110 random = 4380 }
+			}
+		}
+	}
+	focus = {
+		id = NIK_stalina_the_yekaterinburg_commission
+		icon = GFX_GER_convene_the_parties
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_break_the_hidden_circles
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_break_the_hidden_circles
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_yekaterinburg_commission"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_stalina_redefining_politics
+		icon = GFX_VIN_Depoliticize_Politics
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_the_reconstruction_of_russia
+		}
+		x = 3
+		y = 1
+		relative_position_id = NIK_stalina_the_reconstruction_of_russia
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_redefining_politics"
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = NIK_stalina_the_toolbox_theory
+		icon = GFX_JAP_Political_Think_Tank_policy_Groups
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_redefining_politics
+		}
+		x = -1
+		y = 1
+		relative_position_id = NIK_stalina_redefining_politics
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_the_toolbox_theory"
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = NIK_stalina_a_foundation_for_the_future
+		icon = GFX_NIK_democratic_foundation
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_redefining_politics
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_stalina_redefining_politics
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_a_foundation_for_the_future"
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = NIK_stalina_answer_the_eagles_cry
+		icon = GFX_goal_TNO_generic_OFN_light
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_the_toolbox_theory
+		}
+		prerequisite = {
+			focus = NIK_stalina_a_foundation_for_the_future
+		}
+		x = 1
+		y = 1
+		relative_position_id = NIK_stalina_the_toolbox_theory
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_answer_the_eagles_cry"
+			USA = {
+				country_event = { id = NIK_PSD_despotism_superregional.1 }
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+			AST = {
+				add_opinion_modifier = {
+					target = NIK
+					modifier = TNO_ofn_trade_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = NIK_stalina_look_to_challenges_ahead
+		icon = GFX_Focus_Russia_Orthographic
+		cost = 2.5
+		prerequisite = {
+			focus = NIK_stalina_establish_the_russian_sovereign_welfare_fund
+		}
+		prerequisite = {
+			focus = NIK_stalina_the_yekaterinburg_commission
+		}
+		prerequisite = {
+			focus = NIK_stalina_answer_the_eagles_cry
+		}
+		x = 0
+		y = 1
+		relative_position_id = NIK_stalina_the_yekaterinburg_commission
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_stalina_look_to_challenges_ahead"
+			add_political_power = 25
+			add_war_support = 0.05
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}

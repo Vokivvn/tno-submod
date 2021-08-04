@@ -1,0 +1,676 @@
+shared_focus = {
+	id = CAO_economic_reform
+	icon = GFX_Generic_Fiscal_Austerity
+	cost = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_economic_reform"
+	}
+	allow_branch = {
+		has_country_flag = CAO_ECON
+	}
+	x = 9
+	y = 0
+}
+
+shared_focus = {
+	id = CAO_continue_collectivization
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_economic_reform
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_continue_collectivization"
+	}
+	x = 7
+	y = 1
+}
+
+shared_focus = {
+	id = CAO_our_freinds_in_the_east
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_economic_reform
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_our_freinds_in_the_east"
+	}
+	x = 11
+	y = 1
+}
+
+### JAP PATH OF ECONOMIC
+shared_focus = {
+	id = CAO_found_the_black_arsenal
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_our_freinds_in_the_east
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_found_the_black_arsenal"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 12
+	y = 2
+}
+
+shared_focus = {
+	id = CAO_expand_the_arsenal
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_found_the_black_arsenal
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_expand_the_arsenal"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 12
+	y = 3
+}
+
+shared_focus = {
+	id = CAO_aquire_surplus_industrial_tools
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_our_freinds_in_the_east
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_aquire_surplus_industrial_tools"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 10
+	y = 2
+}
+
+shared_focus = {
+	id = CAO_foreign_experts
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_aquire_surplus_industrial_tools
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_foreign_experts"
+		add_tech_bonus = {
+			name = synth_bonus
+			bonus = 0.5
+			uses = 1
+			category = synth_resources
+		}
+	}
+	x = 10
+	y = 3
+}
+
+### COLLECTIVIZED PATH OF ECONOMIC
+shared_focus = {
+	id = CAO_inzentivize_hard_work
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_continue_collectivization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_inzentivize_hard_work"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 6
+	y = 2
+}
+
+shared_focus = {
+	id = CAO_encourige_cooperation
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_inzentivize_hard_work
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_encourige_cooperation"
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	x = 6
+	y = 3
+}
+
+shared_focus = {
+	id = CAO_expand_the_plantations
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_continue_collectivization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_expand_the_plantations"
+		add_resource = {
+			type = rubber
+			amount = 10
+			state = 793
+		}
+	}
+	x = 8
+	y = 2
+}
+
+shared_focus = {
+	id = CAO_synthetic_experiments
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_expand_the_plantations
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_synthetic_experiments"
+		793 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 8
+	y = 3
+}
+
+### OIL
+shared_focus = {
+	id = CAO_black_gold
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_synthetic_experiments
+	}
+	prerequisite = {
+		focus = CAO_foreign_experts
+	}
+	prerequisite = {
+		focus = CAO_encourige_cooperation
+	}
+	prerequisite = {
+		focus = CAO_expand_the_arsenal
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_black_gold"
+		country_event = CAO.3
+	}
+	x = 9
+	y = 4
+}
+
+### FINAL ECONOMIC FOCUS
+shared_focus = {
+	id = CAO_economic_reform_finished
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_black_gold
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_economic_reform_finished"
+		add_ideas = CAO_ECON
+		set_country_flag = milreform
+		load_focus_tree = Cameroon_milreform
+	}
+	x = 9
+	y = 5
+}
+
+### BLANK
+shared_focus = {
+	id = CAO_blankfocus
+	icon = GFX_generic_support_the_left_right
+	bypass = {
+	}
+	offset = {
+		x = 1
+		y = 1
+		trigger = {
+			tag = BHU
+		}
+	}
+	allow_branch = {
+		has_country_flag = neverflag
+	}
+	cost = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_blankfocus"
+	}
+}
+
+### START OF MIL TREE
+shared_focus = {
+	id = CAO_militia_question
+	# icon =
+	allow_branch = {
+		has_country_flag = milreform
+	}
+	cost = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_militia_question"
+	}
+	x = 9
+	y = 0
+}
+
+### PURGE PATH
+shared_focus = {
+	id = CAO_anhilate_militia
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_militia_question
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_anhilate_militia"
+	}
+	x = 7
+	y = 1
+	mutually_exclusive = {
+		focus = CAO_integrate_militia
+	}
+}
+shared_focus = {
+	id = CAO_save_the_loyal
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_anhilate_militia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_save_the_loyal"
+	}
+	x = 6
+	y = 2
+}
+shared_focus = {
+	id = CAO_slaughter_the_rest
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_anhilate_militia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_slaughter_the_rest"
+	}
+	x = 8
+	y = 2
+}
+shared_focus = {
+	id = CAO_the_black_night
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_save_the_loyal
+	}
+	prerequisite = {
+		focus = CAO_slaughter_the_rest
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_the_black_night"
+	}
+	x = 7
+	y = 3
+}
+### INTEGRATE PATH
+shared_focus = {
+	id = CAO_integrate_militia
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_militia_question
+	}
+	mutually_exclusive = {
+		focus = CAO_anhilate_militia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_integrate_militia"
+	}
+	x = 11
+	y = 1
+}
+shared_focus = {
+	id = CAO_unified_command
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_integrate_militia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_unified_command"
+	}
+	x = 10
+	y = 2
+}
+shared_focus = {
+	id = CAO_standardized_doctrine
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_integrate_militia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_standardized_doctrine"
+	}
+	x = 12
+	y = 2
+}
+shared_focus = {
+	id = CAO_black_day
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_standardized_doctrine
+	}
+	prerequisite = {
+		focus = CAO_unified_command
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_black_day"
+	}
+	x = 11
+	y = 3
+}
+### FURTHER REFORM
+shared_focus = {
+	id = CAO_further_reform
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_black_day
+		focus = CAO_the_black_night
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_further_reform"
+	}
+	x = 9
+	y = 4
+}
+### LAND PATH
+shared_focus = {
+	id = CAO_the_black_army
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_further_reform
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_the_black_army"
+	}
+	x = 7
+	y = 5
+}
+shared_focus = {
+	id = CAO_american_guns
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_the_black_army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_american_guns"
+	}
+	x = 6
+	y = 6
+}
+shared_focus = {
+	id = CAO_japanese_trucks
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_the_black_army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_japanese_trucks"
+	}
+	x = 8
+	y = 6
+}
+shared_focus = {
+	id = CAO_armored_experiments
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_japanese_trucks
+	}
+	prerequisite = {
+		focus = CAO_american_guns
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_armored_experiments"
+	}
+	x = 7
+	y = 7
+}
+shared_focus = {
+	id = CAO_battlefield_support
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_japanese_trucks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_battlefield_support"
+	}
+	x = 8
+	y = 8
+}
+shared_focus = {
+	id = CAO_artilery_advancements
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_american_guns
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_artilery_advancements"
+	}
+	x = 6
+	y = 8
+}
+shared_focus = {
+	id = CAO_army_of_africa
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_artilery_advancements
+	}
+	prerequisite = {
+		focus = CAO_battlefield_support
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_army_of_africa"
+	}
+	x = 7
+	y = 9
+}
+###AIR PATH
+shared_focus = {
+	id = CAO_the_black_airforce
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_further_reform
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_the_black_airforce"
+	}
+	x = 11
+	y = 5
+}
+shared_focus = {
+	id = CAO_airbases_in_africa
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_the_black_airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_airbases_in_africa"
+	}
+	x = 10
+	y = 6
+}
+shared_focus = {
+	id = CAO_buy_foreign_planes
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_the_black_airforce
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_buy_foreign_planes"
+	}
+	x = 12
+	y = 6
+}
+shared_focus = {
+	id = CAO_experimental_helicopters
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_airbases_in_africa
+	}
+	prerequisite = {
+		focus = CAO_buy_foreign_planes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_experimental_helicopters"
+	}
+	x = 11
+	y = 7
+}
+shared_focus = {
+	id = CAO_air_offence
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_buy_foreign_planes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_air_offence"
+	}
+	x = 12
+	y = 8
+}
+shared_focus = {
+	id = CAO_air_defence
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_airbases_in_africa
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_air_defence"
+	}
+	x = 10
+	y = 8
+}
+shared_focus = {
+	id = CAO_The_african_skies
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_air_defence
+	}
+	prerequisite = {
+		focus = CAO_air_offence
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_The_african_skies"
+	}
+	x = 11
+	y = 9
+}
+###MIL REFORM FINISHED
+shared_focus = {
+	id = CAO_The_military_reforms_finished
+	# icon =
+	cost = 5
+	prerequisite = {
+		focus = CAO_The_african_skies
+	}
+	prerequisite = {
+		focus = CAO_army_of_africa
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CAO_The_military_reforms_finished"
+	}
+	x = 11
+	y = 9
+}

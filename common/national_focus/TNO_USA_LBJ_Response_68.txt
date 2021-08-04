@@ -1,0 +1,1142 @@
+
+
+# LBJ Reaction if he lose his re ellection
+# - Coded First by Jungle Rat, if you work here write your name as well
+# - Walker Of Chaos modified this so the 68 presidential candidates can load it
+# - DocOverbuild3 actually finished the thing
+
+#######################################################################
+
+######################### LBJ REACTION FOCUS TREE - BY JUNGLE RAT - 03/12/19
+#########################
+
+#######################################################################
+
+
+
+
+	shared_focus = {
+		id = USA_LBJReac_Naivety_Johnson
+		icon = GFX_USA_The_Johnson_Presidency
+		x = 0
+		y = 0
+		cost = 1.00
+		offset = {
+			x = -5
+			y = 9
+			trigger = {
+				has_government = authoritarian_democrat
+			}
+		}
+		offset = {
+			x = 2
+			y = 9
+			trigger = {
+				has_government = social_conservative
+			}
+		}
+		available_if_capitulated = yes
+		allow_branch = {
+			OR = {
+				has_country_flag = USA_test_response_tree
+				has_country_flag = USA_64_R_RD_Past
+			}
+			NOT = {
+				has_country_flag = USA_finished_response
+			}
+		}
+		ai_will_do = {
+			factor = 1000000
+		}
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Naivety_Johnson"
+
+		add_political_power = 50
+		add_stability = 0.03
+
+		add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+		hidden_effect = {
+				every_owned_state = {
+
+			limit = {
+					can_have_elections_in_state = yes
+				}
+				subtract_from_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+
+
+	}
+}
+
+	shared_focus = {
+		id = USA_LBJReac_Already_Great
+		icon = GFX_USA_Glenn_A_City_on_a_Hill
+		x = -2
+		y = 1
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Naivety_Johnson
+		}
+
+		ai_will_do = {
+			factor = 1000000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Already_Great"
+
+			add_political_power = 50
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_How_Many_Agencies
+		icon = GFX_USA_Only_American_Future
+		x = -3
+		y = 2
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Already_Great
+		}
+
+		ai_will_do = {
+			factor = 1000000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_How_Many_Agencies"
+
+		custom_effect_tooltip = USA_LBJ_Tree_reaction_cutting_agencies
+
+		add_political_power = -45
+
+		add_to_variable = {
+			GDP_growth = 0.01
+		}
+		subtract_from_variable = {
+			misc_costs = 2000
+		}
+
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Slash_Budget
+		icon = GFX_USA_GLD_Out-of-Depression
+		x = -1
+		y = 2
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Already_Great
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Slash_Budget"
+
+		add_stability = -0.01
+		add_to_variable = {
+			GDP_growth = 0.04
+		}
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Could_be_Usefull
+		icon = GFX_USA_The_Economic_Opportunity_Act
+		x = -3
+		y = 3
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_How_Many_Agencies
+		}
+		prerequisite = {
+			focus = USA_LBJReac_Slash_Budget
+		}
+
+		mutually_exclusive = { focus = USA_LBJReac_Era_of_Big_G_is_over }
+
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Could_be_Usefull"
+
+		custom_effect_tooltip = USA_LBJ_Tree_reaction_could_be_useful
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+
+			every_owned_state = {
+			limit = {
+					OR = {
+					   check_variable = { nationality = 84 }
+					   check_variable = { nationality = 82 }
+					}
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			every_owned_state = {
+			   limit = {
+					OR = {
+					   check_variable = { nationality = 84 }
+					   check_variable = { nationality = 82 }
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+
+		}
+	}
+}
+
+
+	shared_focus = {
+		id = USA_LBJReac_Targeted_Funding
+		icon = GFX_SLO_Ease_Price_Controls
+		x = -3
+		y = 4
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Could_be_Usefull
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Targeted_Funding"
+
+		custom_effect_tooltip =  WFB_Reponse_Revenue_Up
+		subtract_from_variable = {
+			misc_costs = 1000
+		}
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Era_of_Big_G_is_over
+		icon = GFX_CAU_The_Government_Purge
+		x = -1
+		y = 3
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_How_Many_Agencies
+		}
+		prerequisite = {
+			focus = USA_LBJReac_Slash_Budget
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		mutually_exclusive = { focus = USA_LBJReac_Could_be_Usefull }
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Era_of_Big_G_is_over"
+		add_political_power = -90
+		add_to_variable = {
+			misc_income = 2000
+			}
+
+		tno_pensions_worsen = yes
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+
+			every_owned_state = {
+			limit = {
+						check_variable = { nationality = 84 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 84 }
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 }
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+
+		}
+	}
+
+
+	shared_focus = {
+		id = USA_LBJReac_Shutter_Office
+		icon = GFX_USA_money
+		x = -1
+		y = 4
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Era_of_Big_G_is_over
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Shutter_Office"
+
+
+		tno_unemployment_worsen = yes
+		add_to_variable = {
+			misc_income = 2000
+			}
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_End_Social_Security
+		icon = GFX_USA_Unkept_Promise
+		x = -2
+		y = 5
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Shutter_Office
+			focus = USA_LBJReac_Targeted_Funding
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_End_Social_Security"
+
+			tno_income_taxation_worsen = yes
+			add_to_variable = {
+				misc_income = 4000
+			}
+
+			if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.06 }
+				add_to_variable = { RD_D_bonus_popularity = 0.06}
+				add_to_variable = { RD_popularity = 0.06 }
+				subtract_from_variable = { NPP_popularity = 0.06 }
+				US_underdog_RD_2_2 = yes
+
+			}
+				every_owned_state = {
+				limit = {
+						check_variable = { nationality = 84 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.06 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.06 }
+				add_to_variable = { NPP_popularity = 0.06 }
+				subtract_from_variable = { RD_popularity = 0.06 }
+				US_underdog_NPP_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.06 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.06 }
+				add_to_variable = { NPP_popularity = 0.06 }
+				subtract_from_variable = { RD_popularity = 0.06 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+			if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+			limit = {
+						check_variable = { nationality = 84 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+						check_variable = { nationality = 82 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+
+	}
+}
+}
+
+	shared_focus = {
+		id = USA_LBJReac_Rocked_Boat
+		icon = GFX_focus_usa_america_is_on_fire
+		x = 2
+		y = 1
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Naivety_Johnson
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Rocked_Boat"
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			every_owned_state = { #Midwesties
+				limit = {
+						check_variable = { nationality = 85 }
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+
+			every_owned_state = { #Southwest
+				limit = {
+						check_variable = { nationality = 86 }
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+
+			every_owned_state = { #Dixiecrats are back!
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			every_owned_state = { #Midwesties
+				limit = {
+						check_variable = { nationality = 85 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+			every_owned_state = { #Southwest
+				limit = {
+						check_variable = { nationality = 86 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity }
+				subtract_from_variable = { RD_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+			every_owned_state = { #South stays FR NPP!
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+		add_popularity = {
+				ideology = social_liberal
+				popularity = -0.01
+			}
+		}
+	}
+	shared_focus = {
+		id = USA_LBJReac_Coddle_South
+		icon = GFX_USA_Reassure_Dixiecrats
+		x = 1
+		y = 2
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Rocked_Boat
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		add_political_power = 25
+
+		custom_effect_tooltip = USA_LBJ_Tree_reaction_misunderstood_south
+
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Coddle_South"
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+
+
+			every_owned_state = { #Dixiecrats starting to happen?
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+
+
+			every_owned_state = { #FR Staying Strong in south
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { FR_NPP_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+		add_to_variable = { USA_NPP_FR_Response_Vote_Count = 2}
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Unshackle_Police
+		icon = GFX_goal_policecar
+		x = 3
+		y = 2
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Rocked_Boat
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Unshackle_Police"
+
+		add_stability = 0.02
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = USA_68_D_RD }
+
+				every_owned_state = { #Midwest Happy
+					limit = {
+							check_variable = { nationality = 85 }
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.04 }
+					subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+					subtract_from_variable = { NPP_popularity = 0.04 }
+					add_to_variable = { RD_popularity = 0.04 }
+					US_underdog_RD_2_2 = yes
+				}
+			}
+			if = {
+				limit = { has_country_flag = USA_68_FR_NPP }
+
+				every_owned_state = { #Midwest Happy
+					limit = {
+							check_variable = { nationality = 85 }
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.04 }
+					subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+					subtract_from_variable = { RD_popularity = 0.04 }
+					add_to_variable = { NPP_popularity = 0.04 }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+
+			if = {
+				limit = { has_country_flag = USA_68_D_RD }
+				every_owned_state = { #North
+					limit = {
+							check_variable = { nationality = 82 }
+					}
+					set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+	}
+
+}
+
+
+	shared_focus = {
+		id = USA_LBJReac_Cant_Change_it_Now
+		icon = GFX_USA_Our_Duty_to_the_People
+		x = 1
+		y = 3
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Coddle_South
+		}
+		prerequisite = {
+			focus = USA_LBJReac_Unshackle_Police
+		}
+		mutually_exclusive = { focus = USA_LBJReac_Do_Whats_Right }
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		add_political_power = -20
+		add_stability = 0.02
+		custom_effect_tooltip = USA_LBJ_Tree_reaction_south_pissed
+		custom_effect_tooltip = USA_add_NPP_unity
+			if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			every_owned_state = { #Dixies mad but not surprised
+				limit = {
+					check_variable = { nationality = 83 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.03 }
+				subtract_from_variable = { RD_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+			add_to_variable = { USA_RD_Unity = 1 }
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			every_owned_state = { #Dixies upset
+				limit = {
+					check_variable = { nationality = 83 }
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.03 }
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+			add_to_variable = { USA_NPP_Unity = 1 }
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Cant_Change_it_Now"
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Enforce_the_Provisions
+		icon = GFX_USA_Keep_a_Majority_by_Any_Means
+		x = 1
+		y = 4
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Cant_Change_it_Now
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+		custom_effect_tooltip = USA_LBJ_Tree_reaction_North_AA_pleased
+		custom_effect_tooltip = USA_add_NPP_unity
+			if = {
+			limit = { has_country_flag = USA_68_D_RD }
+
+			every_owned_state = { #African Americans Happy
+				limit = {
+						check_variable = { nationality = 84 }
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+
+			every_owned_state = { #Dixies Mad
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+			add_to_variable = { USA_RD_Unity = 2 }
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			every_owned_state = { #African Americans Happy
+				limit = {
+						check_variable = { nationality = 84 }
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+
+			every_owned_state = { #Dixies Very Mad at Betrayal
+				limit = {
+						check_variable = { nationality = 83 }
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.1 }
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+			add_to_variable = { USA_NPP_Unity = 2 }
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Enforce_the_Provisions"
+		}
+	}
+
+
+	shared_focus = {
+		id = USA_LBJReac_Do_Whats_Right
+		icon = GFX_USA_Repeal_the_Civil_Rights_Act
+		x = 3
+		y = 3
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Coddle_South
+		}
+		prerequisite = {
+			focus = USA_LBJReac_Unshackle_Police
+		}
+		mutually_exclusive = { focus = USA_LBJReac_Cant_Change_it_Now }
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+			add_political_power = 30
+			add_stability = -.02
+			log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Do_Whats_Right"
+
+			custom_effect_tooltip = USA_LBJ_Tree_reaction_south_pleased
+				if = {
+				limit = { has_country_flag = USA_68_D_RD }
+
+				every_owned_state = { #AA's pretty mad
+					limit = {
+							check_variable = { nationality = 84 }
+					}
+					subtract_from_variable = { NPP_FR_bonus_popularity = 0.12 }
+					add_to_variable = { RD_D_bonus_popularity = 0.12 }
+					add_to_variable = { RD_popularity = 0.12 }
+					subtract_from_variable = { RD_popularity = 0.12 }
+					US_underdog_RD_5_5 = yes
+				}
+
+				add_to_variable = { USA_RD_Unity = 2 }
+			}
+			if = {
+				limit = { has_country_flag = USA_68_FR_NPP }
+
+				every_owned_state = { #AA's REALLY mad
+					limit = {
+							check_variable = { nationality = 84 }
+					}
+					subtract_from_variable = { NPP_FR_bonus_popularity = 0.12 }
+					add_to_variable = { RD_D_bonus_popularity = 0.12 }
+					add_to_variable = { RD_popularity = 0.12 }
+					subtract_from_variable = { NPP_popularity = 0.12 }
+					US_underdog_RD_5_5 = yes
+				}
+
+				add_to_variable = { USA_RD_Unity = 2 }
+			}
+
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Pull_our_Support
+		icon = GFX_USA_Bend_to_the_Segregationists_2
+		x = 3
+		y = 4
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Do_Whats_Right
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+			add_to_variable = {USA_NPP_FR_Response_Vote_Count = 5}
+			log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Pull_our_Support"
+			custom_effect_tooltip = USA_LBJ_Tree_reaction_North_AA_pissed
+			add_stability = -0.01
+			add_political_power = -45
+
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = USA_68_D_RD }
+
+
+					every_owned_state = { #Dixiecrats starting come in midwest + south + southwest and west?
+						limit = {
+								check_variable = { nationality = 83 }
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+					every_owned_state = { #Dixiecrats starting come in midwest + south + southwest and west?
+						limit = {
+								check_variable = { nationality = 85 }
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+					every_owned_state = { #Dixiecrats starting come in midwest + south + southwest and west?
+						limit = {
+								check_variable = { nationality = 86 }
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+					every_owned_state = { #Dixiecrats starting come in midwest + south + southwest and west?
+						limit = {
+								check_variable = { nationality = 88 }
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+					every_owned_state = { #AA's REALLY mad
+						limit = {
+								check_variable = { nationality = 84 }
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = 0.07 }
+						add_to_variable = { NPP_C_bonus_popularity = 0.07 }
+						add_to_variable = { NPP_popularity = 0.07 }
+						subtract_from_variable = { RD_popularity = 0.07 }
+						US_underdog_NPP_2_2 = yes
+					}
+					every_owned_state = { #Yankees's REALLY mad
+						limit = {
+								check_variable = { nationality = 82 }
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = 0.07 }
+						add_to_variable = { NPP_C_bonus_popularity = 0.07 }
+						add_to_variable = { NPP_popularity = 0.07 }
+						subtract_from_variable = { RD_popularity = 0.07 }
+						US_underdog_NPP_2_2 = yes
+					}
+				}
+				if = {
+					limit = { has_country_flag = USA_68_FR_NPP }
+
+
+					every_owned_state = { #FR Staying Strong in south, west, and other southern places
+						limit = {
+								check_variable = { nationality = 83 }
+						}
+						add_to_variable = { FR_NPP_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+						US_underdog_NPP_2_2 = yes
+					}
+					every_owned_state = { #FR Staying Strong in south, west, and other southern places
+						limit = {
+								check_variable = { nationality = 85 }
+						}
+						add_to_variable = { FR_NPP_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+						US_underdog_NPP_2_2 = yes
+					}
+					every_owned_state = { #FR Staying Strong in south, west, and other southern places
+						limit = {
+								check_variable = { nationality = 86 }
+						}
+						add_to_variable = { FR_NPP_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+						US_underdog_NPP_2_2 = yes
+					}
+					every_owned_state = { #FR Staying Strong in south, west, and other southern places
+						limit = {
+								check_variable = { nationality = 88 }
+						}
+						add_to_variable = { FR_NPP_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+						subtract_from_variable = { RD_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+						US_underdog_NPP_2_2 = yes
+					}
+					every_owned_state = { #AA's REALLY mad
+						limit = {
+								check_variable = { nationality = 84 }
+						}
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+					every_owned_state = { #Yankees's REALLY mad
+						limit = {
+								check_variable = { nationality = 82 }
+						}
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 }
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+						add_to_variable = { RD_popularity = 0.04 }
+						subtract_from_variable = { NPP_popularity = 0.04 }
+						US_underdog_RD_2_2 = yes
+					}
+				}
+				add_to_variable = { USA_NPP_FR_Response_Vote_Count = 5}
+			}
+		}
+	}
+
+
+	shared_focus = {
+		id = USA_LBJReac_Quiet_Gutting
+		icon = GFX_USA_Stacking_The_Bench
+		x = -1
+		y = 1
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Pull_our_Support
+			focus = USA_LBJReac_Enforce_the_Provisions
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Pull_our_Support
+		completion_reward = {
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			custom_effect_tooltip = USA_subtract_RD_unity
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_to_variable = { USA_RD_Unity = -1 }
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			custom_effect_tooltip = USA_subtract_NPP_unity
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_to_variable = { USA_NPP_Unity = -1 }
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = -.01
+			}
+		if = {
+			limit = { has_idea = tno_racial_integration_enforced_integration }
+			swap_ideas = {
+				remove_idea = tno_racial_integration_enforced_integration
+				add_idea = tno_racial_integration_integrated_military
+			}
+		}
+		if = {
+			limit = { has_idea = tno_vote_franchise_support_disenfranchised }
+			swap_ideas = {
+				remove_idea = tno_vote_franchise_support_disenfranchised
+				add_idea = tno_vote_franchise_universal
+			}
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Quiet_Gutting"
+		}
+	}
+
+	shared_focus = {
+		id = USA_LBJReac_Back_on_Track
+		icon = GFX_USA_Tape_Together_the_Seams
+		x = 0
+		y = 6
+		cost = 1.00
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_LBJReac_Quiet_Gutting
+		}
+
+		prerequisite = {
+			focus = USA_LBJReac_End_Social_Security
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+		relative_position_id = USA_LBJReac_Naivety_Johnson
+		completion_reward = {
+			add_political_power = 40
+			add_stability = 0.03
+			add_timed_idea = {
+				idea = USA_LBJ_Response_moving_forward
+				days = 70
+			}
+			if = {
+				limit = { has_country_flag = USA_68_D_RD }
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.01
+				}
+			}
+			if = {
+				limit = { has_country_flag = USA_68_FR_NPP }
+				add_popularity = {
+					ideology = authoritarian_democrat
+					popularity = 0.01
+				}
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = -0.01
+				}
+			hidden_effect = {
+				remove_ideas = USA_LBJ_task_forces
+				remove_ideas = USA_LBJ_OEO_idea
+				remove_ideas = USA_LBJ_pilot_programs_1
+				remove_ideas = USA_LBJ_pilot_programs_2
+				remove_ideas = USA_LBJ_pilot_programs_3
+				remove_ideas = USA_LBJ_pilot_programs_4
+				remove_ideas = USA_LBJ_healthcare_programs_1
+				remove_ideas = USA_LBJ_healthcare_programs_2
+				remove_ideas = USA_LBJ_healthcare_programs_3
+				remove_ideas = USA_LBJ_healthcare_programs_4
+				#remove_ideas = USA_LBJ_temp_healthcare_plans
+				remove_ideas = USA_LBJ_immigration_bonus
+				#remove_ideas = USA_LBJ_school_bonus
+				remove_ideas = USA_LBJ_school_bonus_2
+				#remove_ideas = USA_LBJ_funding_diverted_social_programs
+				remove_ideas = USA_LBJ_race_riots_1
+				remove_ideas = USA_LBJ_race_riots_2
+				remove_ideas = USA_LBJ_race_riots_3
+				remove_ideas = USA_LBJ_race_riots_4
+				remove_ideas = USA_LBJ_race_riots_5
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus USA_LBJReac_Back_on_Track"
+			set_country_flag = USA_finished_response
+		}
+	}

@@ -1,0 +1,1747 @@
+on_actions = {
+	on_state_control_changed = {
+		effect = {
+			################################
+			###   Indonesian Civil War   ###
+			################################
+			if = {
+				limit = {
+					ROOT = { is_russian_nation = yes }
+					FROM = { is_kazakh_nation = yes }
+					SIB = {
+						NOT = { has_war_with = RWS }
+					}
+					RWS = {
+						NOT = { has_war_with = SIB }
+					}
+					FROM.FROM = {
+						OR = {
+							is_core_of = SIB
+							is_core_of = RWS
+						}
+					}
+				}
+				add_to_variable = { global.RUS_KAZ_progess = -1 }
+			}
+			if = {
+				limit = {
+					FROM = { is_russian_nation = yes }
+					ROOT = { is_kazakh_nation = yes }
+					SIB = {
+						NOT = { has_war_with = RWS }
+					}
+					RWS = {
+						NOT = { has_war_with = SIB }
+					}
+					FROM.FROM = {
+						OR = {
+							is_core_of = SIB
+							is_core_of = RWS
+						}
+					}
+				}
+				add_to_variable = { global.RUS_KAZ_progess = 1 }
+				if = {
+					limit = {
+						check_variable = { global.RUS_KAZ_progess > 12 }
+						NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+					}
+					FROM = {
+						add_stability = -0.20
+						if = {
+							limit = {
+								has_war_with = KZK
+							}
+							white_peace = KZK
+						}
+						if = {
+							limit = {
+								has_war_with = DON
+							}
+							white_peace = DON
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { global.RUS_KAZ_progess > 5 }
+					}
+					FROM = { country_event = { id = RUS_race_to_kazakhstan.35 days = 1 } }
+				}
+			}
+			if = {#Reinforce cells if a Cell region is fully captured
+				limit = {
+					FROM = {
+						original_tag = INS
+					}
+					ROOT = {
+						original_tag = FRI
+					}
+				}
+				if = {#North Sumatra
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 818
+								state = 817
+							}
+						}
+						FRI_has_majority_control_North_Sumatra = yes
+						ROOT = {
+							NOT = { has_country_flag = FRI_sec_cells_north_sumatra }
+						}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_north_sumatra = 2}
+						clamp_variable = {
+							var = FRI_cs_north_sumatra
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_north_sumatra
+					}
+				}
+
+				if = {#South Sumatra
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 819
+								state = 672
+							}
+						}
+						FRI_has_majority_control_South_Sumatra = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_south_sumatra}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_south_sumatra = 2}
+						clamp_variable = {
+							var = FRI_cs_south_sumatra
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_south_sumatra
+					}
+				}
+
+				if = {#West Java
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 799
+								state = 795
+							}
+						}
+						FRI_has_majority_control_West_Java = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_west_java}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_west_java = 2}
+						clamp_variable = {
+							var = FRI_cs_west_java
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_west_java
+					}
+				}
+
+				if = {#East Java
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 797
+								state = 796
+								state = 335
+							}
+						}
+						FRI_has_majority_control_East_Java = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_cells_east_java}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_east_java = 2}
+						clamp_variable = {
+							var = FRI_cs_east_java
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_east_java
+					}
+				}
+
+				if = {#Kalimantan
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 816
+								state = 794
+								state = 334
+							}
+						}
+						FRI_has_majority_control_Kalimantan = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_cells_kalimantan}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_kalimantan = 2}
+						clamp_variable = {
+							var = FRI_cs_kalimantan
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_kalimantan
+					}
+				}
+
+				if = {#Sulawesi
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 820
+								state = 821
+								state = 822
+								state = 823
+								state = 673
+							}
+						}
+						FRI_has_majority_control_Sulawesi = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_cells_sulawesi}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_sulawesi = 2}
+						clamp_variable = {
+							var = FRI_cs_sulawesi
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_sulawesi
+					}
+				}
+
+				if = {#Papua
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 523
+								state = 669
+							}
+						}
+						FRI_has_majority_control_Papua = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_cells_papua}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_papua = 2}
+						clamp_variable = {
+							var = FRI_cs_papua
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_papua
+					}
+				}
+
+				if = {#Moluccas
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 668
+								state = 824
+							}
+						}
+						FRI_has_majority_control_Moluccas = yes
+						ROOT = {NOT = {has_country_flag = FRI_sec_cells_moluccas}}
+					}
+					FRI = {
+						add_to_variable = {FRI_cs_moluccas = 2}
+						clamp_variable = {
+							var = FRI_cs_moluccas
+							min = 0
+							max = 10
+						}
+						set_country_flag = FRI_sec_cells_moluccas
+					}
+				}
+			}
+			if = {#Clear cell reinforcement blocker flags if region is fully recaptured by INS
+				limit = {
+					FROM = {
+						original_tag = FRI
+					}
+					ROOT = {
+						original_tag = INS
+					}
+				}
+				if = {#North Sumatra
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 817
+								state = 818
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 817
+							has_full_control_of_state = 818
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_north_sumatra
+					}
+				}
+
+				if = {#South Sumatra
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 672
+								state = 819
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 672
+							has_full_control_of_state = 819
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_south_sumatra
+					}
+				}
+
+				if = {#West Java
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 795
+								state = 799
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 795
+							has_full_control_of_state = 799
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_west_java
+					}
+				}
+
+				if = {#East Java
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 335
+								state = 796
+								state = 797
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 335
+							has_full_control_of_state = 796
+							has_full_control_of_state = 797
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_east_java
+					}
+				}
+
+				if = {#Kalimantan
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 334
+								state = 794
+								state = 816
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 334
+							has_full_control_of_state = 794
+							has_full_control_of_state = 816
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_kalimantan
+					}
+				}
+
+				if = {#Sulawesi
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 673
+								state = 820
+								state = 821
+								state = 822
+								state = 823
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 673
+							has_full_control_of_state = 820
+							has_full_control_of_state = 821
+							has_full_control_of_state = 822
+							has_full_control_of_state = 823
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_sulawesi
+					}
+				}
+
+				if = {#Papua
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 523
+								state = 669
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 523
+							has_full_control_of_state = 669
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_papua
+					}
+				}
+
+				if = {#Moluccas
+					limit = {	
+						FROM.FROM = {
+							OR = {
+								state = 668
+								state = 824
+							}
+						}
+						ROOT = {
+							has_full_control_of_state = 668
+							has_full_control_of_state = 824
+						}
+					}
+					FROM = {
+						clr_country_flag = FRI_sec_cells_moluccas
+					}
+				}
+			}
+
+			if = {#Name changers
+				limit = {
+					FROM = {
+						original_tag = INS
+					}
+					ROOT = {
+						original_tag = FRI
+					}
+					FROM.FROM = {
+						state = 669
+					}
+				}
+						
+				set_province_name = {
+					id = 12371
+					name = "Jayapura"
+				}
+			}
+
+			#############################
+			###   ANTI-HEYDRICH PACT  ###
+			#############################
+			
+			if = {
+				limit = {
+					has_global_flag = german_civil_war
+					NOT = { has_global_flag = anti_heydrich_pact_chain_begins }
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = HGR }
+						OR = {
+							AND = {
+								# num_of_controlled_states > 6
+								num_of_controlled_states > 11
+								NOT = { 5 = { is_controlled_by = HGR } }
+								NOT = { 85 = { is_controlled_by = HGR } }
+								NOT = { 97 = { is_controlled_by = HGR } }
+								NOT = { 98 = { is_controlled_by = HGR } }
+							}
+							AND = {
+								# num_of_controlled_states > 7
+								num_of_controlled_states > 12
+								count_triggers = {
+									amount = 4
+									NOT = { 5 = { is_controlled_by = HGR } }
+									NOT = { 85 = { is_controlled_by = HGR } }
+									NOT = { 97 = { is_controlled_by = HGR } }
+									NOT = { 98 = { is_controlled_by = HGR } }
+								}
+							}
+							AND = {
+								# num_of_controlled_states > 8
+								num_of_controlled_states > 13
+								count_triggers = {
+									amount = 3
+									NOT = { 5 = { is_controlled_by = HGR } }
+									NOT = { 85 = { is_controlled_by = HGR } }
+									NOT = { 97 = { is_controlled_by = HGR } }
+									NOT = { 98 = { is_controlled_by = HGR } }
+								}
+							}
+							AND = {
+								# num_of_controlled_states > 9
+								num_of_controlled_states > 14
+								count_triggers = {
+									amount = 2
+									NOT = { 5 = { is_controlled_by = HGR } }
+									NOT = { 85 = { is_controlled_by = HGR } }
+									NOT = { 97 = { is_controlled_by = HGR } }
+									NOT = { 98 = { is_controlled_by = HGR } }
+								}
+							}
+							AND = {
+								# num_of_controlled_states > 10
+								num_of_controlled_states > 15
+								count_triggers = {
+									amount = 1
+									NOT = { 5 = { is_controlled_by = HGR } }
+									NOT = { 85 = { is_controlled_by = HGR } }
+									NOT = { 97 = { is_controlled_by = HGR } }
+									NOT = { 98 = { is_controlled_by = HGR } }
+								}
+							}
+							AND = {
+								# num_of_controlled_states > 11
+								num_of_controlled_states > 16
+								5 = { is_controlled_by = HGR }
+								85 = { is_controlled_by = HGR }
+								97 = { is_controlled_by = HGR }
+								98 = { is_controlled_by = HGR }
+							}
+						}
+						count_triggers = {
+							amount > 1
+							country_exists = BGR
+							country_exists = GGR
+							country_exists = SGR
+						}
+					}
+					if = {
+						limit = { country_exists = SGR }
+						SGR = { country_event = speer.16 }
+					}
+					else_if = {
+						limit = { country_exists = BGR }
+						BGR = { country_event = bormann.9 }
+					}
+					set_global_flag = anti_heydrich_pact_chain_begins
+				}
+			}
+
+			###############################
+			###   Mongolian Civil War   ###
+			###############################
+
+			if = {
+				limit = {
+					FROM = {
+						original_tag = MON
+					}
+					ROOT = {
+						OR = {
+							original_tag = MEN
+							has_war_together_with = MEN
+							has_war_together_with = JAP
+						}
+					}
+					FROM.FROM = {
+						state = 330
+					}
+				}
+				set_province_name = {
+					id = 4801
+					name = "Khüree"
+				}
+			}
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MEN
+							has_war_together_with = MEN
+							has_war_together_with = JAP
+						}
+					}
+					ROOT = {
+						original_tag = MON
+					}
+					FROM.FROM = {
+						state = 330
+					}
+				}
+				set_province_name = {
+					id = 4801
+					name = "Ulaanbataar"
+				}
+			}
+
+			################################################
+			### Mengjiang Reconquest of Western Mongolia ###
+			################################################
+
+			#Mengjiang fcks up
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MEN
+							has_war_together_with = MEN
+						}
+					}
+					ROOT = {
+						original_tag = SVO
+					}
+					FROM.FROM = {
+						OR = {
+							is_core_of = MEN
+							is_core_of = MAN
+						}
+					}
+				}
+				MEN = {
+					country_event = men.24
+				}
+				JAP = {
+					country_event = men.25
+				}
+				SVO = {
+					country_event = SVO.2
+				}
+			}
+
+			###########################
+			###   Great Asian War   ###
+			###########################
+
+			if = {#GAW, to prevent China from running rampant in Korea
+				limit = {
+					NOT = {
+						has_global_flag = GAW_JAP_nuke_ultimatum
+					}
+					FROM.FROM = {
+						OR = {
+							state = 527
+							state = 525
+							state = 560
+							state = 655
+							state = 962
+							state = 963
+							state = 1090
+							state = 1096
+						}
+					}
+					FROM = {
+						original_tag = JAP
+					}
+					ROOT = {
+						OR = {
+							original_tag = CHI
+							has_war_together_with = CHI
+						}
+					}
+				}
+				JAP = {
+					country_event = {id = gaw.105 hours = 3}
+				}
+			}
+
+			if = {#YGAW, to prevent Long Yun from going insane
+				limit = {
+					NOT = {
+						has_global_flag = YGAW_JAP_nuke_ultimatum
+					}
+					FROM.FROM = {
+						OR = {
+							state = 527
+							state = 525
+							state = 560
+							state = 655
+							state = 962
+							state = 963
+							state = 1090
+							state = 1096
+						}
+					}
+					FROM = {
+						original_tag = JAP
+					}
+					ROOT = {
+						OR = {
+							original_tag = YUN
+							has_war_together_with = YUN
+						}
+					}
+				}
+				JAP = {
+					country_event = {id = gaw.305 hours = 3}
+				}
+			}
+
+			if = {#GAW - China captures Shanghai
+				limit = {
+					has_global_flag = GAW_in_progress
+					FROM.FROM = {
+						state = 813
+					}
+					FROM = {
+						original_tag = JAP
+					}
+					ROOT = {
+						OR = {
+							original_tag = CHI
+							has_war_together_with = CHI
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							original_tag = JAP
+							has_country_flag = GAW_neutral
+							has_country_flag = GAW_jap_ally
+							has_country_flag = GAW_chi_ally
+						}
+					}
+					country_event = {id = gaw.303 hours = 3}
+				}
+			}
+
+			if = {#Western Insurrection
+				limit = {
+					OR = {
+						has_global_flag = YUN_NPA_GAW_Crisis
+						has_global_flag = CHI_Western_Insurrection_Crisis
+					}
+					FROM = {
+						OR = {
+							original_tag = CHI
+							original_tag = JAP
+							is_in_faction_with = JAP
+						}
+					}
+
+					ROOT = {
+						original_tag = YUN
+					}
+
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1016 #Wuhan
+						}
+					}
+					YUN = {
+						country_event = {id = yun.130}
+					}
+				}
+				
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 613 #Nanjing
+						}
+					}
+					YUN = {
+						country_event = {id = yun.131}
+					}
+				}
+
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 608 #Beijing
+						}
+					}
+					YUN = {
+						country_event = {id = yun.132}
+					}
+				}
+				if = {#Overrunning Manchuria, Long Yun dies
+					limit = {
+						FROM.FROM = {
+							is_core_of = MAN
+							NOT = {
+								OR = {
+									state = 610
+									state = 715
+									state = 716
+								}
+							}
+						}
+					}
+					YUN = {
+						country_event = {id = yun.153}
+						every_enemy_country = {
+							country_event = {
+								id = yun.154
+							}
+						}
+					}
+				}
+				if = {#Invading Korea (somehow)
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 527
+								state = 525
+								state = 560
+								state = 655
+								state = 962
+								state = 963
+								state = 1090
+								state = 1096
+							}
+						}
+					}
+					JAP = {
+						country_event = yun.160
+					}
+				}
+			}
+
+			if = {#GAW - Japan recaptures Shanghai
+				limit = {
+					has_global_flag = GAW_in_progress
+					FROM.FROM = {
+						state = 813
+					}
+					FROM = {
+						OR = {
+							original_tag = CHI
+							has_war_together_with = CHI
+						}
+					}
+					ROOT = {
+						original_tag = JAP
+					}
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							original_tag = JAP
+							has_country_flag = GAW_neutral
+							has_country_flag = GAW_jap_ally
+							has_country_flag = GAW_chi_ally
+						}
+					}
+					country_event = {id = gaw.304 hours = 3}
+				}
+			}
+
+			if = {#Chinese state captures Japanese states
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = JAP
+							AND = {
+								has_war_together_with = JAP
+								has_global_flag = GAW_in_progress
+							}
+						}
+					}
+					ROOT = {
+						OR = {
+							original_tag = CHI
+							AND = {
+								has_war_together_with = CHI
+								has_global_flag = GAW_in_progress
+							}
+							AND = {
+								original_tag = YUN
+								has_country_leader = {
+									name = "Long Yun"
+									ruling_only = yes
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 813}
+					}
+					813 = {
+						set_state_name = "Shanghai"
+					}
+					set_province_name = {
+						id = 7014
+						name = "Shanghai"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 592}
+					}
+					592 = {
+						set_state_name = "Guangzhou"
+					}
+					set_province_name = {
+						id = 1047
+						name = "Guangzhou"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 729}
+					}
+					729 = {
+						set_state_name = "Aomen"
+					}
+					set_province_name = {
+						id = 4189
+						name = "Aomen"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 326}
+					}
+					326 = {
+						set_state_name = "Xianggang"
+					}
+					set_province_name = {
+						id = 10062
+						name = "Xianggang"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 1089}
+					}
+					1089 = {
+						set_state_name = "Western Guangdong"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 593}
+					}
+					593 = {
+						set_state_name = "Guangdong"
+					}
+					set_province_name = {
+						id = 9938
+						name = "Shantou"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 591}
+					}
+					591 = {
+						set_state_name = "Hainan"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 810}
+					}
+					810 = {
+						set_state_name = "Dalian"
+					}				
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 812}
+					}
+					812 = {
+						set_state_name = "Qingdao"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 811}
+					}
+					811 = {
+						set_state_name = "Weihaiwei"
+					}
+					set_province_name = {
+						id = 4205
+						name = "Weihaiwei"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 1094}
+					}
+					1094 = {
+						set_state_name = "Shandong"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 328}
+					}
+					set_province_name = {
+						id = 4572
+						name = "Changchun"
+					}   
+				}
+			}
+
+			if = {#Japan captures pre-GAW Japanese states in China
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = CHI
+							AND = {
+								has_war_together_with = CHI
+								has_global_flag = GAW_in_progress
+							}
+							AND = {
+								original_tag = YUN
+								has_country_leader = {
+									name = "Long Yun"
+									ruling_only = yes
+								}
+							}
+						}
+					}
+					ROOT = {
+						OR = {
+							original_tag = JAP
+							AND = {
+								has_war_together_with = JAP
+								has_global_flag = GAW_in_progress
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 813}
+					}	
+					813 = {
+						set_state_name = "Jōkai"
+					}
+					set_province_name = {
+						id = 7014
+						name = "Jōkai"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 592}
+					}
+					592 = {
+						set_state_name = "Kyōju"
+					}
+					set_province_name = {
+						id = 1047
+						name = "Kyōju"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 729}
+					}
+					729 = {
+						set_state_name = "Ōmon"
+					}
+					set_province_name = {
+						id = 4189
+						name = "Ōmon"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 326}
+					}
+					326 = {
+						set_state_name = "Kōkō"
+					}
+					set_province_name = {
+						id = 10062
+						name = "Kōkō"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 1089}
+					}
+					1089 = {
+						set_state_name = "Nishikanton"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 593}
+					}
+					593 = {
+						set_state_name = "Kanton"
+					}
+					set_province_name = {
+						id = 9938
+						name = "Santō"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 591}
+					}
+					591 = {
+						set_state_name = "Kainantō"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 810}
+					}
+					810 = {
+						set_state_name = "Ryojun"
+					}				
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 812}
+					}
+					812 = {
+						set_state_name = "Chintao"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 811}
+					}
+					811 = {
+						set_state_name = "Ikaiei"
+					}
+					set_province_name = {
+						id = 4205
+						name = "Ikaiei"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 1094}
+					}
+					1094 = {
+						set_state_name = "Yantai"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 328}
+					}
+					set_province_name = {
+						id = 4572
+						name = "Xinjing"
+					}   
+				}
+			}
+
+	
+
+			###########################
+			###   Warsaw Uprising   ###
+			###########################
+
+			#Germany/GGN takes Polish states (in Poland)
+			if = {
+				limit = {
+					FROM = {
+						original_tag = POL
+					}
+					ROOT = {
+						OR = {
+							original_tag = GGN
+							original_tag = GER
+							has_war_together_with = GER
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 10}
+					}
+					10 = {
+						set_state_name = "Warschau"
+					}
+					set_province_name = {
+						id = 3544
+						name = "Warschau"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 90}
+					}
+					90 = {
+						set_state_name = "Wartheland"
+					}
+					set_province_name = {
+						id = 3586
+						name = "Tschenstochau"
+					} 	
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 92}
+					}
+					92 = {
+						set_state_name = "Lublin"
+					}
+					set_province_name = {
+						id = 3521
+						name = "Siedlitz"
+					} 
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 88}
+					}
+					88 = {
+						set_state_name = "Krakau"
+					}
+					set_province_name = {
+						id = 9427
+						name = "Krakau"
+					}
+					set_province_name = {
+						id = 442
+						name = "Tarnau"
+					}
+					set_province_name = {
+						id = 6522
+						name = "Reichshof"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 91}
+					}
+					91 = {
+						set_state_name = "Lemberg"
+					}
+					set_province_name = {
+	   					id = 11479
+	   					name = "Lemberg"
+	   				}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 89}
+					}
+					89 = {
+						set_state_name = "Stanislau"
+					}
+					set_province_name = {
+						id = 11411
+						name = "Stanislau"
+					}
+					set_province_name = {
+						id = 9425
+						name = "Kolomea"
+					} 
+				}
+			}
+			#Poland takes Germany/GGN states (in Poland)
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = GGN
+							original_tag = GER
+							has_war_together_with = GER
+						}
+					}
+					ROOT = {
+						original_tag = POL
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 10}
+					}
+					10 = {
+						set_state_name = "Warszawa"
+					}
+					set_province_name = {
+						id = 3544
+						name = "Warszawa"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 90}
+					}
+					90 = {
+						set_state_name = "Kielce"
+					}
+					set_province_name = {
+						id = 3586
+						name = "Częstochowa"
+					} 	
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 92}
+					}
+					92 = {
+						set_state_name = "Lublin"
+					}
+					set_province_name = {
+						id = 3521
+						name = "Siedlce"
+					} 
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 88}
+					}
+					88 = {
+						set_state_name = "Małopolska"
+					}
+					set_province_name = {
+						id = 9427
+						name = "Kraków"
+					}
+					set_province_name = {
+						id = 442
+						name = "Tarnów"
+					}
+					set_province_name = {
+						id = 6522
+						name = "Rzeszów"
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 91}
+					}
+					91 = {
+						set_state_name = "Lwów"
+					}
+					set_province_name = {
+	   					id = 11479
+	   					name = "Lwów"
+	   				}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 89}
+					}
+					89 = {
+						set_state_name = "Stanisławów"
+					}
+					set_province_name = {
+						id = 11411
+						name = "Stanisławów"
+					}
+					set_province_name = {
+						id = 9425
+						name = "Kołomyja"
+					} 
+				}
+			}
+			#######################################################
+			### RUSSIAN WARLORD VP NAME CHANGES GOD HELP US ALL ###
+			#######################################################
+
+
+			if = {
+				limit = {
+					FROM = {
+						tag = VTY
+					}
+					ROOT = {
+						tag = WSR
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {state = 859}
+					}
+					TNO_Russia_load_regional_tree = yes
+				}
+			}
+
+			FROM.FROM = {
+				### Outer Manchuria
+				VP_change_outman = yes
+				
+				### Central Russia ###
+				VP_change_rus = yes
+					
+				### Fuck Finland ###
+				VP_change_fin = yes
+			}
+			
+			### RETURN TO SANITY ###
+			
+			############
+			#Madagascar#
+			############
+			if = { #Hitnagdut takes states- Hebrewizations credit to mupper
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MAD
+							original_tag = MDG
+							original_tag = MDM
+						}
+					}
+					ROOT = {
+						original_tag = MDJ
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 543 }
+					}
+					543 = { set_state_name = "Dyego Suerz" }
+					set_province_name = { id = 13764 name = "Enchaihai" }
+					set_province_name = { id = 13793 name = "Dyego Suerz" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 706 }
+					}
+					set_province_name = { id = 13017 name = "Seynt Dinis" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 707 }
+					}
+					set_province_name = { id = 13018 name = "Parj Lawaiz" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 944 }
+					}
+					944 = { set_state_name = "Thamesina" }
+					set_province_name = { id = 13706 name = "Thamesina" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 945 }
+					}
+					945 = { set_state_name = "Antananaribe" }
+					set_province_name = { id = 13705 name = "Antananaribe" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 946 }
+					}
+					946 = { set_state_name = "Telyara" }
+					set_province_name = { id = 12956 name = "Telyara" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 947 }
+					}
+					set_province_name = { id = 13727 name = "Mabadanana" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1041 }
+					}
+					set_province_name = { id = 13657 name = "Iheshi" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1042 }
+					}
+					1043 = { set_state_name = "Telenara" }
+					set_province_name = { id = 13633 name = "Telenara" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1043 }
+					}
+					1043 = { set_state_name = "Merendaba" }
+					set_province_name = { id = 8180 name = "Merendaba" }
+					set_province_name = { id = 11015 name = "Mintirane" }
+				}
+			}
+			
+			if = { #Natives take states
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MAD
+							original_tag = MDG
+							original_tag = MDJ
+						}
+					}
+					ROOT = {
+						original_tag = MDM
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 543 }
+					}
+					543 = { set_state_name = "Antsiranana" }
+					set_province_name = { id = 13764 name = "Antsohihy" }
+					set_province_name = { id = 13793 name = "Antsiranana" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 706 }
+					}
+					set_province_name = { id = 13017 name = "Saint-Denis" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 707 }
+					}
+					set_province_name = { id = 13018 name = "Port Louis" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 944 }
+					}
+					944 = { set_state_name = "Toamasina" }
+					set_province_name = { id = 13706 name = "Toamasina" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 945 }
+					}
+					945 = { set_state_name = "Antananarivo" }
+					set_province_name = { id = 13705 name = "Antananarivo" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 946 }
+					}
+					946 = { set_state_name = "Toliara" }
+					set_province_name = { id = 12956 name = "Toliara" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 947 }
+					}
+					set_province_name = { id = 13727 name = "Maevatanana" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1041 }
+					}
+					set_province_name = { id = 13657 name = "Ihosy" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1042 }
+					}
+					1043 = { set_state_name = "Tolanaro" }
+					set_province_name = { id = 13633 name = "Tolanaro" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1043 }
+					}
+					1043 = { set_state_name = "Morondava" }
+					set_province_name = { id = 8180 name = "Morondava" }
+					set_province_name = { id = 11015 name = "Maintirano" }
+				}
+			}
+			
+			if = { #For German factions if Malagasy VPs are ever Germanized to be more easily integrated into this system
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MDM
+							original_tag = MDJ
+						}
+					}
+					ROOT = {
+						OR = {
+							original_tag = MAD
+							original_tag = MDG
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 543 }
+					}
+					543 = { set_state_name = "Antsiranana" }
+					set_province_name = { id = 13764 name = "Antsohihy" }
+					set_province_name = { id = 13793 name = "Antsiranana" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 706 }
+					}
+					set_province_name = { id = 13017 name = "Saint-Denis" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 707 }
+					}
+					set_province_name = { id = 13018 name = "Port Louis" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 944 }
+					}
+					944 = { set_state_name = "Toamasina" }
+					set_province_name = { id = 13706 name = "Toamasina" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 945 }
+					}
+					945 = { set_state_name = "Antananarivo" }
+					set_province_name = { id = 13705 name = "Antananarivo" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 946 }
+					}
+					946 = { set_state_name = "Toliara" }
+					set_province_name = { id = 12956 name = "Toliara" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 947 }
+					}
+					set_province_name = { id = 13727 name = "Maevatanana" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1041 }
+					}
+					set_province_name = { id = 13657 name = "Ihosy" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1042 }
+					}
+					1043 = { set_state_name = "Tolanaro" }
+					set_province_name = { id = 13633 name = "Tolanaro" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1043 }
+					}
+					1043 = { set_state_name = "Morondava" }
+					set_province_name = { id = 8180 name = "Morondava" }
+					set_province_name = { id = 11015 name = "Maintirano" }
+				}
+			}
+			if = { # Italian Africa/Triumvirate Name Changes 
+			###Egyptian Civil War###
+			limit = { 
+					FROM = {
+						tag = EGY	
+					}
+					ROOT = {
+						OR = {
+						tag = EGB
+						tag = EGQ
+						tag = RPS
+						tag = SDS
+						tag = SDF
+						tag = AYA 
+						tag = AZA
+						}
+					}
+				}
+				###EGYPT###
+				if = {
+					limit = {
+						FROM.FROM = { state = 456 }
+					}
+					456 = { set_state_name = "Aswan" }
+					set_province_name = { id = 11999 name = "Aswan" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 457 }
+					}
+					457 = { set_state_name = "Al-Sharqiyyah" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 446 }
+						NOT = {
+						tag = EGY
+						}
+					}
+					446 = { set_state_name = "Al-Qahirah" }
+					set_province_name = { id = 7011 name = "Al-Qahirah" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 446 }
+						NOT = {
+						tag = UAR
+						}
+					}
+					446 = { set_state_name = "Misr" }
+					set_province_name = { id = 7011 name = "Misr" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 447 }
+						NOT = {
+						tag = EGY
+						}
+					}
+					447 = { set_state_name = "Al-'Iskandariyya" }
+					set_province_name = { id = 4076 name = "Al-'Iskandariyya" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 447 }
+						NOT = {
+						tag = UAR
+						}
+					}
+					447 = { set_state_name = "Eskendereyya" }
+					set_province_name = { id = 4076 name = "Eskendereyya" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1120 }
+					}
+					1120 = { set_state_name = "Bur Sudan" }
+					set_province_name = { id = 2003 name = "Bur Sudan" }
+					}
+				}
+				###CYPRUS AND RHODES###
+				if = { # Turkey/Greece + Levant Name Changes
+				limit = { 
+					FROM = {
+					original_tag = TUR			
+					}
+					ROOT = {		
+					original_tag = GRE
+					original_tag = ITA
+						}
+					}
+				}
+				if = {
+					limit = {
+					FROM.FROM = { state = 1328 }
+					}
+					1328 = { set_state_name = "Kuzey Kibris" }
+					set_province_name = { id = 7193 name = "Magusa" }
+					
+				}
+				if = {
+					limit = {
+					FROM.FROM = { state = 164 }
+					}
+					164 = { set_state_name = "Oniki Ada" }
+					set_province_name = { id = 10007 name = "Rodos" }
+				}
+			###ITALIAN MIDDLE EAST###
+		}
+	}	
+}

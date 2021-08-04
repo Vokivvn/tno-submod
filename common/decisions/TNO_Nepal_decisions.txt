@@ -1,0 +1,1046 @@
+#NEP_Influence_Category = {
+#	NEP_Influence_Increase_Opinion = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#			NOT = {
+#				has_country_flag = NEP_embassy_expelled
+#			}
+#			hidden_trigger = {
+#				IF = {
+#					limit = {
+#						original_tag = RAJ
+#						}
+#						check_variable = { NEP.NEP_RAJ_influence > 50 }
+#				}
+#				ELSE_IF = {
+#					limit = {
+#						original_tag = BEN
+#						}
+#						check_variable = { NEP.NEP_BEN_influence > 50 }
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Increase_Opinion"
+#			custom_effect_tooltip = NEP_Influence_Increase_Opinion
+#			hidden_effect = {
+#				IF = {#RAJ INF
+#					limit = {
+#						original_tag = RAJ
+#					}
+#					subtract_from_variable = { NEP.NEP_RAJ_influence = 50 }
+#					IF = {#RAJ from neg3 to neg2
+#						limit = {
+#							NEP_RAJ_influence_neg3 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg3
+#						}
+#						remove_opinion_modifier = {
+#							target = RAJ
+#							modifier = NEP_influence_neg3
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_RAJ_influence_neg3
+#							set_country_flag = NEP_RAJ_influence_neg2
+#						}
+#					}
+#					else_if = {#RAJ from neg2 to neg1
+#						limit = {
+#							NEP_RAJ_influence_neg2 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						remove_opinion_modifier = {
+#							target = RAJ
+#							modifier = NEP_influence_neg2
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_RAJ_influence_neg2
+#							set_country_flag = NEP_RAJ_influence_neg1
+#						}
+#					}
+#					else_if = {#RAJ from neg1 to 1
+#						limit = {
+#							NEP_RAJ_influence_neg1 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						remove_opinion_modifier = {
+#							target = RAJ
+#							modifier = NEP_influence_neg1
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_RAJ_influence_neg1
+#							set_country_flag = NEP_RAJ_influence_1
+#						}
+#					}
+#					else_if = {#RAJ from 1 to 2
+#						limit = {
+#							NEP_RAJ_influence_1 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						remove_opinion_modifier = {
+#							target = RAJ
+#							modifier = NEP_influence_1
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_RAJ_influence_1
+#							set_country_flag = NEP_RAJ_influence_2
+#						}
+#					}
+#					else_if = {#RAJ from 2 to 3
+#						limit = {
+#							NEP_RAJ_influence_2 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						remove_opinion_modifier = {
+#							target = RAJ
+#							modifier = NEP_influence_2
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_3
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_3
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_RAJ_influence_2
+#							set_country_flag = NEP_RAJ_influence_3
+#						}
+#					}
+#				}
+#				else_if = {#BEN INF
+#					limit = {
+#						OR = {
+#							original_tag = BEN
+#						}
+#					}
+#					subtract_from_variable = { NEP.NEP_BEN_influence = 50 }
+#					IF = {#BEN from neg3 to neg2
+#						limit = {
+#							NEP_BEN_influence_neg3 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg3
+#						}
+#						remove_opinion_modifier = {
+#							target = BEN
+#							modifier = NEP_influence_neg3
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_BEN_influence_neg3
+#							set_country_flag = NEP_BEN_influence_neg2
+#						}
+#					}
+#					else_if = {#BEN from neg2 to neg1
+#						limit = {
+#							NEP_BEN_influence_neg2 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg2
+#						}
+#						remove_opinion_modifier = {
+#							target = BEN
+#							modifier = NEP_influence_neg2
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_BEN_influence_neg2
+#							set_country_flag = NEP_BEN_influence_neg1
+#						}
+#					}
+#					else_if = {#BEN from neg1 to 1
+#						limit = {
+#							NEP_BEN_influence_neg1 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_neg1
+#						}
+#						remove_opinion_modifier = {
+#							target = BEN
+#							modifier = NEP_influence_neg1
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_BEN_influence_neg1
+#							set_country_flag = NEP_BEN_influence_1
+#						}
+#					}
+#					else_if = {#BEN from 1 to 2
+#						limit = {
+#							NEP_BEN_influence_1 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_1
+#						}
+#						remove_opinion_modifier = {
+#							target = BEN
+#							modifier = NEP_influence_1
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_BEN_influence_1
+#							set_country_flag = NEP_BEN_influence_2
+#						}
+#					}
+#					else_if = {#BEN from 2 to 3
+#						limit = {
+#							NEP_BEN_influence_2 = yes
+#						}
+#						remove_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_2
+#						}
+#						remove_opinion_modifier = {
+#							target = BEN
+#							modifier = NEP_influence_2
+#						}
+#						add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_3
+#						}
+#						reverse_add_opinion_modifier = {
+#							target = NEP
+#							modifier = NEP_influence_3
+#						}
+#						NEP = {
+#							clr_country_flag = NEP_BEN_influence_2
+#							set_country_flag = NEP_BEN_influence_3
+#						}
+#					}
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Decrease_Opinion = {
+#		allowed = {
+#				OR = {
+#					original_tag = BEN
+#					original_tag = RAJ
+#				}
+#			}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#			NOT = {
+#				has_country_flag = NEP_embassy_expelled
+#			}
+#			hidden_trigger = {
+#				IF = {
+#					limit = {
+#						original_tag = RAJ
+#					}
+#					check_variable = { NEP.NEP_RAJ_influence > 50 }
+#				}
+#				ELSE_IF = {
+#					limit = {
+#						original_tag = BEN
+#					}
+#					check_variable = { NEP.NEP_BEN_influence > 50 }
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Decrease_Opinion"
+#			custom_effect_tooltip = NEP_Influence_Decrease_Opinion
+#			hidden_effect = {
+#				if = {
+#					limit = {
+#						original_tag = RAJ
+#					}
+#					subtract_from_variable = { NEP.NEP_RAJ_influence = 50 }
+#				}
+#				if = {
+#					limit = {
+#						original_tag = BEN
+#					}
+#					subtract_from_variable = { NEP.NEP_BEN_influence = 50 }
+#				}
+#				if = {#raj from neg2 to neg3
+#					limit = {
+#						tag = BEN
+#						RAJ = {
+#							NEP_RAJ_influence_neg2 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					remove_opinion_modifier = {
+#						target = RAJ
+#						modifier = NEP_influence_neg2
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg3
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg3
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_RAJ_influence_neg2
+#						set_country_flag = NEP_RAJ_influence_neg3
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = BEN
+#						RAJ = {
+#							NEP_RAJ_influence_neg1 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					remove_opinion_modifier = {
+#						target = RAJ
+#						modifier = NEP_influence_neg1
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_RAJ_influence_neg1
+#						set_country_flag = NEP_RAJ_influence_neg2
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = BEN
+#						RAJ = {
+#							NEP_RAJ_influence_1 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_1
+#					}
+#					remove_opinion_modifier = {
+#						target = RAJ
+#						modifier = NEP_influence_1
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_RAJ_influence_1
+#						set_country_flag = NEP_RAJ_influence_neg1
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = BEN
+#						RAJ = {
+#							NEP_RAJ_influence_2 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_2
+#					}
+#					remove_opinion_modifier = {
+#						target = RAJ
+#						modifier = NEP_influence_2
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_1
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_1
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_RAJ_influence_2
+#						set_country_flag = NEP_RAJ_influence_1
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = BEN
+#						RAJ = {
+#							NEP_RAJ_influence_2 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_2
+#					}
+#					remove_opinion_modifier = {
+#						target = RAJ
+#						modifier = NEP_influence_2
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_3
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_3
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_RAJ_influence_2
+#						set_country_flag = NEP_RAJ_influence_3
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = RAJ
+#						BEN = {
+#							NEP_BEN_influence_neg2 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					remove_opinion_modifier = {
+#						target = BEN
+#						modifier = NEP_influence_neg2
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg3
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg3
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_BEN_influence_neg2
+#						set_country_flag = NEP_BEN_influence_neg3
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = RAJ
+#						BEN = {
+#							NEP_BEN_influence_neg1 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					remove_opinion_modifier = {
+#						target = BEN
+#						modifier = NEP_influence_neg1
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg2
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_BEN_influence_neg1
+#						set_country_flag = NEP_BEN_influence_neg2
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = RAJ
+#						BEN = {
+#							NEP_BEN_influence_1 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_1
+#					}
+#					remove_opinion_modifier = {
+#						target = BEN
+#						modifier = NEP_influence_1
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_neg1
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_BEN_influence_1
+#						set_country_flag = NEP_BEN_influence_neg1
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = RAJ
+#						BEN = {
+#							NEP_BEN_influence_1 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_1
+#					}
+#					remove_opinion_modifier = {
+#						target = BEN
+#						modifier = NEP_influence_1
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_2
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_2
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_BEN_influence_1
+#						set_country_flag = NEP_BEN_influence_2
+#					}
+#				}
+#				else_if = {
+#					limit = {
+#						tag = RAJ
+#						BEN = {
+#							NEP_BEN_influence_2 = yes
+#						}
+#					}
+#					remove_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_2
+#					}
+#					remove_opinion_modifier = {
+#						target = BEN
+#						modifier = NEP_influence_2
+#					}
+#					add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_3
+#					}
+#					reverse_add_opinion_modifier = {
+#						target = NEP
+#						modifier = NEP_influence_3
+#					}
+#					NEP = {
+#						clr_country_flag = NEP_BEN_influence_2
+#						set_country_flag = NEP_BEN_influence_3
+#					}
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Consolidate_Influence = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#			NOT = {
+#				has_country_flag = NEP_embassy_expelled
+#			}
+#			hidden_trigger = {
+#				IF = {
+#					limit = {
+#						original_tag = RAJ
+#						}
+#						check_variable = { NEP.NEP_RAJ_influence > 99 }
+#						NEP = { has_country_flag = NEP_RAJ_influence_3 }
+#				}
+#				ELSE_IF = {
+#					limit = {
+#						original_tag = BEN
+#						}
+#						check_variable = { NEP.NEP_BEN_influence > 99 }
+#						NEP = { has_country_flag = NEP_BEN_influence_3 }
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Consolidate_Influence"
+#			custom_effect_tooltip = NEP_Influence_Consolidate_Influence_tt
+#			hidden_effect = {
+#				IF = {
+#					limit = {
+#						tag = RAJ
+#					}
+#					add_to_variable = { NEP.NEP_RAJ_influence = -100 }
+#					clr_country_flag = NEP_RAJ_influence_3
+#					set_country_flag = NEP_RAJ_influence_4
+#					give_guarantee = NEP
+#					give_military_access = NEP
+#					NEP = {
+#						give_guarantee = RAJ
+#						give_military_access = RAJ
+#					}
+#				}
+#				else = {
+#					add_to_variable = { NEP.NEP_BEN_influence = -100 }
+#					clr_country_flag = NEP_BEN_influence_3
+#					set_country_flag = NEP_BEN_influence_4
+#					give_guarantee = NEP
+#					give_military_access = NEP
+#					NEP = {
+#						give_guarantee = BEN
+#						give_military_access = BEN
+#					}
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Expel_Advisors = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			has_political_power > 75
+#			NEP = {
+#				exists = yes
+#			}
+#			NOT = {
+#				has_country_flag = NEP_embassy_expelled
+#			}
+#			hidden_trigger = {
+#				IF = {
+#					limit = {
+#						original_tag = RAJ
+#					}
+#					check_variable = { NEP.NEP_RAJ_influence > 50 }
+#					NEP = {
+#						OR = {
+#							has_country_flag = NEP_RAJ_influence_2
+#							has_country_flag = NEP_RAJ_influence_3
+#							has_country_flag = NEP_RAJ_influence_4
+#						}
+#					}
+#				}
+#				ELSE_IF = {
+#					limit = {
+#						original_tag = BEN
+#					}
+#					check_variable = { NEP.NEP_BEN_influence > 50 }
+#					NEP = {
+#						OR = {
+#							has_country_flag = NEP_BEN_influence_2
+#							has_country_flag = NEP_BEN_influence_3
+#							has_country_flag = NEP_BEN_influence_4
+#						}
+#					}
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Expel_Advisors"
+#			custom_effect_tooltip = NEP_Influence_Expel_Advisors_tt
+#			hidden_effect = {
+#				add_political_power = -75
+#				IF = {
+#					limit = {
+#						tag = RAJ
+#					}
+#					subtract_from_variable = { NEP.NEP_RAJ_influence = 50 }
+#					BEN = {
+#						subtract_from_variable = { NEP.NEP_BEN_influence = 10 }
+#					}
+#				}
+#				else = {
+#					subtract_from_variable = { NEP.NEP_BEN_influence = 50 }
+#					RAJ = {
+#						subtract_from_variable = { NEP.NEP_RAJ_influence = 10 }
+#					}
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Expel_Embassy = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			has_political_power > 150
+#			NEP = {
+#				exists = yes
+#			}
+#			NOT = {
+#				has_country_flag = NEP_embassy_expelled
+#			}
+#			hidden_trigger = {
+#				IF = {
+#					limit = {
+#						original_tag = RAJ
+#						}
+#						check_variable = { NEP.NEP_RAJ_influence > 65 }
+#						NEP = { has_country_flag = NEP_RAJ_influence_3 }
+#						BEN = {
+#							NOT = { has_country_flag = NEP_embassy_expelled }
+#						}
+#				}
+#				ELSE_IF = {
+#					limit = {
+#						original_tag = BEN
+#						}
+#						check_variable = { NEP.NEP_BEN_influence > 65 }
+#						NEP = { has_country_flag = NEP_BEN_influence_3 }
+#						RAJ = {
+#							NOT = { has_country_flag = NEP_embassy_expelled }
+#						}
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Expel_Embassy"
+#			custom_effect_tooltip = NEP_Influence_Expel_Embassy_tt
+#			hidden_effect = {
+#				add_political_power = -150
+#				IF = {
+#					limit = {
+#						tag = RAJ
+#					}
+#					subtract_from_variable = { NEP.NEP_RAJ_influence = 65 }
+#					set_variable = { NEP.NEP_BEN_influence = 0 }
+#				}
+#				else = {
+#					subtract_from_variable = { NEP.NEP_BEN_influence = 65 }
+#					set_variable = { NEP.NEP_RAJ_influence = 0 }
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Increase_Influence_Gain = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			has_political_power > 50
+#			NEP = {
+#				exists = yes
+#			}
+#			hidden_trigger = {
+#				NOT = {
+#					has_country_flag = NEP_influence_gain_max
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Influence_Gain"
+#			custom_effect_tooltip = NEP_Influence_Influence_Gain_tt
+#			hidden_effect = {
+#				add_political_power = -50
+#				IF = {
+#					limit = {
+#						OR = {
+#							tag = RAJ
+#							tag = BEN
+#						}
+#						has_country_flag = NEP_influence_gain_none
+#					}
+#					clr_country_flag = NEP_influence_gain_none
+#					set_country_flag = NEP_influence_gain_min
+#				}
+#				else_if = {
+#					limit = {
+#						OR = {
+#							tag = RAJ
+#							tag = BEN
+#						}
+#						has_country_flag = NEP_influence_gain_min
+#					}
+#					clr_country_flag = NEP_influence_gain_min
+#					set_country_flag = NEP_influence_gain_med
+#				}
+#				else_if = {
+#					limit = {
+#						OR = {
+#							tag = RAJ
+#							tag = BEN
+#						}
+#						has_country_flag = NEP_influence_gain_med
+#					}
+#					clr_country_flag = NEP_influence_gain_med
+#					set_country_flag = NEP_influence_gain_max
+#				}
+#			}
+#		}
+#	}
+#	NEP_Influence_Decrease_Influence_Gain = {
+#		allowed = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#		}
+#		available = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#			hidden_trigger = {
+#				NOT = {
+#					has_country_flag = NEP_influence_gain_none
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				original_tag = BEN
+#				original_tag = RAJ
+#			}
+#			NEP = {
+#				exists = yes
+#			}
+#		}
+#		custom_cost_trigger = { always = yes } #no cost
+#		ai_will_do = {
+#			factor = 0
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision NEP_Influence_Decrease_Influence_Gain"
+#			custom_effect_tooltip = NEP_Influence_Decrease_Influence_Gain_tt
+#			hidden_effect = {
+#				IF = {
+#					limit = {
+#						OR = {
+#							tag = RAJ
+#							tag = BEN
+#						}
+#						has_country_flag = NEP_influence_gain_max
+#					}
+#					clr_country_flag = NEP_influence_gain_max
+#					set_country_flag = NEP_influence_gain_med
+#				}
+#				else_if = {
+#					limit = {
+#						OR = {
+#							tag = RAJ
+#							tag = BEN
+#						}
+#						has_country_flag = NEP_influence_gain_med
+#					}
+#					clr_country_flag = NEP_influence_gain_med
+#					set_country_flag = NEP_influence_gain_min
+#				}
+#				else = {
+#					clr_country_flag = NEP_influence_gain_min
+#					set_country_flag = NEP_influence_gain_none
+#				}
+#			}
+#		}
+#	}
+#}
+#

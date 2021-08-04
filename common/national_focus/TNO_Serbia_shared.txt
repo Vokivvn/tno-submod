@@ -1,0 +1,772 @@
+shared_focus = {
+	id = SER_Serbia_start
+	icon = GFX_we_stand_alone
+	cost = 2
+
+	allow_branch = {
+		has_country_flag = SER_Start
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SER_Serbia_start"
+		country_event = { days = 1 id = serbia.6 }
+	}
+
+	x = 10
+	y = 0
+}
+shared_focus = {
+	id = SER_strengthen_the_government
+	icon = GFX_ORE_reordering_politics
+	cost = 4
+	prerequisite = {
+		focus = SER_Serbia_start
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_strengthen_the_government "
+		add_stability = 0.02
+		add_war_support = 0.02
+	}
+	relative_position_id = SER_Serbia_start
+	x = 0
+	y = 1
+}
+shared_focus = {
+	id = SER_increase_police_budget
+	icon = GFX_INS_deploy_the_police
+	cost = 4
+	prerequisite = {
+		focus = SER_strengthen_the_government
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_increase_police_budget "
+		add_stability = 0.05
+		add_war_support = 0.05
+		custom_effect_tooltip = SER_increase_police_funding_tt
+		add_to_variable = {
+			var = misc_costs
+			value = 200
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = SER_new_education_programs
+	icon = GFX_VIN_Education_Reform
+	cost = 4
+	prerequisite = {
+		focus = SER_strengthen_the_government
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_new_education_programs "
+		custom_effect_tooltip = SER_new_education_programs_tt
+		TNO_improve_academic_base_low = yes #coded with a script
+	}
+	relative_position_id = SER_Serbia_start
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = SER_increase_occupation_costs
+	icon = GFX_TNO_generic_riot_police
+	cost = 4
+	prerequisite = {
+		focus = SER_new_education_programs
+	}
+	prerequisite = {
+		focus = SER_increase_police_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_increase_occupation_costs "
+		custom_effect_tooltip = SER_increase_occupation_costs_tt
+		country_event = { days = 1 id = serbia.9 }
+		add_to_variable = {
+			var = misc_costs
+			value = 1000
+		}
+
+	}
+	relative_position_id = SER_Serbia_start
+	x = -2
+	y = 3
+}
+
+shared_focus = {
+	id = SER_intensify_propoganda_efforts
+	icon = GFX_TNO_generic_propaganda
+	cost = 4
+	prerequisite = {
+		focus = SER_new_education_programs
+	}
+	prerequisite = {
+		focus = SER_increase_police_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_intensify_propoganda_efforts "
+		country_event = { days = 1 id = serbia.7 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = SER_massive_reprisals
+	icon = GFX_TNO_generic_prison
+	cost = 4
+	prerequisite = {
+		focus = SER_new_education_programs
+	}
+	prerequisite = {
+		focus = SER_increase_police_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_increase_occupation_costs "
+		country_event = { days = 1 id = serbia.8 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = 2
+	y = 3
+}
+
+shared_focus = {
+	id = SER_safeguard_railroads
+	icon = GFX_TNO_generic_railway_work
+	cost = 4
+	prerequisite = {
+		focus = SER_massive_reprisals
+	}
+	prerequisite = {
+		focus = SER_intensify_propoganda_efforts
+	}
+	prerequisite = {
+		focus = SER_increase_occupation_costs
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_safeguard_railroads "
+		1274 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		107 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		1275 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = -1
+	y = 4
+}
+
+shared_focus = {
+	id = SER_expand_the_mines
+	icon = GFX_WAL_coal_crisis
+	cost = 4
+	prerequisite = {
+		focus = SER_massive_reprisals
+	}
+	prerequisite = {
+		focus = SER_intensify_propoganda_efforts
+	}
+	prerequisite = {
+		focus = SER_increase_occupation_costs
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_expand_the_mines "
+		custom_effect_tooltip = econ_increase_GDP
+		add_to_variable = {
+			var = GDP
+			value = 250
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = 1
+	y = 4
+}
+
+shared_focus = {
+	id = SER_serbia_secure
+	icon = GFX_SER_improve_relations
+	cost = 5
+	prerequisite = {
+		focus = SER_safeguard_railroads
+	}
+	prerequisite = {
+		focus = SER_expand_the_mines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_safeguard_railroads "
+		country_event = { days = 1 id = serbia.12 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = SER_deal_with_the_communists
+	icon = GFX_TNO_generic_global_anti_communism
+	cost = 1
+	prerequisite = {
+		focus = SER_Serbia_start
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_deal_with_the_communists "
+		country_event = { days = 1 id = serbia.14 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = 6
+	y = 1
+}
+
+shared_focus = {
+	id = SER_destroy_their_strongholds
+	icon = GFX_generic_execute_communists
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_the_communists
+	}
+	available = {
+		if = {
+			limit = { is_ai = no }
+			divisions_in_state = {
+				state = 1273
+				size > 2
+			}
+			divisions_in_state = {
+				state = 107
+				size > 2
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_destroy_their_strongholds "
+		108 = { set_demilitarized_zone = no }
+		1275 = { set_demilitarized_zone = no }
+		custom_effect_tooltip = SER_kick_them_out_tt
+		add_to_variable = {
+			var = GDP
+			value = 550
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = 7
+	y = 2
+}
+
+shared_focus = {
+	id = SER_secure_new_informants
+	icon = GFX_RAJ_establish_secret_service
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_the_communists
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_secure_new_informants "
+		country_event = { days = 1 id = serbia.19 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = 5
+	y = 2
+}
+
+shared_focus = {
+	id = SER_another_attempt_on_titos_life
+	icon = GFX_MAD_the_snipers_plot
+	cost = 6
+	prerequisite = {
+		focus = SER_secure_new_informants
+	}
+	prerequisite = {
+		focus = SER_destroy_their_strongholds
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_another_attempt_on_titos_life "
+		country_event = { days = 1 id = serbia.15 }
+		if = {
+			limit = {
+				has_idea = SRB_Partisan_problem
+			}
+			swap_ideas = {
+				remove_idea = SRB_Partisan_problem
+				add_idea = SRB_Partisans_reluctant
+			}
+		}
+		if = {
+			limit = {
+				has_idea = SRB_Partisans_reluctant
+			}
+			swap_ideas = {
+				remove_idea = SRB_Partisans_reluctant
+				add_idea = SRB_Partisans_dormant
+			}
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = 6
+	y = 3
+}
+
+shared_focus = {
+	id = SER_deal_with_the_chetniks
+	icon = GFX_Generic_Crossed_Rifles
+	cost = 1
+	prerequisite = {
+		focus = SER_Serbia_start
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_deal_with_the_chetniks "
+		country_event = { days = 1 id = serbia.13 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = -6
+	y = 1
+}
+
+shared_focus = {
+	id = SER_end_the_agreements
+	icon = GFX_RAJ_reluctant_cooperation
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_end_the_agreements "
+		country_event = { days = 1 id = serbia.16 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = -7
+	y = 2
+}
+
+shared_focus = {
+	id = SER_find_their_leaders
+	icon = GFX_MAD_assassinate_ministers
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_find_their_leaders "
+		add_political_power = -50
+		country_event = { days = 1 id = serbia.18 }
+	}
+	relative_position_id = SER_Serbia_start
+	x = -5
+	y = 2
+}
+
+shared_focus = {
+	id = SER_a_stab_in_the_back
+	icon = GFX_generic_political_chaos
+	cost = 6
+	prerequisite = {
+		focus = SER_find_their_leaders
+	}
+	prerequisite = {
+		focus = SER_end_the_agreements
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_a_stab_in_the_back "
+		country_event = { days = 1 id = serbia.17 }
+		if = {
+			limit = {
+				has_idea = SRB_Partisan_problem
+			}
+			swap_ideas = {
+				remove_idea = SRB_Partisan_problem
+				add_idea = SRB_Partisans_reluctant
+			}
+		}
+		if = {
+			limit = {
+				has_idea = SRB_Partisans_reluctant
+			}
+			swap_ideas = {
+				remove_idea = SRB_Partisans_reluctant
+				add_idea = SRB_Partisans_dormant
+			}
+		}
+	}
+	relative_position_id = SER_Serbia_start
+	x = -6
+	y = 3
+}
+
+shared_focus = {
+	id = SER_Serbia_freedom
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 2
+
+	allow_branch = {
+		has_country_flag = SER_Start
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SER_Serbia_start"
+		country_event = { days = 1 id = serbia.6 }
+	}
+
+	x = 10
+	y = 0
+}
+
+shared_focus = {
+	id = SER_fight_for_a_free_serbia
+	icon = GFX_USA_We_fight_for_Stability
+	cost = 3
+	prerequisite = {
+		focus = SER_Serbia_freedom
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_use_partisan_armories "
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 1
+	y = 1
+}
+
+shared_focus = {
+	id = SER_use_partisan_armories
+	icon = GFX_TNO_generic_gun_production
+	cost = 3
+	prerequisite = {
+		focus = SER_Serbia_freedom
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_use_partisan_armories"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = SER_one_last_push
+	icon = GFX_Generic_Red_Army
+	cost = 3
+	prerequisite = {
+		focus = SER_use_partisan_armories
+	}
+	prerequisite = {
+		focus = SER_fight_for_a_free_serbia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_one_last_push"
+		add_timed_idea = {
+			idea = SRB_one_last_push
+			days = 40
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 0
+	y = 2
+}
+
+shared_focus = {
+	id = SER_the_calm
+	icon = GFX_dove_of_peace
+	cost = 4
+	prerequisite = {
+		focus = SER_one_last_push
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_the_calm "
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = { id = serbia.26 }
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = SER_deal_with_tito # It uses Aleksandar in the loc
+	icon = GFX_Generic_Authoritarian_Socialism
+	cost = 2
+	prerequisite = {
+		focus = SER_the_calm
+	}
+	mutually_exclusive = {
+		focus = SER_crush_the_traitor
+		focus = SER_eradicate_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_deal_with_tito"
+		add_popularity = {
+			ideology = communist
+			popularity = -0.06
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -4
+	y = 4
+}
+
+shared_focus = {
+	id = SER_lay_the_trap
+	icon = GFX_generic_execute_communists
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_tito
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_lay_the_trap"
+		country_event = { id = serbia.24 }
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -5
+	y = 5
+}
+
+shared_focus = {
+	id = SER_purge_the_countryside
+	icon = GFX_RAJ_Agitate_The_Poor
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_tito
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_purge_the_countryside"
+		add_war_support = -0.07
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 360
+			producer = SER
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -3
+	y = 5
+}
+
+shared_focus = {
+	id = SER_finish_tito
+	icon = GFX_TNO_generic_socialist_purge
+	cost = 4
+	prerequisite = {
+		focus = SER_purge_the_countryside
+	}
+	prerequisite = {
+		focus = SER_lay_the_trap
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_finish_tito"
+		country_event = { id = serbia.23 }
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -4
+	y = 6
+}
+
+shared_focus = {
+	id = SER_crush_the_traitor
+	icon = GFX_Generic_Authoritarian_Democracy
+	cost = 2
+	prerequisite = {
+		focus = SER_the_calm
+	}
+	mutually_exclusive = {
+		focus = SER_deal_with_tito
+		focus = SER_eradicate_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_crush_the_traitor"
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.06
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 0
+	y = 4
+}
+
+shared_focus = {
+	id = SER_agents_within_the_SDS
+	icon = GFX_OST_Make_Contacts_in_the_Baltics
+	cost = 4
+	prerequisite = {
+		focus = SER_crush_the_traitor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_agents_within_the_SDS "
+		SER = {
+			add_stability = -0.07
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 1
+	y = 5
+}
+
+shared_focus = {
+	id = SER_deal_with_his_supporters
+	icon = GFX_Generic_Political_Purge
+	cost = 4
+	prerequisite = {
+		focus = SER_crush_the_traitor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_deal_with_his_supporters "
+		add_manpower = -1678
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = -1
+	y = 5
+}
+
+shared_focus = {
+	id = SER_hang_the_bastard
+	icon = GFX_VIN_Public_Executions
+	cost = 4
+	prerequisite = {
+		focus = SER_deal_with_his_supporters
+	}
+	prerequisite = {
+		focus = SER_agents_within_the_SDS
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_hang_the_bastard "
+		country_event = { id = serbia.25 }
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = SER_eradicate_the_chetniks
+	icon = GFX_Generic_Despotism
+	cost = 2
+	prerequisite = {
+		focus = SER_the_calm
+	}
+	mutually_exclusive = {
+		focus = SER_deal_with_tito
+		focus = SER_crush_the_traitor
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_eradicate_the_chetniks"
+		add_popularity = {
+			ideology = despotism
+			popularity = -0.06
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 4
+	y = 4
+}
+
+shared_focus = {
+	id = SER_confiscate_their_weapons
+	icon = GFX_generic_advanced_weapons
+	cost = 4
+	prerequisite = {
+		focus = SER_eradicate_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_confiscate_their_weapons "
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 409
+			producer = SER
+		}
+		add_war_support = -0.06
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 5
+	y = 5
+}
+
+shared_focus = {
+	id = SER_scour_the_mountains
+	icon = GFX_XSM_In_the_Mountains
+	cost = 4
+	prerequisite = {
+		focus = SER_eradicate_the_chetniks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_scour_the_mountains "
+		country_event = { id = serbia.27 }
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 3
+	y = 5
+}
+
+shared_focus = {
+	id = SER_an_end_to_uncle_draza
+	icon = GFX_generic_republican_movement
+	cost = 4
+	prerequisite = {
+		focus = SER_confiscate_their_weapons
+	}
+	prerequisite = {
+		focus = SER_scour_the_mountains
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_an_end_to_uncle_draza"
+		country_event = { id = serbia.28 }
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 4
+	y = 6
+}
+
+shared_focus = {
+	id = SER_the_storm
+	icon = GFX_IRQ_A_Dark_and_Stormy_Night
+	cost = 4
+	prerequisite = {
+		focus = SER_an_end_to_uncle_draza
+		focus = SER_hang_the_bastard
+		focus = SER_finish_tito
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus SER_the_storm "
+		add_timed_idea = {
+			idea = SER_chaos_once_again
+			days = 70
+		}
+	}
+	relative_position_id = SER_Serbia_freedom
+	x = 0
+	y = 8
+}

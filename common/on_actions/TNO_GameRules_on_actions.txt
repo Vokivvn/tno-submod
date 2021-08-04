@@ -1,0 +1,27 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = zombie_easteregg_status
+						option = ZOMBIES_ACTIVE
+					}
+				}
+				every_country = { country_event = { id = spook_news.1 days = 1 } }
+				BRG = { country_event = { id = spook_temp.1 days = 211 } }
+			}
+			else = { set_global_flag = Disable_Zombies }
+
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = crisis_detente_status
+						option = CRISIS_DISABLED
+					}
+				}
+				set_global_flag = DEESCALATION_GAME_RULE
+			}
+		}
+	}
+}

@@ -1,0 +1,2175 @@
+##Blank Focus
+shared_focus = {
+	id = BRG_blankfocus
+	icon = GFX_generic_little_entente
+	x = 0
+	y = 7
+	cost = 5
+	allow_branch = {
+		has_country_flag = neversetthisflag
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_blankfocus"
+	}
+}
+
+##
+## Dummy focuses for start screen
+##
+
+shared_focus = {
+	id = BRG_dummy_one
+	icon = GFX_BRG_focus_unter_der_schwarzen_sonne ##Lance: pointing the icon at the shine causes shines to work on the start screen
+	cost = 5
+	dynamic = yes
+	x = 0
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_dummy_one"
+	}
+}
+
+shared_focus = {
+	id = BRG_dummy_two
+	icon = GFX_BRG_focus_heil_himmler
+	cost = 5
+	dynamic = yes
+	x = 2
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_dummy_two"
+	}
+}
+
+shared_focus = {
+	id = BRG_dummy_three
+	icon = GFX_BRG_focus_a_spy_in_every_command ##Lance: pointing the icon at the shine causes shines to work on the start screen
+	cost = 5
+	dynamic = yes
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_dummy_three"
+	}
+}
+
+##
+##	New Starting Tree
+##
+
+shared_focus = {
+	id = BRG_unter_der_schwarzen_sonne
+	icon = GFX_BRG_focus_unter_der_schwarzen_sonne
+	cost = 0.7
+	allow_branch = {
+		NOT = {
+			has_country_flag = BRG_political_phase_1
+			has_country_flag = BRG_start_tree_complete
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	dynamic = yes
+	x = 6
+	y = -5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unter_der_schwarzen_sonne"
+		country_event = { id = BRG_opener_new.1 }
+	}
+}
+
+shared_focus = {
+	id = BRG_a_wise_leader
+	icon = GFX_BRG_focus_heil_himmler
+	cost = 0.7
+	dynamic = yes
+	relative_position_id = BRG_unter_der_schwarzen_sonne
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_unter_der_schwarzen_sonne
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_wise_leader"
+		country_event = { id = BRG_opener_new.2 }
+	}
+}
+
+shared_focus = {
+	id = BRG_a_loyal_army
+	icon = GFX_BRG_focus_absolute_loyalty
+	cost = 0.7
+	dynamic = yes
+	relative_position_id = BRG_a_wise_leader
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = BRG_a_wise_leader
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_loyal_army"
+		country_event = { id = BRG_opener_new.3 }
+	}
+}
+
+shared_focus = {
+	id = BRG_a_pure_race
+	icon = GFX_BRG_A_Pure_Race
+	cost = 0.7
+	dynamic = yes
+	relative_position_id = BRG_a_wise_leader
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = BRG_a_wise_leader
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_pure_race"
+		country_event = { id = BRG_opener_new.4 }
+	}
+}
+
+shared_focus = {
+	id = BRG_the_last_hope_for_germania
+	icon = GFX_BRG_focus_a_spy_in_every_command
+	cost = 0.7
+	dynamic = yes
+	relative_position_id = BRG_a_pure_race
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = BRG_a_loyal_army
+	}
+	prerequisite = {
+		focus = BRG_a_pure_race
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_last_hope_for_germania"
+		country_event = { id = BRG_opener_new.5 }
+	}
+}
+
+shared_focus = {
+	id = BRG_a_change_in_plan
+	icon = GFX_BRG_germanize_french_language
+	cost = 3
+	allow_branch = {
+		NOT = {
+			OR = {
+			has_country_flag = BRG_start_tree_complete
+			has_country_flag = BRG_political_phase_1
+			}
+		}
+		has_country_flag = BRG_assassination_failed
+	}
+	prerequisite = {
+		focus = BRG_the_last_hope_for_germania
+	}
+	dynamic = yes
+	relative_position_id = BRG_the_last_hope_for_germania
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_change_in_plan"
+		add_ideas = BRG_idea_changed_plans
+	}
+}
+
+shared_focus = {
+	id = BRG_admit_no_fault
+	icon = GFX_BRG_Total_darkness
+	cost = 3
+	dynamic = yes
+	relative_position_id = BRG_a_change_in_plan
+	x = -3
+	y = 1
+	prerequisite = {
+		focus = BRG_a_change_in_plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_admit_no_fault"
+		country_event = { id = BRG_focus.108 }
+		add_stability = 0.02
+		add_war_support = 0.02
+
+	}
+}
+
+shared_focus = {
+	id = BRG_expand_the_camps
+	icon = GFX_BRG_focus_expand_the_camps
+	cost = 4
+	dynamic = yes
+	relative_position_id = BRG_admit_no_fault
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_admit_no_fault
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_expand_the_camps"
+		custom_effect_tooltip = BRG_unlock_worker_reserve_decision_construction
+	}
+}
+
+shared_focus = {
+	id = BRG_redouble_re_education_efforts
+	icon = GFX_BRG_focus_aryan_logistics
+	cost = 4
+	dynamic = yes
+	relative_position_id = BRG_admit_no_fault
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = BRG_admit_no_fault
+	}
+	prerequisite = {
+		focus = BRG_expand_project_gjallarhorn
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_redouble_re_education_efforts"
+		custom_effect_tooltip = BRG_increase_support_all_states
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { HimmlerSupport = 5 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_sonnenfinsternis
+	icon = GFX_BRG_Accelerate_The_Wait
+	cost = 5
+	dynamic = yes
+	relative_position_id = BRG_expand_the_camps
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = BRG_expand_the_camps
+	}
+	prerequisite = {
+		focus = BRG_redouble_re_education_efforts
+	}
+	prerequisite = {
+		focus = BRG_the_ultimate_deterrent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_sonnenfinsternis"
+		custom_effect_tooltip = BRG_unlock_worker_reserve_decision_output
+	}
+}
+
+shared_focus = {
+	id = BRG_expand_project_gjallarhorn
+	icon = GFX_BRG_focus_massenvernichtungswaffe
+	cost = 3
+	dynamic = yes
+	relative_position_id = BRG_a_change_in_plan
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_a_change_in_plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_expand_project_gjallarhorn"
+		country_event = { id = BRG.14 } #Nuclear program is important
+		add_timed_idea = {
+			idea = BRG_idea_project_gjallarhorn
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_ultimate_deterrent
+	icon = GFX_BRG_Focus_The_Ordensstaats_Future
+	cost = 4
+	dynamic = yes
+	relative_position_id = BRG_expand_project_gjallarhorn
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_expand_project_gjallarhorn
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_ultimate_deterrent"
+		custom_effect_tooltip = BRG_unlock_temp_nuke_boost
+	}
+}
+
+shared_focus = {
+	id = BRG_the_ultimate_salvation
+	icon = GFX_BRG_Focus_Prepare_For_The_New_Beginning
+	cost = 5
+	dynamic = yes
+	relative_position_id = BRG_the_ultimate_deterrent
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_the_ultimate_deterrent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_ultimate_salvation"
+		country_event = { id = BRG.11 }
+	}
+}
+
+shared_focus = {
+	id = BRG_admit_no_loyalty
+	icon = GFX_HGR_waffen_ss
+	cost = 3
+	dynamic = yes
+	relative_position_id = BRG_a_change_in_plan
+	x = 3
+	y = 1
+	prerequisite = {
+		focus = BRG_a_change_in_plan
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_admit_no_loyalty"
+		country_event = { id = BRG_focus.103 }
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = BRG_drill_the_waffen
+	icon = GFX_BRG_Focus_Penal_Battalions
+	cost = 4
+	dynamic = yes
+	relative_position_id = BRG_admit_no_loyalty
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_admit_no_loyalty
+	}
+	prerequisite = {
+		focus = BRG_expand_project_gjallarhorn
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_drill_the_waffen"
+		custom_effect_tooltip = BRG_unlock_drilling
+	}
+}
+
+shared_focus = {
+	id = BRG_call_upon_the_butcher
+	icon = GFX_BRG_focus_meet_heydrich
+	cost = 4
+	dynamic = yes
+	relative_position_id = BRG_admit_no_loyalty
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = BRG_admit_no_loyalty
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_call_upon_the_butcher"
+		country_event = { id = BRG.15 } #Chatting with Heydrich
+		army_experience = 25
+
+	}
+}
+
+shared_focus = {
+	id = BRG_await_the_wanenkrieg
+	icon = GFX_BRG_Focus_All_In
+	cost = 5
+	dynamic = yes
+	relative_position_id = BRG_call_upon_the_butcher
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_drill_the_waffen
+	}
+	prerequisite = {
+		focus = BRG_call_upon_the_butcher
+	}
+	#prerequisite = {
+	#	focus = BRG_call_upon_the_waffen
+	#}
+	prerequisite = {
+		focus = BRG_the_ultimate_deterrent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_await_the_wanenkrieg"
+		country_event = { id = BRG.16 } #Germany is decadent
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_die_enzig_hoffnung
+	icon = GFX_BRG_focus_heil_himmler
+	cost = 5
+	dynamic = yes
+	relative_position_id = BRG_the_ultimate_salvation
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_sonnenfinsternis
+	}
+	prerequisite = {
+		focus = BRG_the_ultimate_salvation
+	}
+	prerequisite = {
+		focus = BRG_await_the_wanenkrieg
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_die_enzig_hoffnung"
+		add_political_power = 50
+		add_stability = 0.03
+		add_war_support = 0.03
+		remove_ideas = BRG_idea_changed_plans
+		hidden_effect = {
+			country_event = { id = BRG_unlock.1 days = 3 }
+		}
+	}
+}
+
+#   _____  _     ___________  ___   _     ______ _       ___   _   _  _____
+#  |  __ \| |   |  _  | ___ \/ _ \ | |    | ___ \ |     / _ \ | \ | |/  ___|
+#  | |  \/| |   | | | | |_/ / /_\ \| |    | |_/ / |    / /_\ \|  \| |\ `--.
+#  | | __ | |   | | | | ___ \  _  || |    |  __/| |    |  _  || . ` | `--. \
+#  | |_\ \| |___\ \_/ / |_/ / | | || |____| |   | |____| | | || |\  |/\__/ /
+#   \____/\_____/\___/\____/\_| |_/\_____/\_|   \_____/\_| |_/\_| \_/\____/
+#
+#
+
+##GLOBALPLAN WOLF (ITALOSPHERE)##
+
+shared_focus = {
+	id = BRG_globalplan_wolf
+	icon = GFX_BRG_globalplan_wolf
+	cost = 1
+	x = 6
+	y = 8
+	allow_branch = {
+		has_country_flag = old_gp_wolf
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_wolf"
+		custom_effect_tooltip = BRG_globalplan_wolf_tt
+		set_country_flag = BRG_wolf_visible
+		hidden_effect = {
+			country_event = BRG_wolf.1
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_friends_in_high_places
+	icon = GFX_BRG_friends_in_high_places
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_globalplan_wolf
+	prerequisite = {
+		focus = BRG_globalplan_wolf
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_friends_in_high_places"
+		custom_effect_tooltip = BRG_friends_in_high_places_tt
+		hidden_effect = {
+			country_event = BRG_wolf.2
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_black_sun_over_the_levant
+	icon = GFX_BRG_black_sun_over_the_levant
+	cost = 1
+	x = -4
+	y = 1
+	relative_position_id = BRG_friends_in_high_places
+	prerequisite = {
+		focus = BRG_friends_in_high_places
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_black_sun_over_the_levant"
+		add_political_power = 50
+		custom_effect_tooltip = BRG_black_sun_levant_tt
+
+	}
+}
+
+shared_focus = {
+	id = BRG_levantine_homes_and_farms
+	icon = GFX_BRG_levantine_homes_and_farms
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_black_sun_over_the_levant
+	prerequisite = {
+		focus = BRG_black_sun_over_the_levant
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		IME = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_levantine_homes_and_farms"
+		custom_effect_tooltip = BRG_levantine_homes_tt
+		IME = {
+			add_ideas = {
+				IME_corrupt_officer_corps
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_levantine_guns_and_arms
+	icon = GFX_BRG_levantine_guns_and_arms
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_levantine_homes_and_farms
+	prerequisite = {
+		focus = BRG_levantine_homes_and_farms
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		IME = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_levantine_guns_and_arms"
+		custom_effect_tooltip = BRG_levantine_guns_tt
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = -1000
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_provoke_the_bull
+	icon = GFX_BRG_provoke_the_bull
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_black_sun_over_the_levant
+	prerequisite = {
+		focus = BRG_black_sun_over_the_levant
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		has_global_flag = italy_turkey_war
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_provoke_the_bull"
+		custom_effect_tooltip = BRG_provoke_the_bull_tt
+		TUR = {
+			add_timed_idea = {
+			idea = TUR_italian_interference
+			days = 50
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_guns_to_the_turks
+	icon = GFX_BRG_guns_to_the_turks
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_provoke_the_bull
+	prerequisite = {
+		focus = BRG_provoke_the_bull
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		has_global_flag = italy_turkey_war
+		}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_guns_to_the_turks"
+		custom_effect_tooltip = BRG_guns_to_the_turks_tt
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = -1000
+			}
+		TUR = {
+			add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 1000
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_levant_in_flames
+	icon = GFX_BRG_the_levant_in_flames
+	cost = 1
+	x = -1
+	Y = 1
+	relative_position_id = BRG_guns_to_the_turks
+	prerequisite = {
+		focus = BRG_levantine_guns_and_arms
+		focus = BRG_guns_to_the_turks
+	}
+	bypass = {
+		IME = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_levant_in_flames"
+		custom_effect_tooltip = BRG_the_levant_in_flames_tt
+		hidden_effect = {
+			add_political_power = 25
+			IME = {
+				add_stability = -0.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_ruthless_and_the_cunning
+	icon = GFX_BRG_ruthless_and_the_cunning
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_levant_in_flames
+	prerequisite = {
+		focus = BRG_the_levant_in_flames
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		IME = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_ruthless_and_the_cunning"
+		custom_effect_tooltip = BRG_the_ruthless_and_the_cunning_tt
+		hidden_effect = {
+			add_political_power = 50
+			IME = {
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.15
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_righteous_and_the_meek
+	icon = GFX_BRG_righteous_and_the_meek
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_the_levant_in_flames
+	prerequisite = {
+		focus = BRG_the_levant_in_flames
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	bypass = {
+		IME = {
+			exists = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_righteous_and_the_meek"
+		custom_effect_tooltip = BRG_the_righteous_and_the_meek_tt
+		hidden_effect = {
+		IME_irgun_down_5 = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_a_pyrrhic_victory
+	icon = GFX_BRG_pyrrhic_victory
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_righteous_and_the_meek
+	prerequisite = {
+		focus = BRG_the_ruthless_and_the_cunning
+	}
+	prerequisite = {
+		focus = BRG_the_righteous_and_the_meek
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_phyrric_victory"
+		custom_effect_tooltip = BRG_a_pyrrhic_victory_tt
+		hidden_effect = {
+			add_political_power = 50
+			add_to_variable = {
+				var = misc_income
+				value = 400
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_black_sun_over_the_horn
+	icon = GFX_BRG_black_sun_over_the_horn
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_friends_in_high_places
+	prerequisite = {
+		focus = BRG_friends_in_high_places
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_black_sun_over_the_horn"
+		custom_effect_tooltip = BRG_black_sun_over_the_horn_tt
+		add_political_power = 50
+		hidden_effect = {
+			country_event = BRG_wolf.13
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_ports_on_the_red_sea
+	icon = GFX_BRG_red_sea_ports
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_black_sun_over_the_horn
+	prerequisite = {
+		focus = BRG_black_sun_over_the_horn
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_ports_on_the_red_sea"
+		custom_effect_tooltip = BRG_the_ports_on_the_red_sea_tt
+		add_to_variable = {
+			var = misc_income
+			value = 50
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_exploit_corruption
+	icon = GFX_BRG_exploit_corruption
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_ports_on_the_red_sea
+	prerequisite = {
+		focus = BRG_the_ports_on_the_red_sea
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_exploit_corruption"
+		custom_effect_tooltip = BRG_exploit_corruption_tt
+		IEA = {
+		add_stability = -0.05
+		add_political_power = -25
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_contacts_in_the_bureaucracy
+	icon = GFX_BRG_contacts_in_the_bureaucracy
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_exploit_corruption
+	prerequisite = {
+		focus = BRG_exploit_corruption
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_contacts_in_the_bureaucracy"
+		custom_effect_tooltip = BRG_contacts_in_the_bureaucracy_tt
+		IEA = {
+			add_ideas = IME_corrupt_officer_corps
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_exploit_tension
+	icon = GFX_BRG_exploit_tension
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_the_ports_on_the_red_sea
+	prerequisite = {
+		focus = BRG_the_ports_on_the_red_sea
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_exploit_tension"
+		custom_effect_tooltip = BRG_exploit_tension_tt
+		IEA = {
+			add_stability = -0.1
+			add_political_power = -25
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_arm_settler_militias
+	icon = GFX_BRG_arm_settler_militias
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_exploit_tension
+	prerequisite = {
+		focus = BRG_exploit_tension
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_arm_settler_miltias"
+		custom_effect_tooltip = BRG_arm_settler_militias_tt
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = -500
+		}
+		hidden_effect = {
+			IEA = {
+				add_stability = -0.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_maletti_connection
+	icon = GFX_BRG_the_maletti_connection
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_arm_settler_militias
+	prerequisite = {
+		focus = BRG_contacts_in_the_bureaucracy
+	}
+	prerequisite = {
+		focus = BRG_arm_settler_militias
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_maletti_connection"
+		custom_effect_tooltip = BRG_the_maletti_connection_tt
+		add_political_power = 100
+		add_to_variable = {
+			var = misc_costs
+			value = 500
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_incite_ethnic_strife
+	icon = GFX_BRG_incite_ethnic_strife
+	cost = 1
+	x = -2
+	y = 1
+	relative_position_id = BRG_the_maletti_connection
+	prerequisite = {
+		focus = BRG_the_maletti_connection
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_incite_ethnic_strife"
+		custom_effect_tooltip = BRG_incite_ethnic_strife_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_ss_volunteers
+	icon = GFX_BRG_ss_volunteers
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_the_maletti_connection
+	prerequisite = {
+		focus = BRG_the_maletti_connection
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_ss_volunteers"
+		custom_effect_tooltip = BRG_ss_volunteers_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_correntian_commerce
+	icon = GFX_BRG_correntian_commerce
+	cost = 1
+	x = 2
+	y = 1
+	relative_position_id = BRG_the_maletti_connection
+	prerequisite = {
+		focus = BRG_the_maletti_connection
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_correntian_commerce"
+		custom_effect_tooltip = BRG_correntian_commerce_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_black_sun_over_the_nile
+	icon = GFX_BRG_black_sun_over_the_nile
+	cost = 1
+	x = 4
+	y = 1
+	relative_position_id = BRG_friends_in_high_places
+	prerequisite = {
+		focus = BRG_friends_in_high_places
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_black_sun_over_the_nile"
+		custom_effect_tooltip = BRG_black_sun_over_the_nile_tt
+		hidden_effect = {
+			country_event = BRG_wolf.4
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_kings_hedonism
+	icon = GFX_BRG_the_kings_degeneracy
+	cost = 1
+	x = 0
+	y = 1
+	relative_position_id = BRG_black_sun_over_the_nile
+	prerequisite = {
+		focus = BRG_black_sun_over_the_nile
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_kings_hedonism"
+		custom_effect_tooltip = BRG_the_kings_hedonism_tt
+		hidden_effect = {
+			country_event = BRG_wolf.5
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_burgundian_attaches
+	icon = GFX_BRG_burgundian_attaches
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_kings_hedonism
+	prerequisite = {
+		focus = BRG_the_kings_hedonism
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_burgundian_attaches"
+		custom_effect_tooltip = BRG_burgundian_attaches_tt
+		hidden_effect = {
+			country_event = BRG_wolf.6
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_visit_to_ost_paris
+	icon = GFX_BRG_a_trip_to_ost_paris
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_the_kings_hedonism
+	prerequisite = {
+		focus = BRG_the_kings_hedonism
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_visit_to_ost_paris"
+		custom_effect_tooltip = BRG_visit_to_ost_paris_tt
+		hidden_effect = {
+			country_event = BRG_wolf.7
+		}
+	}
+}
+shared_focus = {
+	id = BRG_the_opportunity
+	icon = GFX_BRG_the_opportunity
+	cost = 1
+	x = -1
+	y =1
+	relative_position_id = BRG_visit_to_ost_paris
+	prerequisite = {
+		focus = BRG_burgundian_attaches
+	}
+	prerequisite = {
+		focus = BRG_visit_to_ost_paris
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_opportunity"
+		custom_effect_tooltip = BRG_the_opportunity_tt
+		hidden_effect = {
+			country_event = BRG_wolf.8
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_lavish_parties
+	icon = GFX_BRG_lavish_parties
+	cost = 1
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_opportunity
+	prerequisite = {
+		focus = BRG_the_opportunity
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_lavish_parties"
+		custom_effect_tooltip = BRG_lavish_parties_tt
+		hidden_effect = {
+			country_event = BRG_wolf.9
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_more_luxuries
+	icon = GFX_BRG_more_luxuries
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_the_opportunity
+	prerequisite = {
+		focus = BRG_the_opportunity
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_more_luxuries"
+		custom_effect_tooltip = BRG_more_luxuries_tt
+		hidden_effect = {
+			country_event = BRG_wolf.10
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_third_circle
+	icon = GFX_BRG_the_third_circle
+	cost = 1
+	x = 1
+	y = 1
+	relative_position_id = BRG_lavish_parties
+	prerequisite = {
+		focus = BRG_lavish_parties
+	}
+	prerequisite = {
+		focus = BRG_more_luxuries
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_third_circle"
+		custom_effect_tooltip = BRG_the_third_circle_tt
+		hidden_effect = {
+			country_event = BRG_wolf.11
+			set_country_flag = BRG_wolf_farouk_done
+		}
+
+	}
+}
+
+
+### GERMAN CIVIL WAR TREE ###
+
+shared_focus = {
+	id = BRG_fall_ragnachar
+	icon = GFX_BRG_fall_ragnachar
+	cost = 1.7
+	x = 10
+	y = 0
+	#offset = {
+	#	x = 11
+	#	trigger = {
+	#		has_country_flag = BRG_start_tree
+	#	}
+	#}
+	allow_branch = {
+		has_country_flag = BRG_fall_ragnarchar_allowed
+	}
+
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_fall_ragnachar"
+
+		every_country = {
+			add_opinion_modifier = { target = BRG modifier = embargo }
+		}
+		declare_war_on = {
+			target = FRA
+			type = annex_everything
+		}
+		hidden_effect = {
+			BRG = {
+				add_named_threat = {
+					threat = 10
+					name = threat.20.t
+				}
+			}
+			TNO_World_Tension_add_10 = yes
+			set_global_flag = franco_burgundian_war
+			every_country = {
+				news_event = {
+					id = WORLD.37
+					days = 1
+				}
+			}
+			country_event = { id = BRG_huntdegrelle.1 days = 1 }
+			FRA = { country_event = { id = FRA.5 days = 1 } }
+			BRT = { country_event = { days = 1 id = BRT.5 } }
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_penal_repair_battalions
+	icon = GFX_BRG_Focus_Penal_Battalions
+	cost = 2
+	prerequisite = {
+		focus = BRG_fall_ragnachar
+	}
+	available = {
+		BRG = {
+			has_war = no
+		}
+	}
+	relative_position_id = BRG_fall_ragnachar
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_penal_repair_battalions"
+		add_timed_idea = {
+			idea = BRG_arbeit_macht_frei
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_confiscate_all_decadence
+	icon = GFX_BRG_confiscate_all_decadence
+	cost = 2
+	prerequisite = {
+		focus = BRG_penal_repair_battalions
+	}
+	relative_position_id = BRG_penal_repair_battalions
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_confiscate_all_decadence"
+		custom_effect_tooltip = BRG_confiscate_all_decadence_tooltip
+		add_to_variable = { BRG_supplies = 10 }
+	}
+}
+
+shared_focus = {
+	id = BRG_the_parisian_marriage
+	icon = GFX_BRG_a_trip_to_ost_paris
+	cost = 2
+	prerequisite = {
+		focus = BRG_penal_repair_battalions
+	}
+	relative_position_id = BRG_penal_repair_battalions
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_parisian_marriage"
+		add_state_core = 786
+		add_political_power = 100
+		786 = { set_variable = { nationality = 140 } }
+	}
+}
+
+shared_focus = {
+	id = BRG_globalplan_elefant
+	icon = GFX_Focus_Africa_Orthographic
+	cost = 1
+	prerequisite = {
+		focus = BRG_confiscate_all_decadence
+	}
+	prerequisite = {
+		focus = BRG_the_parisian_marriage
+	}
+	relative_position_id = BRG_confiscate_all_decadence
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_elefant"
+			custom_effect_tooltip = BRG_Prolong_SAW
+			country_event = { id = burgundy_political.29 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = BRG_sowing_the_seeds_of_discontent
+	icon = GFX_BRG_focus_a_spy_in_every_command
+	cost = 2
+	prerequisite = {
+		focus = BRG_globalplan_elefant
+	}
+	relative_position_id = BRG_globalplan_elefant
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_sowing_the_seeds_of_discontent"
+			custom_effect_tooltip = BRG_fucking_US_Dis
+	}
+}
+
+shared_focus = {
+	id = BRG_growing_the_chaos
+	icon = GFX_BRG_Spread_Anarchy
+	cost = 3
+	prerequisite = {
+		focus = BRG_sowing_the_seeds_of_discontent
+	}
+	relative_position_id = BRG_sowing_the_seeds_of_discontent
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_growing_the_chaos"
+			custom_effect_tooltip = BRG_sending_guns_saf
+	}
+}
+
+shared_focus = {
+	id = BRG_cutting_the_cords
+	icon = GFX_BRG_focus_einsatzgruppen
+	cost = 2
+	prerequisite = {
+		focus = BRG_globalplan_elefant
+	}
+	relative_position_id = BRG_globalplan_elefant
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_cutting_the_cords"
+		custom_effect_tooltip = BRG_cutting_the_cords_tt
+		hidden_effect = {
+			SAF = {
+				add_timed_idea = {
+					idea = SAW_bogged_front
+					days = 90
+				}
+			}
+			MZB = {
+				add_timed_idea = {
+					idea = SAW_bogged_front
+					days = 90
+				}
+			}
+			ANG = {
+				add_timed_idea = {
+					idea = SAW_bogged_front
+					days = 90
+				}
+			}
+			COG = {
+				add_timed_idea = {
+					idea = SAW_bogged_front
+					days = 90
+				}
+			}
+			USA = {
+				add_timed_idea = {
+					idea = SAW_bogged_front
+					days = 90
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_schencks_empty_tanks
+	icon = GFX_BRG_Fuel_Of_Progress
+	cost = 3
+	prerequisite = {
+		focus = BRG_cutting_the_cords
+	}
+	relative_position_id = BRG_cutting_the_cords
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_schencks_empty_tanks"
+			custom_effect_tooltip = BRG_fucking_Ang_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_mullers_broken_supply
+	icon = GFX_BRG_focus_the_trains_are_early
+	cost = 3
+	prerequisite = {
+		focus = BRG_cutting_the_cords
+	}
+	relative_position_id = BRG_cutting_the_cords
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = BRG_fucking_Congo_tt
+	   log = "[GetDateText]: [Root.GetName]: Focus BRG_mullers_broken_supply"
+	}
+}
+
+shared_focus = {
+	id = BRG_elefant_the_final_moves
+	icon = GFX_BRG_Final_Moves
+	cost = 3
+	prerequisite = {
+		focus = BRG_growing_the_chaos
+	}
+	prerequisite = {
+		focus = BRG_schencks_empty_tanks
+	}
+	prerequisite = {
+		focus = BRG_mullers_broken_supply
+	}
+	relative_position_id = BRG_schencks_empty_tanks
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_elefant_the_final_moves"
+			country_event = { id = burgundy_political.32 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = BRG_out_of_the_shadows
+	icon = GFX_BRG_focus_total_darkness
+	cost = 2
+	prerequisite = {
+		focus = BRG_elefant_the_final_moves
+	}
+	mutually_exclusive = {
+		focus = BRG_hiding_in_plain_sight
+	}
+	relative_position_id = BRG_elefant_the_final_moves
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_out_of_the_shadows"
+			custom_effect_tooltip = BRG_out_shadows_tt
+			hidden_effect = {
+				MZB = { country_event = { id = burgundy_political.34 days = 2 } }
+			}
+	}
+}
+
+shared_focus = {
+	id = BRG_hiding_in_plain_sight
+	icon = GFX_BRG_focus_a_gun_in_every_hand
+	cost = 2
+	prerequisite = {
+		focus = BRG_elefant_the_final_moves
+	}
+	mutually_exclusive = {
+		focus = BRG_out_of_the_shadows
+	}
+	relative_position_id = BRG_elefant_the_final_moves
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_hiding_in_plain_sight"
+		custom_effect_tooltip = BRG_hiding_in_plain_sight_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_igniting_huttigs_rage
+	icon = GFX_BRG_salt_the_earth
+	cost = 3
+	prerequisite = {
+		focus = BRG_out_of_the_shadows
+		focus = BRG_hiding_in_plain_sight
+	}
+	relative_position_id = BRG_out_of_the_shadows
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_igniting_huttigs_rage"
+		custom_effect_tooltip = BRG_igniting_huttigs_rage_tt
+		MZB = {
+			set_variable = {
+				HuttigRage = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_call_to_arms
+	icon = GFX_BRG_focus_der_schattenkrieg
+	cost = 1
+	prerequisite = {
+		focus = BRG_confiscate_all_decadence
+	}
+	prerequisite = {
+		focus = BRG_the_parisian_marriage
+	}
+	allow_branch = {
+		AND = {
+			has_global_flag = german_civil_war
+			HGR = {
+				exists = yes
+			}
+		}
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_the_parisian_marriage
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_call_to_arms"
+		custom_effect_tooltip = BRG_the_call_to_arms_tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					BRG = {
+						is_ai = no
+					}
+				}
+				HGR = {
+					set_country_flag = BRG_entered_war
+				}
+				add_ideas = BRG_idea_advisors
+			}
+			#if = {
+			#	limit = {
+			#		BRG = {
+			#			is_ai = yes
+			#		}
+			#	}
+			#
+			#}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_in_heydrichs_wake
+	icon = GFX_BRG_Focus_All_In
+	cost = 2
+	prerequisite = {
+		focus = BRG_the_call_to_arms
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	#mutually_exclusive = {
+	#	focus = BRG_let_the_dogs_loose
+	#}
+	relative_position_id = BRG_the_call_to_arms
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_in_heydrichs_wake"
+		custom_effect_tooltip = BRG_in_heydrichs_wake_tooltip
+		hidden_effect = {
+			HGR = { add_ideas = HGR_burgundian_einsatzgruppen }
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_flood_the_border
+	icon = GFX_BRG_focus_technical_companies
+	cost = 2
+	prerequisite = {
+		focus = BRG_the_call_to_arms
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_the_call_to_arms
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_flood_the_border"
+		HGR = { add_offsite_building = { type = arms_factory level = 2 } }
+	}
+}
+
+shared_focus = {
+	id = BRG_death_from_a_mile_away
+	icon = GFX_BRG_focus_death_from_a_mile_away
+	cost = 2
+	prerequisite = {
+		focus = BRG_in_heydrichs_wake
+		focus = BRG_flood_the_border
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_in_heydrichs_wake
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_death_from_a_mile_away"
+		custom_effect_tooltip = BRG_death_from_a_mile_away_tooltip
+	}
+}
+
+shared_focus = {
+	id = BRG_terrorkampagne
+	icon = GFX_BRG_focus_terrorkampagne
+	cost = 2
+	prerequisite = {
+		focus = BRG_death_from_a_mile_away
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_death_from_a_mile_away
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_terrorkampagne"
+		custom_effect_tooltip = BRG_terrorkampagne_tooltip
+	}
+}
+
+shared_focus = {
+	id = BRG_leading_the_charge
+	icon = GFX_BRG_focus_the_new_way_of_life
+	cost = 2
+	prerequisite = {
+		focus = BRG_flood_the_border
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_in_heydrichs_wake
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_leading_the_charge"
+		add_timed_idea = {
+			idea = BRG_fight_to_germania
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_the_spartan_phalanx
+	icon = GFX_BRG_the_spartan_phalanx
+	cost = 2
+	prerequisite = {
+		focus = BRG_leading_the_charge
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_leading_the_charge
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_spartan_phalanx"
+		custom_effect_tooltip = BRG_the_spartan_phalanx_tooltip
+		hidden_effect = {
+			HGR = { add_ideas = tno_army_professionalism_spartan_discipline }
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_blot_out_the_sun
+	icon = GFX_BRG_focus_blot_out_the_sun
+	cost = 2
+	prerequisite = {
+		focus = BRG_flood_the_border
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_flood_the_border
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_blot_out_the_sun"
+		HGR = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 120
+				producer = BRG
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_fire_and_brimstone
+	icon = GFX_BRG_Slash_And_Burn
+	cost = 2
+	prerequisite = {
+		focus = BRG_blot_out_the_sun
+	}
+	available = {
+		HGR = {
+			exists = yes
+		}
+	}
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			add = 100
+			HGR = { exists = yes }
+		}
+	}
+	relative_position_id = BRG_blot_out_the_sun
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_fire_and_brimstone"
+		HGR = {
+			add_equipment_to_stockpile = {
+				type = SRBM_equipment
+				amount = 100
+				producer = BRG
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_a_predictable_failure
+	icon = GFX_BRG_a_predictable_failure
+	cost = 2
+	allow_branch = {
+		AND = {
+			has_global_flag = german_civil_war
+			HGR = {
+				exists = no
+			}
+		}
+	}
+	prerequisite = {
+		focus = BRG_the_parisian_marriage
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_the_parisian_marriage
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_predictable_failure"
+		custom_effect_tooltip = BRG_a_predictable_failure_tooltip
+	}
+}
+
+shared_focus = {
+	id = BRG_evacuate_loyal_officers
+	icon = GFX_BRG_focus_absolute_loyalty
+	cost = 2
+	prerequisite = {
+		focus = BRG_a_predictable_failure
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_a_predictable_failure
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_evacuate_loyal_officers"
+		custom_effect_tooltip = BRG_evacuate_loyal_officers_tooltip
+		hidden_effect = {
+			HGR = {
+				every_unit_leader = {
+					limit = {
+						is_HGR_BRG_unit_leader = yes
+					}
+					set_nationality = BRG
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_withdraw_the_elites
+	icon = GFX_BRG_focus_mobile_ausfuhrungswagen
+	cost = 2
+	prerequisite = {
+		focus = BRG_a_predictable_failure
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_a_predictable_failure
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_withdraw_the_elites"
+		custom_effect_tooltip = BRG_withdraw_the_elites_tooltip
+		hidden_effect = {
+			18 = {
+				create_unit = {
+					division = "name = \"3rd SS Panzer Division 'Totenkopf''\" division_template = \"Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 0.8"
+					owner = BRG
+					prioritize_location = 5291
+				}
+				create_unit = {
+					division = "name = \"16th SS Panzergrenadier Division 'Reichsführer-SS'\" division_template = \"Panzer-Division\" start_experience_factor = 0.8 start_equipment_factor = 0.8"
+					owner = BRG
+					prioritize_location = 5291
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_nuclear_keepsakes
+	icon = GFX_BRG_focus_unter_der_schwarzen_sonne
+	cost = 2
+	prerequisite = {
+		focus = BRG_evacuate_loyal_officers
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_evacuate_loyal_officers
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_nuclear_keepsakes"
+		tno_improve_nuclear_stockpile = yes
+	}
+}
+
+shared_focus = {
+	id = BRG_our_new_man
+	icon = GFX_BRG_our_new_man
+	cost = 2
+	prerequisite = {
+		focus = BRG_evacuate_loyal_officers
+	}
+	prerequisite = {
+		focus = BRG_withdraw_the_elites
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	bypass = {
+		GGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_evacuate_loyal_officers
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_our_new_man"
+		custom_effect_tooltip = BRG_our_new_man_tooltip
+	}
+}
+
+shared_focus = {
+	id = BRG_blow_the_passes
+	icon = GFX_MAD_the_grenadiers_plot
+	cost = 2
+	prerequisite = {
+		focus = BRG_withdraw_the_elites
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_withdraw_the_elites
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_blow_the_passes"
+		28 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.9
+			}
+		}
+		8 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.9
+			}
+		}
+		51 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.9
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_free_the_slaves
+	icon = GFX_BRG_Spread_Anarchy
+	cost = 2
+	prerequisite = {
+		focus = BRG_nuclear_keepsakes
+	}
+	prerequisite = {
+		focus = BRG_our_new_man
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_our_new_man
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_free_the_slaves"
+		custom_effect_tooltip = BRG_free_the_slaves_tooltip
+		hidden_effect = {
+			every_country = {
+				limit = {
+					controls_state = 42
+				}
+				add_timed_idea = {
+					idea = BRG_GCW_rampaging_slaves
+					days = 60
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_a_learning_opportunity
+	icon = GFX_BRG_focus_ignorance_is_strength
+	cost = 2
+	prerequisite = {
+		focus = BRG_our_new_man
+	}
+	prerequisite = {
+		focus = BRG_blow_the_passes
+	}
+	available = {
+		HGR = {
+			exists = no
+		}
+	}
+	relative_position_id = BRG_our_new_man
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_a_learning_opportunity"
+		add_tech_bonus = {
+			bonus = 0.7
+			category = land_doctrine
+			uses = 1
+		}
+		add_tech_bonus = {
+			bonus = 0.4
+			category = air_doctrine
+			uses = 1
+		}
+	}
+}
+
+#GLOBALPLAN LÖWE (Please expand on this Globalplan focus once work starts on it)
+shared_focus = { #
+	id = BRG_globalplan_lowe
+	#icon =
+	cost = 5
+	x = 6
+	y = 10
+
+	allow_branch = {
+		check_variable = {BRG_GP_Lowe_Status_Var = 2}
+		has_country_flag = view_Lowe_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_lowe"
+	}
+}
+
+#GLOBALPLAN DRACHE
+shared_focus = { #
+	id = BRG_globalplan_drache
+	#icon =
+	cost = 5
+	x = 6
+	y = 10
+
+	allow_branch = {
+		check_variable = {BRG_GP_Drache_Status_Var = 2}
+		has_country_flag = view_Drache_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_drache"
+	}
+}
+
+#GLOBALPLAN SONNE
+shared_focus = { #
+	id = BRG_globalplan_sonne
+	#icon =
+	cost = 5
+	x = 6
+	y = 10
+
+	allow_branch = {
+		check_variable = {BRG_GP_Sonne_Status_Var = 2}
+		has_country_flag = view_Sonne_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_sonne"
+	}
+}

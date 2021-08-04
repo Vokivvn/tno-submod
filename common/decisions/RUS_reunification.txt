@@ -1,0 +1,8726 @@
+RUS_reunification_category = {
+
+	kazakhstan_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_kazakhstan = yes
+			has_war = no
+		}
+		allowed = {
+			is_kazakh_nation = yes
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision kazakh_reunification"
+			save_global_event_target_as = RUS_kazakhstan_unifier
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			set_country_flag = RUS_regional_stage
+			generate_russia_state_gdp = yes
+			set_global_flag = KAZ_UNIFIED
+			custom_effect_tooltip = RUS_end_warlord_tt
+			hidden_effect = {
+				country_event = { id = RUS.51 days = 30 } #caffine flow
+			}
+			if = {
+				limit = {
+					original_tag = AKT
+				}
+				set_cosmetic_tag = AKT_regional_unifier
+				hidden_effect = {
+					add_manpower = 150000
+					every_country  = {
+						news_event = {
+							id = WORLD.1104
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ARL
+				}
+				set_cosmetic_tag = ARL_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1103
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = DER
+				}
+				set_cosmetic_tag = DER_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1106
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = DON
+				}
+				country_event = RUS_kazakhstan.1
+				every_country  = {
+					news_event = {
+						id = WORLD.1105 hours = 2
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KAZ
+				}
+				set_cosmetic_tag = KAZ_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1100
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KOK
+				}
+				set_cosmetic_tag = KOK_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1101
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SEM
+				}
+				set_cosmetic_tag = SEM_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1102
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							is_kazakh_nation = yes
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	russian_total_reunification = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			is_russian_unifier = yes
+		}
+		available = {
+			is_subject = no
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_siberia_tt
+				can_form_west_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_russia_tt
+				can_form_west_russia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_southern_urals_tt
+				can_form_southern_urals = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_central_siberia_tt
+				can_form_central_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_far_east_tt
+				can_form_far_east = yes
+			}
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = RUS_SIBERIA_UNIFIED
+				has_country_flag = RUS_RUSSIA_UNIFIED
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russian_total_reunification"
+			set_global_flag = RUS_national_unification
+			save_global_event_target_as = RUS_total_unifier
+			add_research_slot = 1
+			hidden_effect = {
+				add_manpower = 500000
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+				set_country_flag = RUS_hide_superregional_war_decisions
+				set_country_flag = RUS_hide_superregional_peace_decisions
+				remove_ideas = RUS_superregional_manpower
+			}
+			if = {
+				limit = {
+					original_tag = WRS
+				}
+				hidden_effect = {
+					if = {
+						limit = {
+							has_country_leader = {
+								name = "Georgy Zhukov"
+								ruling_only = yes
+							}
+						}
+						set_cosmetic_tag = WRS_USSR_zhukov
+						hidden_effect = {
+							country_event = { id = zhukovsuperregional.11 days = 4 random = 48 }
+							every_country  = {
+								news_event = {
+									id = WORLD.1156
+								}
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_country_leader = {
+								name = "Mikhail Tukhachevsky"
+								ruling_only = yes
+							}
+						}
+						set_cosmetic_tag = WRS_USSR_tukha
+						hidden_effect = {
+							country_event = { id = tukhasuperregional.6 days = 4 random = 48 }
+							every_country  = {
+								news_event = {
+									id = WORLD.1158
+								}
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+				}
+				drop_cosmetic_tag = yes
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					set_cosmetic_tag = NIK_soviet
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1172
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = communist
+					}
+					hidden_effect = {
+						if = {
+							limit = {
+								has_country_leader = {
+									name = "Mikhail Suslov"
+									ruling_only = yes
+								}
+							}
+							set_cosmetic_tag = NIK_soviet
+							every_country  = {
+								news_event = {
+									id = WORLD.1171
+								}
+							}
+						}
+						else_if = {
+							limit = {
+								has_country_leader = {
+									name = "Andrei Zhdanov"
+									ruling_only = yes
+								}
+							}
+							set_cosmetic_tag = NIK_federation
+							hidden_effect = {
+								country_event = {
+									id = zhdanov.50
+									days = 7
+									random = 100
+								}
+							}
+							every_country  = {
+								news_event = {
+									id = WORLD.1173
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						NIK_has_center_government = yes
+					}
+					if = {
+						limit = {
+							has_government = social_liberal
+						}
+						set_cosmetic_tag = NIK_russia
+						hidden_effect = {
+							every_country  = {
+								news_event = {
+									id = WORLD.1167
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = authoritarian_democrat
+						}
+						set_cosmetic_tag = NIK_russia
+						hidden_effect = {
+							every_country  = {
+								news_event = {
+									id = WORLD.1168
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = social_democrat
+						}
+						set_cosmetic_tag = NIK_russia
+						hidden_effect = {
+							every_country  = {
+								news_event = {
+									id = WORLD.1170
+								}
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = despotism
+						}
+						set_cosmetic_tag = NIK_stalina_russia
+						hidden_effect = {
+							every_country  = {
+								news_event = {
+									id = WORLD.1169
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = fascism
+					}
+					set_cosmetic_tag = NIK_fashrussia
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1175
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = national_socialism
+					}
+					set_cosmetic_tag = NIK_ordosocialist
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1176
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = ultranational_socialism
+					}
+					set_cosmetic_tag = NIK_eurasia
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1174
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = burgundian_system
+					}
+					set_cosmetic_tag = NIK_BURGSYS_UNIFIER
+					if = {
+						limit = {
+							has_country_flag = AM_Pause
+						}
+						TNO_start_AM = yes
+					}
+					set_country_flag = NIK_allowed_speedup
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1177
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KIR
+				}
+				set_cosmetic_tag = KIR_RUS
+				if = {
+					limit = {
+						has_government = social_liberal
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1162
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1164
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1163
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PRM
+					NOT = { has_cosmetic_tag = PRM_hyperborea_RUS }
+				}
+				set_cosmetic_tag = PRM_RUS
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1165
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PRM
+					has_cosmetic_tag = PRM_hyperborea_RUS
+				}
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1166
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GAY
+				}
+				set_cosmetic_tag = GAY_RUS
+			}
+			if = {
+				limit = {
+					original_tag = SAM
+				}
+				set_cosmetic_tag = SAM_RUS
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					hidden_effect = {
+						country_event = { id = SAM_zykov.9 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1159
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1160
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = fascism
+					}
+					hidden_effect = {
+						country_event = { id = SAM_oktan.9 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1161
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = TOB
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = TOB_RUS
+					hidden_effect = {
+						country_event = { id = batov.11 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1180
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = TOB_RUS_YELTSIN
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1179
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ISH
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Lazar Kaganovich"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = ISH_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1178
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Nikita Khrushchev"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = ISH_RUS
+					hidden_effect = {
+						country_event = {
+							id = ISH.141
+							days = 2
+							random = 2
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1182
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMS
+				}
+				set_cosmetic_tag = OMS_POTEMKIN_RUS
+				hidden_effect = {
+					country_event = { id = omsksr.27 days = 4 random = 48 }
+					every_country  = {
+						news_event = {
+							id = WORLD.1181
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ERS
+				}
+				if = {
+					limit = {
+						has_government = social_democrat
+					}
+					set_cosmetic_tag = ERS_RUS_HUMANIST
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1185
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = ERS_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1186
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_liberal
+					}
+					set_cosmetic_tag = ERS_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1187
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = ERS_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1188
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PAV
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = PAV_RUS
+					hidden_effect = {
+						country_event = { id = PAV_superregional.16 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1201
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = PAV_RUS
+					hidden_effect = {
+						country_event = { id = PAV_superregional.17 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1202
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KEM
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = KEM_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1183
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					set_cosmetic_tag = KEM_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1184
+							}
+						}
+					}
+				}
+				else = {
+					set_cosmetic_tag = KEM_RUS
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SVO
+				}
+				set_cosmetic_tag = SVO_RUS
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1204
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KHA
+				}
+				set_cosmetic_tag = KHA_RUS
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					hidden_effect = {
+						country_event = { id = KHA_LibSoc.38 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1190
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					hidden_effect = {
+						country_event = { id = KHA_Despotist.23 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1189
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = IRK
+				}
+				set_cosmetic_tag = IRK_RUS
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = IRK_party_influence_locked_in
+							has_country_leader = { ruling_only = yes name = "Sergey Bessonov" }
+						}
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1191
+							}
+						}
+					}
+				}
+				else = {
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1192
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = BRY
+				}
+				set_cosmetic_tag = BRY_RUS
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1193
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = communist
+					}
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1194
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = WCH
+				}
+				if = {
+					limit = {
+						has_country_flag = WCH_mikhail_victorious
+					}
+					set_cosmetic_tag = WCH_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1198
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = WCH_shepunov_victorious
+					}
+					set_cosmetic_tag = WCH_RUS
+					hidden_effect = {
+						every_country  = {
+							news_event = {
+								id = WORLD.1157
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = AMR
+				}
+				set_cosmetic_tag = AMR_RUS
+				hidden_effect = {
+					country_event = { id = amur.100 days = 4 random = 48 }
+					every_country  = {
+						news_event = {
+							id = WORLD.1199
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = MAG
+				}
+				if = {
+					limit = {
+						OR = {
+							has_government = despotism
+							has_government = fascism
+						}
+					}
+					set_cosmetic_tag = MAG_RUS
+					hidden_effect = {
+						country_event = { id = matkovsky.11 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1195
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+						NOT = {
+							has_country_leader = {
+								name = "Mitchell WerBell III"
+								ruling_only = yes
+							}
+						}
+					}
+					set_cosmetic_tag = MAG_RUS
+					hidden_effect = {
+						country_event = { id = petlin.12 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1196
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Mitchell WerBell III"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = MAG_WA_RUS
+					hidden_effect = {
+						country_event = { id = wa_superregional.10 days = 4 random = 48 }
+						every_country  = {
+							news_event = {
+								id = WORLD.1203
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMO
+				}
+				set_cosmetic_tag = OMO_RUS
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1200
+						}
+					}
+				}
+			}
+		}
+	}
+
+	russian_reunification = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+
+			NOT = {
+
+				tag = UDM
+
+			}
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_siberia_tt
+				can_form_west_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_russia_tt
+				can_form_west_russia = yes
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision russian_reunification"
+			set_country_flag = RUS_superregional_stage
+			save_global_event_target_as = RUS_russian_unifier
+			set_country_flag = RUS_RUSSIA_UNIFIED
+			add_stability = 0.20
+			set_country_flag = { flag = RUS_RACE_TO_KAZAKHSTAN_LOCKED days = 120 }
+			navy_experience = 20
+			hidden_effect = {
+				add_manpower = 250000
+				country_event = { id = RUSwonder.0 days = 7 }
+			}
+			if = {
+				limit = {
+					original_tag = WRS
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Mikhail Tukhachevsky"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = WRS_RUS_tukha
+					hidden_effect = {
+						load_focus_tree = WRS_tukhachevsky_superregional
+					}
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Georgy Zhukov"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = WRS_RUS
+					hidden_effect = {
+						load_focus_tree = WRS_zhukov_superregional
+					}
+				}
+				else = {
+					set_cosmetic_tag = WRS_RUS
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+				}
+				drop_cosmetic_tag = yes
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					set_cosmetic_tag = NIK_soviet
+					hidden_effect = {
+						load_focus_tree = NIK_bukharina_superregional
+					}
+				}
+				if = {
+					limit = {
+						has_government = communist
+						has_country_leader = {
+							name = "Mikhail Suslov"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = NIK_soviet
+					hidden_effect = {
+						load_focus_tree = NIK_superregional_suslov
+					}
+				}
+				if = {
+					limit = {
+						has_government = communist
+						has_country_leader = {
+							name = "Andrei Zhdanov"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = NIK_federation
+					hidden_effect = {
+						load_focus_tree = NIK_superregional_zhdanov
+					}
+					hidden_effect = {
+						country_event = {
+							id = ultravisionary_flavor.22
+							days = 100
+							random = 500
+						}
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							has_government = social_democrat
+							has_government = social_liberal
+							has_government = authoritarian_democrat
+						}
+					}
+					set_cosmetic_tag = NIK_russia
+					hidden_effect = {
+						load_focus_tree = NIK_third_election_tree
+						country_event = {
+							id = russian_democracy_helpers.3
+							days = 1
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+						has_country_leader = {
+							name = "Svetlana Stalina"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = NIK_stalina_russia
+					hidden_effect = {
+						load_focus_tree = NIK_superregional_despotist_stalina
+					}
+				}
+				if = {
+					limit = {
+						has_government = national_socialism
+					}
+					set_cosmetic_tag = NIK_ordosocialist
+					hidden_effect = {
+						load_focus_tree = NIK_superregional_serov
+					}
+				}
+				if = {
+					limit = {
+						has_government = fascism
+					}
+					set_cosmetic_tag = NIK_fashrussia
+					hidden_effect = {
+						load_focus_tree = NIK_shafarevich_superregional
+					}
+				}
+				if = {
+					limit = {
+						has_government = ultranational_socialism
+					}
+					set_cosmetic_tag = NIK_eurasia
+					hidden_effect = {
+						load_focus_tree = NIK_gumilyov_superregional
+					}
+				}
+				if = {
+					limit = {
+						has_government = burgundian_system
+					}
+					set_cosmetic_tag = NIK_BURGSYS_UNIFIER
+					hidden_effect = {
+						load_focus_tree = NIK_taboritsky_superregional
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KIR
+				}
+				if = {
+					limit = {
+						has_government = social_liberal
+					}
+					set_cosmetic_tag = KIR_RUS
+					hidden_effect = {
+						load_focus_tree = {	tree = KIR_superregional_kadet_tree keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = KIR_RUS
+					hidden_effect = {
+						load_focus_tree = {	tree = KIR_superregional_shulgin_tree keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = KIR_RUS
+					hidden_effect = {
+						load_focus_tree = {	tree = KIR_superregional_solidarist_tree keep_completed = no }
+					}
+				}
+				else = {
+					set_cosmetic_tag = KIR_RUS
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PRM
+				}
+				if = {
+					limit = { has_government = national_socialism }
+					set_cosmetic_tag = PRM_RUS
+					hidden_effect = {
+						load_focus_tree = { tree = PRM_vagner_superregional keep_completed = no }
+					}
+				}
+				if = {
+					limit = { has_government = ultranational_socialism }
+					set_cosmetic_tag = PRM_hyperborea_RUS
+					hidden_effect = {
+						load_focus_tree = { tree = PRM_yemelyanov_superregional keep_completed = no }
+					}
+				}
+				else = {
+					set_cosmetic_tag = PRM_RUS
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GAY
+				}
+				set_cosmetic_tag = GAY_RUS
+			}
+			if = {
+				limit = {
+					original_tag = SAM
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = SAM_RUS
+					hidden_effect = {
+						load_focus_tree = SAM_Superegional_Tree_Zykov
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					set_cosmetic_tag = SAM_RUS
+					hidden_effect = {
+						load_focus_tree = SAM_Superegional_Tree_Bunyachenko
+					}
+				}
+				if = {
+					limit = {
+						has_government = fascism
+					}
+					set_cosmetic_tag = SAM_RUS
+					hidden_effect = {
+						load_focus_tree = SAM_Superegional_Tree_Oktan
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = TOB
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = TOB_RUS
+					hidden_effect = {
+						load_focus_tree = TOB_superregional_tree_batov
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = TOB_RUS_YELTSIN
+					hidden_effect = {
+						load_focus_tree = TOB_superregional_tree_yeltsin
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ISH
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Lazar Kaganovich"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = ISH_RUS
+					hidden_effect = {
+						load_focus_tree = ISH_superregional_kaganovich
+					}
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Nikita Khrushchev"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = ISH_RUS
+					hidden_effect = {
+						load_focus_tree = ISH_superregional_khrushchev
+					}
+				}
+				else = {
+					set_cosmetic_tag = ISH_RUS
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMS
+				}
+				set_cosmetic_tag = OMS_POTEMKIN_RUS
+				hidden_effect = {
+					load_focus_tree = OMS_superregional_tree
+				}
+			}
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = RUS_regional_manpower
+					add_idea = RUS_superregional_manpower
+				}
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							OR = {
+								is_central_russian_nation = yes
+								is_west_siberian_nation = yes
+							}
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	siberian_reunification = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				is_central_siberian_nation = yes
+				is_far_eastern_nation = yes
+			}
+		}
+
+		available = {
+			is_subject = no
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = can_form_central_siberia_tt
+				can_form_central_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_far_east_tt
+				can_form_far_east = yes
+			}
+			if = {
+				limit = {
+					original_tag = OMO
+				}
+				has_country_flag = OMO_didnt_evade_the_judgement_of_the_LORD
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision siberian_reunification"
+			set_country_flag = RUS_superregional_stage
+			save_global_event_target_as = RUS_siberian_unifier
+			set_country_flag = RUS_SIBERIA_UNIFIED
+			add_stability = 0.20
+			set_country_flag = { flag = RUS_RACE_TO_KAZAKHSTAN_LOCKED days = 120 }
+			navy_experience = 20
+			hidden_effect = {
+				add_manpower = 250000
+				country_event = { id = RUSwonder.0 days = 7 }
+			}
+			drop_cosmetic_tag = yes
+			if = {
+				limit = {
+					original_tag = ERS
+				}
+				hidden_effect = {
+					country_event = {
+						id = ERS_constitutional_crisis.11
+						days = 30
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_democrat
+					}
+					set_cosmetic_tag = ERS_HUM_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = ERS_humanist_tree_superregional keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_liberal
+					}
+					set_cosmetic_tag = ERS_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = ERS_modernist_tree_superregional keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = social_conservative
+					}
+					set_cosmetic_tag = ERS_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = ERS_decembrist_tree_superregional keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = ERS_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = ERS_bastillard_tree_superregional keep_completed = no }
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PAV
+				}
+				set_cosmetic_tag = PAV_SIB
+				hidden_effect = {
+					load_focus_tree = {	tree = PAV_novosibirsk_superregional keep_completed = no }
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KEM
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+					}
+					set_cosmetic_tag = KEM_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = KEM_superregional_yuriy keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					set_cosmetic_tag = KEM_SIB
+					hidden_effect = {
+						load_focus_tree = {	tree = KEM_superregional_lydia keep_completed = no }
+					}
+				}
+				else = {
+					set_cosmetic_tag = KEM_SIB
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SVO
+				}
+				set_cosmetic_tag = SVO_SIB
+				hidden_effect = { load_focus_tree = SVO_superregional_tree }
+			}
+			if = {
+				limit = {
+					original_tag = KHA
+				}
+				set_cosmetic_tag = KHA_SIB
+				hidden_effect = {
+					country_event = {
+						id = KHA.89
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = IRK
+				}
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = IRK_party_influence_locked_in
+							has_country_leader = { ruling_only = yes name = "Sergey Bessonov" }
+							check_variable = { IRK_party_balance > IRK_state_balance }
+						}
+					}
+					set_cosmetic_tag = IRK_SIB
+					hidden_effect = {
+						load_focus_tree = IRK_party_superregional
+					}
+				}
+				else = {
+					set_cosmetic_tag = IRK_SIB
+					hidden_effect = {
+						load_focus_tree = IRK_state_superregional
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = BRY
+				}
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					set_cosmetic_tag = BRY_SIB
+					hidden_effect = {
+						load_focus_tree = TNO_buryatia_superregional_libsoc
+					}
+				}
+				if = {
+					limit = {
+						has_government = communist
+					}
+					set_cosmetic_tag = BRY_SIB
+					hidden_effect = {
+						load_focus_tree = TNO_buryatia_superregional_authsoc
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = WCH
+				}
+				if = {
+					limit = {
+						has_country_flag = WCH_mikhail_victorious
+					}
+					set_cosmetic_tag = WCH_SIB
+					hidden_effect = {
+						load_focus_tree = WCH_chita_imperial_superregional
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = WCH_shepunov_victorious
+					}
+					set_cosmetic_tag = WCH_SIB
+					hidden_effect = {
+						load_focus_tree = WCH_chita_stratocracy_superregional
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = AMR
+				}
+				set_cosmetic_tag = AMR_SIB
+				hidden_effect = {
+					load_focus_tree = { tree = AMR_superregional keep_completed = no }
+				}
+			}
+			if = {
+				limit = {
+					original_tag = MAG
+				}
+				if = {
+					limit = {
+						has_government = authoritarian_democrat
+						NOT = {
+							has_country_leader = {
+								name = "Mitchell WerBell III"
+								ruling_only = yes
+							}
+						}
+					}
+					set_cosmetic_tag = MAG_SIB
+					hidden_effect = {
+						load_focus_tree = { tree = MAG_superregional_petlin_tree keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_government = despotism
+					}
+					set_cosmetic_tag = MAG_SIB
+					hidden_effect = {
+						load_focus_tree = { tree = MAG_superregional_matkovsky_tree keep_completed = no }
+					}
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							name = "Mitchell WerBell III"
+							ruling_only = yes
+						}
+					}
+					set_cosmetic_tag = MAG_WA_SIB
+					hidden_effect = {
+						load_focus_tree = { tree = MAG_superregional_west_alaska_tree keep_completed = no }
+					}
+				}
+				else = {
+					set_cosmetic_tag = MAG_SIB
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMO
+				}
+				set_cosmetic_tag = OMO_SIB
+				hidden_effect = {
+					load_focus_tree = OMO_father_superregional
+				}
+			}
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = RUS_regional_manpower
+					add_idea = RUS_superregional_manpower
+				}
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							OR = {
+								is_central_siberian_nation = yes
+								is_far_eastern_nation = yes
+							}
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	west_russia_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_west_russia = yes
+			has_war = no
+			if = {
+				limit = { tag = NIK }
+				has_country_flag = NIK_POLITICS_RESOLVED
+			}
+		}
+		allowed = {
+			is_central_russian_nation = yes
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision west_russia_reunification"
+			save_global_event_target_as = RUS_western_unifier
+			RUS_calculate_prestige_value = yes
+			set_variable = { RUS_diplo_prestige_bonus = 2 }
+			custom_effect_tooltip = REGIONAL_TREE_TT
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			set_country_flag = RUS_regional_stage
+			navy_experience = 30
+			add_ideas = RUS_administrative_overload_1
+			generate_russia_state_gdp = yes
+			custom_effect_tooltip = RUS_end_warlord_tt
+			hidden_effect = {
+				country_event = { id = RUS.51 days = 30 } #caffine flow
+				country_event = { id = RUS.52 days = 60 } #Sports rivalry
+				add_manpower = 150000
+				every_country = {
+					limit = {
+						is_russian_nation = no
+						is_kazakh_nation = no
+						is_central_asian_nation = no
+					}
+					remove_opinion_modifier = { target = ROOT modifier = embargo }
+				}
+				remove_ideas = {
+					construction_level_not_applicable
+					tno_tax_rate_not_applicable
+					tno_income_taxation_not_applicable
+				}
+				add_ideas = {
+					construction_level_5
+					tno_tax_rate_medium_taxation
+					tno_income_taxation_flat_taxes
+					RUS_regional_manpower
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GAY
+				}
+				set_cosmetic_tag = GAY_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1111
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KIR
+				}
+				set_cosmetic_tag = KIR_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1126
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					OR = {
+						has_idea = NIK_clash_of_shadows_l_1
+						has_idea = NIK_clash_of_shadows_l_2
+						has_idea = NIK_clash_of_shadows_l_3
+						has_idea = NIK_clash_of_shadows_l_4
+						has_idea = NIK_clash_of_shadows_l_5
+						has_idea = NIK_clash_of_shadows_l_6
+						has_idea = NIK_clash_of_shadows_c_1
+						has_idea = NIK_clash_of_shadows_c_2
+						has_idea = NIK_clash_of_shadows_c_3
+						has_idea = NIK_clash_of_shadows_c_4
+						has_idea = NIK_clash_of_shadows_c_5
+						has_idea = NIK_clash_of_shadows_c_6
+						has_idea = NIK_clash_of_shadows_r_1
+						has_idea = NIK_clash_of_shadows_r_2
+						has_idea = NIK_clash_of_shadows_r_3
+						has_idea = NIK_clash_of_shadows_r_4
+						has_idea = NIK_clash_of_shadows_r_5
+						has_idea = NIK_clash_of_shadows_r_6
+					}
+				}
+				custom_effect_tooltip = NIK_remove_dueling_shadows_effect_tt
+				hidden_effect = {
+					remove_ideas = NIK_clash_of_shadows_l_1
+					remove_ideas = NIK_clash_of_shadows_l_2
+					remove_ideas = NIK_clash_of_shadows_l_3
+					remove_ideas = NIK_clash_of_shadows_l_4
+					remove_ideas = NIK_clash_of_shadows_l_5
+					remove_ideas = NIK_clash_of_shadows_l_6
+					remove_ideas = NIK_clash_of_shadows_c_1
+					remove_ideas = NIK_clash_of_shadows_c_2
+					remove_ideas = NIK_clash_of_shadows_c_3
+					remove_ideas = NIK_clash_of_shadows_c_4
+					remove_ideas = NIK_clash_of_shadows_c_5
+					remove_ideas = NIK_clash_of_shadows_c_6
+					remove_ideas = NIK_clash_of_shadows_r_1
+					remove_ideas = NIK_clash_of_shadows_r_2
+					remove_ideas = NIK_clash_of_shadows_r_3
+					remove_ideas = NIK_clash_of_shadows_r_4
+					remove_ideas = NIK_clash_of_shadows_r_5
+					remove_ideas = NIK_clash_of_shadows_r_6
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_country_leader = {
+						name = "Boris Ponomaryov"
+						ruling_only = yes
+					}
+				}
+				retire_country_leader = yes
+				create_country_leader = {
+					name = "Mikhail Suslov"
+					desc = "POLITICS_MIKHAIL_SUSLOV_DESC"
+					picture = "Portrait_NIK_Mikhail_Suslov.dds"
+					expire = "1999.1.1"
+					ideology = communist_subtype
+					traits = {
+						master_ideologue
+					}
+				}
+				NIK_assign_suslov_ministers = yes
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = socialist
+				}
+				drop_cosmetic_tag = yes
+				hidden_effect = {
+					if = {
+						limit = {
+							has_country_leader = {
+								name = "Svetlana Bukharina"
+								ruling_only = yes
+							}
+						}
+						set_cosmetic_tag = NIK_REGIONAL_AUTHSOC
+						every_country  = {
+							news_event = {
+								id = WORLD.1116
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_country_leader = {
+								name = "Andrei Zhdanov"
+								ruling_only = yes
+							}
+						}
+						set_cosmetic_tag = NIK_REGIONAL_LIBSOC
+						every_country  = {
+							news_event = {
+								id = WORLD.1118
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = communist
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = NIK_REGIONAL_AUTHSOC
+				hidden_effect = {
+					if = {
+						limit = {
+							has_country_leader = {
+								name = "Mikhail Suslov"
+								ruling_only = yes
+							}
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1117
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					OR = {
+						has_government = social_liberal
+						has_government = authoritarian_democrat
+						has_government = social_democrat
+					}
+				}
+				set_cosmetic_tag = NIK_regional_unifier
+				hidden_effect = {
+					if = {
+						limit = {
+							has_government = authoritarian_democrat
+							} #Make a new one
+						every_country  = {
+							news_event = {
+								id = WORLD.1113
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = social_democrat
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1114
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = social_liberal
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1112
+							}
+						}
+					}
+					country_event = {
+						id = russian_democracy_helpers.3
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = fascism
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = NIK_REGIONAL_FASCIST
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1119
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = national_socialism
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = NIK_REGIONAL_NATSOC
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1121
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = despotism
+					has_country_leader = {
+						name = "Svetlana Stalina"
+						ruling_only = yes
+					}
+				}
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1113
+						}
+					}
+				}
+				set_cosmetic_tag = NIK_REGIONAL_STALINA
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					has_government = despotism
+					has_country_leader = {
+						name = "Sergey Taboritsky"
+						ruling_only = yes
+					}
+				}
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1122
+						}
+					}
+					country_event = {
+						id = NIK.420
+						days = 14
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NIK
+					OR = {
+						has_government = ultranational_socialism
+					}
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = NIK_REGIONAL_ULTRANAT
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1120
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PRM
+				}
+				set_cosmetic_tag = PRM_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1110
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SAM
+				}
+				set_cosmetic_tag = SAM_regional_unifier
+				hidden_effect = {
+					if = {
+						limit = {
+							has_government = authoritarian_democrat
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1125
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = despotism
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1123
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_government = fascism
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1124
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = VOL
+				}
+				set_cosmetic_tag = VOL_regional_unifier
+			}
+			if = {
+				limit = {
+					original_tag = WRS
+				}
+				set_cosmetic_tag = WRS_regional_unifier
+				hidden_effect = {
+					if = {
+						limit = {
+							has_country_leader = {
+								name = "Mikhail Tukhachevsky"
+								ruling_only = yes
+							}
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1128
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_country_leader = {
+								name = "Georgy Zhukov"
+								ruling_only = yes
+							}
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1129
+							}
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							is_central_russian_nation = yes
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+			set_country_flag = W_RUSSIA_UNIFIED
+		}
+	}
+
+	WSR_diplomacy_with_onega = {
+		allowed = {
+			AND = {
+				is_central_russian_nation = yes
+				is_russian_unifier = yes
+			}
+		}
+		visible = {
+			country_exists = VTY
+			has_country_flag = RUS_regional_stage
+		}
+		available = {
+			has_country_flag = RUS_regional_stage
+			if = {
+				limit = { tag = NIK }
+				has_country_flag = NIK_POLITICS_RESOLVED
+			}
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = WSR_diplomacy_with_onega_tt
+				RUS_can_diplomatize_with_finland_or_whatever = yes
+			}
+			NOT = {
+				has_country_flag = RUS_chose_finnish_approach
+			}
+		}
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+		
+		days_remove = 14
+
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_diplomacy_with_onega"
+			set_country_flag = RUS_chose_finnish_approach
+		}
+		remove_effect = {
+			FIN = {
+				country_event = {
+					id = russiadiplo.37
+					days = 1
+				}
+			}
+		}
+	}
+
+	WSR_invade_onega = {
+		allowed = {
+			AND = {
+				is_central_russian_nation = yes
+				is_russian_unifier = yes
+			}
+		}
+		visible = {
+			country_exists = VTY
+			has_country_flag = RUS_regional_stage
+		}
+		available = {
+			has_country_flag = RUS_regional_stage
+			if = {
+				limit = { tag = NIK }
+				has_country_flag = NIK_POLITICS_RESOLVED
+			}
+			has_war = no
+			command_power > 24.99
+			NOT = {
+				has_country_flag = RUS_chose_finnish_approach
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		days_remove = 14
+
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_invade_onega"
+			set_country_flag = RUS_chose_finnish_approach
+		}
+		remove_effect = {
+			declare_war_on = {
+				target = VTY
+				type = annex_everything
+			}
+		}
+	}
+
+	launch_race_to_kazakhstan = {
+
+		allowed = {
+			is_russian_unifier = yes
+		}
+
+		visible = {
+			OR = {
+				tag = RWS
+				tag = SIB
+			}
+			country_exists = KZK
+			NOT = { has_country_flag = RUS_RACE_TO_KAZAKHSTAN_LOCKED }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision launch_race_to_kazakhstan"
+			if = {
+				limit = { tag = RWS }
+				country_event = { id = RUS_race_to_kazakhstan.1 }
+			}
+			else_if = {
+				limit = { tag = SIB }
+				country_event = { id = RUS_race_to_kazakhstan.2 }
+			}
+		}
+	}
+
+	integrate_south_urals = {
+		allowed = {
+			is_russian_unifier = yes
+		}
+		visible = {
+			OR = {
+				country_exists = URL
+				country_exists = ORE
+				country_exists = BAS
+				country_exists = URL
+			}
+			can_form_west_siberia = yes
+			can_form_west_russia = yes
+			can_form_central_siberia = yes
+			can_form_far_east = yes
+			has_war = no
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision integrate_south_urals"
+			every_country = {
+				limit = { is_southern_urals_nation = yes }
+				country_event = russiadiplo.100
+			}
+		}
+	}
+
+	west_russia_launch_race_to_urals = {
+
+		allowed = {
+			is_central_russian_nation = yes
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+
+		}
+
+		available = {
+			has_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision west_russia_launch_race_to_urals"
+			country_event = {
+				id = russiadiplo.1
+				days = 1
+			}
+		}
+	}
+
+	west_russia_war_with_wsb = {
+		allowed = {
+			is_central_russian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = WSR_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = WSR_war_decisions
+			country_event = {
+				id = russia_unification.1
+				days = 1
+			}
+			WSB = {
+				country_event = {
+					id = russia_unification.0
+					days = 7
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_west_siberian_nation = yes
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = WRS
+						value = 200
+					}
+					WRS = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	west_russia_diplo_with_wsb = {
+		allowed = {
+			is_central_russian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = WSR_war_decisions
+			}
+			NOT = {
+				WSB = {
+					has_country_flag = WSB_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_WSB_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+			WSR_WSB_is_compatible = yes
+			WSB = {
+				can_form_west_siberia = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = WSR_peace_decisions
+			country_event = {
+				id = russia_unification.2
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 1 } } } # Germany gets notified
+		}
+	}
+
+	west_siberia_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_west_siberia = yes
+			has_war = no
+		}
+		allowed = {
+			is_west_siberian_nation = yes
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision west_siberia_reunification"
+			save_global_event_target_as = RUS_west_siberia_unifier
+			RUS_calculate_prestige_value = yes
+			set_variable = { RUS_diplo_prestige_bonus = 1 }
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			set_country_flag = RUS_regional_stage
+			add_ideas = RUS_administrative_overload_1
+			generate_russia_state_gdp = yes
+			custom_effect_tooltip = RUS_end_warlord_tt
+			hidden_effect = {
+				country_event = { id = RUS.51 days = 30 } #caffine flow
+				add_manpower = 150000
+				every_country = {
+					limit = {
+						is_russian_nation = no
+						is_kazakh_nation = no
+						is_central_asian_nation = no
+					}
+					remove_opinion_modifier = { target = ROOT modifier = embargo }
+				}
+				remove_ideas = construction_level_not_applicable
+				add_ideas = construction_level_5
+				add_ideas = tno_tax_rate_medium_taxation
+				add_ideas = tno_income_taxation_flat_taxes
+				add_ideas = RUS_regional_manpower
+			}
+			if = {
+				limit = {
+					original_tag = ISH
+				}
+				set_cosmetic_tag = ISH_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1132
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMS
+				}
+				set_cosmetic_tag = OMS_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1133
+						}
+					}
+					if = {
+						limit = {
+							has_country_leader = {
+								name = "Collapsed Authority"
+								ruling_only = yes
+							}
+						}
+						country_event = {
+							id = omsk.1000
+						}
+					}
+					if = {
+						limit = {
+							is_ai = yes
+						}
+						random_list = {
+							3 = {
+								set_country_flag = OMS_Lock_Regional
+							}
+							1 = { }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = TOB
+				}
+				set_cosmetic_tag = TOB_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1131
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							is_west_siberian_nation = yes
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	west_siberia_launch_race_to_urals = {
+
+		allowed = {
+			is_west_siberian_nation = yes
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+		}
+
+		available = {
+			has_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = {
+				id = russiadiplo.2
+				days = 1
+			}
+		}
+	}
+
+	west_siberia_war_with_wsr = {
+		allowed = {
+			is_west_siberian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = WSB_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = WSB_war_decisions
+			country_event = {
+				id = russia_unification.3
+				days = 1
+			}
+			WSR = {
+				country_event = {
+					id = russia_unification.0
+					days = 1
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_central_russian_nation = yes
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = WSB
+						value = 200
+					}
+					WSB = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	west_siberia_diplo_with_wsr = {
+		allowed = {
+			is_west_siberian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = WSB_war_decisions
+			}
+			NOT = {
+				WSR = {
+					has_country_flag = WSR_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_WSR_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+			WSR_WSB_is_compatible = yes
+			WSR = {
+				can_form_west_russia = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = WSB_peace_decisions
+			country_event = {
+				id = russia_unification.4
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 1 } } } # Germany gets notified
+		}
+	}
+
+	central_siberia_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_central_siberia = yes
+			has_war = no
+		}
+		allowed = {
+			is_central_siberian_nation = yes
+		}
+		visible = {
+			if = {
+				limit = {
+					tag = SVO
+				}
+				NOT = { has_country_flag = SVO_MON }
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision central_siberia_reunification"
+			save_global_event_target_as = RUS_central_siberia_unifier
+			RUS_calculate_prestige_value = yes
+			set_variable = { RUS_diplo_prestige_bonus = 2 }
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			set_country_flag = RUS_regional_stage
+			add_ideas = RUS_administrative_overload_1
+			generate_russia_state_gdp = yes
+			custom_effect_tooltip = RUS_end_warlord_tt
+			drop_cosmetic_tag = yes
+			hidden_effect = {
+				country_event = { id = RUS.51 days = 30 } #caffine flow
+				add_manpower = 150000
+				every_country = {
+					limit = {
+						is_russian_nation = no
+						is_kazakh_nation = no
+						is_central_asian_nation = no
+					}
+					remove_opinion_modifier = { target = ROOT modifier = embargo }
+				}
+				remove_ideas = construction_level_not_applicable
+				add_ideas = construction_level_5
+				add_ideas = tno_tax_rate_medium_taxation
+				add_ideas = tno_income_taxation_flat_taxes
+				add_ideas = RUS_regional_manpower
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							original_tag = KHA
+						}
+						check_variable = { SIB_worker_tension > 10 }
+					}
+					country_event = { id = kostin.1 days = 12 random = 50 }
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ERS
+				}
+				remove_ideas = {
+					ERS_warlord_of_the_city
+				}
+				add_ideas = {
+					ERS_idea_basic_army
+					ERS_idea_Disorganized_economy
+					ERS_idea_political_crisis
+				}
+				if = {
+					limit = {
+						has_government = social_democrat
+					}
+					set_cosmetic_tag = ERS_HUM_regional_unifier
+				}
+				else = {
+					set_cosmetic_tag = ERS_regional_unifier
+				}
+				hidden_effect = {
+					country_event = { id = ERS.105 days = 4 }
+					country_event = { id = ERS_petrov.12 days = 21 }
+					ERS_set_idea_variable = yes
+					if = {
+						limit = {
+							has_government = social_democrat
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1142
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_government = social_liberal
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1140
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_government = social_conservative
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1143
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_government = authoritarian_democrat
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1141
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KEM
+				}
+				set_cosmetic_tag = KEM_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1139
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KHA
+				}
+				set_cosmetic_tag = KHA_regional_unifier
+				hidden_effect = {
+					if = {
+						limit = {
+							has_government = socialist
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1135
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							has_government = despotism
+						}
+						every_country  = {
+							news_event = {
+								id = WORLD.1136
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PAV
+				}
+				set_cosmetic_tag = PAV_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1138
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SAH
+				}
+				set_cosmetic_tag = SAH_regional_unifier
+			}
+			if = {
+				limit = {
+					original_tag = SVO
+				}
+				set_cosmetic_tag = SVO_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1137
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							is_central_siberian_nation = yes
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	central_siberia_war_with_fst = {
+		allowed = {
+			is_central_siberian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = CSB_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = CSB_war_decisions
+			country_event = {
+				id = russia_unification.5
+				days = 1
+			}
+			FST = {
+				country_event = {
+					id = russia_unification.0
+					days = 1
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_far_eastern_nation = yes
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = CSB
+						value = 200
+					}
+					CSB = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	central_siberia_diplo_with_fst = {
+		allowed = {
+			is_central_siberian_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = CSB_war_decisions
+			}
+			NOT = {
+				FST = {
+					has_country_flag = FST_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_FST_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+			CSB_FST_is_compatible = yes
+			FST = {
+				can_form_far_east = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = CSB_peace_decisions
+			country_event = {
+				id = russia_unification.6
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 1 } } } # Germany gets notified
+		}
+	}
+
+	far_east_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_far_east = yes
+			has_war = no
+		}
+		allowed = {
+			is_far_eastern_nation = yes
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision far_east_reunification"
+			save_global_event_target_as = RUS_far_east_unifier
+			RUS_calculate_prestige_value = yes
+			set_variable = { RUS_diplo_prestige_bonus = 1 }
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			set_country_flag = RUS_regional_stage
+			navy_experience = 30
+			add_ideas = RUS_administrative_overload_1
+			generate_russia_state_gdp = yes
+			custom_effect_tooltip = RUS_end_warlord_tt
+			hidden_effect = {
+				country_event = { id = RUS.51 days = 30 } #caffine flow
+				add_manpower = 150000
+				every_country = {
+					limit = {
+						is_russian_nation = no
+						is_kazakh_nation = no
+						is_central_asian_nation = no
+					}
+					remove_opinion_modifier = { target = ROOT modifier = embargo }
+				}
+				remove_ideas = construction_level_not_applicable
+				add_ideas = construction_level_5
+				add_ideas = RUS_regional_manpower
+			}
+			if = {
+				limit = {
+					has_idea = OMO_peasant_uprisings
+				}
+				remove_ideas = OMO_peasant_uprisings
+			}
+			if = {
+				limit = {
+					has_idea = OMO_peasant_uprisings_2
+				}
+				remove_ideas = OMO_peasant_uprisings_2
+			}
+			if = {
+				limit = {
+					has_idea = OMO_peasant_uprisings_3
+				}
+				remove_ideas = OMO_peasant_uprisings_3
+			}
+			if = {
+				limit = {
+					original_tag = AMR
+				}
+				AMR = {
+					set_cosmetic_tag = AMR_regional_unifier
+				}
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1144
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = BRY
+				}
+				set_cosmetic_tag = BRY_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1146
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = IRK
+				}
+				set_cosmetic_tag = IRK_regional_unifier
+				country_event = {
+					id = IRK.23
+					days = 1
+				}
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1145
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = MAG
+					NOT = {
+						has_country_flag = MAG_merc
+					}
+				}
+				set_cosmetic_tag = MAG_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1148
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = MAG
+					has_country_flag = MAG_merc
+				}
+				set_cosmetic_tag = MAG_WA_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1149
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = OMO
+				}
+				set_cosmetic_tag = OMO_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1150
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = WCH
+				}
+				set_cosmetic_tag = WCH_regional_unifier
+				hidden_effect = {
+					every_country  = {
+						news_event = {
+							id = WORLD.1147
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							OR = {
+								is_far_eastern_nation = yes
+								is_wasteland = yes
+							}
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	far_east_war_with_csb = {
+		allowed = {
+			is_far_eastern_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = FST_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = FST_war_decisions
+			country_event = {
+				id = russia_unification.7
+				days = 1
+			}
+			CSB = {
+				country_event = {
+					id = russia_unification.0
+					days = 1
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_central_siberian_nation = yes
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = FST
+						value = 200
+					}
+					FST = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	far_east_diplo_with_csb = {
+		allowed = {
+			is_far_eastern_nation = yes
+		}
+		available = {
+			date > 1969.01.01
+			NOT = {
+				has_country_flag = FST_war_decisions
+			}
+			NOT = {
+				CSB = {
+					has_country_flag = CSB_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_CSB_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_regional_stage
+			NOT = {
+				has_country_flag = RUS_superregional_stage
+			}
+			CSB_FST_is_compatible = yes
+			CSB = {
+				can_form_central_siberia = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = FST_peace_decisions
+			country_event = {
+				id = russia_unification.8
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 1 } } } # Germany gets notified
+		}
+	}
+
+	russia_war_with_siberia = {
+		allowed = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+		}
+		available = {
+			date > 1971.01.01
+			NOT = {
+				has_country_flag = RWS_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_superregional_stage
+			NOT = {
+				has_global_flag = RUS_national_unification
+			}
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = RWS_war_decisions
+			country_event = {
+				id = russia_unification.19
+				days = 1
+			}
+			SIB = {
+				country_event = {
+					id = russia_unification.0
+					days = 1
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						OR = {
+							is_central_siberian_nation = yes
+							is_far_eastern_nation = yes
+						}
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = RWS
+						value = 200
+					}
+					RWS = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	russia_diplo_with_siberia = {
+		allowed = {
+			OR = {
+				is_central_russian_nation = yes
+				is_west_siberian_nation = yes
+			}
+		}
+		available = {
+			date > 1971.01.01
+			NOT = {
+				has_country_flag = RWS_war_decisions
+			}
+			NOT = {
+				SIB = {
+					has_country_flag = SIB_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_SIB_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_superregional_stage
+			RWS_SIB_is_compatible = yes
+			SIB = {
+				can_form_central_siberia = yes
+				can_form_far_east = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = RWS_peace_decisions
+			country_event = {
+				id = russia_unification.18
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 1 } } } # Germany gets notified
+		}
+	}
+
+	siberia_war_with_russia = {
+		allowed = {
+			OR = {
+				is_central_siberian_nation = yes
+				is_far_eastern_nation = yes
+			}
+		}
+		available = {
+			date > 1971.01.01
+			NOT = {
+				has_country_flag = SIB_peace_decisions
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_superregional_stage
+			NOT = {
+				has_global_flag = RUS_national_unification
+			}
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = SIB_war_decisions
+			country_event = {
+				id = russia_unification.17
+				days = 1
+			}
+			RWS = {
+				country_event = {
+					id = russia_unification.0
+					days = 1
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						OR = {
+							is_central_russian_nation = yes
+							is_west_siberian_nation = yes
+							is_southern_urals_nation = yes
+						}
+					}
+					add_ai_strategy = {
+						type = prepare_for_war
+						id = SIB
+						value = 200
+					}
+					SIB = {
+						add_ai_strategy = {
+							type = prepare_for_war
+							id = PREV
+							value = 200
+						}
+					}
+				}
+			}
+			set_variable = { RUSWarPreparedness = 0 }
+		}
+	}
+
+	siberia_diplo_with_russia = {
+		allowed = {
+			OR = {
+				is_central_siberian_nation = yes
+				is_far_eastern_nation = yes
+			}
+		}
+		available = {
+			date > 1971.01.01
+			NOT = {
+				has_country_flag = RWS_war_decisions
+			}
+			NOT = {
+				RWS = {
+					has_country_flag = RWS_war_decisions
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_RWS_compatible_tt
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_superregional_stage
+			RWS_SIB_is_compatible = yes
+			RWS = {
+				can_form_west_russia = yes
+				can_form_west_siberia = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = SIB_peace_decisions
+			country_event = {
+				id = russia_unification.8
+				days = 1
+			}
+			hidden_effect = { GER = { country_event = { id = GER_Espionage.9 days = 3 } } } # Germany gets notified
+		}
+	}
+
+	southern_urals_reunification = {
+		icon = generic_form_nation
+		available = {
+			can_form_southern_urals = yes
+			has_war = no
+			if = {
+				limit = { tag = ORS }
+				NOT = { has_global_flag = ORS_Oskar_Dirlewanger_Dead }
+			}
+		}
+		allowed = {
+			is_southern_urals_nation = yes
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision southern_urals_reunification"
+			save_global_event_target_as = RUS_southern_urals_unifier
+			add_research_slot = 1
+			clr_country_flag = is_warlord
+			generate_russia_state_gdp = yes
+			custom_effect_tooltip = RUS_end_warlord_tt
+			if = {
+				limit = {
+					original_tag = BAS
+				}
+				BAS = {
+					set_cosmetic_tag = BAS_regional_unifier
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ORE
+				}
+				ORE = {
+					set_cosmetic_tag = ORE_regional_unifier
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ORS
+				}
+				ORS = {
+					set_cosmetic_tag = DIR_BEST
+				}
+			}
+			if = {
+				limit = {
+					original_tag = URL
+				}
+				URL = {
+					set_cosmetic_tag = URL_southern_ural_unifier
+				}
+			}
+			add_state_core = 854
+			add_state_core = 256
+			add_state_core = 249
+			add_state_core = 853
+			add_state_core = 651
+			hidden_effect = {
+				for_each_scope_loop = {
+					array = global.russian_warlords
+					if = {
+						limit = {
+							NOT = { tag = ROOT }
+							exists = no
+							is_southern_urals_nation = yes
+						}
+						every_state = {
+							limit = {
+								is_core_of = PREV
+							}
+							PREV = { remove_state_core = PREV }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+###WAR AND PEACE
+
+WSR_war_category = {
+	WSR_launch_attack_on_WSB = {
+		allowed = {
+		}
+		visible = {
+			WSB = {
+				exists = yes
+			}
+			NOT = { has_global_flag = OMS_BatovInsurrectionSuccess }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_launch_attack_on_WSB"
+			hidden_effect = {
+				add_command_power = -25
+			}
+
+			WSB = {
+				country_event = {
+					id = russia_unification.9
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_WSRvsWSB } } } USA = { country_event = USA_CIA_RUS.12 set_country_flag = USA_CIA_RUS_WSRvsWSB } }
+			}
+			declare_war_on = {
+				target = WSB
+				type = annex_everything
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_cross_the_urals = {
+		allowed = {
+		}
+		visible = {
+			OR = {
+				NOT = {
+					any_other_country = {
+						is_west_siberian_nation = yes
+						has_country_flag = RUS_regional_stage
+					}
+				}
+				has_global_flag = OMS_BatovInsurrectionSuccess
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		war_with_on_remove = UDM
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_cross_the_urals"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					is_west_siberian_nation = yes
+				}
+				country_event = {
+					id = russia_unification.10
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					is_west_siberian_nation = yes
+				}
+				WSR = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_establish_ural_fortifications = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_establish_ural_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = WSR_establish_ural_fortifications_tt
+			if = {
+				limit = {
+					owns_state = 848
+				}
+				848 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 10185
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 10329
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 11223
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 847
+				}
+				847 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 13303
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 12200
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 4383
+					}
+				}
+			}
+			753 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13326
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 237
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3280
+				}
+			}
+			398 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10216
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4874
+				}
+			}
+			866 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4802
+				}
+			}
+			869 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7898
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_prepare_vorkuta_defenses = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_prepare_vorkuta_defenses"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSR_prepare_vorkuta_defenses_tt
+			262 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9121
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6538
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 105
+				}
+			}
+			869 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7712
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_survey_eastern_positions = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_survey_eastern_positions"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSR_survey_eastern_positions_tt
+			army_experience = 25
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = recon_tech
+			}
+			#Adds Recon
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_eastern_airbase_expansion = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_eastern_airbase_expansion"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = WSR_eastern_airbase_expansion_tt
+			753 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			651 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			869 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			air_experience = 10
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_develop_ural_supply_chain = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_develop_ural_supply_chain"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = WSR_develop_ural_supply_chain_tt
+			if = {
+				limit = {
+					owns_state = 848
+				}
+				848 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 847
+				}
+				847 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			753 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			398 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			866 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			869 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			#Supply bonus
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_infiltrate_siberian_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		fire_only_once = yes
+		days_remove = 70
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_infiltrate_siberian_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSR_infiltrate_siberian_intelligence_service_tt
+			WSB = {
+				add_war_support = -0.10
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		fire_only_once = yes
+		days_remove = 45
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = WSR_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+WSR_peace_category = {
+	WSR_begin_final_unification_talks = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.RWSUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = RWS_held_preliminary_conference
+			NOT = {
+				has_global_flag = RUS_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 45
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { WSB.RUS_diplo_prestige > WSR.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.72
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_hold_preliminary_conference = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.RWSUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = RUS_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.64
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_sign_declaration_of_friendship = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.RWSUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = RUS_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.21
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_sign_non_aggression_agreement = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RWS_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.24
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_offer_access_to_foreign_goods = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.27
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_incentivize_pro_unification_factions = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 90
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.31
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_propose_mutual_training_exercise = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 90
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.37
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_propose_border_treaty = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RUS_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			WSB = {
+				country_event = {
+					id = russia_unification.40
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_offer_diplomatic_concession = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 90
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.51
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSR_increase_prestige = {
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+		}
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSR_increase_prestige"
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+WSB_war_category = {
+	WSB_launch_attack_on_WSR = {
+		allowed = {
+		}
+		visible = {
+			WSR = {
+				exists = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_launch_attack_on_WSR"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			WSR = {
+				country_event = {
+					id = russia_unification.11
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_WSRvsWSB } } } USA = { country_event = USA_CIA_RUS.12 set_country_flag = USA_CIA_RUS_WSRvsWSB } }
+			}
+			declare_war_on = {
+				target = WSR
+				type = annex_everything
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_cross_the_urals = {
+		allowed = {
+		}
+		visible = {
+			OR = {
+				NOT = {
+					any_other_country = {
+						is_central_russian_nation = yes
+						has_country_flag = RUS_regional_stage
+					}
+				}
+				has_global_flag = TNO_RUS_west_russia_collapse
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		war_with_on_remove = VTY
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_cross_the_urals"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					is_central_russian_nation = yes
+				}
+				country_event = {
+					id = russia_unification.12
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					is_central_russian_nation = yes
+				}
+				WSB = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_establish_ural_fortifications = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_establish_ural_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = WSB_establish_ural_fortifications_tt
+			754 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12157
+				}
+			}
+			573 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1233
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12287
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7320
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4758
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 11307
+				}
+			}
+			871 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13331
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12659
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13346
+				}
+			}
+			581 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7824
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10551
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10677
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12502
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_fortify_vorkuta_beachhead = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_fortify_vorkuta_beachhead"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSB_fortify_vorkuta_beachhead_tt
+			581 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12393
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10723
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 9205
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_survey_western_positions = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_survey_western_positions"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSB_survey_western_positions_tt
+			army_experience = 25
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = recon_tech
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_convert_industrial_centers = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_convert_industrial_centers"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = WSB_convert_industrial_centers_tt
+			add_offsite_building = { type = arms_factory level = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_develop_ural_supply_chain = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_develop_ural_supply_chain"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = WSB_develop_ural_supply_chain_tt
+			573 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			574 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			871 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			845 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			756 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_infiltrate_russian_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_infiltrate_russian_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = WSB_infiltrate_russian_intelligence_service_tt
+			WSR = {
+				add_war_support = -0.10
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = WSB_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+WSB_peace_category = {
+	WSB_begin_final_unification_talks = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.RWSUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = RWS_held_preliminary_conference
+			NOT = {
+				has_global_flag = RUS_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_remove = 45
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { WSR.RUS_diplo_prestige > WSB.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.72
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_hold_preliminary_conference = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.RWSUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = RUS_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.64
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_sign_declaration_of_friendship = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.RWSUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = RUS_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.21
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_sign_non_aggression_agreement = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RWS_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.24
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_offer_resource_deals = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.43
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_incentivize_pro_unification_factions = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.31
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_propose_mutual_training_exercise = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.37
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_propose_border_treaty = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RUS_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			WSR = {
+				country_event = {
+					id = russia_unification.40
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_offer_diplomatic_concession = {
+		allowed = {
+		}
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.51
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	WSB_increase_prestige = {
+		cancel_trigger = {
+			WSB = {
+				exists = no
+			}
+		}
+		available = {
+		}
+
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WSB_increase_prestige"
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+CSB_war_category = {
+	CSB_launch_attack_on_FST = {
+		allowed = {
+		}
+		visible = {
+			FST = {
+				exists = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_launch_attack_on_FST"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			FST = {
+				country_event = {
+					id = russia_unification.13
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_CSBvsFST } } } USA = { country_event = USA_CIA_RUS.13 set_country_flag = USA_CIA_RUS_CSBvsFST } }
+			}
+			declare_war_on = {
+				target = FST
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					YAK = {
+						owns_state = 889
+					}
+				}
+				declare_war_on = {
+					target = OMO
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = YAK
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = WCH
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = BRY
+					type = annex_everything
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_cross_the_border = {
+		allowed = {
+		}
+		visible = {
+			NOT = {
+				any_other_country = {
+					is_far_eastern_nation = yes
+					has_country_flag = RUS_regional_stage
+				}
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_cross_the_border"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					is_far_eastern_nation = yes
+				}
+				country_event = {
+					id = russia_unification.14
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					is_far_eastern_nation = yes
+				}
+				CSB = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_establish_eastern_fortifications = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_establish_eastern_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = CSB_establish_eastern_fortifications_tt
+			567 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10562
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1813
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4750
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10664
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7769
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1803
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7802
+				}
+			}
+			329 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7703
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12625
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12610
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_fortify_fallback_lines = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_fortify_fallback_lines"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = CSB_fortify_fallback_lines_tt
+			757 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4711
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10649
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10580
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10712
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10639
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4724
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1777
+				}
+			}
+			888 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12595
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1780
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10705
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1828
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_mobilize_airmobile_units = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_mobilize_airmobile_units"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = CSB_mobilize_airmobile_units_tt
+			air_experience = 15
+			567 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			329 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			758 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			568 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_prepare_industrial_centers = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_prepare_industrial_centers"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = CSB_prepare_industrial_centers_tt
+			add_offsite_building = { type = arms_factory level = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_develop_siberian_railways = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_develop_siberian_railways"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = CSB_develop_siberian_railways_tt
+			567 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			329 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			758 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			568 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			757 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			576 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_infiltrate_far_eastern_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_infiltrate_far_eastern_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = CSB_infiltrate_far_eastern_intelligence_service_tt
+			FST = {
+				add_war_support = -0.10
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = CSB_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+CSB_peace_category = {
+	CSB_begin_final_unification_talks = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.SIBUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = SIB_held_preliminary_conference
+			NOT = {
+				has_global_flag = SIB_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { FST.RUS_diplo_prestige > CSB.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.72
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_hold_preliminary_conference = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.SIBUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = SIB_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.64
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_sign_declaration_of_friendship = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.SIBUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = SIB_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.21
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_sign_non_aggression_agreement = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = SIB_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.24
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_offer_industrial_aid = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.47
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_incentivize_pro_unification_factions = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.31
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_propose_mutual_training_exercise = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.37
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_propose_border_treaty = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = SIB_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			FST = {
+				country_event = {
+					id = russia_unification.40
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_offer_diplomatic_concession = {
+		allowed = {
+		}
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.51
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	CSB_increase_prestige = {
+		cancel_trigger = {
+			FST = {
+				exists = no
+			}
+		}
+		available = {
+		}
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CSB_increase_prestige"
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+FST_war_category = {
+	FST_launch_attack_on_CSB = {
+		allowed = {
+		}
+		visible = {
+			CSB = {
+				exists = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_launch_attack_on_CSB"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			if = {
+				limit = {
+					KAL = {
+						NOT = {
+							exists = yes
+						}
+					}
+				}
+				CSB = {
+					country_event = {
+						id = russia_unification.15
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					KAL = {
+						exists = yes
+					}
+				}
+				KAL = {
+					country_event = {
+						id = russia_unification.15
+						days = 1
+					}
+				}
+				SAH = {
+					country_event = {
+						id = russia_unification.15
+						days = 1
+					}
+				}
+				KHA = {
+					country_event = {
+						id = russia_unification.15
+						days = 1
+					}
+				}
+				ALT = {
+					country_event = {
+						id = russia_unification.15
+						days = 1
+					}
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_CSBvsFST } } } USA = { country_event = USA_CIA_RUS.13 set_country_flag = USA_CIA_RUS_CSBvsFST } }
+			}
+			if = {
+				limit = {
+					KAL = {
+						exists = no
+					}
+				}
+				declare_war_on = {
+					target = CSB
+					type = annex_everything
+				}
+			}
+			else = {
+				declare_war_on = {
+					target = KAL
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = KHA
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = SAH
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = ALT
+					type = annex_everything
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_cross_the_border = {
+		allowed = {
+		}
+		visible = {
+			NOT = {
+				any_other_country = {
+					is_central_siberian_nation = yes
+					has_country_flag = RUS_regional_stage
+				}
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_cross_the_border"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					is_central_siberian_nation = yes
+				}
+				country_event = {
+					id = russia_unification.16
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					is_central_siberian_nation = yes
+				}
+				FST = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_regional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_establish_western_fortifications = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_establish_western_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = FST_establish_western_fortifications_tt
+			566 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1762
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10543
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1810
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10549
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4815
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13310
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7902
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4808
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10699
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4703
+				}
+
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_establish_baikal_line = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_establish_baikal_line"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = FST_establish_baikal_line_tt
+			564 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4837
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10528
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 14458
+				}
+			}
+			565 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 14460
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12575
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10654
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7759
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_survey_western_positions = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_survey_western_positions"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = FST_survey_western_positions_tt
+			army_experience = 25
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = recon_tech
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_convert_industrial_centers = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_convert_industrial_centers"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = FST_convert_industrial_centers_tt
+			add_offsite_building = { type = arms_factory level = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_develop_trans_siberian_railroad = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_develop_trans_siberian_railroad"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = FST_develop_trans_siberian_railroad_tt
+			566 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			564 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			563 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			561 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_infiltrate_siberian_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_infiltrate_siberian_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = FST_infiltrate_siberian_intelligence_service_tt
+			CSB = {
+				add_war_support = -0.10
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = FST_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+FST_peace_category = {
+	FST_begin_final_unification_talks = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.SIBUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = SIB_held_preliminary_conference
+			NOT = {
+				has_global_flag = SIB_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { CSB.RUS_diplo_prestige > FST.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.72
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_hold_preliminary_conference = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.SIBUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = SIB_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.64
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_sign_declaration_of_friendship = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.SIBUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = SIB_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.21
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_sign_non_aggression_agreement = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = SIB_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.24
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_offer_access_to_foreign_goods = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.27
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_incentivize_pro_unification_factions = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.31
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_propose_mutual_training_exercise = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.37
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_propose_border_treaty = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = SIB_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = SIB_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			CSB = {
+				country_event = {
+					id = russia_unification.40
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_offer_diplomatic_concession = {
+		allowed = {
+		}
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FST_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.51
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	FST_increase_prestige = {
+		cancel_trigger = {
+			CSB = {
+				exists = no
+			}
+		}
+		available = {
+		}
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: FST_increase_prestige "
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+### Russia war with Sib ###
+RWS_war_category = {
+	RWS_launch_attack_on_SIB = {
+		allowed = {
+		}
+		visible = {
+			SIB = {
+				exists = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_launch_attack_on_SIB"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			set_country_flag = RWS_SIB_WAR
+			SIB = {
+				country_event = {
+					id = russia_unification.202
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_RWSvsSIB } } } USA = { country_event = USA_CIA_RUS.14 set_country_flag = USA_CIA_RUS_RWSvsSIB  } }
+			}
+			declare_war_on = {
+				target = SIB
+				type = annex_everything
+			}
+			set_country_flag = RUS_hide_superregional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_cross_the_border = {
+		allowed = {
+		}
+		visible = {
+			NOT = {
+				any_other_country = {
+					has_country_flag = RUS_superregional_stage
+				}
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_cross_the_border"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					is_far_eastern_nation = yes
+				}
+				country_event = {
+					id = russia_unification.204
+					days = 1
+				}
+			}
+			every_country = {
+				limit = {
+					is_central_siberian_nation = yes
+				}
+				country_event = {
+					id = russia_unification.204
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					is_central_siberian_nation = yes
+				}
+				RWS = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					is_far_eastern_nation = yes
+				}
+				RWS = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_superregional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_establish_eastern_fortifications = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_establish_eastern_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = RWS_establish_eastern_fortifications_tt
+			571 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10696
+				}
+			}
+			403 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10670
+				}
+			}
+			580 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12630
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1659
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1880
+				}
+			}
+			756 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13348
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7796
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4774
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 3169
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_fortify_fallback_lines = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_fortify_fallback_lines"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = RWS_fortify_fallback_lines_tt
+			if = {
+				limit = {
+					owns_state = 848
+				}
+				848 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 10185
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 10329
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 11223
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 847
+				}
+				847 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 13303
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 12200
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 4383
+					}
+				}
+			}
+			753 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 13326
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 237
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3280
+				}
+			}
+			398 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10216
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4874
+				}
+			}
+			866 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4802
+				}
+			}
+			869 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7898
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_mobilize_airmobile_units = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_mobilize_airmobile_units"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = RWS_mobilize_airmobile_units_tt
+			air_experience = 15
+			653 = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+			571 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			403 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			580 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			579 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_prepare_industrial_centers = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_prepare_industrial_centers"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = RWS_prepare_industrial_centers_tt
+			add_offsite_building = { type = arms_factory level = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_develop_siberian_railways = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_develop_siberian_railways"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = RWS_develop_siberian_railways_tt
+			653 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			571 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			403 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			580 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			579 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			572 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			754 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			582 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_infiltrate_siberian_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_infiltrate_siberian_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = RWS_infiltrate_siberian_intelligence_service_tt
+			SIB = {
+				add_war_support = -0.1
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = RWS_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+RWS_peace_category = {
+	RWS_begin_final_unification_talks = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.RUSUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = RUS_held_preliminary_conference
+			NOT = {
+				has_global_flag = RWS_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { SIB.RUS_diplo_prestige > RWS.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.172
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_hold_preliminary_conference = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.RUSUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = RWS_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.164
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_sign_declaration_of_friendship = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.RUSUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = RWS_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.121
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_sign_non_aggression_agreement = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RUS_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.124
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_offer_access_to_foreign_goods = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.127
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_incentivize_pro_unification_factions = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.131
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_propose_mutual_training_exercise = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.137
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_propose_border_treaty = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RWS_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			SIB = {
+				country_event = {
+					id = russia_unification.140
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_offer_diplomatic_concession = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.151
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RWS_increase_prestige = {
+		cancel_trigger = {
+			SIB = {
+				exists = no
+			}
+		}
+		available = {
+		}
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RWS_increase_prestige"
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+### Russia war with RWS ###
+SIB_war_category = {
+	SIB_launch_attack_on_RWS = {
+		allowed = {
+		}
+		visible = {
+			RWS = {
+				exists = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_launch_attack_on_RWS"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			set_country_flag = RWS_SIB_WAR
+			RWS = {
+				country_event = {
+					id = russia_unification.201
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				if = { limit = { USA = { NOT = { has_country_flag = USA_CIA_RUS_RWSvsSIB } } } USA = { country_event = USA_CIA_RUS.14 set_country_flag = USA_CIA_RUS_RWSvsSIB  } }
+			}
+			declare_war_on = {
+				target = RWS
+				type = annex_everything
+			}
+			set_country_flag = RUS_hide_superregional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_cross_the_border = {
+		allowed = {
+		}
+		visible = {
+			NOT = {
+				any_other_country = {
+					has_country_flag = RUS_superregional_stage
+				}
+			}
+			NOT = {
+				has_country_flag = RWS_SIB_WAR
+			}
+		}
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = war_preparation_tt
+				check_variable = { RUSWarPreparedness > 74.99 }
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_cross_the_border"
+			hidden_effect = {
+				add_command_power = -25
+			}
+			every_country = {
+				limit = {
+					OR = {
+						is_central_russian_nation = yes
+						is_west_siberian_nation = yes
+						is_southern_urals_nation = yes
+					}
+				}
+				country_event = {
+					id = russia_unification.204
+					days = 1
+				}
+			}
+		}
+		remove_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						is_central_russian_nation = yes
+						is_west_siberian_nation = yes
+						is_southern_urals_nation = yes
+					}
+				}
+				SIB = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			set_country_flag = RUS_hide_superregional_war_decisions
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_establish_western_fortifications = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_establish_western_fortifications"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = SIB_establish_western_fortifications_tt
+			654 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10713
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4781
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4800
+				}
+			}
+			40 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12528
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4803
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1297
+				}
+			}
+			570 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4734
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7274
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4866
+				}
+			}
+			578 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7861
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7655
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4767
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4827
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7793
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_fortify_fallback_lines = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_fortify_fallback_lines"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = SIB_fortify_fallback_lines_tt
+			329 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10646
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7731
+				}
+			}
+			568 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4690
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12563
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12691
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7744
+				}
+			}
+			576 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10544
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12655
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12555
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 12615
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_mobilize_airmobile_units = {
+		allowed = {
+		}
+		visible = {
+
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_mobilize_airmobile_units"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = SIB_mobilize_airmobile_units_tt
+			air_experience = 25
+			578 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			570 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			577 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_prepare_industrial_centers = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_prepare_industrial_centers"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = SIB_prepare_industrial_centers_tt
+			add_to_variable = { RUSWarPreparedness = 15 }
+			add_offsite_building = { type = arms_factory level = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_develop_siberian_railways = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_develop_siberian_railways"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 20 }
+			custom_effect_tooltip = SIB_develop_siberian_railways_tt
+			578 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			570 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			40 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			887 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			577 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			516 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_infiltrate_russian_intelligence_service = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_infiltrate_russian_intelligence_service"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 10 }
+			custom_effect_tooltip = SIB_infiltrate_russian_intelligence_service_tt
+			RWS = {
+				add_war_support = -0.10
+			}
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_raise_additional_reserves = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			has_war = no
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_raise_additional_reserves"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		remove_effect = {
+			add_to_variable = { RUSWarPreparedness = 15 }
+			custom_effect_tooltip = SIB_raise_additional_reserves_tt
+			add_manpower = 150000
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+SIB_peace_category = {
+	SIB_begin_final_unification_talks = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_75_tt
+				check_variable = { global.RUSUnificationReceptiveness > 74.99 }
+			}
+			has_country_flag = RUS_held_preliminary_conference
+			NOT = {
+				has_global_flag = RWS_FINAL_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 45
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_FINAL_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_begin_final_unification_talks"
+			custom_effect_tooltip = RUS_unification_conference_warning_tt
+			if = {
+				limit = { check_variable = { RWS.RUS_diplo_prestige > SIB.RUS_diplo_prestige } }
+				custom_effect_tooltip = RUS_unification_gameover_tt
+			}
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.172
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 50
+		}
+	}
+	SIB_hold_preliminary_conference = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_50_tt
+				check_variable = { global.RUSUnificationReceptiveness > 49.99 }
+			}
+			NOT = {
+				has_global_flag = RWS_PRELIM_CONFERENCE
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_PRELIM_CONFERENCE
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_hold_preliminary_conference"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.164
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 50
+		}
+	}
+	SIB_sign_declaration_of_friendship = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = peace_preparation_25_tt
+				check_variable = { global.RUSUnificationReceptiveness > 24.99 }
+			}
+			NOT = {
+				has_global_flag = RWS_DECLARE_FRIENDSHIP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_DECLARE_FRIENDSHIP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_sign_declaration_of_friendship"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.121
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_sign_non_aggression_agreement = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RUS_NAP
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RUS_NAP
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_sign_non_aggression_agreement"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.124
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_offer_access_to_foreign_goods = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_offer_industrial_aid"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.127
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_incentivize_pro_unification_factions = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_incentivize_pro_unification_factions"
+			clr_country_flag = RUS_diplo_action_executing
+			country_event = {
+				id = russia_unification.131
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_propose_mutual_training_exercise = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_propose_mutual_training_exercise"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.137
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_propose_border_treaty = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = RWS_BORDER_TREATY
+			}
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		fire_only_once = yes
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+			set_global_flag = RWS_BORDER_TREATY
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_propose_border_treaty"
+			clr_country_flag = RUS_diplo_action_executing
+			RWS = {
+				country_event = {
+					id = russia_unification.140
+					days = 1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_offer_diplomatic_concession = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+			NOT = {
+				has_country_flag = RUS_diplo_action_executing
+			}
+		}
+		days_re_enable = 90
+		fire_only_once = no
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = RUS_diplo_action_executing
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_offer_diplomatic_concession"
+			clr_country_flag = RUS_diplo_action_executing
+			RUS_decrease_prestige_3 = yes
+			country_event = {
+				id = russia_unification.151
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	SIB_increase_prestige = {
+		cancel_trigger = {
+			RWS = {
+				exists = no
+			}
+		}
+		available = {
+		}
+		cost = 25
+		days_re_enable = 30
+		fire_only_once = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_increase_prestige"
+			RUS_increase_prestige_5 = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

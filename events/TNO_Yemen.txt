@@ -1,0 +1,454 @@
+﻿add_namespace = YEM
+add_namespace = yemcw
+
+#Prelude event 1
+country_event = {
+	id = YEM.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.40"}
+	title = YEM.40.t
+	desc = YEM.40.desc
+	picture = GFX_report_event_bormann_wins
+	
+	trigger = {
+		tag = YEM
+		date > 1968.8.1
+	}
+	
+	fire_only_once = yes
+	
+	option = {
+		name = YEM.40.a
+	}
+}
+
+#Prelude event 2
+country_event = {
+	id = YEM.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.41"}
+	title = YEM.41.t
+	desc = YEM.41.desc
+	picture = GFX_report_event_bormann_wins
+	
+	trigger = {
+		tag = YEM
+		date > 1968.9.1
+	}
+	
+	fire_only_once = yes
+	
+	option = {
+		name = YEM.41.a
+	}
+}
+
+country_event = { #Coup Attempt
+	id = YEM.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.50"}
+	title = YEM.50.t
+	desc = YEM.50.desc
+	picture = GFX_report_event_bormann_wins
+
+	trigger = {
+		tag = YEM
+		date > 1969.6.3
+		NOT = {
+			OR = {
+			has_global_flag = arab_war_ongoing
+			has_global_flag = arab_war_over
+			}
+		}
+	}
+
+	fire_only_once = yes
+	
+ 	 immediate = {
+		hidden_effect = {
+			NYM = {
+				transfer_state = 910 # Hajjah
+				transfer_state = 912 # Al Bayda'
+				transfer_state = 911 # Ma'rib
+				add_state_core = 910
+				add_state_core = 911
+				add_state_core = 912
+				add_state_core = 293
+				add_state_core = 908
+				add_state_core = 909
+				add_state_core = 925
+				add_state_core = 659
+				set_country_flag = BaathistCountry
+				add_ideas = { NYM_civil_war }
+				add_opinion_modifier = {
+					target = ITA
+					modifier = arab_imperialist_oppressor
+				}
+			}
+			YEM = {
+				add_ideas = { 
+					YEM_civil_war 
+					OIL_prosaud_volunteers
+				}
+				remove_ideas = { YEM_italian_overlordship }
+				hidden_effect = {
+					leave_faction = yes
+					ITA = {
+						end_puppet = YEM
+					}
+				}
+			}
+			set_global_flag = arab_war_ongoing
+			OMA = {
+				country_event = {
+					id = OMA.1
+					days = 4
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = YEM.50.a
+		add_political_power = -100
+		add_stability = -0.30
+		country_event = {
+			id = YEM.51
+			days = 4
+		}
+	}
+}
+
+country_event = { #Yemeni Civil War starts
+	id = YEM.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.51"}
+	title = YEM.51.t
+	desc = YEM.51.desc
+	picture = GFX_report_event_bormann_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YEM.51.a
+		hidden_effect = {
+			every_country = { 
+				news_event = {
+					id = WORLD.934
+					days = 1
+				}
+			}
+			set_global_flag = Yemen_CW
+		}
+		ai_chance = {
+			factor = 0
+		}
+		YEM = {
+			declare_war_on = {
+				target = NYM
+				type = civil_war
+			}
+		}
+		NYM = {
+			change_tag_from = YEM
+		}
+		hidden_effect = {
+			ITA = {
+				country_event = { id = YEM.52 days = 1	}
+			}
+		}
+		NYM = {
+			load_oob = NYM_uprising
+			add_manpower = 40000
+		}
+		add_to_variable = {
+			var = global.PanArabRadicalism
+			value = 1
+		}
+	}
+	option = {
+		name = YEM.51.b
+		hidden_effect = {
+			every_country = { 
+				news_event = {
+					id = WORLD.934
+					days = 1
+				}
+			}
+		}
+		ai_chance = {
+			factor = 200
+		}
+		YEM = {
+			declare_war_on = {
+				target = NYM
+				type = civil_war
+			}
+		}
+		hidden_effect = {
+			ITA = {
+				country_event = { id = YEM.52 days = 1	}
+			}
+			NYM = {
+				load_oob = NYM_uprising
+			}
+		}
+		add_to_variable = {
+			var = global.PanArabRadicalism
+			value = 1
+		}
+	}
+}
+
+country_event = { #Italy is notified, start crisis tree or whatever
+	id = YEM.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.52"}
+	title = YEM.52.t
+	desc = YEM.52.desc
+	picture = GFX_report_event_bormann_wins
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = YEM.52.a
+		ITA = {
+			set_country_flag = ITA_entered_arab_war
+			
+		}
+		hidden_effect = {
+			GER = { country_event = { id = YEM.53 days = 5 } }
+		}
+	}
+}
+
+country_event = { #Germany is notified, start crisis tree or whatever
+	id = YEM.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.53"}
+	title = YEM.53.t
+	desc = YEM.53.desc
+	picture = GFX_report_event_arab_soldiers1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = YEM.53.a
+		if = {
+			limit = { has_global_flag = german_civil_war_goeringvic }
+			country_event = { id = goering.12711 days = 1 }
+			set_country_flag = GER_entered_arab_war
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_global_flag = german_civil_war_bormannvic
+					has_global_flag = german_civil_war_speervic
+				}
+			}
+			custom_effect_tooltip = BOR_begin_supply_runs_tt
+			set_country_flag = GER_OC_intervention
+			set_variable = { BOR_OC_send_volunteer_size = 1 }
+			hidden_effect = { add_dynamic_modifier = { modifier = GER_BOR_OC_intervention_dynamic_modifier } }
+			add_ideas = GER_Bormann_OC_intervention
+		}
+		hidden_effect = {
+			JAP = {
+				country_event = { id = YEM.54 days = 30 }
+			}
+		}
+	}
+}
+
+country_event = { #Japan is notified, start crisis tree or whatever
+	id = YEM.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.54"}
+	title = YEM.54.t
+	desc = YEM.54.desc
+	picture = GFX_report_event_bormann_wins
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = YEM.54.a
+		JAP = {
+			set_country_flag = JAP_entered_arab_war
+		}
+	}
+}
+
+country_event = { #Join Arab League
+	id = YEM.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.55"}
+	title = YEM.55.t
+	desc = YEM.55.desc
+	picture = GFX_report_event_bormann_wins
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YEM.55.a
+		SAU = {
+			add_to_faction = YEM
+		}
+	}
+}
+
+country_event = { #Declare war against Saudi Arabia
+	id = YEM.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.56"}
+	title = YEM.56.t
+	desc = YEM.56.desc
+	picture = GFX_report_event_bormann_wins
+
+	trigger = {
+		tag = NYM 
+		NYM = {
+			has_war = no
+		}
+		controls_state = 908
+		has_global_flag = OIL_Egypt_Critical
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = YEM.56.a
+		ai_chance = { factor = 200 }
+		NYM = {
+			declare_war_on = {
+				target = SAU
+				type = annex_everything
+			}
+		}
+		set_global_flag = SaudiWar
+	}
+	option = {
+		name = YEM.56.b
+		ai_chance = { factor = 1 }
+		add_political_power = -50
+	}
+}
+
+country_event = { #Extra Fuck SA
+	id = YEM.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event YEM.57"}
+	title = YEM.57.t
+	desc = YEM.57.desc
+	picture = GFX_report_event_bormann_wins
+
+	trigger = {
+		tag = NYM 
+		controls_state = 919
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = YEM.57.a
+		NYM = {
+			set_cosmetic_tag = YEM_ARABIA
+		}
+	}
+}
+
+##Some stuff for world events##
+country_event = { #imam guy
+	id = yemcw.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event yemcw.1"}
+	title = yemcw.1.t
+	desc = yemcw.1.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			YEM = {
+				has_global_flag = Yemen_CW
+				NOT = {
+					has_war_with = NYM
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18022
+			days = 1
+		}
+	}
+}
+country_event = { #baath guy
+	id = yemcw.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event yemcw.2"}
+	title = yemcw.2.t
+	desc = yemcw.2.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			NYM = {
+				has_global_flag = Yemen_CW
+				NOT = {
+					has_war_with = YEM
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18023
+			days = 1
+		}
+	}
+}
+country_event = { #Baathist Yemen Wins SA-War
+	id = yemcw.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event yemcw.3"}
+	title = yemcw.3.t
+	desc = yemcw.3.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			NYM = {
+				has_global_flag = SaudiWar
+				NOT = {
+					has_war_with = SAU
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18024
+			days = 1
+		}
+	}
+}
+country_event = { #Saudi does bruh moment
+	id = yemcw.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event yemcw.4"}
+	title = yemcw.4.t
+	desc = yemcw.4.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			SAU = {
+				has_global_flag = SaudiWar
+				NOT = {
+					has_war_with = NYM
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18025
+			days = 1
+		}
+	}
+}

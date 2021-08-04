@@ -1,0 +1,2021 @@
+#Globalplan Puma
+
+shared_focus = { #inital infiltration, splashing some cash and political captial around, gives event detailing overview of Puma with varying presidental branches
+	id = BRG_globalplan_puma
+	icon = GFX_BRG_globalplan_puma
+	cost = 4
+	x = -15
+	y = 10
+	allow_branch = {
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+		has_country_flag = view_Puma_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		country_event = BRG_puma.50
+		set_country_flag = BRG_globalplan_puma_started_flag
+	}
+}
+
+shared_focus = { #globalplan action, causes a small but contant shift to the NPP-FR and NPP-R popularity in every US state, via monthly pulse effects, ~0.1 popularity over 7 years
+	id = BRG_tilting_the_scales
+	icon = GFX_ORE_balancing_the_council
+	cost = 4
+	prerequisite = {
+		focus = BRG_globalplan_puma
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_puma
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 25
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_tilting_the_scales"
+			custom_effect_tooltip = BRG_Election_Interference
+			set_country_flag = BRG_Election_Interferencing_Is_A_Go
+			hidden_effect = { country_event = { id = BRG_puma.51 days = 3 } }
+	}
+}
+
+shared_focus = { #globalplan action, burgundy funding the various regional klans to cause increase of incidents and tensions like lynchings
+	id = BRG_the_southern_ulcer
+	icon = GFX_generic_KKK
+	cost = 4
+	prerequisite = {
+		focus = BRG_globalplan_puma
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_puma
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_the_southern_ulcer"
+			custom_effect_tooltip = BRG_Infiltrate_Klan
+			set_country_flag = BRG_Infiltrated_The_Klan
+			hidden_effect = {
+				country_event = { id = BRG_puma.53 days = 7 }
+			}
+	}
+}
+
+shared_focus = { #both to gain more financial influence in the US for future focuses, but also shady loaning so Burgundy gets better debt interest rates
+	id = BRG_corrupting_the_bankers
+	icon = GFX_BRG_exploit_corruption
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_southern_ulcer
+	}
+
+    prerequisite = {
+		focus = BRG_tilting_the_scales
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_southern_ulcer
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_corrupting_the_bankers"
+			custom_effect_tooltip = BRG_Corrrupting_Thompson
+			set_country_flag = BRG_Infiltrated_Wall_Street
+			hidden_effect = {
+				country_event = { id = BRG_puma.78 days = 3 }
+			}
+	}
+}
+
+shared_focus = {
+	id = BRG_democratic_rabble
+	icon = GFX_BRG_Get_Inside_Their_Heads
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_southern_ulcer
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_southern_ulcer
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_democratic_rabble"
+			custom_effect_tooltip = BRG_Breaking_the_RD
+			set_country_flag = BRG_Infiltrated_RD
+	}
+}
+
+shared_focus = {
+	id = BRG_giving_into_their_hate
+	icon = GFX_USA_72_Yockey
+	cost = 4
+	prerequisite = {
+		focus = BRG_tilting_the_scales
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_tilting_the_scales
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_giving_into_their_hate"
+			custom_effect_tooltip = BRG_Breaking_The_NPP
+			set_country_flag = BRG_Infiltrated_NPP
+	}
+}
+
+#RFK Puma branch
+shared_focus = { #
+	id = BRG_folly_of_hope
+	icon = GFX_USA_RFK
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_corrupting_the_bankers
+	x = 0
+	y = 1
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_64_C_NPP
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_folly_of_hope"
+			country_event = { id = BRG_puma.100 days = 4 }
+			add_political_power = 150
+	}
+}
+
+shared_focus = { #feeding RFK false info to push him into his REALLY GOOD ideas
+	id = BRG_whisper_from_the_shadows
+	icon = GFX_unknown
+	cost = 4
+	prerequisite = {
+		focus = BRG_folly_of_hope
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_folly_of_hope
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_whisper_from_the_shadows"
+			set_country_flag = BRG_Whispering_Shadows_flag
+			custom_effect_tooltip = BRG_Whispering_Shadows_tt
+			USA = { country_event = { id = BRG_puma.126 days = 7 } }
+	}
+}
+
+shared_focus = { #stirs up riots in the south over RFK's approach, hurts popularity there, slightly increases assassination chance and goads player via event into going more hardline
+	id = BRG_harden_their_hearts
+	icon = GFX_USA_The_Party_Above_All
+	cost = 4
+	prerequisite = {
+		focus = BRG_folly_of_hope
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_folly_of_hope
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = { #effects in USA event
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_harden_their_hearts"
+			custom_effect_tooltip = BRG_PUMA_RFK_Ripping_Open_Bleeding_Hearts_tt
+			set_country_flag = BRG_Puma_Ripping_Open_Flag
+	}
+}
+
+shared_focus = { #
+	id = BRG_raising_the_sword
+	icon = GFX_unknown
+	cost = 4
+	prerequisite = {
+		focus = BRG_whisper_from_the_shadows
+	}
+
+	prerequisite = {
+		focus = BRG_harden_their_hearts
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_harden_their_hearts
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_dissent_within"
+			custom_effect_tooltip = BRG_RFK_sword_of_damocles_tt
+			hidden_effect = {
+			country_event = { id = BRG_puma.125 days = 3 }
+			set_country_flag = BRG_Puma_RFK_raising_sword_Flag
+		}
+	}
+}
+
+shared_focus = { #stir tensions between NPP-C and NPP-FR, focusing on NPP-C side
+	id = BRG_dark_money_rules_all
+	icon = GFX_unknown
+	cost = 4
+	prerequisite = {
+		focus = BRG_raising_the_sword
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_raising_the_sword
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_dark_money_rules_all"
+			custom_effect_tooltip = BRG_PUMA_funding_anti_healthcare
+			set_country_flag = BRG_dark_money_flag
+	}
+}
+
+shared_focus = { #stir tensions between the NPP-C and Republicans to damage their alliance
+	id = BRG_channeling_hate
+	icon = GFX_unknown
+	cost = 4
+	prerequisite = {
+		focus = BRG_raising_the_sword
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_raising_the_sword
+	x = 0
+	y = 1
+	#mutually_exclusive = {
+	#	focus = BRG_driving_a_wedge
+	#}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_cross_party_chaos"
+			custom_effect_tooltip = BRG_RFK_Channeling_Hate_tt
+			set_country_flag = BRG_Puma_RFK_raising_hate_flag
+	}
+}
+
+shared_focus = { #funding to the NPP-FR racist wing to make them bolder and cause them to grow in southern states
+	id = BRG_push_forward_the_crusade
+	icon = GFX_unknown
+	cost = 4
+	prerequisite = {
+		focus = BRG_raising_the_sword
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_raising_the_sword
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = { #USA effects in event
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_stir_up_the_hatred"
+			custom_effect_tooltip = BRG_Puma_Make_RFK_Liberal
+			set_country_flag = BRG_Puma_Crusading_RFK
+	}
+}
+
+shared_focus = { #false flag bombing of Japanese ship, maybe during indonesian tensions or not to avoid overlap with any indonesian content, made to look like the US, sparks diplomatic crisis
+	id = BRG_operation_angriff_rfk
+	icon = GFX_BRG_focus_blot_out_the_sun
+	cost = 4
+	prerequisite = {
+		focus = BRG_push_forward_the_crusade
+	}
+
+	prerequisite = {
+		focus = BRG_channeling_hate
+	}
+
+	prerequisite = {
+		focus = BRG_dark_money_rules_all
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_channeling_hate
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_operation_angriff_rfk"
+		news_event = {
+			id = WORLD.3500
+			days = 1
+		}
+	}
+}
+
+#Bennett Puma branch
+shared_focus = { #effect of a bit of crude robbery of US to gain money and cause economic discontent
+	id = BRG_economic_chaos
+	icon = GFX_USA_The_Bennett_Presidency
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_tilting_the_scales
+	x = -1
+	y = 2
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_64_D_RD
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_economic_chaos"
+		custom_effect_tooltip = BRG_economic_chaos_tt
+		USA = {
+			add_to_variable = {
+				interest_rates = 0.002
+			}
+			subtract_from_variable = {
+				GDP = 1000
+			}
+		}
+		add_to_variable = {
+			money_reserves = 2500
+		}
+	}
+}
+
+shared_focus = { #funding of isolationist groups in OFN countries, hurts unity and US's intergrated economy with the OFN
+	id = BRG_split_the_ofn
+	icon = GFX_AST_fate_of_ofn
+	cost = 4
+	prerequisite = {
+		focus = BRG_economic_chaos
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_economic_chaos
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_split_the_ofn"
+		USA = {
+			country_event =  {
+				id = BRG_puma.180
+				days = 30
+			}
+		}
+		add_to_variable = {
+			national_debt = 5000
+		}
+		custom_effect_tooltip = BRG_split_the_ofn_tt
+	}
+}
+
+shared_focus = { #bombings in US side of Niagara, scant evidience suggests links to French Canadian groups fearing the OFN is anglo-american domination
+	id = BRG_the_niagara_bombings
+	icon = GFX_USA_silver_act_2
+	cost = 4
+	prerequisite = {
+		focus = BRG_split_the_ofn
+	}
+	bypass = {
+		USA = { has_completed_focus = USA_wfb_64_silver_act }
+	}
+	available = {
+		USA = {
+			has_completed_focus = USA_wfb_64_financial_reform
+		}
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_split_the_ofn
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 25
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_the_niagara_bombings"
+		custom_effect_tooltip = BRG_the_niagara_bombings_tt
+		USA = {
+			country_event = BRG_puma.178
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_blackmailing_bankers
+	icon = GFX_GER_end_the_bankers
+	cost = 4
+	prerequisite = {
+		focus = BRG_economic_chaos
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_economic_chaos
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_blackmailing_bankers"
+		add_political_power = 50
+		add_to_variable = {
+			national_debt = 500
+		}
+		custom_effect_tooltip = BRG_blackmailing_bankers_tt
+	}
+}
+
+shared_focus = { #effects in USA event
+	id = BRG_spontanious_opposition
+	icon = GFX_USA_Southern_Riots
+	cost = 4
+	prerequisite = {
+		focus = BRG_economic_chaos
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_blackmailing_bankers
+	x = -2
+	y = 0
+	ai_will_do = {
+		factor = 25
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_spontanious_opposition"
+		USA = {
+			country_event =  {
+				id = BRG_puma.175
+				days = 7
+			}
+		}
+		custom_effect_tooltip = BRG_spontanious_opposition_tt
+	}
+}
+
+shared_focus = { #USA effects in event
+	id = BRG_regardless_of_damage
+	icon = GFX_BRG_Focus_Workers_Are_Resources
+	cost = 4
+	prerequisite = {
+		focus = BRG_blackmailing_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_blackmailing_bankers
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 25
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_regardless_of_damage"
+		#USA = {
+			#country_event = BRG_puma.176
+		#}
+		custom_effect_tooltip = BRG_regardless_of_damage_tt
+		hidden_effect = {
+			if = {
+				limit = { is_ai = yes }
+				USA = {
+					country_event = BRG_puma.181
+					add_to_variable = { WFB_Mormon_Relationship = -10 }
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_operation_angriff_bennett
+	icon = GFX_BRG_focus_blot_out_the_sun
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_niagara_bombings
+	}
+	prerequisite = {
+		focus = BRG_spontanious_opposition
+	}
+	prerequisite = {
+		focus = BRG_regardless_of_damage
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_spontanious_opposition
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_operation_angriff_bennett"
+		news_event = {
+			id = WORLD.3500
+			days = 1
+		}
+	}
+}
+
+#LBJ Puma branch
+shared_focus = { #Burgundy ramping up spending to various rightist groups in America in preperation, starts ripples of instability
+	id = BRG_the_great_riot
+	icon = GFX_USA_The_Johnson_Presidency
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_tilting_the_scales
+	x = -1
+	y = 2
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_64_R_RD
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_the_great_riot"
+		add_political_power = 50
+		add_to_variable = {
+			national_debt = 10000
+		}
+		USA = {
+			add_stability = -0.02
+		}
+		custom_effect_tooltip = BRG_the_great_riot_tt
+	}
+}
+
+shared_focus = { #playing up American individualism spreading varying levels of misinfomation and worry about LBJs plans across america undermining him
+	id = BRG_a_disparate_society
+	icon = GFX_USA_Southern_Riots
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_great_riot
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		USA = {
+			has_completed_focus = USA_lbj_64_the_great_society
+		}
+	}
+	relative_position_id = BRG_the_great_riot
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_a_disparate_society"
+		#LBJ_civil_rights_strength
+		custom_effect_tooltip = BRG_a_disparate_society_tt
+	}
+}
+
+shared_focus = { #riling up the south over exaggerations about the great society plans to prey on their fears, setting back civil rights progress in these areas
+	id = BRG_all_men_are_born_unequal
+	icon = GFX_BRG_focus_aryan_logistics
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_great_riot
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		has_completed_focus = BRG_shadow_over_capitol_hill
+	}
+	relative_position_id = BRG_a_disparate_society
+	x = 2
+	y = 0
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_all_men_are_born_unequal"
+		USA = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.05 }
+			}
+			subtract_from_variable = {
+				LBJ_civil_rights_strength = 2
+			}
+		}
+		custom_effect_tooltip = BRG_all_men_are_born_unequal_tt
+	}
+}
+
+shared_focus = { #use connections with various small regional racist groups in US to cause a day of country-wide marches/riots, small scale but everywhere. Hurts LBJ's credibility due to various state servants like police participating in them
+	id = BRG_march_against_washington
+	icon = GFX_USA_Good_Behavior_Not
+	cost = 4
+	prerequisite = {
+		focus = BRG_all_men_are_born_unequal
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_all_men_are_born_unequal
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_march_against_washington"
+		USA = {
+			country_event = BRG_puma.227
+		}
+		custom_effect_tooltip = BRG_march_against_washington_tt
+	}
+}
+
+shared_focus = { #effect like ingrained into their minds but lesser, slow drift to NPP-FR and NPP-R, ~half the magnitude,
+	id = BRG_corrupt_the_youth
+	icon = GFX_BRG_Specialized_Assistance
+	cost = 4
+	prerequisite = {
+		focus = BRG_all_men_are_born_unequal
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_all_men_are_born_unequal
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_corrupt_the_youth"
+		add_to_variable = {
+			national_debt = 2500
+		}
+		custom_effect_tooltip = BRG_corrupt_the_youth_tt
+		USA = {
+			country_event = BRG_puma.225
+		}
+	}
+}
+
+shared_focus = { #funding propaganda to boost the NPP-R and so by extention the NPP as a whole, strengthening the NPP
+	id = BRG_shadow_over_capitol_hill
+	icon = GFX_USA_Repeal_the_Civil_Rights_Act
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_great_riot
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_great_riot
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_shadow_over_capitol_hill"
+		add_to_variable = {
+			national_debt = 5000
+		}
+		custom_effect_tooltip = BRG_shadow_over_capitol_hill_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_operation_angriff_lbj
+	icon = GFX_BRG_focus_blot_out_the_sun
+	cost = 4
+	prerequisite = {
+		focus = BRG_march_against_washington
+	}
+	prerequisite = {
+		focus = BRG_corrupt_the_youth
+	}
+	prerequisite = {
+		focus = BRG_all_men_are_born_unequal
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_all_men_are_born_unequal
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_operation_angriff_lbj"
+		news_event = {
+			id = WORLD.3500
+			days = 1
+		}
+	}
+}
+
+shared_focus = { #burgundy spends to gain a foothold in both the civil rights movement and NPP-FR politics for later manipulation
+	id = BRG_hate_made_manifest
+	icon = GFX_USA_the_wallace_presidency
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_corrupting_the_bankers
+	x = 0
+	y = 1
+	allow_branch = {
+		USA = {
+		has_country_flag = USA_64_FR_NPP
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_hate_made_manifest"
+			custom_effect_tooltip = BRG_hate_made_manifest_tt
+			add_political_power = 150
+	}
+}
+
+shared_focus = {
+	id = BRG_Devil_on_the_shoulder
+	icon = GFX_USA_WAL_Enforce_Segregation_Through_Legislation
+	cost = 4
+	prerequisite = {
+		focus = BRG_hate_made_manifest
+	}
+	mutually_exclusive = {
+		focus = BRG_the_lurking_opportunity
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_hate_made_manifest
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_astroturfed_rallies"
+			custom_effect_tooltip = BRG_Devil_ON_Shouler_tt
+			set_country_flag = BRG_devil_flag
+	}
+}
+
+shared_focus = { #leaking business links to wallace to inflame anger against them and make wallace seem like a liability to his supporting businesses
+	id = BRG_bad_for_business
+	icon = GFX_BRG_Focus_Blackest_of_Markets
+	cost = 4
+	prerequisite = {
+		focus = BRG_hate_made_manifest
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_hate_made_manifest
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = { #WAL64_Business
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_bad_for_business"
+			custom_effect_tooltip = BRG_puma_wallace_buisness_tt
+			set_country_flag =  BRG_puma_wallace_buisness_flag
+	}
+}
+
+shared_focus = { #putting pressure on the extremist civil rights groups to cause havoc, targets factories owned by Wallace's business friends and damages them
+	id = BRG_the_lurking_opportunity
+	icon = GFX_BRG_Total_darkness
+	cost = 4
+	prerequisite = {
+		focus = BRG_hate_made_manifest
+	}
+	mutually_exclusive = {
+		focus = BRG_Devil_on_the_shoulder
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_hate_made_manifest
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_the_lurking_opportunity"
+			custom_effect_tooltip = BRG_Puma_Wallace_Making_A_Lier
+			set_country_flag = BRG_making_liar_flag
+	}
+}
+
+shared_focus = { #mass riots from african americans across the south, georgia especially hit
+	id = BRG_Accelerationism_At_Its_Finest
+	icon = GFX_USA_Southern_Riots
+	cost = 4
+	prerequisite = {
+		focus = BRG_the_lurking_opportunity
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_the_lurking_opportunity
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_Accelerationism_At_Its_Finest"
+
+			custom_effect_tooltip = BRG_Puma_Acceleration_tt
+			set_country_flag = BRG_acceleration_flag
+
+	}
+}
+
+shared_focus = { #funding propaganda targeting racist americas about how great things are now, but with hints it doesn't go far enough
+	id = BRG_States_Rights_Are_Human_Rights
+	icon = GFX_USA_allienate_the_fr_npp
+	cost = 4
+	prerequisite = {
+		focus = BRG_Accelerationism_At_Its_Finest
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Accelerationism_At_Its_Finest
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_States_Rights_Are_Human_Rights"
+			custom_effect_tooltip = BRG_puma_wallace_states_rights_tt
+			set_country_flag = BRG_states_rights_flag
+	}
+}
+
+shared_focus = {#destroying his congressional support and trying to get him impeached
+	id = BRG_Push_Up_The_Doubts
+	icon = GFX_USA_Against_the_NPP
+	cost = 4
+	prerequisite = {
+		focus = BRG_Devil_on_the_shoulder
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Devil_on_the_shoulder
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_Push_Up_The_Doubts"
+
+			custom_effect_tooltip = BRG_puma_wallace_grow_congressional_doubts
+			set_country_flag = BRG_puma_wallace_lose_congresional_support
+	}
+}
+
+shared_focus = {#Two parts, first uses the chaos of the georgia burns focus to push people further to yockey, with this propagand laying the seeds for that when it happens, and simmilarly if wallace gets impeached then further radicalises them
+	id = BRG_calming_the_barking_dog
+	icon = GFX_USA_Bite_Off_The_Big_Cigar
+	cost = 4
+	prerequisite = {
+		focus = BRG_Push_Up_The_Doubts
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Push_Up_The_Doubts
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_calming_the_barking_dog"
+			custom_effect_tooltip = BRG_puma_shafting_LeMay
+			USA = { country_event = { id = BRG_puma.177 days = 7 } }
+	}
+}
+
+shared_focus = {
+	id = BRG_operation_angriff_wallace
+	icon = GFX_BRG_focus_blot_out_the_sun
+	cost = 4
+	prerequisite = {
+		focus = BRG_States_Rights_Are_Human_Rights
+		focus = BRG_calming_the_barking_dog
+	}
+	prerequisite = {
+		focus = BRG_bad_for_business
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_bad_for_business
+	x = 0
+	y = 2
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_operation_angriff_wallace"
+		news_event = {
+			id = WORLD.3500
+			days = 1
+		}
+	}
+}
+
+#Harrington branch
+shared_focus = {
+	id = BRG_building_on_sand
+	icon = GFX_USA_Harrington
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_tilting_the_scales
+	x = -1
+	y = 2
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_68_C_NPP
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_building_on_sand"
+		add_political_power = 50
+		custom_effect_tooltip = BRG_building_on_sand_tt
+	}
+}
+
+shared_focus = { #insinuate into west coast healtcare companies to further anger them over harrington's reforms
+	id = BRG_indignance_of_the_rich
+	icon = GFX_ENG_what_about_the_rich
+	cost = 4
+	prerequisite = {
+		focus = BRG_building_on_sand
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_building_on_sand
+	x = -2
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_indignance_of_the_rich"
+		USA = {
+			subtract_from_variable = { USA_HAR_rich_enthusiasm = 2 }
+			every_owned_state = { #West Coast employers don't like you threatening the bottom line
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 88 } #Pacific
+				}
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.05 }
+				add_to_variable = { RD_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+			}
+		}
+		custom_effect_tooltip = BRG_indignance_of_the_rich_tt
+	}
+}
+
+shared_focus = { #more shadow funding of NPP-FR to increase their support and provide a basis for propaganda
+	id = BRG_shadow_funding
+	icon = GFX_USA_Southern_Riots
+	cost = 4
+	prerequisite = {
+		focus = BRG_building_on_sand
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_building_on_sand
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_shadow_funding"
+		add_to_variable = {
+			national_debt = 1000
+		}
+		USA = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+			}
+		}
+		custom_effect_tooltip = BRG_shadow_funding_tt
+	}
+}
+
+shared_focus = { #getting NPP-FR angry over welfare via manipulation
+	id = BRG_welfare_woes
+	icon = GFX_generic_change_law_welfare
+	cost = 4
+	prerequisite = {
+		focus = BRG_shadow_funding
+	}
+	prerequisite = {
+		focus = BRG_indignance_of_the_rich
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_shadow_funding
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_welfare_woes"
+		USA = {
+			subtract_from_variable = {
+				USA_NPP_Unity = 1
+			}
+			add_to_variable = {
+				USA_HAR_fatigue = 5
+			}
+			country_event = BRG_puma.325
+		}
+		custom_effect_tooltip = BRG_welfare_woes_tt
+	}
+}
+
+shared_focus = { #hyping up the tax burdens of the welfare programmes to decrease support
+	id = BRG_anger_over_their_burdens
+	icon = GFX_BRG_Fist_Tightened
+	cost = 4
+	prerequisite = {
+		focus = BRG_welfare_woes
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_welfare_woes
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_anger_over_their_burdens"
+		USA = {
+			subtract_from_variable = {
+				USA_HAR_rich_enthusiasm = 5
+			}
+			subtract_from_variable = {
+				USA_HAR_middle_enthusiasm = 5
+			}
+			add_to_variable = {
+				USA_HAR_rich_influence = 10
+			}
+			country_event = BRG_puma.326
+		}
+	}
+}
+
+shared_focus = { #stiring racial tensions among the poor to divide them and reduce support for harrington
+	id = BRG_an_insurmountable_divide
+	icon = GFX_BRG_Focus_The_Untermensch_Shall_Eat_The_Rest
+	cost = 4
+	prerequisite = {
+		focus = BRG_shadow_funding
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_shadow_funding
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_an_insurmountable_divide"
+		custom_effect_tooltip = BRG_an_insurmountable_divide_tt
+		USA = {
+			subtract_from_variable = { USA_HAR_poor_enthusiasm = 10 }
+			subtract_from_variable = { USA_HAR_poverty_enthusiasm = 5 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				subtract_from_variable = { NPP_popularity = 0.03 }
+
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.05 }
+			}
+		}
+	}
+}
+
+shared_focus = { #spreading the feeling of harrington being worn out and impotent to the us public
+	id = BRG_doesnt_he_look_tired
+	icon = GFX_BRG_Focus_The_Hidden_Menace
+	cost = 4
+	prerequisite = {
+		focus = BRG_an_insurmountable_divide
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_an_insurmountable_divide
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_doesnt_he_look_tired"
+		USA = {
+			add_to_variable = {
+				USA_HAR_fatigue = 10
+			}
+			subtract_from_variable = {
+				USA_HAR_middle_enthusiasm = 10
+			}
+			subtract_from_variable = {
+				USA_HAR_poor_enthusiasm = 5
+			}
+			country_event = BRG_puma.327
+		}
+		custom_effect_tooltip = BRG_doesnt_he_look_tired_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_68_president_diplo_crisis_harrington
+	icon = GFX_BRG_A_Mole_In_Every_Headquarters
+	cost = 4
+
+	prerequisite = {
+		focus = BRG_anger_over_their_burdens
+	}
+	prerequisite = {
+		focus = BRG_doesnt_he_look_tired
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_anger_over_their_burdens
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_68_president_diplo_crisis_harrington"
+		news_event = {
+			id = WORLD.3504
+			days = 1
+		}
+	}
+}
+
+#goldwater branch
+shared_focus = {
+	id = BRG_stagnation_incarnate
+	icon = GFX_USA_68_Goldwater
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_corrupting_the_bankers
+	x = 0
+	y = 1
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_68_D_RD
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_stagnation_incarnate"
+		add_political_power = 50
+		USA = {
+			add_stability = -0.05
+		}
+		custom_effect_tooltip = BRG_stagnation_incarnate_tt
+	}
+}
+
+shared_focus = { #leak above shady links but as internal corruption to further damage R-Ds and push them towards hardline corruption path
+	id = BRG_corruption_runs_deep
+	icon = GFX_BRG_Turn_The_Key
+	cost = 4
+	prerequisite = {
+		focus = BRG_stagnation_incarnate
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_stagnation_incarnate
+	x = -3
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_corruption_runs_deep"
+		USA = {
+			country_event = BRG_puma.375
+			set_country_flag = BRG_corruption_runs_deep_flag
+		}
+		custom_effect_tooltip = BRG_corruption_runs_deep_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_Plant_New_Ideas
+	icon = GFX_USA_68_Reganomics
+	cost = 4
+	prerequisite = {
+		focus = BRG_stagnation_incarnate
+	}
+	mutually_exclusive = {
+		focus = BRG_point_towards_the_old
+	}
+	available = {
+		NOT = { USA = { has_completed_focus = USA_gld_68_the_bennett_plan } }
+		NOT = {	has_country_flag = BRG_state_of_crisis_flag }
+	}
+	relative_position_id = BRG_stagnation_incarnate
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_Plant_New_Ideas"
+		USA = {
+			country_event = BRG_puma.376
+		}
+		set_country_flag = BRG_encouraging_regan
+		custom_effect_tooltip = BRG_willful_ignorance_tt
+	}
+}
+
+shared_focus = { #boosting NPP-L now they're ignored
+	id = BRG_point_towards_the_old
+	icon = GFX_USA_The_Bennett_Presidency
+	cost = 4
+	prerequisite = {
+		focus = BRG_stagnation_incarnate
+	}
+	mutually_exclusive = {
+		focus = BRG_Plant_New_Ideas
+	}
+	available = {
+		NOT = { USA = { has_completed_focus = USA_gld_68_reganomics } }
+		NOT = { has_country_flag = BRG_state_of_crisis_flag }
+	}
+	relative_position_id = BRG_stagnation_incarnate
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_point_towards_the_old"
+		USA = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_L_bonus_popularity = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.02 }
+			}
+		}
+		set_country_flag = BRG_encouraging_benny
+		custom_effect_tooltip = BRG_red_rot_rising_tt
+	}
+}
+
+shared_focus = { #covert influence via finance of smaller arms companies to get cut of military industrial complex and push US towards mass armamanet
+	id = BRG_a_time_for_choosing
+	icon = GFX_BRG_Strangle_Their_Last_Hope
+	cost = 4
+	prerequisite = {
+		focus = BRG_stagnation_incarnate
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_stagnation_incarnate
+	x = 3
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_a_time_for_choosing"
+		USA = {
+			country_event = BRG_puma.378
+			add_to_variable = {
+				misc_costs = 1000
+			}
+		}
+		custom_effect_tooltip = BRG_a_bloated_military_tt
+	}
+}
+
+shared_focus = { #expanding above military industry influence to get bigger cuts and even a arms factory
+	id = BRG_provides_ripe_profit_oppertunities
+	icon = GFX_BRG_Focus_Controlled_Trade
+	cost = 4
+	prerequisite = {
+		focus = BRG_Plant_New_Ideas
+		focus = BRG_point_towards_the_old
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Plant_New_Ideas
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_provides_ripe_profit_oppertunities"
+		USA = {
+			add_to_variable = {
+				misc_costs = 4000
+			}
+		}
+		add_to_variable = {
+			misc_income = 4000
+		}
+		add_offsite_building = { type = arms_factory level = 1 }
+		custom_effect_tooltip = BRG_provides_ripe_profit_oppertunities_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_68_president_diplo_crisis_goldwater
+	icon = GFX_BRG_A_Mole_In_Every_Headquarters
+	cost = 4
+
+	prerequisite = {
+		focus = BRG_provides_ripe_profit_oppertunities
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_provides_ripe_profit_oppertunities
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_68_president_diplo_crisis_goldwater"
+		news_event = {
+			id = WORLD.3504
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_feet_of_clay
+	icon = GFX_USA_68_Glenn
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_corrupting_the_bankers
+	x = 0
+	y = 1
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_68_R_RD
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_feet_of_clay"
+		custom_effect_tooltip = BRG_feet_of_clay_tt
+	}
+}
+
+shared_focus = { #riling public up over denuclearisation plans to hurt R-Ds and boost NPP via anti-pacifism
+	id = BRG_lifting_the_veil
+	icon = GFX_BRG_New_Era_Of_Surveilience
+	cost = 4
+	prerequisite = {
+		focus = BRG_feet_of_clay
+	}
+	available = {
+		USA = { has_completed_focus = USA_Glenn_Power_of_the_Atom }
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_feet_of_clay
+	x = -2
+	y = 2
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_a_hurtful_hand"
+		custom_effect_tooltip = BRG_lifting_the_veil_tt
+		USA = {
+			country_event = BRG_puma.428
+			add_popularity = {
+				ideology = social_liberal
+				popularity = -0.01
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				subtract_from_variable = { RD_popularity = 0.05 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.01 }
+			}
+			add_to_variable = { USA_GLN_Public_Support = -5 }
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_unleashing_their_frustration
+	icon = GFX_GGR_March_On_Copenhagen
+	cost = 4
+	prerequisite = {
+		focus = BRG_feet_of_clay
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_feet_of_clay
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_fudging_their_numbers"
+		custom_effect_tooltip = BRG_unleashing_their_frustration_tt
+		add_to_variable = {
+			misc_income = 100
+		}
+		USA = {
+			country_event = BRG_puma.425
+		}
+	}
+}
+
+shared_focus = { #repeatable decision to set back Glenn's rocketry plans
+	id = BRG_volatility_of_rocketry
+	icon = GFX_BRG_focus_its_not_rocket_science
+	cost = 4
+	prerequisite = {
+		focus = BRG_feet_of_clay
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_feet_of_clay
+	x = 2
+	y = 2
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_volatility_of_rocketry"
+		set_country_flag = BRG_volatility_of_rocketry_flag
+		custom_effect_tooltip = BRG_volatility_of_rocketry_tt
+	}
+}
+
+shared_focus = { #major sabotage of NASA in various testing, kills astronauts, sets back a lot of progress and reduces public support
+	id = BRG_flaming_their_hate
+	icon = GFX_TNO_generic_riot_police
+	cost = 4
+	prerequisite = {
+		focus = BRG_unleashing_their_frustration
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_unleashing_their_frustration
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_lost_forever_in_the_stars"
+		custom_effect_tooltip = BRG_lost_forever_in_the_stars_tt
+	}
+}
+
+shared_focus = {
+	id = BRG_68_president_diplo_crisis_glenn
+	icon = GFX_BRG_A_Mole_In_Every_Headquarters
+	cost = 4
+	prerequisite = {
+		focus = BRG_lifting_the_veil
+	}
+
+	prerequisite = {
+		focus = BRG_flaming_their_hate
+	}
+
+	prerequisite = {
+		focus = BRG_volatility_of_rocketry
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_flaming_their_hate
+	x = 0
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_68_president_diplo_crisis_glenn"
+		news_event = {
+			id = WORLD.3504
+			days = 1
+		}
+	}
+}
+
+shared_focus = { #desc about both how viable the NPP is to undermining the alliance, and how hawklike MCS is enabling better chance of stabilising things with sabre rattling which can lead to a war if pushed, effect of small scale funding NPP to gain a foothold and push MCS right
+	id = BRG_exploit_the_hawk
+	icon = GFX_CHI_Silence_the_hawks
+	cost = 4
+	prerequisite = {
+		focus = BRG_corrupting_the_bankers
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_corrupting_the_bankers
+	x = 0
+	y = 1
+	allow_branch = {
+		USA = {
+			has_country_flag = USA_68_FR_NPP
+		}
+		check_variable = {BRG_GP_Puma_Status_Var = 2}
+	}
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_exploit_the_hawk"
+		custom_effect_tooltip = BRG_exploit_the_hawk_tt
+	}
+}
+
+shared_focus = { #Burgundy gets a foothold into the NPP via heavily right wing H.Keith Thompson to start interfering directly in the NPP politics instead of other focuses from outside
+	id = BRG_Push_The_Window
+	icon = GFX_the_right
+	cost = 4
+	prerequisite = {
+		focus = BRG_exploit_the_hawk
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_exploit_the_hawk
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_Push_The_Window"
+		country_event = BRG_puma.450
+		add_political_power = 100
+		add_to_variable = {
+			misc_costs = 500
+		}
+	}
+}
+
+shared_focus = { #
+	id = BRG_whispering_poision_into_their_ears
+	icon = GFX_BRG_Crack_The_Whip
+	cost = 4
+	prerequisite = {
+		focus = BRG_exploit_the_hawk
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_exploit_the_hawk
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_whispering_poision_into_their_ears"
+		custom_effect_tooltip = poison_ears_tt
+
+		USA = {
+			USA_WAL_NPP_radicalizes = yes
+			hidden_effect = {
+				set_variable = { mcs_divisiveness = 5 }
+				set_variable = { mcs_center_satisfaction_change = -0.05 }
+				set_variable = { mcs_right_satisfaction_change = -0.05 }
+				mcs_unity_check = yes
+			}
+		}
+	}
+}
+
+
+
+shared_focus = { #affects US ai to go hard on Harrington, gives burgundy decisions to harm left unity, gives US event now to make them distrust harrington due to the public perception to make them move against them
+	id = BRG_The_Uneven_Scales
+	icon = GFX_BRG_focus_deal_with_the_people
+	cost = 4
+
+	prerequisite = {
+		focus = BRG_Push_The_Window
+	}
+
+	prerequisite = {
+		focus = BRG_whispering_poision_into_their_ears
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_whispering_poision_into_their_ears
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 50
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_The_Uneven_Scales"
+		USA = {
+			country_event = BRG_puma.477
+			#set_country_flag = BRG_their_patriotic_duty_flag
+		}
+		custom_effect_tooltip = BRG_their_patriotic_duty_tt
+	}
+}
+
+shared_focus = {#main boost on the warmongering path for AI chance and event about how Japan is likely weaker than expected and how the public wants this so player is more likely to pick warmongering path, also pushes generals towards more warmongering stance increasing world tension regardless, therefore boosting escalation chance on both sides of the possible diplomatic crisis from the airliner being shot down
+	id = BRG_once_more_unto_the_breach
+	icon = GFX_GER_Joint_Propaganda_Efforts
+	cost = 4
+	prerequisite = {
+		focus = BRG_The_Uneven_Scales
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Uneven_Scales
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_once_more_unto_the_breach"
+		hidden_effect = {
+			USA = {
+				add_named_threat = {
+					threat = 2
+					name = threat.62.t
+				}
+				TNO_World_Tension_add_2 = yes
+			}
+		}
+		USA = {
+			set_country_flag = BRG_once_more_unto_the_breach_flag
+		}
+		custom_effect_tooltip = BRG_once_more_unto_the_breach_tt
+	}
+}
+
+shared_focus = { #hurting MCS from the right side of the NPP
+	id = BRG_infighting_over_purity
+	icon = GFX_goal_Generic_Anti_Socialism
+	cost = 4
+	prerequisite = {
+		focus = BRG_The_Uneven_Scales
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Uneven_Scales
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_infighting_over_purity"
+		USA = {
+			#country_event = BRG_puma.475
+			subtract_from_variable = {
+				USA_NPP_Unity = 1
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.02 }
+				subtract_from_variable = { NPP_popularity = 0.02 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_68_president_diplo_crisis_mcs
+	icon = GFX_BRG_A_Mole_In_Every_Headquarters
+	cost = 4
+	prerequisite = {
+		focus = BRG_once_more_unto_the_breach
+	}
+	prerequisite = {
+		focus = BRG_infighting_over_purity
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_once_more_unto_the_breach
+	x = -1
+	y = 1
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+	    log = "[GetDateText]: [Root.GetName]: Focus BRG_68_president_diplo_crisis_mcs"
+		news_event = {
+			id = WORLD.3504
+			days = 1
+		}
+	}
+}

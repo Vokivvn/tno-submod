@@ -1,0 +1,635 @@
+##God Bless TNO and God Bless America##
+
+add_namespace = lemay
+
+country_event = {
+	id = lemay.1 # One Hell of a Situation
+ 	title = lemay.1.t
+ 	desc = lemay.1.desc
+ 	picture = GFX_report_event_generic_riot
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.1"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.1.a
+		add_stability = -0.05
+		custom_effect_tooltip = USA_subtract_NPP_unity
+		subtract_from_variable = { USA_NPP_Unity = 1 }
+		custom_effect_tooltip = LEMAY_USA_hellworld
+ 	}
+}
+
+country_event = {
+	id = lemay.2 # A Meeting With Harrington
+ 	title = lemay.2.t
+ 	desc = lemay.2.desc
+ 	picture = GFX_report_event_npp_generic3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.2"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.2.a
+		custom_effect_tooltip = USA_add_NPP_unity
+		custom_effect_tooltip = LEMAY_shifts_right_RD
+		hidden_effect = {
+		add_to_variable = { USA_NPP_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.025}
+				if = {
+					limit = {
+						check_variable = { NPP_popularity < RD_popularity }
+					}
+					add_to_variable = { NPP_popularity = 0.02}
+				}
+				else = { add_to_variable = { RD_popularity = 0.03}}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.2 }
+				US_underdog_RD_5_5 = yes
+			}
+
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.005
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = lemay.3 # A Meeting With Goldwater
+ 	title = lemay.3.t
+ 	desc = lemay.3.desc
+ 	picture = GFX_report_event_goldwater_inaug
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.3"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.3.a
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.025}
+				if = {
+					limit = {
+						check_variable = { NPP_popularity < RD_popularity }
+					}
+					add_to_variable = { NPP_popularity = 0.02}
+					add_to_variable = { RD_D_bonus_popularity = 0.05}
+				}
+				else = {
+					add_to_variable = { RD_popularity = 0.03}
+					add_to_variable = { RD_R_bonus_popularity = 0.03}
+				}
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.005
+			}
+		}
+
+ 	}
+}
+
+country_event = {
+	id = lemay.4 # Like Wallace Never Left
+ 	title = lemay.4.t
+ 	desc = lemay.4.desc
+ 	picture = GFX_report_event_USA_congress_2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.4"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.4.a #You keep this up, Yockey'll be in charge
+		hidden_effect = {
+		add_to_variable = { lemay_integration = 2 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				subtract_from_variable = { NPP_popularity = 0.1}
+				US_underdog_RD_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+				subtract_from_variable = { NPP_Y_bonus_popularity = 0.05}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+			subtract_from_variable = { USA_NPP_unity = 2 }
+		}
+
+ 	}
+	option = {
+ 		name = lemay.4.b #Dont y'all wanna beat the Republican-Democrats?
+		hidden_effect = {
+		add_to_variable = { lemay_integration = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.1}
+				add_to_variable = { NPP_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.2}
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+
+ 	}
+}
+
+country_event = {
+	id = lemay.5 # Select Integration
+ 	title = lemay.5.t
+ 	desc = lemay.5.desc
+ 	picture = GFX_report_event_civilRightsMinorRiot
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.5"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.5.a
+		add_to_variable = { lemay_integration = 1 }
+		custom_effect_tooltip = LEMAY_worst_of_both
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { NPP_L_bonus_popularity = 0.1}
+				subtract_from_variable = { NPP_popularity = 0.1}
+				US_underdog_RD_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1}
+				US_underdog_RD_5_5 = yes
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+ 	}
+	option = {
+ 		name = lemay.5.b
+		add_to_variable = { lemay_integration = 2 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { NPP_L_bonus_popularity = 0.1}
+				subtract_from_variable = { NPP_popularity = 0.1}
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.1}
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = lemay.6 # Establishment of Yearly Integration Quotas
+ 	title = lemay.6.t
+ 	desc = lemay.6.desc
+ 	picture = GFX_report_event_CivilRights1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.6"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.6.a
+		add_to_variable = { lemay_integration = 1 }
+ 	}
+
+	option = {
+ 		name = lemay.6.b
+		add_to_variable = { lemay_integration = 2 }
+ 	}
+}
+
+country_event = {
+	id = lemay.7 # [GetYear] Integration Quota
+ 	title = lemay.7.t
+ 	desc = lemay.7.desc
+ 	picture = GFX_report_event_civil_rights
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.7"}
+
+	is_triggered_only = yes
+
+ 	option = {
+ 		name = lemay.7.a
+		add_to_variable = { lemay_integration = 1 }
+
+ 	}
+}
+
+country_event = {
+	id = lemay.8 # Quieting Them Down
+ 	title = lemay.8.t
+ 	desc = lemay.8.desc
+ 	picture = GFX_report_event_rd_generic1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.8"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		 name = lemay.8.a
+		 if = {
+		 limit = {
+		 OR = {
+		 check_variable = { lemay_integration > 5 }
+			}
+		 }
+		add_popularity = {
+			ideology = social_liberal
+			popularity = -0.025
+		}
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1}
+				subtract_from_variable = { RD_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.05}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.15 }
+				US_underdog_RD_5_5 = yes
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+ 	}
+	else_if = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.15}
+				subtract_from_variable = { RD_popularity = 0.15}
+				US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_popularity = 0.15 }
+				US_underdog_RD_5_5 = yes
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.005
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.015
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = lemay.9 # A Meeting With MCS
+ 	title = lemay.9.t
+ 	desc = lemay.9.desc
+ 	picture = GFX_report_event_USA_black_panthers_1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.9"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.9.a
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.015
+		}
+		custom_effect_tooltip = USA_add_NPP_unity
+		custom_effect_tooltip = USA_add_NPP_popularity_north
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1}
+				subtract_from_variable = { RD_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+			add_to_variable = {USA_NPP_unity = 2}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.005
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = lemay.10 # A Meeting With Scoop
+ 	title = lemay.10.t
+ 	desc = lemay.10.desc
+ 	picture = GFX_report_event_civil_rights3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.10"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.10.a
+ 		USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+		add_to_variable = { USA_NPP_Unity = 1 }
+		subtract_from_variable = { USA_RD_Unity = 1 }
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1}
+				add_to_variable = { NPP_C_bonus_popularity = 0.05}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1}
+				subtract_from_variable = { RD_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+
+ 	}
+}
+
+country_event = {
+	id = lemay.11 # The Civil Rights Act of [GetYear]
+ 	title = lemay.11.t
+ 	desc = lemay.11.desc
+ 	picture = GFX_report_event_martin_luther_king
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.11"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.11.a
+		add_stability = 0.05
+		tno_minorities_improve = yes
+
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.02
+		}
+		hidden_effect = {
+		set_country_flag = USA_civil_rights_passed
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 82}
+				}
+				add_to_variable = { RD_popularity = 0.15}
+				add_to_variable = { RD_R_bonus_popularity = 0.1}
+				add_to_variable = { NPP_C_bonus_popularity = 0.1}
+				US_underdog_RD_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83}
+						check_variable = { nationality = 84}
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.25}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { OR = {
+						check_variable = { nationality = 82}
+						check_variable = { nationality = 83}
+						check_variable = { nationality = 85}
+					} }
+				}
+				add_to_variable = { RD_popularity = 0.07}
+				US_underdog_RD_2_2 = yes
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.01
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = lemay.12 # Debug Event Pee Pee Poo Poo
+ 	title = lemay.12.t
+ 	desc = lemay.12.desc
+ 	picture = GFX_report_event_martin_luther_king
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.12"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.12.a
+
+ 		set_politics = { ruling_party = market_liberal }
+			set_country_flag = USA_mil_64_tree_available
+			load_focus_tree = {
+  				tree = USA_LEMAY
+			}
+			# country_event = { id = wallace.1 days = 1 }
+			retire_country_leader = yes
+			clr_country_flag = reload_tree_yes
+			USA_clr_presidential_flags = yes
+			set_country_flag = USA_64_FR_NPP
+			set_country_flag = USA_64_FR_NPP_Past
+			set_country_flag = USA_NPP_64_SAF_war
+			set_politics = { ruling_party = authoritarian_democrat }
+			USA_get_total_congress_votes = yes
+ 	}
+}
+
+country_event = {
+	id = lemay.13 # Variable Debugs
+ 	title = lemay.13.t
+ 	desc = lemay.13.desc
+ 	picture = GFX_report_event_martin_luther_king
+	immediate = {log = "[GetDateText]: [Root.GetName]: event lemay.13"}
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+ 		name = lemay.13.a
+		custom_effect_tooltip = USA_wal64_states_rights_expectation_decrease
+ 		add_to_variable = { WAL_STATES_RIGHTS = 1 }
+ 	}
+	option = {
+ 		name = lemay.13.b
+		custom_effect_tooltip = USA_wal64_states_rights_expectation_increase
+ 		subtract_from_variable = { WAL_STATES_RIGHTS = 1 }
+ 	}
+}

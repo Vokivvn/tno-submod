@@ -1,0 +1,1853 @@
+KIR_western_reclamation_category = {
+	KIR_fortify_vyatka = {
+		allowed = {
+			original_tag = KIR
+		}
+		available = {
+			NOT = {
+				OR = {
+					has_decision = KIR_fortify_kudymkar
+					has_decision = KIR_fortify_izhevsk
+				}
+			}
+		}
+
+		highlight_states = {
+			state = 400
+		}
+
+		#on_map_mode = map_only
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		days_remove = 35
+
+		fire_only_once = yes
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_fortify_vyatka"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_fortify_vyatka"
+			400 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	KIR_fortify_kudymkar = {
+		available = {
+			original_tag = KIR
+			NOT = {
+				OR = {
+					has_decision = KIR_fortify_vyatka
+					has_decision = KIR_fortify_izhevsk
+				}
+			}
+		}
+
+		highlight_states = {
+			state = 752
+		}
+
+		#on_map_mode = map_only
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		days_remove = 35
+
+		fire_only_once = yes
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_fortify_kudymkar"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_fortify_kudymkar"
+			752 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	KIR_fortify_izhevsk = {
+		allowed = {
+			original_tag = KIR
+		}
+		available = {
+			NOT = {
+				OR = {
+					has_decision = KIR_fortify_vyatka
+					has_decision = KIR_fortify_kudymkar
+				}
+			}
+		}
+
+		highlight_states = {
+			state = 399
+		}
+
+		#on_map_mode = map_only
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 35
+
+		fire_only_once = yes
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_fortify_izhevsk"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_fortify_izhevsk"
+			399 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	KIR_military_excercises_decision = {
+		available = {
+			has_war = no
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			experience_gain_army_factor = 0.1
+			war_support_weekly = 0.002
+			planning_speed = 0.10
+		}
+
+		days_remove = 35
+		days_re_enable = 90
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_military_excercises_decision"
+		}
+	}
+	KIR_defensive_focus = {
+		available = {
+			has_war = yes
+			NOT = {
+				has_decision = KIR_offensive_focus
+			}
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+			army_core_defence_factor = 0.05
+		}
+
+		days_remove = 35
+		days_re_enable = 90
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_defensive_focus"
+		}
+	}
+	KIR_offensive_focus = {
+		available = {
+			has_war = yes
+			NOT = {
+				has_decision = KIR_defensive_focus
+			}
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+			army_core_attack_factor = 0.05
+		}
+
+		days_remove = 35
+		days_re_enable = 90
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_offensive_focus"
+		}
+	}
+}
+
+KIR_popular_support_category = {
+	KIR_speak_on_the_radio_decision = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 30
+		days_re_enable = 180
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_speak_on_the_radio_decision"
+			KIR_increase_popular_support_low = yes
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.05
+			}
+		}
+	}
+	KIR_peaceful_unification_pledge_decision = {
+		available = {
+			has_war = no
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			stability_weekly = 0.0025
+			war_support_weekly = -0.005
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_peaceful_unification_pledge_decision"
+		}
+	}
+	KIR_hold_public_speech_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 19 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_hold_public_speech_decision"
+			add_stability = 0.05
+		}
+	}
+	#KIR_meet_with_the_clergy_decision = {
+		#	visible = {
+			#		check_variable = { KIR_popular_support > 19 }
+			#	}
+		#	allowed = {
+			#		original_tag = KIR
+			#	}
+		#
+		#	modifier = {
+			#		political_power_gain = 0.2
+			#	}
+		#
+		#	days_remove = 35
+		#	days_re_enable = 180
+		#
+		#	cost = 100
+		#
+		#	complete_effect = {
+			#		log = "[GetDateText]: [Root.GetName]: Decision KIR_meet_with_the_clergy_decision"
+			#	}
+		#}
+	KIR_rally_new_recruits_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 39 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_rally_new_recruits_decision"
+			add_manpower = 1000
+		}
+	}
+	KIR_appeal_for_trucks_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 39 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_appeal_for_trucks_decision"
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 100
+				producer = KIR
+			}
+		}
+	}
+	KIR_meet_with_the_generals_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 59 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			stability_weekly = -0.002
+			war_support_weekly = 0.002
+			planning_speed = 0.10
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_meet_with_the_generals_decision"
+		}
+	}
+	KIR_introduce_new_taxes_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 59 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 150
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_introduce_new_taxes_decision"
+			KIR_decrease_popular_support_med = yes
+			KIR_increase_economic_strength_med = yes
+		}
+	}
+	KIR_refuge_to_soviet_scientists_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 79 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			research_speed_factor = 0.03
+			stability_factor = -0.05
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_refuge_to_soviet_scientists_decision"
+		}
+	}
+	KIR_refuge_to_fascist_officers_decision = {
+		visible = {
+			check_variable = { KIR_popular_support > 79 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			experience_gain_army_factor = 0.05
+			stability_factor = -0.1
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_refuge_to_fascist_officers_decision"
+		}
+	}
+}
+
+KIR_economic_strength_category = {
+	KIR_liquidate_state_assets_decision = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 150
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_liquidate_state_assets_decision"
+			KIR_increase_economic_strength_low = yes
+		}
+	}
+	KIR_scavenge_bombed_factories_decision = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			industrial_capacity_factory = 0.05
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_scavenge_bombed_factories_decision"
+		}
+	}
+	KIR_small_donation_to_the_poor_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 19 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 150
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_small_donation_to_the_poor_decision"
+			KIR_increase_popular_support_low = yes
+			KIR_decrease_economic_strength_low = yes
+		}
+	}
+	KIR_invest_in_infrastructure_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 19 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			production_speed_buildings_factor = 0.1
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_invest_in_infrastructure_decision"
+		}
+	}
+	KIR_medium_donation_to_the_poor_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 39 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 150
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_medium_donation_to_the_poor_decision"
+			KIR_increase_popular_support_med = yes
+			KIR_decrease_economic_strength_med = yes
+		}
+	}
+	KIR_invest_in_small_arms_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 39 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_invest_in_small_arms_decision"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 500
+				producer = KIR
+			}
+		}
+	}
+	KIR_fund_public_services_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 59 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		modifier = {
+			stability_weekly = 0.002
+			political_power_gain = -0.2
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_fund_public_services_decision"
+			KIR_decrease_economic_strength_med = yes
+		}
+	}
+	KIR_invest_in_ordnance_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 59 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_invest_in_ordnance_decision"
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment_0
+				amount = 100
+				producer = KIR
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_2
+				amount = 100
+				producer = KIR
+			}
+		}
+	}
+	KIR_vyatka_metalworks_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 79 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		fire_only_once = yes
+
+		cost = 150
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_vyatka_metalworks_decision"
+			add_resource = {
+				type = steel
+				amount = 2
+				state = 400
+			}
+			add_resource = {
+				type = steel
+				amount = 2
+				state = 399
+			}
+		}
+	}
+	KIR_large_donation_to_the_poor_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 79 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 100
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_large_donation_to_the_poor_decision"
+			KIR_increase_popular_support_high = yes
+			KIR_decrease_economic_strength_high = yes
+		}
+	}
+	KIR_invite_foreign_investors_decision = {
+		visible = {
+			check_variable = { KIR_economic_strength > 79 }
+		}
+		allowed = {
+			original_tag = KIR
+		}
+
+		days_remove = 35
+		days_re_enable = 365
+
+		cost = 200
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_invite_foreign_investors_decision"
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+}
+
+KIR_political_reforms_category = {
+	KIR_solidarist_reform_1 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_solidarists_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_solidarist_reform_2
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_solidarist_reform_1"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_solidarist_reform_1 remove"
+			add_ideas = {
+				tno_public_meetings_outlawed
+			}
+		}
+	}
+	KIR_solidarist_reform_2 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_solidarists_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_solidarist_reform_1
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_solidarist_reform_2"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_solidarist_reform_2 remove"
+			add_ideas = {
+				tno_press_rights_state_press_only
+			}
+		}
+	}
+	KIR_unionist_reform_1 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_unionists_win
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_unionist_reform_1"
+
+		}
+	}
+	KIR_kadets_reform_1 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_1"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_1 remove"
+			add_ideas = {
+				tno_political_parties_multiparty_system
+			}
+		}
+	}
+	KIR_kadets_reform_2 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_2"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_2 remove"
+			add_ideas = {
+				tno_religious_rights_pluralism
+			}
+		}
+	}
+	KIR_kadets_reform_3 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_3"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_3 remove"
+			add_ideas = {
+				tno_trade_unions_nonsocialist_allowed
+			}
+		}
+	}
+	KIR_kadets_reform_4 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_4"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_4 remove"
+			add_ideas = {
+				tno_public_meetings_allowed
+			}
+		}
+	}
+	KIR_kadets_reform_5 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_5"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_5 remove"
+			add_ideas = {
+				tno_press_rights_free_press
+			}
+		}
+	}
+	KIR_kadets_reform_6 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_6"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_6 remove"
+			add_ideas = {
+				tno_vote_franchise_universal
+			}
+		}
+	}
+	KIR_kadets_reform_7 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_8
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_7"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_7 remove"
+			add_ideas = {
+				tno_max_workhours_8_hour_work_day
+			}
+		}
+	}
+	KIR_kadets_reform_8 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_9
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_8"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_8 remove"
+			add_ideas = {
+				tno_gender_rights_gender_equality
+			}
+		}
+	}
+	KIR_kadets_reform_9 = {
+		allowed = {
+			original_tag = KIR
+		}
+
+		visible = {
+			has_country_flag = KIR_kadets_win
+		}
+
+		available = {
+			NOT = {
+				has_decision = KIR_kadets_reform_1
+				has_decision = KIR_kadets_reform_2
+				has_decision = KIR_kadets_reform_3
+				has_decision = KIR_kadets_reform_4
+				has_decision = KIR_kadets_reform_5
+				has_decision = KIR_kadets_reform_6
+				has_decision = KIR_kadets_reform_7
+				has_decision = KIR_kadets_reform_8
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		fire_only_once = yes
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		days_remove = 60
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_9"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_kadets_reform_9 remove"
+			add_ideas = {
+				tno_minorities_equal_rights
+			}
+		}
+	}
+}
+
+KIR_democratic_politics_category = {
+	KIR_elections_timeout = {
+		available = { always = no }
+		activation = { always = no }
+
+		is_good = no
+		days_mission_timeout = 120
+
+		ai_will_do = { factor = 10 }
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Timeout KIR_elections_timeout"
+			country_event = vyatkareg.2
+		}
+	}
+
+	KIR_Supress_Minorities_Voting = {
+
+		visible = {
+			has_country_flag = RUS_campaigning_for_authdem
+		}
+
+		days_remove = 40
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_Supress_Minorities_Voting"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_Supress_Minorities_Voting"
+			RUS_suppress_minority_voting = yes
+			hidden_effect = {
+				set_temp_variable = { num_state = num_owned_states }
+				divide_temp_variable = { num_state = 2.5 }
+				while_loop_effect = {
+					limit = {
+						check_variable = { num_state > 0 }
+					}
+					random_owned_controlled_state = {
+						RUS_authdem_campaign_effects = yes
+					}
+					add_to_temp_variable = { num_state = -1 }
+					log = "[GetDateText]: [Root.GetName]: Campaign, [?num_state] times left"
+				}
+			}
+			add_popularity = { ideology = authoritarian_democrat popularity = 0.055 }
+		}
+	}
+
+	KIR_Encourage_Rural_Voting = {
+
+		visible = {
+			has_country_flag = RUS_campaigning_for_conservative
+		}
+
+		days_remove = 40
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_Encourage_Rural_Voting"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_Encourage_Rural_Voting"
+			RUS_encourage_rural_voting = yes
+			hidden_effect = {
+				set_temp_variable = { num_state = num_owned_states }
+				divide_temp_variable = { num_state = 10 }
+				while_loop_effect = {
+					limit = {
+						check_variable = { num_state > 0 }
+					}
+					random_owned_controlled_state = {
+						RUS_conservative_campaign_effects = yes
+					}
+					add_to_temp_variable = { num_state = -1 }
+				}
+			}
+			add_popularity = { ideology = social_conservative popularity = 0.055 }
+		}
+	}
+
+	KIR_Encourage_Minorities_Voting = {
+
+		visible = {
+			has_country_flag = RUS_campaigning_for_liberal
+		}
+
+		days_remove = 40
+
+		cost = 30
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KIR_Encourage_Minorities_Voting"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_Encourage_Minorities_Voting"
+			RUS_encourage_minority_voting = yes
+			hidden_effect = {
+				set_temp_variable = { num_state = num_owned_states }
+				divide_temp_variable = { num_state = 3 }
+				while_loop_effect = {
+					limit = {
+						check_variable = { num_state > 0 }
+					}
+					random_owned_controlled_state = {
+						RUS_liberal_campaign_effects = yes
+					}
+					add_to_temp_variable = { num_state = -1 }
+				}
+			}
+			add_popularity = { ideology = social_liberal popularity = 0.055 }
+		}
+	}
+
+	KIR_campaign_arctic_russia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 150 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_arctic_russia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_arctic_russia_campaign = yes
+		}
+	}
+
+	KIR_campaign_central_russia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 133 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_central_russia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_central_russia_campaign = yes
+		}
+	}
+
+	KIR_campaign_ural_region = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 138 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_ural_region"
+			clr_country_flag = KIR_is_campaigning
+			RUS_ural_region_campaign = yes
+		}
+	}
+
+	KIR_campaign_transvolga = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 40 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_transvolga"
+			clr_country_flag = KIR_is_campaigning
+			RUS_transvolga_campaign = yes
+		}
+	}
+
+	KIR_campaign_southern_urals = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 209 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_southern_urals"
+			clr_country_flag = KIR_is_campaigning
+			RUS_southern_urals_campaign = yes
+		}
+	}
+
+	KIR_campaign_trans_urais = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 14 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_trans_urais"
+			clr_country_flag = KIR_is_campaigning
+			RUS_trans_urais_campaign = yes
+		}
+	}
+
+	KIR_campaign_western_siberia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 151 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_western_siberia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_western_siberia_campaign = yes
+		}
+	}
+
+	KIR_campaign_northern_siberia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 147 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_northern_siberia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_northern_siberia_campaign = yes
+		}
+	}
+
+	KIR_campaign_central_siberia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 207 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_central_siberia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_central_siberia_campaign = yes
+		}
+	}
+
+	KIR_campaign_eastern_siberia = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 149 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_eastern_siberia"
+			clr_country_flag = KIR_is_campaigning
+			RUS_eastern_siberia_campaign = yes
+		}
+	}
+
+	KIR_campaign_trans_baikal = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 211 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_trans_baikal"
+			clr_country_flag = KIR_is_campaigning
+			RUS_trans_baikal_campaign = yes
+		}
+	}
+
+	KIR_campaign_far_east = {
+
+		available = {
+			NOT = {
+				has_country_flag = KIR_is_campaigning
+			}
+		}
+
+		visible = {
+			any_owned_state = { region = 148 }
+		}
+
+		days_remove = 25
+
+		days_re_enable = 5
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = KIR_is_campaigning
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove KIR_campaign_far_east"
+			clr_country_flag = KIR_is_campaigning
+			RUS_far_east_campaign = yes
+		}
+	}
+
+
+	KIR_authdem_campaign_ai = {
+		allowed = {
+			tag = KIR
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = RUS_POLLS_ENABLE
+			has_country_flag = RUS_AUTHDEM_AI_ENABLE
+			NOT = {
+				has_country_flag = RUS_campaigning_for_authdem
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_POLLS_ENABLE
+		}
+		fixed_random_seed = no
+		cancel_if_not_visible = yes
+		is_good = yes
+		days_mission_timeout = 25
+		days_re_enable = 5
+
+		timeout_effect = {
+			hidden_effect = {
+				ZZZ = {
+					country_event = {
+						id = russian_democracy_helpers.9
+						days = 1
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	KIR_conservative_campaign_ai = {
+		allowed = {
+			tag = KIR
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = RUS_POLLS_ENABLE
+			has_country_flag = RUS_CONSERVATIVE_AI_ENABLE
+			NOT = {
+				has_country_flag = RUS_campaigning_for_conservative
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_POLLS_ENABLE
+		}
+		fixed_random_seed = no
+		cancel_if_not_visible = yes
+		is_good = yes
+		days_mission_timeout = 25
+		days_re_enable = 5
+
+		timeout_effect = {
+			hidden_effect = {
+				ZZZ = {
+					country_event = {
+						id = russian_democracy_helpers.10
+						days = 1
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	KIR_liberal_campaign_ai = {
+		allowed = {
+			tag = KIR
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = RUS_POLLS_ENABLE
+			has_country_flag = RUS_LIBERAL_AI_ENABLE
+			NOT = {
+				has_country_flag = RUS_campaigning_for_liberal
+			}
+		}
+
+		visible = {
+			has_country_flag = RUS_POLLS_ENABLE
+		}
+		fixed_random_seed = no
+		cancel_if_not_visible = yes
+		is_good = yes
+		days_mission_timeout = 25
+		days_re_enable = 5
+
+		timeout_effect = {
+			hidden_effect = {
+				ZZZ = {
+					country_event = {
+						id = russian_democracy_helpers.8
+						days = 1
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}

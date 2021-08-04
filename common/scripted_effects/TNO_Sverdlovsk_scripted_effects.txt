@@ -1,0 +1,275 @@
+black_league_influence_increase = {
+	if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_1
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_1
+			add_idea = TOB_black_league_influence_tier_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_2
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_2
+			add_idea = TOB_black_league_influence_tier_3
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_3
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_3
+			add_idea = TOB_black_league_influence_tier_4
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_4
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+	}
+}
+
+black_league_influence_decrease = {
+	if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_1
+			ultranational_socialism < 0.05
+		}
+		country_event = TOB.130
+		set_country_flag = TOB_omsk_curbed
+		remove_ideas = TOB_black_league_influence_tier_1
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_1
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_2
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_2
+			add_idea = TOB_black_league_influence_tier_1
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_3
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_3
+			add_idea = TOB_black_league_influence_tier_2
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_black_league_influence_tier_4
+		}
+		swap_ideas = {
+			remove_idea = TOB_black_league_influence_tier_4
+			add_idea = TOB_black_league_influence_tier_3
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+	}
+}
+
+revisionist_influence_increase = {
+	if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_1
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_1
+			add_idea = TOB_revisionist_influence_tier_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_2
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_2
+			add_idea = TOB_revisionist_influence_tier_3
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_3
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_3
+			add_idea = TOB_revisionist_influence_tier_4
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_4
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+	}
+}
+
+revisionist_influence_decrease = {
+	if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_1
+			communist < 0.05
+		}
+		country_event = TOB.131
+		set_country_flag = TOB_tyumen_curbed
+		remove_ideas = TOB_revisionist_influence_tier_1
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_1
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_2
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_2
+			add_idea = TOB_revisionist_influence_tier_1
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_3
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_3
+			add_idea = TOB_revisionist_influence_tier_2
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = TOB_revisionist_influence_tier_4
+		}
+		swap_ideas = {
+			remove_idea = TOB_revisionist_influence_tier_4
+			add_idea = TOB_revisionist_influence_tier_3
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+	}
+}
+
+black_league_uprising = {
+	OMS = {
+		division_template = {
+			name = "Black League Infiltrators"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+			}
+		}
+		653 = {
+			create_unit = {
+				division = "name = \"1st Black League Infiltrators\" division_template = \"Black League Infiltrators\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+				owner = OMS
+				prioritize_location = 12696
+			}
+			create_unit = {
+				division = "name = \"2nd Black League Infiltrators\" division_template = \"Black League Infiltrators\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+				owner = OMS
+				prioritize_location = 1543
+			}
+		}
+	}
+}
+
+revisionist_uprising = {
+	ISH = {
+		division_template = {
+			name = "Revisionist Partisans"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+			}
+		}
+		653 = {
+			create_unit = {
+				division = "name = \"1st Revisionist Partisans\" division_template = \"Revisionist Partisans\" start_experience_factor = 0.1 start_equipment_factor = 1"
+				owner = ISH
+				prioritize_location = 12696
+			}
+		}
+	}
+}
+
+TOB_elections_setup = {
+	add_political_power = 241
+	hidden_effect = {
+		every_owned_state = {
+			RUS_get_state_special_party_pop = yes
+			if = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+						has_state_category = metropolis
+						has_state_category = megalopolis
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { TNO_combined_factory_total > 4 }
+					}
+					add_to_variable = { RUS_state_conservative_pop = 0.175 }
+				}
+				else = {
+					add_to_variable = { RUS_state_conservative_pop = 0.12 }
+				}
+			}
+			else = {
+				add_to_variable = { RUS_state_conservative_pop = 0.07 }
+			}
+		}
+		country_event = russian_democracy_helpers.3
+	}
+}

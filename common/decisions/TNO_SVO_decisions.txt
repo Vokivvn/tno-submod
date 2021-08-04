@@ -1,0 +1,527 @@
+SVO_The_Red_Army = {
+	SVO_Finish_Army_Modernization = {
+		visible = {
+			NOT = { has_country_flag = SVO_Modernized_Army }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SVO_Finish_Army_Modernization_trigger
+				check_variable = { SVO_Army_Modernization > 99.9 }
+			}
+		}
+
+		custom_cost_trigger = { always = yes }
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Finish_Army_Modernization"
+			army_experience = 40
+			clr_country_flag = SVO_Army_Modernization_Project
+			set_country_flag = SVO_Modernized_Army
+			country_event = SVO.23
+			TNO_improve_army_professionalism_high = yes
+			hidden_effect = { TNO_improve_army_professionalism_high = yes }
+
+			custom_effect_tooltip = SVO_Finish_Army_Modernization_tt
+			add_to_variable = { SVO_RA_army_armor_attack_factor = 0.15 }
+			add_to_variable = { SVO_RA_army_armor_speed_factor = 0.15 }
+			add_to_variable = { SVO_RA_army_org = 0.15 }
+			add_to_variable = { SVO_RA_army_sub_unit_air_assault_attack_factor = 0.15 }
+
+			add_to_variable = { SVO_RA_army_infantry_attack_factor = 0.15 }
+			add_to_variable = { SVO_RA_army_infantry_defence_factor = 0.15 }
+			add_to_variable = { SVO_RA_training_time_army = 0.15 }
+			add_to_variable = { SVO_RA_experience_gain_army_factor = 0.15 }
+			SVO_update_dynamic_modifier_values = yes
+		}
+	}
+
+	SVO_Modernize_Mechanized_Equipments = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SVO_Modernize_Mechanized_Equipments_trigger_tt
+				NOT = { has_country_flag = SVO_Modernization_decision }
+			}
+		}
+
+		visible = {
+			has_country_flag = SVO_Army_Modernization_Project
+			NOT = { has_country_flag = SVO_Modernized_Army }
+		}
+
+		custom_cost_trigger = {
+			has_army_experience > 15
+		}
+
+		custom_cost_text = custom_cost_SVO_Modernize_Mechanized_Equipments
+
+		days_remove = 35
+
+		days_re_enable = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Modernize_Mechanized_Equipments"
+			hidden_effect = {
+				army_experience = -15
+			}
+			set_country_flag = SVO_Modernization_decision
+		}
+
+		modifier = {
+			army_org_factor = -0.10
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Modernize_Mechanized_Equipments"
+			clr_country_flag = SVO_Modernization_decision
+			custom_effect_tooltip = SVO_Army_Modernization_2_tt
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = APC
+				category = armor
+			}
+			add_to_variable = { SVO_Army_Modernization_monthly_change = 2 }
+			clamp_variable = { var = SVO_Army_Modernization min = 0 max = 100 }
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { modifier@army_org_factor < -0.30 }
+			}
+		}
+	}
+
+	SVO_Helicopter_Investiment = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SVO_Modernize_Mechanized_Equipments_trigger_tt
+				NOT = { has_country_flag = SVO_Modernization_decision }
+			}
+		}
+
+		visible = {
+			has_country_flag = SVO_Army_Modernization_Project
+			NOT = { has_country_flag = SVO_Modernized_Army }
+		}
+
+		custom_cost_trigger = {
+			has_army_experience > 15
+		}
+
+		custom_cost_text = custom_cost_SVO_Modernize_Mechanized_Equipments
+
+		days_remove = 35
+
+		days_re_enable = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Helicopter_Investiment"
+			hidden_effect = {
+				army_experience = -15
+			}
+			set_country_flag = SVO_Modernization_decision
+		}
+
+		modifier = {
+			army_org_factor = -0.10
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Helicopter_Investiment"
+			clr_country_flag = SVO_Modernization_decision
+			custom_effect_tooltip = SVO_Army_Modernization_2_tt
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = helicopter
+			}
+			add_to_variable = { SVO_Army_Modernization_monthly_change = 2 }
+			clamp_variable = { var = SVO_Army_Modernization min = 0 max = 100 }
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { modifier@army_org_factor < -0.30 }
+			}
+		}
+	}
+
+	SVO_Better_Guns = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SVO_Modernize_Mechanized_Equipments_trigger_tt
+				NOT = { has_country_flag = SVO_Modernization_decision }
+			}
+		}
+
+		visible = {
+			has_country_flag = SVO_Army_Modernization_Project
+			NOT = { has_country_flag = SVO_Modernized_Army }
+		}
+
+		custom_cost_trigger = {
+			has_army_experience > 15
+		}
+
+		custom_cost_text = custom_cost_SVO_Modernize_Mechanized_Equipments
+
+		days_remove = 35
+
+		days_re_enable = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Better_Guns"
+			hidden_effect = {
+				army_experience = -15
+			}
+			set_country_flag = SVO_Modernization_decision
+		}
+
+		modifier = {
+			army_org_factor = -0.10
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Better_Guns"
+			clr_country_flag = SVO_Modernization_decision
+			custom_effect_tooltip = SVO_Army_Modernization_2_tt
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = infantry_weapons
+			}
+			add_to_variable = { SVO_Army_Modernization_monthly_change = 2 }
+			clamp_variable = { var = SVO_Army_Modernization min = 0 max = 100 }
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { modifier@army_org_factor < -0.30 }
+			}
+		}
+	}
+
+	SVO_Planes_Investiment = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SVO_Modernize_Mechanized_Equipments_trigger_tt
+				NOT = { has_country_flag = SVO_Modernization_decision }
+			}
+		}
+
+		visible = {
+			has_country_flag = SVO_Army_Modernization_Project
+			NOT = { has_country_flag = SVO_Modernized_Army }
+		}
+
+		custom_cost_trigger = {
+			has_army_experience > 15
+		}
+
+		custom_cost_text = custom_cost_SVO_Modernize_Mechanized_Equipments
+
+		days_remove = 35
+
+		days_re_enable = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Better_Guns"
+			hidden_effect = {
+				army_experience = -15
+			}
+			set_country_flag = SVO_Modernization_decision
+		}
+
+		modifier = {
+			army_org_factor = -0.10
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Better_Guns"
+			clr_country_flag = SVO_Modernization_decision
+			custom_effect_tooltip = SVO_Army_Modernization_2_tt
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = air_equipment
+			}
+			add_to_variable = { SVO_Army_Modernization_monthly_change = 2 }
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { modifier@army_org_factor < -0.30 }
+			}
+		}
+	}
+}
+
+SVO_The_Conference = {
+	SVO_Enforce_Goverment_Authority = {
+		cost = 60
+		days_remove = 70
+		days_re_enable = 70
+		icon = GFX_decision_generic_prepare_civil_war
+		available = {
+			has_stability < 0.5
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Enforce_Goverment_Authority"
+			add_stability = 0.10
+		}
+
+		modifier = {
+			political_power_gain = -0.50
+		}
+	}
+
+	SVO_Pursuit_Favors_from_Military = {
+		available = {
+			NOT = { has_decision = SVO_Pursuit_Favors_from_Civilian_Administration }
+		}
+		icon = decision_generic_military_parade
+		cost = 45
+		days_remove = 28
+		days_re_enable = 28
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Pursuit_Favors_from_Military"
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Pursuit_Favors_from_Military"
+			SVO_increase_Army_Loyalty_high = yes
+			SVO_increase_Army_Power_low = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Army_Power > 85 }
+					check_variable = { SVO_Army_Loyalty > 75 }
+				}
+			}
+		}
+	}
+
+	SVO_Pursuit_Favors_from_Civilian_Administration = {
+		available = {
+			NOT = { has_decision = SVO_Pursuit_Favors_from_Military }
+		}
+		icon = GFX_decision_generic_civil_support
+		cost = 35
+		days_remove = 28
+		days_re_enable = 28
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Pursuit_Favors_from_Civilian_Administration"
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Pursuit_Favors_from_Civilian_Administration"
+			SVO_increase_Civilian_Loyalty_high = yes
+			SVO_increase_Civilian_Power_low = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Civilian_Power > 80 }
+					check_variable = { SVO_Civilian_Loyalty > 75 }
+				}
+			}
+		}
+	}
+
+	SVO_Weaken_Military_Power = {
+		available = {
+			NOT = { has_decision = SVO_Weaken_Civilian_Power }
+		}
+		cost = 55
+		days_remove = 28
+		days_re_enable = 28
+		icon = GFX_decision_generic_political_discourse
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Weaken_Military_Power"
+			SVO_decrease_Army_Loyalty_high = yes
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Weaken_Military_Power"
+			SVO_decrease_Army_Power_med = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Army_Power > 85 }
+					check_variable = { SVO_Army_Loyalty > 75 }
+				}
+			}
+		}
+	}
+	
+	SVO_Weaken_Civilian_Power = {
+		available = {
+			NOT = { has_decision = SVO_Weaken_Military_Power }
+		}
+		icon = decision_generic_use_force
+		cost = 45
+		days_remove = 28
+		days_re_enable = 28
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Weaken_Civilian_Power"
+			SVO_decrease_Civilian_Loyalty_high = yes
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Weaken_Civilian_Power"
+			SVO_decrease_Civilian_Power_med = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Civilian_Power > 80 }
+					check_variable = { SVO_Civilian_Loyalty > 75 }
+				}
+			}
+		}
+	}
+
+	SVO_Empower_Military_Power = {
+		available = {
+			NOT = { has_decision = SVO_Empower_Civilian_Power }
+		}
+		cost = 55
+		days_remove = 28
+		days_re_enable = 28
+		icon = GFX_decision_generic_political_discourse
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Empower_Military_Power"
+			SVO_decrease_Civilian_Loyalty_high = yes
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Empower_Military_Power"
+			SVO_increase_Army_Power_med = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Army_Power > 90 }
+					check_variable = { SVO_Civilian_Loyalty < 50 }
+				}
+			}
+		}
+	}
+	
+	SVO_Empower_Civilian_Power = {
+		available = {
+			NOT = { has_decision = SVO_Empower_Military_Power }
+		}
+		icon = decision_generic_use_force
+		cost = 45
+		days_remove = 28
+		days_re_enable = 28
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SVO_Weaken_Civilian_Power"
+			SVO_decrease_Civilian_Loyalty_high = yes
+		}
+
+		modifier = {
+			stability_weekly = -0.02
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove SVO_Weaken_Civilian_Power"
+			SVO_increase_Civilian_Power_med = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0.2
+				has_stability < 0.35
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_stability < 0.25
+					check_variable = { SVO_Civilian_Power > 90 }
+					check_variable = { SVO_Army_Loyalty < 50 }
+				}
+			}
+		}
+	}
+}

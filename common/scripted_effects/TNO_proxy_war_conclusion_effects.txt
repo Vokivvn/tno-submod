@@ -1,0 +1,234 @@
+conclude_south_african_war = {
+	clr_global_flag = south_african_war
+	clr_global_flag = south_african_war_ceasefires_enabled
+	#clr_global_flag = SAF_no_ceasefire
+	set_global_flag = SAF_WAR_OVER
+	
+	USA = { clr_country_flag = USA_show_south_africa_tree }
+	hidden_effect = {
+		if = {
+			limit = { country_exists = SAF }
+			SAF = {
+	        	delete_unit_template_and_units = {
+	                division_template = "Reserve Troops"
+	            }
+	        }
+	        SAF = {
+	        	delete_unit_template_and_units = {
+	                division_template = "Militia"
+	            }
+	        }
+		}
+		SAF = {
+			clr_country_flag = USA_entered_war
+			#remove_ideas = {
+			#	SAF_CORDS
+			#	SAF_CORDS_2
+			#}
+		}
+
+		USA = {
+			if = {
+				limit = { NOT = { has_country_flag = USA_dont_clear_saf_shit_yet } }
+				hidden_effect = {
+					clear_variable = USA_SAF_WAR_Discontent
+
+					clr_country_flag = USA_SAF_WAR_Currently_Doing_Domestic_Action
+					clr_country_flag = USA_SAF_WAR_Currently_Doing_Military_Action
+					clr_country_flag = USA_SAF_WAR_Increased_Draft
+					clr_country_flag = USA_SAF_WAR_Increased_Draft_Exemptions
+					clr_country_flag = USA_In_The_SAF_WAR
+
+					remove_ideas = {
+						advisor_level_1
+						advisor_level_2
+						advisor_level_3
+						advisor_level_4
+						advisor_level_5
+					}
+					remove_ideas = USA_LBJ_Advisors_No_More
+					remove_ideas = USA_SAF_WAR_Expanded_Role_1
+					remove_ideas = USA_LBJ_Advisors_No_More
+					remove_ideas = USA_conscription_riot
+					remove_ideas = USA_SAF_WAR_Expanded_Role_2
+					remove_ideas = USA_SAF_WAR_Expanded_Role_3
+					remove_ideas = USA_SAF_WAR_NPP_General_Bonus
+					remove_ideas = USA_SAF_WAR_NPP_Stable_Front
+					remove_ideas = USA_SAF_WAR_NPP_fluid_front
+					remove_ideas = USA_africa_will_burn
+					remove_ideas = USA_africa_will_burn2
+
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_1
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_2
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_3
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_4
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_5
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_6
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_7
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_8
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_9
+					remove_ideas = USA_SAF_WAR_Insurgency_Domestic_Discontent_10
+					
+					if = {
+						limit = { has_idea = tno_draft_exemptions_none }
+						tno_draft_exemptions_improve = yes
+					}
+					if = {
+						limit = { has_idea = tno_conscription_one_year_draft }
+						tno_conscription_improve = yes
+					}
+
+					country_event = { id = USA.culture.2 days = 14 } #People on the streets talking about the war ending
+					country_event = { id = USA.culture.3 days = 43 } #Soldiers returning home and being shunned
+				}
+			}
+			USA_reload_presidential_tree = yes
+		}
+		GER = {
+			clr_country_flag = GER_entered_sa_war
+			clr_country_flag = GER_ENTER_SA
+			clr_country_flag = GER_SAW_intervention
+			clr_country_flag = south_africa_policing
+			remove_ideas = {
+				advisor_level_1
+				advisor_level_2
+				advisor_level_3
+				advisor_level_4
+				advisor_level_5
+			}
+			clear_variable = GER_advisor_level
+			clear_variable = GER_policing_variable
+			clear_variable = GER_SAF_war_military_happiness
+			clear_variable = GER_SAF_war_public_support
+			clear_array = global.afrika_schild_members
+			if = {
+				limit = { has_global_flag = german_civil_war_bormannvic }
+				GER_Bormann_SAF_conclude_SAW = yes
+			}
+			else_if = {
+				limit = { has_global_flag = german_civil_war_goeringvic }
+				set_country_flag = GGR_post_saf_tree
+				GGR_Reload_main = yes
+				if = {
+					limit = { COG = { is_subject_of = USA } }
+					country_event = { id = goering.403 days = 7 }
+					country_event = { id = goering.406 days = 7 }
+				}
+				else_if = {
+					limit = { country_exists = SAF }
+					country_event = { id = goering.404 days = 7 }
+					country_event = { id = goering.407 days = 7 }
+				}
+				else = {
+					country_event = { id = goering.405 days = 7 }
+					country_event = { id = goering.408 days = 7 }
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = german_civil_war_speervic }
+				SGR_conclude_SAW = yes
+			}
+		}
+		IBR = {
+			if = {
+				limit = { has_country_flag = IBR_completed_SAF }
+				if = {
+					limit = { COG = { is_subject_of = USA } }
+					country_event = { id = iberia.314 days = 7 }
+				}
+				else_if = {
+					limit = { country_exists = SAF }
+					country_event = { id = iberia.323 days = 7 }
+				}
+				else = {
+					country_event = { id = iberia.319 days = 7 }
+				}
+				clr_country_flag = IBR_completed_SA
+			}
+			remove_opinion_modifier = {
+				target = USA
+				modifier = IBR_SAF_support
+			}
+			remove_opinion_modifier = {
+				target = SAF
+				modifier = IBR_SAF_support
+			}
+			country_event = { id = iberia.326 days = 1 }
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = algeria_war
+					}
+				}
+				remove_ideas = {
+					advisor_level_1
+					advisor_level_2
+					advisor_level_3
+					advisor_level_4
+					advisor_level_5
+				}
+			}
+		}
+		CAN = {
+			remove_ideas = {
+				advisor_level_1
+				advisor_level_2
+				advisor_level_3
+				advisor_level_4
+				advisor_level_5
+			}
+		}
+		####################
+		# REMOVE BUFFS
+		####################
+
+		SAF = {
+			remove_ideas = RK_SAF_war_AI_bonus
+		}
+		USA = {
+			remove_ideas = RK_SAF_war_AI_bonus
+		}
+		COG = {
+			remove_ideas = RK_SAF_war_AI_bonus
+		}
+		ANG = {
+			remove_ideas = RK_SAF_war_AI_bonus
+		}
+		MZB = {
+			remove_ideas = RK_SAF_war_AI_bonus
+		}
+
+
+		#REMOVE RUBBERBANDS
+		USA = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_USA
+			}
+		}
+		SAF = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_SAF
+			}
+		}
+		COG = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_COG
+			}
+		}
+		ANG = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_ANG
+			}
+		}
+		MZB = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_MZB
+			}
+		}
+		BOR = {
+			remove_dynamic_modifier = {
+			    modifier = SAW_rubberband_dynmod_BOR
+			}
+		}
+	}
+}

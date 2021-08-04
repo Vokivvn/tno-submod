@@ -1,0 +1,5552 @@
+﻿add_namespace = USA_sen_bill
+#Nixon's Civil Rights Reform
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.101
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.101"
+		check_if_bill_passed = yes
+	}
+	title = USA_sen_bill.101.t
+	desc = USA_sen_bill.101.d
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.101.a
+		log = "[GetDateText]: [Root.GetName]: registered majority"
+		
+		every_country = { news_event = USA.67 }
+		set_country_flag = USA_civil_rights_passed
+		clr_country_flag = USA_pro_civil_rights_demonstrations
+		
+		USA_increase_civil_rights = yes
+
+
+ 		swap_ideas = {
+ 			remove_idea = tno_minorities_segregation
+ 			add_idea = tno_minorities_equal_rights
+ 		}
+
+ 		custom_effect_tooltip = USA_segregation_defectors_2
+ 		custom_effect_tooltip = NPP_shift_right
+		set_variable = { USA_South_Discontent_ticker = 0 }
+		set_variable = { USA_South_Discontent_change = 1 }
+		subtract_from_variable = { USA_RD_Unity = 5 }
+		hidden_effect = {
+			country_event = {
+				id = USA.1804
+				days = 2555
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				if = { #Give a bigger bonus to Dixie states
+					limit = { check_variable = { nationality = 83 } }
+					add_to_variable = {NPP_popularity = 0.37}
+				}
+				else = {
+					add_to_variable = { NPP_FR_bonus_popularity = 0.35}
+				}
+			}
+			every_owned_state = { #Polarized against NPP Right/Far Right
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.12 }
+				subtract_from_variable = { NPP_popularity = 0.12 }
+				add_to_variable = { RD_popularity = 0.12 }
+				add_to_variable = { RD_R_bonus_popularity = 0.12 }
+
+				if = { #Give a bigger bonus to Yankee states
+					limit = { check_variable = { nationality = 82 } }
+					add_to_variable = { NPP_FR_bonus_popularity = -0.27}
+				}
+				else = {
+					add_to_variable = { NPP_FR_bonus_popularity = -0.17}
+				}
+			}
+			every_owned_state = { #The Democrats are weaker everywhere, which the Republicans make up for
+				limit = { can_have_elections_in_state = yes }
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+			}
+			every_owned_state = { #but in states where Democrats are more important, they become more prominent
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+
+			}
+			every_owned_state = { #midwestern buff
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						state = 391
+						state = 392
+						state = 374
+						state = 394
+						state = 395
+						state = 396
+						state = 393
+						state = 261
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.07 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.07 }
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African-American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.25 }
+				if = { #Give a bigger bonus to Dixie states
+					limit = { check_variable = { nationality = 83 } }
+					multiply_temp_variable = { popularity_bonus = 0.62 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					multiply_temp_variable = { popularity_bonus = 0.12 }
+					add_to_variable = { NPP_Y_bonus_popularity = popularity_bonus }
+				}
+				else = {
+					multiply_temp_variable = { popularity_bonus = 0.42 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					multiply_temp_variable = { popularity_bonus = 0.12 }
+					add_to_variable = { NPP_Y_bonus_popularity = popularity_bonus }
+				}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.17 }
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+			}
+      		372 = { #Arkansas
+				add_to_variable = { NPP_popularity = 0.42 }
+				subtract_from_variable = { RD_popularity = 0.42 }
+      		 	set_variable = { name_change_2 = senator_2 }
+      			set_variable = { senator_2 = 6 }
+			}
+      		951 = { #New Hampshire
+      		  	add_to_variable = { NPP_popularity = 0.42}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.22 }
+      		  	subtract_from_variable = { RD_popularity = 0.42 }
+      		  	set_variable = { name_change_1 = senator_2 }
+      		  	set_variable = { senator_1 = 6 }
+      		}
+			378 = { #California
+ 				add_to_variable = { NPP_popularity = 0.42}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.22 }
+ 				}
+			463 = { #Alaska
+ 				add_to_variable = { NPP_popularity = 0.35}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.22 }
+ 				}
+			381 = { #Wyoming
+ 				add_to_variable = { NPP_popularity = 0.35}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.22 }
+ 				}
+			379 = { #Nevada
+ 				add_to_variable = { NPP_popularity = 0.35}
+ 				}
+			952 = { #Maine
+ 				add_to_variable = { NPP_popularity = 0.15}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.22 }
+ 				}
+			949 = { #Massachusetts
+				add_to_variable = { RD_popularity = 0.35}
+				add_to_variable = { RD_R_bonus_popularity = 0.22 }
+			}
+			949 = { #Massachusetts
+				add_to_variable = { RD_popularity = 0.35}
+				add_to_variable = { RD_R_bonus_popularity = 0.22 }
+			}
+			380 = { #Utah
+				add_to_variable = { RD_popularity = 0.45}
+				add_to_variable = { RD_D_bonus_popularity = 0.22 }
+			}
+			377 = { #Arizona
+				add_to_variable = { RD_popularity = 0.35}
+				add_to_variable = { RD_D_bonus_popularity = 0.22 }
+			}
+			376 = { #Arizona
+				add_to_variable = { RD_popularity = 0.35}
+				add_to_variable = { RD_D_bonus_popularity = 0.22 }
+			}
+			366 = { # Florida
+				add_to_variable = { NPP_popularity = 0.12 }
+      		  	set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 6 }
+      		  	set_variable = { name_change_2 = senator_2 }
+      		  	set_variable = { senator_2 = 6 }
+			}
+			395 = { # Illinois
+				add_to_variable = { NPP_popularity = 0.35 }
+				subtract_from_variable = { RD_popularity = 0.32 }
+      			set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 1 }
+			}
+			392 = { # Iowa
+				add_to_variable = { NPP_popularity = 0.32 }
+				subtract_from_variable = { RD_popularity = 0.12 }
+      		 	set_variable = { name_change_2 = senator_2 }
+      		 	set_variable = { senator_2 = 6 }
+			}
+			371 = { # Louisiana
+				add_to_variable = { NPP_popularity = 0.32 }
+				subtract_from_variable = { RD_popularity = 0.22 }
+      		  	set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 6 }
+      		  	set_variable = { name_change_2 = senator_2 }
+      		  	set_variable = { senator_2 = 6 }
+			}
+			363 = { # North Carolina
+				add_to_variable = { NPP_popularity = 0.3 }
+				subtract_from_variable = { RD_popularity = 0.12 }
+      		  	set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 6 }
+			}
+      		375 = { # Texas
+      		  	add_to_variable = { RD_popularity = 0.22 }
+      		  	set_variable = { name_change_2 = senator_2 }
+      		  	set_variable = { senator_2 = 6 }
+      		}
+			364 = { # South Carolina
+				add_to_variable = { NPP_popularity = 0.32 }
+				subtract_from_variable = { RD_popularity = 0.32 }
+      		  	set_variable = { name_change_2 = senator_2 }
+      		  	set_variable = { senator_2 = 6 }
+			}
+			362 = { # Virginia
+				add_to_variable = { NPP_popularity = 0.15 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+      		  	set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 6 }
+			}
+      		953 = { # West Virginia
+      		  	add_to_variable = { NPP_popularity = 0.20 }
+      		  	subtract_from_variable = { RD_popularity = 0.15 }
+      		  	set_variable = { name_change_1 = senator_1 }
+      		  	set_variable = { senator_1 = 6 }
+      		}
+
+			388 = { # Montana
+              	subtract_from_variable = { NPP_popularity = 0.32 }
+				add_to_variable = { RD_popularity = 0.32 }
+
+			}
+
+      		357 = { # Conneticut
+      		 	subtract_from_variable = { NPP_popularity = 0.32 }
+				add_to_variable = { RD_popularity = 0.32 }
+      		}
+
+      		393 = { # Michigan
+      		    subtract_from_variable = { NPP_popularity = 0.32 }
+				add_to_variable = { RD_popularity = 0.32 }
+			}
+
+      		391 = { # Minnesota
+      		  	subtract_from_variable = { NPP_popularity = 0.12 }
+				add_to_variable = { RD_popularity = 0.12 }
+      		}
+			US_elections_calculate_country_vars = yes
+
+      		US_elections_calculate_country_vars = yes
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.06
+			}
+      		add_popularity = {
+      			ideology = social_conservative
+      		    popularity = -0.04
+      		}
+
+      		add_popularity = {
+      		  ideology = social_liberal
+      		  popularity = -0.015
+      		}
+
+      		add_popularity = {
+      		  ideology = social_democrat
+      		  popularity = -0.005
+      		}
+		}
+			
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+#Nixon Supports Speer
+country_event = { 
+	id = USA_sen_bill.102
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.102"
+		check_if_bill_passed = yes
+	}
+	title = { 
+		text = USA_sen_bill.102.t_passed
+		trigger = { has_country_flag  = bill_passed }
+	}
+	title = { 
+		text = USA_sen_bill.102.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	desc = {
+		text = USA_sen_bill.102.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.102.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	option = { 
+		name = USA_sen_bill.102.a
+		trigger = { has_country_flag = bill_passed }
+		ai_chance = { factor = 100}
+		set_country_flag = USA_Passed_Speer_Bill
+		USA_bill_clear = yes
+	}
+	option = { 
+		name = USA_sen_bill.102.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+#Neo-Silver Act (Can't fail)
+country_event = { 
+	id = USA_sen_bill.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.103"}
+	title = USA_sen_bill.103.t
+	desc = USA_sen_bill.103.d
+	picture = GFX_report_event_us_washington_obelisk
+	is_triggered_only = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.101"
+		check_if_bill_passed = yes
+		}
+	option = { 
+		name = USA_sen_bill.103.a
+		ai_chance = { factor = 100}
+		if = {
+			limit = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_to_variable = { GDP_growth = 0.002 }
+		}
+		USA_bill_clear = yes
+		clr_country_flag = USA_in_crisis
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.105"}
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.101"
+		check_if_bill_passed = yes
+		}
+	title = { 
+		text = USA_sen_bill.105.t_pass
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.105.t_fail
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.105_pass
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.105_fail
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	option = { 
+		name = USA_sen_bill.105.a
+		ai_chance = { factor = 100}
+		trigger = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			nominate_liberal = yes
+			custom_effect_tooltip = USA_Yes_Thurgood
+        random_list = {
+            25 = { country_event = { id = USASJ.2 days = 100 random = 8640 }}
+            35 = { country_event = { id = USASJ.2 days = 700 random = 8640 }}
+            25 = { country_event = { id = USASJ.2 days = 1000 random = 8640 }}
+            15 = { country_event = { id = USASJ.2 days = 1825 random = 42720 }}
+        }
+        recalculate_supreme_court = yes
+        hidden_effect = {
+            USA_supreme_court_consequences_lib = yes
+			USA_bill_clear = yes
+			clr_country_flag = USA_in_crisis
+			}
+	}
+	option = {
+		name = USA_sen_bill.105.b
+		ai_chance = { factor = 100}
+			trigger = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			nominate_conservative = yes
+			custom_effect_tooltip = USA_No_Thurgood
+			random_list = {
+			25 = { country_event = { id = USASJ.2 days = 100 random = 8640 }}
+            35 = { country_event = { id = USASJ.2 days = 700 random = 8640 }}
+            25 = { country_event = { id = USASJ.2 days = 1000 random = 8640 }}
+            15 = { country_event = { id = USASJ.2 days = 1825 random = 42720 }}
+			}
+        recalculate_supreme_court = yes
+        hidden_effect = {
+			USA_supreme_court_consequences_con = yes
+			USA_bill_clear = yes
+			clr_country_flag = USA_in_crisis
+			}
+		}
+	}
+
+country_event = { 
+	id = USA_sen_bill.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.5"}
+	title = USA_sen_bill.5.t
+	desc = USA_sen_bill.5.d
+	picture = GFX_report_event_generic_people
+	is_triggered_only = yes
+	immediate = { 
+		USA_fastrack_authority_setup= yes
+	}
+	option = { 
+		name = USA_sen_bill.5.a
+		
+		ai_chance = { factor = 100}
+	}
+}
+country_event = { 
+	id = USA_sen_bill.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.7"}
+	title = USA_sen_bill.7.t
+	desc = USA_sen_bill.7.d
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	immediate = { 
+		USA_RFK_affordable_housing_act = yes
+	}
+	option = { 
+		name = USA_sen_bill.7.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.6"}
+	title = USA_sen_bill.6.t
+	desc = USA_sen_bill.6.d
+	picture = GFX_report_event_us_congress3
+	is_triggered_only = yes
+	immediate = { 
+		USA_RFK_student_aid_bill = yes
+	}
+	option = { 
+		name = USA_sen_bill.6.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.8"}
+	title = USA_sen_bill.8.t
+	desc = USA_sen_bill.8.d
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	immediate = { 
+		USA_RFK_economic_opportunity = yes
+	}
+	option = { 
+		name = USA_sen_bill.8.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.9"}
+	title = USA_sen_bill.9.t
+	desc = USA_sen_bill.9.d
+	picture = GFX_report_event_us_presidential_podium
+	is_triggered_only = yes
+	immediate = { 
+		USA_RFK_economic_opportunity = yes
+	}
+	option = { 
+		name = USA_sen_bill.9.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.501
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.501"
+		check_if_bill_passed = yes
+	}
+	title = { 
+		text = USA_sen_bill.501.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.501.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.501.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.501.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_iberia_meeting_table
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = WAL_senator_lied
+			}
+			hidden_effect = {
+				country_event = { id = wallace.535 days = 2 }
+			}	
+		}
+		check_if_bill_passed = yes
+	}
+	
+	option = { 
+		name = USA_sen_bill.501.a
+		trigger = {has_country_flag = bill_passed }
+		if = {
+			limit = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+	
+			if = {
+				limit = {NOT = {has_idea = tno_minorities_segregation}}
+				tno_minorities_worsen = yes
+			}
+			custom_effect_tooltip = worsen_academic_base_big
+			add_to_variable = { academic_base_monthly_change = -1 }
+			subtract_from_variable = { USA_NPP_Unity = 10 }
+			custom_effect_tooltip = USA_wal64_the_end_times
+			add_ideas = USA_WAL64_the_resegregation_of_schools
+			add_to_variable = { WAL_SEGREGATION = 10} #this should be enough pop changes for a while
+			wallace_update_var_display = yes
+		}
+		USA_bill_clear = yes
+	}
+	option = {
+		name = USA_sen_bill.501.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = {NOT = { has_country_flag = bill_passed} }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = USA_wal64_fail_for_segregation_forever
+			USA_WAL_NPP_radicalizes_Y_2 = yes
+			subtract_from_variable = { USA_NPP_Unity = 4 }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = {
+									nationality = 83 #Dixie
+								}
+								check_variable = {
+									nationality = 84 #African American
+								}
+								check_variable = {
+									nationality = 86 #Southwestern
+								}
+							}
+						}
+					}
+					add_to_variable = { RD_popularity = 0.1 }
+					add_to_variable = { RD_R_bonus_popularity = 0.1 }
+					US_underdog_RD_5_5 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+							OR = {
+								check_variable = {
+									nationality = 83 #Dixie
+								}
+								check_variable = {
+									nationality = 84 #African American
+								}
+								check_variable = {
+									nationality = 86 #Southwestern
+								}
+								AND = {
+									check_variable = { NPP_FR_bonus_popularity > 0.1 }
+									check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity }
+									NOT = { check_variable = { nationality = 82 } } #Yankee
+								}
+							}
+						}
+					add_to_variable = { NPP_popularity = 0.1 }
+					add_to_variable = { NPP_Y_bonus_popularity = 0.2 }
+				}
+			}	
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = {
+							nationality = 83 #Dixie
+						}
+						check_variable = {
+							nationality = 84 #African American
+						}
+						check_variable = {
+							nationality = 86 #Southwestern
+						}
+					}
+				}
+				add_to_variable = { RD_popularity = 0.1 }
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.2 }
+				US_underdog_RD_5_5 = yes
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.502
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.502"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress2
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100}
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registerd majority"
+			if = {
+				limit = {has_country_flag = C_NPP_negotiated}
+				set_country_flag = union_protections_required
+			}
+			if = {
+				limit = {has_country_flag = RD_R_negotiated}
+				set_country_flag = subsidies_for_the_less_fortunate_required
+			}
+			set_country_flag = fastrack_authorized
+		}
+		if = {
+			limit = {
+				RAJ = {
+					has_country_flag = warily_joining_perth_block
+				}
+			}
+			set_variable = {RAJ_perth_opinion = -1}
+			else_if = {
+				limit = {
+					RAJ = {
+						has_country_flag = joining_perth_block
+					}
+				}
+				set_variable = {RAJ_perth_opinion = 2}
+			}
+		}
+		set_variable = {OCE_perth_opinion = 5}
+		set_variable = {CA_perth_opinion = 5} #they don't really have a choice
+		USA_bill_clear = yes
+	}
+	
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.505
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.505"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress1
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				NOT = {has_country_flag = fillibuster_defeat}
+			}
+			# USA starts losing jobs to india if it passes, having union protections lessens it
+			#all countries go to having the free trade policy
+			#USA gets a GDP boost
+			#everyone gets their subsidies if they earned them
+			if = {
+				limit = {
+					OR = {
+						RAJ = {
+							has_country_flag = joining_perth_block
+							has_country_flag = warily_joining_perth_block
+						}
+					}
+				}
+				add_popularity = {
+					ideology = authoritarian_democrat
+					popularity = -0.005
+				}
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.005
+				}
+				add_to_variable = {NPP_popularity = -0.005}
+				add_to_variable = {RD_popularity = 0.005}
+				add_to_variable = {GDP_growth = 0.005} #india is a huge boon to this entire conference
+				if = {
+					limit = {has_country_flag = RAJ_subsidies_confirmed}
+					if = { 
+						limit = {
+							has_global_flag = RAJ_subsidies_for_the_poor
+						}
+					}
+					RAJ = {
+						tno_unemployment_improve = yes
+						add_ideas = RAJ_perth_subsidies_poor
+					}
+					else = {
+						RAJ = {
+							add_to_variable = {GDP_growth = 0.006}
+						}
+					}
+				}
+				if = {
+					limit = {has_country_flag = union_protections_required}
+					TNO_worsen_poverty_high = yes #coded with a script
+				}
+				else = {
+					TNO_worsen_poverty_high = yes #coded with a script
+				}
+
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = RAJ
+				}
+				GUA = {
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+				}
+				HON = {
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+				}
+				NZL = {
+					tno_trade_laws_clear = yes
+					add_ideas = tno_trade_laws_free_trade
+					add_to_variable = {GDP_growth = 0.005}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+					if = {
+						limit = {USA = {has_country_flag = union_protections_required}}
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+					else = {
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+				}
+				AST = {
+					add_to_variable = {GDP_growth = 0.005}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+					if = {
+						limit = {USA = {has_country_flag = union_protections_required}}
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+					else = {
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+				}
+				CAN = {
+					add_to_variable = {GDP_growth = 0.005}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+					if = {
+						limit = {USA = {has_country_flag = union_protections_required}}
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+					else = {
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+				}
+				NIC = {
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = RAJ
+					}
+				}
+				RAJ = 
+				{
+					tno_trade_laws_clear = yes
+					add_ideas = tno_trade_laws_free_trade
+					if = {
+						limit = {USA = {has_country_flag = union_protections_required}}
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+					else = {
+			TNO_improve_poverty_high = yes #coded with a script
+					}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = USA
+					}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = GUA
+					}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = HON
+					}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = NIC
+					}				
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = AST
+					}	
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = NZL
+					}
+					add_opinion_modifier = {
+						modifier = USA_free_trade_agreement
+						target = CAN
+					}
+				}
+			}
+			set_global_flag = perth_block_active
+			add_to_variable = {GDP_growth = 0.0025}
+			tno_trade_laws_clear = yes
+			add_ideas = tno_trade_laws_free_trade
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = GUA
+			}
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = HON
+			}
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = NIC
+			}				
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = AST
+			}
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = NZL
+			}
+			add_opinion_modifier = {
+				modifier = USA_free_trade_agreement
+				target = CAN
+			}
+			HON = {
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = GUA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NIC
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = AST
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NZL
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = CAN
+				}
+			}
+			CAN = {
+				add_to_variable = {GDP_growth = 0.0025}
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = GUA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NIC
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = AST
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NZL
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = HON
+				}
+			}
+			GUA = {
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = CAN
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NIC
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = AST
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NZL
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = HON
+				}
+			}
+			AST = {
+				add_to_variable = {GDP_growth = 0.0025}
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = CAN
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NIC
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = GUA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NZL
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = HON
+				}
+			}
+			NZL = {
+				add_to_variable = {GDP_growth = 0.0025}
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = CAN
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NIC
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = GUA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = AST
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = HON
+				}
+			}
+			NIC = {
+				tno_trade_laws_clear = yes
+				add_ideas = tno_trade_laws_free_trade
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = CAN
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = USA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = NZL
+				}				
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = GUA
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = AST
+				}
+				add_opinion_modifier = {
+					modifier = USA_free_trade_agreement
+					target = HON
+				}
+			}				
+			if = {
+				limit = {
+					has_country_flag = CA_subsidies_confirmed
+					NOT = {has_global_flag = CA_subsidies_for_the_poor}
+				}
+				GUA = {
+					add_ideas = WAL64_bananas_for_bananas
+				}
+				HON = {
+					add_ideas = WAL64_bananas_for_bananas
+				}
+				NIC = {
+					add_ideas = WAL64_bananas_for_bananas
+				}
+			}	
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+		}
+		else = {
+			set_global_flag = perth_block_failed
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.01
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+country_event = { #RFK Student Aid
+	id = USA_sen_bill.506
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.506"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	
+	option = { 
+		
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				NOT = { has_country_flag = RD_R_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_academic_base_med = yes #coded with a script
+			add_to_variable = { RFK_Assassination_Level = 2 } # STOP HELPING POOR PEOPLE
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.05 } #very, very liked
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				has_country_flag = RD_R_negotiated 
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_academic_base_med = yes #coded with a script
+			add_to_variable = { RFK_Assassination_Level = 1 } # STOP HELPING POOR PEOPLE
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.03 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = bill_passed }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = -0.04 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { #RFK AFHA
+	id = USA_sen_bill.507
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.507"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_flag
+	is_triggered_only = yes
+	
+	option = { 
+		
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_poverty_med = yes
+			add_to_variable = { RFK_Assassination_Level = 2 }
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			add_to_variable = { misc_costs = 100 }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.02 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = -0.03 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { #RFK Eco. Opportunity 
+	id = USA_sen_bill.508
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.508"
+		check_if_bill_passed = yes
+		}
+	title = { 
+		text = USA_sen_bill.508.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.508.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.508.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.508.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_us_congress2
+	is_triggered_only = yes
+	
+	option = { 
+			trigger = {has_country_flag = bill_passed}
+			name = USA_sen_bill.508.a
+			ai_chance = { factor = 100}
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			add_to_variable = { misc_costs = 120 }
+			USA_bill_clear = yes
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_poverty_low = yes
+			add_to_variable = { RFK_Assassination_Level = 2 }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.06 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		option = {
+			trigger = { NOT = { has_country_flag = bill_passed } }
+			name = USA_sen_bill.508.b
+			ai_chance = { factor = 100}
+			USA_bill_clear = yes
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = -0.03 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		
+	}
+
+country_event = { #RFK Nat. Relations Labor Act
+	id = USA_sen_bill.509
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.509"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = {
+		name = [GetBillStatusOption]	
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_industrial_expertise_med = yes
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			add_to_variable = { misc_costs = 125 }
+			add_to_variable = { RFK_Assassination_Level = 2 } # Well, except the hawks
+			#add_ideas = RFK_64_national_relations_act_idea		# Idea does not exist
+			if = {
+				limit = { check_variable = { rfk_min_wage_or_pension = 1 } }
+				tno_minimum_wage_improve = yes
+			}
+			else = {
+				tno_pensions_improve = yes
+			}
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.07 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = -0.02 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { #negotiate with the RD_Rs
+	id = USA_sen_bill.1001
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1001"
+		USA_get_potential_supporters_RD_R = yes
+		set_variable = {neg_cost = RD_R_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1001.t
+	desc = USA_sen_bill.1001.desc
+	picture = GFX_report_event_usa_supreme_court
+	is_triggered_only = yes
+	immediate = {
+	clr_country_flag = RD_R_discussing
+	}
+	option = { #RD_R flip event
+		name = USA_sen_bill.1001.a
+		log = "[GetDateText]: [Root.GetName]: rdr support = [?USA_RD_R_bill_support]"
+		ai_chance = { factor = 75}
+		trigger = {
+			USA = { has_political_power > RD_R_flip_cost }
+			NOT = {
+				check_variable = {new_RD_R_support = 0}
+			}
+			NOT = { check_variable = { bill_id = 419 } } #Special case to ensure Yockey is told to fuck off
+		}
+		USA_apply_new_support_RD_R = yes
+		clr_country_flag = RD_R_discussing # you can only do this once per bill
+		add_political_power = neg_cost
+		set_country_flag = RD_R_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+	}
+	option = { #No
+		name = USA_sen_bill.1001.b
+		ai_chance = { factor = 25 }
+		clr_country_flag = RD_R_discussing # you can only do this once per bill
+		clear_variable = new_RD_R_support
+		clear_variable = neg_cost
+	}
+	
+}
+country_event = { #negotiate with the RD_Ds
+	id = USA_sen_bill.1002
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1002"
+		USA_get_potential_supporters_RD_D = yes
+		set_variable = {neg_cost = RD_D_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1002.t
+	desc = USA_sen_bill.1002.desc
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	immediate = {
+	clr_country_flag = RD_D_discussing
+	}
+	option = { #RD_D flip event
+		name = USA_sen_bill.1002.a
+		ai_chance = { factor = 75}
+		trigger = {
+			has_political_power > RD_D_flip_cost
+			NOT = {
+				check_variable = {new_RD_D_support = 0}
+			}
+			NOT = { check_variable = { bill_id = 419 } } #Special case to ensure Yockey is told to fuck off
+		}
+		USA_apply_new_support_RD_D = yes
+		clr_country_flag = RD_D_discussing # you can only do this once per bill
+		
+		add_political_power = neg_cost
+		set_country_flag = RD_D_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+	}
+	option = { #No
+		name = USA_sen_bill.1002.b
+		ai_chance = {
+			factor = 25
+		}
+		clr_country_flag = RD_D_discussing # you can only do this once per bill
+		clear_variable = new_RD_D_support
+		clear_variable = neg_cost	
+	}
+
+}
+country_event = { #negotiate with the L_NPP
+	id = USA_sen_bill.1003
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1003"
+		USA_get_potential_supporters_L_NPP = yes
+		set_variable = {neg_cost = L_NPP_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1003.t
+	desc = USA_sen_bill.1003.desc
+	picture = GFX_report_event_us_flag
+	immediate = {
+	clr_country_flag = L_NPP_discussing
+	}
+	is_triggered_only = yes
+	option = { #C_NPP flip event
+		name = USA_sen_bill.1003.a
+		ai_chance = {
+			factor = 75
+		}
+		trigger = {
+			has_political_power > L_NPP_flip_cost
+			NOT = {
+				check_variable = {new_L_NPP_support = 0}
+			}
+			NOT = { check_variable = { bill_id = 419 } } #Special case to ensure Yockey is told to fuck off
+		}
+		USA_apply_new_support_L_NPP = yes
+		add_political_power = neg_cost
+		clr_country_flag = L_NPP_discussing
+		set_country_flag = L_NPP_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+	}
+	option = { #No
+		name = USA_sen_bill.1003.b
+		ai_chance = {
+			factor = 25
+		}
+		clr_country_flag = L_NPP_discussing
+		clear_variable = new_L_NPP_support
+		clear_variable = neg_cost
+	}
+
+}
+country_event = { #negotiate with the C_NPP
+	id = USA_sen_bill.1004
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1004"
+		USA_get_potential_supporters_C_NPP = yes
+		set_variable = {neg_cost = C_NPP_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1004.t
+	desc = USA_sen_bill.1004.desc
+	picture = GFX_report_event_us_presidential_podium
+	immediate = {
+	clr_country_flag = C_NPP_discussing
+	}
+	is_triggered_only = yes
+	option = { #C_NPP flip event
+		name = USA_sen_bill.1004.a
+		ai_chance = {
+			factor = 75
+		}
+		trigger = {
+			has_political_power > C_NPP_flip_cost
+			NOT = {
+				check_variable = {new_C_NPP_support = 0}
+			}
+			NOT = { check_variable = { bill_id = 419 } } #Special case to ensure Yockey is told to fuck off
+		}
+		USA_apply_new_support_C_NPP = yes
+		add_political_power = neg_cost
+		clr_country_flag = C_NPP_discussing
+		set_country_flag = C_NPP_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+		clr_country_flag = Bill.3_NPP_C
+	}
+	option = { #No
+		name = USA_sen_bill.1004.b
+		ai_chance = {
+			factor = 25
+		}
+		clr_country_flag = C_NPP_discussing
+		clear_variable = new_C_NPP_support
+		clear_variable = neg_cost
+		
+	}
+}
+country_event = { #negotiate with the Y_NPP
+	id = USA_sen_bill.1005
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1005"
+		USA_get_potential_supporters_Y_NPP = yes
+		set_variable = {neg_cost = Y_NPP_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1005.t
+	desc = USA_sen_bill.1005.desc
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	immediate = {
+	clr_country_flag = Y_NPP_discussing
+	}
+	option = { #Y_NPP flip event
+		name = USA_sen_bill.1005.a
+		ai_chance = {
+			factor = 75
+		}
+		trigger = {
+			has_political_power > Y_NPP_flip_cost
+			NOT = {
+				check_variable = {new_Y_NPP_support = 0}
+			}
+		}
+		USA_apply_new_support_Y_NPP = yes
+		clr_country_flag = Y_NPP_discussing
+		add_political_power = neg_cost
+		set_country_flag = Y_NPP_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+	}
+	option = { #No
+		name = USA_sen_bill.1005.b
+		ai_chance = {
+			factor = 25
+		}
+		clr_country_flag = Y_NPP_discussing
+		clear_variable = new_Y_NPP_support
+		clear_variable = neg_cost
+	}
+}
+country_event = { #negotiate with the FR_NPP
+	id = USA_sen_bill.1006
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1006"
+		USA_get_potential_supporters_FR_NPP = yes
+		set_variable = {neg_cost = FR_NPP_flip_cost}
+		multiply_variable = {neg_cost = -1}
+	}
+	title = USA_sen_bill.1006.t
+	desc = USA_sen_bill.1006.desc
+	picture = GFX_report_event_iberia_meeting_table
+	
+	immediate = {
+	clr_country_flag = FR_NPP_discussing
+	}
+	
+	is_triggered_only = yes
+	option = { #FR_NPP flip event
+		name = USA_sen_bill.1006.a
+		ai_chance = {
+			factor = 75
+		}
+		trigger = {
+			has_political_power > FR_NPP_flip_cost
+			NOT = {
+				check_variable = {new_FR_NPP_support = 0}
+			}
+		}
+		USA_apply_new_support_FR_NPP = yes
+		clr_country_flag = FR_NPP_discussing
+		add_political_power = neg_cost
+		set_country_flag = FR_NPP_negotiated
+		clear_variable = rand_support
+		clear_variable = neg_cost
+	}
+	option = { #No
+		name = USA_sen_bill.1006.b
+		ai_chance = {
+			factor = 25
+		}
+		clr_country_flag = FR_NPP_discussing
+		clear_variable = new_FR_NPP_support
+		clear_variable = neg_cost
+	}
+}
+country_event = { #Intimiadation attempt failed
+	id = USA_sen_bill.1007
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1007"
+	}
+	title = USA_sen_bill.1007.t
+	desc = USA_sen_bill.1007.desc
+	picture = GFX_report_event_iberia_big_meeting
+	
+	is_triggered_only = yes
+	option = { #You did it champ
+		name = USA_sen_bill.1007.a
+		ai_chance = {
+			factor = 100
+		}
+		add_political_power = -10
+		add_stability = -0.01
+		if = {
+			limit = { has_country_flag = RD_R_intimidation_attempt }
+			clr_country_flag = RD_R_intimidation_attempt
+			clr_country_flag = RD_R_discussing
+			set_country_flag = RD_R_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = RD_D_intimidation_attempt }
+			clr_country_flag = RD_D_intimidation_attempt
+			clr_country_flag = RD_D_discussing
+			set_country_flag = RD_D_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = L_NPP_intimidation_attempt }
+			clr_country_flag = L_NPP_intimidation_attempt
+			clr_country_flag = L_NPP_discussing
+			set_country_flag = L_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = C_NPP_intimidation_attempt }
+			clr_country_flag = C_NPP_intimidation_attempt
+			clr_country_flag = C_NPP_discussing
+			set_country_flag = C_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = Y_NPP_intimidation_attempt }
+			clr_country_flag = Y_NPP_intimidation_attempt
+			clr_country_flag = Y_NPP_discussing
+			set_country_flag = Y_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = FR_NPP_intimidation_attempt }
+			clr_country_flag = FR_NPP_intimidation_attempt
+			clr_country_flag = FR_NPP_discussing
+			set_country_flag = FR_NPP_negotiated
+		}
+		clear_variable = rand_support
+	}
+}
+country_event = { #Intimiadation attempt succeded
+	id = USA_sen_bill.1008
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1008"
+		USA_get_potential_supporters_FR_NPP = yes
+	}
+	title = USA_sen_bill.1008.t
+	desc = USA_sen_bill.1008.desc
+	picture = GFX_report_event_us_washington_obelisk
+	
+	is_triggered_only = yes
+	option = { #You did it champ
+		name = USA_sen_bill.1008.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = { has_country_flag = RD_R_intimidation_attempt }
+			USA_get_potential_supporters_RD_R = yes
+			USA_apply_new_support_RD_R = yes
+			clr_country_flag = RD_R_discussing
+			set_country_flag = RD_R_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = RD_D_intimidation_attempt }
+			USA_get_potential_supporters_RD_D = yes
+			USA_apply_new_support_RD_D = yes
+			clr_country_flag = RD_D_discussing
+			set_country_flag = RD_D_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = L_NPP_intimidation_attempt }
+			USA_get_potential_supporters_L_NPP = yes
+			USA_apply_new_support_L_NPP = yes
+			clr_country_flag = L_NPP_discussing
+			set_country_flag = L_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = C_NPP_intimidation_attempt }
+			USA_get_potential_supporters_C_NPP = yes
+			USA_apply_new_support_C_NPP = yes
+			clr_country_flag = C_NPP_discussing
+			set_country_flag = C_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = Y_NPP_intimidation_attempt }
+			USA_get_potential_supporters_Y_NPP = yes
+			USA_apply_new_support_Y_NPP = yes
+			clr_country_flag = Y_NPP_discussing
+			set_country_flag = Y_NPP_negotiated
+		}
+		else_if = {
+			limit = { has_country_flag = FR_NPP_intimidation_attempt }
+			USA_get_potential_supporters_FR_NPP = yes
+			USA_apply_new_support_FR_NPP = yes
+			clr_country_flag = FR_NPP_discussing
+			set_country_flag = FR_NPP_negotiated
+		}
+		clear_variable = rand_support
+	}
+}
+
+###BENNETT BILLS###
+country_event = { 
+	id = USA_sen_bill.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.3"}
+	title = USA_sen_bill.3.t
+	desc = USA_sen_bill.3.d
+	picture = GFX_report_event_generic_people
+	is_triggered_only = yes
+	immediate = { 
+		hidden_effect = {
+			USA_the_silver_act_setup = yes
+		}
+	}
+	option = {
+		name = USA_sen_bill.3.a
+		hidden_effect = {
+			country_event = { id = USA_sen_bill.503 days = 30 }
+		}
+		
+		#WFB_FR_SA_Support
+		hidden_effect = { 
+			divide_variable = { WFB_FR_SA_Support = 100 }
+			multiply_variable = { WFB_FR_SA_Support = NPP_FR_senators }
+			add_to_variable = {NPP_FR_supporting_senators = WFB_FR_SA_Support}
+			clamp_variable = {
+				var = NPP_FR_supporting_senators
+				min = 0
+				max = NPP_FR_senators
+			}
+			add_to_variable = { supporting_senators = NPP_FR_supporting_senators }
+		}
+
+		#WFB_C_SA_Support
+		hidden_effect = {
+			divide_variable = { WFB_C_SA_Support = 100 }
+			multiply_variable = { WFB_C_SA_Support = NPP_C_senators }
+			add_to_variable = { NPP_C_supporting_senators = WFB_C_SA_Support }
+			clamp_variable = {
+				var = NPP_C_supporting_senators
+				min = 0
+				max = NPP_C_senators
+					}
+			add_to_variable = { supporting_senators = NPP_C_supporting_senators }
+		}
+			
+		#WFB_R_SA_Support
+		hidden_effect = {
+			divide_variable = { WFB_R_SA_Support = 100 }
+			multiply_variable = { WFB_R_SA_Support = RD_R_senators }
+			add_to_variable = {RD_R_supporting_senators = WFB_R_SA_Support}
+			clamp_variable = {
+				var = RD_R_supporting_senators
+				min = 0
+				max = RD_R_senators
+			}
+			add_to_variable = { supporting_senators = RD_R_supporting_senators }
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.503
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.503"
+		check_if_bill_passed = yes
+	}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_iberia_big_meeting
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registerd majority"
+			country_event = {
+				id = WFB.54
+				days = 1
+			}
+			hidden_effect = {
+				add_popularity = {
+					ideology = social_conservative
+					popularity = 0.03
+				}
+				add_popularity = {
+					ideology = social_democrat
+					popularity = 0.02
+				}
+				every_owned_state = {
+					limit = {
+						OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { NPP_C_bonus_popularity = 0.1 }
+					add_to_variable = { NPP_popularity = 0.1 }
+					subtract_from_variable = { RD_R_bonus_popularity = 0.1 }
+					subtract_from_variable = { RD_popularity = 0.1 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				has_country_flag = C_NPP_negotiated 
+			}
+			custom_effect_tooltip = USA_NPP_C_popularity_grows_low
+			hidden_effect = {
+			add_to_variable = { national_debt = 1000 } #in millions
+				add_popularity = {
+					ideology = social_democrat
+					popularity = 0.02
+				}
+				every_owned_state = {
+					limit = {
+						OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { NPP_C_bonus_popularity = 0.1 }
+					add_to_variable = { NPP_popularity = 0.1 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				has_country_flag = FR_NPP_negotiated
+			}
+			custom_effect_tooltip = USA_NPP_FR_popularity_grows_low
+			hidden_effect = {
+				add_popularity = {
+					ideology = social_conservative
+					popularity = -0.03
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					add_to_variable = { NPP_popularity = 0.1 }
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			custom_effect_tooltip = USA_RD_popularity_decrease
+			hidden_effect = {
+				add_popularity = {
+					ideology = social_conservative
+					popularity = -0.03
+				}
+				every_owned_state = {
+					limit = { can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { NPP_C_bonus_popularity = 0.1 } 
+					add_to_variable = { RD_R_bonus_popularity = 0.12 } 
+					subtract_from_variable = { RD_D_bonus_popularity = 0.08 }	
+					add_to_variable = { NPP_popularity = 0.12 }
+				}
+				every_owned_state = {
+					limit = { 
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 84 } #African American
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.12 } 
+					subtract_from_variable = { RD_D_bonus_popularity = 0.1 } 
+					add_to_variable = { NPP_popularity = 0.12 }
+				}
+			}
+		}
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100 }
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { #WFBased's Civil Rights Act
+	id = USA_sen_bill.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.20"}
+	title = USA_sen_bill.20.t
+	desc = USA_sen_bill.20.d
+	picture = GFX_report_event_usa_supreme_court
+	is_triggered_only = yes
+	hidden = yes
+	immediate = { 
+		USA_WFB_voting_act_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.20.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1020
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1020"
+		check_if_bill_passed = yes
+	}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		
+		if = {
+			limit = { has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registerd majority"
+			custom_effect_tooltip = USA_add_RD_popularity_med
+			custom_effect_tooltip =  USA_subtract_RD_unity
+			subtract_from_variable = { USA_RD_Unity = 1 }
+			USA_increase_civil_rights = yes
+			hidden_effect = {
+				set_country_flag = USA_voting_rights_act
+				every_owned_state = {
+					limit = {
+						check_variable = { nationality = 83 } #Dixie
+					}
+					add_to_variable = { NPP_popularity = 0.2 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				}
+				
+				every_owned_state = {
+					limit = {
+						NOT = { check_variable = { nationality = 83 } } #Dixie
+					}
+					add_to_variable = { RD_popularity = 0.05 }
+					add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				}
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = RD_R_negotiated }
+			custom_effect_tooltip = USA_add_NPP_popularity_high_south
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+						}
+					}
+					subtract_from_variable = { RD_popularity = 0.16 }
+					add_to_variable = { NPP_popularity = 0.1 }
+				}
+			}
+		}
+			
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { nationality = 84 } #The few African-American that can vote feel betrayed
+					}
+					subtract_from_variable = { RD_popularity = 0.05 }
+					add_to_variable = { NPP_popularity = 0.05 }
+				}
+				
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { nationality = 82 } #Yankees abhor this lack of liberty
+					}
+					subtract_from_variable = { RD_popularity = 0.05 }
+					add_to_variable = { NPP_popularity = 0.05 }
+				}
+			}
+		}
+		
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100 }
+		USA_bill_clear = yes
+	}
+}
+
+### MCS Bills ###
+
+country_event = { #MCS' mericare
+	id = USA_sen_bill.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.10"}
+	title = USA_sen_bill.10.t
+	desc = USA_sen_bill.10.d
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	immediate = { 
+		USA_mcs_americare_bill_setup = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.10.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.510
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.510"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.510.t
+	desc = USA_sen_bill.510.d
+	picture = GFX_report_event_iberia_meeting_table
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.510.a
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			tno_pensions_improve = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+country_event = { #commision the carriers
+	id = USA_sen_bill.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.11"}
+	title = USA_sen_bill.11.t
+	desc = USA_sen_bill.11.d
+	picture = GFX_report_event_us_congress2
+	is_triggered_only = yes
+	immediate = { 
+		commission_the_carriers_bill_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.11.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.511
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.511"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.511.t
+	desc = USA_sen_bill.511.d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.511.a
+		ai_chance = { factor = 100 }
+		
+		if = {
+			limit = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			country_event = {
+				id = chase.mil.1
+				days = 1095
+			}
+			country_event = {
+				id = chase.mil.2
+				days = 1461
+			}
+			country_event = {
+				id = chase.mil.3
+				days = 1826
+			}
+			USA_bill_clear = yes
+		}
+	}
+}
+country_event = { #minutemen missles
+	id = USA_sen_bill.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.12"}
+	title = USA_sen_bill.12.t
+	desc = USA_sen_bill.12.d
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	immediate = { 
+		upgrade_minutemen_bill_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.12.a
+		ai_chance = { factor = 100}
+	}
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.512
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.512"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.512.t
+	desc = USA_sen_bill.512.d
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.512.a
+		ai_chance = { factor = 100 }
+		
+		if = {
+			limit = { has_country_flag = bill_passed }
+			USA = {
+				add_ideas = USA_minutemen
+				add_to_variable = {national_debt = 90}
+			}
+			USA_bill_clear = yes
+		}
+	}
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.514
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.514"
+		check_if_bill_passed = yes
+		}
+	title = { 
+		text = USA_sen_bill.514.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.514.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.514.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.514.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_us_washington_obelisk
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.514.a
+		ai_chance = { factor = 100}
+		
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				NOT = { has_country_flag = RFK_expanded_SSA }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = econ_misc_expenses_add_small_increase
+			tno_pensions_improve = yes
+			TNO_improve_poverty_low = yes
+			USA_decrease_depression = yes
+			add_to_variable = { misc_costs = 100 }
+			custom_effect_tooltip = USA_NPP_popularity_grows
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.03 } #very, very liked
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = RFK_expanded_SSA
+				has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			tno_pensions_improve = yes
+			TNO_improve_poverty_med = yes
+			USA_decrease_depression = yes
+			add_to_variable = { misc_costs = 200 }
+			custom_effect_tooltip = USA_NPP_popularity_grows
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.05 } #very, very liked
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = USA_NPP_popularity_decrease_low
+			custom_effect_tooltip = USA_NPP_L_popularity_grows_low
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.04 } #very, very liked
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_L_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_L_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.515
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.515"
+		check_if_bill_passed = yes
+	}
+	title = { 
+		text = USA_sen_bill.515.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.515.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.515.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.515.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.515.a
+		ai_chance = { factor = 100}
+		
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			
+			swap_ideas = {
+				remove_idea = USA_b4_healthcare_act
+				add_idea = USA_rfk_national_healthcare_system
+			}
+	
+			
+			hidden_effect = {
+				tno_health_care_improve = yes
+				tno_health_care_improve = yes
+				tno_health_care_improve = yes
+				tno_health_care_improve = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.05 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = RFK_healthcare_fail.tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					set_temp_variable = { popularity_bonus = 0.03 }
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_L_bonus_popularity = popularity_bonus }
+						add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_popularity = popularity_bonus }
+					}
+					else = {
+						add_to_variable = { NPP_L_bonus_popularity = popularity_bonus }
+						add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+						subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+				}
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+
+##############
+#Harry Bills ###########
+#############
+#Healthcare
+#####################
+country_event = { 
+	id = USA_sen_bill.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.14"}
+	title = USA_sen_bill.14.t
+	desc = USA_sen_bill.14.d
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	immediate = { 
+		#USA_Harry_Healthcare_Act_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.14.a
+		ai_chance = { factor = 100}
+	}
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.15
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.15"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.15.t
+	desc = USA_sen_bill.15.d
+	picture = GFX_report_event_usa_supreme_court
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.15.a
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			tno_health_care_improve = yes
+		}
+		
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.09 }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+
+#Goldwater Bills 30-39#
+country_event = { 
+	id = USA_sen_bill.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.30"}
+	title = USA_sen_bill.30.t
+	desc = USA_sen_bill.30.d
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	immediate = { 
+		USA_Goldwater_balanced_budget_setup = yes
+		if = {
+		limit = {
+		has_country_flag = GLD68_went_wit_regan
+		}
+		clr_country_flag = RD_R_discussing
+		}
+	}
+	option = { 
+		name = USA_sen_bill.30.a
+		country_event = {
+		id = USA_sen_bill.1030
+		days = 30
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1030
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.15"
+		check_if_bill_passed = yes
+	}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress2
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		ai_chance = { factor = 100}
+		if = {
+			limit = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = GLD68_the_new_budget
+			add_ideas = GLD68_new_budget
+			hidden_effect = {
+				set_temp_variable = { gdp_temp = GDP }
+				multiply_temp_variable = { gdp_temp = 0.07 }
+				subtract_from_variable = { misc_costs = gdp_temp }
+				USA_GLD_Reganomics_Popularity_Effect = yes
+			}
+		}
+	
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_timed_idea = {
+				idea = GLD68_political_defeat
+				days = 35
+			}
+			hidden_effect = {
+			subtract_from_variable = { USA_RD_Unity = 3 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					subtract_from_variable = { RD_popularity = 0.03 }
+					add_to_variable = { NPP_popularity = 0.04 }
+				}
+			}
+		}
+		if = {
+				limit = {has_country_flag = RD_R_negotiated}
+				custom_effect_tooltip = USA_add_RD_unity
+					hidden_effect = {
+					add_to_variable = { USA_RD_Unity = 1 }
+					hidden_effect = { #Strengthen RD popularity in thhe North
+					add_to_variable = { misc_costs = 10 }
+					every_owned_state = {
+					limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.1 }
+					add_to_variable = { RD_popularity = 0.1 }
+					subtract_from_variable = { NPP_popularity = 0.06 }
+				}
+					}
+			}
+		}
+		if = {
+			limit = {has_country_flag = NPP_FR_negotiated}
+			custom_effect_tooltip = GLD68_agricultural_reform
+			TNO_improve_academic_base_low = yes
+			hidden_effect = {	
+			add_to_variable = { misc_costs = 10 }	
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.31"}
+	title = USA_sen_bill.31.t
+	desc = USA_sen_bill.31.d
+	picture = GFX_report_event_us_flag
+	is_triggered_only = yes
+	immediate = { 
+		USA_Goldwater_cap_the_debt_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.31.a
+		country_event = {
+		id = USA_sen_bill.1031
+		days = 30
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1031
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1031"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_washington_obelisk
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		subtract_from_variable = { national_debt = 40000 } #in millions
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_D_popularity = 0.1 }
+				}
+			}
+		}
+	
+		 if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			add_timed_idea = {
+			idea = GLD68_political_defeat
+			days = 35
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = USA_subtract_RD_unity
+			subtract_from_variable = { USA_RD_Unity = 1 }
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.32"}
+	title = USA_sen_bill.32.t
+	desc = USA_sen_bill.32.d
+	picture = GFX_report_event_iberia_meeting_table
+	is_triggered_only = yes
+	immediate = { 
+		USA_Goldwater_tariff_free_OFN_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.32.a
+		country_event = {
+		id = USA_sen_bill.1032
+		days = 30
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1032
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1032"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress3
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		add_ideas = GLD68_crab_crab_tarrifs_are_gone
+		CAN = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		GUY = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		WIN = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		AST = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		ICE = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		NZL = { add_ideas = GLD68_crab_crab_tarrifs_are_gone }
+		}
+	
+		 if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_timed_idea = {
+			idea = GLD68_political_defeat
+			days = 35
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.33"}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	immediate = { 
+		USA_Goldwater_the_gold_standard_setup = yes
+	}
+	option = { 
+		name = [GetBillStatusOption]
+		country_event = {
+		id = USA_sen_bill.1033
+		days = 30
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1033
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1033"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		add_ideas = GLD68_Gold_Standard
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+				can_have_elections_in_state = yes
+				check_variable = { nationality = 83 } #Dixie
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				}
+			}
+		}
+	
+		 if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_timed_idea = {
+			idea = GLD68_political_defeat
+			days = 35
+		}
+		set_country_flag = GLD68_gold_standard_failed
+		}
+		
+		if = {
+				limit = { 
+				has_country_flag = bill_passed
+				has_country_flag = C_NPP_negotiated }
+				custom_effect_tooltip = USA_NPP_C_popularity_grows_low
+				hidden_effect = {
+				add_popularity = {
+				ideology = social_democrat
+				popularity = 0.02
+				}
+				every_owned_state = {
+				limit = {
+				can_have_elections_in_state = yes }
+				add_to_variable = { NPP_C_bonus_popularity = 0.03}
+				add_to_variable = { NPP_popularity = 0.05} 
+					}
+				}
+			}
+
+			if = {
+				limit = { 
+				has_country_flag = bill_passed
+				has_country_flag = FR_NPP_negotiated }
+				custom_effect_tooltip = USA_NPP_FR_popularity_grows_low
+				hidden_effect = {
+				add_popularity = {
+				ideology = social_conservative
+				popularity = -0.03
+				}
+				every_owned_state = {
+				limit = {
+				can_have_elections_in_state = yes
+				check_variable = { nationality = 83 } #Dixie
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1 }
+				}
+				
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.37
+	immediate = { log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.37" }
+	title = USA_sen_bill.37.t
+	desc = USA_sen_bill.37.d
+	
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	immediate = { 
+		USA_epa_permission_setup = yes
+		if = {
+			limit = { has_country_flag = GLD68_pushed_it_to_the_limit }
+			clr_country_flag = FR_NPP_discussing
+		}
+	}
+	option = { 
+		name = USA_sen_bill.37.a
+		country_event = {
+			id = USA_sen_bill.1037
+			days = 30
+		}
+		hidden_effect = {
+			USA_epa_permission_setup = yes
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1037
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1033"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = bill_37_passed.Title
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = bill_37_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	title = {
+		text = bill_37_failed.Title
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = bill_37_passed
+		trigger = {
+		 has_country_flag = bill_passed 
+			}
+	}
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	
+	option = { 
+		name = bill_37_passed.Option
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = { has_country_flag = bill_passed
+			}
+		add_to_variable = { GLD68_epa_strength = 2 }
+		custom_effect_tooltip = GLD68_EPA_validated
+		custom_effect_tooltip = USA_add_RD_D_popularity_med
+		tno_pollution_improve = yes
+		set_country_flag = USA_GLD68_EPA_tree_hugging_flag
+		unlock_decision_category_tooltip = USA_GLD68_EPA_stuff_because_trees
+		set_variable = {
+		var = GLD68_epa_strength
+		value = 0
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus } #big bonus bc reasons
+			}
+		}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_bill_clear = yes
+		}
+	}
+	option = {
+		name = bill_37_failed.Option
+		trigger = { NOT = { has_country_flag = bill_passed } }
+			 if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_timed_idea = {
+			idea = GLD68_political_defeat
+			days = 45
+		}
+		custom_effect_tooltip = USA_RD_D_popularity_decrease
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus } 
+				}
+			}
+		USA_bill_clear = yes
+		}
+		ai_chance = { factor = 100}
+		
+	}
+}
+
+country_event = { 
+	id = USA_sen_bill.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.36"}
+	title = USA_sen_bill.36.t
+	desc = USA_sen_bill.36.d
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	immediate = { 
+		USA_clean_water_act_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.36.a
+		country_event = {
+		id = USA_sen_bill.1036
+		days = 30
+		}
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.1036
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.1033"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = bill_36_passed.Title
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = bill_36_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	title = {
+		text = bill_36_failed.Title
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = bill_36_passed
+		trigger = {
+		 has_country_flag = bill_passed 
+			}
+	}
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = { has_country_flag = bill_passed
+			}
+			add_ideas = GLD68_cleanererer_watre
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 } #big bonus bc reasons
+			}
+		}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		
+		}
+	
+		 if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_timed_idea = {
+			idea = GLD68_political_defeat
+			days = 45
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.03 }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus } #big bonus bc reasons
+				}
+			}
+		}
+
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+###########################
+###Education
+###########################
+
+country_event = { 
+	id = USA_sen_bill.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.16"}
+	title = USA_sen_bill.16.t
+	desc = USA_sen_bill.16.d
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	immediate = { 
+		#USA_Harry_Healthcare_Act_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.16.a
+		ai_chance = { factor = 100}
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.17
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.17"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.17.t
+	desc = USA_sen_bill.17.d
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.17.a
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			
+		}
+		
+		TNO_improve_academic_base_high = yes #coded with a script
+		tno_education_improve = yes
+		tno_education_improve = yes
+		
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				set_temp_variable = { popularity_bonus = 0.06 }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+			}
+		}
+		name = USA_sen_bill.15.a
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+
+##################TEX WAS HERE##########################################################################
+#WHY DOES GEORGE WALLACE HAVE SO MANY FUCKING BILLS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA################
+##BILLS 200-226 ARE TEXS DONT YOU DARE TOUCH WITHOUT MY PERMISSION, BITCCCCCCCCCCCCH###################
+#Lower Business Tax
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.200
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.200"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.200.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.200.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.200.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.200.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.200.a
+		trigger = {has_country_flag = bill_passed}
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			tno_tax_rate_worsen = yes
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+	option = { 
+		name = USA_sen_bill.200.b
+		trigger = {NOT = { has_country_flag = bill_passed} }
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			tno_tax_rate_worsen = yes
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+#Business Subsidies
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.201
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.201"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.201.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.201.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.201.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.201.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.201.a
+		trigger = {has_country_flag = bill_passed} 
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_to_variable ={ misc_costs  = 2 }
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.201.b
+		trigger = { NOT = { has_country_flag = bill_passed} }
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_to_variable ={ misc_costs  = 2 }
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+#American Welfare
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.202
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.202.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.202.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.202.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.202.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_us_congress3
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.202.a
+		trigger = {has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			NOT = { has_country_flag = RD_D_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+				USA_decrease_ruling_party_popularity_2 = yes
+			TNO_worsen_poverty_low = yes #coded with a script
+			add_to_variable = { misc_income = 2}
+			subtract_from_variable = { USA_NPP_Unity = 2 }
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				add_to_variable = { NPP_L_bonus_popularity = popularity_bonus}
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.1 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				add_to_variable = { NPP_Y_bonus_popularity = popularity_bonus}
+				US_underdog_RD_5_5 = yes
+				}
+			}
+		}
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = RD_D_negotiated
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+				USA_decrease_ruling_party_popularity_1 = yes
+			TNO_worsen_poverty_low = yes #coded with a script
+			add_to_variable = { misc_income = 1}
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				add_to_variable = { NPP_L_bonus_popularity = popularity_bonus}
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.1 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				add_to_variable = { NPP_Y_bonus_popularity = popularity_bonus}
+				US_underdog_RD_5_5 = yes
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.202.b
+		trigger = {NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+#American Healthcare
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.203
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.203"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.203.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.203.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.203.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.203.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_us_congress2
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.203.a
+		trigger = {has_country_flag = bill_passed} 
+		if = {
+			limit = {has_country_flag = bill_passed
+			NOT = { has_country_flag = RD_D_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			add_to_variable = {WAL64_Business = 2}
+			USA_decrease_ruling_party_popularity_2 = yes
+			custom_effect_tooltip = USA_wal64_big_business_happy.tt
+			TNO_worsen_poverty_low = yes #coded with a script
+			subtract_from_variable =  {
+				WAL64_Money_Hole = 3
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				has_country_flag = RD_D_negotiated
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 2 }
+			add_to_variable = {WAL64_Business = 4}
+			custom_effect_tooltip = USA_wal64_big_business_happy.tt
+			USA_decrease_ruling_party_popularity_2 = yes
+			TNO_worsen_poverty_med = yes #coded with a script
+			subtract_from_variable =  {
+				WAL64_Money_Hole = 2
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.203.b
+		trigger = {NOT = {has_country_flag = bill_passed} }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+#Federal Aid
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.204
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		if = {
+		limit = { has_country_flag = bill_passed }
+		set_country_flag = WAL_federal_aid
+			}
+		}
+	title = {
+		text = USA_sen_bill.204.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.204.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.204.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.204.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_usa_supreme_court
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.204.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			add_to_variable = { USA_NPP_Unity = 1 }
+			add_to_variable = { WAL_STATES_RIGHTS_expectation = 1 }
+			subtract_from_variable = { WAL_STATES_RIGHTS = 2}
+			wallace_update_var_display = yes
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = -0.03
+			}
+		}
+		if = {
+			limit = {has_country_flag = C_NPP_negotiated
+			}
+			set_country_flag = WAL_federal_aid_C
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = {
+		name = USA_sen_bill.204.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		USA_bill_clear = yes
+	}
+}
+#States Own Spending
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.205
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		if = { 
+		limit = { has_country_flag = bill_passed }
+		set_country_flag = WAL_state_aid
+		}
+		}
+	title = {
+		text = USA_sen_bill.205.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.205.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.205.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.205.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.205.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				NOT = { has_country_flag = RD_R_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 88 } #Pacific
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_popularity = 0.1 }
+					subtract_from_variable = { RD_popularity = 0.1 }
+					US_underdog_NPP_5_5 = yes
+				}
+			}
+			subtract_from_variable = { WAL_STATES_RIGHTS_expectation = 1 }
+			add_to_variable = { WAL_STATES_RIGHTS = 2}
+			wallace_update_var_display = yes
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = -0.03
+			}
+			USA_bill_clear = yes
+		}
+		if = {
+			limit = {
+				has_country_flag = bill_passed
+				has_country_flag = RD_R_negotiated
+			}
+			custom_effect_tooltip = USA_wal64_states_rights_expectation_increase
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			set_country_flag = WAL_state_aid
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 88 } #Pacific
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_popularity = 0.1 }
+					subtract_from_variable = { RD_popularity = 0.1 }
+					US_underdog_NPP_5_5 = yes
+				}
+			}
+			add_to_variable = { WAL_STATES_RIGHTS_expectation = 2 }
+			add_to_variable = { WAL_STATES_RIGHTS = 1}
+			wallace_update_var_display = yes
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = -0.03
+			}
+		}
+		USA_bill_clear = yes
+	}
+	option = {
+		trigger = { NOT = { has_country_flag = bill_passed } }
+			name = USA_sen_bill.205.b
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+			ai_chance = { factor = 100}
+			USA_bill_clear = yes
+		}
+		
+}
+#Lower State Subsidies
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.219
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.219.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.219.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.219.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.219.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.219.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African_American
+						check_variable = { nationality = 86 } #Southewestern
+						}
+					}
+				subtract_from_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+			subtract_from_variable = { WAL_SEGREGATION_expectation = 2 }
+			add_to_variable = { WAL_SEGREGATION = 3 }
+			wallace_update_var_display = yes
+			add_to_variable = { misc_income = 2}
+			TNO_worsen_academic_base_med = yes #coded with a script
+			}
+			USA_bill_clear = yes
+		}
+	option = { 
+		name = USA_sen_bill.219.b
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+			USA_bill_clear = yes
+		}
+		
+		}	
+	}
+#Schools Cost How Much?
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.207
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = { 
+		text = USA_sen_bill.207.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.207.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.207.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.207.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.207.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			NOT = { has_country_flag = RD_D_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+				add_to_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.1 }
+				US_underdog_RD_5_5 = yes
+				}
+			}
+			add_to_variable = { misc_income = 1}
+			TNO_worsen_academic_base_low = yes #coded with a script
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+	option = { 
+		name = USA_sen_bill.207.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = RD_D_negotiated
+			}
+			custom_effect_tooltip = USA_wal64_states_rights_expectation_increase
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+				}
+			}
+			add_to_variable = { RD_popularity = 0.05 }
+			subtract_from_variable = { NPP_C_bonus_popularity = 0.05 }
+			add_to_variable = { misc_income = 0.005}
+			US_underdog_NPP_2_2 = yes
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+
+#Segregate Teachers Pay
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.230
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = { 
+		text = USA_sen_bill.230.t_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	title = { 
+		text = USA_sen_bill.230.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	desc = {
+		text = USA_sen_bill.230.d_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	desc = {
+		text = USA_sen_bill.230.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.230.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+		hidden_effect = {
+			subtract_from_variable = { WAL_SEGREGATION_expectation = 3 }
+			add_to_variable = {WAL_SEGREGATION = 2}
+			wallace_update_var_display = yes
+			country_event ={
+				id = wallace.126
+				days = 20
+					}
+				}
+			}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+		}	
+	option = { 
+		name = USA_sen_bill.230.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+		hidden_effect = {
+			subtract_from_variable = { WAL_SEGREGATION_expectation = 3 }
+			add_to_variable = {WAL_SEGREGATION = 2}
+			wallace_update_var_display = yes
+			country_event ={
+				id = wallace.126
+				days = 20
+					}
+				}
+			}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+	
+#Segregate State Subsidies
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.208
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.208.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.208.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.208.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.208.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.208.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+		hidden_effect = {
+			subtract_from_variable = { WAL_SEGREGATION_expectation = 3 }
+			add_to_variable = {WAL_SEGREGATION = 2}
+			wallace_update_var_display = yes
+			country_event ={
+				id = wallace.127
+				days = 20
+					}
+				}
+			}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+		}	
+	option = { 
+		name = USA_sen_bill.208.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+		}
+	}
+	
+#Patriotic Curriciulum
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.209
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.209.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.209.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.209.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.209.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_generic_people
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.209.a
+		trigger = { has_country_flag = bill_passed }
+		ai_chance = { factor = 100}
+		if = {
+			limit = { has_country_flag = NPP_C_negotiated }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_war_support = 0.1
+			TNO_worsen_academic_base_low = yes #coded with a script
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African_American
+						check_variable = { nationality = 86 } #Southewestern
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.1}
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		else = {
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_war_support = 0.1
+			TNO_worsen_academic_base_low = yes #coded with a script
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African_American
+						check_variable = { nationality = 86 } #Southewestern
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.05 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1}
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.209.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		ai_chance = { factor = 100}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+		}
+		USA_bill_clear = yes
+		
+	}
+}
+
+#Increase States Authority
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.210
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.210.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.210.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.210.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.210.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.210.a
+		trigger = { has_country_flag = bill_passed }
+		if = {
+			limit = {has_country_flag = bill_passed
+			NOT = { has_country_flag = RD_R_negotiated }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+			set_country_flag = WAL_states_authority
+			}
+		}
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = RD_R_negotiated
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			hidden_effect = {
+			set_country_flag = RD_R_negotiated_states_authority
+			}
+		}
+		USA_bill_clear = yes
+		}
+	option = { 
+		name = USA_sen_bill.210.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_WAL_failed_bill = yes
+			hidden_effect = {
+			set_country_flag = WAL_states_authority_failed
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes	
+	}
+}
+#Fully Segregate Transport
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.211
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.211.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.211.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.211.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.211.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_usa_supreme_court
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.211.a
+		trigger = { has_country_flag = bill_passed }
+		log = "[GetDateText]: [Root.GetName]: registered majority"
+		subtract_from_variable = {
+			var = WAL_STATES_RIGHTS
+			value = 2
+		}
+		add_to_variable = {
+			var = WAL_SEGREGATION
+			value = 3
+		}
+		wallace_update_var_display = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82}
+						check_variable = { nationality = 88}
+					}
+				}
+				set_temp_variable = {popularity_bonus = 0.06 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+			USA_bill_clear = yes
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 83}
+				}
+				set_temp_variable = {popularity_bonus = 0.02 }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	option = { 
+		name = USA_sen_bill.211.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		log = "[GetDateText]: [Root.GetName]: registered majority"
+		USA_WAL_failed_bill = yes
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+#REPEAL THE FUCKING CIVIL RIGHTS ACT RAAAAAAAAAAAAA
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.212
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.202"
+		check_if_bill_passed = yes
+	}
+	title = {
+		text = USA_sen_bill.212.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+		}
+	}
+	desc = {
+		text = USA_sen_bill.212.d_passed
+		trigger = {
+			has_country_flag = bill_passed
+		}
+	}
+	title = {
+		text = USA_sen_bill.212.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+		}
+	}
+	desc = {
+		text = USA_sen_bill.212.d_failed
+		trigger = {
+			NOT = { has_country_flag = bill_passed }
+		}
+	}
+	picture = GFX_report_event_whitehouse_bnw
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.212.a
+		trigger = { has_country_flag = bill_passed }
+		log = "[GetDateText]: [Root.GetName]: registered majority"
+		custom_effect_tooltip = USA_wal64_repealed_civil_rights
+		hidden_effect = {
+			clr_country_flag = USA_civil_rights_passed
+			add_to_variable = { USA_NPP_Unity = -5}
+			add_to_variable = { WAL_SEGREGATION = 5}
+			wallace_update_var_display = yes
+			tno_minorities_clear = yes
+			USA_decrease_civil_rights = yes
+			add_ideas = tno_minorities_segregation
+			
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 88 } #Pacific
+						check_variable = { nationality = 82 } #Yankee
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = { NPP_L_bonus_popularity = popularity_bonus }
+				add_to_variable = { NPP_popularity = -0.2 }
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.2 }
+			}
+			USA_bill_clear = yes
+		}
+	}
+	option = {
+		name = USA_sen_bill.212.b
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		log = "[GetDateText]: [Root.GetName]: failed majority"
+		USA_WAL_failed_bill = yes
+		USA_reload_presidential_tree = yes
+		clr_country_flag = USA_in_crisis
+		add_to_variable = { USA_NPP_Unity = -2}
+		USA_bill_clear = yes
+	}		
+}
+
+###Wallace union time
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.220
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.220"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.220.t_passed
+		trigger = {
+			has_country_flag = bill_passed
+		}
+	}
+	desc = {
+		text = USA_sen_bill.220.d_passed
+		trigger = {
+			has_country_flag = bill_passed
+		}
+	}
+	title = {
+		text = USA_sen_bill.220.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+		}
+	}
+	desc = {
+		text = USA_sen_bill.220.d_failed
+		trigger = {
+			NOT = { has_country_flag = bill_passed }
+		}
+	}
+	picture = GFX_report_event_iberia_meeting_table
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.220.a
+		trigger = {has_country_flag = bill_passed }
+		hidden_effect = {
+			add_to_variable = { USA_NPP_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #dixie
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = {	NPP_popularity = 0.1}
+				add_to_variable = {	NPP_Y_bonus_popularity = 0.1}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = {	NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+			}
+			subtract_from_variable = { WAL64_Business = 3 }
+			set_country_flag = WAL64_union_support
+			add_to_variable = {USA_NPP_Unity = 1}
+			custom_effect_tooltip = USA_wal64_big_business_angry.tt
+			custom_effect_tooltip = USA_add_NPP_unity
+		}
+		custom_effect_tooltip = WAL64_Business_Voters
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+	option = { 
+		name = USA_sen_bill.220.b
+		trigger = {NOT = { has_country_flag = bill_passed }}
+		log = "[GetDateText]: [Root.GetName]: failed majority"
+		USA_WAL_failed_bill = yes
+		clr_country_flag = USA_in_crisis
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+
+#LeMay Gi Bill
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.213
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.213"
+		check_if_bill_passed = yes
+	}
+	title = {
+		text = USA_sen_bill.213.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+			}
+		}
+	desc = {
+		text = USA_sen_bill.213.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+		}
+	}
+	title = {
+		text = USA_sen_bill.213.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+			}
+		}
+	desc = {
+		text = USA_sen_bill.213.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+		}
+	}
+	picture = GFX_report_event_generic_usa_treaty
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.213.a
+		trigger = {has_country_flag = bill_passed}
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			TNO_improve_poverty_low = yes
+			add_to_variable = { misc_costs = 5 }
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+				set_country_flag = LeMayFailed 
+
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 86 } #Southwestern
+							check_variable = { nationality = 87 } #Rockies
+							check_variable = { nationality = 88 } #Pacific
+							}
+						}
+					add_to_variable = { RD_popularity = 0.05 }
+					subtract_from_variable = { NPP_popularity = 0.05 }
+					subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.213.b
+		trigger = {NOT = {has_country_flag = bill_passed} }
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+			tno_racial_integration_improve = yes
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+				set_country_flag = LeMayFailed 
+
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 86 } #Southwestern
+							check_variable = { nationality = 87 } #Rockies
+							check_variable = { nationality = 88 } #Pacific
+							}
+						}
+					add_to_variable = { RD_popularity = 0.05 }
+					subtract_from_variable = { NPP_popularity = 0.05 }
+					subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	
+}
+#lemay service for service
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.214
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.214"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.214.t_passed
+		trigger = { 
+			has_country_flag = bill_passed
+				}
+		}
+	desc = {
+		text = USA_sen_bill.214.d_passed
+		trigger = {
+		has_country_flag = bill_passed
+			}
+	}
+	title = {
+		text = USA_sen_bill.214.t_failed
+		trigger = { 
+			NOT = { has_country_flag = bill_passed }
+				}
+		}
+	desc = {
+		text = USA_sen_bill.214.d_failed
+		trigger = {
+		NOT = { has_country_flag = bill_passed }
+			}
+	}
+	picture = GFX_report_event_whitehouse_color
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.214.a
+		trigger = {has_country_flag = bill_passed}
+		if = {
+			limit = {has_country_flag = bill_passed
+			}
+			tno_racial_integration_improve = yes
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_stability = 0.05
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+	option = { 
+		name = USA_sen_bill.214.b
+		trigger = { NOT = { has_country_flag = bill_passed} }
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { USA_NPP_Unity = 1 }
+			hidden_effect = {
+
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+				add_to_variable = { RD_popularity = 0.05 }
+				subtract_from_variable = { NPP_popularity = 0.05 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				US_underdog_RD_2_2 = yes
+			}
+						}
+			}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.215
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.215"
+		check_if_bill_passed = yes
+		}
+	title = {
+		text = USA_sen_bill.215.t_passed
+		trigger = { has_country_flag = bill_passed }
+	}
+	title = {
+		text = USA_sen_bill.215.t_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+	}
+	desc = {
+		text = USA_sen_bill.215.d_passed
+		trigger = { has_country_flag = bill_passed }
+		}
+	desc = {
+		text = USA_sen_bill.215.d_failed
+		trigger = { NOT = { has_country_flag = bill_passed } }
+		}
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.215.a
+		trigger = { has_country_flag = bill_passed }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_stability = 0.05
+			custom_effect_tooltip = USA_mcs_68_left_happy_tex
+			add_to_variable = { mcs_left_satisfaction = 0.1 }
+			subtract_from_variable = { mcs_right_satisfaction = 0.1 }
+			mcs_influence_calculation = yes
+			mcs_unity_check = yes
+			hidden_effect = { set_country_flag = MCS_passed_unions }
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+	option = {
+		name = USA_sen_bill.215.b
+			trigger = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			custom_effect_tooltip = USA_mcs_68_left_sad_tex
+			subtract_from_variable = { mcs_left_satisfaction = 0.1 }
+			add_to_variable = { mcs_centre_satisfaction = 0.05 }
+			add_to_variable = { mcs_right_satisfaction = 0.05 }
+			mcs_influence_calculation = yes
+			hidden_effect = { mcs_unity_check = yes }
+			set_variable = { mcs_divisiveness = 5 }
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+	}
+}
+#MCS' Frankenbill
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.216
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.216"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.216.t
+	desc = USA_sen_bill.216.d
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.216.a
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = MCS_South_Worked_With }
+			TNO_improve_agriculture_low = yes	
+			add_to_variable = { misc_costs = 150 }
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			custom_effect_tooltip = USA_add_NPP_popularity_low_south
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 83 } #Dixie
+				}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_RD_2_2 = yes
+					}
+				}
+			}
+		if = {
+			limit = {has_country_flag = bill_passed 
+			has_country_flag = MCS_Centre_Worked_With }
+			TNO_improve_academic_base_low = yes
+			custom_effect_tooltip = USA_NPP_FR_popularity_grows_low
+			add_to_variable = { misc_costs = 300 }
+			custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_popularity = 0.005 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.005 }
+				US_underdog_RD_2_2 = yes
+					}
+				}
+			}
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = MCS_Left_Worked_With }
+			TNO_improve_industrial_equipment_low = yes
+			custom_effect_tooltip = USA_mcs_68_left_sad_tex
+			custom_effect_tooltip = USA_add_NPP_popularity_low_north
+			add_to_variable = { mcs_left_satisfaction = 0.25 }
+			add_to_variable = { mcs_fascist_satisfaction = -0.1 }
+			add_to_variable = { mcs_centre_satisfaction = 0.2 }
+			add_to_variable = { mcs_right_satisfaction = -0.2 }
+			add_to_variable = { mcs_south_satisfaction = 0.1 }
+			set_variable = { mcs_divisiveness = 5 }
+			hidden_effect = {mcs_influence_calculation = yes }
+			hidden_effect = { mcs_unity_check = yes }
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 82 } #Yankee
+				}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				US_underdog_RD_2_2 = yes
+					}
+				}
+			}
+		if = {
+			limit = {has_country_flag = bill_passed
+			has_country_flag = MCS_Yockey_Worked_With }
+			custom_effect_tooltip = USA_mcs_68_left_happy_tex
+			custom_effect_tooltip = worsen_poverty_small
+			add_to_variable = { mcs_left_satisfaction = -0.25 }
+			add_to_variable = { mcs_fascist_satisfaction = 0.01 }
+			add_to_variable = { mcs_centre_satisfaction = -0.2 }
+			add_to_variable = { mcs_right_satisfaction = 0.2 }
+			set_variable = { mcs_divisiveness = 5 }
+			hidden_effect = {mcs_influence_calculation = yes }
+			hidden_effect = { mcs_unity_check = yes }
+			add_to_variable = { poverty_monthly_change = 0.5 }
+			custom_effect_tooltip = econ_increase_GDP_growth
+			add_to_variable = { GDP_growth = 0.0005 }
+			subtract_from_variable = { misc_costs = 200 }
+			}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			subtract_from_variable = { mcs_left_satisfaction = 0.1 }
+			subtract_from_variable = { mcs_fascist_satisfaction = 0.1 }
+			subtract_from_variable = { mcs_centre_satisfaction = 0.2 }
+			subtract_from_variable = { mcs_right_satisfaction = 0.2 }
+			set_variable = { mcs_divisiveness = 5 }
+			hidden_effect = {mcs_influence_calculation = yes }
+			hidden_effect = { mcs_unity_check = yes }
+			}
+		clr_country_flag = MCS_South_Worked_With
+		clr_country_flag = MCS_Centre_Worked_With
+		clr_country_flag = MCS_Left_Worked_With
+		clr_country_flag = MCS_Yockey_Worked_With
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+
+###WW3 BILLS###
+
+country_event = { 
+	id = USA_sen_bill.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.60"}
+	title = USA_sen_bill.60.t
+	desc = USA_sen_bill.60.d
+	picture = GFX_report_event_us_pentagon
+	is_triggered_only = yes
+	immediate = { 
+		USA_emergency_naval_procurement_setup = yes
+	}
+	option = { 
+		name = USA_sen_bill.60.a
+		ai_chance = { factor = 100}
+	}
+}
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.560
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.560"
+		check_if_bill_passed = yes
+		}
+	title = USA_sen_bill.560.t
+	desc = USA_sen_bill.560.d
+	picture = GFX_report_event_USA_congress_2
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.560.a
+		log = "[GetDateText]: [Root.GetName]: registered majority"
+		if = {
+			limit = {has_country_flag = bill_passed}
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+			add_to_variable = { misc_costs = 1500 }
+			378 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+			990 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			362 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+			991 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			log = "[GetDateText]: [Root.GetName]: registered majority"
+		}
+		ai_chance = { factor = 100}
+		USA_bill_clear = yes
+		
+	}
+}
+
+#mcs stuff
+#MCS EXTREME poverty relief: c-nppog
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.217
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.217"
+		check_if_bill_passed = yes
+	}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_flag
+	is_triggered_only = yes
+	
+	option = {
+		name = [GetBillStatusOption]
+		if = {
+			limit = { has_country_flag = bill_passed }
+			TNO_improve_poverty_med = yes
+			custom_effect_tooltip = econ_misc_expenses_add_small_increase
+			USA_decrease_depression = yes
+			add_to_variable = { misc_costs = 100 }
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = -0.1 }
+				add_to_variable = { mcs_change_influence_right = -0.1 }
+				add_to_variable = { mcs_right_satisfaction_change = -0.1 }
+				add_to_variable = { mcs_change_influence_center = 0.15 }
+				add_to_variable = { mcs_center_satisfaction_change = 0.15 }
+				mcs_influence_calculation = yes
+				mcs_unity_check = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.05 }
+						add_to_variable = { RD_popularity = 0.05 }
+						add_to_variable = { NPP_popularity = -0.03 }
+						add_to_variable = { NPP_FR_bonus_popularity = -0.03 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+					}
+					else = {
+						add_to_variable = { NPP_C_bonus_popularity = -0.02 }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }	
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = 0.1 }
+				add_to_variable = { mcs_change_influence_right = 0.1 }
+				add_to_variable = { mcs_right_satisfaction_change = 0.1 }
+				add_to_variable = { mcs_change_influence_center = -0.2 }
+				add_to_variable = { mcs_center_satisfaction_change = -0.05 }
+				mcs_influence_calculation = yes
+				mcs_unity_check = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.05 }
+						add_to_variable = { NPP_popularity = -0.06 }
+						add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+						add_to_variable = { NPP_C_bonus_popularity = -0.05 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = -0.05 }
+						add_to_variable = { NPP_L_bonus_popularity = 0.01 }
+						add_to_variable = { NPP_popularity = 0.04 }
+					}
+					else = {
+						add_to_variable = { NPP_C_bonus_popularity = -0.02 }
+					}
+				}
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+#Power to the States: fr win, c lose
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.218
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.218"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_flag
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = {has_country_flag = bill_passed}
+			TNO_worsen_academic_base_low = yes
+			TNO_improve_industrial_expertise_low = yes
+			custom_effect_tooltip = econ_misc_expenses_add_medium_decrease
+			add_to_variable = { misc_costs = -100 }
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = 0.1 }
+				add_to_variable = { mcs_change_influence_center = -0.15 }
+				set_variable = { mcs_divisiveness = 15 }
+				mcs_influence_calculation = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_FR_bonus_popularity = 0.04 }
+						add_to_variable = { NPP_popularity = 0.04 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = -0.04 }
+						add_to_variable = { NPP_FR_bonus_popularity = -0.04 }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = 0.05 }
+					}
+				}
+				
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = -0.1 }
+				add_to_variable = { mcs_change_influence_center = 0.1 }
+				set_variable = { mcs_divisiveness = 15 }
+				mcs_influence_calculation = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { NPP_FR_bonus_popularity = -0.04 }
+						add_to_variable = { NPP_popularity = -0.04 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+						add_to_variable = { NPP_FR_bonus_popularity = -0.04 }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = -0.04 }
+					}
+				}
+				
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+#Wallace's Poverty Relief: c win, fr lose
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.221
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.221"
+		check_if_bill_passed = yes
+		}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = { has_country_flag = bill_passed }
+			TNO_improve_poverty_low = yes
+			custom_effect_tooltip = econ_misc_expenses_add_small_increase
+			add_to_variable = { misc_costs = 50 }
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = -0.1 }
+				add_to_variable = { mcs_change_influence_right = -0.05 }
+				add_to_variable = { mcs_change_influence_center = 0.1 }
+				add_to_variable = { mcs_center_satisfaction_change = 0.05 }
+				mcs_influence_calculation = yes
+				mcs_unity_check = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = 0.03 }
+						add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = -0.05 }
+						add_to_variable = { NPP_FR_bonus_popularity = -0.02 }
+						add_to_variable = { RD_D_bonus_popularity = 0.05 }
+						add_to_variable = { RD_R_bonus_popularity = 0.01 }
+						add_to_variable = { RD_popularity = 0.03 }
+					}
+					else = {
+						add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+						add_to_variable = { RD_D_bonus_popularity = 0.04 }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_country_flag = bill_passed } }
+			hidden_effect = {
+				add_to_variable = { mcs_change_influence_south = 0.1 }
+				add_to_variable = { mcs_change_influence_right = 0.05 }
+				add_to_variable = { mcs_change_influence_center = -0.1 }
+				mcs_influence_calculation = yes
+				mcs_unity_check = yes
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								check_variable = { nationality = 88 }
+							}
+						}
+						add_to_variable = { RD_D_bonus_popularity = -0.03 }
+						add_to_variable = { NPP_C_bonus_popularity = -0.05 }
+						add_to_variable = { NPP_popularity = -0.05 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 83 }
+								check_variable = { nationality = 84 }
+								check_variable = { nationality = 87 }
+								check_variable = { nationality = 337 }
+							}
+						}
+						add_to_variable = { NPP_C_bonus_popularity = -0.05 }
+						add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+						add_to_variable = { RD_D_bonus_popularity = -0.03 }
+						add_to_variable = { RD_R_bonus_popularity = -0.01 }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = -0.03 }
+						add_to_variable = { NPP_C_bonus_popularity = -0.04 }
+					}
+				}
+			}
+		}
+		USA_bill_clear = yes
+	}
+}
+
+
+#McGovern's withdrawals
+country_event = {
+	id = USA_sen_bill.331
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.221"
+		hidden_effect = { USA_mcgovern_withdrawal_setup = yes }
+	}
+	title = USA_sen_bill.331.t
+	desc = USA_sen_bill.331.desc
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = { 
+		name = USA_sen_bill.331.a
+	}
+}
+
+#McGovern's withdrawals
+country_event = { #resolves the bill either by passing or failing it
+	id = USA_sen_bill.332
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USA_sen_bill.221"
+		check_if_bill_passed = yes
+	}
+	title = [GetBillStatusTitle]
+	desc = [GetBillStatus]
+	picture = GFX_report_event_us_congress
+	is_triggered_only = yes
+	
+	option = { 
+		name = [GetBillStatusOption]
+		if = {
+			limit = { has_country_flag = bill_passed }
+			random_owned_state = {
+				limit = { arms_factory > 3 }
+				remove_building = {
+					type = arms_factory
+					level = 4
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { arms_factory > 2 }
+				remove_building = {
+					type = arms_factory
+					level = 3
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { arms_factory > 1 }
+				remove_building = {
+					type = arms_factory
+					level = 2
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { arms_factory > 0 }
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			#TODO pop effects
+		}
+		USA_bill_clear = yes
+	}
+}

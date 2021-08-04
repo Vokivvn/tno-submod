@@ -1,0 +1,192 @@
+﻿############################
+#  		Syria Events	   #
+############################
+
+add_namespace = Syria
+
+country_event = { #Form United Arab States (UAS)
+	id = Syria.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.1"}
+	title = Syria.1.t
+	desc = Syria.1.d
+	picture = GFX_unknown
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.1.a
+		set_rule = {
+				can_create_factions = yes
+			}
+		create_faction = "United Arab States"
+		hidden_effect = {
+			if = {
+				limit = {
+					NYM = {
+						exists = yes
+						owns_state = 293
+						owns_state = 659
+					}
+				}
+				NYM = {
+					country_event = { id = Syria.2 }
+				}
+			}
+			if = {
+				limit = {
+					OMB = {
+						exists = yes
+						owns_state = 914
+						owns_state = 294
+					}
+				}
+				OMB = {
+					country_event = { id = Syria.5 }
+				}
+			}
+			if = {
+				limit = {
+					GUL = {
+						has_government = social_democrat
+					}
+				}
+				GUL = {
+					country_event = { id = Syria.6 }
+				}
+			}
+			if = {
+				limit = {
+					PAL = {
+						OR = {
+							has_government = communist
+							has_government = ultranational_socialism
+						}
+					}
+				}
+				PAL = {
+					country_event = { id = Syria.7 }
+				}
+			}
+			if = {
+				limit = {
+					EGB = {
+						exists = yes
+						owns_state = 447
+						owns_state = 446
+						owns_state = 1116
+						owns_state = 552
+						NOT = {
+							has_country_flag = ITA_nasser_isolated
+						}
+					}
+				}
+				EGB = {
+					country_event = { id = Syria.3 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Yemen Arab Republic joins UAS
+	id = Syria.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.2"}
+	title = Syria.2.t
+	desc = Syria.2.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.2.a
+		SYR = {
+			add_to_faction = NYM
+		}
+	}
+}
+
+country_event = { #Nasser joins UAS
+	id = Syria.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.3"}
+	title = Syria.3.t
+	desc = Syria.3.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.3.a
+		SYR = {
+			add_to_faction = EGB
+		}
+	}
+}
+
+country_event = { #Iraq joins UAS
+	id = Syria.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.4"}
+	title = Syria.4.t
+	desc = Syria.4.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.4.a
+		SYR = {
+			add_to_faction = BIR
+		}
+	}
+}
+
+country_event = { #Oman joins UAS
+	id = Syria.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.5"}
+	title = Syria.5.t
+	desc = Syria.5.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.5.a
+		SYR = {
+			add_to_faction = OMB
+		}
+	}
+}
+
+country_event = { #Gulf joins UAS
+	id = Syria.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.6"}
+	title = Syria.6.t
+	desc = Syria.6.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.6.a
+		SYR = {
+			add_to_faction = GUL
+		}
+	}
+}
+
+country_event = { #Palestine joins UAS
+	id = Syria.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event Syria.7"}
+	title = Syria.7.t
+	desc = Syria.7.d
+	picture = GFX_unknown
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = Syria.7.a
+		SYR = {
+			add_to_faction = PAL
+		}
+	}
+}

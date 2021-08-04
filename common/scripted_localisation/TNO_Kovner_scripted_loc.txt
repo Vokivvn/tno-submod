@@ -1,0 +1,87 @@
+##################################
+##====| Kovner Evacuations |====##
+##=======| Phase Status |=======##
+##################################
+
+#Phase 1
+GetKOV_evacuation_phase1_status = {
+	name = GetKOV_completed_evacuation_phase
+
+	text = {
+		trigger = { NOT = { has_country_flag = KOV_evacuation_phase0 } }
+		localization_key = GetKOV_evacuation_phase1_status_not_begun
+	}
+	text = {
+		trigger = { has_country_flag = KOV_evacuation_phase0 }
+		localization_key = GetKOV_evacuation_phase1_status_in_progress
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_country_flag = KOV_evacuation_phase1
+				has_country_flag = KOV_evacuation_phase2
+			}
+		}
+		localization_key = GetKOV_evacuation_phase1_status_completed
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = GetKOV_evacuation_phase1_err
+	}
+}
+
+#Phase 2
+GetKOV_evacuation_phase2_status = {
+	name = GetKOV_completed_evacuation_phase
+	text = {
+		trigger = { has_country_flag = KOV_evacuation_phase0 }
+		localization_key = GetKOV_evacuation_phase2_status_not_begun
+	}
+	text = {
+		trigger = { has_country_flag = KOV_evacuation_phase1 }
+		localization_key = GetKOV_evacuation_phase2_status_in_progress
+	}
+	text = {
+		trigger = { has_country_flag = KOV_evacuation_phase2 }
+		localization_key = GetKOV_evacuation_phase2_status_completed
+	}
+}
+
+#Phase 3
+GetKOV_evacuation_phase3_status = {
+	name = GetKOV_completed_evacuation_phase
+	text = {
+		trigger = {
+			OR = {
+				has_country_flag = KOV_evacuation_phase0
+				has_country_flag = KOV_evacuation_phase1
+			}
+		}
+		localization_key = GetKOV_evacuation_phase3_status_not_begun
+	}
+	text = {
+		trigger = { has_country_flag = KOV_evacuation_phase2 }
+		localization_key = GetKOV_evacuation_phase3_status_in_progress
+	}
+#   Will never happen:
+#	text = {
+#		trigger = { has_country_flag = KOV_evacuation_phase3 }
+#		localization_key = GetKOV_evacuation_phase3_status_completed
+#	}
+}
+
+##################################
+##====| Kovner Evacuations |====##
+##===========| Raids |==========##
+##################################
+defined_text = { 
+	name = GetKOV_raid_aar_selection
+	text = {
+		trigger = { NOT = { has_country_flag = KOV_dont_get_raid_aar } }
+		localization_key = GetKOV_raid_aar_selection_no
+	}
+	text = {
+		trigger = { has_country_flag = KOV_dont_get_raid_aar }
+		localization_key = GetKOV_raid_aar_selection_yes
+	}
+}

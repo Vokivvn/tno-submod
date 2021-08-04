@@ -1,0 +1,308 @@
+#######################################################################
+
+######################### MCNAMARA 100 DAY FOCUS TREE - BY DOCOVERBUILD3 - 11/3/19
+
+#######################################################################
+	#Focus for Work With The Party
+	shared_focus = {
+		id = USA_bob_72_workwiththeparty
+		icon = GFX_USA_Reestablish_Party
+		x = 3
+		y = 2
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_fillingthegovernment }
+		mutually_exclusive = { focus = USA_bob_72_timetocleanhouse }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_workwiththeparty"
+			custom_effect_tooltip = USA_bob_72_workwiththeparty_tt
+			hidden_effect = { country_event = { id = BOB.5 days = 1 } }
+		}
+	}
+
+	#Focus for Break Out The Graphs
+	shared_focus = {
+		id = USA_bob_72_breakoutthegraphs
+		icon = GFX_Break_Out_The_Graphs
+		x = 8
+		y = 5
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_callinthewhizkids }
+		prerequisite = { focus = USA_bob_72_nominatejackson }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_breakoutthegraphs"
+			custom_effect_tooltip = USA_california_plan_tooltip
+			TNO_improve_army_professionalism_low = yes
+			TNO_improve_research_facilities_low = yes
+		}
+	}
+
+	#Focus for Lay Out The Vision
+	shared_focus = {
+		id = USA_bob_72_layoutthevision
+		icon = GFX_Lay_Out_The_Vision
+		x = 4
+		y = 5
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_rallythedemocrats }
+		prerequisite = { focus = USA_bob_72_appointrusk }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_themcnamarapresidency"
+			country_event = { id = BOB.9 }
+		}
+	}
+
+	#Focus for Appease The Republicans
+	shared_focus = {
+		id = USA_bob_72_appeasetherepublicans
+		icon = GFX_Appease_The_Republicans
+		x = 2
+		y = 3
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_workwiththeparty }
+		ai_will_do = {
+			factor = 1
+		}
+		select_effect = { country_event = { id = BOB.6 days = 4 } }
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_workwiththeparty"
+			custom_effect_tooltip = USA_bob_72_appeasetherepublicans_tt
+			hidden_effect = {
+				check_if_bill_passed = yes
+				if = {
+					limit = { has_country_flag = bill_passed }
+					country_event = { id = BOB.8 }
+				}
+				else = { 
+					country_event = { id = BOB.7 }
+				}
+			}
+		}
+	}
+
+	#Focus for Appoint Rusk
+	shared_focus = {
+		id = USA_bob_72_appointrusk
+		icon = GFX_Nominate_Rusk
+		x = 2
+		y = 4
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_appeasetherepublicans }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_themcnamarapresidency"
+			country_event = { id = BOB.10 }
+		}
+	}
+
+	#Focus for The McNamara Presidency
+	shared_focus = {
+		id = USA_bob_72_themcnamarapresidency
+		icon = GFX_The_McNamara_Presidency
+		x = 6
+		y = 0
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_themcnamarapresidency"
+			country_event = { id = BOB.1 }
+		}
+	}
+
+	#Focus for Filling The Government
+	shared_focus = {
+		id = USA_bob_72_fillingthegovernment
+		icon = GFX_TNO_generic_inviting_people
+		x = 6
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_themcnamarapresidency }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_fillingthegovernment"
+			country_event = { id = BOB.2 }
+		}
+	}
+
+	#Focus for Time To Clean House
+	shared_focus = {
+		id = USA_bob_72_timetocleanhouse
+		icon = GFX_Time_To_Clean_House
+		x = 9
+		y = 2
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_fillingthegovernment }
+		mutually_exclusive = { focus = USA_bob_72_workwiththeparty }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_fillingthegovernment"
+			custom_effect_tooltip = USA_bob_72_timetocleanhouse_tt
+			hidden_effect = { country_event = { id = BOB.4 days = 1 } }
+		}
+	}
+
+	#Focus for Rally The Democrats
+	shared_focus = {
+		id = USA_bob_72_rallythedemocrats
+		icon = GFX_USA_Turn_the_People
+		x = 4
+		y = 3
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_workwiththeparty }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_fillingthegovernment"
+			custom_effect_tooltip = USA_add_RD_D_popularity_low
+			add_political_power = 50
+			hidden_effect = { 
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				add_to_variable = { RD_popularity = 0.05 }
+				}
+			}
+		}
+	}
+
+	#Focus for Time To Go To Work - LETS DO THIS BITCHES
+	shared_focus = {
+		id = USA_bob_72_timetogotowork
+		icon = GFX_Time_To_Go_To_Work
+		x = 6
+		y = 6
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = {
+			focus = USA_bob_72_breakoutthegraphs
+			focus = USA_bob_72_layoutthevision
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		select_effect = {
+			if = {
+					limit = { has_completed_focus = USA_bob_72_workwiththeparty }
+					RD_D_72_raise_military_budget = yes
+				}
+				else = { 
+					RD_D_72_BOMB_BOMB_BOMB_MIDDLE_EAST = yes
+				}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_timetogotowork"
+			custom_effect_tooltip = USA_general_bill_pass
+			hidden_effect = {
+				check_if_bill_passed = yes
+				if = {
+					limit = { has_country_flag = bill_passed }
+					country_event = { id = BOB.13 }
+				}
+				else = { 
+					country_event = { id = BOB.14 }
+				}
+			}
+		}
+	}
+
+	#Focus for Call In The Whiz Kids
+	shared_focus = {
+		id = USA_bob_72_callinthewhizkids
+		icon = GFX_Call_In_The_Whiz_Kids
+		x = 8
+		y = 3
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_timetocleanhouse }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_callinthewhizkids"
+			custom_effect_tooltip = USA_bob_72_callinthewhizkids_tt
+			subtract_from_variable = { RD_unity = 0.5 }
+		}
+	}
+
+	#Focus for Politics Be Damned
+	shared_focus = {
+		id = USA_bob_72_politicsbedamned
+		icon = GFX_USA_The_Party_Splits
+		x = 10
+		y = 3
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_timetocleanhouse }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_timetogotowork"
+			custom_effect_tooltip = USA_bob_72_politicsbedamned_tt
+			hidden_effect = { country_event = { id = BOB.11 days = 1 } }
+		}
+	}
+	
+
+	#Focus for Nominate Jackson
+	shared_focus = {
+		id = USA_bob_72_nominatejackson
+		icon = GFX_Nominate_Scoop
+		x = 10
+		y = 4
+		cost = 2
+		available_if_capitulated = yes
+		prerequisite = { focus = USA_bob_72_politicsbedamned }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus USA_bob_72_timetogotowork"
+			hidden_effect = { country_event = { id = BOB.12 days = 1 } }
+			custom_effect_tooltip = USA_bob_72_nominatejackson_tt
+			hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				subtract_from_variable = { NPP_popularity = 0.05 }
+					}
+				}
+			}
+		}

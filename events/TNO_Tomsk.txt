@@ -1,0 +1,4269 @@
+﻿add_namespace = ERS
+add_namespace = ERS_petrov
+add_namespace = ERS_constitutional_crisis
+
+country_event = { #house elections
+	id = ERS.0
+	title = ERS.0.t
+	desc = ERS.0.desc
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.0"
+		hidden_effect = {
+			ERS = {
+				ERS_save_current_values = yes
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = Decembrist_Constitution
+							has_country_flag = Bastillard_Constitution
+						}
+					}
+					ERS_Dec_and_Bas_get_upper_house = yes
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = Modernist_Constitution
+						}
+					}
+					ERS_get_lower_house = yes
+				}
+				if = {
+					limit = {
+						has_country_flag = Modernist_Constitution
+					}
+					ERS_Mod_get_ministers = yes
+				}
+				ERS_calculate_new_values = yes
+				if = {
+					limit = {
+						NOT = { has_government = social_conservative }
+					}
+					ERS_Decrease_Dec_upper_house_support_low = yes
+					ERS_Decrease_Dec_lower_house_support_low = yes
+				}
+				else_if = {
+					limit = {
+						NOT = { has_government = social_liberal }
+					}
+					ERS_Decrease_Mod_upper_house_support_low = yes
+					ERS_Decrease_Mod_lower_house_support_low = yes
+				}
+				else_if = {
+					limit = {
+						NOT = { has_government = authoritarian_democrat }
+					}
+					ERS_Decrease_Bas_upper_house_support_low = yes
+					ERS_Decrease_Bas_lower_house_support_low = yes
+				}
+				else_if = {
+					limit = {
+						NOT = { has_government = social_democrat }
+					}
+					ERS_Decrease_Hum_upper_house_support_low = yes
+					ERS_Decrease_Hum_lower_house_support_low = yes
+				}
+			}
+		}
+	}
+	
+	is_triggered_only = yes
+
+	option = {
+		name = ERS.0.a
+		hidden_effect = {
+			ERS = {
+				country_event = { id = ERS.0 days = 365 }
+				ERS_clear_all_values = yes
+			}
+		}
+	}
+}
+
+add_namespace = ERS_elections
+
+country_event = { #1967 Elections
+	id = ERS_elections.0
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS_elections.1"
+		hidden_effect = {
+			set_country_flag = ERS_67_Elections
+			country_event = { id = ERS_elections.1 days = 70 }
+		}
+	}
+	title = ERS_elections.0.t
+	desc = ERS_elections.0.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ERS_elections.0.a
+		ai_chance = { factor = 1 }
+		set_country_flag = ERS_Dec_Campaign
+	}
+	option = {
+		name = ERS_elections.0.b
+		ai_chance = { factor = 1 }
+		set_country_flag = ERS_Mod_Campaign
+	}
+	option = {
+		name = ERS_elections.0.c
+		ai_chance = { factor = 1 }
+		set_country_flag = ERS_Hum_Campaign
+	}
+	option = {
+		name = ERS_elections.0.d
+		ai_chance = { factor = 1 }
+		set_country_flag = ERS_Bas_Campaign
+	}
+}
+
+country_event = { #1967 Elections
+	id = ERS_elections.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS_elections.1"
+		ERS_get_presidential_election = yes
+	}
+	trigger = {
+		NOT = {
+			has_country_flag = is_AM_warlord
+		}
+	}
+	hidden = yes
+	title = ERS_elections.1.t
+	desc = ERS_elections.1.desc
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ERS_elections.1.a
+	}
+}
+
+
+country_event = { #1967 - Humanists
+	id = ERS_elections.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.2"}
+	title = ERS_elections.2.t
+	desc = ERS_elections.2.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.2.a
+		ai_chance = { factor = 1 }
+		random_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Increase_Hum_Pop_med = yes
+		}
+		create_country_leader = {
+			name = "Moisey Vainberg"
+			desc = "POLITICS_MOISEY_VAINBERG_DESC"
+			picture = "Portrait_Tomsk_Moisey_Vainberg.dds"
+			expire = "1999.1.1"
+			ideology = social_democrat_subtype
+			traits = {
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ERS.114 days = 1 }
+			country_event = { id = ERS.153 days = 35 random = 24 }
+			country_event = { id = ERS.154 days = 70 random = 96 }
+			country_event = { id = ERS_petrov.16 days = 21 }
+		}
+		add_ideas = ERS_Nikolay_Peyko_hog
+		add_ideas = ERS_Mikhail_Gefter_for
+		add_ideas = ERS_Nikolay_Nikitin_eco
+		if = {
+			limit = {
+				NOT = { has_government = social_democrat }
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = ERS_HUM_regional_unifier
+			set_politics = {
+				ruling_party = social_democrat
+				elections_allowed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_modernist_economy
+						has_idea = ERS_idea_decembrist_economy
+						has_idea = ERS_idea_bastillard_economy
+					}
+				}
+				add_ideas = ERS_idea_incompatible_economy
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_modernist_army
+						has_idea = ERS_idea_decembrist_army
+						has_idea = ERS_idea_bastillard_army
+					}
+				}
+				add_ideas = ERS_idea_incompatible_army
+			}
+			hidden_effect = {
+				ERS_Apply_Hum_Duma = yes
+				country_event = { id = ERS.107 days = 1 }
+				load_focus_tree = { tree = ERS_humanist_tree_regional keep_completed = yes }
+			}
+		}
+		else = {
+			ERS_Decrease_Idealism_med = yes
+			hidden_effect = {
+				country_event = { id = ERS_petrov.16 days = 21 }
+			}
+		}
+	}
+}
+
+country_event = { #1967 - Decembrists
+	id = ERS_elections.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.3"}
+	title = ERS_elections.3.t
+	desc = ERS_elections.3.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.3.a
+		ai_chance = { factor = 1 }
+		set_global_flag = ERS_decembrists_in_power
+		random_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Increase_Dec_Pop_med = yes
+		}
+		create_country_leader = {
+			name = "Dmitry Likhachyov"
+			desc = "POLITICS_DMITRY_LIKHACHYOV_DESC"
+			picture = "Portrait_Tomsk_Dmitry_Likhachev.dds"
+			expire = "1999.1.1"
+			ideology = social_conservative_subtype
+			traits = {
+			}
+		}
+		add_ideas = ERS_Georgy_Sviridov_hog
+		add_ideas = ERS_Konstantin_Paustovsky_for
+		add_ideas = ERS_Alexander_Yesenin_Volpin_eco
+		if = {
+			limit = {
+				NOT = { has_government = social_conservative }
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = ERS_regional_unifier
+			set_politics = {
+				ruling_party = social_conservative
+				elections_allowed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_modernist_economy
+						has_idea = ERS_idea_humanist_economy
+						has_idea = ERS_idea_bastillard_economy
+					}
+				}
+				add_ideas = ERS_idea_incompatible_economy
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_modernist_army
+						has_idea = ERS_idea_humanist_army
+						has_idea = ERS_idea_bastillard_army
+					}
+				}
+				add_ideas = ERS_idea_incompatible_army
+			}
+			hidden_effect = {
+				ERS_Apply_Dec_Duma = yes
+				country_event = { id = ERS.107 days = 1 }
+				country_event = { id = ERS.154 days = 70 random = 96 }
+				country_event = { id = ERS_petrov.15 days = 21 }
+				load_focus_tree = { tree = ERS_decembrist_tree_regional keep_completed = yes }
+			}
+		}
+		else = {
+			ERS_Decrease_Idealism_med = yes
+			hidden_effect = {
+				country_event = { id = ERS_petrov.15 days = 21 }
+			}
+		}
+	}
+}
+
+country_event = { #1967 - Modernists
+	id = ERS_elections.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.4"}
+	title = ERS_elections.4.t
+	desc = ERS_elections.4.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.4.a
+		ai_chance = { factor = 1 }
+		random_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Increase_Mod_Pop_med = yes
+		}
+		add_ideas = ERS_Antonina_Pirozhkova_hog
+		add_ideas = ERS_Pobisk_Kuznetsov_for
+		add_ideas = ERS_Nikolay_Kamov_eco
+		if = {
+			limit = {
+				NOT = { has_government = social_liberal }
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = ERS_regional_unifier
+			set_politics = {
+				ruling_party = social_liberal
+				elections_allowed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_decembrist_economy
+						has_idea = ERS_idea_humanist_economy
+						has_idea = ERS_idea_bastillard_economy
+					}
+				}
+				add_ideas = ERS_idea_incompatible_economy
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_decembrist_army
+						has_idea = ERS_idea_humanist_army
+						has_idea = ERS_idea_bastillard_army
+					}
+				}
+				add_ideas = ERS_idea_incompatible_army
+			}
+			hidden_effect = {
+				ERS_Apply_Mod_Duma = yes
+				country_event = { id = ERS.23 days = 35 random = 24 }
+				country_event = { id = ERS.107 days = 1 }
+				country_event = { id = ERS.154 days = 70 random = 96 }
+				country_event = { id = ERS.157 days = 14 random = 48 }
+				country_event = { id = ERS_petrov.14 days = 21 }
+				load_focus_tree = { tree = ERS_modernist_tree_regional keep_completed = yes }
+			}
+		}
+		else = {
+			ERS_Decrease_Idealism_med = yes
+			hidden_effect = {
+				country_event = { id = ERS_petrov.14 days = 21 }
+			}
+		}
+	}
+}
+
+country_event = { #1967 - Bastillards
+	id = ERS_elections.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.5"}
+	title = ERS_elections.5.t
+	desc = ERS_elections.5.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.5.a
+		ai_chance = { factor = 1 }
+		random_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Increase_Bas_Pop_med = yes
+		}
+		add_ideas = ERS_Nikolay_Oleynikov_hog
+		add_ideas = ERS_Nikolay_Zabolotsky_for
+		add_ideas = ERS_Alexander_Voznesensky_eco
+		if = {
+			limit = {
+				NOT = { has_government = authoritarian_democrat }
+			}
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = ERS_regional_unifier
+			set_politics = {
+				ruling_party = authoritarian_democrat
+				elections_allowed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_decembrist_economy
+						has_idea = ERS_idea_humanist_economy
+						has_idea = ERS_idea_modernist_economy
+					}
+				}
+				add_ideas = ERS_idea_incompatible_economy
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = ERS_idea_decembrist_army
+						has_idea = ERS_idea_humanist_army
+						has_idea = ERS_idea_modernist_army
+					}
+				}
+				add_ideas = ERS_idea_incompatible_army
+			}
+			hidden_effect = {
+				ERS_Apply_Bas_Duma = yes
+				country_event = { id = ERS.107 days = 1 }
+				country_event = { id = ERS.154 days = 70 random = 96 }
+				country_event = { id = ERS_petrov.13 days = 21 }
+				load_focus_tree = { tree = ERS_bastillard_tree_regional keep_completed = yes }
+			}
+		}
+		else = {
+			ERS_Decrease_Idealism_med = yes
+			hidden_effect = {
+				country_event = { id = ERS_petrov.13 days = 21 }
+			}
+		}
+	}
+}
+
+country_event = { #Violet Siberia - Shostakovich Elected
+	id = ERS_elections.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.6"}
+	title = ERS_elections.6.t
+	desc = ERS_elections.6.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.6.a
+		ai_chance = { factor = 1 }
+		set_politics = {
+			ruling_party = social_democrat
+			elections_allowed = yes
+		}
+		set_cosmetic_tag = ERS_HUMANIST
+		add_ideas = ERS_Moisey_Vainberg_hog
+		add_ideas = ERS_Mikhail_Gefter_for
+		add_ideas = ERS_Nikolay_Nikitin_eco
+		remove_ideas = ERS_provisional_government
+		hidden_effect = {
+			create_country_leader = {
+				name = "Dmitry Likhachyov"
+				desc = "POLITICS_DMITRY_LIKHACHYOV_DESC"
+				picture = "Portrait_Tomsk_Dmitry_Likhachev.dds"
+				expire = "1999.1.1"
+				ideology = social_conservative_subtype
+				traits = {
+				}
+			}
+			ERS_Apply_Hum_Duma = yes
+			load_focus_tree = {
+				tree = ERS_humanist_tree
+				keep_completed = no
+			}
+		}
+	}
+}
+
+country_event = { #White Siberia - Likhachyov Elected
+	id = ERS_elections.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.7"}
+	title = ERS_elections.7.t
+	desc = ERS_elections.7.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.7.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			retire_country_leader = yes
+		}
+		set_politics = {
+			ruling_party = social_conservative
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Dmitry Likhachyov"
+			desc = "POLITICS_DMITRY_LIKHACHYOV_DESC"
+			picture = "Portrait_Tomsk_Dmitry_Likhachev.dds"
+			expire = "1999.1.1"
+			ideology = social_conservative_subtype
+			traits = {
+			}
+		}
+		add_ideas = ERS_Georgy_Sviridov_hog
+		add_ideas = ERS_Konstantin_Paustovsky_for
+		remove_ideas = ERS_provisional_government
+		#set_cosmetic_tag = ERS_DECEMBRIST
+		hidden_effect = {
+			ERS_Apply_Dec_Duma = yes
+			load_focus_tree = {
+				tree = ERS_decembrist_tree
+				keep_completed = no
+			}
+		}
+	}
+}
+
+country_event = { #Modernist Victory
+	id = ERS_elections.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.8"}
+	title = ERS_elections.8.t
+	desc = ERS_elections.8.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.8.a
+		ai_chance = { factor = 1 }
+		set_politics = {
+			ruling_party = social_liberal
+			elections_allowed = yes
+		}
+		add_ideas = ERS_Antonina_Pirozhkova_hog
+		add_ideas = ERS_Pobisk_Kuznetsov_for
+		add_ideas = ERS_Nikolay_Kamov_eco
+		remove_ideas = ERS_provisional_government
+		hidden_effect = {
+			create_country_leader = {
+				name = "Dmitry Likhachyov"
+				desc = "POLITICS_DMITRY_LIKHACHYOV_DESC"
+				picture = "Portrait_Tomsk_Dmitry_Likhachev.dds"
+				expire = "1999.1.1"
+				ideology = social_conservative_subtype
+				traits = {
+				}
+			}
+			ERS_Apply_Mod_Duma = yes
+			load_focus_tree = ERS_modernist_tree
+			ERS_Decrease_Dec_upper_house_support_high = yes
+			ERS_Decrease_Dec_lower_house_support_high = yes
+			ERS_Decrease_Bas_upper_house_support_high = yes
+			ERS_Decrease_Bas_lower_house_support_high = yes
+			ERS_Decrease_Hum_upper_house_support_high = yes
+			ERS_Decrease_Hum_lower_house_support_high = yes
+		}
+	}
+}
+
+
+country_event = { #Bastillard Victory
+	id = ERS_elections.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS_elections.8"}
+	title = ERS_elections.9.t
+	desc = ERS_elections.9.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_elections.9.a
+		ai_chance = { factor = 1 }
+		set_politics = {
+			ruling_party = authoritarian_democrat
+			elections_allowed = yes
+		}
+		add_ideas = ERS_Nikolay_Oleynikov_hog
+		add_ideas = ERS_Nikolay_Zabolotsky_for
+		add_ideas = ERS_Alexander_Voznesensky_eco
+		remove_ideas = ERS_provisional_government
+		hidden_effect = {
+			create_country_leader = {
+				name = "Dmitry Likhachyov"
+				desc = "POLITICS_DMITRY_LIKHACHYOV_DESC"
+				picture = "Portrait_Tomsk_Dmitry_Likhachev.dds"
+				expire = "1999.1.1"
+				ideology = social_conservative_subtype
+				traits = {
+				}
+			}
+			ERS_Apply_Bas_Duma = yes
+			load_focus_tree = {
+				tree = ERS_bastillard_tree
+				keep_completed = no
+			}
+		}
+	}
+}
+
+country_event = { #Intro Event
+	id = ERS.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.1"}
+	title = ERS.1.t
+	desc = ERS.1.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ERS.1.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.02
+	}
+}
+
+country_event = { #A year away from Woland
+	id = ERS.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.2"}
+	title = ERS.2.t
+	desc = ERS.2.desc
+	picture = GFX_report_event_russia_siberian_worker
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.2.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #End the Provisional Government
+	id = ERS.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.3"}
+	title = ERS.3.t
+	desc = ERS.3.desc
+	picture = GFX_report_event_komi_house
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.3.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The First Draft
+	id = ERS.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.4"}
+	title = ERS.4.t
+	desc = ERS.4.desc
+	picture = GFX_report_event_generic_sign_treaty3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.4.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Radio show
+	id = ERS.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.5"}
+	title = ERS.5.t
+	desc = ERS.5.desc
+	picture = GFX_report_event_soviet_russian_mech_infantry_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.5.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Suspending the Provisional Government
+	id = ERS.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.6"}
+	title = ERS.6.t
+	desc = ERS.6.desc
+	picture = GFX_report_event_komi_house
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.6.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Legacy of White Russia
+	id = ERS.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.7"}
+	title = ERS.7.t
+	desc = ERS.7.desc
+	picture = GFX_report_event_russia_kazakh_riders_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.7.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Shostakovich intro event
+	id = ERS.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.8"}
+	title = ERS.8.t
+	desc = ERS.8.desc
+	picture = GFX_report_event_russia_shostakovich
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.8.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Pursuing a Feverish Dream
+	id = ERS.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.9"}
+	title = ERS.9.t
+	desc = ERS.9.desc
+	picture = GFX_report_event_soviet_russian_soldiers_5
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.9.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Death of the Author
+	id = ERS.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.10"}
+	title = ERS.10.t
+	desc = ERS.10.desc
+	picture = GFX_report_event_russia_pasternak
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.10.a
+		ai_chance = { factor = 1 }
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Provisional Duma"
+			desc = "POLITICS_PROVISIONAL_DUMA_DESC"
+			picture = "Portrait_Tomsk_Provisional_Duma.dds"
+			expire = "1999.1.1"
+			ideology = social_conservative_subtype
+			traits = {
+			}
+		}
+		578 = { ERS_Decrease_Dec_Pop_low = yes }
+		complete_national_focus = ERS_the_death_of_the_author
+		country_event = { id = ERS.11 days = 5 }
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = ERS_petrov.3 days = 7 }
+		}
+	}
+}
+
+country_event = { #The Permanence of the Manuscript
+	id = ERS.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.11"}
+	title = ERS.11.t
+	desc = ERS.11.desc
+	picture = GFX_report_event_generic_read_write 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.11.a
+		ai_chance = { factor = 1 }
+		complete_national_focus = ERS_the_permanence_of_the_manuscript
+	}
+}
+
+country_event = { #Daniil Kharms intro event
+	id = ERS.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.12"}
+	title = ERS.12.t
+	desc = ERS.12.desc
+	picture = GFX_report_event_vodka
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK.
+		name = ERS.12.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Operation D'Anthes
+	id = ERS.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.13"}
+	title = ERS.13.t
+	desc = ERS.13.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.13.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Trial the Secessionists - Trial of the Siloviki
+	id = ERS.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.14"}
+	title = ERS.14.t
+	desc = ERS.14.desc
+	picture = GFX_report_event_russia_frogmen
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.14.a
+		ai_chance = { factor = 1 }
+		add_political_power = 15
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					has_government = authoritarian_democrat
+				}
+				country_event = { id = ERS_petrov.8 days = 7 }
+			}
+		}
+	}
+}
+
+country_event = { #Big Goddamn Hero
+	id = ERS.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.15"}
+	title = ERS.15.t
+	desc = ERS.15.desc
+	picture = GFX_report_event_soldier_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.15.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Bad Dreams
+	id = ERS.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.16"}
+	title = ERS.16.t
+	desc = ERS.16.desc
+	picture = GFX_report_event_iberia_home_office_desk
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.16.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Operation Oskolok
+	id = ERS.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.17"}
+	title = ERS.17.t
+	desc = ERS.17.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.17.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Operation Vozneseniye
+	id = ERS.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.18"}
+	title = ERS.18.t
+	desc = ERS.18.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.18.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Music to My Ears
+	id = ERS.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.19"}
+	title = ERS.19.t
+	desc = ERS.19.desc
+	picture = GFX_report_event_record_player
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.19.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #History of Siberian Expansion
+	id = ERS.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.20"}
+	title = ERS.20.t
+	desc = ERS.20.desc
+	picture = GFX_report_event_CHI_university
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.20.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Tchaikovsky
+	id = ERS.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.21"}
+	title = ERS.21.t
+	desc = ERS.21.desc
+	picture = GFX_news_event_film_reel
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.21.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The Revolt of the Masses
+	id = ERS.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.22"}
+	title = ERS.22.t
+	desc = ERS.22.desc
+	picture = GFX_report_event_novel
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.22.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Mixed Feelings
+	id = ERS.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.23"}
+	title = ERS.23.t
+	desc = ERS.23.desc
+	picture = GFX_report_event_russia_novosibirsk_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.23.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #What Does It All Mean?
+	id = ERS.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.24"}
+	title = ERS.24.t
+	desc = ERS.24.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.24.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Bastillard First Focus
+	id = ERS.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.25"}
+	title = ERS.25.t
+	desc = ERS.25.desc
+	picture = report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.25.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = ERS_petrov.4 days = 7 }
+		}
+	}
+}
+
+country_event = { #Bastillards bending to unions, workers angy
+	id = ERS.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.26"}
+	title = ERS.26.t
+	desc = ERS.26.desc
+	picture = GFX_report_event_russian_refugees
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.26.a
+		ai_chance = { factor = 1 }
+		SIB_increase_worker_tension_med = yes
+	}
+}
+
+country_event = { #Industrial Rationalization Council
+	id = ERS.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.27"}
+	title = ERS.27.t
+	desc = ERS.27.desc
+	picture = GFX_report_event_soviet_russian_officers_banner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.27.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Bastillards going their own way, trinity group rebuffs
+	id = ERS.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.28"}
+	title = ERS.28.t
+	desc = ERS.28.desc
+	picture = GFX_report_event_russia_soldiers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.28.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = ERS.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.29"}
+	title = ERS.29.t
+	desc = ERS.29.desc
+	picture = GFX_report_event_russian_irregulars
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.29.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #A new industrial system wrapped up
+	id = ERS.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.30"}
+	title = ERS.30.t
+	desc = ERS.30.desc
+	picture = GFX_report_event_russia_frogmen
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.30.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			load_focus_tree = { tree = ERS_bastillard_tree_regional keep_completed = no }
+		}
+	}
+}
+
+country_event = { #OYROTIA - Envoys from the Republic
+	id = ERS.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.31"}
+	title = ERS.31.t
+	desc = ERS.31.desc
+	picture = GFX_report_event_russian_crowd
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Accept
+		name = ERS.31.a
+		ai_chance = { factor = 30 }
+		hidden_effect = {
+			ERS = {
+				country_event = { id = ERS.32 days = 1 }
+			}
+		}
+	}
+	option = { #Refuse
+		name = ERS.31.b
+		ai_chance = { factor = 3 }
+		hidden_effect = {
+			ERS = {
+				country_event = { id = ERS.33 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #TOMSK - Oyrotia accepts!
+	id = ERS.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.32"}
+	title = ERS.32.t
+	desc = ERS.32.desc
+	picture = GFX_report_event_russian_labor
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.32.a
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = ALT
+			transfer_troops = no
+		}
+		#Add generals later
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+country_event = { #TOMSK - Oyrotia refuses!
+	id = ERS.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.33"}
+	title = ERS.33.t
+	desc = ERS.33.desc
+	picture = GFX_report_event_soviet_russian_tanks_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.33.a
+		ai_chance = { factor = 1 }
+		declare_war_on = {
+			target = ALT
+			type = russian_reclaimation
+		}
+		set_country_flag = ERS_war_with_oyrotia
+	}
+}
+
+country_event = { #The Planet of Storms
+	id = ERS.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.34"}
+	title = ERS.34.t
+	desc = ERS.34.desc
+	picture = GFX_report_event_cosmic
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.34.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Reintegrate the Crownlands
+	id = ERS.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.35"}
+	title = ERS.35.t
+	desc = ERS.35.desc
+	picture = GFX_report_event_russians
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.35.a
+		ai_chance = { factor = 1 }
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			country_event = { id = ERS.36 days = 1 }
+			if = {
+				limit = {
+					has_government = social_conservative
+				}
+				country_event = { id = ERS_petrov.10 days = 7 }
+			}
+		}
+	}
+}
+
+country_event = { #The Return of the King
+	id = ERS.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.36"}
+	title = ERS.36.t
+	desc = ERS.36.desc
+	picture = GFX_report_event_russia_advertisements
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Try to help heal Krylov
+		name = ERS.36.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = ERS.36 days = 75 random = 24 }
+		}
+	}
+	option = { #Trial and prison
+		name = ERS.36.b
+		ai_chance = { factor = 1 }
+		add_political_power = 20
+	}
+}
+
+country_event = { #Nikolay Krylov is starting to get better
+	id = ERS.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.37"}
+	title = ERS.37.t
+	desc = ERS.37.desc
+	picture = GFX_report_event_soviet_russian_officer_child
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.37.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Operation Khorei
+	id = ERS.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.38"}
+	title = ERS.38.t
+	desc = ERS.38.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.38.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Trial Andreev and his clique of opportunistic traitors
+	id = ERS.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.39"}
+	title = ERS.39.t
+	desc = ERS.39.desc
+	picture = GFX_report_event_russia_boris_smyslovsky
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.39.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.025
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					has_government = social_liberal
+				}
+				country_event = { id = ERS_petrov.9 days = 7 }
+			}
+		}
+	}
+}
+
+country_event = { #
+	id = ERS.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.40"}
+	title = ERS.40.t
+	desc = ERS.40.desc
+	picture = GFX_report_event_russia_food_line
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.40.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #union issue
+	id = ERS.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.41"}
+	title = ERS.41.t
+	desc = ERS.41.desc
+	picture = GFX_report_event_russia_dacha
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.41.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+	}
+	option = { #
+		name = ERS.41.b
+		ai_chance = { factor = 1 }
+		tno_trade_unions_worsen = yes
+		ERS_Increase_Dec_upper_house_support_low = yes
+		ERS_Increase_Bas_upper_house_support_low = yes
+	}
+}
+
+country_event = { #
+	id = ERS.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.42"}
+	title = ERS.42.t
+	desc = ERS.42.desc
+	picture = GFX_report_event_soviet_russian_soldiers_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.42.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Operation Tvyordaya Ruka
+	id = ERS.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.43"}
+	title = ERS.43.t
+	desc = ERS.43.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.43.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Put an End to the Revolt
+	id = ERS.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.44"}
+	title = ERS.44.t
+	desc = ERS.44.desc
+	picture = GFX_report_event_russia_vorkutlag
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.44.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.025
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					has_government = social_democrat
+				}
+				country_event = { id = ERS_petrov.11 days = 7 }
+			}
+		}
+	}
+}
+
+country_event = { #Operation Shkola
+	id = ERS.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.45"}
+	title = ERS.45.t
+	desc = ERS.45.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.45.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.015
+	}
+}
+
+country_event = { #Fate of the Red Army
+	id = ERS.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.46"}
+	title = ERS.46.t
+	desc = ERS.46.desc
+	picture = GFX_report_event_russia_dacha
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.46.a
+		ai_chance = { factor = 1 }
+		army_experience = 15
+		add_manpower = 5000
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+country_event = { #Sakharov intro event
+	id = ERS.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.47"}
+	title = ERS.47.t
+	desc = ERS.47.desc
+	picture = GFX_report_event_russia_nuclear_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.47.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = ERS.67 days = 7 }
+		}
+	}
+}
+
+country_event = { #Likachyov intro event
+	id = ERS.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.48"}
+	title = ERS.48.t
+	desc = ERS.48.desc
+	picture = GFX_report_event_russia_trouble_in_nowa_warszawa
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.48.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #
+	id = ERS.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.49"}
+	title = ERS.49.t
+	desc = ERS.49.desc
+	picture = GFX_report_event_russian_labor
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.49.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = ERS.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.50"}
+	title = ERS.50.t
+	desc = ERS.50.desc
+	picture = GFX_report_event_soviet_russian_mech_infantry_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.50.a
+		ai_chance = { factor = 1 }
+		ERS_setup_starting_variables = yes
+	}
+}
+
+country_event = { #Victory for the Decembrist Society
+	id = ERS.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.51"}
+	title = ERS.51.t
+	desc = ERS.51.desc
+	picture = GFX_report_event_russia_soldiers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.51.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = ERS_petrov.6 days = 7 }
+		}
+	}
+}
+
+country_event = { #Path to Lesosibirsk
+	id = ERS.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.52"}
+	title = ERS.52.t
+	desc = ERS.52.desc
+	picture = GFX_report_event_russia_kazakh_riders_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.52.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #Three Sons of the Union
+	id = ERS.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.53"}
+	title = ERS.53.t
+	desc = ERS.53.desc
+	picture = GFX_report_event_german_pow_russian_women
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.53.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+	}
+}
+
+country_event = { #Ode to Liberty
+	id = ERS.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.54"}
+	title = ERS.54.t
+	desc = ERS.54.desc
+	picture = GFX_report_event_russia_novotroitsk_cemetary
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.54.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		578 = { ERS_Increase_Dec_Pop_low = yes }
+	}
+}
+
+country_event = { #Re-evaluate and Rehabilitate
+	id = ERS.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.55"}
+	title = ERS.55.t
+	desc = ERS.55.desc
+	picture = GFX_report_event_russia_magnitogorsk_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.55.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_manpower = 1500
+	}
+}
+
+country_event = { #tea time with shostakovich
+	id = ERS.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.56"}
+	title = ERS.56.t
+	desc = ERS.56.desc
+	picture = GFX_report_event_russian_letter
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.56.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #walk in the forest
+	id = ERS.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.57"}
+	title = ERS.57.t
+	desc = ERS.57.desc
+	picture = GFX_report_event_russian_city
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.57.a
+		ai_chance = { factor = 1 }
+		578 = {
+			ERS_Increase_Dec_Pop_high = yes
+		}
+	}
+}
+
+country_event = { #tammering of machinery
+	id = ERS.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.58"}
+	title = ERS.58.t
+	desc = ERS.58.desc
+	picture = GFX_report_event_russian_volunteers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.58.a
+		ai_chance = { factor = 1 }
+		578 = {
+			ERS_Increase_Bas_Pop_high = yes
+		}
+	}
+	option = { #
+		name = ERS.58.b
+		ai_chance = { factor = 1 }
+		578 = {
+			ERS_Increase_Mod_Pop_high = yes
+		}
+	}
+}
+
+country_event = { #Sakharov addressing the Duma
+	id = ERS.59
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.59" }
+	title = ERS.59.t
+	desc = ERS.59.desc
+	picture = GFX_report_event_russia_orenburg
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.59.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = ERS_petrov.5 days = 7 }
+		}
+	}
+}
+
+country_event = { #Building the Seven Ministries
+	id = ERS.60
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.60" }
+	title = ERS.60.t
+	desc = ERS.60.desc
+	picture = GFX_report_event_russian_labor
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.60.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The Future Secure
+	id = ERS.61
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.61" }
+	title = ERS.61.t
+	desc = ERS.61.desc
+	picture = GFX_report_event_soviet_russian_tanks_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.61.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Your Vote Counts
+	id = ERS.62
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.62" }
+	title = ERS.62.t
+	desc = ERS.62.desc
+	picture = GFX_report_event_soviet_russian_tank_factory_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.62.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Marching Ever Onwards
+	id = ERS.63
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.63" }
+	title = ERS.63.t
+	desc = ERS.63.desc
+	picture = GFX_report_event_russian_handshake
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.63.a
+		ai_chance = { factor = 1 }
+		army_experience = 10
+	}
+}
+
+country_event = { #Second Steps
+	id = ERS.64
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.64" }
+	title = ERS.64.t
+	desc = ERS.64.desc
+	picture = GFX_report_event_russia_marines
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.64.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Per Scientiam ad Justitiam
+	id = ERS.65
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.65" }
+	title = ERS.65.t
+	desc = ERS.65.desc
+	picture = GFX_report_event_soviet_russian_officer_child
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.65.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			load_focus_tree = { tree = ERS_modernist_tree_regional keep_completed = no }
+		}
+	}
+}
+
+country_event = { #Legacy of Pasternak
+	id = ERS.66
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.66" }
+	title = ERS.66.t
+	desc = ERS.66.desc
+	picture = GFX_report_event_german_pow_russian_women
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.66.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			load_focus_tree = { tree = ERS_decembrist_tree_regional keep_completed = no }
+		}
+	}
+}
+
+country_event = { #Sakharov and Kamov talk
+	id = ERS.67
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.67" }
+	title = ERS.67.t
+	desc = ERS.67.desc
+	picture = GFX_report_event_russian_handshake
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.67.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Report from the Commission of Industry
+	id = ERS.68
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.68" }
+	title = ERS.68.t
+	desc = ERS.68.desc
+	picture = GFX_report_event_soviet_russian_mech_infantry_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.68.a
+		ai_chance = { factor = 1 }
+		add_political_power = -20
+	}
+}
+
+country_event = { #Integrating the Siberia Plan
+	id = ERS.69
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.69" }
+	title = ERS.69.t
+	desc = ERS.69.desc
+	picture = GFX_report_event_soviet_russian_officers_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.69.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Far From Friends
+	id = ERS.71
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.71" }
+	title = ERS.71.t
+	desc = ERS.71.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #yes
+		name = ERS.71.a
+		ai_chance = { factor = 1 }
+	}
+
+}
+
+country_event = { #Close to Rivals
+	id = ERS.72
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.72" }
+	title = ERS.72.t
+	desc = ERS.72.desc
+	picture = GFX_report_event_generic_sign_treaty3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #yes
+		name = ERS.72.a
+		ai_chance = { factor = 1 }
+		add_relation_modifier = {
+			target = ERS
+			modifier = ERS_russian_friends
+		}
+	}
+
+	option = { #no
+		name = ERS.72.b
+		ai_chance = { factor = 1 }
+	}
+
+}
+
+country_event = { #Discord in the Salons
+	id = ERS.73
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.73" }
+	title = ERS.73.t
+	desc = ERS.73.desc
+	#picture = GFX_report_event_russia_kazakh_uranium_mine
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.73.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Subversive Parties
+	id = ERS.74
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.74" }
+	title = ERS.74.t
+	desc = ERS.74.desc
+	picture = GFX_report_event_russian_refugees
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.74.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Urge to Calm
+	id = ERS.75
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.75" }
+	title = ERS.75.t
+	desc = ERS.75.desc
+	picture = GFX_report_event_soviet_russian_officers_banner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.75.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Call for Compassion
+	id = ERS.76
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.76" }
+	title = ERS.76.t
+	desc = ERS.76.desc
+	picture = GFX_report_event_russian_handshake
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.76.a
+		ai_chance = { factor = 1 }
+	}
+
+}
+
+country_event = { #Appeal to Reason
+	id = ERS.77
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.77" }
+	title = ERS.77.t
+	desc = ERS.77.desc
+	picture = GFX_report_event_russian_volunteers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.77.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Plea for Action
+	id = ERS.78
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.78" }
+	title = ERS.78.t
+	desc = ERS.78.desc
+	picture = GFX_report_event_russia_viatka_map
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.78.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Bastillard Diplo Intro
+	id = ERS.79
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.79" }
+	title = ERS.79.t
+	desc = ERS.79.desc
+	picture = GFX_report_event_russia_white_army_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.79.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Dealing with Extremists
+	id = ERS.80
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.80" }
+	title = ERS.80.t
+	desc = ERS.80.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.80.a
+		ai_chance = { factor = 1 }
+		ERS_Decrease_Idealism_med = yes
+	}
+
+	option = { #
+		name = ERS.80.b
+		ai_chance = { factor = 1 }
+		ERS_Increase_Political_Outsiders_med = yes
+	}
+}
+
+country_event = { #Bastillard - Germany Report
+	id = ERS.81
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.81" }
+	title = ERS.81.t
+	desc = ERS.81.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.81.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Bastillard - Sphere Report
+	id = ERS.82
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.82" }
+	title = ERS.82.t
+	desc = ERS.82.desc
+	#picture = GFX_report_event_russia_kazakh_uranium_mine
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.82.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Humanist Diplo Intro
+	id = ERS.83
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.83" }
+	title = ERS.83.t
+	desc = ERS.83.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.83.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Humanist - Sphere Report
+	id = ERS.84
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.84" }
+	title = ERS.84.t
+	desc = ERS.84.desc
+	picture = GFX_report_event_russian_crowd
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.84.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Modernist Diplo Intro
+	id = ERS.85
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.85" }
+	title = ERS.85.t
+	desc = ERS.85.desc
+	picture = GFX_report_event_russia_hunter
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.85.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Modernist Foreign Policy Council
+	id = ERS.86
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.86" }
+	title = ERS.86.t
+	desc = ERS.86.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.86.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Sakharov's Fear
+	id = ERS.87
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.87" }
+	title = ERS.87.t
+	desc = ERS.87.desc
+	picture = GFX_report_event_iberia_home_office_desk
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.87.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Winds of Change
+	id = ERS.88
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.88" }
+	title = ERS.88.t
+	desc = ERS.88.desc
+	picture = GFX_report_event_river
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.88.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Alienation
+	id = ERS.89
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.89" }
+	title = ERS.89.t
+	desc = ERS.89.desc
+	picture = GFX_report_event_iberia_politicians_discussing
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.89.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = ERS.90 days = 21 }
+		}
+	}
+}
+
+country_event = { #Endearment
+	id = ERS.90
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.90" }
+	title = ERS.90.t
+	desc = ERS.90.desc
+	picture = GFX_report_event_vodka
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.90.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+
+country_event = { #Tomsk humanist warlord event On Humanist Theory
+	id = ERS.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.100"}
+	title = ERS.100.t
+	desc = ERS.100.desc
+	picture = GFX_report_event_russian_letter
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.100.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist warlord event Tomsk marches against the separatists
+	id = ERS.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.101"}
+	title = ERS.101.t
+	desc = ERS.101.desc
+	picture = GFX_report_event_russia_kazakh_crowd
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.101.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.05
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = ERS_petrov.7 days = 7 }
+		}
+	}
+}
+
+country_event = { #Tomsk humanist warlord event Weekly Gun Training
+	id = ERS.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.102"}
+	title = ERS.102.t
+	desc = ERS.102.desc
+	picture = GFX_report_event_soviet_russian_officers_banner
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.102.a
+		ai_chance = { factor = 1 }
+		army_experience = 10
+	}
+}
+
+country_event = { #Tomsk humanist warlord event The Humanist Heir
+	id = ERS.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.103"}
+	title = ERS.103.t
+	desc = ERS.103.desc
+	picture = GFX_report_event_komi_library_2
+	
+	trigger = {
+		NOT = { has_country_flag = RUS_regional_stage }
+		has_government = social_democrat
+	}
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.103.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional Legacy of the Great Unification
+	id = ERS.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.105"}
+	title = ERS.105.t
+	desc = ERS.105.desc
+	picture = GFX_report_event_russian_commissar
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		NOT = {
+			country_exists = KAL
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.105.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional The Common Core Reforms
+	id = ERS.106
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.106"}
+	title = ERS.106.t
+	desc = ERS.106.desc
+	picture = GFX_report_event_china_russia
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.106.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional A new administration
+	id = ERS.107
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.107"}
+	title = ERS.107.t
+	desc = ERS.107.desc
+	picture = GFX_report_event_russian_democracy
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.107.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional The Advisory Referendum - Humanist-Bastillard victory
+	id = ERS.108
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.108"}
+	title = ERS.108.t
+	desc = ERS.108.desc
+	picture = GFX_report_event_russia_tanks
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.108.a
+		ai_chance = { factor = 1 }
+		
+	}
+	option = { #
+		name = ERS.108.b
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional  The Advisory Referendum - Modernist-Decembrist 'victory'
+	id = ERS.109
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.109"}
+	title = ERS.109.t
+	desc = ERS.109.desc
+	picture = GFX_report_event_russia_orenburg2
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.109.a
+		ai_chance = { factor = 1 }
+		
+	}
+	option = { #
+		name = ERS.109.b
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional Temporary Lull to the Political Crisis
+	id = ERS.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.110"}
+	title = ERS.110.t
+	desc = ERS.110.desc
+	picture = GFX_report_event_soviet_russian_sniper
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.110.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk common regional Elections are soon upon us!
+	id = ERS.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.111"}
+	title = ERS.111.t
+	desc = ERS.111.desc
+	picture = GFX_report_event_soviet_russian_mech_infantry_4
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.111.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist regional The New Republican Army
+	id = ERS.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.112"}
+	title = ERS.112.t
+	desc = ERS.112.desc
+	picture = GFX_report_event_russia_dacha
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.112.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist regional The People's Siberian Plan
+	id = ERS.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.113"}
+	title = ERS.113.t
+	desc = ERS.113.desc
+	picture = GFX_report_event_soviet_russian_soldiers_tank
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.113.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist regional Passing of the torch
+	id = ERS.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.114"}
+	title = ERS.114.t
+	desc = ERS.114.desc
+	picture = GFX_report_event_soviet_russian_mech_infantry_4
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.114.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist regional The new diplomat corps
+	id = ERS.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.115"}
+	title = ERS.115.t
+	desc = ERS.115.desc
+	picture = GFX_report_event_soviet_russian_officer_child
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.115.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk humanist regional Slow progress
+	id = ERS.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.116"}
+	title = ERS.116.t
+	desc = ERS.116.desc
+	picture = GFX_report_event_soviet_russian_soldiers_6
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.116.a
+		ai_chance = { factor = 1 }
+		every_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Decrease_Hum_Pop_med = yes
+		}
+	}
+}
+
+country_event = { #Tomsk Decembrist regional The New Republican Army
+	id = ERS.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.117"}
+	title = ERS.117.t
+	desc = ERS.117.desc
+	picture = GFX_report_event_russian_crowd
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_conservative
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.117.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Decembrist regional The Decembrist Economic Revolution
+	id = ERS.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.118"}
+	title = ERS.118.t
+	desc = ERS.118.desc
+	picture = GFX_report_event_soviet_russian_soldiers_5
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_conservative
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.118.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Decembrist regional Event for focus Environmental Rights
+	id = ERS.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.119"}
+	title = ERS.119.t
+	desc = ERS.119.desc
+	picture = GFX_report_event_russia_vyatka
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_conservative
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.119.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Decembrist regional Event for focus a declaration of intention
+	id = ERS.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.120"}
+	title = ERS.120.t
+	desc = ERS.120.desc
+	picture = GFX_report_event_russia_vorkutlag
+	
+	trigger = {
+		has_country_flag = RUS_regional_stage
+		has_government = social_conservative
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.120.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Modernist Regional The new republican army - modernists
+	id = ERS.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.121"}
+	title = ERS.121.t
+	desc = ERS.121.desc
+	picture = GFX_report_event_soviet_russian_tanks_4
+	
+	trigger = {
+		has_government = social_liberal
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.121.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Modernist Regional The Modern House of Wisdom
+	id = ERS.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.122"}
+	title = ERS.122.t
+	desc = ERS.122.desc
+	picture = GFX_report_event_russian_refugees
+	
+	trigger = {
+		has_government = social_liberal
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.122.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Modernist Regional The Great Cultural Shift
+	id = ERS.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.123"}
+	title = ERS.123.t
+	desc = ERS.123.desc
+	picture = GFX_report_event_soviet_russian_tank_factory_3
+	
+	trigger = {
+		has_government = social_liberal
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.123.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Modernist Regional Sakharov's burdens
+	id = ERS.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.124"}
+	title = ERS.124.t
+	desc = ERS.124.desc
+	picture = GFX_report_event_russian_labor
+	
+	trigger = {
+		has_government = social_liberal
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.124.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Modernist Regional War Games
+	id = ERS.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.125"}
+	title = ERS.125.t
+	desc = ERS.125.desc
+	picture = GFX_report_event_russia_orenburg2
+	
+	trigger = {
+		has_government = social_liberal
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.125.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Bastillard Regional Legacy of the Great Worker Uprising
+	id = ERS.126
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.126"}
+	title = ERS.126.t
+	desc = ERS.126.desc
+	picture = GFX_report_event_russian_letter
+	
+	trigger = {
+		has_government = authoritarian_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.126.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Bastillard Regional The new republican army - bastillard
+	id = ERS.127
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.127"}
+	title = ERS.127.t
+	desc = ERS.127.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	trigger = {
+		has_government = authoritarian_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.127.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Bastillard Regional A symphony of Steel and Movement
+	id = ERS.128
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.128"}
+	title = ERS.128.t
+	desc = ERS.128.desc
+	picture = GFX_report_event_russian_democracy
+	
+	trigger = {
+		has_government = authoritarian_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.128.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Bastillard Regional Eyes and Ears of the Republic
+	id = ERS.129
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.129"}
+	title = ERS.129.t
+	desc = ERS.129.desc
+	picture = GFX_report_event_soviet_russian_tank_factory_3
+	
+	trigger = {
+		has_government = authoritarian_democrat
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.129.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Culture event 1967 techno music
+	id = ERS.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.130"}
+	title = ERS.130.t
+	desc = ERS.130.desc
+	picture = GFX_report_event_russia_music_album
+	
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.130.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Culture event 1964 absurdist serial
+	id = ERS.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.131"}
+	title = ERS.131.t
+	desc = ERS.131.desc
+	picture = GFX_report_event_russia_music_album
+	
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.131.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Culture event 1965 second week of march: Maslenitsa week
+	id = ERS.132
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.132"}
+	title = ERS.132.t
+	desc = ERS.132.desc
+	picture = GFX_report_event_russia_music_album
+	
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.132.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk Culture event 1966 autumn people's music festival
+	id = ERS.133
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.133"}
+	title = ERS.133.t
+	desc = ERS.133.desc
+	picture = GFX_report_event_russia_music_album
+	
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.133.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event modernist superreg Missed Opportunities
+	id = ERS.134
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.134"}
+	title = ERS.134.t
+	desc = ERS.134.desc
+	picture = GFX_report_event_russia_siberian_worker
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.134.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event modernist superreg International finance
+	id = ERS.135
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.135"}
+	title = ERS.135.t
+	desc = ERS.135.desc
+	picture = GFX_report_event_generic_money
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.135.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event modernist superreg Stack Overflow
+	id = ERS.136
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.136"}
+	title = ERS.136.t
+	desc = ERS.136.desc
+	picture = GFX_report_event_technology1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.136.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event humanist superreg An evening meal in Tokyo
+	id = ERS.137
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.137"}
+	title = ERS.137.t
+	desc = ERS.137.desc
+	picture = GFX_report_event_generic_sign_treaty3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.137.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event humanist superreg Breaking The Wall in the Mind
+	id = ERS.138
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.138"}
+	title = ERS.138.t
+	desc = ERS.138.desc
+	picture = GFX_report_event_soviet_russian_sniper
+	
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.138.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event humanist superreg A Republic of Citizens
+	id = ERS.139
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.139"}
+	title = ERS.139.t
+	desc = ERS.139.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.139.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event bastillard superreg A nation's future
+	id = ERS.140
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.140"}
+	title = ERS.140.t
+	desc = ERS.140.desc
+	picture = GFX_report_event_iberia_barcelona_people
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.140.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event bastillard superreg The thunderous parliament
+	id = ERS.141
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.141"}
+	title = ERS.141.t
+	desc = ERS.141.desc
+	picture = GFX_report_event_russia_white_army_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.141.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event bastillard superreg Ending Harbin's legacy
+	id = ERS.142
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.142"}
+	title = ERS.142.t
+	desc = ERS.142.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.142.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event decembrist superreg Military Parade
+	id = ERS.143
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.143"}
+	title = ERS.143.t
+	desc = ERS.143.desc
+	picture = GFX_report_event_russia_soldiers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.143.a
+		ai_chance = { factor = 1 }
+		army_experience = 5
+	}
+}
+
+country_event = { #Tomsk event decembrist superreg The Great Discord Speech
+	id = ERS.144
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.144"}
+	title = ERS.144.t
+	desc = ERS.144.desc
+	picture = GFX_report_event_iberia_barcelona_people
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.144.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Tomsk event decembrist superreg trip to america
+	id = ERS.145
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ERS.145"}
+	title = ERS.145.t
+	desc = ERS.145.desc
+	picture = GFX_report_event_soviet_russian_soldiers_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.145.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Hidden event to clear ERS_War_Plan_Active
+	id = ERS.146
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.146"
+		clr_country_flag = ERS_War_Plan_Active
+	}
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.146.a
+		
+	}
+}
+
+country_event = { #
+	id = ERS.147
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.147"
+		clr_country_flag = Dec_Interact
+	}
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.147.a
+		
+	}
+}
+
+country_event = { #
+	id = ERS.148
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.148"
+		clr_country_flag = Mod_Interact
+	}
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.148.a
+		
+	}
+}
+
+country_event = { #
+	id = ERS.149
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.149"
+		clr_country_flag = Hum_Interact
+	}
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.149.a
+		
+	}
+}
+
+country_event = { #
+	id = ERS.150
+	hidden = yes
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event ERS.150"
+		clr_country_flag = Bas_Interact
+	}
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.150.a
+		
+	}
+}
+
+country_event = { #Bastillard Literacy Campaign
+	id = ERS.151
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.151" }
+	title = ERS.151.t
+	desc = ERS.151.desc
+	picture = GFX_report_event_komi_house_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.151.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Crime of Passion
+	id = ERS.152
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.152" }
+	title = ERS.152.t
+	desc = ERS.152.desc
+	picture = GFX_report_event_komi_house_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.152.a
+		add_war_support = 0.05
+	}
+}
+
+country_event = { #The Forgotten Palace
+	id = ERS.153
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.153" }
+	title = ERS.153.t
+	desc = ERS.153.desc
+	picture = GFX_report_event_iberia_madrid_construction_crane
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS.153.a
+	}
+}
+
+country_event = { #The Sword
+	id = ERS.154
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.154" }
+	title = ERS.154.t
+	desc = ERS.154.desc
+	picture = GFX_report_event_novel
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.154.a
+	}
+}
+
+country_event = { #The Shield
+	id = ERS.155
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.155" }
+	title = ERS.155.t
+	desc = ERS.155.desc
+	picture = GFX_report_event_russia_sword_and_shield_movie
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.155.a
+	}
+}
+
+country_event = { #East vs. West
+	id = ERS.156
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.156" }
+	title = ERS.156.t
+	desc = ERS.156.desc
+	picture = GFX_report_event_soviet_russian_soldiers_5
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.156.a
+	}
+}
+
+country_event = { #Alas, Babylon
+	id = ERS.157
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.157" }
+	title = ERS.157.t
+	desc = ERS.157.desc
+	picture = GFX_report_event_eng_reconstruction2
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.157.a
+	}
+}
+
+country_event = { #The Democratic Process
+	id = ERS.158
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS.158" }
+	title = ERS.158.t
+	desc = ERS.158.desc
+	picture = GFX_report_event_iberia_ballot_boxes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = ERS.158.a
+	}
+}
+
+### Petrov Salon chain ###
+#Concept: Soldier from a family where each member subscribes to a different salon (himself an idealistic Humanist) experiences the death of Pasternak, the election, regional unification, and superregional continuation, gradually losing that idealism in the face of reality.
+
+country_event = { #Intro - The Petrov Salon: Morning Duma
+	id = ERS_petrov.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.1" }
+	title = ERS_petrov.1.t
+	desc = ERS_petrov.1.desc
+	picture = GFX_report_event_komi_house_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.1.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = ERS_petrov.2 days = 21 }
+		}
+	}
+}
+
+country_event = { #Basic Training/Bigbrain Reflection - The Petrov Salon: Fundamental Tutelage
+	id = ERS_petrov.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.2" }
+	title = ERS_petrov.2.t
+	desc = ERS_petrov.2.desc
+	picture = GFX_report_event_soviet_russian_officers_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.2.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Death of Pasternak, crisis of purpose - The Petrov Salon: Oblivion of Impetus
+	id = ERS_petrov.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.3" }
+	title = ERS_petrov.3.t
+	desc = ERS_petrov.3.desc
+	picture = GFX_report_event_generic_funeral
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.3.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+#Events 4-7: Response to electoral victory of each faction
+
+country_event = { #The Petrov Salon: Triumph of Industry
+	id = ERS_petrov.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.4" }
+	title = ERS_petrov.4.t
+	desc = ERS_petrov.4.desc
+	picture = GFX_report_event_russia_siberian_worker
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.4.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Triumph of Experts
+	id = ERS_petrov.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.5" }
+	title = ERS_petrov.5.t
+	desc = ERS_petrov.5.desc
+	picture = GFX_report_event_generic_research_lab
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.5.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Triumph of Stability
+	id = ERS_petrov.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.6" }
+	title = ERS_petrov.6.t
+	desc = ERS_petrov.6.desc
+	picture = GFX_report_event_iberia_politicians_discussing
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.6.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Triumph of Man
+	id = ERS_petrov.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.7" }
+	title = ERS_petrov.7.t
+	desc = ERS_petrov.7.desc
+	picture = GFX_report_event_russia_siberian_worker
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.7.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+#Events 8-11: Anatoly's experiences in the regional unification campaign, one each for Kemerovo/Krasnoyarsk/SBA/Novosibirsk
+
+country_event = { #The Petrov Salon: Ultimatum of Industry
+	id = ERS_petrov.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.8" }
+	title = ERS_petrov.8.t
+	desc = ERS_petrov.8.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.8.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Ultimatum of Experts
+	id = ERS_petrov.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.9" }
+	title = ERS_petrov.9.t
+	desc = ERS_petrov.9.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.9.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Ultimatum of Stability
+	id = ERS_petrov.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.10" }
+	title = ERS_petrov.10.t
+	desc = ERS_petrov.10.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.10.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Ultimatum of Man
+	id = ERS_petrov.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.11" }
+	title = ERS_petrov.11.t
+	desc = ERS_petrov.11.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.11.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Anatoly returns home, disillusioned - The Petrov Salon: Evening Duma
+	id = ERS_petrov.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.12" }
+	title = ERS_petrov.12.t
+	desc = ERS_petrov.12.desc
+	picture = GFX_report_event_komi_house_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.12.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+#Event 13-16: Regional Reflection based on regional political tree of each faction.
+
+country_event = { #The Petrov Salon: Realization of Industry
+	id = ERS_petrov.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.13" }
+	title = ERS_petrov.13.t
+	desc = ERS_petrov.13.desc
+	picture = GFX_report_event_soviet_russian_soldiers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.13.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Realization of Experts
+	id = ERS_petrov.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.14" }
+	title = ERS_petrov.14.t
+	desc = ERS_petrov.14.desc
+	picture = GFX_report_event_soviet_russian_soldiers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.14.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Realization of Stability
+	id = ERS_petrov.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.15" }
+	title = ERS_petrov.15.t
+	desc = ERS_petrov.15.desc
+	picture = GFX_report_event_soviet_russian_soldiers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.15.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Realization of Man
+	id = ERS_petrov.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.16" }
+	title = ERS_petrov.16.t
+	desc = ERS_petrov.16.desc
+	picture = GFX_report_event_soviet_russian_soldiers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.16.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+#Event 17-20: Superregional reflection based on the superregional political tree of each faction and specifically their megaproject.
+
+country_event = { #The Petrov Salon: Expansion of Industry
+	id = ERS_petrov.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.17" }
+	title = ERS_petrov.17.t
+	desc = ERS_petrov.17.desc
+	picture = GFX_report_event_komi_syktyvkar_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.17.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Expansion of Experts
+	id = ERS_petrov.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.18" }
+	title = ERS_petrov.18.t
+	desc = ERS_petrov.18.desc
+	picture = GFX_report_event_komi_syktyvkar_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.18.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Expansion of Stability
+	id = ERS_petrov.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.19" }
+	title = ERS_petrov.19.t
+	desc = ERS_petrov.19.desc
+	picture = GFX_report_event_komi_syktyvkar_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.19.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Expansion of Man
+	id = ERS_petrov.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.20" }
+	title = ERS_petrov.20.t
+	desc = ERS_petrov.20.desc
+	picture = GFX_report_event_komi_syktyvkar_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.20.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+#Event 21-24: Final superregional reflection on the completed megaproject and culmination of Anatoly's shift from massive Pasternak bigbrain speeches to small joys.
+
+country_event = { #The Petrov Salon: Reflection of Industry
+	id = ERS_petrov.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.21" }
+	title = ERS_petrov.21.t
+	desc = ERS_petrov.21.desc
+	picture = GFX_report_event_soldier_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.21.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Reflection of Experts
+	id = ERS_petrov.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.22" }
+	title = ERS_petrov.22.t
+	desc = ERS_petrov.22.desc
+	picture = GFX_report_event_soldier_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.22.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Reflection of Stability
+	id = ERS_petrov.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.23" }
+	title = ERS_petrov.23.t
+	desc = ERS_petrov.23.desc
+	picture = GFX_report_event_soldier_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.23.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Petrov Salon: Reflection of Man
+	id = ERS_petrov.24
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_petrov.24" }
+	title = ERS_petrov.24.t
+	desc = ERS_petrov.24.desc
+	picture = GFX_report_event_soldier_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_petrov.24.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Rise of the Electoral Progressive Movement
+	id = ERS_constitutional_crisis.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.1" }
+	title = ERS_constitutional_crisis.1.t
+	desc = ERS_constitutional_crisis.1.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.1.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.2
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #March in the Streets
+	id = ERS_constitutional_crisis.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.2" }
+	title = ERS_constitutional_crisis.2.t
+	desc = ERS_constitutional_crisis.2.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.2.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			if = {
+				limit = {
+					has_government = social_liberal
+				}
+				country_event = {
+					id = ERS_constitutional_crisis.3
+					days = 3
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = social_conservative
+				}
+				country_event = {
+					id = ERS_constitutional_crisis.4
+					days = 3
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = social_democrat
+				}
+				country_event = {
+					id = ERS_constitutional_crisis.5
+					days = 3
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = authoritarian_democrat
+				}
+				country_event = {
+					id = ERS_constitutional_crisis.6
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Modernists: The Chief, the Ministers, and the President
+	id = ERS_constitutional_crisis.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.3" }
+	title = ERS_constitutional_crisis.3.t
+	desc = ERS_constitutional_crisis.3.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.3.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.7
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Decembrists: Out of Reach
+	id = ERS_constitutional_crisis.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.4" }
+	title = ERS_constitutional_crisis.4.t
+	desc = ERS_constitutional_crisis.4.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.4.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.7
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Humanists: Paralysis
+	id = ERS_constitutional_crisis.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.5" }
+	title = ERS_constitutional_crisis.5.t
+	desc = ERS_constitutional_crisis.5.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.5.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.7
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Bastillards: Full Measures
+	id = ERS_constitutional_crisis.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.6" }
+	title = ERS_constitutional_crisis.6.t
+	desc = ERS_constitutional_crisis.6.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.6.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.7
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Counter-protests in the Capital
+	id = ERS_constitutional_crisis.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.7" }
+	title = ERS_constitutional_crisis.7.t
+	desc = ERS_constitutional_crisis.7.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Send in the cops
+		name = ERS_constitutional_crisis.7.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.8
+				days = 3
+			}
+		}
+	}
+	option = { #Let the protesters fight it out
+		name = ERS_constitutional_crisis.7.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.9
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #The Police Cows the Streets
+	id = ERS_constitutional_crisis.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.8" }
+	title = ERS_constitutional_crisis.8.t
+	desc = ERS_constitutional_crisis.8.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.8.a
+		ai_chance = { factor = 1 }
+		ERS_Decrease_Idealism_high = yes
+		ERS_Decrease_Political_Outsiders_high = yes
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.10
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Streetfights in the City
+	id = ERS_constitutional_crisis.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.9" }
+	title = ERS_constitutional_crisis.9.t
+	desc = ERS_constitutional_crisis.9.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.9.a
+		ai_chance = { factor = 1 }
+		ERS_Increase_Idealism_high = yes
+		ERS_Increase_Political_Outsiders_high = yes
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.10
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Reconciliation?
+	id = ERS_constitutional_crisis.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.10" }
+	title = ERS_constitutional_crisis.10.t
+	desc = ERS_constitutional_crisis.10.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.10.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The League Establishes their Case
+	id = ERS_constitutional_crisis.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.11" }
+	title = ERS_constitutional_crisis.11.t
+	desc = ERS_constitutional_crisis.11.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.11.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.12
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Supreme Court to Listen to Argument against restricted voting category
+	id = ERS_constitutional_crisis.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.12" }
+	title = ERS_constitutional_crisis.12.t
+	desc = ERS_constitutional_crisis.12.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.12.a
+		ai_chance = { factor = 1 }
+		if = {
+			limit = {
+				check_variable = { 
+					var = ERS_Idealism_Value 
+					value = 50 
+					compare = less_than_or_equals
+				}
+			}
+			hidden_effect = {
+				country_event = { id = ERS_constitutional_crisis.13 days = 3 }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { 
+					var = ERS_Idealism_Value 
+					value = 50 
+					compare = greater_than
+				}
+			}
+			hidden_effect = {
+				country_event = { id = ERS_constitutional_crisis.17 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = { #The Word on the Street
+	id = ERS_constitutional_crisis.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.13" }
+	title = ERS_constitutional_crisis.13.t
+	desc = ERS_constitutional_crisis.13.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.13.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = ERS_constitutional_crisis.14
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #A Broken System
+	id = ERS_constitutional_crisis.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.14" }
+	title = ERS_constitutional_crisis.14.t
+	desc = ERS_constitutional_crisis.14.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.14.a
+		ai_chance = { factor = 1 }
+		if = {
+			limit = {
+				OR = {
+					has_government = social_conservative
+					has_government = social_democrat
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = ERS_constitutional_crisis.15
+					days = 3
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_government = social_liberal
+					has_government = authoritarian_democrat
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = ERS_constitutional_crisis.16
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Dreams Put To Rest
+	id = ERS_constitutional_crisis.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.15" }
+	title = ERS_constitutional_crisis.15.t
+	desc = ERS_constitutional_crisis.15.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.15.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Shining Creation
+	id = ERS_constitutional_crisis.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.16" }
+	title = ERS_constitutional_crisis.16.t
+	desc = ERS_constitutional_crisis.16.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.16.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Supreme Court to Listen to Argument against restricted voting category
+	id = ERS_constitutional_crisis.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.17" }
+	title = ERS_constitutional_crisis.17.t
+	desc = ERS_constitutional_crisis.17.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.17.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+				country_event = {
+					id = ERS_constitutional_crisis.18
+					days = 3
+				}
+			}
+	}
+}
+
+country_event = { #A Working System
+	id = ERS_constitutional_crisis.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.18" }
+	title = ERS_constitutional_crisis.18.t
+	desc = ERS_constitutional_crisis.18.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.18.a
+		ai_chance = { factor = 1 }
+		if = {
+			limit = {
+				OR = {
+					has_government = social_liberal
+					has_government = social_democrat
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = ERS_constitutional_crisis.19
+					days = 3
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_government = social_conservative
+					has_government = authoritarian_democrat
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = ERS_constitutional_crisis.20
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Joint Statement
+	id = ERS_constitutional_crisis.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.19" }
+	title = ERS_constitutional_crisis.19.t
+	desc = ERS_constitutional_crisis.19.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.19.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Free and Open Discussion
+	id = ERS_constitutional_crisis.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ERS_constitutional_crisis.20" }
+	title = ERS_constitutional_crisis.20.t
+	desc = ERS_constitutional_crisis.20.desc
+	picture = GFX_report_event_russia_tomsk_protests_color
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = ERS_constitutional_crisis.20.a
+		ai_chance = { factor = 1 }
+	}
+}

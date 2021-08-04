@@ -1,0 +1,143 @@
+﻿###########
+#DSR Events | by Exocamp :) |
+###########
+
+add_namespace = DSR
+
+##The Dumpster Fire Begins (Intro)
+country_event = {
+	id = DSR.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.1"}
+ 	title = DSR.1.t
+ 	desc = DSR.1.desc
+ 	picture = GFX_report_event_german_speech
+ 	
+	is_triggered_only = yes	
+	fire_only_once = yes
+ 	
+ 	option = {
+ 		name = DSR.1.a
+ 	}
+}
+
+#DSR Win Civil War
+country_event = {
+	id = DSR.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.2"}
+	title = DSR.2.t
+	desc = DSR.2.desc
+	picture = GFX_report_event_bormann_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = DSR.2.a
+		set_cosmetic_tag = DSR_reich
+
+		every_unit_leader = {
+			limit = {
+				is_DSR_unit_leader = yes
+			}
+			set_nationality = GER
+		}
+
+		clr_global_flag = german_civil_war
+		set_global_flag = german_civil_war_end
+		set_global_flag = german_civil_war_dsrvic
+		annex_country = { target = GER }
+		annex_country = { target = GGR }
+		annex_country = { target = BGR }
+		annex_country = { target = SGR }
+		annex_country = { target = HGR }
+		annex_country = { target = RNW }
+
+		hidden_effect = {
+			every_country = { news_event = WORLD.20601 }
+		}
+	}
+}
+
+#Spiedel now has to face DSR
+country_event = {
+	id = DSR.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.3"}
+    title = DSR.3.t
+    desc = DSR.3.desc
+    picture = GFX_report_event_german_Army
+	is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = DSR.3.a
+		GER = { country_event = { id = reich.35 days = 1 } }
+		
+    }
+}
+
+
+#Spiedel hates us lol
+country_event = {
+	id = DSR.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.4"}
+    title = DSR.4.t
+    desc = DSR.4.desc
+    picture = GFX_report_event_german_Army
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = {
+        name = DSR.4.a
+    }
+}
+
+country_event = {
+	id = DSR.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.101"}
+    title = DSR.101.t
+    desc = DSR.101.desc
+    picture = GFX_report_event_exploding_building1
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = {
+        name = DSR.101.a
+    }
+}
+
+#DSR Win Civil War
+country_event = {
+	id = DSR.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.100"}
+	title = DSR.100.t
+	desc = DSR.100.desc
+	picture = GFX_report_event_bormann_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = DSR.100.a
+		clr_global_flag = german_civil_war
+		set_global_flag = german_civil_war_end
+		set_global_flag = german_civil_war_dsrvic
+		DSR = { change_tag_from = ROOT }
+		DSR = { annex_country = { target = GER } }
+	}
+}
+
+country_event = { #Himmler orchestrates a scary report that makes every shit their pants
+	id = DSR.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DSR.5"}
+		title = DSR.5.t
+		desc = DSR.5.d
+		picture = GFX_report_event_generic_german_arrests
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		option = {
+			name = DSR.5.a
+		}
+	}

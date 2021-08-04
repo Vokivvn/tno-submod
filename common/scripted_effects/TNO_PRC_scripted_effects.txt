@@ -1,0 +1,383 @@
+SVO_Get_war_date = {	
+	set_variable = { SVO_war_date = global.date }
+	add_to_variable = { SVO_war_date = 1.440 } # 1440 hours / 60 days
+}
+
+SVO_clamp_regional_vars = {
+	clamp_variable = { var = SVO_Army_Power min = 0 max = 100 }
+	clamp_variable = { var = SVO_Army_Loyalty min = 0 max = 100 }
+	clamp_variable = { var = SVO_Civilian_Power min = 0 max = 100 }
+	clamp_variable = { var = SVO_Civilian_Loyalty min = 0 max = 100 }
+}
+
+SVO_update_dynamic_modifier_values = {
+	clamp_variable = { var = SVO_RA_army_armor_attack_factor min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_army_armor_speed_factor min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_army_org min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_army_sub_unit_air_assault_attack_factor min = -0.50 max = 0.50 }
+
+	clamp_variable = { var = SVO_RA_army_infantry_attack_factor min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_army_infantry_defence_factor min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_training_time_army min = -0.50 max = 0.50 }
+	clamp_variable = { var = SVO_RA_experience_gain_army_factor min = -0.50 max = 0.50 }
+
+	force_update_dynamic_modifier = yes
+}
+
+SVO_Increase_Balancing = {
+	add_to_variable = {
+		SVO_RA_BALANCE = 1
+		tooltip = SVO_Increase_Balancing_tt
+	}
+}
+
+SVO_Increase_Unbalancing = {
+	add_to_variable = {
+		SVO_RA_BALANCE = -1
+		tooltip = SVO_Increase_Unbalancing_tt
+	}
+}
+
+SVO_Greatly_Increase_Unbalancing = {
+	add_to_variable = {
+		SVO_RA_BALANCE = -2
+		tooltip = SVO_Greatly_Increase_Unbalancing_tt
+	}
+}
+
+SVO_clamp_decision_variable = {
+	clamp_variable = {
+		var = SVO_Improve_our_Tanks_1
+		min = 0
+		max = 10
+	}
+	clamp_variable = {
+		var = SVO_Improve_our_Tanks_2
+		min = 0
+		max = 10
+	}
+	clamp_variable = {
+		var = SVO_Improve_our_Tanks_3
+		min = 0
+		max = 10
+	}
+	clamp_variable = {
+		var = SVO_Focus_on_Infantry_1
+		min = 0
+		max = 10
+	}
+	clamp_variable = {
+		var = SVO_Focus_on_Infantry_2
+		min = 0
+		max = 10
+	}
+	clamp_variable = {
+		var = SVO_Focus_on_Infantry_3
+		min = 0
+		max = 10
+	}
+}
+
+SVO_increase_Army_Power_low = {
+	add_to_variable = { SVO_Army_Power = 2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Power_low_tt
+}
+
+SVO_increase_Army_Power_med = {
+	add_to_variable = { SVO_Army_Power = 4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Power_med_tt
+}
+
+SVO_increase_Army_Power_high = {
+	add_to_variable = { SVO_Army_Power = 6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Power_high_tt
+}
+
+SVO_increase_Army_Loyalty_low = {
+	add_to_variable = { SVO_Army_Loyalty = 2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Loyalty_low_tt
+}
+
+SVO_increase_Army_Loyalty_med = {
+	add_to_variable = { SVO_Army_Loyalty = 4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Loyalty_med_tt
+}
+
+SVO_increase_Army_Loyalty_high = {
+	add_to_variable = { SVO_Army_Loyalty = 6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Army_Loyalty_high_tt
+}
+
+SVO_increase_Civilian_Power_low = {
+	add_to_variable = { SVO_Civilian_Power = 2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Power_low_tt
+}
+
+SVO_increase_Civilian_Power_med = {
+	add_to_variable = { SVO_Civilian_Power = 4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Power_med_tt
+}
+
+SVO_increase_Civilian_Power_high = {
+	add_to_variable = { SVO_Civilian_Power = 6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Power_high_tt
+}
+
+SVO_increase_Civilian_Loyalty_low = {
+	add_to_variable = { SVO_Civilian_Loyalty = 2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Loyalty_low_tt
+}
+
+SVO_increase_Civilian_Loyalty_med = {
+	add_to_variable = { SVO_Civilian_Loyalty = 4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Loyalty_med_tt
+}
+
+SVO_increase_Civilian_Loyalty_high = {
+	add_to_variable = { SVO_Civilian_Loyalty = 6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_increase_Civilian_Loyalty_high_tt
+}
+
+SVO_decrease_Army_Power_low = {
+	add_to_variable = { SVO_Army_Power = -2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Power_low_tt
+}
+
+SVO_decrease_Army_Power_med = {
+	add_to_variable = { SVO_Army_Power = -4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Power_med_tt
+}
+
+SVO_decrease_Army_Power_high = {
+	add_to_variable = { SVO_Army_Power = -6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Power_high_tt
+}
+
+SVO_decrease_Army_Loyalty_low = {
+	add_to_variable = { SVO_Army_Loyalty = -2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Loyalty_low_tt
+}
+
+SVO_decrease_Army_Loyalty_med = {
+	add_to_variable = { SVO_Army_Loyalty = -4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Loyalty_med_tt
+}
+
+SVO_decrease_Army_Loyalty_high = {
+	add_to_variable = { SVO_Army_Loyalty = -6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Army_Loyalty_high_tt
+}
+
+SVO_decrease_Civilian_Power_low = {
+	add_to_variable = { SVO_Civilian_Power = -2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Power_low_tt
+}
+
+SVO_decrease_Civilian_Power_med = {
+	add_to_variable = { SVO_Civilian_Power = -4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Power_med_tt
+}
+
+SVO_decrease_Civilian_Power_high = {
+	add_to_variable = { SVO_Civilian_Power = -6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Power_high_tt
+}
+
+SVO_decrease_Civilian_Loyalty_low = {
+	add_to_variable = { SVO_Civilian_Loyalty = -2 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Loyalty_low_tt
+}
+
+SVO_decrease_Civilian_Loyalty_med = {
+	add_to_variable = { SVO_Civilian_Loyalty = -4 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Loyalty_med_tt
+}
+
+SVO_decrease_Civilian_Loyalty_high = {
+	add_to_variable = { SVO_Civilian_Loyalty = -6 }
+	SVO_apply_relationship_effect = yes
+	custom_effect_tooltip = SVO_decrease_Civilian_Loyalty_high_tt
+}
+
+SVO_increase_trade_idea = {
+	if = {
+		limit = { has_idea = SVO_Trade_1 }
+		swap_ideas = {
+			remove_idea = SVO_Trade_1
+			add_idea = SVO_Trade_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = SVO_Trade_2 }
+		swap_ideas = {
+			remove_idea = SVO_Trade_2
+			add_idea = SVO_Trade_3
+		}
+	}
+	else = {
+		add_ideas = SVO_Trade_1
+	}
+}
+
+SVO_apply_relationship_effect = {
+	hidden_effect = {
+		SVO_clamp_regional_vars = yes
+		if = {
+			limit = { NOT = { SVO = { has_country_flag = SVO_no_bonuses_from_mil } } }
+			set_variable = { SVO_speed_military_bonus = SVO_Army_Power }
+			set_variable = { SVO_conscription_military_bonus = SVO_Army_Power }
+			set_variable = { SVO_morale_military_bonus = SVO_Army_Power }
+
+			divide_variable = { SVO_speed_military_bonus = 800 }
+			divide_variable = { SVO_conscription_military_bonus = 1000 }
+			divide_variable = { SVO_morale_military_bonus = 800 }
+			
+			set_temp_variable = { SVO_Army_Loyalty_bonus = SVO_Army_Loyalty }
+			add_to_temp_variable = { SVO_Army_Loyalty_bonus = -50 }
+			divide_temp_variable = { SVO_Army_Loyalty_bonus = 20 }
+
+			multiply_variable = { SVO_speed_military_bonus = SVO_Army_Loyalty_bonus }
+			multiply_variable = { SVO_conscription_military_bonus = SVO_Army_Loyalty_bonus }
+			multiply_variable = { SVO_morale_military_bonus = SVO_Army_Loyalty_bonus }
+		}
+		if = {
+			limit = { NOT = { SVO = { has_country_flag = SVO_no_bonuses_from_civ } } }
+			set_variable = { SVO_pp_civilian_bonus = SVO_Civilian_Power }
+			set_variable = { SVO_ic_civilian_bonus = SVO_Civilian_Power }
+			set_variable = { SVO_agriculture_civilian_bonus = SVO_Civilian_Power }
+
+			divide_variable = { SVO_pp_civilian_bonus = 800 }
+			divide_variable = { SVO_ic_civilian_bonus = 700 }
+			divide_variable = { SVO_agriculture_civilian_bonus = 50 }
+			
+			set_temp_variable = { SVO_Civilian_Loyalty_bonus = SVO_Civilian_Loyalty }
+			add_to_temp_variable = { SVO_Civilian_Loyalty_bonus = -50 }
+			divide_temp_variable = { SVO_Civilian_Loyalty_bonus = 20 }
+			
+			multiply_variable = { SVO_pp_civilian_bonus = SVO_Civilian_Loyalty_bonus }
+			multiply_variable = { SVO_ic_civilian_bonus = SVO_Civilian_Loyalty_bonus }
+			multiply_variable = { SVO_agriculture_civilian_bonus = SVO_Civilian_Loyalty_bonus }
+		}
+
+		if = {
+			limit = { SVO = { has_country_flag = SVO_destroyed_military } }
+			set_variable = { SVO_Army_Loyalty = 0 }
+			set_variable = { SVO_Army_Loyalty_dummy = 0 }
+		}
+
+		if = {
+			limit = { SVO = { has_country_flag = SVO_destroyed_citzenry } }
+			set_variable = { SVO_Civilian_Loyalty = 0 }
+			set_variable = { SVO_Civilian_Loyalty_dummy = 0 }
+		}
+
+		force_update_dynamic_modifier = yes
+	}
+}
+
+SVO_monthly_decay_estates = {
+	set_variable = { SVO.SVO_Civ_Decay = 0 }
+	set_variable = { SVO.SVO_Army_Decay = 0 }
+	set_variable = { SVO.SVO_Army_Loyalty_dummy = 0 }
+	set_variable = { SVO.SVO_Civilian_Loyalty_dummy = 0  }
+
+	every_owned_state = {
+		limit = { check_variable = { SVO_Owner = -1 } }
+		add_to_variable = { SVO.SVO_Army_Loyalty = 1 }
+		add_to_variable = { SVO.SVO_Army_Loyalty_dummy = 1 }
+	}
+
+	every_owned_state = {
+		limit = { check_variable = { SVO_Owner = 1 } }
+		add_to_variable = { SVO.SVO_Civilian_Loyalty = 1 }
+		add_to_variable = { SVO.SVO_Civilian_Loyalty_dummy = 1 }
+	}
+
+	every_owned_state = {
+		add_to_variable = { SVO.SVO_Army_Loyalty = -0.5 }
+		add_to_variable = { SVO.SVO_Civilian_Loyalty = -0.5 }
+		add_to_variable = { SVO.SVO_Civilian_Loyalty_dummy = -0.5 }
+		add_to_variable = { SVO.SVO_Army_Loyalty_dummy = -0.5 }
+	}
+
+	if = {
+		limit = { has_completed_focus = SVO_Decide_Power_Balance }
+		add_to_variable = { SVO_Army_Loyalty = 5 }
+		add_to_variable = { SVO_Army_Loyalty_dummy = 5 }
+	}
+		
+	set_variable = { SVO.SVO_Army_Decay = SVO.SVO_Army_Loyalty_dummy }
+	set_variable = { SVO.SVO_Civ_Decay = SVO.SVO_Civilian_Loyalty_dummy }
+
+	add_to_variable = { SVO_Army_Loyalty = SVO_Army_Decay }
+	add_to_variable = { SVO_Civilian_Loyalty = SVO_Civ_Decay }
+
+	SVO_apply_relationship_effect = yes
+}
+
+SVO_military_coup = {
+	custom_effect_tooltip = SVO_elimination_of_citizenry
+	add_ideas = SVO_Mil_Gov
+	SVO = {
+		set_country_flag = SVO_military
+		set_country_flag = SVO_no_bonuses_from_civ
+		set_country_flag = SVO_destroyed_citzenry
+	}
+	set_variable = { SVO_Civilian_Power = 0 }
+	set_variable = { SVO_Civilian_Loyalty = 0 }
+
+	hidden_effect = {
+		country_event = { id = SVO.101 days = 50 random_days = 10 }
+		every_owned_state = {
+			limit = { check_variable = { THIS.SVO_Owner = -1 } }
+			set_variable = { THIS.SVO_Owner = 0 }
+		}
+	}
+
+}
+
+SVO_citizen_coup = {
+	custom_effect_tooltip = SVO_elimination_of_military
+	SVO = {
+		set_country_flag = SVO_civilian
+		set_country_flag = SVO_no_bonuses_from_mil
+		set_country_flag = SVO_destroyed_military
+	}
+
+	set_variable = { SVO_Army_Power = 0 }
+	add_ideas = SVO_Civ_Gov
+	set_variable = { SVO_Army_Loyalty = 0 }
+
+	hidden_effect = {
+		country_event = { id = SVO.98 days = 50 random_days = 10 }
+		SVO = {
+			every_owned_state = {
+				limit = { check_variable = { THIS.SVO_Owner = 1 } }
+				set_variable = { THIS.SVO_Owner = 0 }
+			}
+		}
+	}
+}

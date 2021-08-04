@@ -1,0 +1,963 @@
+# AdWil
+
+IRE_AdWil_SetUp_Ger = {
+	set_variable = { IRE_adwil_faction = 1 }
+	set_variable = { IRE.AdWilGerTrust = 0.5 }
+	set_variable = { IRE.AdWilAvFund = 15 }
+	set_variable = { IRE.AdWilGerPresence = 0.6}
+}
+IRE_AdWil_SetUp_OFN = {
+	set_variable = { IRE_adwil_faction = 2 }
+	subtract_from_variable = { IRE.AdWilGerTrust = 0.2 }
+	subtract_from_variable = { IRE.AdWilGerPresence = 0.4}
+	custom_effect_tooltip = here_comes_the_money_tt
+}
+IRE_AdWil_SetUp_Gov = {
+	set_variable = { IRE_adwil_faction = 3 }
+	set_variable = { IRE.AdWilGerTrust = 0.5 }
+	set_variable = { IRE.AdWilAvFund = 15 }
+	set_variable = { IRE.AdWilGerPresence = 0.3}
+	custom_effect_tooltip = here_comes_the_money_tt
+}
+IRE_AdWil_SetUp_Celts = {
+	set_variable = { IRE_adwil_faction = 4 }
+	set_variable = { IRE.AdWilGerTrust = 0.5 }
+	set_variable = { IRE.AdWilAvFund = 15 }
+	set_variable = { IRE.AdWilGerPresence = 0.3}
+	custom_effect_tooltip = here_comes_the_money_tt
+}
+
+IRE_economy_fuck = {
+	subtract_from_variable = { GDP = 1300 }
+	subtract_from_variable = { GDP_growth = 0.03 }
+	custom_effect_tooltip = IRE_economy_fuck_tt
+	hidden_effect = {
+		add_offsite_building = { type = industrial_complex level = IRE.offsiteciv }
+		add_offsite_building = { type = arms_factory level = IRE.offsitemil }
+		add_offsite_building = { type = dockyard level = IRE.offsitedock }
+		set_variable = { IRE.offsiteciv = 0}
+		set_variable = { IRE.offsitemil = 0}
+		set_variable = { IRE.offsitedock = 0}
+		AdWilEnd = yes
+		remove_mission = IRE_MIS_2_1
+		remove_mission = IRE_MIS_1_1
+		remove_ideas = {
+			IRE_AdWil_efficiency_hidden
+			IRE_AdWil_efficiency_2_hidden
+		}
+		set_variable = { IRE_adwil_faction = 0 }
+	}
+	custom_effect_tooltip = IRE_remove_factory_tt
+	TNO_worsen_poverty_high = yes
+	TNO_worsen_industrial_equipment_low = yes
+	TNO_worsen_industrial_expertise_med = yes
+	TNO_worsen_agriculture_low = yes
+	add_stability = -0.2
+}
+# Plus
+IRE_SE_AdWil_GerTrust_plus_5 = {
+	add_to_variable = { IRE.AdWilGerTrust = 0.05 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_plus_5_tt
+}
+IRE_SE_AdWil_GerTrust_plus_10 = {
+	add_to_variable = { IRE.AdWilGerTrust = 0.1 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_plus_10_tt
+}
+IRE_SE_AdWil_GerTrust_plus_20 = {
+	add_to_variable = { IRE.AdWilGerTrust = 0.2 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_plus_20_tt
+}
+IRE_SE_AdWil_GerTrust_plus_30 = {
+	add_to_variable = { IRE.AdWilGerTrust = 0.3 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_plus_30_tt
+}
+IRE_SE_AdWil_GerTrust_plus_40 = {
+	add_to_variable = { IRE.AdWilGerTrust = 0.4 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_plus_40_tt
+}
+# Minus
+IRE_SE_AdWil_GerTrust_minus_1 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.01 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_1_tt
+}
+IRE_SE_AdWil_GerTrust_minus_5 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.05 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_5_tt
+}
+IRE_SE_AdWil_GerTrust_minus_10 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.1 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_10_tt
+}
+IRE_SE_AdWil_GerTrust_minus_20 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.2 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_20_tt
+}
+IRE_SE_AdWil_GerTrust_minus_30 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.3 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_30_tt
+}
+IRE_SE_AdWil_GerTrust_minus_40 = {
+	add_to_variable = { IRE.AdWilGerTrust = -0.4 }
+	clamp_variable = {
+		var = IRE.AdWilGerTrust
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_GerTrust_minus_40_tt
+}
+
+#funding
+
+IRE_SE_AdWil_AvFund_plus_1 = {
+	add_to_variable = { IRE.AdWilAvFund = 1 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_plus_1_tt
+}
+
+IRE_SE_AdWil_AvFund_plus_2 = {
+	add_to_variable = { IRE.AdWilAvFund = 2 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_plus_2_tt
+}
+
+IRE_SE_AdWil_AvFund_plus_5 = {
+	add_to_variable = { IRE.AdWilAvFund = 5 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_plus_5_tt
+}
+
+IRE_SE_AdWil_AvFund_plus_10 = {
+	add_to_variable = { IRE.AdWilAvFund = 10 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_plus_10_tt
+}
+
+IRE_SE_AdWil_AvFund_minus_1 = {
+	subtract_from_variable = { IRE.AdWilAvFund = 1 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_minus_1_tt
+}
+
+IRE_SE_AdWil_AvFund_minus_2 = {
+	subtract_from_variable = { IRE.AdWilAvFund = 2 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_minus_2_tt
+}
+
+IRE_SE_AdWil_AvFund_minus_5 = {
+	subtract_from_variable = { IRE.AdWilAvFund = 5 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_minus_5_tt
+}
+
+IRE_SE_AdWil_AvFund_minus_10 = {
+	subtract_from_variable = { IRE.AdWilAvFund = 10 }
+	clamp_variable = {
+		var = IRE.AdWilAvFund
+		min = 0
+	}
+	custom_effect_tooltip = IRE_SE_AdWil_AvFund_minus_10_tt
+}
+
+#investor presence
+IRE_Investor_Presence_plus_1 = {
+	add_to_variable = { IRE.AdWilGerPresence = 0.01}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_plus_1_tt
+}
+IRE_Investor_Presence_plus_2 = {
+	add_to_variable = { IRE.AdWilGerPresence = 0.02}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_plus_2_tt
+}
+IRE_Investor_Presence_plus_5 = {
+	add_to_variable = { IRE.AdWilGerPresence = 0.05}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_plus_5_tt
+}
+IRE_Investor_Presence_plus_10 = {
+	add_to_variable = { IRE.AdWilGerPresence = 0.1}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_plus_10_tt
+}
+IRE_Investor_Presence_plus_20 = {
+	add_to_variable = { IRE.AdWilGerPresence = 0.2}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_plus_20_tt
+}
+IRE_Investor_Presence_minus_1 = {
+	subtract_from_variable = { IRE.AdWilGerPresence = 0.01}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_minus_1_tt
+}
+IRE_Investor_Presence_minus_1 = {
+	subtract_from_variable = { IRE.AdWilGerPresence = 0.02}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_minus_2_tt
+}
+IRE_Investor_Presence_minus_5 = {
+	subtract_from_variable = { IRE.AdWilGerPresence = 0.05}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_minus_5_tt
+}
+IRE_Investor_Presence_minus_10 = {
+	subtract_from_variable = { IRE.AdWilGerPresence = 0.1}
+	clamp_variable = {
+		var = IRE.AdWilGerPresence
+		min = 0
+		max = 1
+	}
+	custom_effect_tooltip = IRE_Investor_Presence_minus_10_tt
+}
+
+IRE_AdWilGoal = {
+	set_variable = { IRE.AdWilGoal = 1 }
+	if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 1 } #ulster (region 1)
+		}
+		119 = { #ulster
+			set_state_flag = AdWilGoal
+			add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+		}
+
+	}
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 2 } #dublin (region 2)
+		}
+		random_list = {
+			1 = {
+				113 = { #dublin
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1374 = { #leinster
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1357 = { #louth
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 3 } #derry (region 3)
+		}
+		random_list = {
+			1 = {
+				1315 = { #derry
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1356 = { #sligo
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1355 = { #donegal
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 4 } #gallaway (region 4)
+		}
+		random_list = {
+			1 = {
+				134 = { #gallaway
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				
+				1352 = { #Clare
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				
+				1358 = { #westmeath
+					set_state_flag = AdWilGoal
+					
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+					
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 5 } #cork (region 5)
+		}
+		random_list = {
+			1 = {
+				135 = { #cork
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1353 = { #limerick
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+			1 = {
+				1354 = { #kerry
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = infrastructure_level }
+				}
+			}
+		}
+	}
+	set_variable = {IRE.AdWilGoal2 = IRE.AdWilGoal}
+	add_to_variable = { IRE.AdWilGoal2 = 1}
+	set_variable = {IRE.AdWilGoal3 = IRE.AdWilGoal2}
+	add_to_variable = { IRE.AdWilGoal3 = 1}
+}
+
+IRE_AdWilGoal_civ = {
+	set_variable = { IRE.AdWilGoal = 1 }
+	if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 1 } #ulster (region 1)
+		}
+		119 = { #ulster
+			set_state_flag = AdWilGoal
+			add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+		}
+
+	}
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 2 } #dublin (region 2)
+		}
+		random_list = {
+			1 = {
+				113 = { #dublin
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1374 = { #leinster
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1357 = { #louth
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 3 } #derry (region 3)
+		}
+		random_list = {
+			1 = {
+				1315 = { #derry
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1356 = { #sligo
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1355 = { #donegal
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 4 } #gallaway (region 4)
+		}
+		random_list = {
+			1 = {
+				134 = { #gallaway
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1352 = { #Clare
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1358 = { #westmeath
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { IRE.IRE_GUI_AdWilstate = 5 } #cork (region 5)
+		}
+		random_list = {
+			1 = {
+				135 = { #cork
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1353 = { #limerick
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+			1 = {
+				1354 = { #kerry
+					set_state_flag = AdWilGoal
+					add_to_variable = { IRE.AdWilGoal = industrial_complex_level }
+				}
+			}
+		}
+	}
+	set_variable = {IRE.AdWilGoal2 = IRE.AdWilGoal}
+	add_to_variable = { IRE.AdWilGoal2 = 1}
+	set_variable = {IRE.AdWilGoal3 = IRE.AdWilGoal2}
+	add_to_variable = { IRE.AdWilGoal3 = 1}
+}
+
+AdWilEnd = {
+	set_variable = { IRE.AdWilGoal = 0 }
+	set_variable = { IRE.AdWilGoal2 = 0 }
+	set_variable = { IRE.AdWilGoal3 = 0 }
+	set_variable = { IRE.IRE_GUI_AdWilstate = 0 } #no state chosen
+	set_variable = { IRE.project_stage = 0 }
+	hidden_effect = {
+		every_state = {
+			clr_state_flag = AdWilGoal
+		}
+	}
+}
+
+IRE_Decrease_NIC_Opinion = {
+	custom_effect_tooltip = IRE_NIC_Opinion_Increase
+	subtract_from_variable = {
+		IRE_Groups_NIC_Opinion = 5
+	}
+	clamp_variable = {
+		var = IRE_Groups_NIC_Opinion
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Increase_NIC_Opinion = {
+	custom_effect_tooltip = IRE_NIC_Opinion_Decrease
+	add_to_variable = {
+		IRE_Groups_NIC_Opinion = 5
+	}
+	clamp_variable = {
+		var = IRE_Groups_NIC_Opinion
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Decrease_NIC_Corruption = {
+	custom_effect_tooltip = IRE_NIC_Corruption_Decrease
+	subtract_from_variable = {
+		IRE_Groups_NIC_Corruption = 5
+	}
+	clamp_variable = {
+		var = IRE_Groups_NIC_Corruption
+		min = 1
+		max = 100
+	}
+}
+IRE_Increase_NIC_Corruption = {
+	custom_effect_tooltip = IRE_NIC_Corruption_Increase
+	add_to_variable = {
+		IRE_Groups_NIC_Corruption = 5
+	}
+	clamp_variable = {
+		var = IRE_Groups_NIC_Corruption
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Decrease_ICG_Anger = {
+	custom_effect_tooltip = IRE_Decrease_ICG_Anger
+	subtract_from_variable = {
+		ICG_Anger = 1
+	}
+	clamp_variable = {
+		var = ICG_Anger
+		min = 1
+		max = 3
+	}
+}
+
+IRE_Decrease_IRA_Anger = {
+	custom_effect_tooltip = IRE_Decrease_IRA_Anger
+	subtract_from_variable = {
+		IRA_Anger = 1
+	}
+	clamp_variable = {
+		var = IRA_Anger
+		min = 1
+		max = 3
+	}
+}
+
+IRE_Decrease_UVF_Anger = {
+	custom_effect_tooltip = IRE_Decrease_UVF_Anger
+	subtract_from_variable = {
+		UVF_Anger = 1
+	}
+	clamp_variable = {
+		var = UVF_Anger
+		min = 1
+		max = 3
+	}
+}
+
+
+IRE_Decrease_ICG_Power = {
+	custom_effect_tooltip = IRE_Decrease_ICG_Power
+	subtract_from_variable = {
+		ICG_Power = IRE_Groups_NIC_Repression_effective
+	}
+	clamp_variable = {
+		var = ICG_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Decrease_IRA_Power = {
+	custom_effect_tooltip = IRE_Decrease_IRA_Power
+	subtract_from_variable = {
+		IRA_Power = IRE_Groups_NIC_Repression_effective
+	}
+	clamp_variable = {
+		var = IRA_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Decrease_UVF_Power = {
+	custom_effect_tooltip = IRE_Decrease_UVF_Power
+	subtract_from_variable = {
+		UVF_Power = IRE_Groups_NIC_Repression_effective
+	}
+	clamp_variable = {
+		var = UVF_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Set_repression_effectiveness = {
+	set_temp_variable = {
+		IRE_temp_1 = IRE_Groups_NIC_Corruption #20
+	}
+	multiply_temp_variable = {
+		IRE_temp_1 = -0.06 #-1.2
+	}
+	add_to_temp_variable = {
+		IRE_temp_1 = 7 #5.8
+	}
+	set_variable = {
+		IRE_Groups_NIC_Repression_effective = IRE_temp_1
+	}
+}
+
+IRE_Increase_ICG_Anger = {
+	custom_effect_tooltip = IRE_Increase_ICG_Anger
+	add_to_variable = {
+		ICG_Anger = 1
+	}
+	clamp_variable = {
+		var = ICG_Anger
+		min = 1
+		max = 3
+	}
+}
+
+IRE_Increase_IRA_Anger = {
+	custom_effect_tooltip = IRE_Increase_IRA_Anger
+	add_to_variable = {
+		IRA_Anger = 1
+	}
+	clamp_variable = {
+		var = IRA_Anger
+		min = 1
+		max = 3
+	}
+}
+
+IRE_Increase_UVF_Anger = {
+	custom_effect_tooltip = IRE_Increase_UVF_Anger
+	add_to_variable = {
+		UVF_Anger = 1
+	}
+	clamp_variable = {
+		var = UVF_Anger
+		min = 1
+		max = 3
+	}
+}
+
+
+IRE_Increase_ICG_Power = {
+	custom_effect_tooltip = IRE_Increase_ICG_Power
+	add_to_variable = {
+		ICG_Power = 5
+	}
+	clamp_variable = {
+		var = ICG_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Increase_IRA_Power = {
+	custom_effect_tooltip = IRE_Increase_IRA_Power
+	add_to_variable = {
+		IRA_Power = 5
+	}
+	clamp_variable = {
+		var = IRA_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_Increase_UVF_Power = {
+	custom_effect_tooltip = IRE_Increase_UVF_Power
+	add_to_variable = {
+		UVF_Power = 5
+	}
+	clamp_variable = {
+		var = UVF_Power
+		min = 1
+		max = 100
+	}
+}
+
+IRE_increase_OFN_investment = {
+	if = {
+		limit = { has_idea = IRE_OFN_Business }
+		swap_ideas = {
+			remove_idea = IRE_OFN_Business
+			add_idea = IRE_OFN_Business_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = IRE_OFN_Business_2 }
+		swap_ideas = {
+			remove_idea = IRE_OFN_Business_2
+			add_idea = IRE_OFN_Business_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = IRE_OFN_Business_3 }
+		swap_ideas = {
+			remove_idea = IRE_OFN_Business_3
+			add_idea = IRE_OFN_Business_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = IRE_OFN_Business_4 }
+		swap_ideas = {
+			remove_idea = IRE_OFN_Business_4
+			add_idea = IRE_OFN_Business_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = IRE_OFN_Business_5 }
+		swap_ideas = {
+			remove_idea = IRE_OFN_Business_5
+			add_idea = IRE_OFN_Business_6
+		}
+	}
+}
+
+IRE_merge_SE = {
+	log = "[GetDateText]: [Root.GetName]: IRE_merge_SE; Executing"
+	set_country_flag = NIC_disabled
+	hidden_effect = {
+		set_party_name = {
+			ideology = fascism
+			long_name = IRE_generic_fascism_party
+			name = IRE_generic_fascism_party
+		}
+		set_temp_variable = { ICG_pop = party_popularity@fascism }
+		multiply_temp_variable = { ICG_pop = 0.833 }
+		add_popularity = {
+			ideology = fascism
+			popularity = -1
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = ICG_pop
+		}
+		ULS = {
+			set_temp_variable = { ICG_pop = party_popularity@fascism }
+			multiply_temp_variable = { ICG_pop = 0.8 }
+			add_popularity = {
+				ideology = fascism
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = ICG_pop
+			}
+		}
+	}
+}
+
+IRE_terrorism_stab_cost = {
+	log = "[GetDateText]: [Root.GetName]: IRE_terrorism_stab_cost; Executing"
+	set_temp_variable = {
+		terrortemp = ICG_Power
+	}
+	add_to_temp_variable = {
+		terrortemp = UVF_Power
+	}
+	add_to_temp_variable = {
+		terrortemp = IRA_Power
+	}
+	divide_temp_variable = {
+		terrortemp = -1500
+	}
+	set_variable = {
+		IRE_terror_stab = terrortemp
+	}
+}
+
+IRE_Troubles_Increase = {
+	if = {
+		limit = {
+			has_idea = IRE_Irish_Troubles_1
+		}
+		swap_ideas = {
+			remove_idea = IRE_Irish_Troubles_1
+			add_idea = IRE_Irish_Troubles_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRE_Irish_Troubles_2
+		}
+		swap_ideas = {
+			remove_idea = IRE_Irish_Troubles_2
+			add_idea = IRE_Irish_Troubles_3
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_idea = IRE_Irish_Troubles_1
+				has_idea = IRE_Irish_Troubles_2
+				has_idea = IRE_Irish_Troubles_3
+			}
+		}
+		add_ideas = IRE_Irish_Troubles_1
+	}
+}
+
+IRE_Troubles_Decrease = {
+	if = {
+		limit = {
+			has_idea = IRE_Irish_Troubles_1
+		}
+		remove_ideas = IRE_Irish_Troubles_1
+	}
+	if = {
+		limit = {
+			has_idea = IRE_Irish_Troubles_2
+		}
+		swap_ideas = {
+			remove_idea = IRE_Irish_Troubles_2
+			add_idea = IRE_Irish_Troubles_1
+		}
+	}
+	if = {
+		limit = {
+			has_idea = IRE_Irish_Troubles_3
+		}
+		swap_ideas = {
+			remove_idea = IRE_Irish_Troubles_3
+			add_idea = IRE_Irish_Troubles_2
+		}
+	}
+
+}
+
+IRE_rejoin_pakt_post_arms_crisis = {
+	if = {
+		limit = {
+			NOT = { GER = { has_country_flag = heydrich_for_germany } }
+		}
+		GER = {
+			add_to_faction = IRE
+		}
+		if = {
+			limit = { has_country_flag = IRE_pakt_observer_bill_success }
+			swap_ideas = {
+				remove_idea = Pakt_Bundnispartner
+				add_idea = Pakt_Observer
+			}
+		}
+		else = {
+			add_ideas = Pakt_Bundnispartner
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = german_civil_war_speervic }
+				GER = {
+					country_event = {
+						id = IRE_crisis.66
+						days = 90
+					}
+				}
+			}
+		}
+	}
+}

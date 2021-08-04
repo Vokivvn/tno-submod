@@ -1,0 +1,309 @@
+﻿############################
+## French Events
+############################
+
+add_namespace = FRA
+add_namespace = FRA_DUMMY
+
+# DUMMY EVENTS, TO CHANGE FRANCE'S LEADER DURING THE EARLY GAME (TO BE REMOVED WHEN ACTUAL DEV IS DONE ON FRANCE)
+
+country_event = { # Legacy event, reaction to the Burgundian invasion
+	hidden = yes
+	id = FRA.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA.5"}
+    title = FRA.5.t
+    desc = FRA.5.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = FRA.5.a
+
+        FRA = {
+			country_event = {
+	 			id = FRA_DUMMY.1
+	 			days = 1
+	 		}
+ 		}
+    }
+}
+
+country_event = { # Tixier-Vignancour flees the nation
+	id = FRA_DUMMY.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA_DUMMY.1"}
+    title = FRA_DUMMY.1.t
+    desc = FRA_DUMMY.1.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # Huntziger take power
+        name = FRA_DUMMY.1.a
+
+        create_country_leader = {
+			name = "Charles Huntziger"
+			desc = "POLITICS_CHARLES_HUNTZIGER_DESC"
+			picture = "Portrait_France_Charles_Huntziger.dds"
+			expire = "1999.1.23"
+			ideology = fascism_subtype
+			traits = {
+				
+			}
+		}
+
+		hidden_effect = {
+			FRA = {
+				country_event = {
+		 			id = FRA_DUMMY.2
+		 			days = 10
+		 		}
+	 		}
+ 		}
+    }
+}
+
+country_event = { # Huntziger dies of a stroke
+	id = FRA_DUMMY.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA_DUMMY.2"}
+    title = FRA_DUMMY.2.t
+    desc = FRA_DUMMY.2.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # The Conseil in in dismay
+        name = FRA_DUMMY.2.a
+
+        create_country_leader = {
+			name = "Conseil des Ministres"
+			desc = "POLITICS_CONSEIL_DES_MINISTRES_DESC"
+			picture = "Portrait_France_Power_Vacuum.dds"
+			expire = "1999.1.23"
+			ideology = fascism_subtype
+			traits = {
+				
+			}
+		}
+
+		remove_ideas = {
+			FRA_Charles_Huntziger_sec
+		}
+
+		hidden_effect = {
+			FRA = {
+				country_event = {
+		 			id = FRA_DUMMY.3
+		 			days = 120
+		 		}
+	 		}
+ 		}
+    }
+}
+
+country_event = { # The new Président of France
+	id = FRA_DUMMY.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA_DUMMY.3"}
+    title = FRA_DUMMY.3.t
+    desc = FRA_DUMMY.3.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+
+    option = {
+        name = FRA_DUMMY.3.a
+        hidden_effect = {
+        	FRA = {
+		        random_list = {
+		        	35 = { # POUJADE
+		        		set_politics = {
+						    ruling_party = fascism
+						    elections_allowed = no
+						}
+
+		        		create_country_leader = {
+							name = "Pierre Poujade"
+							desc = "POLITICS_PIERRE_POUJADE_DESC"
+							picture = "Portrait_France_Pierre_Poujade.dds"
+							expire = "1999.1.23"
+							ideology = fascism_subtype
+							traits = {
+								
+							}
+						}
+
+						add_ideas = {
+							FRA_Jerome_Carcopino_hog
+							FRA_Francois_Brigneau_for
+							FRA_Leon_Gingembre_eco
+							FRA_Marcel_Carpentier_sec
+						}
+
+						every_country = { news_event = { id = WORLD.2070 days = 1 } }
+		        	}
+
+		        	25 = { # SIDOS
+		        		set_politics = {
+						    ruling_party = national_socialism
+						    elections_allowed = no
+						}
+
+		        		create_country_leader = {
+							name = "Pierre Sidos"
+							desc = "POLITICS_PIERRE_SIDOS_DESC"
+							picture = "Portrait_France_Pierre_Sidos.dds"
+							expire = "1999.1.23"
+							ideology = national_socialism_subtype
+							traits = {
+								
+							}
+						}
+
+						add_ideas = {
+							FRA_Pierre_Drieu_la_Rochelle_hog
+							FRA_Louis_Darquier_de_Pellepoix_for
+							FRA_Jacques_Benoist_Mechin_eco
+							FRA_Jean_Marie_le_Pen_sec
+						}
+
+						every_country = { news_event = { id = WORLD.2071 days = 1 } }
+		        	}
+
+		        	20 = { # PINAY
+		        		set_politics = {
+						    ruling_party = fascism
+						    elections_allowed = no
+						}
+
+		        		create_country_leader = {
+							name = "Antoine Pinay"
+							desc = "POLITICS_ANTOINE_PINAY_DESC"
+							picture = "Portrait_France_Antoine_Pinay.dds"
+							expire = "1999.1.23"
+							ideology = fascism_subtype
+							traits = {
+								
+							}
+						}
+
+						add_ideas = {
+							FRA_Jacques_Le_Roy_Ladurie_hog
+							FRA_Jacques_Tine_for
+							FRA_Paul_Delouvrier_eco
+							FRA_Pierre_Debizet_sec
+						}
+
+						every_country = { news_event = { id = WORLD.2072 days = 1 } }
+		        	}
+
+		        	18 = { # BICHELONNE
+		        		set_politics = {
+						    ruling_party = fascism
+						    elections_allowed = no
+						}
+
+		        		create_country_leader = {
+							name = "Jean Bichelonne"
+							desc = "POLITICS_JEAN_BICHELONNE_DESC"
+							picture = "Portrait_France_Jean_Bichelonne.dds"
+							expire = "1999.1.23"
+							ideology = fascism_subtype
+							traits = {
+								
+							}
+						}
+
+						add_ideas = {
+							FRA_Francois_Lehideux_hog
+							FRA_Marcel_Peyrouton_for
+							FRA_Jean_Bichelonne_eco
+							FRA_Robert_Gibrat_sec
+						}
+
+						every_country = { news_event = { id = WORLD.2073 days = 1 } }
+		        	}
+
+		        	2 = { # GAXOTTE
+		        		set_politics = {
+						    ruling_party = fascism
+						    elections_allowed = no
+						}
+
+		        		create_country_leader = {
+							name = "Pierre Gaxotte"
+							desc = "POLITICS_PIERRE_GAXOTTE_DESC"
+							picture = "Portrait_France_Pierre_Gaxotte.dds"
+							expire = "1999.1.23"
+							ideology = fascism_subtype
+							traits = {
+								
+							}
+						}
+
+						add_ideas = {
+							FRA_Lucien_Rebatet_hog
+							FRA_Philippe_Aries_for
+							FRA_Rene_Belin_eco
+							FRA_Jacques_Ploncard_dAssac_sec
+						}
+
+						every_country = { news_event = { id = WORLD.2074 days = 1 } }
+						country_event = { id = FRA_DUMMY.4 days = 415 }
+		        	}
+		        }
+	        }
+        }
+    }
+}
+
+country_event = { # Coronation of Henri VII
+	id = FRA_DUMMY.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA_DUMMY.4"}
+    title = FRA_DUMMY.4.t
+    desc = FRA_DUMMY.4.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = FRA_DUMMY.4.a
+
+        create_country_leader = {
+			name = "Henri VII d'Orléans"
+			desc = "POLITICS_HENRI_VII_ORLEANS_DESC"
+			picture = "Portrait_France_Henri_VII.dds"
+			expire = "1999.1.23"
+			ideology = despotism_subtype
+			traits = {
+				
+			}
+		}
+
+		add_ideas = {
+			FRA_Michel_dOrleans_hog
+			FRA_Philippe_Aries_for
+			FRA_Jacques_Rueff_eco
+			FRA_Marcel_Carpentier_sec
+		}
+    }
+}
+
+country_event = { # Collapse of the French State
+	id = FRA_DUMMY.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event FRA_DUMMY.5"}
+    title = FRA_DUMMY.5.t
+    desc = FRA_DUMMY.5.desc
+    picture = GFX_14_July
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = FRA_DUMMY.4.a
+        FRA_post_breton_war_collapse = yes
+    }
+}

@@ -1,0 +1,2439 @@
+KHA_power_struggle_category = {
+	KHA_infrastructure_debate_libsoc = {
+
+		visible = {
+			
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_infrastructure_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_infrastructure_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.03
+					}
+				}
+				TNO_improve_industrial_equipment_low = yes
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_regional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_superregional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_infrastructure_debate_despot = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_infrastructure_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_infrastructure_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_timed_idea = { idea = KHA_military_infrastructure days = 90 }
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.03
+					}
+				}
+				random_owned_controlled_state = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_regional_stage
+					}
+					random_owned_controlled_state = {
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_superregional_stage
+					}
+					random_owned_controlled_state = {
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_recruitment_debate_libsoc = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_recruitment_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_recruitment_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.03
+					}
+				}
+				set_temp_variable = { KHA_manpower_temp = 150 }
+				multiply_temp_variable = { KHA_manpower_temp = num_owned_controlled_states }
+				add_manpower = KHA_manpower_temp
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_recruitment_debate_despot = {
+
+		visible = {
+			NOT = { has_country_flag = KHA_NO_MORE_STATISM }
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_recruitment_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_recruitment_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.03
+					}
+				}
+				set_temp_variable = { KHA_manpower_temp = 400 }
+				multiply_temp_variable = { KHA_manpower_temp = num_owned_controlled_states }
+				add_manpower = KHA_manpower_temp
+				add_war_support = -0.05
+				add_stability = -0.03
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_development_debate_libsoc = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_development_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_development_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				TNO_improve_poverty_low = yes
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.03
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_regional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_superregional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_development_debate_despot = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_development_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_development_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.03
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_regional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = RUS_superregional_stage
+					}
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_production_debate_libsoc = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_production_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_production_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_timed_idea = { idea = KHA_civilian_production days = 90 }
+				TNO_improve_industrial_expertise_low = yes
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.03
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_production_debate_despot = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_production_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_production_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_timed_idea = { idea = KHA_military_production days = 90 }
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.03
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_power_debate_libsoc = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_power_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_power_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_popularity = {
+					ideology = socialist
+					popularity = 0.075
+				}
+				add_stability = 0.05
+				add_political_power = 75
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_power_debate_despot = {
+
+		visible = {
+			NOT = {
+				has_country_flag = KHA_NO_MORE_STATISM
+			}
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_power_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_power_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.1
+				}
+				add_war_support = 0.05
+				add_political_power = 75
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_science_debate_libsoc = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_science_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_science_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_timed_idea = { idea = KHA_civilian_science days = 90 }
+				TNO_improve_research_facilities_low = yes
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.03
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_science_debate_despot = {
+
+		visible = {
+			
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_science_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_science_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_timed_idea = { idea = KHA_military_science days = 90 }
+				TNO_improve_research_facilities_low = yes
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.03
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_discipline_debate_libsoc = {
+
+		visible = {
+			NOT = {
+				has_country_flag = KHA_NO_MORE_STATISM
+			}
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 150
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_discipline_debate_libsoc"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_discipline_debate_libsoc remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				add_manpower = 1000
+				add_war_support = 0.05
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.04
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_discipline_debate_despot = {
+
+		visible = {
+			NOT = {
+				has_country_flag = KHA_NO_MORE_STATISM
+			}
+		}
+		available = {
+			NOT = { has_country_flag = KHA_debate_ongoing }
+			NOT = { has_country_flag = KHA_has_council_bonus }
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_discipline_debate_despot"
+			set_country_flag = KHA_debate_ongoing
+			KHA_generate_motion_support = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_discipline_debate_despot remove"
+			custom_effect_tooltip = KHA_good_bad_effect_note_tt
+			clr_country_flag = KHA_debate_ongoing
+			if = {
+				limit = {
+					NOT = {
+						check_variable = { KHA_council_support < KHA_council_oppose }
+					}
+				}
+				set_country_flag = KHA_has_council_bonus
+				TNO_improve_army_professionalism_low = yes
+				add_war_support = -0.075
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.1
+					}
+				}
+			}
+			else = {
+				add_political_power = -50
+				add_stability = -0.01
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = KHA_NO_MORE_STATISM
+						}
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.02
+					}
+				}
+			}
+		}
+	}
+	KHA_debates_cooldown = {
+
+		activation  = {
+			has_country_flag = KHA_has_council_bonus
+		}
+		available = {
+			always = no
+		}
+		days_mission_timeout = 30
+
+		timeout_effect = {
+			clr_country_flag = KHA_has_council_bonus
+			KHA_reset_refusals = yes
+		}
+	}
+}
+KHA_voting_category = {
+	KHA_voting_convince_kansk = {
+
+		visible = {
+			has_country_flag = KHA_kansk_against
+		}
+		available = {
+			has_country_flag = KHA_kansk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kansk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 568
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kansk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_krasnoyarsk = {
+
+		visible = {
+			has_country_flag = KHA_krasnoyarsk_against
+		}
+		available = {
+			has_country_flag = KHA_krasnoyarsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_krasnoyarsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 757
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_krasnoyarsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_kemerovo = {
+
+		visible = {
+			has_country_flag = KHA_kemerovo_against
+		}
+		available = {
+			has_country_flag = KHA_kemerovo_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kemerovo_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 569
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kemerovo_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_tuva = {
+
+		visible = {
+			has_country_flag = KHA_tuva_against
+		}
+		available = {
+			has_country_flag = KHA_tuva_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_tuva_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 329
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_tuva_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_altay = {
+
+		visible = {
+			has_country_flag = KHA_altay_against
+		}
+		available = {
+			has_country_flag = KHA_altay_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_altay_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 329
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_altay_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_barnaul = {
+
+		visible = {
+			has_country_flag = KHA_barnaul_against
+		}
+		available = {
+			has_country_flag = KHA_barnaul_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_barnaul_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 40
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_barnaul_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_novosibirsk = {
+
+		visible = {
+			has_country_flag = KHA_novosibirsk_against
+		}
+		available = {
+			has_country_flag = KHA_novosibirsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_novosibirsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 570
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_novosibirsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_tomsk = {
+
+		visible = {
+			has_country_flag = KHA_tomsk_against
+		}
+		available = {
+			has_country_flag = KHA_tomsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_tomsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 578
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_tomsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_eastern_siberia = {
+
+		visible = {
+			has_country_flag = KHA_eastern_siberia_against
+		}
+		available = {
+			has_country_flag = KHA_eastern_siberia_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_eastern_siberia_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 516
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_eastern_siberia_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_irkutsk = {
+
+		visible = {
+			has_country_flag = KHA_irkutsk_against
+		}
+		available = {
+			has_country_flag = KHA_irkutsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_irkutsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 566
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_irkutsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_buryatia = {
+		visible = {
+			has_country_flag = KHA_buryatia_against
+		}
+		available = {
+			has_country_flag = KHA_buryatia_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_buryatia_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 564
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_buryatia_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_amur = {
+
+		visible = {
+			has_country_flag = KHA_amur_against
+		}
+		available = {
+			has_country_flag = KHA_amur_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_amur_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 561
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_amur_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_magadan = {
+
+		visible = {
+			has_country_flag = KHA_magadan_against
+		}
+		available = {
+			has_country_flag = KHA_magadan_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_magadan_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 562
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_magadan_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_sakha = {
+
+		visible = {
+			has_country_flag = KHA_sakha_against
+		}
+		available = {
+			has_country_flag = KHA_sakha_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_sakha_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 574
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_sakha_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_kamchatka = {
+
+		visible = {
+			has_country_flag = KHA_kamchatka_against
+		}
+		available = {
+			has_country_flag = KHA_kamchatka_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kamchatka_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 891
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kamchatka_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_omsk = {
+
+		visible = {
+			has_country_flag = KHA_omsk_against
+		}
+		available = {
+			has_country_flag = KHA_omsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_omsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 571
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_omsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_tyumen = {
+
+		visible = {
+			has_country_flag = KHA_tyumen_against
+		}
+		available = {
+			has_country_flag = KHA_tyumen_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_tyumen_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 403
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_tyumen_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_chelyabinsk = {
+
+		visible = {
+			has_country_flag = KHA_chelyabinsk_against
+		}
+		available = {
+			has_country_flag = KHA_chelyabinsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_chelyabinsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 754
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_chelyabinsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_sverdlovsk = {
+
+		visible = {
+			has_country_flag = KHA_sverdlovsk_against
+		}
+		available = {
+			has_country_flag = KHA_sverdlovsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_sverdlovsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 653
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_sverdlovsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_nizhniy_tagil = {
+
+		visible = {
+			has_country_flag = KHA_nizhniy_tagil_against
+		}
+		available = {
+			has_country_flag = KHA_nizhniy_tagil_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_nizhniy_tagil_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 874
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_nizhniy_tagil_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_north_urals = {
+
+		visible = {
+			has_country_flag = KHA_north_urals_against
+		}
+		available = {
+			has_country_flag = KHA_north_urals_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_north_urals_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 756
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_north_urals_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_south_urals = {
+
+		visible = {
+			has_country_flag = KHA_south_urals_against
+		}
+		available = {
+			has_country_flag = KHA_south_urals_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_south_urals_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 582
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_south_urals_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_orenburg = {
+
+		visible = {
+			has_country_flag = KHA_orenburg_against
+		}
+		available = {
+			has_country_flag = KHA_orenburg_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_orenburg_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 652
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_orenburg_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_kuybyshev = {
+
+		visible = {
+			has_country_flag = KHA_kuybyshev_against
+		}
+		available = {
+			has_country_flag = KHA_kuybyshev_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kuybyshev_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 850
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kuybyshev_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_stavropol = {
+
+		visible = {
+			has_country_flag = KHA_stavropol_against
+		}
+		available = {
+			has_country_flag = KHA_stavropol_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_stavropol_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 250
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_stavropol_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_gorky = {
+
+		visible = {
+			has_country_flag = KHA_gorky_against
+		}
+		available = {
+			has_country_flag = KHA_gorky_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_gorky_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 252
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_gorky_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_kazan = {
+
+		visible = {
+			has_country_flag = KHA_kazan_against
+		}
+		available = {
+			has_country_flag = KHA_kazan_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kazan_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 249
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kazan_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_bashkiria = {
+
+		visible = {
+			has_country_flag = KHA_bashkiria_against
+		}
+		available = {
+			has_country_flag = KHA_bashkiria_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_bashkiria_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 651
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_bashkiria_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_perm = {
+
+		visible = {
+			has_country_flag = KHA_perm_against
+		}
+		available = {
+			has_country_flag = KHA_perm_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_perm_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 753
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_perm_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_udmurtia = {
+
+		visible = {
+			has_country_flag = KHA_udmurtia_against
+		}
+		available = {
+			has_country_flag = KHA_udmurtia_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_udmurtia_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 399
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_udmurtia_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_rykov = {
+
+		visible = {
+			has_country_flag = KHA_rykov_against
+		}
+		available = {
+			has_country_flag = KHA_rykov_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_rykov_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 400
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_rykov_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_vologda = {
+
+		visible = {
+			has_country_flag = KHA_vologda_against
+		}
+		available = {
+			has_country_flag = KHA_vologda_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_vologda_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 351
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_vologda_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_kostroma = {
+
+		visible = {
+			has_country_flag = KHA_kostroma_against
+		}
+		available = {
+			has_country_flag = KHA_kostroma_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_kostroma_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 856
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_kostroma_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_arkhangelsk = {
+
+		visible = {
+			has_country_flag = KHA_arkhangelsk_against
+		}
+		available = {
+			has_country_flag = KHA_arkhangelsk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_arkhangelsk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 214
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_arkhangelsk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_komi = {
+
+		visible = {
+			has_country_flag = KHA_komi_against
+		}
+		available = {
+			has_country_flag = KHA_komi_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_komi_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 869
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_komi_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_syktyvkar = {
+
+		visible = {
+			has_country_flag = KHA_syktyvkar_against
+		}
+		available = {
+			has_country_flag = KHA_syktyvkar_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_syktyvkar_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 397
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_syktyvkar_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_murmansk = {
+
+		visible = {
+			has_country_flag = KHA_murmansk_against
+		}
+		available = {
+			has_country_flag = KHA_murmansk_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_murmansk_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 1359
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_murmansk_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+	KHA_voting_convince_karelia = {
+
+		visible = {
+			has_country_flag = KHA_karelia_against
+		}
+		available = {
+			has_country_flag = KHA_karelia_against
+			NOT = {
+				OR = {
+					has_country_flag = KHA_karelia_refused
+					has_country_flag = KHA_negotiating_with_commune
+				}
+			}
+		}
+		
+		highlight_states = {
+			state = 216
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			set_country_flag = KHA_karelia_selected
+			set_country_flag = KHA_negotiating_with_commune
+			KHA_generate_conscession = yes
+		}
+	}
+}
+KHA_build_a_nuke_workshop = {
+	KHA_visit_verkhneudinsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_one
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 564
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_verkhneudinsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.26
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_verkhneudinsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_norilsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_one
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 516
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_norilsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.27
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_norilsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_krasnoyarsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_one
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 757
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_krasnoyarsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.28
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_krasnoyarsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_yakutsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_two
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 574
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_yakutsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.29
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_yakutsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_gorno_altaysk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_two
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 654
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_gorno_altaysk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.30
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_gorno_altaysk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_bratsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_two
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 567
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_bratsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.31
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_bratsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_novosibirsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_three
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 570
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_novosibirsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.32
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_novosibirsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_magadan_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_three
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 562
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_magadan_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.33
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_magadan_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+	KHA_visit_tomsk_commune = {
+
+		visible = {
+			has_country_flag = KHA_kerbal_nuke_program_stage_three
+		}
+		available = {
+			NOT = { has_country_flag = KHA_visiting_commune }
+		}
+		highlight_states = {
+			state = 578
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cost = 25
+		days_remove = 5
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_tomsk_commune"
+			set_country_flag = KHA_visiting_commune
+			country_event = {
+				id = KHA_LibSoc.34
+				days = 5
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KHA_visit_tomsk_commune remove"
+			clr_country_flag = KHA_visiting_commune
+		}
+	}
+}

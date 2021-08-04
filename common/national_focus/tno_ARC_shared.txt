@@ -1,0 +1,1041 @@
+#ARC SOCIALIST TREE
+shared_focus = {
+	id = ARC_our_commitment_to_the_people
+	icon = GFX_ARC_commitment_to_people
+	cost = 4
+	allow_branch = {
+		has_socialist_government = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_our_commitment_to_the_people"
+		tno_economic_focus_improve = yes
+	}
+	x = 0
+	y = 0
+}
+
+shared_focus = {
+	id = ARC_the_pan_russian_defense_industry
+	icon = GFX_ARC_chains_factories
+	cost = 4
+	prerequisite = {
+		focus = ARC_our_commitment_to_the_people
+	}
+	mutually_exclusive = {
+		focus = ARC_dealing_with_scarcity
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_pan_russian_defense_industry"
+		every_country = {
+			limit = {
+				is_in_faction_with = ROOT
+			}
+			add_ideas = ARC_industrial_aid
+		}
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = ARC_dealing_with_scarcity
+	icon = GFX_TNO_generic_socialist_industry
+	cost = 4
+	prerequisite = {
+		focus = ARC_our_commitment_to_the_people
+	}
+	mutually_exclusive = {
+		focus = ARC_the_pan_russian_defense_industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_dealing_with_scarcity"
+		add_ideas = ARC_intense_rationing
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 1
+	y = 1
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity < -2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_treads_on_the_ground
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_pan_russian_defense_industry
+		focus = ARC_dealing_with_scarcity
+	}
+	mutually_exclusive = {
+		focus = ARC_wings_in_the_air
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_treads_on_the_ground"
+		add_ideas = ARC_focus_on_tank_production
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = ARC_wings_in_the_air
+	icon = GFX_TNO_generic_socialist_plane
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_pan_russian_defense_industry
+		focus = ARC_dealing_with_scarcity
+	}
+	mutually_exclusive = {
+		focus = ARC_treads_on_the_ground
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_wings_in_the_air"
+		add_ideas = ARC_focus_on_plane_production
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = ARC_the_backbone_of_the_congress
+	icon = GFX_TNO_generic_socialist_recruitment
+	cost = 4
+	prerequisite = {
+		focus = ARC_treads_on_the_ground
+		focus = ARC_wings_in_the_air
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_backbone_of_the_congress"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = ARC_pool_the_work_forces
+	icon = GFX_generic_socialist_labor
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_backbone_of_the_congress
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_pool_the_work_forces"
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_stability = 0.05
+		}
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = -2
+	y = 4
+}
+
+shared_focus = {
+	id = ARC_integrate_the_industries
+	icon = GFX_generic_diplomacy_industrial
+	cost = 4
+	prerequisite = {
+		focus = ARC_pool_the_work_forces
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_integrate_the_industries"
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = -2
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_the_ideal_worker
+	icon = GFX_RAJ_Workers_Paradise
+	cost = 4
+	prerequisite = {
+		focus = ARC_pool_the_work_forces
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_ideal_worker"
+		custom_effect_tooltip = ARC_the_ideal_worker_tooltip
+		country_event = { id = ARC.12 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 0
+	y = 4
+}
+
+shared_focus = {
+	id = ARC_wartime_industrial_expansion
+	icon = GFX_RAJ_Rise_From_The_Factories
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_ideal_worker
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_wartime_industrial_expansion"
+		custom_effect_tooltip = ARC_wartime_industrial_expansion_tooltip
+		country_event = { id = ARC.13 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_our_role_in_the_congress
+	icon = GFX_ARC_building_questionmark
+	cost = 4
+	prerequisite = {
+		focus = ARC_wartime_industrial_expansion
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_our_role_in_the_congress"
+		custom_effect_tooltip = ARC_our_role_in_the_congress_tooltip
+		country_event = { id = ARC.14 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_were_open_to_new_ideas
+	icon = GFX_RAJ_India_Clarify_Army_Role
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_backbone_of_the_congress
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_were_open_to_new_ideas"
+		custom_effect_tooltip = ARC_were_open_to_new_ideas_tooltip
+		add_tech_bonus = {
+			name = land_doctrine_bonus
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		army_experience = 15
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 2
+	y = 4
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity < -2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_equip_our_troops_first
+	icon = GFX_generic_socialist_movement
+	cost = 4
+	prerequisite = {
+		focus = ARC_were_open_to_new_ideas
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_equip_our_troops_first"
+		custom_effect_tooltip = ARC_equip_our_troops_first_tooltip
+		hidden_effect = {
+			division_template = {
+				name = "Reservist Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 0 y = 3 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					artillery = { x = 0 y = 2 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st. Reservist Division\" division_template = \"Reservist Division\" start_experience_factor = 0 start_equipment_factor = 0.4"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd. Reservist Division\" division_template = \"Reservist Division\" start_experience_factor = 0 start_equipment_factor = 0.4"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd. Reservist Division\" division_template = \"Reservist Division\" start_experience_factor = 0 start_equipment_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_people
+	x = 2
+	y = 5
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity < -2 }
+		}
+	}
+}
+
+#ARC DEMOCRATIC TREE
+shared_focus = {
+	id = ARC_our_commitment_to_freedom
+	icon = GFX_ARC_commitment_to_freedom
+	cost = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_our_commitment_to_freedom"
+		add_war_support = 0.1
+		add_stability = 0.1
+	}
+	x = 0
+	y = 0
+}
+
+shared_focus = {
+	id = ARC_convincing_the_people
+	icon = GFX_ORE_reform_the_peoples_tribunal
+	cost = 4
+	prerequisite = {
+		focus = ARC_our_commitment_to_freedom
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_convincing_the_people"
+		custom_effect_tooltip = ARC_convincing_the_people_tooltip
+		country_event = { id = ARC.15 }
+		set_variable = { convincing_points = 0 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 1
+}
+
+shared_focus = {
+	id = ARC_convincing_the_generals
+	icon = GFX_ORE_reorganizing_the_militias
+	cost = 4
+	prerequisite = {
+		focus = ARC_convincing_the_people
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_convincing_the_generals"
+		country_event = { id = ARC.16 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 2
+}
+
+shared_focus = {
+	id = ARC_convincing_the_government
+	icon = GFX_ORE_reordering_politics
+	cost = 4
+	prerequisite = {
+		focus = ARC_convincing_the_generals
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_convincing_the_government"
+		country_event = { id = ARC.17 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = ARC_together_against_the_goliath
+	icon = GFX_UPO_David_and_Goliath
+	cost = 4
+	prerequisite = {
+		focus = ARC_convincing_the_government
+	}
+	mutually_exclusive = {
+		focus = ARC_an_alliance_in_name_only
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_together_against_the_goliath"
+		if = {
+			limit = {
+				has_country_flag = ARC_not_supported
+			}
+			custom_effect_tooltip = ARC_together_against_the_goliath_unconvinced
+			add_stability = -0.1
+		}
+		else = {
+			custom_effect_tooltip = ARC_together_against_the_goliath_tooltip
+		}
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = -1
+	y = 4
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 3
+			has_country_flag = ARC_supported
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_march_for_the_nation
+	icon = GFX_USA_We_fight_for_Stability
+	cost = 4
+	prerequisite = {
+		focus = ARC_together_against_the_goliath
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_march_for_the_nation"
+		tno_conscription_worsen = yes
+		custom_effect_tooltip = ARC_anger_russians_medium
+		add_to_variable = { GER.GGR_russian_population_anger = 0.05 }
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = -2
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_streamlining_the_congress
+	icon = GFX_goal_ARC_Streamlining_the_congress
+	cost = 4
+	prerequisite = {
+		focus = ARC_march_for_the_nation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_streamlining_the_congress"
+		custom_effect_tooltip = ARC_streamlining_the_congress_tooltip
+		country_event = { id = ARC.20 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = -4
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_anti_german_propoganda_campaigns
+	icon = GFX_Peoples_Television
+	cost = 4
+	prerequisite = {
+		focus = ARC_march_for_the_nation
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_anti_german_propoganda_campaigns"
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			add_war_support = 0.05
+		}
+		custom_effect_tooltip = ARC_anger_russians_minor
+		add_to_variable = { GER.GGR_russian_population_anger = 0.02 }
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = -2
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_fighting_on_the_hidden_front
+	icon = GFX_ORS_The_Second_Phase
+	cost = 4
+	prerequisite = {
+		focus = ARC_together_against_the_goliath
+		focus = ARC_an_alliance_in_name_only
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_fighting_on_the_hidden_front"
+		custom_effect_tooltip = ARC_fighting_on_the_hidden_front_tooltip
+		subtract_from_variable = { GER.GDP = 15 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_in_the_slave_camps
+	icon = GFX_CNT_triple_slavery_toppled
+	cost = 4
+	prerequisite = {
+		focus = ARC_fighting_on_the_hidden_front
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_in_the_slave_camps"
+		custom_effect_tooltip = ARC_in_the_slave_camps_tooltip
+		hidden_effect = {
+			GER = {
+				GGR_increase_slave_organisation = yes
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_spread_fear_among_industrialists
+	icon = GFX_GER_end_the_bankers
+	cost = 4
+	prerequisite = {
+		focus = ARC_in_the_slave_camps
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_spread_fear_among_industrialists"
+		custom_effect_tooltip = ARC_spread_fear_among_industrialists_tooltip
+		hidden_effect = {
+			GER = {
+				GGR_decrease_banking_participation_small = yes
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 0
+	y = 7
+}
+
+shared_focus = {
+	id = ARC_an_alliance_in_name_only
+	icon = GFX_OST_Friends_in_the_Garrison
+	cost = 4
+	prerequisite = {
+		focus = ARC_convincing_the_government
+	}
+	mutually_exclusive = {
+		focus = ARC_together_against_the_goliath
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_an_alliance_in_name_only"
+		if = {
+			limit = {
+				has_country_flag = ARC_supported
+			}
+			custom_effect_tooltip = ARC_an_alliance_in_name_only_unconvinced
+			add_stability = -0.1
+		}
+		else = {
+			custom_effect_tooltip = ARC_an_alliance_in_name_only_tooltip
+		}
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 1
+	y = 4
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity < -2 }
+		}
+		modifier = {
+			factor = 3
+			has_country_flag = ARC_not_supported
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_march_for_democracy
+	icon = GFX_JAP_Blood_Iron_and_Representative_Democracy
+	cost = 4
+	prerequisite = {
+		focus = ARC_an_alliance_in_name_only
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_march_for_democracy"
+		tno_conscription_worsen = yes
+		tno_economic_focus_improve = yes
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 2
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_wartime_measures
+	icon = GFX_RAJ_Wartime_Democracy
+	cost = 4
+	prerequisite = {
+		focus = ARC_march_for_democracy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_wartime_measures"
+		if = {
+			limit = { NOT = { has_idea = tno_economic_focus_war_economy } }
+			tno_economic_focus_clear = yes
+			add_ideas = tno_economic_focus_war_economy
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 2
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_the_issue_of_spies
+	icon = GFX_RAJ_establish_secret_service
+	cost = 4
+	prerequisite = {
+		focus = ARC_march_for_democracy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_issue_of_spies"
+		country_event = { id = ARC.21 }
+	}
+	relative_position_id = ARC_our_commitment_to_freedom
+	x = 4
+	y = 6
+}
+
+#ARC DICTATORSHIP TREE
+shared_focus = {
+	id = ARC_our_commitment_to_the_war
+	icon = GFX_ARC_commitment_to_war
+	cost = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_our_commitment_to_the_war"
+		tno_economic_focus_improve = yes
+		tno_conscription_worsen = yes
+		hidden_effect = {
+			division_template = {
+				name = "National Liberation Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 1 }
+					artillery_brigade = { x = 2 y = 2 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					artillery = { x = 0 y = 2 }
+				}
+			}
+			set_division_template_lock = {
+				division_template = "Reservist Division"
+				is_locked = yes
+			}
+		}
+	}
+	x = 0
+	y = 0
+}
+
+shared_focus = {
+	id = ARC_rallying_the_cities
+	icon = ENG_discipline_the_cities
+	cost = 4
+	prerequisite = {
+		focus = ARC_our_commitment_to_the_war
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_rallying_the_cities"
+		add_manpower = 8000
+		capital_scope = {
+			create_unit = {
+				division = "name = \"National Liberation Division 'Dazbog'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"National Liberation Division 'Jarilo'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = -1
+	y = 1
+}
+
+shared_focus = {
+	id = ARC_call_to_the_workers
+	icon = GFX_goal_workers_fist
+	cost = 4
+	prerequisite = {
+		focus = ARC_rallying_the_cities
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_call_to_the_workers"
+		custom_effect_tooltip = ARC_decrease_industrial_expertise
+		subtract_from_variable = { industrial_expertise_counter = 60 }
+		add_war_support = 0.08
+		random_owned_controlled_state = {
+			create_unit = {
+				division = "name = \"National Liberation Division 'Dazbog'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"National Liberation Division 'Jarilo'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = -1
+	y = 2
+}
+
+shared_focus = {
+	id = ARC_rallying_the_villages
+	icon = GFX_focus_MAD_take_to_the_villages
+	cost = 4
+	prerequisite = {
+		focus = ARC_our_commitment_to_the_war
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_rallying_the_villages"
+		add_manpower = 8000
+		capital_scope = {
+			create_unit = {
+				division = "name = \"National Liberation Division 'Dazbog'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"National Liberation Division 'Jarilo'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 1
+	y = 1
+}
+
+shared_focus = {
+	id = ARC_call_to_the_farmers
+	icon = GFX_RAJ_farmers_rise
+	cost = 4
+	prerequisite = {
+		focus = ARC_rallying_the_villages
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_call_to_the_farmers"
+		custom_effect_tooltip = ARC_decrease_agriculture
+		subtract_from_variable = { agriculture_counter = 60 }
+		add_war_support = 0.08
+		random_owned_controlled_state = {
+			create_unit = {
+				division = "name = \"National Liberation Division 'Dazbog'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+			create_unit = {
+				division = "name = \"National Liberation Division 'Jarilo'\" division_template = \"National Liberation Division\" start_experience_factor = 0 start_equipment_factor = 0.6"
+				owner = ROOT
+			}
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 1
+	y = 2
+}
+
+shared_focus = {
+	id = ARC_we_will_overcome
+	icon = GFX_ARC_russian_flag_and_soldier
+	cost = 4
+	prerequisite = {
+		focus = ARC_call_to_the_farmers
+	}
+	prerequisite = {
+		focus = ARC_call_to_the_workers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_we_will_overcome"
+		add_ideas = ARC_standing_strong
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 0
+	y = 3
+}
+
+shared_focus = {
+	id = ARC_everyone_must_do_their_part
+	icon = GFX_ARC_soldier_whipping
+	cost = 4
+	prerequisite = {
+		focus = ARC_we_will_overcome
+	}
+	mutually_exclusive = {
+		focus = ARC_the_grunts_of_the_congress
+		focus = ARC_assist_the_stragglers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_everyone_must_do_their_part"
+		custom_effect_tooltip = ARC_everyone_must_do_their_part_tooltip
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+		every_country = {
+			limit = {
+				has_country_flag = joined_ARC
+				NOT = { original_tag = ROOT }
+			}
+			country_event = { id = ARC.22 }
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = -2
+	y = 4
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity < -2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_follow_our_example
+	icon = GFX_URL_we_can_use_more
+	cost = 4
+	prerequisite = {
+		focus = ARC_everyone_must_do_their_part
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_follow_our_example"
+		custom_effect_tooltip = ARC_follow_our_example_tooltip
+		country_event = { id = ARC.23 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = -2
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_you_can_do_more_than_this
+	icon = GFX_URL_Accept_No_Substitutes
+	cost = 4
+	prerequisite = {
+		focus = ARC_follow_our_example
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_you_can_do_more_than_this"
+		custom_effect_tooltip = ARC_unity_decrease
+		subtract_from_variable = { global.ARC_unity = 1 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = -2
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_the_grunts_of_the_congress
+	icon = GFX_OST_Friends_in_the_Garrison
+	cost = 4
+	prerequisite = {
+		focus = ARC_we_will_overcome
+	}
+	mutually_exclusive = {
+		focus = ARC_everyone_must_do_their_part
+		focus = ARC_assist_the_stragglers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_grunts_of_the_congress"
+		tno_conscription_worsen = yes
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 0
+	y = 4
+}
+
+shared_focus = {
+	id = ARC_the_problem_of_equipment
+	icon = GFX_URL_Take_Stock_of_Our_Shortcomings
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_grunts_of_the_congress
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_problem_of_equipment"
+		custom_effect_tooltip = ARC_the_problem_of_equipment_tooltip
+		country_event = { id = ARC.27 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 0
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_the_problem_of_labor
+	icon = GFX_ORE_no_more_closed_factories
+	cost = 4
+	prerequisite = {
+		focus = ARC_the_problem_of_equipment
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_problem_of_labor"
+		custom_effect_tooltip = ARC_the_problem_of_labor_tooltip
+		country_event = { id = ARC.28 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 0
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_assist_the_stragglers
+	icon = GFX_generic_diplomacy_expansion
+	cost = 4
+	mutually_exclusive = {
+		focus = ARC_everyone_must_do_their_part
+		focus = ARC_the_grunts_of_the_congress
+	}
+	prerequisite = {
+		focus = ARC_we_will_overcome
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_assist_the_stragglers"
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			add_manpower = 5500
+			add_war_support = 0.03
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 2
+	y = 4
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0.67
+			check_variable = { global.ARC_unity > 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = ARC_joint_military_command
+	icon = GFX_ORE_create_the_higher_command
+	cost = 4
+	prerequisite = {
+		focus = ARC_assist_the_stragglers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_joint_military_command"
+		custom_effect_tooltip = ARC_unity_increase
+		add_to_variable = { global.ARC_unity = 1 }
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			add_ideas = ARC_joint_military_staff
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 2
+	y = 5
+}
+
+shared_focus = {
+	id = ARC_improving_recruitment_methods
+	icon = GFX_General_Recruitment
+	cost = 4
+	prerequisite = {
+		focus = ARC_joint_military_command
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_improving_recruitment_methods"
+		custom_effect_tooltip = ARC_improving_recruitment_methods_tooltip
+		country_event = { id = ARC.29 }
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 2
+	y = 6
+}
+
+shared_focus = {
+	id = ARC_the_proud_russian_army
+	icon = GFX_goal_ARC_The_Proud_Russian_Army
+	cost = 4
+	prerequisite = {
+		focus = ARC_you_can_do_more_than_this
+		focus = ARC_the_problem_of_labor
+		focus = ARC_improving_recruitment_methods
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: focus ARC_the_proud_russian_army"
+		swap_ideas = {
+			remove_idea = ARC_standing_strong
+			add_idea = ARC_proud_russian_army
+		}
+	}
+	relative_position_id = ARC_our_commitment_to_the_war
+	x = 0
+	y = 7
+}

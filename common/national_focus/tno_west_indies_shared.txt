@@ -1,0 +1,1283 @@
+shared_focus = {
+	id = WIN_blankfocus
+	icon = GFX_generic_secret_weapon
+	offset = {
+		x = 7
+		y = 0
+		trigger = {
+			tag = WIN
+		}
+	}
+	allow_branch = {
+		has_country_flag = neversetflag
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_blankfocus"
+	}
+}
+
+###VICTORY OF FLP
+shared_focus = {
+	id = WIN_1965_flp_win
+	# icon =
+	offset = {
+		x = 5
+		y = 1
+		trigger = {
+			tag = WIN
+		}
+	}
+	allow_branch = {
+		has_country_flag = WIN_FLP_Victory
+	}
+	bypass = {
+		has_country_flag = WIN_FLP_Victory
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_1965_flp_win"
+	}
+}
+
+shared_focus = {
+	id = WIN_flp_contain_nationalism
+	# icon =
+	offset = {
+		x = 5
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_1965_flp_win
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_flp_contain_nationalism"
+		add_political_power = -100
+		#swap_ideas = {
+		#	remove_idea = WIN_jamaican_nationalism
+		#	add_idea = WIN_jamaican_nationalism5
+		#}
+	}
+}
+
+shared_focus = {
+	id = WIN_flp_calm_the_workers
+	# icon =
+	offset = {
+		x = 4
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_flp_contain_nationalism
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_flp_calm_the_workers"
+		add_political_power = 50
+		#add_ideas = WIN_election_workers_rights
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.03
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.01
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_flp_streamline_gov
+	# icon =
+	offset = {
+		x = 6
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_flp_contain_nationalism
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_flp_streamline_gov"
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = WIN_flp_economic_restructuring
+	# icon =
+	offset = {
+		x = 5
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_flp_calm_the_workers
+	}
+	prerequisite = {
+		focus = WIN_flp_streamline_gov
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_flp_economic_restructuring"
+	}
+}
+
+shared_focus = {
+	# Adams
+	id = WIN_leader_adams
+	# icon =
+	offset = {
+		x = 2
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_1965_flp_win
+	}
+	available = {
+		has_country_flag = WIN_1965_Adams
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_leader_adams"
+	}
+}
+
+shared_focus = {
+	id = WIN_adams_status_quo
+	# icon =
+	offset = {
+		x = 1
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_leader_adams
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_adams_status_quo"
+		add_stability = 0.15
+	}
+}
+
+shared_focus = {
+	id = WIN_try_and_fix
+	# icon =
+	offset = {
+		x = 1
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_adams_status_quo
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_try_and_fix"
+		add_tech_bonus = {
+		    name = construction_bonus
+			bonus = 0.5
+			uses = 1
+			category = construction_tech
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	# Barrow
+	id = WIN_leader_barrow
+	# icon =
+	offset = {
+		x = 8
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_1965_flp_win
+	}
+	available = {
+		has_country_flag = WIN_1965_Barrow
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_leader_barrow"
+	}
+}
+
+shared_focus = {
+	id = WIN_barrow_loosen_ties
+	# icon =
+	offset = {
+		x = 9
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_leader_barrow
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_barrow_loosen_ties"
+		add_opinion_modifier = {
+			target = USA
+			modifier = small_decrease
+		}
+		add_political_power = 100
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_barrow_a_strong_west_indies
+	# icon =
+	offset = {
+		x = 9
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_barrow_loosen_ties
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_barrow_a_strong_west_indies"
+		country_event = {
+			id = WIN.41
+			days = 1
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_flp_safe_for_now
+	# icon =
+	offset = {
+		x = 5
+		y = 5
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_flp_economic_restructuring
+	}
+	prerequisite = {
+		focus = WIN_barrow_a_strong_west_indies
+		focus = WIN_try_and_fix
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_flp_safe_for_now"
+		add_political_power = 100
+	}
+}
+
+###VICTORY OF DLP
+shared_focus = {
+	id = WIN_1965_dlp_win
+	# icon =
+	offset = {
+		x = 5
+		y = 1
+		trigger = {
+			tag = WIN
+		}
+	}
+	allow_branch = {
+		has_country_flag = WIN_DLP_Victory
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_1965_dlp_win"
+	}
+}
+
+shared_focus = {
+	id = WIN_dlp_labour_relations
+	icon = GFX_RAJ_India_Worker_Rights
+	offset = {
+		x = 4
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_1965_dlp_win
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_dlp_labour_relations"
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = WIN_dlp_expand_welfare
+	icon = GFX_RAJ_Roses_Are_Red
+	offset = {
+		x = 6
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_1965_dlp_win
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_dlp_expand_welfare"
+		#add_ideas = WIN_election_workers_rights
+	}
+}
+
+shared_focus = {
+	id = WIN_referendum_prep
+	# icon =
+	offset = {
+		x = 5
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_dlp_labour_relations
+	}
+	prerequisite = {
+		focus = WIN_dlp_expand_welfare
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_referendum_prep"
+	}
+}
+
+shared_focus = {
+	id = WIN_voting_booths
+	# icon =
+	offset = {
+		x = 3
+		y = 5
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_referendum_prep
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_voting_booths"
+	}
+}
+
+shared_focus = {
+	id = WIN_disseminate_info
+	icon = GFX_generic_military_academy
+	offset = {
+		x = 5
+		y = 5
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_referendum_prep
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_disseminate_info"
+	}
+}
+
+shared_focus = {
+	id = WIN_ensure_order
+	# icon =
+	offset = {
+		x = 7
+		y = 5
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_referendum_prep
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_ensure_order"
+	}
+}
+
+shared_focus = {
+	id = WIN_referendum_voting
+	icon = GFX_Generic_Constitution
+	offset = {
+		x = 5
+		y = 6
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_ensure_order
+	}
+	prerequisite = {
+		focus = WIN_voting_booths
+	}
+	prerequisite = {
+		focus = WIN_disseminate_info
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_referendum_voting"
+		country_event = {
+			id = WIN.35
+			days = 1
+		}
+	}
+}
+
+###AFTER JAMAICAN INDEPENDENCE
+shared_focus = {
+	id = WIN_hold_it_together
+	icon = GFX_generic_war_with_comintern
+	offset = {
+		x = 6
+		y = 1
+		trigger = {
+			tag = WIN
+		}
+	}
+	allow_branch = {
+		has_country_flag = WIN_1965_rip_jamaica
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_hold_it_together"
+	}
+}
+
+shared_focus = {
+	id = WIN_desperate_times_means
+	icon = GFX_Generic_Socialism
+	offset = {
+		x = 5
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_hold_it_together
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_desperate_times_means"
+		country_event = {
+			id = WIN.87
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_desperate_measures
+	icon = GFX_GER_nationalize_credit
+	offset = {
+		x = 7
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_hold_it_together
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_desperate_measures"
+		country_event = {
+			id = WIN.86
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_this_isnt_working
+	icon = GFX_ENG_blood_in_the_streets
+	offset = {
+		x = 6
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	available = {
+		has_country_flag = WIN_1965_TnT
+	}
+	prerequisite = {
+		focus = WIN_desperate_measures
+	}
+	prerequisite = {
+		focus = WIN_desperate_times_means
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_this_isnt_working"
+		# country_event
+	}
+}
+
+shared_focus = {
+	id = WIN_send_the_marines
+	icon = GFX_chi_mission_to_the_us
+	offset = {
+		x = 6
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_this_isnt_working
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 1.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_send_the_marines"
+		country_event = {
+			id = WIN.84
+			days = 2
+		}
+	}
+}
+
+###JAMAICAN INDEPENDENCE CRISIS 1967
+shared_focus = {
+	id = WIN_rally
+	icon = GFX_generic_war_with_comintern
+	offset = {
+		x = 5
+		y = 0
+		trigger = {
+			tag = WIN
+		}
+	}
+	cost = 5.00
+	allow_branch = {
+		has_country_flag = WIN_1967_Independence
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_rally"
+		add_political_power = 50
+		country_event = {
+			id = WIN.52
+			days = 7
+		}
+	}
+}
+
+shared_focus = {
+	# trying to make concessions
+	id = WIN_words
+	offset = {
+		x = 3
+		y = 1
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_rally
+	}
+	mutually_exclusive = {
+		focus = WIN_war
+	}
+	mutually_exclusive = {
+		focus = WIN_crack_down
+	}
+	available = {
+		has_country_flag = WIN_diplo
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_words"
+		add_political_power = 50
+		hidden_effect = {
+			country_event = {
+				id = WIN.53
+				days = 3
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_meeting
+	# icon = GFX_Generic_Socialism
+	offset = {
+		x = 3
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_words
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_meeting"
+	}
+}
+
+shared_focus = {
+	id = WIN_economic_concessions
+	# icon =
+	offset = {
+		x = 2
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_meeting
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_economic_concessions"
+		country_event = {
+			id = WIN.54
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_jamaican_autonomy
+	# icon =
+	offset = {
+		x = 4
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_meeting
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_jamaican_autonomy"
+	}
+}
+
+shared_focus = {
+	id = WIN_sucessful_negotiations
+	icon = GFX_generic_treaty
+	offset = {
+		x = 3
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_economic_concessions
+	}
+	prerequisite = {
+		focus = WIN_jamaican_autonomy
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_sucessful_negotiations"
+		add_political_power = 50
+		hidden_effect = {
+			country_event = {
+				id = WIN.55
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	# Using Force to disperse the nationalists
+	id = WIN_war
+	# icon =
+	offset = {
+		x = 7
+		y = 1
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_rally
+	}
+	mutually_exclusive = {
+		focus = WIN_words
+	}
+	available = {
+		has_country_flag = WIN_direct
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_war"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = WIN_crack_down
+	# icon =
+	offset = {
+		x = 7
+		y = 2
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_war
+	}
+	mutually_exclusive = {
+		focus = WIN_words
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_crack_down"
+		# country_event = {id = WIN.61 days = 5}
+	}
+}
+
+shared_focus = {
+	id = WIN_martial_law
+	# icon =
+	offset = {
+		x = 8
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_crack_down
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_martial_law"
+		add_political_power = -100
+		add_stability = 0.1
+		add_popularity = {
+			ideology = social_liberal
+			popularity = -0.05
+		}
+		country_event = {
+			id = WIN.53
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_jail_leader
+	# icon =
+	offset = {
+		x = 6
+		y = 3
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_crack_down
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 5.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_jail_leader"
+		add_political_power = -100
+		add_popularity = {
+			ideology = social_liberal
+			popularity = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_order_restored
+	# icon =
+	offset = {
+		x = 7
+		y = 4
+		trigger = {
+			tag = WIN
+		}
+	}
+	prerequisite = {
+		focus = WIN_jail_leader
+	}
+	prerequisite = {
+		focus = WIN_martial_law
+	}
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 5
+		}
+	}
+	cost = 10.00
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus WIN_order_restored"
+		add_political_power = 100
+		hidden_effect = {
+			country_event = {
+				id = WIN.56
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = WIN_Fragile_Democracy
+	icon = GFX_unknown
+	cost = 6.00
+	allow_branch = {
+		has_country_flag = WIN_intro_tree
+	}
+	x = 10
+	y = 0
+}
+
+shared_focus = {
+	id = WIN_Federation_Woes
+	icon = GFX_unknown
+	cost = 6.00
+	allow_branch = {
+		has_country_flag = WIN_intro_tree
+	}
+	x = 6
+	y = 0
+}
+
+shared_focus = {
+	id = WIN_What_Nationalism
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Federation_Woes
+	}
+	x = 6
+	y = 1
+}
+
+shared_focus = {
+	id = WIN_Are_We_Not_All_West_Indians
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_What_Nationalism
+	}
+	x = 5
+	y = 2
+}
+
+shared_focus = {
+	id = WIN_Not_a_Puppet
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_What_Nationalism
+	}
+	x = 7
+	y = 2
+}
+
+shared_focus = {
+	id = WIN_Everything_is_Fine
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Are_We_Not_All_West_Indians
+	}
+	prerequisite = {
+		focus = WIN_Not_a_Puppet
+	}
+	x = 6
+	y = 3
+}
+
+shared_focus = {
+	id = WIN_The_Federal_Shipping_Service
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Federation_Woes
+	}
+	prerequisite = {
+		focus = WIN_Fragile_Democracy
+	}
+	x = 8
+	y = 1
+}
+
+shared_focus = {
+	id = WIN_Loyal_to_the_OFN
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Fragile_Democracy
+	}
+	prerequisite = {
+		focus = WIN_The_Federal_Shipping_Service
+	}
+	x = 10
+	y = 2
+}
+
+shared_focus = {
+	id = WIN_Ties_to_Canada
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Loyal_to_the_OFN
+	}
+	x = 9
+	y = 3
+}
+
+shared_focus = {
+	id = WIN_Support_the_Disenfranchised
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Fragile_Democracy
+	}
+	x = 11
+	y = 1
+}
+
+shared_focus = {
+	id = WIN_Ties_to_Guyana
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Loyal_to_the_OFN
+	}
+	x = 11
+	y = 3
+}
+
+shared_focus = {
+	id = WIN_Ignore_Protests
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Everything_is_Fine
+	}
+	x = 6
+	y = 4
+}
+
+shared_focus = {
+	id = WIN_Provincial_Equality
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Everything_is_Fine
+	}
+	x = 8
+	y = 4
+}
+
+shared_focus = {
+	id = WIN_Protected_by_the_USA
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Loyal_to_the_OFN
+	}
+	x = 13
+	y = 3
+}
+
+shared_focus = {
+	id = WIN_Right
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Protected_by_the_USA
+	}
+	x = 13
+	y = 4
+}
+
+shared_focus = {
+	id = WIN_Calm_Down
+	icon = GFX_unknown
+	cost = 6.00
+	prerequisite = {
+		focus = WIN_Everything_is_Fine
+	}
+	x = 4
+	y = 4
+}
+

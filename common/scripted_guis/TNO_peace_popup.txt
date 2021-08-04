@@ -1,0 +1,37 @@
+scripted_gui = {
+	tno_peace_popup_window = {
+		window_name = "tno_peace_popup_window"
+		context_type = player_context
+		#parent_window_token = top_bar
+
+		#visible = {
+		#	always = yes
+		#}
+
+		effects = {
+		}
+
+		triggers = {
+	    	
+	    }
+
+		visible = {
+			is_ai = no
+			NOT = { has_global_flag = TNO_my_world_is_on_fire_how_about_yours }
+			has_global_flag = show_peace_popup_alert
+		}
+
+		effects = {
+			close_button_click = {
+				clr_global_flag = show_peace_popup_alert
+				clr_global_flag = losing_country_multiple
+				clr_global_flag = winning_country_multiple
+				clr_global_flag = war_continuing
+				clr_global_flag = war_won
+
+				clear_variable = global.winning_country
+				clear_variable = global.losing_country
+			}
+		}
+	}
+}

@@ -1,0 +1,123 @@
+#          ____                __           ___            __                               #
+#         /\  _`\             /\ \         /\_ \    __    /\ \                              #
+#         \ \ \L\_\    ___    \_\ \    ____\//\ \  /\_\   \_\ \     __    ____              #
+#          \ \  _\L  /' _ `\  /'_` \  /',__\ \ \ \ \/\ \  /'_` \  /'__`\ /',__\             #
+#           \ \ \L\ \/\ \/\ \/\ \L\ \/\__, `\ \_\ \_\ \ \/\ \L\ \/\  __//\__, `\            #
+#            \ \____/\ \_\ \_\ \___,_\/\____/ /\____\\ \_\ \___,_\ \____\/\____/            #
+#             \/___/  \/_/\/_/\/__,_ /\/___/  \/____/ \/_/\/__,_ /\/____/\/___/             #
+#                                                                                           #
+# ______                                   __        __                   __                #
+#/\__  _\                                 /\ \__    /\ \__               /\ \  __           #
+#\/_/\ \/       __  __  __     __      ___\ \ ,_\   \ \ ,_\   ___        \_\ \/\_\     __   #
+#   \ \ \      /\ \/\ \/\ \  /'__`\  /' _ `\ \ \/    \ \ \/  / __`\      /'_` \/\ \  /'__`\ #
+#    \_\ \__   \ \ \_/ \_/ \/\ \L\.\_/\ \/\ \ \ \_    \ \ \_/\ \L\ \    /\ \L\ \ \ \/\  __/ #
+#    /\_____\   \ \___x___/'\ \__/.\_\ \_\ \_\ \__\    \ \__\ \____/    \ \___,_\ \_\ \____\#
+#    \/_____/    \/__//__/   \/__/\/_/\/_/\/_/\/__/     \/__/\/___/      \/__,_ /\/_/\/____/#
+#                                                                                           #
+#                           I crave doom; please grant me respite                           #
+#<=========================================================================================>#
+#>===============================|  Endslide Start Stuff  |================================<#
+#<=========================================================================================>#                                                                  
+
+#For when the player is gucci
+owb_endslide_start = {
+	if = {
+		limit = { is_ai = no }
+		if = {
+			limit = { original_tag = URL }
+			hidden_effect = {
+				set_country_flag = endscreen_flag_open
+				set_variable = { endscrn = 0 }
+			}
+		}
+		else_if = {
+			limit = { original_tag = ORE }
+			hidden_effect = {
+				set_country_flag = endscreen_flag_open
+				set_variable = { endscrn = 25 }
+			}
+		}
+		else_if = {
+			limit = { original_tag = ORS }
+			hidden_effect = {
+				set_country_flag = endscreen_flag_open
+				set_variable = { endscrn = 51 }
+			}
+		}
+		else_if = {
+			limit = {
+				original_tag = BAS
+				NOT = {
+					has_global_flag = BAS_NKVD_coup
+				}
+			}
+			hidden_effect = {
+				set_country_flag = endscreen_flag_open
+				set_variable = { endscrn = 75 }
+			}
+		}
+		else_if = {
+			limit = {
+				original_tag = BAS
+				has_global_flag = BAS_NKVD_coup
+			}
+			hidden_effect = {
+				set_country_flag = endscreen_flag_open
+				set_variable = { endscrn = 100 }
+			}
+		}
+	}
+}
+
+#For when the player capitulates
+owb_player_lost_endslides = {
+	if = {
+		limit = { is_ai = no }
+		FROM = {
+			if = {
+				limit = { ROOT = { original_tag = URL } }
+				hidden_effect = {
+					set_country_flag = endscreen_flag_open
+					set_variable = { endscrn = 0 }
+				}
+			}
+			else_if = {
+				limit = { ROOT = { original_tag = ORE } }
+				hidden_effect = {
+					set_country_flag = endscreen_flag_open
+					set_variable = { endscrn = 25 }
+				}
+			}
+			else_if = {
+				limit = { ROOT = { original_tag = ORS } }
+				hidden_effect = {
+					set_country_flag = endscreen_flag_open
+					set_variable = { endscrn = 51 }
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = BAS }
+					NOT = {
+						has_global_flag = BAS_NKVD_coup
+					}
+				}
+				hidden_effect = {
+					set_country_flag = endscreen_flag_open
+					set_variable = { endscrn = 75 }
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = BAS }
+					has_global_flag = BAS_NKVD_coup
+				}
+				hidden_effect = {
+					set_country_flag = endscreen_flag_open
+					set_variable = { endscrn = 100 }
+				}
+			}
+			change_tag_from = ROOT
+		}
+	}
+}

@@ -1,0 +1,50 @@
+scripted_gui = {
+	england_state_Economy = {
+		context_type = selected_state_context
+		
+		window_name = "britain_state_overview"
+		parent_window_token = selected_state_view 
+
+		visible = {
+			OR = {
+				AND = {
+					ENG = {
+						owns_state = PREV
+						has_country_flag = ENG_CF_EnglishEconomy
+					}
+					ROOT = {
+						tag = ENG
+					}
+				}
+				AND = {
+					FEN = {
+						owns_state = PREV
+						has_country_flag = ENG_CF_EnglishEconomy
+					}
+					ROOT = {
+						tag = FEN
+					}
+				}
+			}
+		}
+		
+		triggers = {
+			econ_bg_visible = {
+				ROOT = {
+					OR = {
+						tag = ENG
+						tag = FEN
+					}
+				}
+			}
+			ENG_Text_Explain_visible = {
+				ROOT = {
+					OR = {
+						tag = ENG
+						tag = FEN
+					}
+				}
+			}
+		}
+	}
+}

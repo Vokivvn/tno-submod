@@ -1,0 +1,1246 @@
+add_namespace = ENG_acts
+
+country_event = { #Ending Success
+	id = ENG_acts.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ENG_acts.1" }
+	title = ENG_acts.1.t
+	desc = ENG_acts.1.desc
+	picture = GFX_report_event_westminister
+
+	is_triggered_only = yes
+
+	option = { #
+		name = ENG_acts.1.a
+		if = {
+			limit = {
+				has_country_flag = NDL_Act_County
+			}
+
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Lords
+			}
+
+				swap_ideas = {
+					remove_idea = NDL_house_of_lords
+					add_idea = NDL_house_of_lords2
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_National_Education
+			}
+
+				tno_education_improve = yes
+				TNO_improve_academic_base_high = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Worker_Protection
+			}
+
+				tno_safety_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 11 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 12 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 13 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_11_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_12_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_13_add
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Children_and_Wives
+			}
+
+				tno_gender_rights_improve = yes
+				ENG_NDL_MEC_Liberals_gain_power = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Sexual_Offenses
+			}
+
+				ENG_NDL_MEC_Liberals_gain_power = yes
+				ENG_NDL_MEC_Liberals_gain_power = yes
+				ENG_NDL_MEC_Moderates_gain_power = yes
+				tno_lgbt_rights_improve = yes
+				country_event = {
+					id = ENG_flavor.41
+					days = 2
+				}
+				country_event = {
+					id = ENG_flavor.62
+					days = 4
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Border
+			}
+
+				tno_refugees_worsen = yes
+				ENG_NDL_MEC_Conservatives_gain_power = yes
+
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Preservation_of_Democracy
+			}
+
+				tno_press_rights_improve = yes
+				tno_vote_franchise_improve = yes
+				tno_refugees_worsen = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Investigations
+			}
+
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 11 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 12 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 13 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_11_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_12_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_13_add
+				}
+			ParliamentMechanic_GovStab_Calculate = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Housing
+			}
+
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+				}
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 11 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 12 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 13 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_11_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_12_add
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_13_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Business
+			}
+
+				add_offsite_building = { type = arms_factory level = 1 }
+				add_offsite_building = { type = industrial_complex level = 1 }
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_National_Healthcare
+			}
+
+				tno_health_care_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = NDL_Act_Affordable_Education
+			}
+
+				TNO_improve_academic_base_med = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Lords
+			}
+
+				add_ideas = NDL_house_of_lords
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Women_Pension
+			}
+
+				tno_pensions_improve = yes
+				tno_gender_rights_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 2 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 2 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Equality
+			}
+
+				tno_pensions_improve = yes
+				tno_gender_rights_improve = yes
+				tno_safety_improve = yes
+				tno_women_improve = yes
+				add_stability = -0.05
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_lose
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -2 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_lose
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Equal_Vote
+			}
+
+				tno_vote_franchise_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Nepotism
+			}
+
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+				ENG_SLP_Add_Reform_Progress_5 = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Socialist_Democracy
+			}
+
+				ENG_SLP_Add_Reform_Progress_5 = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+				add_political_power = 50
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Socialist_Education
+			}
+
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+				add_stability = -0.10
+				ENG_SLP_Add_Reformer_Love_3 = yes
+				TNO_improve_academic_base_low = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_State_Security
+			}
+
+				ENG_SLP_Add_Hardliner_Love_3 = yes
+				tno_security_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Anti_Fascism
+			}
+
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 13 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_13_lose
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Land_Redistribution
+			}
+
+				add_stability = -0.05
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+				hidden_effect = {
+					127 = {
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+					}
+					126 = {
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+					}
+					125 = {
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+						set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+						set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+						TNO_Britain_ElectionSeason_AddPop_InState = yes
+					}
+				}
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+					ENG_SE_IncreaseDomesticJobGrowth_0.05 = yes
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Universal_Healthcare
+			}
+
+				tno_health_care_clear = yes
+				add_ideas = tno_health_care_universal_health_care
+
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Equal_Opportunity
+			}
+
+				tno_education_clear = yes
+				add_ideas = tno_education_public_higher_education
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_Peoples_Housing
+			}
+
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+				}
+				every_owned_state = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				TNO_improve_poverty_low = yes
+				
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SLP_Act_National_Wage
+			}
+
+			tno_minimum_wage_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_add
+					}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Anti_Bribery
+			}
+
+				add_stability = 0.05
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -3 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_lose
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 9 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_9_lose
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Education
+			}
+
+				TNO_improve_academic_base_high = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 2.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 2.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 7 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_7_add
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Anti_Fascism
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -15 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 9 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_9_lose
+			}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Fair_Employment
+			}
+
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Women_Workforce
+			}
+
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+				tno_gender_rights_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -2.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_lose
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -2.5 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 9 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_9_lose
+				}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Labour
+			}
+
+				tno_unemployment_improve = yes
+				tno_pensions_improve = yes
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = 2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_add
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = 2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 7 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_7_add
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Worker_Health
+			}
+
+				tno_health_care_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Free_Labour
+			}
+
+				tno_unemployment_improve = yes
+				tno_pensions_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Anti_Corruption
+			}
+
+				add_stability = 0.15
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_lose
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Anti_Extremism
+			}
+
+				add_political_power = 100
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 9 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_9_lose
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Protect_Democracy
+			}
+
+				tno_public_meetings_worsen = yes
+				tno_press_rights_worsen = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Patriot
+			}
+
+				tno_security_improve = yes
+				tno_military_supervision_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Equal_Vote
+			}
+
+				add_political_power = 50
+				tno_vote_franchise_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_add
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 7 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_7_add
+
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Clear_Parliament
+			}
+
+				add_stability = 0.05
+				tno_public_meetings_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_University
+			}
+
+				TNO_improve_academic_base_high = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Free_Press
+			}
+
+				tno_press_rights_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Affordable_Education
+			}
+
+				tno_education_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Income_Tax
+			}
+
+				tno_income_taxation_improve = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_lose
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -4 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 7 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_7_lose
+				}
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Open_Democracy
+			}
+
+				tno_vote_franchise_improve = yes
+				tno_public_meetings_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Free_Education
+			}
+
+				tno_education_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Charter
+			}
+
+				add_political_power = 250
+				add_stability = 0.20
+		}
+		else_if = {
+			limit = {
+				has_country_flag = UE_Act_Unions
+			}
+			add_ideas = tno_safety_acceptable_regulations
+			add_ideas = tno_trade_unions_all_allowed
+			tno_max_workhours_improve = yes
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.04
+			}
+			set_party_name = {
+				ideology = social_democrat
+				long_name = ENG_old_labour_party_long
+				name = ENG_old_labour_party
+				}	
+				every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_lose
+			  }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Workplace_Management
+			}
+
+				ENG_Thatcher_Add_Pop_Love_5 = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+			 	}
+				ParliamentMechanic_GovStab_Calculate = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Business_Protection
+			}
+
+				ENG_Thatcher_Add_Elite_Love_5 = yes
+				TNO_improve_industrial_equipment_med = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Housing
+			}
+
+				ENG_Thatcher_Add_Pop_Love_10 = yes
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobsValue_Medium = yes
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+				TNO_improve_poverty_low = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_New_Healthcare
+			}
+
+				ENG_Thatcher_Add_Elite_Love_5 = yes
+				tno_health_care_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Hunger
+			}
+
+				ENG_Thatcher_Add_Pop_Love_10 = yes
+				TNO_improve_poverty_high = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Leash
+			}
+
+				tno_public_meetings_worsen = yes
+				tno_press_rights_worsen = yes
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 7 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Security
+			}
+
+				tno_security_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Anti_Fascism
+			}
+
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = -10 }
+					set_variable = { TNO_Britain_ElectionSeason_AP_pi = 9 }
+					TNO_Britain_ElectionSeason_AddPop_InState = yes
+					custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_9_lose
+				
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Work_Safety
+			}
+
+				tno_safety_improve = yes
+			
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Coal
+			}
+
+				132 = { ENG_SE_IncreaseDomesticJobsValue_MediumLarge = yes }
+				132 = { 	ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes }
+				132 = { ENG_SE_IncreaseForeignJobGrowth_0.005 = yes  }
+				130 = { ENG_SE_IncreaseDomesticJobsValue_MediumLarge = yes }
+				130 = { 	ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes }
+				130 = { ENG_SE_IncreaseForeignJobGrowth_0.005 = yes  }
+				131 = { ENG_SE_IncreaseDomesticJobsValue_MediumLarge = yes }
+				131 = { 	ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes }
+				131 = { ENG_SE_IncreaseForeignJobGrowth_0.005 = yes  }
+				130 = { set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+		  				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+		 				TNO_Britain_ElectionSeason_AddPop_InState = yes
+						custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+				}
+				131 = { set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+		  				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+		 				TNO_Britain_ElectionSeason_AddPop_InState = yes
+						custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+				}
+				132 = { set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+		  				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+		 				TNO_Britain_ElectionSeason_AddPop_InState = yes
+						custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Communications
+			}
+
+				add_stability = .05
+				ENG_Thatcher_Add_Pop_Love_5 = yes
+				every_owned_state = {
+					custom_effect_tooltip = ENG_SE_ReduceDomesticJobsAmount_3000_tt
+				}
+				hidden_effect = {
+				every_owned_state = { ENG_SE_ReduceDomesticJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_ReduceDomesticJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_ReduceDomesticJobsAmount_1000 = yes }
+				}
+				every_owned_state = { ENG_SE_IncreaseDomesticJobsValue_Medium = yes }
+				every_owned_state = {
+					set_variable = { TNO_Britain_ElectionSeason_AP_v = 1.5 }
+		  			set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+		 			TNO_Britain_ElectionSeason_AddPop_InState = yes
+					 custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_add
+				}
+				ParliamentMechanic_GovStab_Calculate = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Aviation
+			}
+
+			ENG_Thatcher_Add_Pop_Love_3 = yes
+			every_owned_state = { ENG_SE_ReduceDomesticJobsAmount_10000 = yes }
+		hidden_effect = {
+			every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+		}
+		every_owned_state = {
+			custom_effect_tooltip = ENG_SE_IncreaseForeignJobsAmount_5000_tt
+		}
+			every_owned_state = { ENG_SE_IncreaseDomesticJobsValue_Large = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsValue_MediumLarge = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobGrowth_0.005 = yes }
+			add_stability = -0.05
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Rail_Road
+			}
+
+			ENG_Thatcher_Add_Pop_Love_5 = yes
+			every_owned_state = { ENG_SE_ReduceDomesticJobsAmount_10000 = yes }
+			hidden_effect = {
+				every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+				every_owned_state = { ENG_SE_IncreaseForeignJobsAmount_1000 = yes }
+			}
+			every_owned_state = {
+				custom_effect_tooltip = ENG_SE_IncreaseForeignJobsAmount_5000_tt
+			}
+			every_owned_state = { ENG_SE_IncreaseDomesticJobsValue_Large = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobsValue_MediumLarge = yes }
+			every_owned_state = { ENG_SE_IncreaseForeignJobGrowth_0.01 = yes }
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		add_stability = -0.05
+		}
+		else_if = {
+			limit = {
+				has_country_flag = RP_Act_Union
+			}
+				tno_pensions_worsen = yes
+				tno_safety_worsen = yes
+				every_owned_state = { ENG_SE_IncreaseDomesticJobsValue_Medium = yes }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = RP_Act_Equality
+				}
+				tno_gender_rights_improve = yes
+				every_owned_state = {
+					ENG_SE_IncreaseDomesticJobGrowth_0.1 = yes
+				}
+			}
+
+
+	clr_country_flag = NDL_act_progress
+	clr_country_flag = SLP_act_progress
+	clr_country_flag = UE_act_progress
+	clr_country_flag = RP_act_progress
+	clr_country_flag = act_progress
+	
+	clr_country_flag = NDL_Act_County
+	clr_country_flag = NDL_Act_Lords
+	clr_country_flag = NDL_Act_National_Education
+	clr_country_flag = NDL_Act_Worker_Protection
+	clr_country_flag = NDL_Act_Children_and_Wives
+	clr_country_flag = NDL_Act_Sexual_Offenses
+	clr_country_flag = NDL_Act_Border
+	clr_country_flag = NDL_Act_Preservation_of_Democracy
+	clr_country_flag = NDL_Act_Investigations
+	clr_country_flag = NDL_Act_Housing
+	clr_country_flag = NDL_Act_Business
+	clr_country_flag = NDL_Act_National_Healthcare
+	clr_country_flag = NDL_Act_Affordable_Education
+	
+	clr_country_flag = SLP_Act_Lords
+	clr_country_flag = SLP_Act_Women_Pension
+	clr_country_flag = SLP_Act_Equality
+	clr_country_flag = SLP_Act_Equal_Vote
+	clr_country_flag = SLP_Act_Nepotism
+	clr_country_flag = SLP_Act_Socialist_Democracy
+	clr_country_flag = SLP_Act_Socialist_Education
+	clr_country_flag = SLP_Act_State_Security
+	clr_country_flag = SLP_Act_Anti_Fascism
+	clr_country_flag = SLP_Act_Land_Redistribution
+	clr_country_flag = SLP_Act_Universal_Healthcare
+	clr_country_flag = SLP_Act_Equal_Opportunity
+	clr_country_flag = SLP_Act_Peoples_Housing
+	clr_country_flag = SLP_Act_National_Wage
+	
+	clr_country_flag = UE_Act_Anti_Bribery
+	clr_country_flag = UE_Act_Education
+	clr_country_flag = UE_Act_Anti_Fascism
+	clr_country_flag = UE_Act_Fair_Employment
+	clr_country_flag = UE_Act_Women_Workforce
+	clr_country_flag = UE_Act_Labour
+	clr_country_flag = UE_Act_Worker_Health
+	clr_country_flag = UE_Act_Free_Labour
+	clr_country_flag = UE_Act_Anti_Corruption
+	clr_country_flag = UE_Act_Anti_Extremism
+	clr_country_flag = UE_Act_Protect_Democracy
+	clr_country_flag = UE_Act_Patriot
+	
+	clr_country_flag = UE_Act_Equal_Vote
+	clr_country_flag = UE_Act_Clear_Parliament
+	clr_country_flag = UE_Act_University
+	clr_country_flag = UE_Act_Free_Press
+	clr_country_flag = UE_Act_Affordable_Education
+	clr_country_flag = UE_Act_Income_Tax
+	clr_country_flag = UE_Act_Open_Democracy
+	clr_country_flag = UE_Act_Free_Education
+	clr_country_flag = UE_Act_Charter
+	clr_country_flag = UE_Act_Unions
+	
+	clr_country_flag = RP_Act_Workplace_Management
+	clr_country_flag = RP_Act_Business_Protection
+	clr_country_flag = RP_Act_Housing
+	clr_country_flag = RP_Act_New_Healthcare
+	clr_country_flag = RP_Act_Hunger
+	clr_country_flag = RP_Act_Leash
+	clr_country_flag = RP_Act_Security
+	clr_country_flag = RP_Act_Anti_Fascism
+	clr_country_flag = RP_Act_Work_Safety
+	clr_country_flag = RP_Act_Coal
+	clr_country_flag = RP_Act_Communications
+	clr_country_flag = RP_Act_Aviation
+	clr_country_flag = RP_Act_Rail_Road
+	clr_country_flag = RP_Act_Union
+	hidden_effect = {
+		activate_mission = ENG_Acts_Progress
+		remove_mission = ENG_Acts_Progress
+		}
+	}	
+}
+
+
+country_event = { #Ending Event Fail
+	id = ENG_acts.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ENG_acts.2" }
+	title = ENG_acts.2.t
+	desc = ENG_acts.2.desc
+	picture = GFX_report_event_westminister
+
+	is_triggered_only = yes
+
+	option = { #
+		name = ENG_acts.2.a
+		set_temp_variable = { Act_stab = 1 }
+		ParliamentMechanic_GovStab_Calculate = yes
+		set_temp_variable = { Act_stab = 0 }
+		clr_country_flag = NDL_act_progress
+		clr_country_flag = SLP_act_progress
+		clr_country_flag = UE_act_progress
+		clr_country_flag = RP_act_progress
+		clr_country_flag = act_progress
+		
+		clr_country_flag = NDL_Act_County
+		clr_country_flag = NDL_Act_Lords
+		clr_country_flag = NDL_Act_National_Education
+		clr_country_flag = NDL_Act_Worker_Protection
+		clr_country_flag = NDL_Act_Children_and_Wives
+		clr_country_flag = NDL_Act_Sexual_Offenses
+		clr_country_flag = NDL_Act_Border
+		clr_country_flag = NDL_Act_Preservation_of_Democracy
+		clr_country_flag = NDL_Act_Investigations
+		clr_country_flag = NDL_Act_Housing
+		clr_country_flag = NDL_Act_Business
+		clr_country_flag = NDL_Act_National_Healthcare
+		clr_country_flag = NDL_Act_Affordable_Education
+		
+		clr_country_flag = SLP_Act_Lords
+		clr_country_flag = SLP_Act_Women_Pension
+		clr_country_flag = SLP_Act_Equality
+		clr_country_flag = SLP_Act_Equal_Vote
+		clr_country_flag = SLP_Act_Nepotism
+		clr_country_flag = SLP_Act_Socialist_Democracy
+		clr_country_flag = SLP_Act_Socialist_Education
+		clr_country_flag = SLP_Act_State_Security
+		clr_country_flag = SLP_Act_Anti_Fascism
+		clr_country_flag = SLP_Act_Land_Redistribution
+		clr_country_flag = SLP_Act_Universal_Healthcare
+		clr_country_flag = SLP_Act_Equal_Opportunity
+		clr_country_flag = SLP_Act_Peoples_Housing
+		clr_country_flag = SLP_Act_National_Wage
+		
+		clr_country_flag = UE_Act_Anti_Bribery
+		clr_country_flag = UE_Act_Education
+		clr_country_flag = UE_Act_Anti_Fascism
+		clr_country_flag = UE_Act_Fair_Employment
+		clr_country_flag = UE_Act_Women_Workforce
+		clr_country_flag = UE_Act_Labour
+		clr_country_flag = UE_Act_Worker_Health
+		clr_country_flag = UE_Act_Free_Labour
+		clr_country_flag = UE_Act_Anti_Corruption
+		clr_country_flag = UE_Act_Anti_Extremism
+		clr_country_flag = UE_Act_Protect_Democracy
+		clr_country_flag = UE_Act_Patriot
+		
+		clr_country_flag = UE_Act_Equal_Vote
+		clr_country_flag = UE_Act_Clear_Parliament
+		clr_country_flag = UE_Act_University
+		clr_country_flag = UE_Act_Free_Press
+		clr_country_flag = UE_Act_Affordable_Education
+		clr_country_flag = UE_Act_Income_Tax
+		clr_country_flag = UE_Act_Open_Democracy
+		clr_country_flag = UE_Act_Free_Education
+		clr_country_flag = UE_Act_Charter
+		clr_country_flag = UE_Act_Unions
+		
+		clr_country_flag = RP_Act_Workplace_Management
+		clr_country_flag = RP_Act_Business_Protection
+		clr_country_flag = RP_Act_Housing
+		clr_country_flag = RP_Act_New_Healthcare
+		clr_country_flag = RP_Act_Hunger
+		clr_country_flag = RP_Act_Leash
+		clr_country_flag = RP_Act_Security
+		clr_country_flag = RP_Act_Anti_Fascism
+		clr_country_flag = RP_Act_Work_Safety
+		clr_country_flag = RP_Act_Coal
+		clr_country_flag = RP_Act_Communications
+		clr_country_flag = RP_Act_Aviation
+		clr_country_flag = RP_Act_Rail_Road
+		clr_country_flag = RP_Act_Union
+		hidden_effect = {
+			activate_mission = ENG_Acts_Progress
+			remove_mission = ENG_Acts_Progress
+		}
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Margaret Thatcher"
+					ruling_only = yes
+				}
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -4 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 8 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_8_lose
+			}
+			ParliamentMechanic_GovStab_Calculate = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					has_country_leader = {
+						name = "Harold Macmillan"
+						ruling_only = yes
+					}
+					has_country_leader = {
+						name = "Reginald Maudling"
+						ruling_only = yes
+					}
+				}	
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 6 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_6_lose
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 7 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_7_lose
+			}
+			ParliamentMechanic_GovStab_Calculate = yes
+		}
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "George Jellicoe"
+					ruling_only = yes
+				}
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -2 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 11 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_11_lose
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -1 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 12 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_12_lose
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -1 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 13 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_13_lose
+			}
+			ParliamentMechanic_GovStab_Calculate = yes
+		}
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Harold Wilson"
+					ruling_only = yes
+				}
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -2.5 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 14 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_14_lose
+			}
+			every_owned_state = {
+				set_variable = { TNO_Britain_ElectionSeason_AP_v = -1.5 }
+				set_variable = { TNO_Britain_ElectionSeason_AP_pi = 15 }
+				TNO_Britain_ElectionSeason_AddPop_InState = yes
+				custom_effect_tooltip = ENG_ParliamentMechanic_Party_Support_15_lose
+			}
+			ParliamentMechanic_GovStab_Calculate = yes
+			ENG_SLP_Add_Hardliner_Love_3 = yes
+		}
+	}	
+}
+
+
+country_event = { #Parliament Debug
+	id = ENG_acts.9999
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ENG_acts.9999" }
+	title = ENG_acts.9999.t
+	desc = ENG_acts.9999.desc
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ENG_acts.9999.a
+		clear_array = ParliamentMechanic_Party_SeatNum
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 75 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 135 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 65 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 140 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 85 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		add_to_array = { ParliamentMechanic_Party_SeatNum = 0 }
+		NDL_Initialize_County_Act = yes
+	}	
+}

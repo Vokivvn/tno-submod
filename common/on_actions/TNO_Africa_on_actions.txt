@@ -1,0 +1,1776 @@
+on_actions = {
+	#EVENTS
+	on_startup = {
+		effect = {
+			SAF = {
+				country_event = {
+					id = SAF.18 #Boer protests
+					days = 654 #Day after Hitler dies
+				}
+			}
+
+			MZB = {
+				country_event = {
+					id = MZB.51 #Investigation start
+					days = 325
+				}
+			}
+		}
+	}
+	#STARTUP DEFINITIONS
+	on_startup = {
+		effect = {
+			SAF = {
+				add_ideas = AFRICA_SAW_defense_buff
+			}
+			COG = {
+				add_ideas = AFRICA_SAW_defense_buff
+				set_variable = { cog_adminsitrative_distribution = 0.62 }
+				set_variable = { cog_native_tensions = 0.23 }
+				set_variable = { cog_bel_loyalty = 0.39 }
+				set_variable = { cog_fra_loyalty = 0.71 }
+				set_variable = { cog_eng_loyalty = 0.52 }
+				set_variable = { COG_Investor_Happiness = 0.78 }
+
+				COG_update_merc_variables = yes
+
+				add_dynamic_modifier = { modifier = COG_mercenary_army }
+
+				country_event = { id = COG_misc.13 days = 515 }
+				country_event = { id = COG_misc.14 days = 110 }
+				country_event = { id = COG_misc.15 days = 475 }
+				country_event = { id = COG_misc.24 days = 60 random = 200 }
+				country_event = { id =  COG_misc.25 days = 120 random = 300 }
+				country_event = { id = COG_misc.26 days = 160 random = 365 }
+				country_event = { id =  COG_misc.27 days = 690 }
+				country_event = { id =  COG_misc.28 days = 52 random = 140 }
+				country_event = { id =  COG_misc.29 days = 670 }
+				country_event = { id = COG_misc.30 days = 720 }
+				country_event = { id = COG_misc.31 days = 735 }
+				country_event = { id = COG_misc.32 days = 1 random = 400 }
+				country_event = { id = COG_misc.33 days = 380 }
+				
+				country_event = { id = OFN_COG_flavor.1 days = 1220 }
+			}
+
+			ANG = {
+				add_ideas = AFRICA_SAW_defense_buff
+				set_variable = { ANG_Muller_Sus = 5 }
+				set_variable = { ANG_Huttig_Sus = 15 }
+				set_variable = { ANG_Native_Unrest = 35 }
+				set_variable = { ANG_Native_Militancy = 25 }
+
+				set_variable = { ANG_German_Collection = 2 }
+
+				set_variable = { ANG_Liquid_Cash = 10 }
+
+				set_variable = { ANG_German_Displeasure = 18 }
+
+				set_variable = { ANG_Cash_Monthly_Checker = 10 }
+
+				#### Dynamic Modifier Variables
+
+				set_variable = { ANG_Air_Empire_Max_Production = 0 }
+
+				set_variable = { ANG_Air_Empire_Production_Retention = 0 }
+
+				set_variable = { ANG_Air_Empire_Fuel_Gain = 0 }
+
+				set_variable = { ANG_Air_Empire_Max_Fuel = 0 }
+
+				set_variable = { ANG_Air_Empire_Resource_Extration = 0 }
+			}
+			MZB = {
+				add_ideas = AFRICA_SAW_defense_buff
+				load_focus_tree = MZB_huttig_prewar
+			}
+			COG = {
+				give_resource_rights = { receiver = GER state = 539 }
+				give_resource_rights = { receiver = GER state = 718 }
+			}
+			ANG = {
+				set_variable = {
+					var = ANG_Local_cash
+					value = 2
+				}
+			}
+		}
+	}
+
+	on_daily_MZB = {
+		# REICHSSTAAT MECHANICS TICK
+		effect = {
+			if = {
+				limit = {
+					MZB = {
+						OR = {
+							has_cosmetic_tag = MZB_REICHSTAAT
+							has_cosmetic_tag = MZB_REICHSTAAT_2
+							has_cosmetic_tag = MZB_REICHSTAAT_3
+						}
+						has_war = no
+						NOT = { has_global_flag = south_african_war_happening }
+					}
+				}
+
+
+				set_temp_variable = { MZB_REICHSTAAT_stab_decay = stability }
+				add_to_temp_variable = { MZB_REICHSTAAT_stab_decay = -0.3 } # You need over 30% Stability to have a stable nation
+
+				if = {
+					limit = {
+						NOT = { has_country_flag = MZB_REICHSTAAT_ANC_ist_kaput }
+					}
+					set_temp_variable = { MZB_REICHSTAAT_anc_influence_temp_calc = BOR.MZB_REICHSTAAT_anc_influence }
+					divide_temp_variable = { MZB_REICHSTAAT_anc_influence_temp_calc = 2 }
+
+					subtract_from_temp_variable = { MZB_REICHSTAAT_stab_decay = MZB_REICHSTAAT_anc_influence_temp_calc }
+				}
+				
+				divide_temp_variable = { MZB_REICHSTAAT_stab_decay = 100 }
+				
+				clamp_temp_variable = {
+					var = MZB_REICHSTAAT_stab_decay
+				    min = -0.001
+				    max = 0
+				}
+
+				log = "[GetDateText]: [Root.GetName]: Afrika's stability decrease calculated (decay = [?MZB_REICHSTAAT_stab_decay])"
+
+				if = {
+					limit = {
+						is_ai = no
+					}
+
+					if = {
+						limit = {
+							check_variable = { MZB_REICHSTAAT_devastation_score > 50 }
+						}
+						set_temp_variable = { MZB_REICHSTAAT_devastation_stab_decay = MZB_REICHSTAAT_devastation_score }
+						divide_temp_variable = { MZB_REICHSTAAT_devastation_stab_decay = 50 }
+
+						multiply_temp_variable = { MZB_REICHSTAAT_stab_decay = MZB_REICHSTAAT_devastation_stab_decay }
+					}
+
+					for_each_loop = {
+					    array = MZB_REICHSTAAT_rebel_stability
+					    index = i
+
+					    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = MZB_REICHSTAAT_stab_decay }
+					    clamp_temp_variable = {
+							var = MZB_REICHSTAAT_rebel_stability^i
+						    min = 0
+						    max = 1
+						}
+					}
+
+					log = "[GetDateText]: [Root.GetName]: Afrika's stability decreased by Player decay (decay = [?MZB_REICHSTAAT_stab_decay])"
+				}
+
+				add_to_variable = { MZB_REICHSTAAT_handy_counter = 1 }
+				if = {
+					limit = {
+						check_variable = { MZB_REICHSTAAT_handy_counter = 9 }
+					}
+
+					if = {
+						limit = {
+							is_ai = yes
+						}
+
+						for_each_loop = {
+						    array = MZB_REICHSTAAT_rebel_stability
+						    index = i
+
+						    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = MZB_REICHSTAAT_stab_decay }
+						    clamp_temp_variable = {
+								var = MZB_REICHSTAAT_rebel_stability^i
+							    min = 0
+							    max = 1
+							}
+						}
+
+						log = "[GetDateText]: [Root.GetName]: Afrika's stability decreased by AI decay (decay = [?MZB_REICHSTAAT_stab_decay])"
+					}
+					
+					ROOT = { MZB_REICHSTAAT_compute_demilitarization_and_rebellions = yes }
+
+					add_to_variable = { MZB_REICHSTAAT_devastation_score = MZB_REICHSTAAT_devastation_score_add }
+					MZB_REICHSTAAT_compute_devastation_effects = yes
+					MZB_REICHSTAAT_update_reichsstaat_color = yes
+					
+					set_variable = { MZB_REICHSTAAT_handy_counter = 0 }
+					log = "[GetDateText]: [Root.GetName]: Afrika's stability effects calculated"
+				}
+
+				set_variable = { MZB_REICHSTAAT_rebel_stability_tot = 0 }
+				set_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 0 }
+
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_kameroon = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^0 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_ubangi_schari = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^1 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_kongo = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^2 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_angola = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^3 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_sambia = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^4 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_botswana = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^5 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_simbabwe = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^6 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_mosambik = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^7 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_sansibar = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^8 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_ruanda_burundi = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^9 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_uganda = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^10 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_tanganika = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^11 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_namibia = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^12 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+				if = {
+					limit = { MZB = { MZB_is_in_control_of_kenia = yes } }
+					add_to_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability^13 }
+				    add_to_temp_variable = { MZB_REICHSTAAT_rebel_stability_num = 1 }
+				}
+
+				divide_variable = { MZB_REICHSTAAT_rebel_stability_tot = MZB_REICHSTAAT_rebel_stability_num }
+
+
+				######################
+				# VON HASSEL'S CABAL #
+				######################
+
+				# Natural decay
+				#
+				# - High stability increases decay
+				# - Pro-Hüttig administrative decisions increases decay
+				
+				set_variable = { MZB_REICHSTAAT_cabal_decay = 0.001 } # Base value
+
+				set_temp_variable = { MZB_REICHSTAAT_cabal_decay_stab_contrib_temp = stability }
+				add_to_temp_variable = { MZB_REICHSTAAT_cabal_decay_stab_contrib_temp = 0.7 }
+				divide_temp_variable = { MZB_REICHSTAAT_cabal_decay_stab_contrib_temp = 200 }
+				add_to_variable = { MZB_REICHSTAAT_cabal_decay = MZB_REICHSTAAT_cabal_decay_stab_contrib_temp }
+
+				if = {
+					limit = {
+						has_completed_focus = MZB_keeping_up_with_the_joneses
+					}
+					add_to_variable = { MZB_REICHSTAAT_cabal_decay = 0.001 }
+				}
+
+				if = {
+					limit = {
+						has_completed_focus = MZB_german_management_focus
+					}
+					add_to_variable = { MZB_REICHSTAAT_cabal_decay = 0.001 }
+				}
+
+				if = {
+					limit = {
+						has_completed_focus = MZB_a_pure_africa
+					}
+					add_to_variable = { MZB_REICHSTAAT_cabal_decay = 0.001 }
+				}
+
+				if = {
+					limit = {
+						has_completed_focus = MZB_the_great_purge
+					}
+					add_to_variable = { MZB_REICHSTAAT_cabal_decay = 0.001 }
+				}
+
+				subtract_from_variable = { MZB_REICHSTAAT_cabal_power = MZB_REICHSTAAT_cabal_decay }
+
+				clamp_variable = {
+					var = MZB_REICHSTAAT_cabal_power
+				    min = 0
+				    max = 1
+				}
+
+				### Political pie mechanics
+				######## -> The political chart reacts to the power of the cabal
+
+				set_temp_variable = { MZB_REICHSTAAT_cabal_diff_temp = MZB_REICHSTAAT_cabal_power }
+				subtract_from_temp_variable = { MZB_REICHSTAAT_cabal_diff_temp = party_popularity@fascism }
+				divide_temp_variable = { MZB_REICHSTAAT_cabal_diff_temp = 4 }
+
+				set_variable = { MZB_REICHSTAAT_percent_cabal_power = MZB_REICHSTAAT_cabal_power }
+				multiply_variable = { MZB_REICHSTAAT_percent_cabal_power = 100 }
+
+				if = {
+					limit = {
+						check_variable = { MZB_REICHSTAAT_cabal_diff_temp < 0.002 }
+						check_variable = { MZB_REICHSTAAT_cabal_diff_temp > -0.002 }
+					}
+					set_political_party = {
+						ideology = fascism
+						popularity = MZB_REICHSTAAT_percent_cabal_power
+					}
+				}
+
+				else = {
+					add_popularity = {
+						ideology = fascism
+						popularity = MZB_REICHSTAAT_cabal_diff_temp
+					}
+				}
+				
+			}
+		}
+	}
+
+	on_daily_ZZZ = {
+		# MANDATE MECHANICS TICK
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						MZB = {
+							exists = yes
+							OR = {
+								has_cosmetic_tag = MZB_USA
+								has_cosmetic_tag = USA_CAR
+							}
+						}
+						COG = {
+							exists = yes
+							has_cosmetic_tag = COG_USA
+						}
+						ANG = {
+							exists = yes
+							has_cosmetic_tag = ANG_USA
+						}
+					}
+				}
+
+				ZZZ = { 
+					add_to_variable = { USA_AFRICA_handy_counter = 1 }
+					#log = "[GetDateText]: [Root.GetName]: African mandates handy counter"
+				}
+				
+				if = {
+					limit = {
+						ZZZ = { check_variable = { USA_AFRICA_handy_counter = 7 } }
+					}
+
+					#log = "[GetDateText]: [Root.GetName]: African mandates stability effects calculated"
+
+					COG = {
+						if = {
+							limit = {
+								has_completed_focus = OFN_COG_prepare_for_the_future
+								OR = {
+									has_completed_focus = OFN_COG_the_new_smiling_man
+									has_completed_focus = OFN_COG_the_american_way
+								}
+								has_completed_focus = OFN_COG_restore_order_in_congo
+							}
+							country_event = {
+								id = OFN_AFR_DECOL_COG.1
+								days = 1
+							}
+						}
+					}
+
+					MZB = {
+						if = { # Is CAR
+							limit = {
+								has_cosmetic_tag = USA_CAR
+								NOT = { has_country_flag = OFN_CAR_collapse_is_happening }
+							}
+
+							set_variable = { OFN_MANDATE_stab_decay = OFN_MANDATE_administrative_hold }
+							add_to_variable = { OFN_MANDATE_stab_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+
+							divide_variable = { OFN_MANDATE_stab_decay = 50 }
+							clamp_variable = {
+								var = OFN_MANDATE_stab_decay
+							    min = -0.01
+							    max = 0.01
+							}
+
+							add_to_variable = { OFN_MANDATE_rebel_stability = OFN_MANDATE_stab_decay }
+							clamp_variable = {
+								var = OFN_MANDATE_rebel_stability
+							    min = 0
+							    max = 1
+							}
+
+							if = {
+								limit = {
+									check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+									is_ai = no
+								}
+								
+								USA_AFRICA_setup_african_crisis = yes
+								set_country_flag = OFN_CAR_collapse_is_happening
+								hidden_effect = {
+									every_country = {
+										news_event = {
+											id = WORLD.18106
+											days = 1
+										}
+									}
+								}
+							}
+
+							else = {
+								if = {
+									limit = {
+										check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+										is_ai = yes
+									}
+									random_list = {
+										25 = {
+											# NOTHING HAPPENS
+										}
+										75 = {
+											USA_AFRICA_setup_african_crisis = yes
+											hidden_effect = {
+												every_country = {
+													news_event = {
+														id = WORLD.18106
+														days = 1
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+
+							if = {
+								limit = {
+									OFN_CAR_is_in_full_control_of_africa = yes
+									has_country_flag = OFN_CAR_african_crisis_has_started
+								}
+								country_event = {
+									id = OFN_AFR_DECOL_CAR.3
+									days = 1
+								}
+							}
+						}
+
+						else = { # Is East Afrca
+							set_variable = { OFN_MANDATE_stab_decay = OFN_MANDATE_administrative_hold }
+							add_to_variable = { OFN_MANDATE_stab_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+
+							divide_variable = { OFN_MANDATE_stab_decay = 50 }
+							clamp_variable = {
+								var = OFN_MANDATE_stab_decay
+							    min = -0.01
+							    max = 0.01
+							}
+
+							add_to_variable = { OFN_MANDATE_rebel_stability = OFN_MANDATE_stab_decay }
+							clamp_variable = {
+								var = OFN_MANDATE_rebel_stability
+							    min = 0
+							    max = 1
+							}
+
+							if = {
+								limit = {
+									check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+									is_ai = no
+								}
+								country_event = {
+									id = OFN_AFR_DECOL_MZB.7
+									days = 2
+								}
+							}
+
+							else = {
+								if = {
+									limit = {
+										check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+										is_ai = yes
+									}
+									random_list = {
+										75 = {
+											# NOTHING HAPPENS
+										}
+										25 = {
+											country_event = {
+												id = OFN_AFR_DECOL_MZB.7
+												days = 2
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					COG = {
+						set_variable = { OFN_MANDATE_stab_decay = OFN_MANDATE_administrative_hold }
+						add_to_variable = { OFN_MANDATE_stab_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+
+						divide_variable = { OFN_MANDATE_stab_decay = 50 }
+						clamp_variable = {
+							var = OFN_MANDATE_stab_decay
+						    min = -0.01
+						    max = 0.01
+						}
+
+						add_to_variable = { OFN_MANDATE_rebel_stability = OFN_MANDATE_stab_decay }
+						clamp_variable = {
+							var = OFN_MANDATE_rebel_stability
+						    min = 0
+						    max = 1
+						}
+
+						if = {
+							limit = {
+								check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+								is_ai = no
+							}
+							country_event = {
+								id = OFN_AFR_DECOL_COG.7
+								days = 2
+							}
+						}
+
+
+						else = {
+							if = {
+								limit = {
+									check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+									is_ai = yes
+								}
+								random_list = {
+									75 = {
+										# NOTHING HAPPENS
+									}
+									25 = {
+										country_event = {
+											id = OFN_AFR_DECOL_COG.7
+											days = 2
+										}
+									}
+								}
+							}
+						}
+					}
+
+					ANG = {
+						set_variable = { OFN_MANDATE_stab_decay = OFN_MANDATE_administrative_hold }
+						add_to_variable = { OFN_MANDATE_stab_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+
+						divide_variable = { OFN_MANDATE_stab_decay = 50 }
+						clamp_variable = {
+							var = OFN_MANDATE_stab_decay
+						    min = -0.01
+						    max = 0.01
+						}
+
+						######### UNITA-MPLA GOVERNMENT BALANCE CALC
+
+						set_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_MPLA_power_level }
+						add_to_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_UNITA_power_level }
+
+						if = {
+							limit = {
+								check_variable = { OFN_MANDATE_ANG_UNITA_power_level > OFN_MANDATE_ANG_MPLA_power_level }
+							}
+							set_temp_variable = { OFN_MANDATE_ANG_tot_gov_strength = OFN_MANDATE_ANG_gov_strength }
+							set_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_UNITA_power_level }
+							divide_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_tot_gov_strength }
+						}
+
+						else = {
+							set_temp_variable = { OFN_MANDATE_ANG_tot_gov_strength = OFN_MANDATE_ANG_gov_strength }
+							set_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_MPLA_power_level }
+							divide_variable = { OFN_MANDATE_ANG_gov_strength = OFN_MANDATE_ANG_tot_gov_strength }
+						}
+
+						subtract_from_variable = { OFN_MANDATE_ANG_gov_strength = 0.5 }
+						multiply_variable = { OFN_MANDATE_ANG_gov_strength = 0.9 }
+						add_to_variable = { OFN_MANDATE_ANG_gov_strength = 0.1 }
+
+						######### UNITA-MPLA RIVALRY STAB HIT
+
+						set_variable = { OFN_MANDATE_ANG_rivalry_stab_decay = OFN_MANDATE_ANG_MPLA_power_level }
+						subtract_from_variable = { OFN_MANDATE_ANG_rivalry_stab_decay = OFN_MANDATE_ANG_UNITA_power_level }
+
+						if = {
+							limit = {
+								check_variable = { OFN_MANDATE_ANG_rivalry_stab_decay > 0 }
+							}
+							multiply_variable = { OFN_MANDATE_ANG_rivalry_stab_decay = -1 }
+						}
+
+						divide_variable = { OFN_MANDATE_ANG_rivalry_stab_decay = 1000 }
+						clamp_variable = {
+							var = OFN_MANDATE_ANG_rivalry_stab_decay
+						    min = -1
+						    max = 0
+						}
+
+						add_to_variable = { OFN_MANDATE_stab_decay = OFN_MANDATE_ANG_rivalry_stab_decay }
+						clamp_variable = {
+							var = OFN_MANDATE_rebel_stability
+						    min = 0
+						    max = 1
+						}
+
+						#####################################
+
+						add_to_variable = { OFN_MANDATE_rebel_stability = OFN_MANDATE_stab_decay }
+						clamp_variable = {
+							var = OFN_MANDATE_rebel_stability
+						    min = 0
+						    max = 1
+						}
+
+						if = {
+							limit = {
+								check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+								is_ai = no
+							}
+							country_event = {
+								id = OFN_AFR_DECOL_ANG.5
+								days = 2
+							}
+						}
+
+						else = {
+							if = {
+								limit = {
+									check_variable = { OFN_MANDATE_rebel_stability < 0.05 }
+									is_ai = yes
+								}
+								random_list = {
+									75 = {
+										# NOTHING HAPPENS
+									}
+									25 = {
+										country_event = {
+											id = OFN_AFR_DECOL_ANG.5
+											days = 2
+										}
+									}
+								}
+							}
+						}
+					}
+
+					ZZZ = {
+						USA_AFRICA_compute_rebellions = yes
+						set_variable = { USA_AFRICA_handy_counter = 0 }
+					}
+				}
+			}
+			
+		}
+	}
+
+	on_state_control_changed = {
+		effect = {
+		############################# CAPTURE EVENTS
+
+		if = { # Cape Town capture event
+				limit = {
+				has_global_flag = south_african_war_happening
+				SAF = {
+					has_war = yes
+				}
+				OR = {
+					AND = {
+						ROOT = { tag = BOR }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 681 }
+							}
+
+					AND = {
+						ROOT = { tag = ANG }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 681 }
+							}
+					}
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.17 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.17 days = 1 } }
+				ANG = { country_event =  { id = USA.saf.war.missions.17 days = 1 } }
+				BOR = { country_event =  { id = USA.saf.war.missions.17 days = 1 } }
+				}
+
+		if = { # East London capture event
+				limit = {
+				has_global_flag = south_african_war_happening
+				SAF = {
+					has_war = yes
+				}
+				OR = {
+					AND = {
+						ROOT = { tag = BOR }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 934 }
+							}
+
+
+					AND = {
+						ROOT = { tag = MZB }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 934 }
+							}
+					}
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.15 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.15 days = 1 } }
+				MZB = { country_event =  { id = USA.saf.war.missions.15 days = 1 } }
+				BOR = { country_event =  { id = USA.saf.war.missions.15 days = 1 } }
+				}
+
+		if = { # Salisbury Capture event
+				limit = {
+					has_global_flag = south_african_war_happening
+					SAF = {
+						has_war = yes
+					}
+					ROOT = { tag = SAF }
+					FROM = { tag = MZB }
+					FROM.FROM = { state = 1061 }
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.13 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.13 days = 1 } }
+				MZB = { country_event =  { id = USA.saf.war.missions.13 days = 1 } }
+			}
+
+				if = { # Salisbury recapture event
+						limit = {
+							has_global_flag = south_african_war_happening
+							SAF = {
+								has_war = yes
+							}
+							MZB = {
+								is_puppet = no
+							}
+							ROOT = { tag = MZB }
+							FROM = { tag = SAF }
+							FROM.FROM = { state = 1061 }
+							has_global_flag = SAF_WAR_Salisbury_captured_Captured
+						}
+						USA = { country_event =  { id = USA.saf.war.missions.14 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.14 days = 1 } }
+						MZB = { country_event =  { id = USA.saf.war.missions.14 days = 1 } }
+					}
+
+		if = { # Quelilmane Capture event
+				limit = {
+					has_global_flag = south_african_war_happening
+					SAF = {
+						has_war = yes
+					}
+					ROOT = { tag = SAF }
+					FROM = { tag = MZB }
+					FROM.FROM = { state = 544 }
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.11 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.11 days = 1 } }
+				MZB = { country_event =  { id = USA.saf.war.missions.11 days = 1 } }
+				}
+
+				if = { # Quelilmane recapture event
+					limit = {
+						has_global_flag = south_african_war_happening
+						SAF = {
+							has_war = yes
+						}
+						MZB = {
+							is_puppet = no
+						}
+						ROOT = { tag = MZB }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 544 }
+						has_global_flag = SAF_WAR_Quelilmane_Captured
+					}
+					USA = { country_event =  { id = USA.saf.war.missions.12 days = 1 } }
+					SAF = { country_event =  { id = USA.saf.war.missions.12 days = 1 } }
+					MZB = { country_event =  { id = USA.saf.war.missions.12 days = 1 } }
+				}
+
+		if = { # Leopold Capture event
+				limit = {
+					has_global_flag = south_african_war_happening
+					SAF = {
+						has_war = yes
+					}
+					country_exists = COG
+					ROOT = { tag = SAF }
+					FROM = { tag = COG }
+					FROM.FROM = { state = 295 }
+						}
+				USA = { country_event =  { id = USA.saf.war.missions.9 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.9 days = 1 } }
+				COG = { country_event =  { id = USA.saf.war.missions.9 days = 1 } }
+				}
+
+				if = { # Leopold recapture event
+						limit = {
+							has_global_flag = south_african_war_happening
+							ROOT = { tag = COG }
+							FROM = { tag = SAF }
+							FROM.FROM = { state = 295 }
+							has_global_flag = SAF_WAR_Leopoldville_Captured
+							COG = {
+								is_puppet = no
+							}
+							SAF = {
+								has_war = yes
+							}
+							}
+						USA = { country_event =  { id = USA.saf.war.missions.10 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.10 days = 1 } }
+						COG = { country_event =  { id = USA.saf.war.missions.10 days = 1 } }
+						}
+
+		if = { # Libreville Capture event
+		limit = {
+			has_global_flag = south_african_war_happening
+			SAF = {
+				has_war = yes
+			}
+			country_exists = COG
+			ROOT = { tag = SAF }
+			FROM = { tag = COG }
+			FROM.FROM = { state = 529 }
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.7 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.7 days = 1 } }
+				COG = { country_event =  { id = USA.saf.war.missions.7 days = 1 } }
+				}
+
+				if = { # Libreville recapture event
+					limit = {
+						SAF = {
+							has_war = yes
+						}
+						COG = {
+							is_puppet = no
+						}
+						ROOT = { tag = COG }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 529 }
+						has_global_flag = SAF_WAR_Libre_Captured
+						}
+						USA = { country_event =  { id = USA.saf.war.missions.8 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.8 days = 1 } }
+						COG = { country_event =  { id = USA.saf.war.missions.8 days = 1 } }
+						}
+
+		if = { # Johanas capture event
+			limit = {
+				has_global_flag = south_african_war_happening
+				SAF = {
+					has_war = yes
+				}
+				country_exists = BOR
+				ROOT = { tag = SAF }
+				FROM = { tag = BOR }
+				FROM.FROM = { state = 940 }
+					}
+				USA = { country_event =  { id = USA.saf.war.missions.5 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.5 days = 1 } }
+				BOR = { country_event =  { id = USA.saf.war.missions.5 days = 1 } }
+				}
+
+				if = { # Johanas recapture event
+					limit = {
+						has_global_flag = south_african_war_happening
+						SAF = {
+							has_war_with = COG
+						}
+						country_exists = BOR
+						ROOT = { tag = BOR }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 275 }
+						has_global_flag = SAF_WAR_Johans_Captured
+						}
+						USA = { country_event =  { id = USA.saf.war.missions.6 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.6 days = 1 } }
+						BOR = { country_event =  { id = USA.saf.war.missions.6 days = 1 } }
+						}
+
+		if = { # Bloem Capture
+			limit = {
+				has_global_flag = south_african_war_happening
+				SAF = {
+					has_war = yes
+				}
+				country_exists = BOR
+				ROOT = { tag = SAF }
+				FROM = { tag = BOR }
+				FROM.FROM = { state = 275 }
+					}
+				USA = { country_event =  { id = USA.saf.war.missions.3 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.3 days = 1 } }
+				BOR = { country_event =  { id = USA.saf.war.missions.3 days = 1 } }
+				}
+
+				if = { # Bloem recapture
+					limit = {
+						has_global_flag = south_african_war_happening
+						SAF = {
+							has_war = yes
+						}
+						country_exists = BOR
+						ROOT = { tag = BOR }
+						FROM = { tag = SAF }
+						FROM.FROM = { state = 275 }
+						has_global_flag = SAF_WAR_Bloem_Captured
+						}
+						USA = { country_event =  { id = USA.saf.war.missions.4 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.4 days = 1 } }
+						BOR = { country_event =  { id = USA.saf.war.missions.4 days = 1 } }
+						}
+
+		if = { # Windhoek recapture
+				limit = {
+					has_global_flag = south_african_war_happening
+					SAF = {
+						has_war = yes
+					}
+					ROOT = { tag = ANG }
+					FROM = { tag = SAF }
+					FROM.FROM = { state = 778 }
+					has_global_flag = SAF_WAR_Windhoek_Captured
+				}
+				USA = { country_event =  { id = USA.saf.war.missions.2 days = 1 } }
+				SAF = { country_event =  { id = USA.saf.war.missions.2 days = 1 } }
+				ANG = { country_event =  { id = USA.saf.war.missions.2 days = 1 } }
+				}
+
+				if = { # Windhoek capture
+						limit = {
+							has_global_flag = south_african_war_happening
+							SAF = {
+								has_war = yes
+							}
+							ANG = {
+								is_puppet = no
+							}
+							ROOT = { tag = SAF }
+							FROM = { tag = ANG }
+							FROM.FROM = { state = 778 }
+								}
+						USA = { country_event =  { id = USA.saf.war.missions.1 days = 1 } }
+						SAF = { country_event =  { id = USA.saf.war.missions.1 days = 1 } }
+						ANG = { country_event =  { id = USA.saf.war.missions.1 days = 1 } }
+						}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		############################## END CAPTURE EVENTS
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+				  SAF = {
+						surrender_progress > 0.7
+					}
+				}
+				SAF = {
+					country_event = { id = SAFWAR.2 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+				   COG = {
+	   				surrender_progress > 0.7
+					}
+				}
+				COG = {
+					country_event = { id = SAFWAR.3 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+				   MZB = {
+						surrender_progress > 0.7
+					}
+				}
+				MZB = {
+					country_event = { id = SAFWAR.4 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+				has_global_flag = south_african_war_happening
+				   ANG = {
+						surrender_progress > 0.7
+						has_government = national_socialism
+					}
+				}
+				ANG = {
+					country_event = { id = SAFWAR.5 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 1054 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.30 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 881 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.31 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 1063 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.32 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 545 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.33 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 1065 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.34 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 1058 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.35 days = 1 }
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = south_african_war_happening
+					has_global_flag = south_african_war
+					ROOT = { tag = SAF }
+					FROM.FROM = { state = 880 }
+				}
+				SAF = {
+					country_event = { id = SAFWAR.36 days = 1 }
+				}
+			}
+		}
+	}
+	
+	#ALGERIA
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					ILG = {
+						has_country_flag = ilg_WAR_IS_HAPPENING
+						controls_state = 1006
+						controls_state = 459
+						controls_state = 1007
+						controls_state = 513
+						controls_state = 1151
+						controls_state = 1154
+						controls_state = 1147
+					}
+				}
+				ITA = {
+				country_event = {
+    				id = ILG.7
+    				days = 5
+					}
+				}
+			}
+			if = {
+				limit = {
+					SLG = {
+						controls_state = 460
+						controls_state = 1161
+						controls_state = 785
+						controls_state = 1149
+						controls_state = 1148
+						controls_state = 1146
+						controls_state = 1145
+						controls_state = 1144
+						controls_state = 514
+						controls_state = 1143
+					}
+				}
+				IBR = {
+				country_event = {
+    				id = SLG.21
+    				days = 2
+					}
+				}
+			}
+		}
+	}
+	#BOER FACTORIES RIGGED
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					has_global_flag = south_african_war
+					MZB = {
+						has_country_flag = MZB_Boer_factories_rigged
+					}
+					SAF = {
+						controls_state = 937
+					}
+				}
+				SAF = {
+					country_event = { id = MZB.20 days = 1 }
+
+				}
+			}
+		}
+	}
+	#####LAZER AND DOC'S RUBBERBAND. IF A NATION IS DOING WELL, THEN IT GETS DEBUFFS. IF IT IS DOING POORLY, IT GETS BUFFS. SAW_rubberband_effect is found in TNO_SAF_scripted_effects, as of 17. June 2020
+	on_monthly = {
+		effect = {
+			if = {
+				limit = {
+					has_global_flag = south_african_war
+					country_exists = SAF
+					THIS = { tag = SAF}
+				}
+				SAW_rubberband_update_effect = yes
+			}
+		}
+	}
+
+	###DEGERMANIZATION###
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+						tag = MZB
+						AND = {
+						MZB = {
+							OR = {
+							has_cosmetic_tag = MZB_GER
+							has_cosmetic_tag = MZB_REICHSTAAT
+							has_cosmetic_tag = MZB_REICHSTAAT_2
+							has_cosmetic_tag = MZB_REICHSTAAT_3
+								}
+							}
+						}
+						tag = COG
+						AND = {
+						COG = {
+							has_cosmetic_tag = COG_GER	
+							}
+						}
+						tag = ANG
+						AND = {
+						ANG = {
+							has_cosmetic_tag = ANG_GER	
+							}
+						}
+						tag = NAM
+						AND = {
+						NAM = {
+							has_cosmetic_tag = NAM_GER	
+								}
+							}
+						}
+					}
+					FROM = {
+						OR = {
+						tag = SAF
+						tag = MZB
+						AND = {
+						MZB = {
+							OR = {
+							has_cosmetic_tag = MZB_USA
+							has_cosmetic_tag = USA_CAR
+								}
+							}
+						}
+						tag = COG
+						AND = {
+						COG = {
+							has_cosmetic_tag = COG_USA	
+							}
+						}
+						tag = ANG
+						AND = {
+						ANG = {
+							has_cosmetic_tag = ANG_USA
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1057 }
+					}
+					1057 = { set_state_name = "Elizabethville" }
+					set_province_name = { id = 13816 name = "Elizabethville" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1177 }
+					}
+					set_province_name = { id = 13384 name = "Beni" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1175 }
+					}
+					set_province_name = { id = 13378 name = "Uvira" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1088 }
+					}
+					set_province_name = { id = 13383 name = "Kigali" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 548 }
+					}
+					set_province_name = { id = 12989 name = "Kampala" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1182 }
+					}
+					set_province_name = { id = 3165 name = "Mobaye" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 545 }
+					}
+					545 = { set_state_name = "Mobaye" }
+					set_province_name = { id = 13666 name = "Mobaye" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1178 }
+					}
+					set_province_name = { id = 6027 name = "Bunia" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1061 }
+					}
+					set_province_name = { id = 13730 name = "Salisbury" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1066 }
+					}
+					set_province_name = { id = 13765 name = "Lusaka" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1054 }
+					}
+					set_province_name = { id = 13735 name = "Livingstone" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1063 }
+					}
+					set_province_name = { id = 13207 name = "Francistown" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1118 }
+					}
+					set_province_name = { id = 13879 name = "Zanzibar" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 778 }
+					}
+					778 = { set_state_name = "Windhoek" }
+					set_province_name = { id = 4879 name = "Windhoek" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1213 }
+					}
+					set_province_name = { id = 13622 name = "Karasburg" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1031 }
+					}
+					set_province_name = { id = 13716 name = "Opuwo" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1035 }
+					}
+					set_province_name = { id = 14414 name = "M'banza Congo" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1033 }
+					}
+					set_province_name = { id = 12985 name = "Namibe" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 541 }
+					}
+					set_province_name = { id = 5154 name = "Lüderitz" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1036 }
+					}
+					set_province_name = { id = 10966 name = "Nova Lisboa" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1065 }
+					}
+					set_province_name = { id = 13698 name = "Fort Victoria" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1073 }
+						tag = SAF
+					}
+					1073 = { set_state_name = "Vila Cabral" }
+					set_province_name = { id = 13792 name = "Vila Cabral" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1073 }
+						NOT = {
+						tag = SAF
+						}
+					}
+					1073 = { set_state_name = "Lichinga" }
+					set_province_name = { id = 13792 name = "Lichinga" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 748 }
+						tag = SAF
+					}
+					748 = { set_state_name = "Fort Rosebery" }
+					set_province_name = { id = 13828 name = "Fort Rosebery" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 748 }
+						NOT = {
+						tag = SAF
+						}
+					}
+					748 = { set_state_name = "Mansa" }
+					set_province_name = { id = 13828 name = "Mansa" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1072 }
+						tag = SAF
+					}
+					1072  = { set_state_name = "Porto Amelia" }
+					set_province_name = { id = 13796 name = "Porto Amelia" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1072 }
+						NOT = {
+						tag = SAF
+						}
+					}
+					1072  = { set_state_name = "Pemba" }
+					set_province_name = { id = 13796 name = "Pemba" }
+				}
+				###GERMANIZATION/AFRIKAANIZATION###
+				if = {
+					limit = {
+						FROM = {
+						OR = {
+						tag = SAF
+						tag = MZB
+						AND = {
+						MZB = {
+							OR = {
+							has_cosmetic_tag = MZB_USA
+							has_cosmetic_tag = USA_CAR
+								}
+							}
+						}
+						tag = COG
+						AND = {
+						COG = {
+							has_cosmetic_tag = COG_USA	
+							}
+						}
+						tag = ANG
+						AND = {
+						ANG = {
+							has_cosmetic_tag = ANG_USA
+									}
+								}
+							}
+						}
+						ROOT = {
+						OR = {
+						tag = MZB
+						AND = {
+						MZB = {
+							OR = {
+							has_cosmetic_tag = MZB_GER
+							has_cosmetic_tag = MZB_REICHSTAAT
+							has_cosmetic_tag = MZB_REICHSTAAT_2
+							has_cosmetic_tag = MZB_REICHSTAAT_3
+								}
+							}
+						}
+						tag = COG
+						AND = {
+						COG = {
+							has_cosmetic_tag = COG_GER	
+							}
+						}
+						tag = ANG
+						AND = {
+						ANG = {
+							has_cosmetic_tag = ANG_GER	
+							}
+						}
+						tag = NAM
+						AND = {
+						NAM = {
+							has_cosmetic_tag = NAM_GER	
+								}
+							}
+							tag = BOR
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 681 }
+						tag = BOR
+					}
+					set_province_name = { id = 13488 name = "Kaapstad" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 681 }
+						tag = BOR
+					}
+					set_province_name = { id = 13493 name = "Worsester" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 934 }
+						tag = BOR
+					}
+					set_province_name = { id = 13495 name = "Oos-Londen" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 719 }
+						tag = BOR
+					}
+					set_province_name = { id = 13540 name = "Nuwekasteel" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 934 }
+						tag = BOR
+					}
+					set_province_name = { id = 13501 name = "Middelberg" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 681 }
+						tag = BOR
+					}
+					set_province_name = { id = 13489 name = "Hawe Elisabeth" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 933 }
+						tag = BOR
+					}
+					set_province_name = { id = 13515 name = "Hawe Nolloth" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 933 }
+						tag = BOR
+					}
+					set_province_name = { id = 13530 name = "Vooruitzigt" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1312 }
+						tag = BOR
+					}
+					set_province_name = { id = 13497 name = "Harmsfontein" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 942 }
+					}
+					set_province_name = { id = 13538 name = "Olivenholzwald" }	
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 719 }
+						tag = BOR
+					}
+					set_province_name = { id = 13522 name = "D'Urban" }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1057 }
+					}
+					1057 = { reset_state_name = yes }
+					reset_province_name = { 13816 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1177 }
+					}
+					reset_province_name = { 13384 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1175 }
+					}
+					reset_province_name = { 13378 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1088 }
+					}
+					reset_province_name = { 13383 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 548 }
+					}
+					reset_province_name = { 12989 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1182 }
+					}
+					reset_province_name = { 3165 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 545 }
+					}
+					545 = { reset_state_name = yes }
+					reset_province_name = { 13666 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1178 }
+					}
+					reset_province_name = { 6027 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1061 }
+					}
+					reset_province_name = { 13730 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1066 }
+					}
+					reset_province_name = { 13765 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1054 }
+					}
+					reset_province_name = { 13735 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1063 }
+					}
+					reset_province_name = { 13207 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1118 }
+					}
+					reset_province_name = { 13879 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 778 }
+					}
+					778 = { reset_state_name = yes }
+					reset_province_name = { 4879 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1213 }
+					}
+					reset_province_name = { 13622 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1031 }
+					}
+					reset_province_name = { 13716 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1035 }
+					}
+					reset_province_name = { 14414 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1033 }
+					}
+					reset_province_name = { 12985 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1082 }
+					}
+					reset_province_name = { 12911 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1036 }
+					}
+					reset_province_name = { 10966 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1065 }
+					}
+					reset_province_name = { 13698 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1073 }
+					}
+					1073 = { reset_state_name = yes }
+					reset_province_name = { 13792 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 748 }
+					}
+					748 = { reset_state_name = yes }
+					reset_province_name = { 13828 }
+				}
+				if = {
+					limit = {
+						FROM.FROM = { state = 1072 }
+					}
+					1072 = { reset_state_name = yes }
+					reset_province_name = { 13796 }
+					}
+				}
+			}
+		}
+	}
+}	

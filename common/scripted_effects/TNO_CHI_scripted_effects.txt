@@ -1,0 +1,2130 @@
+
+###Scripted Effects for China###
+
+#Updates Faction Government Opinion weekly
+
+CHI_update_pro_japan_opinion = {
+	if = {
+		limit = {
+			check_variable = {
+				faction_pro_japan_opinion > 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion > 90}
+			}
+			subtract_from_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_two_decrease}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion > 75}
+			}
+			subtract_from_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_onefive_decrease}
+		}
+		else = {
+			subtract_from_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_decrease}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion < 50}
+			}
+
+			set_variable = {faction_pro_japan_opinion = 50}
+		}
+	}	
+	else_if = {
+		limit = {
+			check_variable = {
+				faction_pro_japan_opinion < 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion < 10}
+			}
+			add_to_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_two_increase}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion < 25}
+			}
+			add_to_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_onefive_increase}
+		}
+		else = {
+			add_to_variable = {faction_pro_japan_opinion = faction_pro_japan_actual_increase}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_pro_japan_opinion > 50}
+			}
+			
+			set_variable = {faction_pro_japan_opinion = 50}
+		}
+	}
+}
+CHI_update_old_guard_opinion = {
+	if = {
+		limit = {
+			check_variable = {
+				faction_old_guard_opinion > 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion > 90}
+			}
+			subtract_from_variable = {faction_old_guard_opinion = faction_old_guard_actual_two_decrease}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion > 75}
+			}
+			subtract_from_variable = {faction_old_guard_opinion = faction_old_guard_actual_onefive_decrease}
+		}
+		else = {
+			subtract_from_variable = {faction_old_guard_opinion = faction_old_guard_actual_decrease}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion < 50}
+			}
+
+			set_variable = {faction_old_guard_opinion = 50}
+		}
+	}	
+	else_if = {
+		limit = {
+			check_variable = {
+				faction_old_guard_opinion < 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion < 10}
+			}
+			add_to_variable = {faction_old_guard_opinion = faction_old_guard_actual_two_increase}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion < 25}
+			}
+			add_to_variable = {faction_old_guard_opinion = faction_old_guard_actual_onefive_increase}
+		}
+		else = {
+			add_to_variable = {faction_old_guard_opinion = faction_old_guard_actual_increase}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_old_guard_opinion > 50}
+			}
+			
+			set_variable = {faction_old_guard_opinion = 50}
+		}
+	}
+}
+CHI_update_reformist_opinion = {
+	if = {
+		limit = {
+			check_variable = {
+				faction_reformist_opinion > 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_reformist_opinion > 90}
+			}
+			subtract_from_variable = {faction_reformist_opinion = faction_reformist_actual_two_decrease}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_reformist_opinion > 75}
+			}
+			subtract_from_variable = {faction_reformist_opinion = faction_reformist_actual_onefive_decrease}
+		}
+		else = {
+			subtract_from_variable = {faction_reformist_opinion = faction_reformist_actual_decrease}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_reformist_opinion < 50}
+			}
+
+			set_variable = {faction_reformist_opinion = 50}
+		}
+	}	
+	else_if = {
+		limit = {
+			check_variable = {
+				faction_reformist_opinion < 50
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_reformist_opinion < 10}
+			}
+			add_to_variable = {faction_reformist_opinion = faction_reformist_actual_two_increase}
+		}
+		else_if = {
+			limit = {
+				check_variable = {faction_reformist_opinion < 25}
+			}
+			add_to_variable = {faction_reformist_opinion = faction_reformist_actual_onefive_increase}
+		}
+		else = {
+			add_to_variable = {faction_reformist_opinion = faction_reformist_actual_increase}
+		}
+		if = {
+			limit = {
+				check_variable = {faction_reformist_opinion > 50}
+			}
+			
+			set_variable = {faction_reformist_opinion = 50}
+		}
+	}
+}
+
+CHI_update_opinion_change_rate = {
+	#update opinion change rate
+	set_variable = {faction_pro_japan_actual_increase = faction_pro_japan_modifier_increase}
+	set_variable = {faction_pro_japan_actual_decrease = faction_pro_japan_modifier_decrease}
+	set_variable = {faction_old_guard_actual_increase = faction_old_guard_modifier_increase}
+	set_variable = {faction_old_guard_actual_decrease = faction_old_guard_modifier_decrease}
+	set_variable = {faction_reformist_actual_increase = faction_reformist_modifier_increase}
+	set_variable = {faction_reformist_actual_decrease = faction_reformist_modifier_decrease}
+
+	#base weekly change at 0.20
+	multiply_variable = {faction_pro_japan_actual_increase = 0.20}
+	multiply_variable = {faction_pro_japan_actual_decrease = 0.20}
+	multiply_variable = {faction_old_guard_actual_increase = 0.20}
+	multiply_variable = {faction_old_guard_actual_decrease = 0.20}
+	multiply_variable = {faction_reformist_actual_increase = 0.20}
+	multiply_variable = {faction_reformist_actual_decrease = 0.20}
+
+	set_variable = {faction_pro_japan_actual_onefive_increase = faction_pro_japan_actual_increase}
+	set_variable = {faction_pro_japan_actual_onefive_decrease = faction_pro_japan_actual_decrease}
+	set_variable = {faction_old_guard_actual_onefive_increase = faction_old_guard_actual_increase}
+	set_variable = {faction_old_guard_actual_onefive_decrease = faction_old_guard_actual_decrease}
+	set_variable = {faction_reformist_actual_onefive_increase = faction_reformist_actual_increase}
+	set_variable = {faction_reformist_actual_onefive_decrease = faction_reformist_actual_decrease}
+
+	multiply_variable = {faction_pro_japan_actual_onefive_increase = 1.5}
+	multiply_variable = {faction_pro_japan_actual_onefive_decrease = 1.5}
+	multiply_variable = {faction_old_guard_actual_onefive_increase = 1.5}
+	multiply_variable = {faction_old_guard_actual_onefive_decrease = 1.5}
+	multiply_variable = {faction_reformist_actual_onefive_increase = 1.5}
+	multiply_variable = {faction_reformist_actual_onefive_decrease = 1.5}
+
+	set_variable = {faction_pro_japan_actual_two_increase = faction_pro_japan_actual_increase}
+	set_variable = {faction_pro_japan_actual_two_decrease = faction_pro_japan_actual_decrease}
+	set_variable = {faction_old_guard_actual_two_increase = faction_old_guard_actual_increase}
+	set_variable = {faction_old_guard_actual_two_decrease = faction_old_guard_actual_decrease}
+	set_variable = {faction_reformist_actual_two_increase = faction_reformist_actual_increase}
+	set_variable = {faction_reformist_actual_two_decrease = faction_reformist_actual_decrease}
+
+	multiply_variable = {faction_pro_japan_actual_two_increase = 2}
+	multiply_variable = {faction_pro_japan_actual_two_decrease = 2}
+	multiply_variable = {faction_old_guard_actual_two_increase = 2}
+	multiply_variable = {faction_old_guard_actual_two_decrease = 2}
+	multiply_variable = {faction_reformist_actual_two_increase = 2}
+	multiply_variable = {faction_reformist_actual_two_decrease = 2}
+}
+
+CHI_Update_Leg_Yuan_Modifier = {#Updates the dynamic modifier for Leg. Yuan Faction Effects
+	set_variable = {CHI_leg_yuan_faction_congoods = 0}
+	set_variable = {CHI_leg_yuan_faction_pol_power = 0} 
+	set_variable = {CHI_leg_yuan_faction_stab = 0}
+	set_variable = {CHI_leg_yuan_faction_warsup = 0}
+	set_variable = {CHI_leg_yuan_exc = 0}
+	set_variable = {CHI_leg_yuan_conspeed = 0}
+	set_variable = {CHI_leg_yuan_facoutput = 0}
+	set_variable = {CHI_leg_yuan_respeed = 0}
+	set_variable = {CHI_leg_yuan_min_export_factor = 0}
+
+	if = {#Japanophiles
+		limit = {
+			check_variable = {var = faction_pro_japan_opinion value = 60 compare = greater_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_pro_japan_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_respeed = 0.10}
+			add_to_variable = {CHI_leg_yuan_exc = 0.20}
+			add_to_variable = {CHI_leg_yuan_conspeed = 0.10}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_pro_japan_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_respeed = 0.05}
+			add_to_variable = {CHI_leg_yuan_exc = 0.10}
+			add_to_variable = {CHI_leg_yuan_conspeed = 0.05}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_respeed = 0.025}
+			add_to_variable = {CHI_leg_yuan_exc = 0.05}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {var = faction_pro_japan_opinion value = 40 compare = less_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_pro_japan_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_min_export_factor = 0.40}
+			add_to_variable = {CHI_leg_yuan_respeed = -0.05}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_pro_japan_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_min_export_factor = 0.20}
+			add_to_variable = {CHI_leg_yuan_respeed = -0.025}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_min_export_factor = 0.10}
+		}
+	}
+	if = {#Old Guard
+		limit = {
+			check_variable = {var = faction_old_guard_opinion value = 60 compare = greater_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_old_guard_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = 0.20}
+			add_to_variable = {CHI_leg_yuan_faction_congoods = -0.10}
+			add_to_variable = {CHI_leg_yuan_faction_stab = 0.05}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_old_guard_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = 0.10}
+			add_to_variable = {CHI_leg_yuan_faction_congoods = -0.05}
+			add_to_variable = {CHI_leg_yuan_faction_stab = 0.025}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = 0.05}
+			add_to_variable = {CHI_leg_yuan_faction_congoods = -0.03}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {var = faction_old_guard_opinion value = 40 compare = less_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_old_guard_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_exc = -0.40}
+			add_to_variable = {CHI_leg_yuan_facoutput = -0.40}
+			add_to_variable = {CHI_leg_yuan_conspeed = -0.10}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_old_guard_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_exc = -0.20}
+			add_to_variable = {CHI_leg_yuan_facoutput = -0.20}
+			add_to_variable = {CHI_leg_yuan_conspeed = -0.05}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_exc = -0.10}
+			add_to_variable = {CHI_leg_yuan_facoutput = -0.10}
+		}
+	}
+	if = {#Reformists
+		limit = {
+			check_variable = {var = faction_reformist_opinion value = 60 compare = greater_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_reformist_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_min_export_factor = -0.20}
+			add_to_variable = {CHI_leg_yuan_conspeed = 0.20}
+			add_to_variable = {CHI_leg_yuan_facoutput = 0.10}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_reformist_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_min_export_factor = -0.10}
+			add_to_variable = {CHI_leg_yuan_conspeed = 0.10}
+			add_to_variable = {CHI_leg_yuan_facoutput = 0.05}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_min_export_factor = -0.05}
+			add_to_variable = {CHI_leg_yuan_conspeed = 0.05}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {var = faction_reformist_opinion value = 40 compare = less_than_or_equals}
+		}
+		if = {
+			limit = {
+				check_variable = {var = faction_reformist_influence value = 0.70 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = -0.60}
+			add_to_variable = {CHI_leg_yuan_faction_stab = -0.15}
+			add_to_variable = {CHI_leg_yuan_faction_congoods = 0.10}
+		}
+		else_if = {
+			limit = {
+				check_variable = {var = faction_reformist_influence value = 0.50 compare = greater_than_or_equals}
+			}
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = -0.40}
+			add_to_variable = {CHI_leg_yuan_faction_stab = -0.10}
+			add_to_variable = {CHI_leg_yuan_faction_congoods = 0.05}
+		}
+		else = {
+			add_to_variable = {CHI_leg_yuan_faction_pol_power = -0.20}
+			add_to_variable = {CHI_leg_yuan_faction_stab = -0.05}
+		}
+	}
+	force_update_dynamic_modifier = yes
+}
+
+CHI_Leg_Yuan_Clamp_Everything = {
+	clamp_variable = {
+		var = faction_pro_japan_influence
+		min = 0
+		max = 1
+	}
+	clamp_variable = {
+		var = faction_old_guard_influence
+		min = 0
+		max = 1
+	}
+	clamp_variable = {
+		var = faction_reformist_influence
+		min = 0
+		max = 1
+	}
+	clamp_variable = {
+		var = faction_pro_japan_opinion
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = faction_old_guard_opinion
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = faction_reformist_opinion
+		min = 0
+		max = 100
+	}
+}
+
+
+#Unlocks latest unresearched pre-1970 Computing tech
+
+CHI_Unlock_Latest_Computing = {
+	if = {
+		limit = {
+			has_tech = computing_machine_1960
+		}
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = computing_tech
+		}
+	}
+	else_if = {
+		limit = {
+			has_tech = computing_machine_1950
+		}
+		set_technology = {computing_machine_1960 = 1}
+		add_tech_bonus = {
+			bonus = 1.00
+			uses = 1
+			category = computing_tech
+		}
+	}
+	else_if = {
+		limit = {
+			has_tech = advanced_computing_machine
+		}
+		set_technology = {computing_machine_1950 = 1}
+	}
+}
+
+#Advances Excavation Bonus 
+
+CHI_Advance_Excavation = {
+	if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_1
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_1
+			add_idea = CHI_Excavation_Projects_2
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_2
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_2
+			add_idea = CHI_Excavation_Projects_3
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_3
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_3
+			add_idea = CHI_Excavation_Projects_4
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_4
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_4
+			add_idea = CHI_Excavation_Projects_5
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_5
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_5
+			add_idea = CHI_Excavation_Projects_6
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_6
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_6
+			add_idea = CHI_Efficient_Resource_Exploitation
+		}
+	}
+}
+
+CHI_Advance_Excavation_Weakened = {
+	if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_1_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_1_w
+			add_idea = CHI_Excavation_Projects_2_w
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_2_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_2_w
+			add_idea = CHI_Excavation_Projects_3_w
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_3_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_3_w
+			add_idea = CHI_Excavation_Projects_4_w
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_4_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_4_w
+			add_idea = CHI_Excavation_Projects_5_w
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_5_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_5_w
+			add_idea = CHI_Excavation_Projects_6_w
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Excavation_Projects_6_w
+		}
+
+		swap_ideas = {
+			remove_idea = CHI_Excavation_Projects_6_w
+			add_idea = CHI_Resource_Exploitation
+		}
+	}
+}
+
+#Manning the Factories 
+
+CHI_Man_the_Factories = {
+	if = {
+		limit = {
+			has_idea = CHI_Manning_Factories_1
+		}
+
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CHI_Manning_Factories_1
+				add_idea = CHI_Manning_Factories_2
+			}
+		}
+		custom_effect_tooltip = CHI_Man_the_Factories_tt
+	}
+
+	else_if = {
+		limit = {
+			has_idea = CHI_Manning_Factories_2
+		}
+
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CHI_Manning_Factories_2
+				add_idea = CHI_Manning_Factories_3
+			}
+		}
+		custom_effect_tooltip = CHI_Man_the_Factories_tt
+	}
+
+	#else_if = {
+	#	limit = {
+	#		has_idea = CHI_Manning_Factories_3
+	#	}
+#
+	#	hidden_effect = {
+	#		swap_ideas = {
+	#			remove_idea = CHI_Manning_Factories_3
+	#			add_idea = CHI_Manning_Factories_4
+	#		}
+	#	}
+	#	custom_effect_tooltip = CHI_Man_the_Factories_tt
+	#}
+
+	else = {
+		custom_effect_tooltip = CHI_Man_the_Factories_tt
+	}
+
+}
+
+#Lessens the effects of the "Slave of the Japanese" national spirit
+
+CHI_Reduce_Reliance_on_Japan = {
+	if = {
+		limit = {
+			has_idea = CHI_slave_of_the_samurai_0
+		}
+		custom_effect_tooltip = CHI_Reduce_Slave_tt
+      	hidden_effect = {
+      		swap_ideas = {
+      		  remove_idea = CHI_slave_of_the_samurai_0
+      		  add_idea = CHI_slave_of_the_samurai_1
+      		}
+      	}
+    }
+
+    else_if = {
+		limit = {
+			has_idea = CHI_slave_of_the_samurai_1
+		}
+		custom_effect_tooltip = CHI_Reduce_Slave_tt
+      	hidden_effect = {
+      		swap_ideas = {
+      		  remove_idea = CHI_slave_of_the_samurai_1
+      		  add_idea = CHI_slave_of_the_samurai_2
+      		}
+      	}
+    }
+
+    else_if = {
+		limit = {
+			has_idea = CHI_slave_of_the_samurai_2
+		}
+		custom_effect_tooltip = CHI_Reduce_Slave_tt
+      	hidden_effect = {
+      		swap_ideas = {
+      		  remove_idea = CHI_slave_of_the_samurai_2
+      		  add_idea = CHI_slave_of_the_samurai_3
+      		}
+      	}
+    }
+
+    else_if = {
+		limit = {
+			has_idea = CHI_slave_of_the_samurai_3
+		}
+		custom_effect_tooltip = CHI_Reduce_Slave_tt
+      	hidden_effect = {
+      		swap_ideas = {
+      		  remove_idea = CHI_slave_of_the_samurai_3
+      		  add_idea = CHI_slave_of_the_samurai_4
+      		}
+      	}
+    }
+}
+
+#Changes China's map colour as the Modernisations progress
+
+CHI_Change_Colour = {
+	if = {
+		limit = {
+			has_cosmetic_tag = CHI_JAP
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_ONE
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_cosmetic_tag = CHI_ONE
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_TWO
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_cosmetic_tag = CHI_TWO
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_THREE
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_cosmetic_tag = CHI_THREE
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_FOUR
+		}
+	}
+	
+	else_if = {
+		limit = {
+			has_cosmetic_tag = CHI_FOUR
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_FIVE
+		}
+	}
+
+	else_if = {
+		limit = {
+			has_cosmetic_tag = CHI_FIVE
+		}
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_FIXED
+		}
+	}
+}
+
+#Lessens the penalties of China's breadbasket idea 
+
+CHI_Improve_breadbasket = {
+	if = {
+		limit = {
+			has_idea = CHI_japans_breadbasket_0
+		}
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CHI_japans_breadbasket_0
+				add_idea = CHI_japans_breadbasket_1
+			}
+		}
+		custom_effect_tooltip = CHI_breadbasket_improve_tt
+	}
+	else_if = {
+		limit = {
+			has_idea = CHI_japans_breadbasket_1
+		}
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CHI_japans_breadbasket_1
+				add_idea = CHI_japans_breadbasket_2
+			}
+		}
+		custom_effect_tooltip = CHI_breadbasket_improve_tt
+	}
+}
+
+#Reloads Tree to show crisis trees, shamelessly stolen from US_scripted_effects
+CHI_reload_tree = {
+	mark_focus_tree_layout_dirty = yes
+}
+
+YUN_reload_tree = {
+	mark_focus_tree_layout_dirty = yes
+}
+
+YUN_NPA_reload_tree = {
+	mark_focus_tree_layout_dirty = yes
+}
+
+## Militarization Effects
+CHI_Nagasaki_Summit_Effects = {
+	if = {
+		limit = {has_country_flag = chi_nagasaki_sucess}
+		set_technology = { infantry_weapons_3 = 1 }
+		set_technology = { artillery_1950 = 1 }
+		add_equipment_to_stockpile = { type = infantry_equipment_3 amount = 8500 producer = JAP }
+		swap_ideas = {
+			remove_idea = CHI_small_army
+			add_idea = CHI_Restricted_Army 
+		}
+		clr_country_flag = chi_nagasaki_sucess
+		set_country_flag = chi_limit_max
+	}
+	else_if = {
+		limit = {has_country_flag = chi_nagasaki_partial }
+		add_equipment_to_stockpile = { type = infantry_equipment_2 amount = 8500 producer = JAP }
+		swap_ideas = {
+			remove_idea = CHI_small_army
+			add_idea = CHI_Restricted_Army 
+		}
+		clr_country_flag = chi_nagasaki_partial
+		set_country_flag = chi_limit_middle
+	}
+	else_if = {
+		limit = {has_country_flag = chi_nagasaki_failure}
+		swap_ideas = {
+			remove_idea = CHI_small_army
+			add_idea = CHI_Restricted_Army 
+		}
+		clr_country_flag = chi_nagasaki_failure
+		set_country_flag = chi_limit_low
+	}
+}
+
+#looks for 1 less than what is needed in the effect to match tooltip, since flag is modified after effect is run
+#CHI_infiltration_succesful_show_uprising_effect = {
+#	custom_effect_tooltip = CHI_infiltration_succesful
+#	if = {
+#		limit = {
+#			OR = {
+#				NOT = { has_state_flag = CHI_infiltration_@ROOT }
+#				has_state_flag = {
+#					flag = CHI_infiltration_@ROOT
+#					value = 0
+#				}
+#			}
+#		}		
+#		custom_effect_tooltip = CHI_infiltrate_uprising_header
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_1
+#	}
+#	else_if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@ROOT
+#				value = 1
+#			}
+#		}
+#		custom_effect_tooltip = CHI_infiltrate_uprising_header
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_1
+#	}
+#	else_if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@ROOT
+#				value = 2
+#			}
+#		}
+#		custom_effect_tooltip = CHI_infiltrate_uprising_header
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_2
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_3
+#	}
+#	else_if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@ROOT
+#				value > 2
+#			}
+#		}
+#		custom_effect_tooltip = CHI_infiltrate_uprising_header
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_2
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_4
+#	}
+#}
+#CHI_execute_infiltration_effects_for_PREV = {
+#	if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@PREV
+#				value = 1
+#			}
+#		}
+#		damage_building = {
+#			type = infrastructure
+#			damage = 2
+#		}
+#		damage_building = {
+#			type = arms_factory
+#			damage = 2
+#		}
+#	}
+#	if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@PREV
+#				value = 2
+#			}
+#		}
+#		damage_building = {
+#			type = infrastructure
+#			damage = 4
+#		}
+#		damage_building = {
+#			type = arms_factory
+#			damage = 4
+#		}
+#	}
+#	if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@PREV
+#				value = 3
+#			}
+#		}
+#		PREV = {
+#			set_state_controller = PREV
+#			division_template = {
+#				name = "NLF Militia"
+#				priority = 2
+#				division_names_group = CHI_GAR_01
+#				regiments = {
+#					infantry = { x = 0 y = 0 }
+#					infantry = { x = 0 y = 1 }
+#					
+#					infantry = { x = 1 y = 0 }
+#					infantry = { x = 1 y = 1 }
+#				}
+#				support = {
+#					
+#				}
+#			}
+#		}
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_3
+#		hidden_effect = {
+#			create_unit = {
+#				division = "name = \"NLF Militia\" division_template = \"NLF Militia\" start_experience_factor = 0.0" 
+#				owner = PREV
+#			}
+#			create_unit = {
+#				division = "name = \"NLF Militia\" division_template = \"NLF Militia\" start_experience_factor = 0.0" 
+#				owner = PREV
+#			}
+#			create_unit = {
+#				division = "name = \"NLF Militia\" division_template = \"NLF Militia\" start_experience_factor = 0.0" 
+#				owner = PREV
+#			}
+#		}
+#	}
+#	if = {
+#		limit = {
+#			has_state_flag = {
+#				flag = CHI_infiltration_@PREV
+#				value = 4
+#			}
+#		}
+#		#We probably don't want to destroy stuff in the state when we gain control and have units there.
+#		PREV = {
+#			set_state_controller = PREV
+#			division_template = {
+#				name = "NLF Elite"
+#				priority = 2
+#				division_names_group = CHI_INF_01
+#				regiments = {
+#					infantry = { x = 0 y = 0 }
+#					infantry = { x = 0 y = 1 }
+#					infantry = { x = 0 y = 2 }
+#
+#					infantry = { x = 1 y = 0 }
+#					infantry = { x = 1 y = 1 }
+#					infantry = { x = 1 y = 2 }
+#				}
+#				support = {
+#					
+#				}
+#			}
+#		}
+#		custom_effect_tooltip = CHI_infiltrate_uprising_effect_4
+#		hidden_effect = {
+#			create_unit = {
+#				division = "name = \"NLF Elite\" division_template = \"NLF Elite\" start_experience_factor = 0.3" 
+#				owner = PREV
+#			}
+#			create_unit = {
+#				division = "name = \"NLF Elite\" division_template = \"NLF Elite\" start_experience_factor = 0.3" 
+#				owner = PREV
+#			}
+#			create_unit = {
+#				division = "name = \"NLF Elite\" division_template = \"NLF Elite\" start_experience_factor = 0.3" 
+#				owner = PREV
+#			}
+#		}
+#	}
+#}
+
+CHI_check_middle_western_insurrection_tree = {
+	if = {
+		limit = {
+			NOT = { has_country_flag = CHI_show_western_tree_hidden_middle }
+			count_triggers = {
+				amount = 2
+				has_completed_focus = CHI_Retreat_Does_Not_Mean_Run_Away
+				has_completed_focus = CHI_Move_On_Our_Orders
+				has_completed_focus = CHI_Send_In_The_Next_Batch
+				has_completed_focus = CHI_First_Time_Warriors
+				has_completed_focus = CHI_The_Right_Tools_For_The_Job
+			}
+		}
+		set_country_flag = CHI_show_western_tree_hidden_middle
+		CHI_reload_tree = yes
+	}
+}
+
+### GAW ###
+
+#Runs through array containing all possible warlords, sets GAW alignment flags 
+CHI_set_warlord_flags = {
+	for_each_scope_loop = {
+		array = global.chinese_warlords
+		if = {
+			limit = {
+				NOT = { original_tag = TIB }
+				exists = yes
+			}
+			if = {
+				limit = {
+					check_variable = {chi_influence < 25}
+				}
+				set_country_flag = GAW_jap_total_influenced
+			}
+			else_if = {
+				limit = {
+					check_variable = {chi_influence < 40}
+				}
+				set_country_flag = GAW_jap_influenced
+			}
+			else_if = {
+				limit = {
+					check_variable = {chi_influence > 60}
+				}
+				set_country_flag = GAW_chi_influenced
+			}
+			else_if = {
+				limit = {
+					check_variable = {chi_influence > 75}
+				}
+				set_country_flag = GAW_chi_total_influenced
+			}
+			else = {
+				set_country_flag = GAW_no_clear_influence
+			}
+			clear_variable = jap_influence
+			clear_variable = chi_influence
+		}
+	}
+}
+
+#Sends Call to Arms event for Chinese warlords at GAW start
+CHI_GAW_warlord_cta = {
+	for_each_scope_loop = {
+		array = global.chinese_warlords
+		if = {
+			limit = {
+				OR = {
+					original_tag = HUI
+					original_tag = GNG
+				}
+				exists = yes 
+			}
+			country_event = {id = chinesewarlord.1003 hours = 6 random = 18}
+		}
+		else_if = {
+			limit = {
+				exists = yes
+			}
+			country_event = {id = chinesewarlord.1000 hours = 6 random = 18}
+		}
+	}
+}
+
+CHI_GAW_clear_influence_flags = {
+	if = {
+		limit = {has_country_flag = GAW_jap_total_influenced}
+		clr_country_flag = GAW_jap_total_influenced
+	}
+	else_if	= {
+		limit = {has_country_flag = GAW_jap_influenced}
+		clr_country_flag = GAW_jap_influenced 
+	}
+	else_if = {
+		limit = {has_country_flag = GAW_chi_total_influenced}
+		clr_country_flag = GAW_chi_total_influenced 
+	}
+	else_if = {
+		limit = {has_country_flag = GAW_chi_influenced}
+		clr_country_flag = GAW_chi_influenced 
+	}
+	else_if = {
+		limit = {has_country_flag = GAW_no_clear_influence}
+		clr_country_flag = GAW_no_clear_influence
+	}
+}
+
+CHI_GAW_release_warlord = {
+	if = {
+		limit = {original_tag = YAA}
+		JAP = {
+			end_puppet = YAA
+		}
+	}
+	else_if = {
+		limit = {original_tag = SHX}
+		JAP = {
+			end_puppet = SHX
+		}
+	}
+	else_if = {
+		limit = {original_tag = SIC}
+		JAP = {
+			end_puppet = SIC
+		}
+	}
+	else_if = {
+		limit = {original_tag = GUZ}
+		JAP = {
+			end_puppet = GUZ
+		}
+	}
+	else_if = {
+		limit = {original_tag = YUN}
+		JAP = {
+			end_puppet = YUN
+		}
+	}
+	else_if = {
+		limit = {original_tag = GXC}
+		JAP = {
+			end_puppet = GXC
+		}
+	}
+	else_if = {
+		limit = {original_tag = MEN}
+		JAP = {
+			end_puppet = MEN
+		}
+	}
+}
+
+### YUN stuff ###
+
+YUN_improve_resource_exploitation = {
+	if = {
+		limit = {
+			has_idea = YUN_hidden_potential_0
+		}
+		swap_ideas = {
+			remove_idea = YUN_hidden_potential_0
+			add_idea = YUN_hidden_potential_1
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = YUN_hidden_potential_1
+		}
+		swap_ideas = {
+			remove_idea = YUN_hidden_potential_1
+			add_idea = YUN_hidden_potential_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = YUN_hidden_potential_2
+		}
+		swap_ideas = {
+			remove_idea = YUN_hidden_potential_2
+			add_idea = YUN_hidden_potential_3
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = YUN_hidden_potential_3
+		}
+		swap_ideas = {
+			remove_idea = YUN_hidden_potential_3
+			add_idea = YUN_hidden_potential_4
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = YUN_hidden_potential_4
+		}
+		swap_ideas = {
+			remove_idea = YUN_hidden_potential_4
+			add_idea = YUN_hidden_potential_5
+		}
+	}
+}
+
+YUN_up_exploitative_mining = {
+	if = {
+		limit = {
+			has_idea = YUN_exploit_mines_1
+		}
+		swap_ideas = {
+			remove_idea = YUN_exploit_mines_1 
+			add_idea = YUN_exploit_mines_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = YUN_exploit_mines_0
+		}
+		swap_ideas = {
+			remove_idea = YUN_exploit_mines_0
+			add_idea = YUN_exploit_mines_1
+		}
+	}
+	else = {
+		add_ideas = YUN_exploit_mines_0
+	}
+}
+
+YUN_update_devastation_effects = {
+	#Calculate Ratio of Current Devastation to Devastation benchmark (Devastation = 100)
+	
+	set_temp_variable = {YUN_devastation_factor_calc = YUN_devastation}
+	if = {
+		limit = {check_variable = {YUN_devastation_factor_calc < 0}}
+		set_temp_variable = {YUN_devastation_factor_calc = 0}
+	}
+	divide_temp_variable = {YUN_devastation_factor_calc = 100}
+
+	#Calculate Debuffs based on Devastation Ratio
+	set_temp_variable = {YUN_devastation_congoods_factor_calc = 0.50}
+	set_temp_variable = {YUN_devastation_production_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_construction_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_resources_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_pp_factor_calc = -1.00}
+	set_temp_variable = {YUN_devastation_stability_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_war_support_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_org_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_def_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_atk_factor_calc = -0.75}
+	set_temp_variable = {YUN_devastation_recruits_factor_calc = -0.75}
+
+	multiply_temp_variable = {YUN_devastation_congoods_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_production_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_construction_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_resources_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_pp_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_stability_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_war_support_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_org_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_def_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_atk_factor_calc = YUN_devastation_factor_calc}
+	multiply_temp_variable = {YUN_devastation_recruits_factor_calc = YUN_devastation_factor_calc}
+
+	#Put debuffs into effect
+	set_variable = {YUN_devastation_congoods = YUN_devastation_congoods_factor_calc}
+	set_variable = {YUN_devastation_production = YUN_devastation_production_factor_calc}
+	set_variable = {YUN_devastation_construction = YUN_devastation_construction_factor_calc}
+	set_variable = {YUN_devastation_resources = YUN_devastation_resources_factor_calc}
+	set_variable = {YUN_devastation_pp = YUN_devastation_pp_factor_calc}
+	set_variable = {YUN_devastation_stability = YUN_devastation_stability_factor_calc}
+	set_variable = {YUN_devastation_war_support = YUN_devastation_war_support_factor_calc}
+	set_variable = {YUN_devastation_org = YUN_devastation_org_factor_calc}
+	set_variable = {YUN_devastation_def = YUN_devastation_def_factor_calc}
+	set_variable = {YUN_devastation_atk = YUN_devastation_atk_factor_calc}
+	set_variable = {YUN_devastation_recruits = YUN_devastation_recruits_factor_calc}
+	force_update_dynamic_modifier = yes
+	clamp_variable = {
+		var = YUN_devastation
+		min = -100
+		max = 100
+	}
+	clamp_variable = {
+		var = YUN_devastation_gain
+		min = -5
+		max = 30
+	}
+}
+
+YUN_NPA_loot_random_standard = {
+	hidden_effect = {
+		#Setup random multipliers
+		set_variable = {YUN_NPA_random_infequ_calc = random}
+		set_variable = {YUN_NPA_random_atequ_calc = random}
+		set_variable = {YUN_NPA_random_artyequ_calc = random}
+		set_variable = {YUN_NPA_random_suppequ_calc = random}
+	
+		multiply_variable = {YUN_NPA_random_infequ_calc = 10} #0 - 10
+		multiply_variable = {YUN_NPA_random_atequ_calc = 6} #0 - 6
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 4} #0 - 4
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 8} #0 - 8
+	
+		round_variable = YUN_NPA_random_infequ_calc
+		round_variable = YUN_NPA_random_atequ_calc
+		round_variable = YUN_NPA_random_artyequ_calc
+		round_variable = YUN_NPA_random_suppequ_calc
+	
+		#Determine amount of equipment to be added
+		multiply_variable = {YUN_NPA_random_infequ_calc = 50} #0 - 500
+		multiply_variable = {YUN_NPA_random_atequ_calc = 25} #0 - 150
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 10} #0 - 40
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 20} #0 - 160
+	
+		#Add Equipment
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = var:YUN_NPA_random_infequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = var:YUN_NPA_random_atequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = var:YUN_NPA_random_artyequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = var:YUN_NPA_random_suppequ_calc
+		}
+	
+		clear_variable = YUN_NPA_random_infequ_calc
+		clear_variable = YUN_NPA_random_atequ_calc
+		clear_variable = YUN_NPA_random_artyequ_calc
+		clear_variable = YUN_NPA_random_suppequ_calc
+	}
+}
+
+YUN_NPA_loot_random_twothirds = {
+	hidden_effect = {
+		#Setup random multipliers
+		set_variable = {YUN_NPA_random_infequ_calc = random}
+		set_variable = {YUN_NPA_random_atequ_calc = random}
+		set_variable = {YUN_NPA_random_artyequ_calc = random}
+		set_variable = {YUN_NPA_random_suppequ_calc = random}
+	
+		multiply_variable = {YUN_NPA_random_infequ_calc = 7} #0 - 7
+		multiply_variable = {YUN_NPA_random_atequ_calc = 4} #0 - 4
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 3} #0 - 3
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 5} #0 - 5
+	
+		round_variable = YUN_NPA_random_infequ_calc
+		round_variable = YUN_NPA_random_atequ_calc
+		round_variable = YUN_NPA_random_artyequ_calc
+		round_variable = YUN_NPA_random_suppequ_calc
+	
+		#Determine amount of equipment to be added
+		multiply_variable = {YUN_NPA_random_infequ_calc = 50} #0 - 350
+		multiply_variable = {YUN_NPA_random_atequ_calc = 25} #0 - 100
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 10} #0 - 30
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 20} #0 - 100
+	
+		#Add Equipment
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = var:YUN_NPA_random_infequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = var:YUN_NPA_random_atequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = var:YUN_NPA_random_artyequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = var:YUN_NPA_random_suppequ_calc
+		}
+	
+		clear_variable = YUN_NPA_random_infequ_calc
+		clear_variable = YUN_NPA_random_atequ_calc
+		clear_variable = YUN_NPA_random_artyequ_calc
+		clear_variable = YUN_NPA_random_suppequ_calc
+	}
+}
+
+YUN_NPA_loot_random_half = {
+	hidden_effect = {
+		#Setup random multipliers
+		set_variable = {YUN_NPA_random_infequ_calc = random}
+		set_variable = {YUN_NPA_random_atequ_calc = random}
+		set_variable = {YUN_NPA_random_artyequ_calc = random}
+		set_variable = {YUN_NPA_random_suppequ_calc = random}
+	
+		multiply_variable = {YUN_NPA_random_infequ_calc = 5} #0 - 5
+		multiply_variable = {YUN_NPA_random_atequ_calc = 3} #0 - 3
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 2} #0 - 2
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 4} #0 - 4
+	
+		round_variable = YUN_NPA_random_infequ_calc
+		round_variable = YUN_NPA_random_atequ_calc
+		round_variable = YUN_NPA_random_artyequ_calc
+		round_variable = YUN_NPA_random_suppequ_calc
+	
+		#Determine amount of equipment to be added
+		multiply_variable = {YUN_NPA_random_infequ_calc = 50} #0 - 250
+		multiply_variable = {YUN_NPA_random_atequ_calc = 25} #0 - 75
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 10} #0 - 20
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 20} #0 - 80
+	
+		#Add Equipment
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = var:YUN_NPA_random_infequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = var:YUN_NPA_random_atequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = var:YUN_NPA_random_artyequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = var:YUN_NPA_random_suppequ_calc
+		}
+	
+		clear_variable = YUN_NPA_random_infequ_calc
+		clear_variable = YUN_NPA_random_atequ_calc
+		clear_variable = YUN_NPA_random_artyequ_calc
+		clear_variable = YUN_NPA_random_suppequ_calc
+	}
+}
+
+YUN_NPA_loot_random_third = {
+	hidden_effect = {
+		#Setup random multipliers
+		set_variable = {YUN_NPA_random_infequ_calc = random}
+		set_variable = {YUN_NPA_random_atequ_calc = random}
+		set_variable = {YUN_NPA_random_artyequ_calc = random}
+		set_variable = {YUN_NPA_random_suppequ_calc = random}
+	
+		multiply_variable = {YUN_NPA_random_infequ_calc = 3} #0 - 3
+		multiply_variable = {YUN_NPA_random_atequ_calc = 2} #0 - 2
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 1} #0 - 1
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 3} #0 - 3
+	
+		round_variable = YUN_NPA_random_infequ_calc
+		round_variable = YUN_NPA_random_atequ_calc
+		round_variable = YUN_NPA_random_artyequ_calc
+		round_variable = YUN_NPA_random_suppequ_calc
+	
+		#Determine amount of equipment to be added
+		multiply_variable = {YUN_NPA_random_infequ_calc = 50} #0 - 150
+		multiply_variable = {YUN_NPA_random_atequ_calc = 25} #0 - 50
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 10} #0 - 10
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 20} #0 - 60
+	
+		#Add Equipment
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = var:YUN_NPA_random_infequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = var:YUN_NPA_random_atequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = var:YUN_NPA_random_artyequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = var:YUN_NPA_random_suppequ_calc
+		}
+	
+		clear_variable = YUN_NPA_random_infequ_calc
+		clear_variable = YUN_NPA_random_atequ_calc
+		clear_variable = YUN_NPA_random_artyequ_calc
+		clear_variable = YUN_NPA_random_suppequ_calc
+	}
+}
+
+YUN_NPA_loot_random_minimum = {
+	hidden_effect = {
+		#Setup random multipliers
+		set_variable = {YUN_NPA_random_infequ_calc = random}
+		set_variable = {YUN_NPA_random_atequ_calc = random}
+		set_variable = {YUN_NPA_random_artyequ_calc = random}
+		set_variable = {YUN_NPA_random_suppequ_calc = random}
+	
+		multiply_variable = {YUN_NPA_random_infequ_calc = 3} #0 - 2
+		multiply_variable = {YUN_NPA_random_atequ_calc = 2} #0 - 1
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 0}
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 3} #0 - 2
+	
+		round_variable = YUN_NPA_random_infequ_calc
+		round_variable = YUN_NPA_random_atequ_calc
+		round_variable = YUN_NPA_random_artyequ_calc
+		round_variable = YUN_NPA_random_suppequ_calc
+	
+		#Determine amount of equipment to be added
+		multiply_variable = {YUN_NPA_random_infequ_calc = 50} #0 - 100
+		multiply_variable = {YUN_NPA_random_atequ_calc = 25} #0 - 25
+		multiply_variable = {YUN_NPA_random_artyequ_calc = 10} #0 - 0
+		multiply_variable = {YUN_NPA_random_suppequ_calc = 20} #0 - 40
+	
+		#Add Equipment
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = var:YUN_NPA_random_infequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = var:YUN_NPA_random_atequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = var:YUN_NPA_random_artyequ_calc
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = var:YUN_NPA_random_suppequ_calc
+		}
+	
+		clear_variable = YUN_NPA_random_infequ_calc
+		clear_variable = YUN_NPA_random_atequ_calc
+		clear_variable = YUN_NPA_random_artyequ_calc
+		clear_variable = YUN_NPA_random_suppequ_calc
+	}
+}
+
+YUN_NPA_pulse_event_selecter = {
+	hidden_effect = {
+		if = {
+			limit = {
+				NOT = {
+					AND = {
+						has_country_flag = YUN_NPA_pulse_1_fired
+						has_country_flag = YUN_NPA_pulse_2_fired
+						has_country_flag = YUN_NPA_pulse_3_fired
+						has_country_flag = YUN_NPA_pulse_4_fired
+						has_country_flag = YUN_NPA_pulse_5_fired
+					}
+				}
+			}
+			random_list = {
+				20 = {
+					modifier = {
+						factor = 0
+						has_country_flag = YUN_NPA_pulse_1_fired
+					}
+					country_event = {id = yun.121 days = 45 random = 120}
+					set_country_flag = YUN_NPA_pulse_1_fired
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						has_country_flag = YUN_NPA_pulse_2_fired
+					}
+					country_event = {id = yun.122 days = 45 random = 120}
+					set_country_flag = YUN_NPA_pulse_2_fired
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						has_country_flag = YUN_NPA_pulse_3_fired
+					}
+					country_event = {id = yun.123 days = 45 random = 120}
+					set_country_flag = YUN_NPA_pulse_3_fired
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						has_country_flag = YUN_NPA_pulse_4_fired
+					}
+					country_event = {id = yun.124 days = 45 random = 120}
+					set_country_flag = YUN_NPA_pulse_4_fired
+				}
+				20 = {
+					modifier = {
+						factor = 0
+						has_country_flag = YUN_NPA_pulse_5_fired
+					}
+					country_event = {id = yun.125 days = 45 random = 120}
+					set_country_flag = YUN_NPA_pulse_5_fired
+				}
+			}
+		}
+	}
+}
+
+WI_Start_effects = {
+	log = "Western Insurrection started in [GetDateText]"		
+	every_country = {
+		limit = {
+			is_subject_of = CHI
+		}
+		CHI_save_pre_puppet_politics = yes
+		CHI = {
+			end_puppet = PREV
+		}
+		JAP = {
+			set_autonomy = {
+				target = PREV
+				autonomy_state = autonomy_satellite
+			}
+		}
+		CHI_apply_pre_puppet_politics = yes
+	}
+	CHI = {
+		leave_faction = yes
+	}				
+	#YAA = { 
+	#	load_focus_tree = { tree = YAA_yunnan_war }
+	#	set_country_flag = YAA_china_yunnan_tree
+	#}
+}
+
+clamp_chi_influence = {
+	clamp_variable = {
+    	var = chi_influence
+   		min = 0
+   		max = 100
+	}
+}
+
+get_infiltration_result = {
+	set_variable = { result_infiltration_warlord = From.chi_intelligence }
+	subtract_from_variable = { result_infiltration_warlord = warlord_counterintelligence }
+	if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < -5
+			}	
+		}
+		random_list = {
+			1 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			9 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < -2
+			}	
+		}
+		random_list = {
+			3 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			6 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < 2
+			}	
+		}
+		random_list = {
+			5 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			5 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < 4
+			}	
+		}
+		random_list = {
+			6 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			4 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < 7
+			}	
+		}
+		random_list = {
+			7 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			3 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				result_infiltration_warlord < 10
+			}	
+		}
+		random_list = {
+			9 = { #sucess
+				FROM = { country_event = chi.410 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = 20 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = -20 }
+					clamp_chi_influence = yes
+				}
+			}
+			1 = { #fail
+				country_event = chi.411
+				FROM = { country_event = chi.412 }
+				if = {
+					limit = { 
+						FROM = {
+							original_tag = CHI
+						}
+					}
+					add_to_variable = { chi_influence = -35 }
+					clamp_chi_influence = yes
+				}
+				else_if = {
+					limit = { 
+						FROM = {
+							original_tag = JAP
+						}
+					}
+					add_to_variable = { chi_influence = 35 }
+					clamp_chi_influence = yes
+				}
+			}
+		}
+	}
+	clear_variable = result_infiltration_warlord
+}
+
+CHI_save_pre_puppet_politics = {
+	hidden_effect = {
+		set_temp_variable = {CHI_pre_puppet_communist_pop = party_popularity@communist}
+		set_temp_variable = {CHI_pre_puppet_socialist_pop = party_popularity@socialist}
+		set_temp_variable = {CHI_pre_puppet_social_democrat_pop = party_popularity@social_democrat}
+		set_temp_variable = {CHI_pre_puppet_social_liberal_pop = party_popularity@social_liberal}
+		set_temp_variable = {CHI_pre_puppet_market_liberal_pop = party_popularity@market_liberal}
+		set_temp_variable = {CHI_pre_puppet_social_conservative_pop = party_popularity@social_conservative}
+		set_temp_variable = {CHI_pre_puppet_authoritarian_democrat_pop = party_popularity@authoritarian_democrat}
+		set_temp_variable = {CHI_pre_puppet_despotism_pop = party_popularity@despotism}
+		set_temp_variable = {CHI_pre_puppet_fascism_pop = party_popularity@fascism}
+		set_temp_variable = {CHI_pre_puppet_national_socialism_pop = party_popularity@national_socialism}
+		set_temp_variable = {CHI_pre_puppet_ultranational_socialism_pop = party_popularity@ultranational_socialism}
+		set_temp_variable = {CHI_pre_puppet_burgundian_system_pop = party_popularity@burgundian_system}
+	
+		if = {
+			limit = {has_government = communist}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 0}
+		}
+		else_if = {
+			limit = {has_government = socialist}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 1}
+		}
+		else_if = {
+			limit = {has_government = social_democrat}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 2}
+		}
+		else_if = {
+			limit = {has_government = social_liberal}
+			set_temp_variable = {CHI_pre_puppet_rulig_party_id = 3}
+		}
+		else_if = {
+			limit = {has_government = market_liberal}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 4}
+		}
+		else_if = {
+			limit = {has_government = social_conservative}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 5}
+		}
+		else_if = {
+			limit = {has_government = authoritarian_democrat}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 6}
+		}
+		else_if = {
+			limit = {has_government = despotism}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 7}
+		}
+		else_if = {
+			limit = {has_government = fascism}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 8}
+		}
+		else_if = {
+			limit = {has_government = national_socialism}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 9}
+		}
+		else_if = {
+			limit = {has_government = ultranational_socialism}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 10}
+		}
+		else_if = {
+			limit = {has_government = burgundian_system}
+			set_temp_variable = {CHI_pre_puppet_ruling_party_id = 11}
+		}
+	}
+}
+
+CHI_apply_pre_puppet_politics = {
+	hidden_effect = {
+		multiply_temp_variable = {CHI_pre_puppet_communist_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_socialist_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_social_democrat_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_social_liberal_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_market_liberal_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_social_conservative_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_authoritarian_democrat_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_despotism_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_fascism_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_national_socialism_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_ultranational_socialism_pop = 100}
+		multiply_temp_variable = {CHI_pre_puppet_burgundian_system_pop = 100}
+	
+		set_popularities = {
+			communist = var:CHI_pre_puppet_communist_pop
+			socialist = var:CHI_pre_puppet_socialist_pop
+			social_democrat = var:CHI_pre_puppet_social_democrat_pop
+			social_liberal = var:CHI_pre_puppet_social_liberal_pop
+			social_conservative = var:CHI_pre_puppet_social_conservative_pop
+			market_liberal = var:CHI_pre_puppet_market_liberal_pop
+			authoritarian_democrat = var:CHI_pre_puppet_authoritarian_democrat_pop
+			despotism = var:CHI_pre_puppet_despotism_pop
+			fascism = var:CHI_pre_puppet_fascism_pop
+			national_socialism = var:CHI_pre_puppet_national_socialism_pop
+			ultranational_socialism = var:CHI_pre_puppet_ultranational_socialism_pop
+			burgundian_system = var:CHI_pre_puppet_burgundian_system_pop
+		}
+	
+		if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 0}}
+			set_politics = {
+				ruling_party = communist
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 1}}
+			set_politics = {
+				ruling_party = socialist
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 2}}
+			set_politics = {
+				ruling_party = social_democrat
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 3}}
+			set_politics = {
+				ruling_party = social_liberal
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 4}}
+			set_politics = {
+				ruling_party = market_liberal
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 5}}
+			set_politics = {
+				ruling_party = social_conservative
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 6}}
+			set_politics = {
+				ruling_party = authoritarian_democrat
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 7}}
+			set_politics = {
+				ruling_party = despotism
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 8}}
+			set_politics = {
+				ruling_party = fascism
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 9}}
+			set_politics = {
+				ruling_party = national_socialism
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 10}}
+			set_politics = {
+				ruling_party = ultranational_socialism
+			}
+		}
+		else_if = {
+			limit = {check_variable = {CHI_pre_puppet_ruling_party_id = 11}}
+			set_politics = {
+				ruling_party = burgundian_system
+			}
+		}
+		clear_variable = CHI_pre_puppet_ruling_party_id
+	}
+}

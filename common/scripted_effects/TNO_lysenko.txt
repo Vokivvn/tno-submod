@@ -1,0 +1,276 @@
+lysenko_army_readiness_check = {
+	lysenko_influence_assign = yes
+	if = {
+		limit = {
+			check_variable = {
+				var = army_preperation
+				value = 101
+				compare = greater_than_or_equals
+			}
+		}
+		set_variable = {
+			var = army_preperation
+			value = 100
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = army_drill
+				value = 101
+				compare = greater_than_or_equals
+			}
+		}
+		set_variable = {
+			var = army_drill
+			value = 100
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = lysenko_nkvd_disloyalty
+				value = 101
+				compare = greater_than_or_equals
+			}
+		}
+		set_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 100
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = lysenko_nkvd_influence
+				value = 101
+				compare = greater_than_or_equals
+			}
+		}
+		set_variable = {
+			var = lysenko_nkvd_influence
+			value = 100
+		}
+	}
+	####################################
+	####INTO NEGATIVE OVERFLOW CHECK####
+	####################################
+	if = {
+		limit = {
+			check_variable = {
+				var = army_preperation
+				value = 0
+				compare = less_than
+			}
+		}
+		set_variable = {
+			var = army_preperation
+			value = 0
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = army_drill
+				value = 0
+				compare = less_than
+			}
+		}
+		set_variable = {
+			var = army_drill
+			value = 0
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = lysenko_nkvd_disloyalty
+				value = 0
+				compare = less_than
+			}
+		}
+		set_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 0
+		}
+	}
+	if = {
+		limit = {
+			check_variable = {
+				var = lysenko_nkvd_influence
+				value = 0
+				compare = less_than
+			}
+		}
+		set_variable = {
+			var = lysenko_nkvd_influence
+			value = 0
+		}
+	}
+}
+lysenko_influence_assign = {
+	if = {
+		limit = {
+			has_idea = BAS_Lysenko_Influence_Very_Low
+		}
+		remove_ideas = BAS_Lysenko_Influence_Very_Low
+	}
+	if = {
+		limit = {
+			has_idea = BAS_Lysenko_Influence_Low
+		}
+		remove_ideas = BAS_Lysenko_Influence_Low
+	}
+	if = {
+		limit = {
+			has_idea = BAS_Lysenko_Influence_Medium
+		}
+		remove_ideas = BAS_Lysenko_Influence_Medium
+	}
+	if = {
+		limit = {
+			has_idea = BAS_Lysenko_Influence_High
+		}
+		remove_ideas = BAS_Lysenko_Influence_High
+	}
+	if = {
+		limit = {
+			has_idea = BAS_Lysenko_Influence_Very_High
+		}
+		remove_ideas = BAS_Lysenko_Influence_Very_High
+	}
+	if = {
+		limit = {
+			check_variable = {
+				lysenko_nkvd_influence < 20
+			}
+		}
+		add_ideas = BAS_Lysenko_Influence_Very_Low
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				lysenko_nkvd_influence < 40
+			}
+		}
+		add_ideas = BAS_Lysenko_Influence_Low
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				lysenko_nkvd_influence < 60
+			}
+		}
+		add_ideas = BAS_Lysenko_Influence_Medium
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				lysenko_nkvd_influence < 80
+			}
+		}
+		add_ideas = BAS_Lysenko_Influence_High
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				lysenko_nkvd_influence < 100
+			}
+		}
+		add_ideas = BAS_Lysenko_Influence_Very_High
+	}
+}
+lysenko_army_preperation_idea_assignment = {
+	if = {
+		limit = {
+			check_variable = {
+				var = army_preperation
+				value = 50
+				compare = greater_than_or_equals
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_well_prepared_army
+			days = 45
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = {
+				var = army_preperation
+				value = 50
+				compare = less_than
+			}
+			check_variable = {
+				var = army_preperation
+				value = 25
+				compare = greater_than
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_average_prepared_army
+			days = 45
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = {
+				var = army_preperation
+				value = 25
+				compare = less_than_or_equals
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_bad_prepared_army
+			days = 45
+		}
+	}
+}
+lysenko_army_drill_idea_assignment = {
+	if = {
+		limit = {
+			check_variable = {
+				var = army_drill
+				value = 50
+				compare = greater_than_or_equals
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_well_trained_army
+			days = 45
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				var = army_drill
+				value = 50
+				compare = less_than
+			}
+			check_variable = {
+				var = army_drill
+				value = 25
+				compare = greater_than
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_average_trained_army
+			days = 45
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				var = army_drill
+				value = 25
+				compare = less_than_or_equals
+			}
+		}
+		add_timed_idea = {
+			idea = BAS_bad_trained_army
+			days = 45
+		}
+	}
+}

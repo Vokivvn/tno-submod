@@ -1,0 +1,2642 @@
+################################################################################################
+## ███████╗██╗██╗      ██████╗ ██╗   ██╗██╗██╗  ██╗    ██╗███╗   ███╗██████╗ ███████╗██████╗  ##
+## ██╔════╝██║██║     ██╔═══██╗██║   ██║██║██║ ██╔╝    ██║████╗ ████║██╔══██╗██╔════╝██╔══██╗ ##
+## ███████╗██║██║     ██║   ██║██║   ██║██║█████╔╝     ██║██╔████╔██║██████╔╝█████╗  ██████╔╝ ##
+## ╚════██║██║██║     ██║   ██║╚██╗ ██╔╝██║██╔═██╗     ██║██║╚██╔╝██║██╔═══╝ ██╔══╝  ██╔══██╗ ##
+## ███████║██║███████╗╚██████╔╝ ╚████╔╝ ██║██║  ██╗    ██║██║ ╚═╝ ██║██║     ███████╗██║  ██║ ##
+## ╚══════╝╚═╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝ ##
+################################################################################################
+
+### Starting tree by Thunderslav & Effects by Obsidian :0###
+shared_focus = {
+	id = PAV_land_of_the_strong
+	icon = GFX_PAV_siberian_falcon
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_land_of_the_strong"
+		add_political_power = 50
+		hidden_effect = {
+			country_event = { id = PAV.1 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_internal_situation
+	icon = GFX_generic_trials
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_land_of_the_strong
+	}
+	x = -6
+	y = 1
+	relative_position_id = PAV_land_of_the_strong
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_internal_situation"
+		country_event = { id = PAV.3 }
+	}
+}
+
+shared_focus = {
+	id = PAV_the_security_question
+	icon = GFX_TNO_generic_investigation
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_internal_situation
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_the_internal_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_security_question"
+		country_event = { id = PAV.4 }
+	}
+}
+
+shared_focus = {
+	id = PAV_investigate_the_narodniks
+	icon = GFX_PAV_eliminate_target
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_security_question
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_the_security_question
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_investigate_the_narodniks"
+		custom_effect_tooltip = PAV_Internal_Situation_tt
+		country_event = { id = PAV.22 }
+	}
+}
+
+shared_focus = {
+	id = PAV_expand_the_security_agencies
+	icon = GFX_GER_learn_their_secrets
+	cost = 3.00
+	prerequisite = {
+		focus = PAV_the_internal_situation
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_the_internal_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_expand_the_security_agencies"
+		add_political_power = 25
+		tno_security_improve = yes
+		if = {
+			limit = { has_dlc = "La Resistance" }
+			create_intelligence_agency = {
+				name = "Sluzhba Bezopasnosti"
+				icon = "GFX_intelligence_agency_logo_rus"
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_meet_with_shukshin
+	icon = GFX_PAV_Meet_with_Shukshin
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_internal_situation
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_the_internal_situation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_meet_with_shukshin"
+		country_event = { id = PAV.5 }
+	}
+}
+
+shared_focus = {
+	id = PAV_a_bountiful_relationship
+	icon = GFX_Generic_Agrarianism02
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_meet_with_shukshin
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_meet_with_shukshin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_bountiful_relationship"
+		add_ideas = PAV_Barnaul_Grain
+	}
+}
+
+shared_focus = {
+	id = PAV_tighten_control
+	icon = GFX_VIN_Depoliticize_Politics
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_investigate_the_narodniks
+	}
+	prerequisite = {
+		focus = PAV_expand_the_security_agencies
+	}
+	prerequisite = {
+		focus = PAV_a_bountiful_relationship
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_expand_the_security_agencies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_tighten_control"
+		SIB_increase_worker_tension_low = yes
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = PAV_the_soldiers_soviet
+	icon = GFX_USA_Get_Our_Hands_Dirty2
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_tighten_control
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_tighten_control
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_soldiers_soviet"
+		country_event = { id = PAV.23 days = 1 }
+		add_war_support = 0.05
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = PAV_the_champions_of_industry
+	icon = GFX_PAV_The_Champions_of_Industry
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_land_of_the_strong
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_land_of_the_strong
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_champions_of_industry"
+		country_event = { id = PAV.24 }
+	}
+}
+
+shared_focus = {
+	id = PAV_the_rising_phoenix
+	icon = GFX_ENG_Onwards_to_Democracy
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_champions_of_industry
+	}
+	mutually_exclusive = {
+		focus = PAV_the_siberian_bear
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_the_champions_of_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_rising_phoenix"
+		PAV_Feniks_ADD_Feniks_Loyalty_Low = yes
+		PAV_Feniks_ADD_Feniks_Power_Med = yes
+		country_event = { id = PAV.10 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_the_siberian_bear
+	icon = GFX_PAV_the_siberian_bear
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_champions_of_industry
+	}
+	mutually_exclusive = {
+		focus = PAV_the_rising_phoenix
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_the_champions_of_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_siberian_bear"
+		PAV_Feniks_ADD_Sibir_Loyalty_Low = yes
+		PAV_Feniks_ADD_Sibir_Power_Med = yes
+		country_event = { id = PAV.11 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_glory_to_the_pioneers
+	icon = GFX_TNO_Generic_Science
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_rising_phoenix
+		focus = PAV_the_siberian_bear
+	}
+	mutually_exclusive = {
+		focus = PAV_overtures_to_the_people
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_rising_phoenix
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_glory_to_the_pioneers"
+		PAV_Feniks_ADD_Titan_Loyalty_Low = yes
+		PAV_Feniks_ADD_Titan_Power_Med = yes
+		country_event = { id = PAV.12 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_overtures_to_the_people
+	icon = GFX_generic_crowd_cheering
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_rising_phoenix
+		focus = PAV_the_siberian_bear
+	}
+	mutually_exclusive = {
+		focus = PAV_glory_to_the_pioneers
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_siberian_bear
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_overtures_to_the_people"
+		PAV_Feniks_ADD_People_Loyalty_Med = yes
+		PAV_Feniks_ADD_People_Power_Med = yes
+		country_event = { id = PAV.13 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_always_an_even_trade
+	icon = GFX_BRT_corporation_with_a_state_focus_icon
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_glory_to_the_pioneers
+		focus = PAV_overtures_to_the_people
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_glory_to_the_pioneers
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_always_an_even_trade"
+		SIB_increase_worker_tension_low = yes
+		random_list = {
+			25 = {
+				PAV_Add_Federalism_Low = yes
+			}
+			25 = {
+				PAV_Add_Unitarianism_Low = yes
+			}
+			25 = {
+				PAV_Add_Collectivism_Low = yes
+			}
+			25 = {
+				PAV_Add_Corporatism_Low = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_veterans_of_the_siberian_war
+	icon = GFX_SIB_far_east_war_siberia
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_land_of_the_strong
+	}
+	x = 6
+	y = 1
+	relative_position_id = PAV_land_of_the_strong
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_veterans_of_the_siberian_war"
+		army_experience = 20
+		hidden_effect = {
+			country_event = { id = PAV.27 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_our_own_shock_troops
+	icon = GFX_MAG_A_Mercenary_Force
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_veterans_of_the_siberian_war
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_veterans_of_the_siberian_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_our_own_shock_troops"
+		add_ideas = PAV_shock_troops
+		custom_effect_tooltip = PAV_our_own_shock_troops_tt
+		division_template = {
+			name = "Gvardeiskaya Strelkovaya Diviziya"
+			division_names_group = PAV_Guards
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				artillery = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.33
+			uses = 2
+			category = infantry_weapons
+		}
+		hidden_effect = {
+			country_event = { id = PAV.26 days = 7 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_skies_are_ours
+	icon = GFX_generic_jet_fighter_2
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_veterans_of_the_siberian_war
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_veterans_of_the_siberian_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_skies_are_ours"
+		570 = {
+			add_building_construction = {
+				type = air_base 
+				level = 2
+				instant_build = yes
+			}
+		}
+		40 = {
+			add_building_construction = {
+				type = air_base 
+				level = 2
+				instant_build = yes
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.33
+			uses = 2
+			category = fighter
+		}
+		hidden_effect = {
+			country_event = { id = PAV.8 days = 7 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_mechanized_infantry
+	icon = GFX_TOB_Mechanized_Troop_Training
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_veterans_of_the_siberian_war
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_veterans_of_the_siberian_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_mechanized_infantry"
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 250
+			producer = PAV
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment
+			amount = 50
+			producer = PAV
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = APC
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_fruits_of_the_siberian_plan
+	icon = GFX_PAV_fruit_of_siberia
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_our_own_shock_troops
+	}
+	prerequisite = {
+		focus = PAV_the_skies_are_ours
+	}
+	prerequisite = {
+		focus = PAV_mechanized_infantry
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_veterans_of_the_siberian_war
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_fruits_of_the_siberian_plan"
+		country_event = { id = PAV.7 }
+		TNO_improve_industrial_equipment_low = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_the_virgin_lands_campaign
+	icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_fruits_of_the_siberian_plan
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_the_fruits_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_virgin_lands_campaign"
+		remove_ideas = PAV_Disproportionate_Population
+		add_timed_idea = { idea = PAV_Virgin_Lands_Campaign days = 1095 }
+		hidden_effect = {
+			country_event = { id = PAV.29 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_crack_down_on_the_strikes
+	icon = GFX_TNO_generic_riot_police
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_fruits_of_the_siberian_plan
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_fruits_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_crack_down_on_the_strikes"
+		SIB_decrease_consumer_goods_low = yes
+		country_event = { id = PAV.30 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_ramp_up_arms_production
+	icon = GFX_CHI_Ramp_Up_Military_Production
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_fruits_of_the_siberian_plan
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_the_fruits_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_ramp_up_arms_production"
+		SIB_decrease_consumer_goods_low = yes
+		SIB_increase_worker_tension_low = yes
+		570 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_beating_heart_of_siberia
+	icon = GFX_PAV_heart_of_siberia
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_virgin_lands_campaign
+	}
+	prerequisite = {
+		focus = PAV_crack_down_on_the_strikes
+	}
+	prerequisite = {
+		focus = PAV_ramp_up_arms_production
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_the_fruits_of_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_beating_heart_of_siberia"
+		add_political_power = 25
+		570 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_our_destiny_made_manifest
+	icon = GFX_MCW_Compensation_For_Russians
+	cost = 3.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_beating_heart_of_siberia
+	}
+	prerequisite = {
+		focus = PAV_always_an_even_trade
+	}
+	prerequisite = {
+		focus = PAV_the_soldiers_soviet
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_always_an_even_trade
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_our_destiny_made_manifest"
+		add_stability = 0.05
+		country_event = { id = PAV.2 days = 1 }
+	}
+}
+
+### Internal/Expansion tree ###
+shared_focus = {
+	id = PAV_spring_rasputitsa
+	icon = GFX_TNO_generic_spring
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SIB_spring_tt
+			date > 1963.5.1
+		}
+	}
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_spring_rasputitsa"
+		unlock_decision_category_tooltip = PAV_siberian_expansion_category
+		set_country_flag = PAV_central_sib_expansion
+		country_event = { id = PAV_expansion.12 }
+	}
+}
+
+shared_focus = {
+	id = PAV_encourage_forward_thinking
+	icon = GFX_MAG_made_in_russia
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_spring_rasputitsa
+	}
+	x = -3
+	y = 1
+	relative_position_id = PAV_spring_rasputitsa
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_encourage_forward_thinking"
+		country_event = { id = PAV_expansion.14 }
+	}
+}
+
+shared_focus = {
+	id = PAV_a_rural_urban_base
+	icon = GFX_JAP_Horizontal_Urban_Density
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_encourage_forward_thinking
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_encourage_forward_thinking
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_rural_urban_base"
+		TNO_improve_agriculture_low = yes
+		add_timed_idea = {
+			idea = PAV_temporary_industry_boost
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_patriots_federation
+	icon = GFX_PAV_Expand_The_All_Siberian_Army
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_spring_rasputitsa
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_spring_rasputitsa
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_patriots_federation"
+		add_war_support = 0.05
+		PAV_Feniks_ADD_People_Loyalty_Med = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_hybridize_the_state_apparatus
+	icon = GFX_PAV_Land_of_the_Strong
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_patriots_federation
+	}
+	mutually_exclusive = {
+		focus = PAV_look_to_our_roots
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_the_patriots_federation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_hybridize_the_state_apparatus"
+		country_event = { id = PAV_expansion.15 }
+	}
+}
+
+shared_focus = {
+	id = PAV_look_to_our_roots
+	icon = GFX_NIK_Honor_in_a_Humble_Life
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_patriots_federation
+	}
+	mutually_exclusive = {
+		focus = PAV_hybridize_the_state_apparatus
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_patriots_federation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_look_to_our_roots"
+		country_event = { id = PAV_expansion.16 }
+	}
+}
+
+shared_focus = {
+	id = PAV_entice_the_giants
+	icon = GFX_ENG_what_about_the_rich
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_hybridize_the_state_apparatus
+		focus = PAV_look_to_our_roots
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_hybridize_the_state_apparatus
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_entice_the_giants"
+		country_event = { id = PAV_expansion.17 }
+	}
+}
+
+shared_focus = {
+	id = PAV_sunrise_democracy_sunset_dictatorship
+	icon = GFX_PAV_Sunrise_Democracy_Sunset_Dictatorship
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_rural_urban_base
+	}
+	prerequisite = {
+		focus = PAV_entice_the_giants
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_a_rural_urban_base
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_sunrise_democracy_sunset_dictatorship"
+		country_event = { id = PAV_expansion.18 }
+	}
+}
+
+shared_focus = {
+	id = PAV_order_and_stability
+	icon = GFX_ENG_the_gavel_strikes
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_spring_rasputitsa
+	}
+	x = 3
+	y = 1
+	relative_position_id = PAV_spring_rasputitsa
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_order_and_stability"
+		add_stability = 0.05
+		add_command_power = 25
+	}
+}
+
+shared_focus = {
+	id = PAV_temporary_military_governors
+	icon = GFX_Generic_Army_Officers
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_order_and_stability
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_order_and_stability
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_temporary_military_governors"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_the_industrial_preservation_act
+	icon = GFX_CHU_securing_the_factories
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_order_and_stability
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_order_and_stability
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_industrial_preservation_act"
+		SIB_increase_ic_low = yes
+		SIB_increase_worker_tension_low = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_maintain_the_trans_siberian_railway
+	icon = GFX_ISH_siberian_roads
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_hybridize_the_state_apparatus
+		focus = PAV_look_to_our_roots
+	}
+	prerequisite = {
+		focus = PAV_temporary_military_governors
+	}
+	prerequisite = {
+		focus = PAV_the_industrial_preservation_act
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_temporary_military_governors
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_maintain_the_trans_siberian_railway"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_stamping_out_the_embers
+	icon = GFX_PAV_eliminate_target
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_maintain_the_trans_siberian_railway
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_maintain_the_trans_siberian_railway
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_stamping_out_the_embers"
+		add_timed_idea = { idea = PAV_shoot_rebels days = 365 }
+	}
+}
+
+shared_focus = {
+	id = PAV_a_sovereign_heartland
+	icon = GFX_PAV_Proclaim_the_Federation
+	cost = 4.00
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		NOT = {
+			country_exists = ERS
+			country_exists = KEM
+			country_exists = SAH
+			country_exists = KHA
+			country_exists = SVO
+			country_exists = ALT
+		}
+	}
+	prerequisite = {
+		focus = PAV_sunrise_democracy_sunset_dictatorship
+	}
+	prerequisite = {
+		focus = PAV_stamping_out_the_embers
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_sunrise_democracy_sunset_dictatorship
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_sovereign_heartland"
+		country_event = { id = PAV_expansion.13 days = 1 }
+	}
+}
+
+##### Regional Political Tree #####
+shared_focus = {
+	id = PAV_the_victorious_federation
+	icon = GFX_generic_victory_parade
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_victorious_federation"
+		add_timed_idea = { idea = PAV_victorious_federation days = 180 }
+		country_event = { id = PAV_regional.1 }
+	}
+}
+
+shared_focus = {
+	id = PAV_bread_and_games
+	icon = GFX_IBR_Bread_and_Roses
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_victorious_federation
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_the_victorious_federation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_bread_and_games"
+		add_political_power = 35
+		add_stability = 0.035
+		country_event = { id = PAV_regional.15 }
+	}
+}
+
+shared_focus = {
+	id = PAV_appoint_new_governors
+	icon = GFX_Generic_Admininistration
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_victorious_federation
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_the_victorious_federation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_appoint_new_governors"
+		add_war_support = 0.035
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_enshrine_the_silovik_state
+	icon = GFX_generic_authoritarian_constitution
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_bread_and_games
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_bread_and_games
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_enshrine_the_silovik_state"
+		add_political_power = 25
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05 }
+		country_event = { id = PAV_regional.2 }
+	}
+}
+
+shared_focus = {
+	id = PAV_reward_our_allies
+	icon = GFX_Generic_Business
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_enshrine_the_silovik_state
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_enshrine_the_silovik_state
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_reward_our_allies"
+		PAV_Feniks_ADD_Feniks_Loyalty_Low = yes
+		PAV_Feniks_ADD_Sibir_Loyalty_Low = yes
+		PAV_Feniks_ADD_Titan_Loyalty_Low = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_trust_in_the_party_of_power
+	icon = GFX_PAV_trust_in_the_party_of_power
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_enshrine_the_silovik_state
+	}
+	mutually_exclusive = {
+		focus = PAV_a_nod_to_democracy
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_enshrine_the_silovik_state
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_trust_in_the_party_of_power"
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.025 }
+		PAV_Add_Unitarianism_Mid = yes
+		PAV_Lower_Federalism_Low = yes
+		country_event = { id = PAV_regional.26 }
+	}
+}
+
+shared_focus = {
+	id = PAV_a_nod_to_democracy
+	icon = GFX_Generic_Liberty_Handshake
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_enshrine_the_silovik_state
+	}
+	mutually_exclusive = {
+		focus = PAV_trust_in_the_party_of_power
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_enshrine_the_silovik_state
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_nod_to_democracy"
+		add_popularity = { ideology = social_conservative popularity = 0.05 }
+		PAV_Add_Federalism_Mid = yes
+		PAV_Lower_Unitarianism_Low = yes
+		country_event = { id = PAV_regional.27 }
+	}
+}
+
+shared_focus = {
+	id = PAV_a_controlled_political_spectrum
+	icon = GFX_NIK_past_wrongs
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_nod_to_democracy
+		focus = PAV_trust_in_the_party_of_power
+	}
+	prerequisite = {
+		focus = PAV_reward_our_allies
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_trust_in_the_party_of_power
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_controlled_political_spectrum"
+		add_ideas = tno_vote_franchise_registered_voting
+		country_event = { id = PAV_regional.28 }
+	}
+}
+
+shared_focus = {
+	id = PAV_consider_barnauls_position
+	icon = GFX_PAV_Meet_with_Shukshin
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_controlled_political_spectrum
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_a_controlled_political_spectrum
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_consider_barnauls_position"
+		country_event = { id = PAV_regional.29 }
+	}
+}
+
+shared_focus = {
+	id = PAV_the_vestiges_of_revolt
+	icon = GFX_IRK_lessons_from_spirit
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_bread_and_games
+	}
+	prerequisite = {
+		focus = PAV_appoint_new_governors
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_appoint_new_governors
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_vestiges_of_revolt"
+		RUS_decrease_administrative_strain = yes
+		PAV_Lower_Collectivism_Low = yes
+		add_timed_idea = {
+			idea = PAV_vestiges_of_revolt
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_sovereign_security_act
+	icon = GFX_generic_change_law_enforcement
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_vestiges_of_revolt
+	}
+	mutually_exclusive = {
+		focus = PAV_sensible_concessions
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_the_vestiges_of_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_sovereign_security_act"
+		add_ideas = PAV_sovereign_security_act
+		PAV_Feniks_SUBTRACT_People_Power_Med = yes
+		hidden_effect = {
+			country_event = { id = PAV_regional.33 days = 3 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_sensible_concessions
+	icon = GFX_ISH_uplift_the_proletarian
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_vestiges_of_revolt
+	}
+	mutually_exclusive = {
+		focus = PAV_the_sovereign_security_act
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_the_vestiges_of_revolt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_sensible_concessions"
+		add_ideas = tno_trade_unions_state_controlled
+		PAV_Feniks_ADD_People_Power_Low = yes
+		PAV_Feniks_ADD_People_Loyalty_Low = yes
+		hidden_effect = {
+			country_event = { id = PAV_regional.9 days = 14 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_maintaining_the_equilibrium
+	icon = GFX_generic_trials
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_sovereign_security_act
+		focus = PAV_sensible_concessions
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_the_sovereign_security_act
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_maintaining_the_equilibrium"
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_active_measures
+	icon = GFX_MAG_Acquire_Advisors
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_maintaining_the_equilibrium
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_maintaining_the_equilibrium
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_active_measures"
+		country_event = { id = PAV_regional.16 }
+	}
+}
+
+shared_focus = {
+	id = PAV_special_administrative_zones
+	icon = GFX_PAV_Special_Administrative_Zones
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_maintaining_the_equilibrium
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_maintaining_the_equilibrium
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_special_administrative_zones"
+		country_event = { id = PAV_regional.17 }
+	}
+}
+
+shared_focus = {
+	id = PAV_all_things_in_union
+	icon = GFX_PAV_fruit_of_siberia
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_consider_barnauls_position
+	}
+	prerequisite = {
+		focus = PAV_active_measures
+	}
+	prerequisite = {
+		focus = PAV_special_administrative_zones
+	}
+	x = 3
+	y = 1
+	relative_position_id = PAV_consider_barnauls_position
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_all_things_in_union"
+		add_war_support = 0.05
+		add_stability = 0.1
+		country_event = { id = PAV_regional.18 }
+	}
+}
+
+##### Regional Economics #####
+shared_focus = {
+	id = PAV_the_siberian_economy
+	icon = GFX_ISH_siberian_roads
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	#available = {
+	#	has_country_flag = PAV_politics_done
+	#}
+	x = 16
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_siberian_economy"
+		country_event = { id = PAV_regional.3 hours = 6 }
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = PAV_establish_educational_standards
+	icon = GFX_CHI_Reorganizing_the_Curriculum
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_economy
+	}
+	x = -3
+	y = 1
+	relative_position_id = PAV_the_siberian_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_establish_educational_standards"
+		TNO_improve_academic_base_high = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_grants_for_research_and_development
+	icon = GFX_JAP_Mediate_a_Research_Agreement
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_establish_educational_standards
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_establish_educational_standards
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_grants_for_research_and_development"
+		TNO_improve_research_facilities_med = yes
+		TNO_improve_industrial_expertise_med  = yes
+		hidden_effect = {
+			country_event = { id = PAV_regional.37 days = 21 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_repurpose_the_siberian_plan
+	icon = GFX_MAG_Siberian_Factories
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_economy
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_siberian_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_repurpose_the_siberian_plan"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_promote_the_national_champions
+	icon = GFX_USA_68_A_Modern_Banking_System
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_repurpose_the_siberian_plan
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_repurpose_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_promote_the_national_champions"
+		#Add Megacorp effects
+		add_to_variable = { GDP_growth = 0.002 }
+		custom_effect_tooltip = PAV_GDP_growth_tt
+	}
+}
+
+shared_focus = {
+	id = PAV_expand_the_factory_city
+	icon = GFX_ERS_The_Tomsibar_Plan
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_repurpose_the_siberian_plan
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_repurpose_the_siberian_plan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_expand_the_factory_city"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_consolidate_the_energy_sector
+	icon = GFX_RAJ_Our_Available_Resources
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_grants_for_research_and_development
+	}
+	prerequisite = {
+		focus = PAV_promote_the_national_champions
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_promote_the_national_champions
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_consolidate_the_energy_sector"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = fuel_silo
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = fuel_silo
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_riches_of_siberia2
+	icon = GFX_TOB_The_Resources_of_Siberia
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_consolidate_the_energy_sector
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_consolidate_the_energy_sector
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_riches_of_siberia2"
+		add_resource = {
+			type = steel
+			amount = 15
+			state = 569
+		}
+		add_resource = {
+			type = tungsten
+			amount = 10
+			state = 569
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_supervise_the_agricultural_sector
+	icon = GFX_Generic_Agrarianism02
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_economy
+	}
+	x = 3
+	y = 1
+	relative_position_id = PAV_the_siberian_economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_supervise_the_agricultural_sector"
+		TNO_improve_agriculture_med = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_subsidies_for_mechanization
+	icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_supervise_the_agricultural_sector
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_supervise_the_agricultural_sector
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_subsidies_for_mechanization"
+		TNO_improve_industrial_equipment_med = yes
+		hidden_effect = {
+			country_event = { id = PAV_regional.36 days = 21 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_a_mind_to_living_standards
+	icon = GFX_JAP_Get_to_Work
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_expand_the_factory_city
+	}
+	prerequisite = {
+		focus = PAV_subsidies_for_mechanization
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_expand_the_factory_city
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_mind_to_living_standards"
+		add_ideas = tno_minimum_wage_low_minimum_wage
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_establish_a_consumer_sector
+	icon = GFX_ITA_European_Markets
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_mind_to_living_standards
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_a_mind_to_living_standards
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_establish_a_consumer_sector"
+		add_to_variable = { GDP_growth = 0.005 }
+		custom_effect_tooltip = PAV_GDP_growth_tt
+	}
+}
+
+##### Regional Military Tree #####
+shared_focus = {
+	id = PAV_expand_the_all_siberian_army
+	icon = GFX_PAV_Expand_The_All_Siberian_Army
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	#available = {
+	#	has_country_flag = PAV_politics_done
+	#}
+	x = 26
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_expand_the_all_siberian_army"
+		country_event = { id = PAV_regional.4 }
+	}
+}
+
+shared_focus = {
+	id = PAV_the_siberian_air_fleet
+	icon = GFX_TNO_Generic_Bomber_Plane
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_expand_the_all_siberian_army
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_expand_the_all_siberian_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_siberian_air_fleet"
+		air_experience = 30
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_inspect_japanese_jets
+	icon = GFX_JAP_Better_Airfield_Integration
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_air_fleet
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_siberian_air_fleet
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_inspect_japanese_jets"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 4
+			category = air_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_realize_kamovs_designs
+	icon = GFX_generic_helicopter_1
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_inspect_japanese_jets
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_inspect_japanese_jets
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_realize_kamovs_designs"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = helicopter
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_incorporate_new_territorial_armies
+	icon = GFX_Generic_Army_Officers
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_expand_the_all_siberian_army
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_expand_the_all_siberian_army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_incorporate_new_territorial_armies"
+		country_event = { id = PAV_regional.5 }		
+	}
+}
+
+shared_focus = {
+	id = PAV_siberian_war_doctrines
+	icon = GFX_MAG_The_Siberian_School
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_incorporate_new_territorial_armies
+	}
+	mutually_exclusive = {
+		focus = PAV_lessons_of_the_unification_wars
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_incorporate_new_territorial_armies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_siberian_war_doctrines"
+		add_manpower = 10000
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = armor
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_lessons_of_the_unification_wars
+	icon = GFX_new_model_army_goal
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_incorporate_new_territorial_armies
+	}
+	mutually_exclusive = {
+		focus = PAV_siberian_war_doctrines
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_incorporate_new_territorial_armies
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_lessons_of_the_unification_wars"
+		army_experience = 20
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 2
+			category = cat_strategic_theorem
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_revise_the_training_programs
+	icon = GFX_URL_experimental_training_methods
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_siberian_war_doctrines
+		focus = PAV_lessons_of_the_unification_wars
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_siberian_war_doctrines
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_revise_the_training_programs"
+		TNO_improve_army_professionalism_med = yes
+		hidden_effect = {
+			country_event = { id = PAV_regional.20 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_a_central_design_bureau
+	icon = GFX_TNO_Generic_Science
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_realize_kamovs_designs
+	}
+	prerequisite = {
+		focus = PAV_revise_the_training_programs
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_realize_kamovs_designs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_central_design_bureau"
+		country_event = { id = PAV_regional.50 }
+		add_dynamic_modifier = { modifier = PAV_rnd_modifier }
+		TNO_improve_research_facilities_med = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_infantry_support_vehicle_designs
+	icon = GFX_TOB_Mechanized_Troop_Training
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_central_design_bureau
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_a_central_design_bureau
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_infantry_support_vehicle_designs"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = IFV
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_a_siberian_mbt
+	icon = GFX_generic_tank_warfare
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_central_design_bureau
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_a_central_design_bureau
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_siberian_mbt"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = MBT
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_innovate_on_the_kalashnikov
+	icon = GFX_PAV_improve_on_the_kalashnikov
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_a_central_design_bureau
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_a_central_design_bureau
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_innovate_on_the_kalashnikov"
+		custom_effect_tooltip = PAV_project_abakan_tt
+		set_country_flag = PAV_project_abakan_flag
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+}
+
+##### Regional Diplomatic Tree #####
+#tex did this too#
+
+shared_focus = {
+	id = PAV_our_geopolitical_future
+	icon = GFX_BRT_Smuggling_Networks
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	#available = {
+	#	has_country_flag = PAV_politics_done
+	#}
+	x = 36
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_our_geopolitical_future"
+		country_event = { id = PAV_regional.6 }
+		add_political_power = 50
+		custom_effect_tooltip = PAV_our_geopolitical_future_tt
+		set_variable = { PAV_equalizer_effect = 15 }
+		set_country_flag = PAV_active_JAPvsUSA
+		set_country_flag = PAV_active_JAPvsUSA_timer
+	}
+}
+
+shared_focus = {
+	id = PAV_travel_to_the_east
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_our_geopolitical_future
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_our_geopolitical_future
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_travel_to_the_east"
+		country_event = { id = PAV_regional.49 }
+		hidden_effect = {
+			country_event = { id = PAV_regional.51 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_establish_japanese_relations
+	icon = GFX_AST_friends_japan
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_travel_to_the_east
+	}
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA_picked_japan
+	}
+	mutually_exclusive = {
+		focus = PAV_the_twin_eagles
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_travel_to_the_east
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_establish_japanese_relations"
+		JAP = {
+			country_event = { id = PAV_regional.7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_propose_the_mongolian_pipeline
+	icon = GFX_CHI_Oil_For_The_Companies
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_establish_japanese_relations
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_establish_japanese_relations
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_propose_the_mongolian_pipeline"
+		JAP = {
+			country_event = { id = PAV_regional.8 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_the_twin_eagles
+	icon = GFX_PAV_The_Twin_Eagles
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_travel_to_the_east
+	}
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA_picked_usa
+	}
+	mutually_exclusive = {
+		focus = PAV_establish_japanese_relations
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_travel_to_the_east
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_twin_eagles"
+		USA = {
+			country_event = { id = PAV_regional.11 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_discuss_arctic_partnerships
+	icon = GFX_PAV_Discuss_Arctic_Partnerships
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_twin_eagles
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_twin_eagles
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_discuss_arctic_partnerships"
+		USA = {
+			country_event = { id = PAV_regional.12 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_a_bipolar_partnership
+	icon = GFX_JAP_The_Pendulum_Swings
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_propose_the_mongolian_pipeline
+		focus = PAV_discuss_arctic_partnerships
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_propose_the_mongolian_pipeline
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_bipolar_partnership"
+		add_ideas = PAV_trading_partner
+		country_event = { id = PAV_regional.52 }
+	}
+}
+
+shared_focus = {
+	id = PAV_missions_to_our_neighborhood
+	icon = GFX_PAV_Missions_To_Our_Neighbors
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA
+	}
+	prerequisite = {
+		focus = PAV_our_geopolitical_future
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_our_geopolitical_future
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_missions_to_our_neighborhood"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = PAV_partnerships_in_china
+	icon = GFX_JAP_China_Subsidy_Plan
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_missions_to_our_neighborhood
+	}
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_missions_to_our_neighborhood
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_partnerships_in_china"
+		custom_effect_tooltip = PAV_new_investments_tt
+	}
+}
+
+shared_focus = {
+	id = PAV_a_khazakh_consulate
+	icon = GFX_PAV_Kazakh_Consulate
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA
+	}
+	prerequisite = {
+		focus = PAV_missions_to_our_neighborhood
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_missions_to_our_neighborhood
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_khazakh_consulate"
+		custom_effect_tooltip = PAV_new_investments_tt
+	}
+}
+
+shared_focus = {
+	id = PAV_connections_with_mongolia
+	icon = GFX_PAV_connections_in_mongolia_green
+	cost = 3.6
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_missions_to_our_neighborhood
+	}
+	available = {
+		has_country_flag = PAV_active_JAPvsUSA
+	}
+	x = 0
+	y = 2
+	relative_position_id = PAV_missions_to_our_neighborhood
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_connections_with_mongolia"
+		custom_effect_tooltip = PAV_new_investments_tt
+		
+	}
+}
+
+### Superregional tree ###
+shared_focus = {
+	id = PAV_the_siberian_mandate
+	icon = GFX_PAV_The_Siberian_Mandate
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 5
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_siberian_mandate"
+		country_event = PAV_superregional.1
+	}
+}
+
+shared_focus = {
+	id = PAV_root_out_the_remnants
+	icon = GFX_NIK_gun_control
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_mandate
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_the_siberian_mandate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_root_out_the_remnants"
+		country_event = PAV_superregional.2
+	}
+}
+
+shared_focus = {
+	id = PAV_consolidate_the_new_territories
+	icon = GFX_Generic_Admininistration
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_mandate
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_the_siberian_mandate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_consolidate_the_new_territories"
+		add_stability = 0.05
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = PAV_reaffirm_our_commitments
+	icon = GFX_PAV_Missions_To_Our_Neighbors
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_the_siberian_mandate
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_the_siberian_mandate
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_reaffirm_our_commitments"
+		swap_ideas = {
+			remove_idea = PAV_trading_partner
+			add_idea = PAV_trading_partner_2
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_election_season
+	icon = GFX_PAV_Election_Season
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_root_out_the_remnants
+	}
+	prerequisite = {
+		focus = PAV_consolidate_the_new_territories
+	}
+	prerequisite = {
+		focus = PAV_reaffirm_our_commitments
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_consolidate_the_new_territories
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_election_season"
+		country_event = { id = PAV_elections.0 }
+	}
+}
+
+shared_focus = {
+	id = PAV_spreading_the_sibplan
+	icon = GFX_PAV_fruit_of_siberia
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_election_season
+	}
+	x = -2
+	y = 1
+	relative_position_id = PAV_election_season
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_spreading_the_sibplan"
+		add_timed_idea = { idea = PAV_spreading_the_sibplan_idea days = 1095 }
+	}
+}
+
+shared_focus = {
+	id = PAV_funding_the_central_design_bureau
+	icon = GFX_generic_diplomacy_science
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_spreading_the_sibplan
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_spreading_the_sibplan
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_funding_the_central_design_bureau"
+		custom_effect_tooltip = PAV_rnd_research_tt
+		add_to_variable = { PAV_rnd_research = 0.10 }
+	}
+}
+
+shared_focus = {
+	id = PAV_national_priority_projects
+	icon = GFX_ISH_siberian_roads
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_funding_the_central_design_bureau
+	}
+	prerequisite = {
+		focus = PAV_spreading_the_sibplan
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_funding_the_central_design_bureau
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_national_priority_projects"
+		TNO_improve_poverty_low = yes
+		add_to_variable = { GDP_growth = 0.003 }
+		custom_effect_tooltip = PAV_GDP_growth_tt
+	}
+}
+
+shared_focus = {
+	id = PAV_expand_the_voenkomats
+	icon = GFX_Generic_Army_Officers
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_election_season
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_election_season
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_expand_the_voenkomats"
+		country_event = PAV_superregional.6
+	}
+}
+
+shared_focus = {
+	id = PAV_our_eastern_bastion
+	icon = GFX_MAG_From_a_Backwater_to_a_Hub
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_expand_the_voenkomats
+	}
+	available = {
+		controls_state = 562
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_expand_the_voenkomats
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_our_eastern_bastion"
+		country_event = PAV_superregional.7
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 1772
+			}
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+		create_navy_leader = {
+			name = "Georgy Migirenko"
+			picture = "Portrait_Novosibirsk_Georgy_Migirenko.dds"
+			traits = { fleet_protector destroyer_leader hunter_killer }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 3
+			maneuvering_skill = 2
+			coordination_skill = 1
+			id = 7622
+		}
+		create_navy_leader = {
+			name = "Boris Fulik"
+			picture = "Portrait_Novosibirsk_Boris_Fulik.dds"
+			traits = { air_controller }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			maneuvering_skill = 1
+			coordination_skill = 1
+			id = 7623
+		}
+		create_navy_leader = {
+			name = "Georgy Kuznetsov"
+			picture = "Portrait_Novosibirsk_Georgy_Kuznetsov.dds"
+			traits = { seawolf lancer }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 1
+			maneuvering_skill = 1
+			coordination_skill = 2
+			id = 7624
+		}
+		hidden_effect = {
+			if = {
+				limit = { not = { has_dlc = "Man the Guns" } }
+				set_technology = {
+					ww2_submarine = 1
+					ww2_destroyer = 1
+					ww2_frigate = 1
+					ww2_cruiser = 1
+					ww2_battleship = 1
+					transport = 1
+				}
+			}
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				set_technology = {
+					basic_naval_mines = 1
+					submarine_mine_laying = 1
+					early_ship_hull_light = 1
+					basic_ship_hull_light = 1
+					early_ship_hull_submarine = 1
+					early_ship_hull_cruiser = 1
+					early_ship_hull_heavy = 1
+					basic_battery = 1
+					basic_light_battery = 1
+					basic_torpedo = 1
+					basic_depth_charges = 1
+					basic_secondary_battery = 1
+					mtg_transport = 1
+					antiair_1950 = 1
+					basic_fire_control_system = 1
+					centimetric_radar = 1
+				}
+			
+				create_equipment_variant = {
+					name = "Marat Class"
+					type = ship_hull_heavy_1
+					name_group = GER_DD_HISTORICAL
+					parent_version = 0
+					modules = {
+						fixed_ship_battery_slot = ship_heavy_battery_1
+						fixed_ship_anti_air_slot = ship_anti_air_1
+						fixed_ship_fire_control_system_slot = ship_fire_control_system_1
+						fixed_ship_radar_slot = ship_radar_1
+						fixed_ship_engine_slot = heavy_ship_engine_1
+						fixed_ship_secondaries_slot = ship_secondaries_1
+						fixed_ship_armor_slot = ship_armor_bb_1
+						front_1_custom_slot = ship_heavy_battery_1
+						mid_1_custom_slot = ship_secondaries_1
+						mid_2_custom_slot = ship_secondaries_1
+						rear_1_custom_slot = ship_heavy_battery_1
+					}
+				}
+			
+				create_equipment_variant = {
+					name = "Gnevnyy Class"
+					type = ship_hull_light_1
+					name_group = GER_DD_HISTORICAL
+					parent_version = 0
+					modules = {
+						fixed_ship_battery_slot = ship_light_battery_1
+						fixed_ship_anti_air_slot = ship_anti_air_2
+						fixed_ship_fire_control_system_slot = ship_fire_control_system_1
+						fixed_ship_radar_slot = ship_radar_1
+						fixed_ship_engine_slot = light_ship_engine_1
+						fixed_ship_torpedo_slot = ship_torpedo_1
+						mid_1_custom_slot = ship_anti_air_2
+						rear_1_custom_slot = ship_anti_air_2
+					}
+				}
+			
+				create_equipment_variant = {
+					name = "Orfey Class"
+					type = ship_hull_light_1
+					name_group = GER_DD_HISTORICAL
+					parent_version = 0
+					modules = {
+						fixed_ship_battery_slot = ship_light_battery_1
+						fixed_ship_anti_air_slot = ship_anti_air_1
+						fixed_ship_fire_control_system_slot = ship_fire_control_system_1
+						fixed_ship_radar_slot = ship_radar_1
+						fixed_ship_torpedo_slot = ship_torpedo_1
+						fixed_ship_engine_slot = light_ship_engine_1
+						mid_1_custom_slot = ship_anti_air_1
+						rear_1_custom_slot = ship_anti_air_1
+					}
+				}
+			
+				create_equipment_variant = {
+					name = "Series V Shchuka"
+					type = ship_hull_submarine_1
+					name_group = GER_SS_HISTORICAL
+					parent_version = 0
+					modules = {
+						fixed_ship_engine_slot = sub_ship_engine_1
+						fixed_ship_torpedo_slot = ship_torpedo_sub_1
+						rear_1_custom_slot = ship_torpedo_sub_1
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_a_disciplined_force
+	icon = GFX_PAV_Expand_The_All_Siberian_Army
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_our_eastern_bastion
+	}
+	prerequisite = {
+		focus = PAV_expand_the_voenkomats
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_our_eastern_bastion
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_a_disciplined_force"
+		TNO_improve_army_professionalism_low = yes
+		country_event = PAV_superregional.8
+	}
+}
+
+shared_focus = {
+	id = PAV_winds_of_change
+	icon = GFX_PAV_Meet_with_Shukshin
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	allow_branch = {
+		has_country_flag = PAV_shukshin_in_charge
+	}
+	prerequisite = {
+		focus = PAV_election_season
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_election_season
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_winds_of_change"
+		country_event = PAV_superregional.10
+	}
+}
+
+shared_focus = {
+	id = PAV_demokratizatsiya
+	icon = GFX_Generic_Liberty_Handshake
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_winds_of_change
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_winds_of_change
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_demokratizatsiya"
+		add_political_power = -25
+		PAV_Feniks_ADD_People_Power_Med = yes
+		PAV_Feniks_ADD_People_Loyalty_Med = yes
+		add_ideas = tno_political_parties_multiparty_system
+	}
+}
+
+shared_focus = {
+	id = PAV_curb_the_corporations
+	icon = GFX_ARC_chains_factories
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_winds_of_change
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_winds_of_change
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_curb_the_corporations"
+		country_event = PAV_superregional.11
+	}
+}
+
+shared_focus = {
+	id = PAV_dreams_of_federation
+	icon = GFX_ERS_legacy_of_democratic_russia
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_demokratizatsiya
+	}
+	prerequisite = {
+		focus = PAV_curb_the_corporations
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_demokratizatsiya
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_dreams_of_federation"
+		country_event = PAV_superregional.12
+	}
+}
+
+shared_focus = {
+	id = PAV_business_as_usual
+	icon = GFX_PAV_trust_in_the_party_of_power
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	allow_branch = {
+		has_country_flag = PAV_pokryshkin_in_charge
+	}
+	prerequisite = {
+		focus = PAV_election_season
+	}
+	x = 0
+	y = 1
+	relative_position_id = PAV_election_season
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_business_as_usual"
+		country_event = PAV_superregional.13
+	}
+}
+
+shared_focus = {
+	id = PAV_entrench_our_position
+	icon = GFX_generic_suspend_constitution
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_business_as_usual
+	}
+	x = -1
+	y = 1
+	relative_position_id = PAV_business_as_usual
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_entrench_our_position"
+		PAV_Feniks_SUBTRACT_People_Power_Med = yes
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05 }
+		hidden_effect = {
+			country_event = { id = PAV_superregional.18 days = 7 random = 48 }
+		}
+	}
+}
+
+shared_focus = {
+	id = PAV_lucrative_contracts
+	icon = GFX_generic_money_handout
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_business_as_usual
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_business_as_usual
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_lucrative_contracts"
+		country_event = PAV_superregional.14
+	}
+}
+
+shared_focus = {
+	id = PAV_the_guiding_hand
+	icon = GFX_PAV_Sunrise_Democracy_Sunset_Dictatorship
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = PAV_entrench_our_position
+	}
+	prerequisite = {
+		focus = PAV_lucrative_contracts
+	}
+	x = 1
+	y = 1
+	relative_position_id = PAV_entrench_our_position
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_the_guiding_hand"
+		country_event = PAV_superregional.15
+	}
+}
+
+shared_focus = {
+	id = PAV_towards_a_glorious_future
+	icon = GFX_MAG_made_in_russia
+	cost = 2.3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = PAV_elections_sorted_tt
+			has_country_flag = PAV_elections_sorted_flag
+		}
+	}
+	prerequisite = {
+		focus = PAV_national_priority_projects
+	}
+	prerequisite = {
+		focus = PAV_a_disciplined_force
+	}
+	x = 2
+	y = 1
+	relative_position_id = PAV_national_priority_projects
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus PAV_towards_a_glorious_future"
+		country_event = PAV_superregional.9
+	}
+}

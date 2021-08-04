@@ -1,0 +1,67 @@
+ORS_Dirlewanger_Death = {
+	kill_country_leader = yes 
+	remove_unit_leader = 3521
+	create_country_leader = {
+		name = "Fritz Schmedes"
+		picture = "Portrait_ORS_Fritz_Schmedes.dds"
+		expire = "1999.12.25"
+		ideology = national_socialism_subtype
+		desc = "POLITICS_FRITZ_SCHMEDES_DESC"
+		traits = {
+			unstable
+		}
+	}
+	hidden_effect = {
+		remove_ideas = ORS_Oskar_Dirlewanger_hog
+		add_ideas = ORS_Fritz_Schmedes_hog
+	}
+	#every_other_country = {
+	#	limit = {
+	#		has_war_with = ROOT
+	#	}
+	#	white_peace = ROOT
+	#}
+	add_ideas = ORS_band_collapsed
+	set_global_flag = ORS_Oskar_Dirlewanger_Dead
+	hidden_effect = {
+		ORS = {
+			country_event = {
+				id = ORS.1000
+				days = 20
+			}
+		}
+	}
+}
+
+ORS_Bandit_State_Checker = {
+	if = {
+		limit = { 
+			has_idea = ORS_bandit_state_1
+		}
+		swap_ideas = {
+			remove_idea = ORS_bandit_state_1
+			add_idea = ORS_bandit_state_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = ORS_bandit_state_2 }
+		swap_ideas = {
+			remove_idea = ORS_bandit_state_2
+			add_idea = ORS_bandit_state_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = ORS_bandit_state_3 }
+		swap_ideas = {
+			remove_idea = ORS_bandit_state_3
+			add_idea = ORS_bandit_state_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = ORS_bandit_state_4 }
+		swap_ideas = {
+			remove_idea = ORS_bandit_state_4
+			add_idea = ORS_bandit_state_5
+		}
+	}
+}

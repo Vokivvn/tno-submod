@@ -1,0 +1,4946 @@
+focus_tree = {
+	id = tyumen_start
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ISH
+		}
+	}
+	default = no
+
+	#INTRO TREE
+	focus = {
+		id = ISH_holding_out
+		icon = GFX_goal_ISH_Holding_Out
+		cost = 4.3
+		x = 4
+		y = 0
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		completion_reward = {
+			country_event = {
+				id = ISH.3
+				days = 1
+			}
+			custom_effect_tooltip = ISH_holding_out_tt
+			hidden_effect = {
+				set_variable = { ISH_survival_programs_consumer_goods = 0 }
+				set_variable = { ISH_survival_programs_building_speed = 0 }
+				set_variable = { ISH_survial_programs_population = 0 }
+				set_variable = { ISH_survival_programs_repair = 0 }
+				set_variable = { ISH_survival_programs_stability = 0 }
+				add_dynamic_modifier = { modifier = ISH_survival_programs }
+			}
+		}
+	}
+	focus = {
+		id = ISH_bunker_building
+		icon = GFX_BAS_fortification_production_charter
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_holding_out
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			572 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1292
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 12106
+				}
+			}
+			403 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1387
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 10670
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_military_holdouts
+		icon = GFX_YUN_If_You_Can_Hold_A_Gun_You_Can_Fight
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_bunker_building
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			country_event = {
+				id = ISH.4
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_scavengers_paradise
+		icon = GFX_SAM_Scavenge_For_Vehicles
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_military_holdouts
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 1
+		y = 3
+		completion_reward = {
+			country_event = {
+				id = ISH.5
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_hidden_communes
+		icon = GFX_ORE_members_from_every_commune
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_bunker_building
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			add_stability = 0.05
+			add_to_variable = { ISH_survial_programs_population = 0.05 }
+			custom_effect_tooltip = ISH_hidden_communes_tt
+		}
+	}
+	focus = {
+		id = ISH_behind_the_times
+		icon = GFX_goal_CHU_Work_at_night
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_hidden_communes
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			add_to_variable = { ISH_survival_programs_consumer_goods = -0.03 }
+			add_to_variable = { ISH_survival_programs_repair = 0.03 }
+			custom_effect_tooltip = ISH_behind_the_times_tt
+		}
+	}
+	focus = {
+		id = ISH_survival_society
+		icon = GFX_URL_Approach_the_Survivalists
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_scavengers_paradise
+		}
+		prerequisite = {
+			focus = ISH_behind_the_times
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			country_event = {
+				id = ISH.6
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_underground_world
+		icon = GFX_BAS_redoubt_preperations
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_holding_out
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = ISH.7
+				days = 1
+			}
+			add_to_variable = { ISH_survival_programs_building_speed = 0.05 }
+			custom_effect_tooltip = ISH_the_underground_world_tt
+		}
+	}
+	focus = {
+		id = ISH_rapid_caravaneering
+		icon = GFX_SAM_Looking_for_Treasure
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_the_underground_world
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 75
+				producer = ISH
+			}
+			add_manpower = 120
+		}
+	}
+	focus = {
+		id = ISH_living_in_the_shadow
+		icon = GFX_UPO_From_the_Shadows
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_the_underground_world
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 7
+		y = 2
+		completion_reward = {
+			country_event = {
+				id = ISH.8
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_study_the_bombings
+		icon = GFX_GER_Refocus_The_Bombings
+		cost = 4.3
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = ISH_rapid_caravaneering
+		}
+		prerequisite = {
+			focus = ISH_living_in_the_shadow
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			set_technology = { radio_detection = 1 }
+			403 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = ISH.9
+					days = 50
+				}
+			}
+			custom_effect_tooltip = ISH_study_the_bombings_tt
+		}
+	}
+	focus = {
+		id = ISH_on_the_clock
+		icon = GFX_GER_A_War_of_Attrition
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_study_the_bombings
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 6
+		y = 4
+		completion_reward = {
+			add_to_variable = { ISH_survival_programs_repair = 0.03 }
+			add_to_variable = { ISH_survival_programs_building_speed = 0.05 }
+			add_war_support = 0.10
+			custom_effect_tooltip = ISH_on_the_clock_tt
+		}
+	}
+	focus = {
+		id = ISH_the_mikhail_system
+		icon = GFX_BRG_Focus_A_Simple_Ration
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_on_the_clock
+		}
+		prerequisite = {
+			focus = ISH_survival_society
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 4
+		y = 5
+		completion_reward = {
+			country_event = {
+				id = ISH.10
+				days = 1
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = ISH_off_the_clock
+		icon = GFX_MAG_Desperate_Times
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_the_mikhail_system
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 4
+		y = 6
+		completion_reward = {
+			country_event = {
+				id = ISH.11
+				days = 1
+			}
+			custom_effect_tooltip = ISH_off_the_clock_tt
+			set_country_flag = ISH_WAR_UNLOCKED
+		}
+	}
+	focus = {
+		id = ISH_preventative_measures
+		icon = GFX_SAM_Take_What_Is_There
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_off_the_clock
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = anti_air_tech
+			}
+			403 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_necessary_losses
+		icon = GFX_Lose_The_Orders
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_off_the_clock
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 5
+		y = 7
+		completion_reward = {
+			add_manpower = -250
+			add_to_variable = { ISH_survival_programs_building_speed = 0.07 }
+			custom_effect_tooltip = ISH_the_underground_world_tt
+		}
+	}
+	focus = {
+		id = ISH_do_and_die_convoys
+		icon = GFX_MAG_Back_of_the_Truck
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_preventative_measures
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 3
+		y = 8
+		completion_reward = {
+			add_to_variable = { ISH_survival_programs_stability = -0.05 }
+			add_to_variable = { ISH_survival_programs_population = 0.05 }
+			add_stability = -0.05
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			custom_effect_tooltip = ISH_do_and_die_convoys_tt
+		}
+	}
+	focus = {
+		id = ISH_black_zones
+		icon = GFX_BRG_Focus_Nation_Wide_Standardization
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_necessary_losses
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 5
+		y = 8
+		completion_reward = {
+			country_event = {
+				id = ISH.12
+				days = 1
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	focus = {
+		id = ISH_unpopular_decisions
+		icon = GFX_ISH_unpopular_decisions
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_do_and_die_convoys
+		}
+		prerequisite = {
+			focus = ISH_black_zones
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 4
+		y = 9
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = communist
+				popularity = -0.10
+			}
+		}
+	}
+	focus = {
+		id = ISH_for_our_survival
+		icon = GFX_ISH_for_our_survival
+		cost = 4.3
+		prerequisite = {
+			focus = ISH_unpopular_decisions
+		}
+		available = {
+			has_idea = SIB_terror_bombing
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 4
+		y = 10
+		completion_reward = {
+			remove_ideas = SIB_terror_bombing
+			country_event = {
+				id = ISH.13
+				days = 1
+			}
+			add_stability = 0.075
+			add_political_power = 50
+		}
+	}
+
+
+	#REBUILDING TREE
+	focus = {
+		id = ISH_the_clock_breaks
+		icon = GFX_OST_The_future_frozen
+		cost = 1.00
+		available = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		bypass = {
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 19
+		y = 0
+		completion_reward = {
+			custom_effect_tooltip = ISH_the_clock_breaks_tt
+		}
+	}
+	focus = {
+		id = ISH_rebuilding_a_nation
+		icon = GFX_MAG_Building_the_Wastes
+		cost = 1.00
+		prerequisite = {
+			focus = ISH_the_clock_breaks
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 14
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = ISH.119
+				days = 2
+			}
+			403 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			572 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = ISH_rebuilding_the_factories
+		icon = GFX_MAG_Siberian_Factories
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_rebuilding_a_nation
+		}
+		mutually_exclusive = {
+			focus = ISH_rebuilding_the_communes
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		x = 11
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = industry
+			}
+			add_to_variable = { industrial_equipment_counter = 2 }
+			custom_effect_tooltip = ISH_rebuilding_the_factories_tt
+		}
+	}
+	focus = {
+		id = ISH_the_military_industrial_complex
+		icon = GFX_ORE_reorganizing_the_militias
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_rebuilding_the_factories
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 13
+		y = 3
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_armored_production
+		icon = GFX_SAM_Scavenge_For_Vehicles
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_the_military_industrial_complex
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 13
+		y = 4
+		completion_reward = {
+			add_timed_idea = { idea = ISH_armored_production_idea days = 720 }
+		}
+	}
+	focus = {
+		id = ISH_civil_infrastructure
+		icon = GFX_ITA_Modernize_the_Infrastructures
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_rebuilding_the_factories
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 10
+		y = 3
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_swords_to_plowshares
+		icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_civil_infrastructure
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			has_equipment = {
+				infantry_equipment > 150
+			}
+			has_equipment = {
+				support_equipment > 50
+			}
+		}
+		x = 11
+		y = 4
+		completion_reward = {
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = -50
+					producer = ISH
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -150
+					producer = ISH
+				}
+			}
+			TNO_improve_agriculture_med = yes #coded with a script
+			custom_effect_tooltip = ISH_swords_to_plowshares_tt
+		}
+	}
+	focus = {
+		id = ISH_all_roads_lead_to_siberia
+		icon = GFX_ISH_siberian_roads
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_civil_infrastructure
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 9
+		y = 4
+		completion_reward = {
+			add_timed_idea = { idea = ISH_siberian_roadways days = 365 }
+		}
+	}
+	focus = {
+		id = ISH_seamless_industrialization
+		icon = GFX_JAP_Standardizing_Heavy_Industry
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_swords_to_plowshares
+		}
+		prerequisite = {
+			focus = ISH_all_roads_lead_to_siberia
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 10
+		y = 5
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+			custom_effect_tooltip = ISH_seamless_industrialization_tt
+		}
+	}
+	focus = {
+		id = ISH_red_storm
+		icon = GFX_RAJ_red_shift
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_armored_production
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 13
+		y = 5
+		completion_reward = {
+			add_timed_idea = { idea = ISH_red_storm_rising days = 720 }
+		}
+	}
+	focus = {
+		id = ISH_the_five_year_plan
+		icon = GFX_ORE_establish_the_planning_commission
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_seamless_industrialization
+			focus = ISH_wives_for_soldiers
+		}
+		prerequisite = {
+			focus = ISH_red_storm
+			focus = ISH_breakup_the_unit
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 14
+		y = 6
+		completion_reward = {
+			custom_effect_tooltip = ISH_the_five_year_plan_tt
+			set_country_flag = ISH_fyp_ongoing
+			activate_mission = ISH_fyp_the_first_five_year_plan_mission
+			set_temp_variable = { ISHTempAgriStrainInverter = agriculture_monthly_change }
+			multiply_temp_variable = { ISHTempAgriStrainInverter = 2 }
+			set_variable = { ISHAgriculturalStrainTicker = ISHTempAgriStrainInverter }
+			add_to_variable = { ISHAgriculturalStrainTicker = 5 }
+			set_variable = { ISHAgriculturalStrain = 25 }
+		}
+	}
+	focus = {
+		id = ISH_rebuilding_the_communes
+		icon = GFX_TNO_generic_public_houses
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_rebuilding_a_nation
+		}
+		mutually_exclusive = {
+			focus = ISH_rebuilding_the_factories
+		}
+		ai_will_do = {
+			factor = 180
+		}
+		x = 16
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = construction_tech
+			}
+		}
+	}
+	focus = {
+		id = ISH_repopulation_programs
+		icon = GFX_YUN_Every_Woman_A_Worker
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_rebuilding_the_communes
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 15
+		y = 3
+		completion_reward = {
+			add_ideas = ISH_repopulation_program
+		}
+	}
+	focus = {
+		id = ISH_family_building
+		icon = GFX_ISH_family_building
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_repopulation_programs
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 15
+		y = 4
+		completion_reward = {
+			country_event = {
+				id = ISH.15
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_wives_for_soldiers
+		icon = GFX_generic_change_law_women
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_family_building
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 15
+		y = 5
+		completion_reward = {
+			add_war_support = 0.07
+			add_manpower = 1250
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_idea = ISH_repopulation_program
+							has_idea = ISH_repopulation_program_2
+						}
+					}
+				}
+				add_ideas = ISH_repopulation_program
+			}
+			if = {
+				limit = {
+					has_idea = ISH_repopulation_program
+				}
+				swap_ideas = {
+					remove_idea = ISH_repopulation_program
+					add_idea = ISH_repopulation_program_2
+				}
+			}
+			if = {
+				limit = {
+					has_idea = ISH_repopulation_program_2
+				}
+				swap_ideas = {
+					remove_idea = ISH_repopulation_program_2
+					add_idea = ISH_repopulation_program_3
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_enforced_farming
+		icon = GFX_RAJ_farmers_rise
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_rebuilding_the_communes
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 18
+		y = 3
+		completion_reward = {
+			add_war_support = -0.025
+			TNO_improve_agriculture_med = yes #coded with a script
+			custom_effect_tooltip = ISH_enforced_farming_tt
+		}
+	}
+	focus = {
+		id = ISH_land_redistribution
+		icon = GFX_ORE_the_soviet_land_surveys
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_enforced_farming
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 17
+		y = 4
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = ISH_communal_loyalty
+		icon = GFX_SPA_Settle_New_Lands
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_enforced_farming
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 19
+		y = 4
+		completion_reward = {
+			add_stability = 0.10
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = construction_tech
+			}
+		}
+	}
+	focus = {
+		id = ISH_breakup_the_unit
+		icon = GFX_BEN_Make_Friends_Not_Families
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_land_redistribution
+		}
+		prerequisite = {
+			focus = ISH_communal_loyalty
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 18
+		y = 5
+		completion_reward = {
+			country_event = {
+				id = ISH.16
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_rebuilding_an_army
+		icon = GFX_YUN_New_Officers
+		cost = 1.00
+		prerequisite = {
+			focus = ISH_the_clock_breaks
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 24
+		y = 1
+		completion_reward = {
+			army_experience = 15
+			country_event = {
+				id = ISH.17
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_red_armor
+		icon = GFX_TNO_generic_socialist_tank
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_rebuilding_an_army
+		}
+		mutually_exclusive = {
+			focus = ISH_the_red_army
+		}
+		ai_will_do = {
+			factor = 130
+		}
+		x = 22
+		y = 2
+		completion_reward = {
+			country_event = {
+				id = ISH.18
+				days = 1
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 150
+				producer = ISH
+			}
+			add_equipment_to_stockpile = {
+				type = IFV_equipment
+				amount = 200
+				producer = ISH
+			}
+		}
+	}
+	focus = {
+		id = ISH_revisit_the_doctrines
+		icon = GFX_Ensure_Officers_Loyalty
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_the_red_armor
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 21
+		y = 3
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = ISH_study_modern_designs
+		icon = GFX_Tour_The_Panzer_Fleet
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_the_red_armor
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 23
+		y = 3
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+		}
+	}
+	focus = {
+		id = ISH_homebrew_armored_power
+		icon = GFX_KHA_black_army_engineers
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_study_modern_designs
+		}
+		prerequisite = {
+			focus = ISH_revisit_the_doctrines
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 22
+		y = 4
+		completion_reward = {
+			add_timed_idea = { idea = ISH_homebrew_tanks days = 365 }
+		}
+	}
+	focus = {
+		id = ISH_our_own_designs
+		icon = GFX_ISH_our_own_designs
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_homebrew_armored_power
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 23
+		y = 5
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ISH_homebrew_tanks
+				add_idea = ISH_homebrew_tanks_2
+			}
+		}
+	}
+	focus = {
+		id = ISH_study_the_performance
+		icon = GFX_URL_Study_History
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_our_own_designs
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 23
+		y = 6
+		completion_reward = {
+			country_event = {
+				id = ISH.19
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_our_own_stratagem
+		icon = GFX_ORE_adapting_their_strategies
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_homebrew_armored_power
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 21
+		y = 5
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = land_doctrine
+			}
+			country_event = {
+				id = ISH.20
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_study_the_results
+		icon = GFX_URL_study_logistics
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_our_own_stratagem
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 21
+		y = 6
+		completion_reward = {
+			country_event = {
+				id = ISH.21
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_red_army
+		icon = GFX_TNO_generic_socialist_recruitment
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_rebuilding_an_army
+		}
+		mutually_exclusive = {
+			focus = ISH_the_red_armor
+		}
+		ai_will_do = {
+			factor = 110
+		}
+		x = 26
+		y = 2
+		completion_reward = {
+			country_event = {
+				id = ISH.22
+				days = 1
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = ISH
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 100
+				producer = ISH
+			}
+		}
+	}
+	focus = {
+		id = ISH_be_brave
+		icon = GFX_KHA_elite_units
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_the_red_army
+		}
+		mutually_exclusive = {
+			focus = ISH_be_strong
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 25
+		y = 3
+		completion_reward = {
+			add_ideas = ISH_the_red_army_morale
+		}
+	}
+	focus = {
+		id = ISH_reform_the_NKVD
+		icon = GFX_TNO_generic_soviet_nkvd
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_be_brave
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 25
+		y = 4
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ISH_the_red_army_morale
+				add_idea = ISH_the_red_army_morale_2
+			}
+			country_event = {
+				id = ISH.23
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_not_once_step_back
+		icon = GFX_KHA_learning_from_experience
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_reform_the_NKVD
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 25
+		y = 5
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ISH_the_red_army_morale_2
+				add_idea = ISH_the_red_army_morale_3
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_red_tide
+		icon = GFX_YUN_Every_Man_A_Soldier
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_not_once_step_back
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 25
+		y = 6
+		completion_reward = {
+			add_manpower = 2500
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = ISH_be_strong
+		icon = GFX_URL_experimental_training_methods
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_the_red_army
+		}
+		mutually_exclusive = {
+			focus = ISH_be_brave
+		}
+		ai_will_do = {
+			factor = 90
+		}
+		x = 27
+		y = 3
+		completion_reward = {
+			add_ideas = ISH_the_red_army_strength
+		}
+	}
+	focus = {
+		id = ISH_reform_the_guard
+		icon = GFX_ORE_the_urals_training_program
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_be_strong
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 27
+		y = 4
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ISH_the_red_army_strength
+				add_idea = ISH_the_red_army_strength_2
+			}
+		}
+	}
+	focus = {
+		id = ISH_russias_finest
+		icon = GFX_URL_Accept_No_Substitutes
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_reform_the_guard
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 27
+		y = 5
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ISH_the_red_army_strength_2
+				add_idea = ISH_the_red_army_strength_3
+			}
+			country_event = {
+				id = ISH.24
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_power_to_the_mighty
+		icon = GFX_URL_fight_like_demons
+		cost = 3.00
+		prerequisite = {
+			focus = ISH_russias_finest
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		x = 27
+		y = 6
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	##EXPANSION TREE
+	focus = {
+		id = ISH_fixing_the_republic
+		icon = GFX_ISH_fixing_the_republic
+		cost = 2.00
+		available = {
+			OR = {
+				NOT = {
+					has_idea = SIB_terror_bombing
+				}
+				has_country_flag = ISH_WAR_UNLOCKED
+			}
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 0
+		completion_reward = {
+			add_war_support = 0.10
+			country_event = {
+				id = ISH.25
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_pertinent_matters
+		icon = GFX_URL_Raise_the_Issue
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_fixing_the_republic
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = ISH.26
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_black_state_in_the_cradel
+		icon = GFX_generic_omsk_war
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_pertinent_matters
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 2
+		completion_reward = {
+			add_opinion_modifier = {
+				target = OMS
+				modifier = ISH_enemy_of_the_republic
+			}
+		}
+	}
+	focus = {
+		id = ISH_southern_buildup
+		icon = GFX_YUN_Stand_Up_And_Fight
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_black_state_in_the_cradel
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 30
+		y = 3
+		completion_reward = {
+			403 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 12521
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3472
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10670
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_united_against_evil
+		icon = GFX_goal_workers_fist
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_black_state_in_the_cradel
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 32
+		y = 3
+		completion_reward = {
+			add_timed_idea = { idea = ISH_united_against_evil_idea days = 90 }
+		}
+	}
+	focus = {
+		id = ISH_strangle_the_creature
+		icon = GFX_ORS_Lick_Our_Wounds
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_southern_buildup
+		}
+		prerequisite = {
+			focus = ISH_united_against_evil
+		}
+		bypass = {
+			OMS = {
+				exists = no
+			}
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 4
+		will_lead_to_war_with = OMS
+		completion_reward = {
+			declare_war_on = {
+				target = OMS
+				type = russian_reclaimation
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_traitors_to_the_north
+		icon = GFX_generic_sverdlovsk_war
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_pertinent_matters
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 2
+		completion_reward = {
+			add_opinion_modifier = {
+				target = TOB
+				modifier = ISH_enemy_of_the_republic
+			}
+		}
+	}
+	focus = {
+		id = ISH_rally_the_loyalists
+		icon = GFX_SAM_Our_Loyalty
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_traitors_to_the_north
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 34
+		y = 3
+		completion_reward = {
+			TOB = {
+				country_event = {
+					id = ISH.33
+					days = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_all_eyes_on_rokossovsky
+		icon = GFX_GER_Peer_Review
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_traitors_to_the_north
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 36
+		y = 3
+		completion_reward = {
+			add_timed_idea = { idea = ISH_against_rocky_idea days = 90 }
+		}
+	}
+	focus = {
+		id = ISH_strike_at_sverdlovsk
+		icon = GFX_CHI_Strike_when_the_Iron_is_hot
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_rally_the_loyalists
+		}
+		prerequisite = {
+			focus = ISH_all_eyes_on_rokossovsky
+		}
+		bypass = {
+			TOB = {
+				exists = no
+			}
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 4
+		will_lead_to_war_with = TOB
+		completion_reward = {
+			declare_war_on = {
+				target = TOB
+				type = russian_reclaimation
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_traitors_lie_dead
+		icon = GFX_ORS_The_Second_Phase
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_strangle_the_creature
+		}
+		prerequisite = {
+			focus = ISH_strike_at_sverdlovsk
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_idea = SIB_terror_bombing
+			}
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 5
+		completion_reward = {
+			add_stability = 0.10
+			country_event = {
+				id = ISH.34
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_restore_our_administration
+		icon = GFX_SAM_Take_What_Is_There
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_traitors_lie_dead
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 6
+		completion_reward = {
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+
+	focus = {
+		id = ISH_purge_the_black_league
+		icon = GFX_CAU_purge_the_officers
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_traitors_lie_dead
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 6
+		completion_reward = {
+			add_manpower = -500
+			add_popularity = {
+				ideology = ultranational_socialism
+				popularity = -0.15
+			}
+			add_stability = 0.03
+		}
+	}
+
+	focus = {
+		id = ISH_recentralize_the_industry
+		icon = GFX_YUN_industry
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_traitors_lie_dead
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_expanding_the_republic
+		icon = GFX_MAG_The_Siberian_School
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_restore_our_administration
+		}
+		prerequisite = {
+			focus = ISH_purge_the_black_league
+		}
+		prerequisite = {
+			focus = ISH_recentralize_the_industry
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 7
+		completion_reward = {
+			add_war_support = 0.05
+			country_event = {
+				id = ISH.35
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_against_deranged_banditry
+		icon = GFX_generic_yugra_war
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_expanding_the_republic
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 8
+		completion_reward = {
+			add_opinion_modifier = {
+				target = KOM
+				modifier = ISH_enemy_of_the_republic
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_promises_of_freedom
+		icon = GFX_OST_Fight_for_Freedom
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_against_deranged_banditry
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 34
+		y = 9
+		completion_reward = {
+			KOM = {
+				country_event = {
+					id = ISH.37
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_man_the_front
+		icon = GFX_URL_Watch_Their_Troops
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_against_deranged_banditry
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 36
+		y = 9
+		completion_reward = {
+			add_manpower = 1250
+		}
+	}
+
+	focus = {
+		id = ISH_into_the_north
+		icon = GFX_YUN_If_You_Can_Hold_A_Gun_You_Can_Fight
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_promises_of_freedom
+		}
+		prerequisite = {
+			focus = ISH_man_the_front
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 10
+		will_lead_to_war_with = KOM
+		completion_reward = {
+			declare_war_on = {
+				target = KOM
+				type = russian_reclaimation
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_honor_the_heroes
+		icon = GFX_generic_free_aviators_diplo
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_expanding_the_republic
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 8
+		completion_reward = {
+			FAV = {
+				country_event = {
+					id = ISH.27
+					days = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_extend_our_hand
+		icon = GFX_Offer_Our_Thanks
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_honor_the_heroes
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 9
+		completion_reward = {
+			FAV = {
+				country_event = {
+					id = ISH.30
+					days = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_a_red_air_force
+		icon = GFX_KHA_coverage_from_above
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_extend_our_hand
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 10
+		completion_reward = {
+			air_experience = 15
+			add_equipment_to_stockpile = {
+				type = CAS_equipment
+				amount = 25
+				producer = ISH
+			}
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 50
+				producer = ISH
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_peoples_republic_restored
+		icon = GFX_ISH_the_peoples_republic_restored
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_into_the_north
+		}
+		prerequisite = {
+			focus = ISH_a_red_air_force
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 11
+		completion_reward = {
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+
+	focus = {
+		id = ISH_honor_our_chairman
+		icon = GFX_generic_socialist_constitution
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_peoples_republic_restored
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 29
+		y = 12
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+				ideology = communist
+				popularity = 0.1
+			}
+			set_province_name = {
+				id = 10670
+				name = VICTORY_POINTS_10670_kag
+			}
+			set_country_flag = tyumen_renamed_ishim
+		}
+	}
+
+	focus = {
+		id = ISH_unify_the_industries
+		icon = GFX_TNO_generic_socialist_industry
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_peoples_republic_restored
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 31
+		y = 12
+		completion_reward = {
+			add_to_variable = { industrial_equipment_counter = 1.5 }
+			custom_effect_tooltip = ISH_rebuilding_the_factories_tt
+			TNO_improve_industrial_expertise_low = yes #coded with a script
+			custom_effect_tooltip = ISH_seamless_industrialization_tt
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_siberian_rail_lines
+		icon = GFX_TNO_generic_railway_work
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_peoples_republic_restored
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 12
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_aid_the_peasants
+		icon = GFX_ITA_Conclude_the_Mechanization_of_Agriculture
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_peoples_republic_restored
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 35
+		y = 12
+		completion_reward = {
+			TNO_improve_agriculture_low = yes #coded with a script
+			custom_effect_tooltip = ISH_enforced_farming_tt
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = ISH_encourage_workers_culture
+		icon = GFX_ISH_workers_culture
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_the_peoples_republic_restored
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 37
+		y = 12
+		completion_reward = {
+			TNO_improve_poverty_low = yes #coded with a script
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			custom_effect_tooltip = ISH_encourage_workers_culture_tt
+		}
+	}
+
+	focus = {
+		id = ISH_against_capitalist_perversion
+		icon = GFX_generic_zlatoust_war
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_honor_our_chairman
+		}
+		prerequisite = {
+			focus = ISH_unify_the_industries
+		}
+		prerequisite = {
+			focus = ISH_siberian_rail_lines
+		}
+		prerequisite = {
+			focus = ISH_aid_the_peasants
+		}
+		prerequisite = {
+			focus = ISH_encourage_workers_culture
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 13
+		completion_reward = {
+			add_opinion_modifier = {
+				target = UDM
+				modifier = ISH_enemy_of_the_republic
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_arrest_the_caravans
+		icon = GFX_URL_Caravan_Experience
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_against_capitalist_perversion
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 32
+		y = 14
+		completion_reward = {
+			UDM = {
+				country_event = {
+					id = ISH.36
+					days = 1
+				}
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_buy_the_rope
+		icon = GFX_SPS_Gallows
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_against_capitalist_perversion
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 34
+		y = 14
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 550
+				producer = UDM
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_march_on_the_mountains
+		icon = GFX_YUN_Mountain_People
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_arrest_the_caravans
+		}
+		prerequisite = {
+			focus = ISH_buy_the_rope
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 15
+		will_lead_to_war_with = UDM
+		completion_reward = {
+			declare_war_on = {
+				target = UDM
+				type = russian_reclaimation
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_finish_the_job
+		icon = GFX_generic_vorkuta_war
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_march_on_the_mountains
+		}
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 25
+		}
+		x = 33
+		y = 16
+		will_lead_to_war_with = VOR
+		completion_reward = {
+			declare_war_on = {
+				target = VOR
+				type = russian_reclaimation
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_workers_paradise
+		icon = GFX_ISH_red_dawn
+		cost = 2.00
+		prerequisite = {
+			focus = ISH_finish_the_job
+		}
+		x = 33
+		y = 17
+		available = {
+			has_war = no
+		}
+		ai_will_do = {
+			factor = 200
+		}
+		completion_reward = {
+			load_focus_tree = tyumen_regional
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+}
+
+focus_tree = {
+	id = tyumen_regional
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			tag = ISH
+		}
+	}
+	default = no
+
+	###### Regional Political Tree ######
+	focus = {
+		id = ISH_the_great_popular_triumph
+		icon = GFX_ISH_the_great_popular_triumph
+		cost = 3.6
+		x = 4
+		y = 0
+
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_great_popular_triumph"
+			country_event = { id = ISH.38 days = 1 }
+			add_political_power = 75
+		}
+	}
+
+	focus = {
+		id = ISH_honor_the_heroes_of_socialism
+		icon = GFX_ISH_honor_heroes_of_socialism
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_great_popular_triumph
+		}
+		mutually_exclusive = {
+			focus = ISH_uplift_the_proletarian_contribution
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_great_popular_triumph
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			country_event = {
+				id = ISH.156
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_honor_the_heroes_of_socialism"
+			add_ideas = ISH_honor_the_party
+		}
+	}
+
+	focus = {
+		id = ISH_uplift_the_proletarian_contribution
+		icon = GFX_ISH_uplift_the_proletarian
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_great_popular_triumph
+		}
+		mutually_exclusive = {
+			focus = ISH_honor_the_heroes_of_socialism
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_great_popular_triumph
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			hidden_effect = {
+				add_to_variable = {
+					khrushchev_coup = 1
+				}
+			}
+			country_event = {
+				id = ISH.157
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_uplift_the_proletarian_contribution"
+			add_ideas = ISH_honor_the_worker
+		}
+	}
+
+	focus = {
+		id = ISH_reflect_upon_stalins_word
+		icon = GFX_ISH_Reflect_Upon_Stalins_Word
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_honor_the_heroes_of_socialism
+			focus = ISH_uplift_the_proletarian_contribution
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_honor_the_heroes_of_socialism
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_reflect_upon_stalins_word"
+			custom_effect_tooltip = ISH_reflect_upon_stalins_word_tt
+			country_event = {
+				id = ISH.158
+				days = 2
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			RUS_decrease_administrative_strain = yes
+			hidden_effect = {
+				remove_ideas = ISH_unorthodox_bolshevism
+				add_dynamic_modifier = { modifier = ISH_stalinism }
+				#Modifier variables
+				set_variable =  { ISH_stalinism_consumer_goods_factor = 0 }
+				set_variable =  { ISH_stalinism_building_speed_factor = 0 }
+				set_variable =  { ISH_stalinism_max_efficiency_factor = 0 }
+				set_variable =  { ISH_stalinism_efficiency_gain_factor = 0 }
+				set_variable =  { ISH_stalinism_ic_factor = 0 }
+				set_variable =  { ISH_stalinism_population_factor = 0 }
+				set_variable =  { ISH_stalinism_resources_factor = 0 }
+				set_variable =  { ISH_stalinism_political_power_factor = 0.075 }
+				set_variable =  { ISH_stalinism_stability_factor = 0 }
+				set_variable =  { ISH_stalinism_war_support_factor = 0 }
+				set_variable =  { ISH_stalinism_conscription_factor = 0 }
+				set_variable =  { ISH_stalinism_trade_opinion_factor = 0 }
+				set_variable =  { ISH_stalinism_export_factor = 0 }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_new_soviet_life
+		icon = GFX_ISH_new_soviet_family
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_reflect_upon_stalins_word
+		}
+		x = -4
+		y = 1
+		relative_position_id = ISH_reflect_upon_stalins_word
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_new_soviet_life"
+			add_stability = 0.025
+			country_event = { id = ISH.60 days = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_for_the_abolition_of_oppression
+		icon = GFX_ISH_equal_in_all_regard
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_life
+		}
+		mutually_exclusive = {
+			focus = ISH_a_mother_should_be_proud
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_life
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_for_the_abolition_of_oppression"
+			tno_gender_rights_improve = yes
+			add_to_variable = { ISH_stalinism_conscription_factor = 0.05 }
+			add_to_variable = { ISH_stalinism_stability_factor = -0.025 }
+			custom_effect_tooltip = ISH_stalinism_conscription_factor_increase_05_tt
+			custom_effect_tooltip = ISH_stalinism_stability_factor_decrease_025_tt
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_a_mother_should_be_proud
+		icon = GFX_ISH_a_mother_should_be_proud
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_life
+		}
+		mutually_exclusive = {
+			focus = ISH_for_the_abolition_of_oppression
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_life
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_mother_should_be_proud"
+			tno_women_worsen = yes
+			if = {
+				limit = {
+					NOT = {
+						has_idea = tno_gender_rights_women_in_the_workplace
+					}
+				}
+				add_ideas = tno_gender_rights_women_in_the_workplace
+			}
+			add_to_variable = { ISH_stalinism_population_factor = 0.10 }
+			add_to_variable = { ISH_stalinism_ic_factor = -0.05 }
+			add_to_variable = { ISH_stalinism_stability_factor = 0.025 }
+			custom_effect_tooltip = ISH_stalinism_population_factor_increase_1_tt
+			custom_effect_tooltip = ISH_stalinism_ic_factor_decrease_05_tt
+			custom_effect_tooltip = ISH_stalinism_stability_factor_increase_025_tt
+		}
+	}
+
+	focus = {
+		id = ISH_spiritual_and_political_flourishing
+		icon = GFX_ISH_spiritual_and_political_flourishing
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_for_the_abolition_of_oppression
+			focus = ISH_a_mother_should_be_proud
+		}
+		mutually_exclusive = {
+			focus = ISH_a_culture_proletarian_over_all
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_for_the_abolition_of_oppression
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_spiritual_and_political_flourishing"
+			add_political_power = 50
+			country_event = {
+				id = ISH.61
+				days = 1
+			}
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_a_culture_proletarian_over_all
+		icon = GFX_ISH_proletarian_over_all
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_for_the_abolition_of_oppression
+			focus = ISH_a_mother_should_be_proud
+		}
+		mutually_exclusive = {
+			focus = ISH_spiritual_and_political_flourishing
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_a_mother_should_be_proud
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_culture_proletarian_over_all"
+			add_to_variable = { ISH_stalinism_stability_factor = 0.025 }
+			custom_effect_tooltip = ISH_stalinism_stability_factor_increase_025_tt
+			add_to_variable = { ISH_stalinism_building_speed_factor = 0.05 }
+			custom_effect_tooltip = ISH_stalinism_building_speed_factor_increase_05_tt
+			country_event = {
+				id = ISH.62
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_new_soviet_spirit
+		icon = GFX_ISH_new_soviet_spirit
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_reflect_upon_stalins_word
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_reflect_upon_stalins_word
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_new_soviet_spirit"
+			add_war_support = 0.025
+			country_event = {
+				id = ISH.63
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_soviet_cosmopolitanism
+		icon = GFX_ISH_soviet_cosmopolitanism
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_spirit
+		}
+		mutually_exclusive = {
+			focus = ISH_rehabilitated_nationalism
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_spirit
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_soviet_cosmopolitanism"
+			tno_immigration_improve = yes
+			tno_refugees_improve = yes
+			add_to_variable = { ISH_stalinism_trade_opinion_factor = 0.1 }
+			custom_effect_tooltip = ISH_stalinism_trade_opinion_factor_increase_1_tt
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_rehabilitated_nationalism
+		icon = GFX_ISH_rehabilitated_nationalism
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_spirit
+		}
+		mutually_exclusive = {
+			focus = ISH_soviet_cosmopolitanism
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_spirit
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_rehabilitated_nationalism"
+			tno_immigration_worsen = yes
+			tno_refugees_worsen = yes
+			add_to_variable = { ISH_stalinism_trade_opinion_factor = -0.1 }
+			custom_effect_tooltip = ISH_stalinism_trade_opinion_factor_decrease_1_tt
+			add_to_variable = { ISH_stalinism_export_factor = -0.1 }
+			custom_effect_tooltip = ISH_stalinism_export_factor_decrease_1_tt
+			hidden_effect = {
+				country_event = {
+					id = ISH.64
+					days = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_a_union_together_and_equal
+		icon = GFX_ISH_a_union_together
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_soviet_cosmopolitanism
+			focus = ISH_rehabilitated_nationalism
+		}
+		mutually_exclusive = {
+			focus = ISH_unity_foremost_and_unity_enduring
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_soviet_cosmopolitanism
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_union_together_and_equal"
+			tno_minorities_improve = yes
+			add_stability = 0.1
+			add_political_power = -25
+			RUS_decrease_administrative_strain = yes
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_unity_foremost_and_unity_enduring
+		icon = GFX_ISH_unity_foremost
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_soviet_cosmopolitanism
+			focus = ISH_rehabilitated_nationalism
+		}
+		mutually_exclusive = {
+			focus = ISH_a_union_together_and_equal
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_rehabilitated_nationalism
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_unity_foremost_and_unity_enduring"
+			add_political_power = 25
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_to_variable = { ISH_stalinism_population_factor = -0.025 }
+			custom_effect_tooltip = ISH_stalinism_population_factor_decrease_025_tt
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+
+	focus = {
+		id = ISH_the_new_soviet_state
+		icon = GFX_ISH_new_soviet_state
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_reflect_upon_stalins_word
+		}
+		x = 4
+		y = 1
+		relative_position_id = ISH_reflect_upon_stalins_word
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_new_soviet_state"
+			RUS_decrease_administrative_strain = yes
+			add_to_variable = { ISH_stalinism_political_power_factor = 0.05 }
+			custom_effect_tooltip = ISH_stalinism_political_power_factor_increase_05_tt
+		}
+	}
+
+	focus = {
+		id = ISH_consistent_democratism
+		icon = GFX_ISH_consistent_democratism
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_state
+		}
+		mutually_exclusive = {
+			focus = ISH_an_eye_to_political_requirements
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_state
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_consistent_democratism"
+			tno_vote_franchise_improve = yes
+			add_to_variable = { ISH_stalinism_political_power_factor = -0.025 }
+			custom_effect_tooltip = ISH_stalinism_political_power_factor_decrease_025_tt
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.03
+			}
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_an_eye_to_political_requirements
+		icon = GFX_ISH_eye_to_political_requirements
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_new_soviet_state
+		}
+		mutually_exclusive = {
+			focus = ISH_consistent_democratism
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_new_soviet_state
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_an_eye_to_political_requirements"
+			add_stability = 0.05
+			add_to_variable = { ISH_stalinism_political_power_factor = 0.025 }
+			custom_effect_tooltip = ISH_stalinism_political_power_factor_increase_025_tt
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_amnesty_for_the_redeemable
+		icon = GFX_ISH_amnesty_for_redeemable
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_consistent_democratism
+			focus = ISH_an_eye_to_political_requirements
+		}
+		mutually_exclusive = {
+			focus = ISH_eyes_on_the_nomenklatura
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_consistent_democratism
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_amnesty_for_the_redeemable"
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.04
+			}
+			add_stability = 0.05
+			add_to_variable = { ISH_stalinism_conscription_factor = -0.05 }
+			custom_effect_tooltip = ISH_stalinism_conscription_factor_decrease_05_tt
+			RUS_decrease_administrative_strain = yes
+			add_to_variable = { khrushchev_coup = 1 }
+		}
+	}
+
+	focus = {
+		id = ISH_eyes_on_the_nomenklatura
+		icon = GFX_ISH_eyes_on_nomenklatura
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_consistent_democratism
+			focus = ISH_an_eye_to_political_requirements
+		}
+		mutually_exclusive = {
+			focus = ISH_amnesty_for_the_redeemable
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_an_eye_to_political_requirements
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_eyes_on_the_nomenklatura"
+			country_event = {
+				id = ISH.123
+				days = 1
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = -0.04
+			}
+			add_political_power = 25
+			add_to_variable = { ISH_stalinism_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = ISH_stalinism_consumer_goods_factor_decrease_05_tt
+			RUS_decrease_administrative_strain = yes
+		}
+	}
+
+	focus = {
+		id = ISH_springtime_for_the_soviet_people
+		icon = GFX_ISH_Springtime_for_the_Soviet_People
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_spiritual_and_political_flourishing
+			focus = ISH_a_culture_proletarian_over_all
+		}
+		prerequisite = {
+			focus = ISH_a_union_together_and_equal
+			focus = ISH_unity_foremost_and_unity_enduring
+		}
+		prerequisite = {
+			focus = ISH_amnesty_for_the_redeemable
+			focus = ISH_eyes_on_the_nomenklatura
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_a_union_together_and_equal
+		ai_will_do = {
+			factor = 80
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_springtime_for_the_soviet_people"
+			if = {
+				limit = {
+					check_variable = { khrushchev_coup > 3 }
+					NOT = { has_country_flag = ISH_coup_happened }
+				}
+				country_event = { id = ISH_khrushchev.1 days = 2  }
+			}
+			else_if = {
+				limit = { check_variable = { khrushchev_coup < 3 } NOT = { has_country_flag = ISH_coup_happened }}
+				country_event = {id = ISH.136 days = 2}
+			}
+			else = {
+				set_country_flag = ISH_coup_happened
+				country_event = {
+					id = ISH.126
+					days = 3
+					random_days = 3
+				}	
+			}
+			country_event = { id = ISH.39 days = 1  }
+			RUS_decrease_administrative_strain = yes
+			set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+			custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		}
+	}
+
+	##### Regional Economic Tree #####
+	focus = {
+		id = ISH_continue_the_five_year_plan
+		icon = GFX_TNO_generic_socialist_industry
+		cost = 3.6
+		x = 18
+		y = 0
+		available = {
+			has_completed_focus = ISH_springtime_for_the_soviet_people
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_continue_the_five_year_plan"
+			country_event = { id = ISH.40 days = 1  }
+		}
+	}
+
+	focus = {
+		id = ISH_the_wheels_of_an_industrial_revolution
+		icon = GFX_TNO_generic_socialist_industry
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_continue_the_five_year_plan
+		}
+		x = -2
+		y = 1
+		relative_position_id = ISH_continue_the_five_year_plan
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_wheels_of_an_industrial_revolution"
+			custom_effect_tooltip = ISH_the_wheels_of_an_industrial_revolution_tt
+			add_to_variable = { national_debt = 100 }
+			if = {
+				limit = {
+					has_country_flag = ISH_coup_happened
+				}
+				country_event = {
+					id = ISH.138
+					days = 1
+				}
+			}
+			else = {
+				country_event = {
+					id = ISH.137
+					days = 1
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_rehabilitate_the_sibplan
+		icon = GFX_MAG_Siberian_Factories
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_wheels_of_an_industrial_revolution
+		}
+		mutually_exclusive = {
+			focus = ISH_the_tested_approach
+		}
+		x = -3
+		y = 1
+		relative_position_id = ISH_the_wheels_of_an_industrial_revolution
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_rehabilitate_the_sibplan"
+			custom_effect_tooltip = ISH_rehabilitate_the_sibplan_tt
+			add_to_variable = { national_debt = 60 }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_tested_approach
+		icon = GFX_RAJ_Rise_From_The_Factories
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_wheels_of_an_industrial_revolution
+		}
+		mutually_exclusive = {
+			focus = ISH_rehabilitate_the_sibplan
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_wheels_of_an_industrial_revolution
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_tested_approach"
+			custom_effect_tooltip = ISH_the_tested_approach_tt
+			add_to_variable = { national_debt = 60 }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_redouble_the_urbanization_campaign
+		icon = GFX_RAJ_Workers_Paradise
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_rehabilitate_the_sibplan
+			focus = ISH_the_tested_approach
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_rehabilitate_the_sibplan
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_redouble_the_urbanization_campaign"
+			579 = {
+				add_manpower = -10000
+			}
+			580 = {
+				add_manpower = -15000
+			}
+			845 = {
+				add_manpower = -12000
+			}
+			653 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 10000
+			}
+			403 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 15000
+			}
+			572 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 12000
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_a_framework_for_development
+		icon = GFX_CHI_Industrialisation_New
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_wheels_of_an_industrial_revolution
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_the_wheels_of_an_industrial_revolution
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_framework_for_development"
+			TNO_improve_industrial_expertise_low = yes
+			TNO_improve_industrial_equipment_med = yes
+		}
+	}
+
+	focus = {
+		id = ISH_the_krushchev_plan
+		icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_a_framework_for_development
+		}
+		mutually_exclusive = {
+			focus = ISH_strengthen_agricultural_control
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_a_framework_for_development
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_krushchev_plan"
+			TNO_improve_agriculture_high = yes
+			add_stability = -0.075
+		}
+	}
+
+	focus = {
+		id = ISH_strengthen_agricultural_control
+		icon = GFX_KHA_dedicated_agricultural_production
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_a_framework_for_development
+		}
+		mutually_exclusive = {
+			focus = ISH_the_krushchev_plan
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_a_framework_for_development
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_strengthen_agricultural_control"
+			TNO_improve_agriculture_low = yes
+			add_stability = 0.03
+		}
+	}
+
+	focus = {
+		id = ISH_the_riches_of_siberia
+		icon = GFX_TOB_The_Resources_of_Siberia
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_redouble_the_urbanization_campaign
+		}
+		prerequisite = {
+			focus = ISH_the_krushchev_plan
+			focus = ISH_strengthen_agricultural_control
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_redouble_the_urbanization_campaign
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_riches_of_siberia"
+			580 = {
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}
+			581 = {
+				add_resource = {
+					type = chromium
+					amount = 20
+				}
+			}
+			653 = {
+				add_resource = {
+					type = oil
+					amount = 20
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_a_glance_to_bukharin
+		icon = GFX_SAH_bukharins_legacy
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_riches_of_siberia
+		}
+		mutually_exclusive = {
+			focus = ISH_the_orthodox_approach
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_riches_of_siberia
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_glance_to_bukharin"
+			add_ideas = tno_trade_laws_export_focus
+			TNO_improve_poverty_med = yes
+		}
+	}
+
+	focus = {
+		id = ISH_the_orthodox_approach
+		icon = GFX_GER_Forward_Looking_Industry
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_riches_of_siberia
+		}
+		mutually_exclusive = {
+			focus = ISH_a_glance_to_bukharin
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_riches_of_siberia
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_orthodox_approach"
+			custom_effect_tooltip = ISH_rehabilitate_the_sibplan_tt
+			add_to_variable = { national_debt = 60 }
+			TNO_improve_poverty_med = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_next_stage_awaits
+		icon = GFX_KEM_An_Economy_for_the_Modern_Age
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_a_glance_to_bukharin
+			focus = ISH_the_orthodox_approach
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_a_glance_to_bukharin
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_next_stage_awaits"
+			add_ideas = ISH_the_next_stage
+		}
+	}
+
+	focus = {
+		id = ISH_the_seeds_of_soviet_progress
+		icon = GFX_Generic_Agrarianism
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_continue_the_five_year_plan
+		}
+		x = 4
+		y = 1
+		relative_position_id = ISH_continue_the_five_year_plan
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_seeds_of_soviet_progress"
+			add_ideas = tno_education_public_higher_education
+		}
+	}
+
+	focus = {
+		id = ISH_illiteracy_liquidation_programs
+		icon = GFX_NIK_soviet_education_system
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_seeds_of_soviet_progress
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_the_seeds_of_soviet_progress
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_illiteracy_liquidation_programs"
+			TNO_improve_academic_base_med = yes
+		}
+	}
+
+	focus = {
+		id = ISH_expand_the_institutes
+		icon = GFX_RAJ_The_Education
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_seeds_of_soviet_progress
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_seeds_of_soviet_progress
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_expand_the_institutes"
+			TNO_improve_research_facilities_med = yes
+		}
+	}
+
+	focus = {
+		id = ISH_revolution_in_thought_and_theory
+		icon = GFX_NIK_socialist_science
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_illiteracy_liquidation_programs
+		}
+		prerequisite = {
+			focus = ISH_expand_the_institutes
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_illiteracy_liquidation_programs
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_revolution_in_thought_and_theory"
+			add_ideas = ISH_an_intellectual_revolution
+		}
+	}
+
+	focus = {
+		id = ISH_honor_the_visionaries
+		icon = GFX_NIK_vision_for_the_people
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_revolution_in_thought_and_theory
+		}
+		mutually_exclusive = {
+			focus = ISH_a_generation_of_workers
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_revolution_in_thought_and_theory
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_honor_the_visionaries"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = electronics
+			}
+			TNO_improve_academic_base_med = yes
+		}
+	}
+
+	focus = {
+		id = ISH_a_generation_of_workers
+		icon = GFX_goal_workers_fist
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_revolution_in_thought_and_theory
+		}
+		mutually_exclusive = {
+			focus = ISH_honor_the_visionaries
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_revolution_in_thought_and_theory
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_generation_of_workers"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = industry
+			}
+			TNO_improve_industrial_expertise_med = yes
+		}
+	}
+
+	##### Regional Military Tree #####
+	focus = {
+		id = ISH_the_workers_and_peasants_army
+		icon = GFX_TOB_The_New_Russian_Army
+		cost = 3.6
+		x = 30
+		y = 0
+
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_workers_and_peasants_army"
+			country_event = { id = ISH.41 days = 1  }
+		}
+	}
+
+	focus = {
+		id = ISH_elevate_proven_officers
+		icon = GFX_Ensure_Officers_Loyalty
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_workers_and_peasants_army
+		}
+		x = -2
+		y = 1
+		relative_position_id = ISH_the_workers_and_peasants_army
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_elevate_proven_officers"
+			add_ideas = ISH_tyumen_military_academy
+		}
+	}
+
+	focus = {
+		id = ISH_repurpose_nkvd_units
+		icon = GFX_IRK_NKVD_guards_divisions
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_elevate_proven_officers
+		}
+		mutually_exclusive = {
+			focus = ISH_new_commissarial_appointments
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_elevate_proven_officers
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_repurpose_nkvd_units"
+			add_ideas = ISH_NKVD_repurposed
+		}
+	}
+
+	focus = {
+		id = ISH_new_commissarial_appointments
+		icon = GFX_TNO_generic_soviet_nkvd
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_elevate_proven_officers
+		}
+		mutually_exclusive = {
+			focus = ISH_repurpose_nkvd_units
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_elevate_proven_officers
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_new_commissarial_appointments"
+			add_ideas = ISH_NKVD_reformed
+		}
+	}
+
+	focus = {
+		id = ISH_lessons_from_the_reclamation_war
+		icon = GFX_NIK_lessons_of_unification_wars
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_the_workers_and_peasants_army
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_the_workers_and_peasants_army
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_lessons_from_the_reclamation_war"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = land_doctrine
+			}
+			army_experience = 20
+		}
+	}
+
+	focus = {
+		id = ISH_remember_the_antifascist_war
+		icon = GFX_NIK_lessons_of_west_russian_war
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_lessons_from_the_reclamation_war
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_lessons_from_the_reclamation_war
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_remember_the_antifascist_war"
+			army_experience = 25
+		}
+	}
+
+	focus = {
+		id = ISH_an_army_for_a_new_struggle
+		icon = GFX_RAJ_The_Army
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_repurpose_nkvd_units
+			focus = ISH_new_commissarial_appointments
+		}
+		prerequisite = {
+			focus = ISH_remember_the_antifascist_war
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_new_commissarial_appointments
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_an_army_for_a_new_struggle"
+			TNO_improve_army_professionalism_med = yes
+			add_war_support = 0.1
+		}
+	}
+
+	focus = {
+		id = ISH_developments_for_the_soldier
+		icon = GFX_NIK_army_for_the_motherland
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_an_army_for_a_new_struggle
+		}
+		x = -2
+		y = 1
+		relative_position_id = ISH_an_army_for_a_new_struggle
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_developments_for_the_soldier"
+			country_event = {
+				id = ISH.65
+				days = 1
+			}
+			army_experience = 15
+		}
+	}
+
+	focus = {
+		id = ISH_return_to_zlatoust
+		icon = GFX_generic_zlatoust_war
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_developments_for_the_soldier
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_developments_for_the_soldier
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_return_to_zlatoust"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = infantry_anti_tank
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = anti_air_tech
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_revisit_the_armored_corps
+		icon = GFX_KEM_Columns_of_Tanks
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_an_army_for_a_new_struggle
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_an_army_for_a_new_struggle
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_revisit_the_armored_corps"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = APC
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = IFV
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_is_tank
+		icon = GFX_TNO_generic_socialist_tank
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_revisit_the_armored_corps
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_revisit_the_armored_corps
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_is_tank"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = MBT
+			}
+			country_event = {
+				id = ISH.66
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_legacy_of_the_aviators
+		icon = GFX_generic_free_aviators_war
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_an_army_for_a_new_struggle
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_an_army_for_a_new_struggle
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_legacy_of_the_aviators"
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = air_doctrine
+			}
+			air_experience = 10
+			country_event = {
+				id = ISH.67
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_siberian_air_fleet
+		icon = GFX_TNO_generic_socialist_plane
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_legacy_of_the_aviators
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_legacy_of_the_aviators
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_siberian_air_fleet"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = air_equipment
+			}
+		}
+	}
+
+	###### Regional Diplomatic Tree #####
+	focus = {
+		id = ISH_returning_to_the_world
+		icon = GFX_Generic_Home_of_Revolution
+		cost = 3.6
+		x = 38
+		y = 0
+
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_returning_to_the_world"
+			country_event = { id = ISH.42 days = 1  }
+		}
+	}
+
+	focus = {
+		id = ISH_peaceful_coexistence
+		icon = GFX_generic_communist_deal
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_returning_to_the_world
+		}
+		mutually_exclusive = {
+			focus = ISH_the_revolution_does_not_wait
+		}
+		x = -2
+		y = 1
+		relative_position_id = ISH_returning_to_the_world
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_peaceful_coexistence"
+			add_stability = 0.1
+			add_war_support = -0.05
+		}
+	}
+
+	focus = {
+		id = ISH_the_revolution_does_not_wait
+		icon = GFX_TNO_generic_left_unity_revolution
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_returning_to_the_world
+		}
+		mutually_exclusive = {
+			focus = ISH_peaceful_coexistence
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_returning_to_the_world
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_revolution_does_not_wait"
+			add_war_support = 0.1
+		}
+	}
+
+	focus = {
+		id = ISH_a_nod_to_the_west
+		icon = GFX_AST_maintain_ofn
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_peaceful_coexistence
+			focus = ISH_the_revolution_does_not_wait
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_peaceful_coexistence
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_nod_to_the_west"
+			USA = {
+				country_event = { id = ISH.43 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_southern_cooperation
+		icon = GFX_TNO_generic_kyzylorda
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_a_nod_to_the_west
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_a_nod_to_the_west
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_southern_cooperation"
+			if = {
+				limit = {
+					KZK = {
+						OR = {
+							has_government = socialist
+							has_government = communist
+						}
+					}
+				}
+				KZK = {
+					country_event = { id = ISH.44 days = 1  }
+				}
+			}
+
+			TAJ = {
+				country_event = { id = ISH.44 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_congratulate_compatible_governments
+		icon = GFX_ITA_prima_il_socialismo
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_southern_cooperation
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_southern_cooperation
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_congratulate_compatible_governments"
+			custom_effect_tooltip = ISH_congratulate_compatible_governments_tt
+			hidden_effect = {
+				every_other_country = {
+					limit = {
+						has_government = communist
+						NOT = {
+							OR = {
+								tag = ZZZ
+								tag = DSR
+							}
+						}
+					}
+					country_event = { id = ISH.50 days = 1  }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_contact_the_khazaks
+		icon = GFX_KAZ_reunification
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_peaceful_coexistence
+			focus = ISH_the_revolution_does_not_wait
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_peaceful_coexistence
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_contact_the_khazaks"
+			if = {
+				limit = {
+					KZK = {
+						OR = {
+							has_government = socialist
+							has_government = communist
+						}
+					}
+				}
+				KZK = {
+					country_event = { id = ISH.48 days = 1  }
+				}
+			}
+			TAJ = {
+				country_event = { id = ISH.48 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_support_central_asia
+		icon = GFX_ORS_Soviet_Arms
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_contact_the_khazaks
+		}
+		available = {
+			has_equipment = {
+				infantry_equipment > 2000
+			}
+			has_equipment = {
+				anti_tank_equipment > 500
+			}
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_contact_the_khazaks
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_support_central_asia"
+			if = {
+				limit = {
+					KZK = {
+						OR = {
+							has_government = socialist
+							has_government = communist
+						}
+					}
+				}
+				KZK = {
+					country_event = { id = ISH.45 days = 1  }
+				}
+			}
+			TAJ = {
+				country_event = { id = ISH.45 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_condemn_the_warmongers
+		icon = GFX_TNO_generic_japan
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_peaceful_coexistence
+			focus = ISH_the_revolution_does_not_wait
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_the_revolution_does_not_wait
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_condemn_the_warmongers"
+			JAP = {
+				country_event = { id = ISH.46 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_a_policy_of_solidarity
+		icon = GFX_TNO_generic_soviet_coat_of_arms
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_condemn_the_warmongers
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_condemn_the_warmongers
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_policy_of_solidarity"
+			custom_effect_tooltip = ISH_a_policy_of_solidarity_tt
+			hidden_effect = {
+				every_other_country = {
+					limit = {
+						has_government = socialist
+						NOT = {
+							OR = {
+								tag = ZZZ
+								tag = DSR
+							}
+						}
+					}
+					country_event = { id = ISH.49 days = 1  }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_denounce_social_fascism
+		icon = GFX_RAJ_Deal_With_Fascist_Militia
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_a_policy_of_solidarity
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_a_policy_of_solidarity
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_denounce_social_fascism"
+			GER = {
+				country_event = { id = ISH.47 days = 1  }
+			}
+		}
+	}
+
+	focus = {
+		id = ISH_the_call_of_the_comintern
+		icon = GFX_TNO_SocIntern
+		cost = 3.6
+		prerequisite = {
+			focus = ISH_congratulate_compatible_governments
+		}
+		prerequisite = {
+			focus = ISH_support_central_asia
+		}
+		prerequisite = {
+			focus = ISH_denounce_social_fascism
+		}
+		x = 0
+		y = 2
+		relative_position_id = ISH_support_central_asia
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_call_of_the_comintern"
+			TNO_run_socintern_script = yes
+		}
+	}
+}
+
+### Superregional trees ###
+
+#Kaganovich
+focus_tree = {
+	id = ISH_superregional_kaganovich
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ISH
+		}
+	}
+	default = no
+	focus = {
+		id = ISH_on_the_right_track
+		icon = GFX_generic_socialist_progressive_values
+		cost = 2.3
+		x = 6
+		y = 0
+		completion_reward = {
+			country_event = {
+				id = ISH.142
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_on_the_right_track"
+			add_stability = 0.075
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = ISH_inaugurate_the_third_five_year_plan
+		icon = GFX_GER_Forward_Looking_Industry
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_on_the_right_track
+		}
+		available = {
+			NOT = {
+				has_decision = ISH_fyp_the_first_five_year_plan_mission
+			}
+		}
+		x = -3
+		y = 1
+		relative_position_id = ISH_on_the_right_track
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_inaugurate_the_third_five_year_plan"
+			country_event = {
+				id = ISH.144
+				days = 2
+			}
+			set_country_flag = ISH_3rd_fyp_ongoing
+			activate_mission = ISH_fyp_the_third_five_year_plan_mission
+			set_temp_variable = { ISHTempAgriStrainInverter = agriculture_monthly_change }
+			multiply_temp_variable = { ISHTempAgriStrainInverter = 2 }
+			set_variable = { ISHAgriculturalStrainTicker = ISHTempAgriStrainInverter }
+			add_to_variable = { ISHAgriculturalStrainTicker = 5 }
+			set_variable = { ISHAgriculturalStrain = 25 }
+			custom_effect_tooltip = ISH_inaugurate_the_third_five_year_plan_tt
+		}
+	}
+	focus = {
+		id = ISH_in_stalins_way
+		icon = GFX_ISH_stalins_word
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_inaugurate_the_third_five_year_plan
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_inaugurate_the_third_five_year_plan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_in_stalins_way"
+			country_event = {
+				id = ISH.145
+				days = 2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #can't improve specific military factory construction as specified, given bonus to conversion + free mils
+		id = ISH_commissariat_of_civil_defence
+		icon = GFX_generic_political_oppression
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_in_stalins_way
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_in_stalins_way
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_commissariat_of_civil_defence"
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = ISH_commissariat_of_civil_defence_idea
+		}
+	}
+	focus = {
+		id = ISH_factory_institutes
+		icon = GFX_NIK_soviet_education_system
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_in_stalins_way
+		}
+		prerequisite = {
+			focus = ISH_a_hammer_in_every_hand
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_in_stalins_way
+		completion_reward = {
+			country_event = {
+				id = ISH.151
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_factory_institutes"
+			TNO_improve_industrial_expertise_high = yes
+		}
+	}
+	focus = {
+		id = ISH_breaking_some_eggs
+		icon = GFX_purge_opposition
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_commissariat_of_civil_defence
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_commissariat_of_civil_defence
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_breaking_some_eggs"
+			country_event = {
+				id = ISH.152
+				days = 2
+				random_days = 10
+			}
+			add_manpower = -5000
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = ISH_long_arm_of_the_nkvd
+		icon = GFX_TNO_generic_soviet_nkvd
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_breaking_some_eggs
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_breaking_some_eggs
+		completion_reward = {
+			country_event = {
+				id = ISH.153
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_long_arm_of_the_nkvd"
+			tno_security_improve = yes
+			tno_public_meetings_worsen = yes
+		}
+	}
+	focus = {
+		id = ISH_a_hammer_in_every_hand
+		icon = GFX_generic_socialist_labor
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_inaugurate_the_third_five_year_plan
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_inaugurate_the_third_five_year_plan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_hammer_in_every_hand"
+			add_ideas = ISH_a_hammer_in_every_hand_idea
+		}
+	}
+	focus = {
+		id = ISH_metro_2
+		icon = GFX_COG_Fortify_The_Border
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_on_the_right_track
+		}
+		x = 0
+		y = 2
+		relative_position_id = ISH_on_the_right_track
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_metro_2"
+			country_event = {
+				id = ISH.146
+				days = 2
+			}
+			403 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 1387
+				}
+			}
+		}
+	}
+	focus = {
+		id = ISH_project_cain
+		icon = GFX_goal_computer_assisted_design
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_a_hammer_in_every_hand
+		}
+		prerequisite = {
+			focus = ISH_metro_2
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_a_hammer_in_every_hand
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_project_cain"
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = ISH_no_such_thing_as_propaganda
+		icon = GFX_TNO_generic_propaganda
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_on_the_right_track
+		}
+		x = 3
+		y = 1
+		relative_position_id = ISH_on_the_right_track
+		completion_reward = {
+			country_event = {
+				id = ISH.147
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_no_such_thing_as_propaganda"
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = ISH_only_truth
+		icon = GFX_Ensure_Officers_Loyalty
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_no_such_thing_as_propaganda
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_no_such_thing_as_propaganda
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_only_truth"
+			add_political_power = 50
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = ISH_and_only_what_they_need_to_know
+		icon = GFX_generic_change_law_speech
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_no_such_thing_as_propaganda
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_no_such_thing_as_propaganda
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_and_only_what_they_need_to_know"
+			add_political_power = 25
+			tno_press_rights_worsen = yes
+		}
+	}
+	focus = {
+		id = ISH_a_job_left_unfinished
+		icon = GFX_ISH_proletarian_over_all
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_only_truth
+		}
+		prerequisite = {
+			focus = ISH_and_only_what_they_need_to_know
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_only_truth
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_job_left_unfinished"
+			country_event = {
+				id = ISH.148
+				days = 2
+			}
+			add_political_power = 150
+			add_stability = -0.05
+			add_war_support = -0.05
+			add_timed_idea = { idea = ISH_major_military_purge days = 180 }
+			set_country_flag = ISH_military_purge_flag
+		}
+	}
+	focus = {
+		id = ISH_new_talented_officers
+		icon = GFX_Generic_Army_Officers
+		cost = 4.6
+		prerequisite = {
+			focus = ISH_a_job_left_unfinished
+		}
+		x = 0
+		y = 2
+		available = {
+			NOT = {
+				has_idea = ISH_major_military_purge
+			}
+		}
+		relative_position_id = ISH_a_job_left_unfinished
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_new_talented_officers"
+			country_event = {
+				id = ISH.150
+				days = 2
+			}
+			swap_ideas = {
+				remove_idea = ISH_major_military_purge
+				add_idea = ISH_major_military_purge_2
+			}
+		}
+	}
+	focus = {
+		id = ISH_man_of_steel
+		icon = GFX_ISH_eye_to_political_requirements
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_long_arm_of_the_nkvd
+		}
+		prerequisite = {
+			focus = ISH_new_talented_officers
+		}
+		x = 4
+		y = 1
+		relative_position_id = ISH_long_arm_of_the_nkvd
+		completion_reward = {
+			country_event = {
+				id = ISH.154
+				days = 2
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_man_of_steel"
+			add_country_leader_trait = man_of_steel
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}
+
+#Khrushchev
+focus_tree = {
+	id = ISH_superregional_khrushchev
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ISH
+		}
+	}
+	default = no
+	focus = {
+		id = ISH_the_new_institutions
+		icon = GFX_ISH_new_soviet_state
+		cost = 2.3
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_new_institutions"
+			add_political_power = 50
+			country_event = {
+				id = ISH_khrushchev.2
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_uphold_progressive_values
+		icon = GFX_generic_socialist_progressive_values
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_the_new_institutions
+		}
+		x = -2
+		y = 1
+		relative_position_id = ISH_the_new_institutions
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_uphold_progressive_values"
+			if = {
+				limit = { has_idea = tno_racial_integration_none }
+				swap_ideas = {
+					remove_idea = tno_racial_integration_none
+					add_idea = tno_racial_integration_enforced_integration
+				}
+			}
+			else_if = {
+				limit = { has_idea = tno_racial_integration_segregated_regiments }
+				swap_ideas = {
+					remove_idea = tno_racial_integration_segregated_regiments
+					add_idea = tno_racial_integration_enforced_integration
+				}
+			}
+			else_if = {
+				limit = { has_idea = tno_racial_integration_integrated_military }
+				swap_ideas = {
+					remove_idea = tno_racial_integration_integrated_military
+					add_idea = tno_racial_integration_enforced_integration
+				}
+			}
+			country_event = {
+				id = ISH_khrushchev.3
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_establish_the_assrs
+		icon = GFX_OST_Unite_the_Left
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_uphold_progressive_values
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_uphold_progressive_values
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_establish_the_assrs"
+			add_political_power = 25
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = ISH_a_state_to_make_stalin_proud
+		icon = GFX_ISH_eye_to_political_requirements
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_establish_the_assrs
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_establish_the_assrs
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_a_state_to_make_stalin_proud"
+			country_event = {
+				id = ISH_khrushchev.4
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_out_with_the_old
+		icon = GFX_TOB_Tyranny_of_Kaganovich
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_the_new_institutions
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_the_new_institutions
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_out_with_the_old"
+			country_event = {
+				id = ISH_khrushchev.5
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_the_secret_speech
+		icon = GFX_generic_change_law_speech
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_out_with_the_old
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_out_with_the_old
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_the_secret_speech"
+			country_event = {
+				id = ISH_khrushchev.6
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = ISH_lock_down_the_party
+		icon = GFX_DST_lock_down_the_cities
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_the_secret_speech
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_the_secret_speech
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_lock_down_the_party"
+			country_event = {
+				id = ISH.139
+				days = 1
+			}
+			if = {
+				limit = { has_idea = tno_vote_franchise_support_disenfranchised }
+				swap_ideas = {
+					remove_idea = tno_vote_franchise_support_disenfranchised
+					add_idea = tno_vote_franchise_no_voting
+				}
+			}
+			else_if = {
+				limit = { has_idea = tno_vote_franchise_universal }
+				swap_ideas = {
+					remove_idea = tno_vote_franchise_universal
+					add_idea = tno_vote_franchise_no_voting
+				}
+			}
+			else_if = {
+				limit = { has_idea = tno_vote_franchise_registered_voting }
+				swap_ideas = {
+					remove_idea = tno_vote_franchise_registered_voting
+					add_idea = tno_vote_franchise_no_voting
+				}
+			}
+			else_if = {
+				limit = { has_idea = tno_vote_franchise_elite_voting }
+				swap_ideas = {
+					remove_idea = tno_vote_franchise_elite_voting
+					add_idea = tno_vote_franchise_no_voting
+				}
+			}
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = ISH_another_five_year_plan
+		icon = GFX_GER_Forward_Looking_Industry
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_the_new_institutions
+		}
+		available = {
+			NOT = {
+				has_decision = ISH_fyp_the_first_five_year_plan_mission
+			}
+		}
+		x = 2
+		y = 1
+		relative_position_id = ISH_the_new_institutions
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_another_five_year_plan"
+			set_country_flag = ISH_another_fyp_ongoing
+			activate_mission = ISH_fyp_another_five_year_plan_mission
+			set_temp_variable = { ISHTempAgriStrainInverter = agriculture_monthly_change }
+			multiply_temp_variable = { ISHTempAgriStrainInverter = 2 }
+			set_variable = { ISHAgriculturalStrainTicker = ISHTempAgriStrainInverter }
+			add_to_variable = { ISHAgriculturalStrainTicker = 5 }
+			set_variable = { ISHAgriculturalStrain = 25 }
+			custom_effect_tooltip = ISH_another_five_year_plan_tt
+		}
+	}
+	focus = {
+		id = ISH_reintegrate_the_west
+		icon = GFX_ISH_soviet_cosmopolitanism
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_another_five_year_plan
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_another_five_year_plan
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_reintegrate_the_west"
+			add_manpower = 25000
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	focus = {
+		id = ISH_continue_agricultural_mechanization
+		icon = GFX_ITA_Conclude_the_Mechanization_of_Agriculture
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_reintegrate_the_west
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_reintegrate_the_west
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_continue_agricultural_mechanization"
+			TNO_improve_agriculture_med = yes
+		}
+	}
+	focus = {
+		id = ISH_repudiate_literary_policy
+		icon = GFX_NIK_soviet_education_system
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_a_state_to_make_stalin_proud
+		}
+		prerequisite = {
+			focus = ISH_lock_down_the_party
+		}
+		prerequisite = {
+			focus = ISH_continue_agricultural_mechanization
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISH_lock_down_the_party
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_repudiate_literary_policy"
+			country_event = {
+				id = ISH_khrushchev.7
+				days = 1
+			}
+			TNO_improve_academic_base_med = yes
+		}
+	}
+	focus = {
+		id = ISH_an_end_to_extraneous_repression
+		icon = GFX_TNO_generic_Marching_Men_Soviet
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_a_state_to_make_stalin_proud
+		}
+		prerequisite = {
+			focus = ISH_lock_down_the_party
+		}
+		prerequisite = {
+			focus = ISH_continue_agricultural_mechanization
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_lock_down_the_party
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_an_end_to_extraneous_repression"
+			country_event = {
+				id = ISH_khrushchev.8
+				days = 1
+			}
+			TNO_improve_army_professionalism_med = yes
+		}
+	}
+	focus = {
+		id = ISH_commence_the_khrushchevshchina
+		icon = GFX_generic_victory_parade_commie
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_repudiate_literary_policy
+		}
+		prerequisite = {
+			focus = ISH_an_end_to_extraneous_repression
+		}
+		x = 1
+		y = 1
+		relative_position_id = ISH_repudiate_literary_policy
+		completion_reward = {
+			country_event = {
+				id = ISH.140
+				days = 1
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_commence_the_khrushchevshchina"
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = ISH_shining_in_glory
+		icon = GFX_TNO_generic_soviet_coat_of_arms
+		cost = 2.3
+		prerequisite = {
+			focus = ISH_commence_the_khrushchevshchina
+		}
+		x = 0
+		y = 1
+		relative_position_id = ISH_commence_the_khrushchevshchina
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ISH_shining_in_glory"
+			country_event = {
+				id = ISH_khrushchev.9
+				days = 1
+			}
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	shared_focus = RUS_RWS_nukes_into_the_atomic_age
+}

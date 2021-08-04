@@ -1,0 +1,764 @@
+﻿############################
+## Italian East Africa Events
+############################
+
+add_namespace = IEA
+
+country_event = { #The Question of Succession
+	id = IEA.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.41"}
+	title = IEA.41.t
+	desc = IEA.41.d
+	picture = GFX_news_event_guillet
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Cerulli
+		trigger = {
+			check_variable = {
+				var = IEA_next_viceroy
+				value = 0
+				compare = less_than_or_equals
+			}
+		}
+		name = IEA.41.a
+		set_country_flag = IEA_cerulli_succession
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Enrico Cerulli"
+			desc = "POLITICS_VICEROY_ENRICO_CERULLI_DESC"
+			picture = "Potrait_IEA_Enrico_Cerulli.dds"
+			expire = "1985.1.1"
+			ideology = fascism_subtype
+			traits = {
+			}
+		}
+		ITA = {
+			hidden_effect = {
+				country_event = { id = empiremanagement_IEA.2 days = 5 }
+			}
+		}
+	}
+	option = { #Guillet
+		trigger = {
+			check_variable = {
+				var = IEA_next_viceroy
+				value = 0
+				compare = greater_than_or_equals
+			}
+		}
+		name = IEA.41.b
+		set_country_flag = IEA_guillet_succession
+		kill_country_leader = yes
+		set_politics = {
+			ruling_party = despotism
+		}
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.35
+		}
+		create_country_leader = {
+			name = "Amedeo Guillet"
+			desc = "POLITICS_VICEROY_AMEDEO_GUILLET_DESC"
+			picture = "Portrait_IEA_Amedeo_Guillet.dds"
+			expire = "1985.1.1"
+			ideology = despotism_subtype
+			traits = 	{
+			}
+		}
+		ITA = {
+			hidden_effect = {
+				country_event = { id = empiremanagement_IEA.2 days = 5 }
+			}
+		}
+	}
+}
+
+country_event = { # check
+	id = IEA.999
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.999"}
+	title = IEA.999.t
+	desc = IEA.999.d
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.999.a
+		if = { # collapse
+			limit = {
+				check_variable = {
+					var = IEA_prevent_collapse
+					value = 7
+					compare = less_than_or_equals
+				}
+				has_country_flag = ita_ciano_wins
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.8 days = 3 }
+			}
+		}
+		else_if = { # collapse
+			limit = {
+				check_variable = {
+					var = IEA_prevent_collapse
+					value = 9
+					compare = less_than_or_equals
+				}
+				has_country_flag = ita_scorza_wins
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.8 days = 3 }
+			}
+		}
+		else_if = { # dem decol
+			limit = {
+				check_variable = {
+					var = IEA_prevent_collapse
+					value = 8
+					compare = greater_than_or_equals
+				}
+				NOT = {
+					check_variable = {
+						var = IEA_prevent_collapse
+						value = 10
+						compare = greater_than_or_equals
+					}
+				}	
+				has_country_flag = ita_ciano_wins
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.10 days = 3 }
+			}
+		}
+		else_if = { # dem golden decol
+			limit = {
+				check_variable = {
+					var = IEA_prevent_collapse
+					value = 10
+					compare = greater_than_or_equals
+				}
+				has_country_flag = ita_ciano_wins
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.11 days = 3 }
+			}
+		}
+		else_if = { # scorza decol
+			limit = {
+				check_variable = {
+					var = IEA_prevent_collapse
+					value = 10
+					compare = greater_than_or_equals
+				}
+				has_country_flag = ita_scorza_wins
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.12 days = 3 }
+			}
+		}
+	}
+}
+
+###### Peaceful Decolonization ######
+
+country_event = { #Kenya
+	id = IEA.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.100"}
+	title = IEA.100.t
+	desc = IEA.100.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.100.a
+		hidden_effect = {
+			KEN = {
+				transfer_state = 1097
+				add_state_core = 1097
+				transfer_state = 1096
+				add_state_core = 1096
+				transfer_state = 1095
+				add_state_core = 1095
+				transfer_state = 1093
+				add_state_core = 1093
+				transfer_state = 1092
+				add_state_core = 1092
+				transfer_state = 547
+				add_state_core = 547
+				load_oob = KEN_breakaway
+			}
+			country_event = { id = IEA.101 }
+		}
+	}
+}
+
+country_event = { #Somalia
+	id = IEA.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.101"}
+	title = IEA.101.t
+	desc = IEA.101.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.101.a
+		hidden_effect = {
+			SML = {
+				transfer_state = 1094
+				add_state_core = 1094
+				transfer_state = 1111
+				add_state_core = 1111
+				transfer_state = 1112
+				add_state_core = 1112
+				transfer_state = 1113
+				add_state_core = 1113
+				transfer_state = 1114
+				add_state_core = 1114
+				transfer_state = 1102
+				add_state_core = 1102
+				transfer_state = 1103
+				add_state_core = 1103
+				transfer_state = 559
+				add_state_core = 559
+				transfer_state = 268
+				add_state_core = 268
+				transfer_state = 1110
+				add_state_core = 1110
+				transfer_state = 269
+				add_state_core = 269
+				load_oob = SML_breakaway
+			}
+			country_event = { id = IEA.102 }
+		}
+	}
+}
+
+country_event = { #Oromia
+	id = IEA.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.102"}
+	title = IEA.102.t
+	desc = IEA.102.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.102.a
+		hidden_effect = {
+			ORM = {
+				transfer_state = 1099
+				add_state_core = 1099
+				transfer_state = 1098
+				add_state_core = 1098
+				transfer_state = 1117
+				add_state_core = 1117
+				transfer_state = 1100
+				add_state_core = 1100
+				transfer_state = 1101
+				add_state_core = 1101
+				transfer_state = 1104
+				add_state_core = 1104
+				load_oob = ORM_breakaway
+			}
+			country_event = { id = IEA.103 }
+		}
+	}
+}
+
+country_event = { #Amhara
+	id = IEA.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.103"}
+	title = IEA.103.t
+	desc = IEA.103.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.103.a
+		hidden_effect = {
+			ETH = {
+				transfer_state = 271
+				add_state_core = 271
+				transfer_state = 1105
+				add_state_core = 1105
+				transfer_state = 1106
+				add_state_core = 1106
+				load_oob = ETH_breakaway
+				set_cosmetic_tag = ETH_AMHARA
+			}
+			country_event = { id = IEA.104 }
+		}
+	}
+}
+
+country_event = { #Eritrea
+	id = IEA.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.104"}
+	title = IEA.104.t
+	desc = IEA.104.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.104.a
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						AND = {
+							check_variable = {
+								var = IEA_prevent_collapse
+								value = 10
+								compare = greater_than_or_equals
+							}
+							has_country_flag = ita_ciano_wins
+						}
+					}
+				}
+				ERT = {
+					transfer_state = 1109
+					add_state_core = 1109
+					transfer_state = 1108
+					add_state_core = 1108
+					transfer_state = 1107
+					add_state_core = 1107
+					transfer_state = 550
+					add_state_core = 550
+					load_oob = ERT_breakaway
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = IEA_prevent_collapse
+						value = 10
+						compare = greater_than_or_equals
+					}
+					has_country_flag = ita_ciano_wins
+				}
+				ITA = {
+					transfer_state = 1109
+					add_state_core = 1109
+					transfer_state = 1108
+					add_state_core = 1108
+					transfer_state = 1107
+					add_state_core = 1107
+					transfer_state = 550
+					add_state_core = 550
+					
+				}
+			}
+		}
+	}
+}
+
+###### Full Collapse ######
+country_event = { #Kenya
+	id = IEA.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.112"}
+	title = IEA.112.t
+	desc = IEA.112.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = IEA.112.a
+		hidden_effect = {
+			KEN = {
+				transfer_state = 1097
+				add_state_core = 1097
+				transfer_state = 1096
+				add_state_core = 1096
+				transfer_state = 1095
+				add_state_core = 1095
+				transfer_state = 1093
+				add_state_core = 1093
+				transfer_state = 1092
+				add_state_core = 1092
+				transfer_state = 547
+				add_state_core = 547
+				load_oob = KEN_breakaway
+			}
+			country_event = { id = IEA.113 }
+		}
+	}
+}
+
+country_event = { #Somalia
+	id = IEA.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.113"}
+	title = IEA.113.t
+	desc = IEA.113.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = IEA.113.a
+		hidden_effect = {
+			SML = {
+				transfer_state = 1094
+				add_state_core = 1094
+				transfer_state = 1111
+				add_state_core = 1111
+				transfer_state = 1112
+				add_state_core = 1112
+				transfer_state = 1113
+				add_state_core = 1113
+				transfer_state = 1114
+				add_state_core = 1114
+				transfer_state = 559
+				add_state_core = 559
+				transfer_state = 268
+				add_state_core = 268
+				transfer_state = 1110
+				add_state_core = 1110
+				transfer_state = 269
+				add_state_core = 269
+				load_oob = SML_breakaway
+			}
+			country_event = { id = IEA.114 }
+		}
+	}
+}
+
+country_event = { #Oromia
+	id = IEA.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.114"}
+	title = IEA.114.t
+	desc = IEA.114.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = IEA.114.a
+		hidden_effect = {
+			ORM = {
+				transfer_state = 1099
+				add_state_core = 1099
+				transfer_state = 1098
+				add_state_core = 1098
+				transfer_state = 1117
+				add_state_core = 1117
+				transfer_state = 1102
+				add_state_core = 1102
+				transfer_state = 1100
+				add_state_core = 1100
+				transfer_state = 1101
+				add_state_core = 1101
+				load_oob = ORM_breakaway
+				set_politics = {
+					ruling_party = despotism
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.57
+				}
+				create_country_leader = {
+					name = "Tadesse Birru"
+					desc = "POLITICS_OJUKWU_DESC"
+					picture = "Portrait_Oromo_Tadesse_Birru.dds"
+					expire = "1985.1.1"
+					ideology = despotism_subtype
+					traits = {
+					}
+				}
+				set_cosmetic_tag = ORM_LIBERATIONFRONT
+			}
+			country_event = { id = IEA.115 }
+		}
+	}
+}
+
+country_event = { #Black Lions Movement
+	id = IEA.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.115"}
+	title = IEA.115.t
+	desc = IEA.115.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = IEA.115.a
+		hidden_effect = {
+			ETB = {
+				transfer_state = 271
+				add_state_core = 271
+				transfer_state = 1104
+				add_state_core = 1104
+				transfer_state = 1105
+				add_state_core = 1105
+				transfer_state = 1106
+				add_state_core = 1106
+				transfer_state = 1104
+				add_state_core = 1104
+				transfer_state = 1103
+				add_state_core = 1103
+				set_capital = 271
+				load_oob = ETB_breakaway
+				country_event = { id = IEA.123 days = 7 }
+			}
+			country_event = { id = IEA.116 }
+		}
+	}
+}
+
+country_event = { #Eritrea
+	id = IEA.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.116"}
+	title = IEA.116.t
+	desc = IEA.116.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = IEA.116.a
+		hidden_effect = {
+			ERT = {
+				transfer_state = 1109
+				add_state_core = 1109
+				transfer_state = 1108
+				add_state_core = 1108
+				transfer_state = 1107
+				add_state_core = 1107
+				transfer_state = 550
+				add_state_core = 550
+				load_oob = ERT_breakaway
+				set_politics = {
+					ruling_party = authoritarian_democrat
+				}
+				add_popularity = {
+					ideology = authoritarian_democrat
+					popularity = 0.57
+				}
+				create_country_leader = {
+					name = "Hamid Idris Awate"
+					desc = "POLITICS_OJUKWU_DESC"
+					picture = "gfx/leaders/IEA/Portrait_IEA_Hamid_Idris_Awate.dds"
+					expire = "1985.1.1"
+					ideology = authoritarian_democrat_subtype
+					traits = {
+						#
+					}
+				}
+				set_global_flag = IEA_full_collapse
+			}
+			ITA = {
+				country_event = { id = empiremanagement_IEA.9 days = 2 }
+			}
+		}
+	}
+}
+
+###### Partial Collapse War Events ######
+country_event = { #Correntia - Somalia War
+	id = IEA.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.117"}
+	title = IEA.117.t
+	desc = IEA.117.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.117.a
+		hidden_effect = {
+			SML = {
+				declare_war_on = { type = annex_everything    target = COR }
+			}
+			ERT = {
+				country_event = { id = IEA.118 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #Correntia - Eritrea War
+	id = IEA.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.118"}
+	title = IEA.118.t
+	desc = IEA.118.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.118.a
+		hidden_effect = {
+			ERT = {
+				declare_war_on = { type = annex_everything    target = COR }
+			}
+			KEN = {
+				country_event = { id = IEA.119 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #Correntia - Kenya War
+	id = IEA.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.119"}
+	title = IEA.119.t
+	desc = IEA.119.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.119.a
+		hidden_effect = {
+			KEN = {
+				declare_war_on = { type = annex_everything    target = COR }
+			}
+			ETB = {
+				country_event = { id = IEA.120 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #EAMA - Black Lions Movement War
+	id = IEA.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.120"}
+	title = IEA.120.t
+	desc = IEA.120.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.120.a
+		hidden_effect = {
+			ETB = {
+				declare_war_on = { type = annex_everything    target = EAM }
+			}
+			ORM = {
+				country_event = { id = IEA.121 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #EAMA - Oromo Liberation Front War
+	id = IEA.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.121"}
+	title = IEA.121.t
+	desc = IEA.121.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.121.a
+		hidden_effect = {
+			ORM = {
+				declare_war_on = { type = annex_everything    target = EAM }
+			}
+			ETB = {
+				country_event = { id = IEA.122 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #Black Lions Movement - Oromo Liberation Front War
+	id = IEA.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.122"}
+	title = IEA.122.t
+	desc = IEA.122.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.122.a
+		hidden_effect = {
+			ETB = {
+				declare_war_on = { type = annex_everything    target = ORM }
+			}
+			news_event = { id = WORLD.945 }
+		}
+	}
+}
+
+###### Full Collapse War Event ######
+country_event = { #Black Lions Movement - Oromo Liberation Front War
+	id = IEA.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.123"}
+	title = IEA.123.t
+	desc = IEA.123.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.123.a
+		hidden_effect = {
+			ETB = {
+				declare_war_on = { type = annex_everything    target = ORM }
+			}
+			news_event = { id = WORLD.945 }
+		}
+	}
+}
+
+###### Peace Events ######
+country_event = { #Correntia is Defeated
+	id = IEA.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.124"}
+	title = IEA.124.t
+	desc = IEA.124.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.124.a
+		hidden_effect = {
+			SML = {
+				transfer_state = 1112
+				transfer_state = 1113
+			}
+			KEN = {
+				transfer_state = 1096
+			}
+			ERT = {
+				transfer_state = 1108
+			}
+		}
+	}
+}
+
+country_event = { #Oromia defeats Black Lions
+	id = IEA.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event IEA.125"}
+	title = IEA.125.t
+	desc = IEA.125.d
+	picture = GFX_report_event_italian_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = IEA.125.a
+		hidden_effect = {
+			ORM = {
+				transfer_state = 1100
+				transfer_state = 1101
+			}
+		}
+	}
+}

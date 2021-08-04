@@ -1,0 +1,948 @@
+#####################################################################################################
+#####################################################################################################
+##	  ________            ______      __    __              ____                   __    ___       ##
+##	 /_  __/ /_  ___     / ____/___  / /___/ /__  ____     / __ \___  ____  __  __/ /_  / (_)____  ##
+##	  / / / __ \/ _ \   / / __/ __ \/ / __  / _ \/ __ \   / /_/ / _ \/ __ \/ / / / __ \/ / / ___/  ##
+##	 / / / / / /  __/  / /_/ / /_/ / / /_/ /  __/ / / /  / _, _/  __/ /_/ / /_/ / /_/ / / / /__    ##
+##	/_/ /_/ /_/\___/   \____/\____/_/\__,_/\___/_/ /_/  /_/ |_|\___/ .___/\__,_/_.___/_/_/\___/    ##
+##                                                         		  /_/                              ##
+#####################################################################################################
+#####################################################################################################
+
+###################
+## Zlatoust tree ##
+## 	by Morrina	 ##
+###################
+shared_focus = {
+	id = UDM_speculation_and_accumulation
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_speculation_and_accumulation"
+		country_event = {
+			id = UDM.1
+			days = 1
+		}
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = UDM_stock_up
+	icon = GFX_TNO_generic_gun_production
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_speculation_and_accumulation
+	}
+	x = -2
+	y = 1
+	relative_position_id = UDM_speculation_and_accumulation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_stock_up"
+		add_timed_idea = { idea = UDM_stocking_up days = 365 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 1750
+			producer = UDM
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 250
+			producer = UDM
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_frontlines
+	icon = GFX_goal_ARC_The_Proud_Russian_Army
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_stock_up
+	}
+	x = -4
+	y = 1
+	relative_position_id = UDM_stock_up
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_frontlines"
+		army_experience = 15
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_flex_our_muscle
+	icon = GFX_generic_diplomacy_expansion
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_frontlines
+	}
+	x = -1
+	y = 1
+	relative_position_id = UDM_the_frontlines
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_flex_our_muscle"
+		every_neighbor_country = {
+			limit = {
+				is_west_siberian_nation = yes
+			}
+			country_event = {
+				id = UDM.2
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_control_the_roads
+	icon = GFX_IBR_open_road
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_flex_our_muscle
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_flex_our_muscle
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_control_the_roads"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_yugra_connection
+	icon = GFX_Generic_Shady_Deal
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_frontlines
+	}
+	prerequisite = {
+		focus = UDM_guns_for_the_men
+	}
+	x = 1
+	y = 1
+	relative_position_id = UDM_the_frontlines
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_yugra_connection"
+		KOM = {
+			country_event = {
+				id = UDM.3
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_a_mercenary_state
+	icon = GFX_MAG_Soldiers_Without_Borders
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_yugra_connection
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_the_yugra_connection
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_a_mercenary_state"
+		custom_effect_tooltip = UDM_a_mercenary_state_tt
+		set_country_flag = UDM_CAN_HIRE_MERCS
+	}
+}
+
+shared_focus = {
+	id = UDM_pay_to_pass
+	icon = GFX_URL_A_Paying_Job
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_control_the_roads
+	}
+	prerequisite = {
+		focus = UDM_a_mercenary_state
+	}
+	x = 1
+	y = 1
+	relative_position_id = UDM_control_the_roads
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_pay_to_pass"
+		custom_effect_tooltip = UDM_pay_to_pass_tt
+		set_country_flag = UDM_PAY_TO_PASS_FLAG
+	}
+}
+
+shared_focus = {
+	id = UDM_free_to_stay
+	icon = GFX_URL_A_Comfortable_Barracks
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_pay_to_pass
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_pay_to_pass
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_free_to_stay"
+		country_event = {
+			id = UDM.5
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_guns_for_the_men
+	icon = GFX_TNO_generic_arms_shipments
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_stock_up
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_stock_up
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_guns_for_the_men"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 3000
+			producer = UDM
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_theres_always_a_price
+	icon = GFX_generic_change_law_trade
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_guns_for_the_men
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_guns_for_the_men
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_theres_always_a_price"
+		add_offsite_building = { type = industrial_complex level = 1 }
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = UDM_were_the_only_ones_selling_guns
+	icon = GFX_MAG_The_Best_Guns_Money_Can_Buy
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_theres_always_a_price
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_theres_always_a_price
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_were_the_only_ones_selling_guns"
+		add_offsite_building = { type = arms_factory level = 1 }
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_siberian_mediator
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_were_the_only_ones_selling_guns
+		focus = UDM_fortify_zlatoust
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_were_the_only_ones_selling_guns
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_siberian_mediator"
+		every_country = {
+			limit = {
+				has_country_flag = udm_sphere_of_influence
+				NOT = {
+					has_government = ultranational_socialism
+				}
+			}
+			add_opinion_modifier = {
+				target = UDM
+				modifier = UDM_the_siberian_mediator_mod
+			}
+		}
+		country_event = {
+			id = UDM.6
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_bullish_charge
+	icon = GFX_POR_bullfight
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_siberian_mediator
+		focus = UDM_the_all_russian_contractor
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_the_siberian_mediator
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_bullish_charge"
+		add_war_support = 0.2
+		country_event = {
+			id = UDM.7
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_dig_in
+	icon = GFX_COG_Fortify_The_Border
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_speculation_and_accumulation
+	}
+	x = 2
+	y = 1
+	relative_position_id = UDM_speculation_and_accumulation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_dig_in"
+		573 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 1233
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 12567
+			}
+		}
+		871 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 10716
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_sell_off_our_stock
+	icon = GFX_VIN_Optional_Wages
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_dig_in
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_dig_in
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_sell_off_our_stock"
+		custom_effect_tooltip = gain_loot_1
+		add_to_variable = { loot_amount = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = -250
+			producer = UDM
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_yugran_defense
+	icon = GFX_UPO_From_the_Shadows
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_sell_off_our_stock
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_sell_off_our_stock
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_yugran_defense"
+		KOM = {
+			country_event = {
+				id = UDM.8
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_fortify_zlatoust
+	icon = GFX_BAS_Fortification_Building
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_yugran_defense
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_the_yugran_defense
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_fortify_zlatoust"
+		573 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 1233
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = 12287
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = 10133
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 12567
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = 1808
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_all_russian_contractor
+	icon = GFX_MAG_A_Mercenary_Force
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_fortify_zlatoust
+		focus = UDM_were_the_only_ones_selling_guns
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_fortify_zlatoust
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_all_russian_contractor"
+		custom_effect_tooltip = UDM_the_all_russian_contractor_tt
+		add_ideas = UDM_warlord_interventions
+	}
+}
+
+shared_focus = {
+	id = UDM_surpassing_forecasts
+	icon = GFX_TNO_Generic_Foreign_Investment
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_siberian_mediator
+		focus = UDM_the_all_russian_contractor
+	}
+	x = 4
+	y = 1
+	relative_position_id = UDM_the_siberian_mediator
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_surpassing_forecasts"
+		add_political_power = 120
+	}
+}
+
+shared_focus = {
+	id = UDM_the_home_front
+	icon = GFX_UPO_Friends_in_Russia
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_dig_in
+	}
+	x = 4
+	y = 1
+	relative_position_id = UDM_dig_in
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_home_front"
+		add_stability = 0.15
+	}
+}
+
+shared_focus = {
+	id = UDM_double_our_portfolio
+	icon = GFX_VIN_Rights_of_Corporation
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_sell_off_our_stock
+	}
+	prerequisite = {
+		focus = UDM_the_home_front
+	}
+	x = 3
+	y = 1
+	relative_position_id = UDM_sell_off_our_stock
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_double_our_portfolio"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 2000
+			producer = UDM
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 250
+			producer = UDM
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_2
+			amount = 250
+			producer = UDM
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_guns_for_factories
+	icon = GFX_MAG_Preliminary_Arming
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_double_our_portfolio
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_double_our_portfolio
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_guns_for_factories"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = -750
+			producer = UDM
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_expanding_the_sprawl
+	icon = GFX_generic_change_law_property
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_home_front
+	}
+	x = 1
+	y = 1
+	relative_position_id = UDM_the_home_front
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_expanding_the_sprawl"
+		every_owned_state = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_the_industry_never_ends
+	icon = GFX_JAP_Standardizing_Heavy_Industry
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_expanding_the_sprawl
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_expanding_the_sprawl
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_the_industry_never_ends"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_dynamic_revolution
+	icon = GFX_RAJ_India_The_Trade
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_the_industry_never_ends
+	}
+	prerequisite = {
+		focus = UDM_guns_for_factories
+	}
+	x = -1
+	y = 1
+	relative_position_id = UDM_the_industry_never_ends
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_dynamic_revolution"
+		every_neighbor_country = {
+			limit = {
+				is_west_siberian_nation = yes
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.05
+			}
+			add_stability = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = UDM_replace_and_restore
+	icon = GFX_SPA_Settle_New_Lands
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_dynamic_revolution
+	}
+	x = 0
+	y = 1
+	relative_position_id = UDM_dynamic_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_replace_and_restore"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = UDM_guns_like_no_other
+	icon = GFX_generic_advanced_weapons
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_free_to_stay
+		focus = UDM_replace_and_restore
+	}
+	prerequisite = {
+		focus = UDM_the_bullish_charge
+	}
+	prerequisite = {
+		focus = UDM_surpassing_forecasts
+	}
+	x = 2
+	y = 1
+	relative_position_id = UDM_free_to_stay
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_guns_like_no_other"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = infantry_weapons
+		}
+
+	}
+}
+
+shared_focus = {
+	id = UDM_out_of_our_pockets
+	icon = GFX_ORE_common_investment_contributions
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_free_to_stay
+		focus = UDM_replace_and_restore
+	}
+	prerequisite = {
+		focus = UDM_the_bullish_charge
+	}
+	prerequisite = {
+		focus = UDM_surpassing_forecasts
+	}
+	x = 6
+	y = 1
+	relative_position_id = UDM_free_to_stay
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_out_of_our_pockets"
+		add_war_support = 0.15
+		add_political_power = -50
+	}
+}
+
+shared_focus = {
+	id = UDM_industry_like_no_other
+	icon = GFX_GER_industry_calls
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_free_to_stay
+		focus = UDM_replace_and_restore
+	}
+	prerequisite = {
+		focus = UDM_the_bullish_charge
+	}
+	prerequisite = {
+		focus = UDM_surpassing_forecasts
+	}
+	x = 10
+	y = 1
+	relative_position_id = UDM_free_to_stay
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_industry_like_no_other"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = industry
+		}
+		add_offsite_building = { type = arms_factory level = 1 }
+	}
+}
+
+shared_focus = {
+	id = UDM_into_the_soldiers
+	icon = GFX_ITA_Veterans_of_the_World_War
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_guns_like_no_other
+	}
+	prerequisite = {
+		focus = UDM_out_of_our_pockets
+	}
+	prerequisite = {
+		focus = UDM_industry_like_no_other
+	}
+	x = 2
+	y = 1
+	relative_position_id = UDM_guns_like_no_other
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_into_the_soldiers"
+		add_ideas = UDM_zlatoust_security_forces
+	}
+}
+
+shared_focus = {
+	id = UDM_into_the_defense_line
+	icon = GFX_ITA_our_splendid_isolation
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_guns_like_no_other
+	}
+	prerequisite = {
+		focus = UDM_out_of_our_pockets
+	}
+	prerequisite = {
+		focus = UDM_industry_like_no_other
+	}
+	x = 6
+	y = 1
+	relative_position_id = UDM_guns_like_no_other
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_into_the_defense_line"
+		add_ideas = UDM_final_defenses
+	}
+}
+
+shared_focus = {
+	id = UDM_our_shining_republic
+	icon = GFX_UDM_golden_republic
+	cost = 6.00
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = UDM_into_the_soldiers
+	}
+	prerequisite = {
+		focus = UDM_into_the_defense_line
+	}
+	x = 2
+	y = 1
+	relative_position_id = UDM_into_the_soldiers
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus UDM_our_shining_republic"
+		add_stability = 0.2
+		add_political_power = 100
+		custom_effect_tooltip = gain_loot_2
+		add_to_variable = { loot_amount = 2 }
+	}
+}

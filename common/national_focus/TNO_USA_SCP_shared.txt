@@ -1,0 +1,242 @@
+shared_focus = {
+	id = USA_scp_the_jackson_presidency
+	icon = GFX_USA_Scoop
+	cost = 1.5
+	x = 0
+	y = 0
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_the_jackson_presidency"
+		country_event = { id = scp.1 }
+		add_political_power = 50
+		add_stability = 0.03
+	}
+}
+
+shared_focus = {
+	id = USA_scp_welfare_for_the_people
+	icon = GFX_generic_welfare_general
+	cost = 1.5
+	x = -3
+	y = 1
+	relative_position_id = USA_scp_the_jackson_presidency
+	prerequisite = { focus = USA_scp_the_jackson_presidency }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_welfare_for_the_people"
+		country_event = { id = scp.2 }
+		custom_effect_tooltip = USA_add_NPP_popularity_low_north
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_scp_a_right_not_a_privilege
+	icon = GFX_generic_constitution
+	cost = 1.5
+	x = -1
+	y = 1
+	relative_position_id = USA_scp_welfare_for_the_people
+	prerequisite = { focus = USA_scp_welfare_for_the_people }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_a_right_not_a_privilege"
+		TNO_improve_poverty_low = yes
+		custom_effect_tooltip = econ_misc_expenses_add_small_increase
+		add_to_variable = { misc_expenses = 60 }
+	}
+}
+
+shared_focus = {
+	id = USA_scp_contacts_in_the_unions
+	icon = GFX_USA_Bring_Back_Unions
+	cost = 1.5
+	x = 1
+	y = 1
+	relative_position_id = USA_scp_welfare_for_the_people
+	prerequisite = { focus = USA_scp_welfare_for_the_people }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_welfare_for_the_people"
+		custom_effect_tooltip = USA_scp_industry_popularity_boosts
+		TNO_improve_industrial_equipment_low = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						arms_factory > 4
+						industrial_complex > 4
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_scp_strike_the_fr
+	icon = GFX_USA_secure_party_npp
+	cost = 1.5
+	x = 0
+	y = 1
+	relative_position_id = USA_scp_the_jackson_presidency
+	prerequisite = { focus = USA_scp_the_jackson_presidency }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_strike_the_fr"
+		custom_effect_tooltip = USA_scp_banish_fr
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.06 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_scp_the_two_snakes
+	icon = GFX_USA_Against_the_NPP
+	cost = 1.5
+	x = 0
+	y = 1
+	relative_position_id = USA_scp_strike_the_fr
+	prerequisite = { focus = USA_scp_strike_the_fr }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_the_two_snakes"
+		custom_effect_tooltip = USA_scp_banish_extremes
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				subtract_from_variable = { NPP_L_bonus_popularity = 0.06 }
+				subtract_from_variable = { NPP_Y_bonus_popularity = 0.06 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_scp_meet_the_chiefs
+	icon = GFX_USA_Sea_Air_and_Land
+	cost = 1.5
+	x = 3
+	y = 1
+	relative_position_id = USA_scp_the_jackson_presidency
+	prerequisite = { focus = USA_scp_the_jackson_presidency }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_meet_the_chiefs"
+		country_event = { id = scp.3 }
+		army_experience = 25
+	}
+}
+
+shared_focus = {
+	id = USA_scp_why_we_fight
+	icon = GFX_USA_get_in_loser_were_saving_america
+	cost = 1.5
+	x = -1
+	y = 1
+	relative_position_id = USA_scp_meet_the_chiefs
+	prerequisite = { focus = USA_scp_meet_the_chiefs }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_why_we_fight"
+		country_event = { id = scp.4 }
+		custom_effect_tooltip = USA_scp_military_support
+		add_war_support = 0.03
+		hidden_effect = {
+			every_owned_state = {
+                limit = {
+                    OR = {
+                        state = 463 #alaska
+                        state = 377 # arizona
+                        state = 378 # california
+                        state = 395 # illinois
+                        state = 396 # indiana
+                        state = 261 # ohio
+                        state = 393 # michigan
+                        state = 385 # Oregon
+                        state = 358 # ny
+                        state = 359 # nj
+                        state = 357 # ct
+                        state = 360 # penn
+                    }
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_scp_turn_on_the_hose
+	icon = GFX_USA_Retake_Our_Land
+	cost = 1.5
+	x = 1
+	y = 1
+	relative_position_id = USA_scp_meet_the_chiefs
+	prerequisite = { focus = USA_scp_meet_the_chiefs }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_turn_on_the_hose"
+		TNO_improve_army_professionalism_low = yes
+		custom_effect_tooltip = econ_misc_expenses_add_small_increase
+		add_to_variable = { misc_expenses = 60 }
+	}
+}
+
+shared_focus = {
+	id = USA_scp_army_modernization_program
+	icon = GFX_USA_State_Of_The_Art_Technology
+	cost = 1.5
+	x = 0
+	y = 1
+	relative_position_id = USA_scp_the_two_snakes
+	prerequisite = { focus = USA_scp_a_right_not_a_privilege }
+	prerequisite = { focus = USA_scp_contacts_in_the_unions }
+	prerequisite = { focus = USA_scp_the_two_snakes }
+	prerequisite = { focus = USA_scp_why_we_fight }
+	prerequisite = { focus = USA_scp_turn_on_the_hose }
+	ai_will_do = { factor = 1000 }
+	select_effect = { 
+		custom_effect_tooltip = USA_scp_introduce_army_modernization
+		scp_army_modernization_program = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_scp_army_modernization_program"
+		custom_effect_tooltip = USA_scp_hold_vote
+		hidden_effect = {
+			check_if_bill_passed = yes
+			if = {
+				limit = { has_country_flag = bill_passed }
+				country_event = { id = scp.5 }
+			}
+			else = { country_event = { id = scp.6 } }
+			USA_bill_clear = yes
+		}
+		
+	}
+}

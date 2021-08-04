@@ -1,0 +1,1937 @@
+RK_difficulty_category = {
+	RK_hard_mode = {
+		icon = generic_prospect_for_resources
+		
+		available = {
+			OR = {
+				original_tag = ANG
+				original_tag = MZB
+				original_tag = COG
+			}
+			date < 1963.1.1
+			is_ai = no
+		}
+		visible = {
+			OR = {
+				NOT = {
+					has_global_flag = SAFWAR_SAF_hard
+					date > 1963.1.1
+					is_ai = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_hard_mode"
+			set_global_flag = SAFWAR_SAF_hard
+			custom_effect_tooltip = SAF_hard_mode_tt
+			hidden_effect = {
+				SAF = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 40000
+					}
+					add_equipment_to_stockpile = {
+						type = anti_tank_equipment
+						amount = 4000
+					}
+					add_equipment_to_stockpile = {
+						type = motorized_equipment
+						amount = 2500
+					}
+					add_equipment_to_stockpile = {
+						type = support_equipment
+						amount = 4000
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_equipment
+						amount = 250
+					}
+					add_manpower = 200000
+					add_ideas = RK_AI_hardmode
+					load_OOB = SAF_hard
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+MZB_investigate_treason_category = {
+	MZB_monitor_funding = {
+		allowed = {
+			tag = MZB
+		}
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 0
+		} 
+	}
+	MZB_send_the_evidence = {
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 0
+		} 
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_send_the_evidence"
+			hidden_effect = {
+				MZB_compile_the_case = yes
+			}
+			
+			clr_country_flag = MZB_the_investigation_begins
+		}
+	}
+	MZB_secure_funding_1 = {
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 25
+
+		days_re_enable = 30
+		
+		complete_effect = {
+			custom_effect_tooltip = MZB_secure_funding_tt
+			add_to_variable = {
+				var = investigation_funds
+				value = 10
+			}
+		}
+	}
+	MZB_secure_funding_2 = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 25
+
+		fire_only_once = yes
+		
+		complete_effect = {
+			custom_effect_tooltip = MZB_secure_funding_tt
+			add_to_variable = {
+				var = investigation_funds
+				value = 10
+			}
+		}
+	}
+	MZB_muller_small_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_muller_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_1_tt
+				check_variable = {
+					var = investigation_funds
+					value = 1
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 25
+		custom_cost_text = MZB_small_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 1
+			}
+			set_country_flag = MZB_muller_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_muller_investigation
+			hidden_effect = {
+				random_list = {
+					65 = {
+						country_event = {
+							id = MZB_INVESTIGATION.31
+							days = 1
+						}
+					}
+					35 = {
+						MZB_muller_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+	MZB_muller_medium_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_muller_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_2_tt
+				check_variable = {
+					var = investigation_funds
+					value = 2
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 50
+		custom_cost_text = MZB_medium_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 2
+			}
+			set_country_flag = MZB_muller_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_muller_investigation
+			hidden_effect = {
+				random_list = {
+					40 = {
+						country_event = {
+							id = MZB_INVESTIGATION.31
+							days = 1
+						}
+					}
+					60 = {
+						MZB_muller_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+	MZB_muller_priority_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_muller_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_3_tt
+				check_variable = {
+					var = investigation_funds
+					value = 3
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 100
+		custom_cost_text = MZB_priority_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 3
+			}
+			set_country_flag = MZB_muller_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_muller_investigation
+			hidden_effect = {
+				random_list = {
+					20 = {
+						country_event = {
+							id = MZB_INVESTIGATION.31
+							days = 1
+						}
+					}
+					80 = {
+						MZB_muller_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+	MZB_schenck_small_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_schenck_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_1_tt
+				check_variable = {
+					var = investigation_funds
+					value = 1
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 25
+		custom_cost_text = MZB_small_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 1
+			}
+			set_country_flag = MZB_schenck_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_schenck_investigation
+			hidden_effect = {
+				random_list = {
+					85 = {
+						country_event = {
+							id = MZB_INVESTIGATION.32
+							days = 1
+						}
+					}
+					15 = {
+						MZB_schenck_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+	MZB_schenck_medium_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_schenck_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_2_tt
+				check_variable = {
+					var = investigation_funds
+					value = 2
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 50
+		custom_cost_text = MZB_medium_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 2
+			}
+			set_country_flag = MZB_schenck_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_schenck_investigation
+			hidden_effect = {
+				random_list = {
+					70 = {
+						country_event = {
+							id = MZB_INVESTIGATION.32
+							days = 1
+						}
+					}
+					30 = {
+						MZB_schenck_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+	MZB_schenck_priority_investigation = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_the_investigation_begins
+		}
+		available = {
+			NOT = {
+				has_country_flag = MZB_schenck_investigation
+			}
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_cost_3_tt
+				check_variable = {
+					var = investigation_funds
+					value = 3
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 50
+		}
+		cost = 100
+		custom_cost_text = MZB_priority_investigation
+		days_remove = 30
+
+		fire_only_once = no
+		fixed_random_seed = no
+		
+		complete_effect = {
+			subtract_from_variable = {
+				var = investigation_funds
+				value = 3
+			}
+			set_country_flag = MZB_schenck_investigation
+		}
+
+		remove_effect = {
+			clr_country_flag = MZB_schenck_investigation
+			hidden_effect = {
+				random_list = {
+					50 = {
+						country_event = {
+							id = MZB_INVESTIGATION.32
+							days = 1
+						}
+					}
+					50 = {
+						MZB_schenck_investigation_pick_evidence = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+MZB_war_preparations_category = {
+	MZB_conscript_more_workers = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_slave_munitions
+		}
+		ai_will_do = {
+			factor = 0
+		} 
+		custom_cost_trigger = { has_manpower > 500 }
+		custom_cost_text = MZB_manpower_500_cost_tt
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_conscript_more_workers"
+			add_manpower = -500
+			add_timed_idea = {
+				idea = MZB_conscripted_additional_workers
+				days = 60
+			}
+		}
+		days_re_enable = 60
+	}
+	MZB_reduced_rations_for_workers = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_slave_munitions
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 15
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_reduced_rations_for_workers"
+			add_timed_idea = {
+				idea =MZB_reduced_worker_rations
+				days = 60
+			}
+		}
+		days_re_enable = 60
+	}
+	MZB_promote_loyalists = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_southern_land_grants
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_promote_loyalists"
+			add_war_support = 0.05
+		}
+		days_re_enable = 30
+	}
+	MZB_chemicals_for_guns = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_building_a_stockpile
+			custom_trigger_tooltip = {
+				tooltip = MZB_money_reserves_1_cost_desc_tt
+				check_variable = {
+					var = money_reserves
+					value = 1
+					compare = greater_than
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		custom_cost_trigger = { always = yes }
+		custom_cost_text = MZB_money_reserves_1_cost_tt
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_chemicals_for_guns"
+			subtract_from_variable = { money_reserves = 1 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = GER
+			}
+		}
+		days_re_enable = 90
+	}
+	MZB_make_examples_of_degenerate_ss = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_prioritize_ss_development
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_make_examples_of_degenerate_ss"
+			add_manpower = -20
+			add_stability = 0.02
+			add_war_support = 0.02
+		}
+		days_re_enable = 30
+	}
+	MZB_set_up_patrols = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+			NOT = { has_country_flag = MZB_patrols }
+		}
+		available = {
+			has_completed_focus = MZB_arms_for_aryans
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		custom_cost_trigger = { has_manpower > 50 }
+		custom_cost_text = MZB_manpower_50_cost_tt
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_set_up_patrols"
+			add_manpower = -50
+			add_stability = 0.05
+			set_country_flag = MZB_patrols
+			clr_country_flag = MZB_reduced_patrols
+		}
+	}
+	MZB_reduce_patrols = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+			NOT = { has_country_flag = MZB_reduced_patrols }
+			has_country_flag = MZB_patrols
+		}
+		available = {
+			has_completed_focus = MZB_arms_for_aryans
+		}
+		ai_will_do = {
+			factor = 0
+		} 
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_reduce_patrols"
+			add_manpower = 50
+			add_stability = -0.05
+			set_country_flag = MZB_reduced_patrols
+			clr_country_flag = MZB_patrols
+		}
+	}
+	MZB_test_the_gas = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_war_preparations_begin
+		}
+		available = {
+			has_completed_focus = MZB_booby_trap_the_border
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 100
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_test_the_gas"
+			add_stability = -0.1
+			MZB_huttig_paranoia_idea_leveler = yes
+			custom_effect_tooltip = MZB_huttig_paranoia_decrease_tt
+		}
+	}
+}
+
+MZB_booby_trap_the_border_category = {
+	MZB_choma_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_choma_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_choma_level_one"
+			
+		}
+	}
+	MZB_choma_level_two = {
+		visible = {
+			has_country_flag = MZB_choma_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_choma_level_one_traps
+			set_country_flag = MZB_choma_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_choma_level_two"
+			
+		}
+	}
+	MZB_choma_level_three = {
+		visible = {
+			has_country_flag = MZB_choma_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_choma_level_two_traps
+			set_country_flag = MZB_choma_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_choma_level_two"
+			
+		}
+	}
+	MZB_lupane_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_lupane_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_lupane_level_one"
+			
+		}
+	}
+	MZB_lupane_level_two = {
+		visible = {
+			has_country_flag = MZB_lupane_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_lupane_level_one_traps
+			set_country_flag = MZB_lupane_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_lupane_level_two"
+			
+		}
+	}
+	MZB_lupane_level_three = {
+		visible = {
+			has_country_flag = MZB_lupane_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_lupane_level_two_traps
+			set_country_flag = MZB_lupane_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_lupane_level_two"
+			
+		}
+	}
+	MZB_francistown_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_francistown_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_francistown_level_one"
+			
+		}
+	}
+	MZB_francistown_level_two = {
+		visible = {
+			has_country_flag = MZB_francistown_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_francistown_level_one_traps
+			set_country_flag = MZB_francistown_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_francistown_level_two"
+			
+		}
+	}
+	MZB_francistown_level_three = {
+		visible = {
+			has_country_flag = MZB_francistown_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_francistown_level_two_traps
+			set_country_flag = MZB_francistown_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_francistown_level_two"
+			
+		}
+	}
+	MZB_rommelstadt_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_rommelstadt_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_rommelstadt_level_one"
+			
+		}
+	}
+	MZB_rommelstadt_level_two = {
+		visible = {
+			has_country_flag = MZB_rommelstadt_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_rommelstadt_level_one_traps
+			set_country_flag = MZB_rommelstadt_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_rommelstadt_level_two"
+			
+		}
+	}
+	MZB_rommelstadt_level_three = {
+		visible = {
+			has_country_flag = MZB_rommelstadt_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_rommelstadt_level_two_traps
+			set_country_flag = MZB_rommelstadt_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_rommelstadt_level_two"
+			
+		}
+	}
+	MZB_masvingo_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_masvingo_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_masvingo_level_one"
+			
+		}
+	}
+	MZB_masvingo_level_two = {
+		visible = {
+			has_country_flag = MZB_masvingo_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_masvingo_level_one_traps
+			set_country_flag = MZB_masvingo_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_masvingo_level_two"
+			
+		}
+	}
+	MZB_masvingo_level_three = {
+		visible = {
+			has_country_flag = MZB_masvingo_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_masvingo_level_two_traps
+			set_country_flag = MZB_masvingo_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_masvingo_level_two"
+			
+		}
+	}
+	MZB_gaza_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_gaza_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_gaza_level_one"
+			
+		}
+	}
+	MZB_gaza_level_two = {
+		visible = {
+			has_country_flag = MZB_gaza_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_gaza_level_one_traps
+			set_country_flag = MZB_gaza_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_gaza_level_two"
+			
+		}
+	}
+	MZB_gaza_level_three = {
+		visible = {
+			has_country_flag = MZB_gaza_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_gaza_level_two_traps
+			set_country_flag = MZB_gaza_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_gaza_level_two"
+			
+		}
+	}
+	MZB_maputo_level_one = {
+		visible = {
+			has_country_flag = MZB_booby_trap_the_border_flag
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			set_country_flag = MZB_maputo_level_one_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_maputo_level_one"
+			
+		}
+	}
+	MZB_maputo_level_two = {
+		visible = {
+			has_country_flag = MZB_maputo_level_one_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_maputo_level_one_traps
+			set_country_flag = MZB_maputo_level_two_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_maputo_level_two"
+			
+		}
+	}
+	MZB_maputo_level_three = {
+		visible = {
+			has_country_flag = MZB_maputo_level_two_traps
+		}
+		allowed = {
+            tag = MZB
+        }
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = MZB_maputo_level_two_traps
+			set_country_flag = MZB_maputo_level_three_traps
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_maputo_level_two"
+			
+		}
+	}
+}
+
+MZB_supply_the_boers_category = {
+	MZB_SAF_war_guns_for_boers_decision = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					infantry_equipment > 999
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_guns_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = infantry_equipment
+					amount = 1000
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_support_equipment_for_boers_decision = {
+		allowed = {
+            tag = MZB
+        }
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					support_equipment > 999
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_support_equipment_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = support_equipment
+					amount = 1000
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_second_level_equipment_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+		}
+		fire_only_once = yes
+		cost = 200
+		ai_will_do = {
+			factor = 60
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_second_level_equipment_for_boers_decision"
+			set_country_flag = MZB_SAF_war_second_level_boers_aid
+		}
+	}
+	MZB_SAF_war_artillery_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_second_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					artillery_equipment > 799
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_artillery_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = artillery_equipment
+					amount = 800
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_anti_air_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_second_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					anti_air_equipment > 499
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_anti_air_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = anti_air_equipment
+					amount = 500
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_apc_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_second_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					APC_equipment > 499
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_apc_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = APC_equipment
+					amount = 500
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_third_level_equipment_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_second_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+		}
+		fire_only_once = yes
+		cost = 200
+		ai_will_do = {
+			factor = 60
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_third_level_equipment_for_boers_decision"
+			set_country_flag = MZB_SAF_war_third_level_boers_aid
+		}
+	}
+	MZB_SAF_war_jets_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_third_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					fighter_equipment > 199
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_jets_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = fighter_equipment
+					amount = 200
+					target = BOR
+				}
+			}
+		}
+	}
+	MZB_SAF_war_tanks_for_boers_decision = {
+		visible = {
+			has_country_flag = MZB_supplying_the_boers
+			has_country_flag = MZB_SAF_war_third_level_boers_aid
+		}
+		available = {
+			country_exists = BOR
+			BOR = {
+				has_capitulated = no
+			}
+			MZB = {
+				has_equipment = {
+					MBT_equipment > 199
+				}
+			}
+		}
+		fire_only_once = no
+		days_remove = 90
+		cost = 100
+		ai_will_do = {
+			factor = 20
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_SAF_war_tanks_for_boers_decision"
+			MZB = {
+				send_equipment = {
+					equipment = MBT_equipment
+					amount = 200
+					target = BOR
+				}
+			}
+		}
+	}
+}
+
+MZB_unified_holdouts_category = {
+	MZB_fortify_quelimane = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 544
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			544 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 13729
+					instant_build = yes
+				}
+			}
+			544 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 13729
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_quelimane"
+			
+		}
+	}
+	MZB_fortify_sailsbury = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 1061
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			1061 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 13730
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_sailsbury"
+			
+		}
+	}
+	MZB_fortify_lusaka = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 1066
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			1066 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 13765
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_lusaka"
+			
+		}
+	}
+	MZB_fortify_lilongwe = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 879
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			879 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 12986
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_lilongwe"
+			
+		}
+	}
+	MZB_fortify_dodoma = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 1082
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			1082 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 12911
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_dodoma"
+			
+		}
+	}
+	MZB_fortify_dar_es_salaam = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 1078
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			1078 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2196
+					instant_build = yes
+				}
+			}
+			1078 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 2196
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_dar_es_salaam"
+			
+		}
+	}
+	MZB_fortify_kampala = {
+		visible = {
+			has_country_flag = MZB_unified_holdout_program
+		}
+		available = {
+			controls_state = 548
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 30
+		remove_effect = {
+			548 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 12989
+					instant_build = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MZB_fortify_kampala"
+			
+		}
+	}
+}
+MZB_resource_buying_category = {
+	MZB_buy_steel_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = steel
+					amount = 2
+				}
+				add_to_variable = {
+					var = steel_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_buy_aluminium_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = aluminium
+					amount = 2
+				}
+				add_to_variable = {
+					var = aluminium_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_buy_oil_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = oil
+					amount = 2
+				}
+				add_to_variable = {
+					var = oil_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_buy_chromium_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = chromium
+					amount = 2
+				}
+				add_to_variable = {
+					var = chromium_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_buy_rubber_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = rubber
+					amount = 2
+				}
+				add_to_variable = {
+					var = rubber_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_buy_tungsten_from_germany = {
+		visible = {
+			NOT = { has_global_flag = german_civil_war }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MZB_debt_under_6B
+				check_variable = {
+					var = national_debt
+					value = 6000
+					compare = less_than
+				}
+			}
+		}
+		ai_will_do = {
+		   factor = 0 ##unsure if this should be changed or not
+		}
+
+		days_remove = 30
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = MZB_resource_buying_debt_add_TT
+			random_controlled_state = { 
+				prioritize = { 1078 546 1072 1071 544 1060 1059 1058 880}
+				add_resource = {
+					type = tungsten
+					amount = 2
+				}
+				add_to_variable = {
+					var = tungsten_bought
+					value = 2
+				}
+			}
+			add_to_variable = {
+				var = national_debt
+				value = 20
+			}
+		}
+	}
+	MZB_resource_stockpile_depletion = {
+		allowed = { tag = MZB }
+		available = { hidden_trigger = { always = no } }
+		fire_only_once = yes
+		activation = {
+			has_global_flag = german_civil_war
+			NOT = { has_country_flag = german_resources_gone }
+		}
+		is_good = no
+		days_mission_timeout = 30
+		timeout_effect = {
+			custom_effect_tooltip = afrika_resource_stockpile_depletion_tooltip
+			set_country_flag = german_resources_gone
+			hidden_effect = {
+				1078 = { afrika_resources_from_germany_depleted = yes }
+				546 = { afrika_resources_from_germany_depleted = yes }
+				1072 = { afrika_resources_from_germany_depleted = yes }
+				1071 = { afrika_resources_from_germany_depleted = yes }
+				544 = { afrika_resources_from_germany_depleted = yes }
+				1060 = { afrika_resources_from_germany_depleted = yes }
+				1059 = { afrika_resources_from_germany_depleted = yes }
+				1058 = { afrika_resources_from_germany_depleted = yes }
+				880 = { afrika_resources_from_germany_depleted = yes }
+			}
+		}
+	}
+}
+
+MZB_hold_against_amerika_category = {
+	MZB_hold_against_amerika = {
+        activation = { always = no }
+        available = {
+            has_capitulated = yes
+        }
+        fire_only_once = yes
+        days_mission_timeout = 180
+        timeout_effect = {
+            USA = {
+                remove_from_faction = SAF
+            }
+            white_peace = USA
+            add_stability = 0.05
+            add_war_support = 0.10
+			if = {
+				limit = {
+					SAF = {
+						has_capitulated = no
+					}
+				}
+				add_timed_idea = { idea = MZB_renewed_offensive days = 35 }
+			}
+			else = {
+				MZB = {
+					white_peace = SAF
+					country_event = { id = SAFWAR.9 } #Distributes the territory
+				}
+				COG = {
+					white_peace = SAF
+					country_event = { id = SAFWAR.10 }
+				}
+				ANG = {
+					white_peace = SAF
+					country_event = { id = SAFWAR.11 }
+				}
+				BOR = {
+					white_peace = SAF
+					country_event = { id = SAFWAR.12 }
+				}
+			}
+        }
+    }
+}	

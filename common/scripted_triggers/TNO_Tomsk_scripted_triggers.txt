@@ -1,0 +1,275 @@
+ERS_can_have_elections_in_state = {
+	is_owned_by = ERS
+	has_state_flag = ERS_election_state
+}
+
+ERS_check_house_bill_approval = {
+	if = {
+		limit = {
+			has_country_flag = Humanist_Constitution
+		}
+		custom_trigger_tooltip = {
+			tooltip = ERS_check_house_bill_approval_tt
+			set_temp_variable = { ERS_Hum_lower_house_bill_support = ERS_Hum_lower_seats }
+			multiply_temp_variable = { ERS_Hum_lower_house_bill_support = ERS_Hum_lower_house_support }
+
+			set_temp_variable = { ERS_Mod_lower_house_bill_support = ERS_Mod_lower_seats }
+			multiply_temp_variable = { ERS_Mod_lower_house_bill_support = ERS_Mod_lower_house_support }
+
+			set_temp_variable = { ERS_Bas_lower_house_bill_support = ERS_Bas_lower_seats }
+			multiply_temp_variable = { ERS_Bas_lower_house_bill_support = ERS_Bas_lower_house_support }
+
+			set_temp_variable = { ERS_Dec_lower_house_bill_support = ERS_Dec_lower_seats }
+			multiply_temp_variable = { ERS_Dec_lower_house_bill_support = ERS_Dec_lower_house_support }
+
+			set_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Hum_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Mod_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Bas_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Dec_lower_house_bill_support }
+			check_variable = { ERS_lower_house_bill_approval_var > 52.9 }
+		}
+	}
+	else = {
+		custom_trigger_tooltip = {
+			tooltip = ERS_check_upper_house_bill_approval_tt
+
+			set_temp_variable = { ERS_Hum_upper_house_bill_support = ERS_Hum_upper_seats }
+			multiply_temp_variable = { ERS_Hum_upper_house_bill_support = ERS_Hum_upper_house_support }
+
+			set_temp_variable = { ERS_Mod_upper_house_bill_support = ERS_Mod_upper_seats }
+			multiply_temp_variable = { ERS_Mod_upper_house_bill_support = ERS_Mod_upper_house_support }
+
+			set_temp_variable = { ERS_Bas_upper_house_bill_support = ERS_Bas_upper_seats }
+			multiply_temp_variable = { ERS_Bas_upper_house_bill_support = ERS_Bas_upper_house_support }
+
+			set_temp_variable = { ERS_Dec_upper_house_bill_support = ERS_Dec_upper_seats }
+			multiply_temp_variable = { ERS_Dec_upper_house_bill_support = ERS_Dec_upper_house_support }
+
+			set_temp_variable = { ERS_upper_house_bill_approval_var = ERS_Hum_upper_house_bill_support }
+			add_to_temp_variable = { ERS_upper_house_bill_approval_var = ERS_Mod_upper_house_bill_support }
+			add_to_temp_variable = { ERS_upper_house_bill_approval_var = ERS_Bas_upper_house_bill_support }
+			add_to_temp_variable = { ERS_upper_house_bill_approval_var = ERS_Dec_upper_house_bill_support }
+
+			check_variable = { ERS_upper_house_bill_approval_var > 25 }
+		}
+		custom_trigger_tooltip = {
+			tooltip = ERS_check_house_bill_approval_tt
+
+			set_temp_variable = { ERS_Hum_lower_house_bill_support = ERS_Hum_lower_seats }
+			multiply_temp_variable = { ERS_Hum_lower_house_bill_support = ERS_Hum_lower_house_support }
+
+			set_temp_variable = { ERS_Mod_lower_house_bill_support = ERS_Mod_lower_seats }
+			multiply_temp_variable = { ERS_Mod_lower_house_bill_support = ERS_Mod_lower_house_support }
+
+			set_temp_variable = { ERS_Bas_lower_house_bill_support = ERS_Bas_lower_seats }
+			multiply_temp_variable = { ERS_Bas_lower_house_bill_support = ERS_Bas_lower_house_support }
+
+			set_temp_variable = { ERS_Dec_lower_house_bill_support = ERS_Dec_lower_seats }
+			multiply_temp_variable = { ERS_Dec_lower_house_bill_support = ERS_Dec_lower_house_support }
+
+			set_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Hum_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Mod_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Bas_lower_house_bill_support }
+			add_to_temp_variable = { ERS_lower_house_bill_approval_var = ERS_Dec_lower_house_bill_support }
+			check_variable = { ERS_lower_house_bill_approval_var > 50 }
+		}
+	}
+}
+
+ERS_check_minister_faction = {
+	#Every minister with faction support greater than 50% will give 1 to ERS_Mod_bill_var, needs at least approval of 2 minister
+	#Colour Code: 1 for Modernist, 2 for Bastillards, 3 for Decembrists, 4 for Humanists
+	if = {
+		limit = {
+			check_variable = { ERS_check_minister = 1 }
+			check_variable = { ERS_Mod_upper_house_support > 0.50 }
+		}
+		add_to_temp_variable = { ERS_Mod_bill_var = 1 }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_check_minister = 2 }
+			check_variable = { ERS_Bas_upper_house_support > 0.50 }
+		}
+		add_to_temp_variable = { ERS_Mod_bill_var = 1 }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_check_minister = 3 }
+			check_variable = { ERS_Dec_upper_house_support > 0.50 }
+		}
+		add_to_temp_variable = { ERS_Mod_bill_var = 1 }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_check_minister = 4 }
+			check_variable = { ERS_Hum_upper_house_support > 0.50 }
+		}
+		add_to_temp_variable = { ERS_Mod_bill_var = 1 }
+	}
+}
+
+ERS_Mod_check_military_bill_approval = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Mod_check_military_bill_approval_tt
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^0 } #Industry
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^3 } #Infrastructure
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^5 } #Commerce
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^6 } #Military
+		ERS_check_minister_faction = yes
+
+		check_variable = { ERS_Mod_bill_var > 1.9 }
+	}
+}
+
+ERS_Mod_check_research_bill_approval = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Mod_check_research_bill_approval_tt
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^0 } #Industry
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^1 } #Technology
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^2 } #Education
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^6 } #Military
+		ERS_check_minister_faction = yes
+
+		check_variable = { ERS_Mod_bill_var > 1.9 }
+	}
+}
+
+ERS_Mod_check_war_bill_approval = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Mod_check_war_bill_approval_tt
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^0 } #Industry
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^3 } #Infrastructure
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^5 } #Commerce
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^6 } #Military
+		ERS_check_minister_faction = yes
+
+		check_variable = { ERS_Mod_bill_var > 1.9 }
+	}
+}
+
+ERS_Mod_check_industry_bill_approval = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Mod_check_industry_bill_approval_tt
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^0 } #Industry
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^1 } #Technology
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^2 } #Science
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^5 } #Commerce
+		ERS_check_minister_faction = yes
+
+		check_variable = { ERS_Mod_bill_var > 1.9 }
+	}
+}
+
+ERS_Mod_check_political_approval = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Mod_check_political_approval_tt
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^1 } #Technology
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^2 } #Science
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^4 } #Education
+		ERS_check_minister_faction = yes
+
+		set_temp_variable = { ERS_check_minister = ERS_Mod_Ministers^5 } #Commerce
+		ERS_check_minister_faction = yes
+
+		check_variable = { ERS_Mod_bill_var > 1.9 }
+	}
+}
+
+Has_Salon_Auth_greater_than_10 = {
+	custom_trigger_tooltip = {
+		tooltip = ERS_Auth_Greater_Than_10
+		if = {
+			limit = {
+				has_government = social_conservative
+			}
+			check_variable = { ERS_Dec_Salon_Authority > 10 }
+		}
+		else_if = {
+			limit = {
+				has_government = social_democrat
+			}
+			check_variable = { ERS_Hum_Salon_Authority > 10 }
+		}
+		else_if = {
+			limit = {
+				has_government = social_liberal
+			}
+			check_variable = { ERS_Mod_Salon_Authority > 10 }
+		}
+		else_if = {
+			limit = {
+				has_government = authoritarian_democrat
+			}
+			check_variable = { ERS_Bas_Salon_Authority > 10 }
+		}
+	}
+}
+
+ERS_Lower_House_AI_check = {
+	set_temp_variable = { ERS_Hum_lower_house_check_button_1 = ERS_Hum_lower_seats }
+	multiply_temp_variable = { ERS_Hum_lower_house_check_button_1 = ERS_Hum_lower_house_support }
+
+	set_temp_variable = { ERS_Mod_lower_house_check_button_1 = ERS_Mod_lower_seats }
+	multiply_temp_variable = { ERS_Mod_lower_house_check_button_1 = ERS_Mod_lower_house_support }
+
+	set_temp_variable = { ERS_Bas_lower_house_check_button_1 = ERS_Bas_lower_seats }
+	multiply_temp_variable = { ERS_Bas_lower_house_check_button_1 = ERS_Bas_lower_house_support }
+
+	set_temp_variable = { ERS_Dec_lower_house_check_button_1 = ERS_Dec_lower_seats }
+	multiply_temp_variable = { ERS_Dec_lower_house_check_button_1 = ERS_Dec_lower_house_support }
+
+	set_temp_variable = { ERS_lower_house_check_button_1 = ERS_Hum_lower_house_check_button_1 }
+	add_to_temp_variable = { ERS_lower_house_check_button_1 = ERS_Mod_lower_house_check_button_1 }
+	add_to_temp_variable = { ERS_lower_house_check_button_1 = ERS_Bas_lower_house_check_button_1 }
+	add_to_temp_variable = { ERS_lower_house_check_button_1 = ERS_Dec_lower_house_check_button_1 }
+	check_variable = { ERS_lower_house_check_button_1 < 60 }
+}
+
+ERS_Upper_House_AI_check = {
+	set_temp_variable = { ERS_Hum_upper_house_check_button_1 = ERS_Hum_upper_seats }
+	multiply_temp_variable = { ERS_Hum_upper_house_check_button_1 = ERS_Hum_upper_house_support }
+
+	set_temp_variable = { ERS_Mod_upper_house_check_button_1 = ERS_Mod_upper_seats }
+	multiply_temp_variable = { ERS_Mod_upper_house_check_button_1 = ERS_Mod_upper_house_support }
+
+	set_temp_variable = { ERS_Bas_upper_house_check_button_1 = ERS_Bas_upper_seats }
+	multiply_temp_variable = { ERS_Bas_upper_house_check_button_1 = ERS_Bas_upper_house_support }
+
+	set_temp_variable = { ERS_Dec_upper_house_check_button_1 = ERS_Dec_upper_seats }
+	multiply_temp_variable = { ERS_Dec_upper_house_check_button_1 = ERS_Dec_upper_house_support }
+
+	set_temp_variable = { ERS_upper_house_check_button_1 = ERS_Hum_upper_house_check_button_1 }
+	add_to_temp_variable = { ERS_upper_house_check_button_1 = ERS_Mod_upper_house_check_button_1 }
+	add_to_temp_variable = { ERS_upper_house_check_button_1 = ERS_Bas_upper_house_check_button_1 }
+	add_to_temp_variable = { ERS_upper_house_check_button_1 = ERS_Dec_upper_house_check_button_1 }
+	check_variable = { ERS_upper_house_check_button_1 < 30 }
+}

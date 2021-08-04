@@ -1,0 +1,3643 @@
+#AUTHDEM REGIONAL ECONOMY TREE
+shared_focus = {
+	id = NIK_authdem_the_russian_economy
+	icon = GFX_JAP_Modern_Housing
+	cost = 3.6
+	x = 17
+	y = 0
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_the_russian_economy"
+		custom_effect_tooltip = regional_democratic_expand_state_welfare_programs_tt
+		add_to_variable = { GDP = 100 }
+		country_event = {
+			id = komi_authdem.7
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_development_for_a_modern_russia
+	icon = GFX_KEM_An_Economy_for_the_Modern_Age
+	cost = 3.6
+	x = -4
+	y = 1
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_the_russian_economy
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_development_for_a_modern_russia"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = industry
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_prioritize_state_development
+	icon = GFX_ORE_develop_the_outer_regions
+	cost = 3.6
+	x = -5
+	y = 2
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_development_for_a_modern_russia
+	}
+	mutually_exclusive = {
+		focus = NIK_authdem_invite_foreign_investment
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_prioritize_state_development"
+		NIK_PSD_empower_left_med = yes
+		add_to_variable = { GDP_growth = 0.01 }
+		add_to_variable = { national_debt = 40 }
+		TNO_improve_poverty_med = yes
+		custom_effect_tooltip = NIK_socdem_public_sector_investments_tt
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_invite_foreign_investment
+	icon = GFX_TNO_Generic_Foreign_Investment
+	cost = 3.6
+	x = -3
+	y = 2
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_development_for_a_modern_russia
+	}
+	mutually_exclusive = {
+		focus = NIK_authdem_prioritize_state_development
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_invite_foreign_investment"
+		NIK_PSD_empower_right_med = yes
+		subtract_from_variable = { interest_rates = 0.03 }
+		TNO_improve_poverty_med = yes
+		custom_effect_tooltip = NIK_socdem_open_to_enterprise_tt
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_the_resources_of_the_motherland
+	icon = GFX_minerals_blue
+	cost = 3.6
+	x = -4
+	y = 3
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_prioritize_state_development
+		focus = NIK_authdem_invite_foreign_investment
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_the_resources_of_the_motherland"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = excavation_tech
+		}
+		214 = {
+			add_resource = {
+				type = chromium
+				amount = 20
+			}
+		}
+		753 = {
+			add_resource = {
+				type = tungsten
+				amount = 8
+			}
+		}
+		398 = {
+			add_resource = {
+				type = oil
+				amount = 12
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_consolidate_the_defense_industry
+	icon = GFX_JAP_Standardizing_Heavy_Industry
+	cost = 3.6
+	x = -5
+	y = 4
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_the_resources_of_the_motherland
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_consolidate_the_defense_industry"
+		252 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		399 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		850 = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_medium = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_roads_across_russia
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 3.6
+	x = -3
+	y = 4
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_the_resources_of_the_motherland
+	}
+	prerequisite = {
+		focus = NIK_authdem_expand_rural_opportunities
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_roads_across_russia"
+		custom_effect_tooltip = NIK_socdem_the_public_works_boom_tt
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_small = yes
+		}
+		add_to_variable = { national_debt = 40 }
+		add_to_variable = { GDP = 200 }
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_an_economy_for_us_all
+	icon = GFX_YUN_Every_Woman_A_Worker
+	cost = 3.6
+	x = -4
+	y = 5
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_consolidate_the_defense_industry
+	}
+	prerequisite = {
+		focus = NIK_authdem_roads_across_russia
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_an_economy_for_us_all"
+		add_to_variable = { national_debt = 250 }
+		add_to_variable = { GDP_growth = 0.02 }
+		TNO_improve_poverty_med = yes
+		custom_effect_tooltip = NIK_socdem_stimulate_local_economies_tt
+		random_owned_controlled_state = {
+			limit = {
+				check_variable = { TNO_combined_factory_total < 3 }
+			}
+			RUS_increase_ruling_party_state_pop = yes
+		}
+		random_owned_controlled_state = {
+			limit = {
+				check_variable = { TNO_combined_factory_total < 3 }
+			}
+			RUS_increase_ruling_party_state_pop = yes
+		}
+		random_owned_controlled_state = {
+			limit = {
+				check_variable = { TNO_combined_factory_total < 3 }
+			}
+			RUS_increase_ruling_party_state_pop = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_aid_for_the_agricultural_sector
+	icon = GFX_ITA_Conclude_the_Mechanization_of_Agriculture
+	cost = 3.6
+	x = 0
+	y = 1
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_the_russian_economy
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_aid_for_the_agricultural_sector"
+		TNO_improve_agriculture_med = yes
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_national_recovery_initiatives
+	icon = GFX_BAS_Fortification_Building
+	cost = 3.6
+	x = 0
+	y = 2
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_aid_for_the_agricultural_sector
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_national_recovery_initiatives"
+		add_to_variable = { national_debt = 250 }
+		custom_effect_tooltip = NIK_socdem_expand_the_key_facilities_tt
+		TNO_improve_industrial_equipment_med = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_medium = yes
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			RUS_add_ruling_party_temp_pop_medium = yes
+		}
+		RUS_increase_ruling_party_industrial_pop = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_expand_rural_opportunities
+	icon = GFX_CHI_New_Agricultural_Equipment
+	cost = 3.6
+	x = -1
+	y = 3
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_national_recovery_initiatives
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_expand_rural_opportunities"
+		add_to_variable = { GDP_growth = 0.005 }
+		add_to_variable = { national_debt = 40 }
+		TNO_improve_agriculture_high = yes
+		RUS_increase_rural_auth_pop = yes
+		custom_effect_tooltip = NIK_kosygin_aid_for_the_farmers_tt
+	}
+}
+
+shared_focus = {
+	id = NIK_authdem_stimulate_local_businesses
+	icon = GFX_Generic_Business
+	cost = 3.6
+	x = 1
+	y = 3
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_national_recovery_initiatives
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_stimulate_local_businesses"
+		add_to_variable = { national_debt = 250 }
+		add_to_variable = { GDP_growth = 0.02 }
+		TNO_improve_poverty_med = yes
+		TNO_improve_industrial_expertise_med = yes
+		custom_effect_tooltip = NIK_socdem_stimulate_local_economies_tt
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_an_educated_populace
+	icon = GFX_VIN_Education_Reform
+	cost = 3.6
+	x = 4
+	y = 1
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_the_russian_economy
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_an_educated_populace"
+		TNO_improve_academic_base_med = yes
+		add_stability = 0.05
+		add_ideas = tno_draft_exemptions_educational_deferment
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_standardize_the_schools
+	icon = GFX_ORE_a_scientific_approach
+	cost = 3.6
+	x = 4
+	y = 2
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_an_educated_populace
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_standardize_the_schools"
+		TNO_improve_academic_base_high = yes
+	}
+}
+
+
+shared_focus = {
+	id = NIK_authdem_a_generation_of_engineers
+	icon = GFX_GER_new_science
+	cost = 3.6
+	x = 4
+	y = 3
+	relative_position_id = NIK_authdem_the_russian_economy
+	prerequisite = {
+		focus = NIK_authdem_standardize_the_schools
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_authdem_a_generation_of_engineers"
+		TNO_improve_industrial_expertise_high = yes
+		TNO_improve_research_facilities_high = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = electronics
+		}
+	}
+}
+
+
+### DEMOCRATIC REGIONAL MILITARY TREE ###
+shared_focus = {
+	id = NIK_democratic_the_russian_republican_army
+	icon = GFX_NIK_komi_infantry
+	cost = 3.6
+	x = 26
+	y = 0
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_the_russian_republican_army"
+		add_war_support = 0.05
+		army_experience = 15
+		if = {
+			limit = {
+				has_idea = tno_conscription_two_year_draft
+			}
+			tno_conscription_worsen = yes
+		}
+		country_event = {
+			id = komi_dem_generic.1
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_lessons_from_the_last_war
+	icon = GFX_TNO_generic_soviet_legacy
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_russian_republican_army
+	}
+	mutually_exclusive = {
+		focus = NIK_democratic_lessons_from_the_unification_wars
+	}
+	x = -2
+	y = 1
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_lessons_from_the_last_war"
+		army_experience = 45
+		add_manpower = 10000
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = armor
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_study_foreign_strategy
+	icon = GFX_URL_Study_History
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_lessons_from_the_last_war
+	}
+	x = -2
+	y = 2
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_study_foreign_strategy"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = land_doctrine
+		}
+		country_event = {
+			id = komi_dem_generic.2
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_lessons_from_the_unification_wars
+	icon = GFX_NIK_observe_leftist_paramilitaries
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_russian_republican_army
+	}
+	mutually_exclusive = {
+		focus = NIK_democratic_lessons_from_the_last_war
+	}
+	x = 2
+	y = 1
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_lessons_from_the_unification_wars"
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = infantry_weapons
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_tactical_flexibility
+	icon = GFX_ORE_reorganizing_the_militias
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_lessons_from_the_unification_wars
+	}
+	x = 2
+	y = 2
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_tactical_flexibility"
+		army_experience = 15
+		add_manpower = 25000
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+shared_focus = {
+	id = NIK_democratic_a_modernized_force
+	icon = GFX_TNO_Generic_Combined_Arms
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_study_foreign_strategy
+		focus = NIK_democratic_tactical_flexibility
+	}
+	x = 0
+	y = 3
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_a_modernized_force"
+		country_event = {
+			id = komi_dem_generic.3
+			days = 1
+		}
+		TNO_improve_army_professionalism_high = yes
+	}
+}
+shared_focus = {
+	id = NIK_democratic_the_ministry_of_defense
+	icon = GFX_NIK_defense_of_the_republic_act
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_a_modernized_force
+	}
+	x = -3
+	y = 4
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_the_ministry_of_defense"
+		country_event = {
+			id = komi_dem_generic.4
+			days = 1
+		}
+		add_political_power = 50
+		random_unit_leader = {
+			add_skill_level = 1
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_the_russian_republican_navy
+	icon = GFX_JAP_The_Hidden_Menace_submarine
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_ministry_of_defense
+	}
+	x = -4
+	y = 5
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_the_russian_republican_navy"
+		navy_experience = 50
+		add_tech_bonus = {
+			bonus = 1
+			uses = 4
+			category = naval_equipment
+		}
+		country_event = {
+			id = komi_dem_generic.5
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_the_russian_republican_air_force
+	icon = GFX_generic_jet_fighter_2
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_ministry_of_defense
+	}
+	x = -2
+	y = 5
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_the_russian_republican_air_force"
+		air_experience = 50
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = air_equipment
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_infantry_equipment_trials
+	icon = GFX_TNO_generic_arms_shipments
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_a_modernized_force
+	}
+	x = 0
+	y = 4
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_infantry_equipment_trials"
+		add_tech_bonus = {
+			bonus = 2
+			uses = 1
+			category = infantry_weapons
+		}
+		country_event = {
+			id = komi_dem_generic.6
+			days = 1
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_improve_on_the_armored_corps
+	icon = GFX_KEM_Columns_of_Tanks
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_infantry_equipment_trials
+	}
+	x = 0
+	y = 5
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_improve_on_the_armored_corps"
+		country_event = {
+			id = komi_dem_generic.7
+			days = 1
+		}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = armor
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_reopen_the_vyatka_general_staff_academy
+	icon = GFX_goal_KIR_The_Vyatka_General_Staff_Academy
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_a_modernized_force
+	}
+	x = 3
+	y = 4
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_reopen_the_vyatka_general_staff_academy"
+		country_event = {
+			id = komi_dem_generic.8
+			days = 1
+		}
+		add_ideas = NIK_vyatka_military_academy
+		random_unit_leader = {
+			add_unit_leader_trait = brilliant_strategist
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_strategic_supremacy
+	icon = GFX_ORE_adapting_their_strategies
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_reopen_the_vyatka_general_staff_academy
+	}
+	x = 3
+	y = 5
+	relative_position_id = NIK_democratic_the_russian_republican_army
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_strategic_supremacy"
+		TNO_improve_army_professionalism_med = yes
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = air_doctrine
+		}
+		add_war_support = 0.05
+	}
+}
+
+### DEMOCRATIC REGIONAL DIPLOMACY TREE ###
+shared_focus = {
+	id = NIK_democratic_onto_the_world_stage
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.6
+	x = 34
+	y = 0
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_onto_the_world_stage"
+		add_political_power = 75
+		FIN = {
+			country_event = {
+				id = komi_dem_generic.9
+				days = 1
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_open_the_gates
+	icon = GFX_Generic_Ship_Trade
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_onto_the_world_stage
+	}
+	x = 0
+	y = 1
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_open_the_gates"
+		add_equipment_to_stockpile = {
+			type = convoy
+			amount = 100
+			producer = NIK
+		}
+		FIN = {
+			if = {
+				limit = {
+					NOT = {
+						has_government = fascism
+					}
+				}
+				country_event = {
+					id = komi_dem_generic.10
+					days = 1
+				}
+			}
+		}
+		SWE = {
+			if = {
+				limit = {
+					NOT = {
+						has_government = fascism
+					}
+				}
+				country_event = {
+					id = komi_dem_generic.10
+					days = 1
+				}
+			}
+		}
+		NOR = {
+			if = {
+				limit = {
+					NOT = {
+						has_government = fascism
+						has_government = ultranational_socialism
+						has_government = national_socialism
+						has_government = burgundian_system
+					}
+				}
+				country_event = {
+					id = komi_dem_generic.10
+					days = 1
+				}
+			}
+		}
+		add_to_variable = {
+			interest_rates = -0.01
+		}
+		custom_effect_tooltip = NIK_suslov_restore_international_trade_tt
+	}
+}
+shared_focus = {
+	id = NIK_democratic_the_last_democracies_of_europe
+	icon = GFX_GER_SGR_comrades_from_europe
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_open_the_gates
+	}
+	x = -2
+	y = 2
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_the_last_democracies_of_europe"
+		custom_effect_tooltip = NIK_democratic_the_last_democracies_of_europe_tt
+		hidden_effect = {
+			every_other_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = europe
+					}
+					is_warlord = no
+					has_elected_government = yes
+				}
+				country_event = {
+					id = komi_dem_generic.11
+					days = 3
+					random = 72
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_appeal_for_recognition
+	icon = GFX_UPO_a_temporary_pact
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_last_democracies_of_europe
+	}
+	x = -3
+	y = 3
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_appeal_for_recognition"
+		custom_effect_tooltip = NIK_democratic_appeal_for_recognition_tt
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = komi_dem_generic.12
+					days = 3
+					random = 48
+				}
+			}
+			ITA = {
+				country_event = {
+					id = komi_dem_generic.13
+					days = 3
+					random = 48
+				}
+			}
+			ENG = {
+				country_event = {
+					id = komi_dem_generic.15
+					days = 3
+					random = 48
+				}
+			}
+			if = {
+				limit = {
+					IBR = {
+						NOT = {
+							has_country_flag = IBR_Iberian_Wars_have_happened
+						}
+					}
+				}
+				IBR = {
+					country_event = {
+						id = komi_dem_generic.14
+						days = 3
+						random = 48
+					}
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_embassy_funding
+	icon = GFX_ORE_accept_their_aid
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_the_last_democracies_of_europe
+	}
+	x = -1
+	y = 3
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_embassy_funding"
+		custom_effect_tooltip = russia_small_embassy_bonus_tt
+		hidden_effect = {
+			every_other_country = {
+				limit = {
+					has_country_flag = RECOGNIZED_WEST_RUSSIA_REPUBLIC
+				}
+				country_event = {
+					id = komi_dem_generic.24
+					days = 1
+				}
+			}
+		}
+		add_political_power = 25
+	}
+}
+shared_focus = {
+	id = NIK_democratic_call_for_investment
+	icon = GFX_ITA_European_Markets
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_appeal_for_recognition
+	}
+	prerequisite = {
+		focus = NIK_democratic_embassy_funding
+	}
+	x = -2
+	y = 4
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_call_for_investment"
+		custom_effect_tooltip = NIK_democratic_call_for_investment_tt
+		hidden_effect = {
+			every_other_country = {
+				limit = {
+					has_country_flag = RECOGNIZED_WEST_RUSSIA_REPUBLIC
+				}
+				country_event = {
+					id = komi_dem_generic.25
+					days = 1
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_across_the_ocean
+	icon = GFX_Focus_North_America_Orthographic
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_open_the_gates
+	}
+	x = 2
+	y = 2
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_across_the_ocean"
+		USA = {
+			add_opinion_modifier = {
+				target = WSR
+				modifier = NIK_trans_atlantic_diplomacy
+			}
+		}
+		CAN = {
+			add_opinion_modifier = {
+				target = WSR
+				modifier = NIK_trans_atlantic_diplomacy
+			}
+		}
+		MEX = {
+			add_opinion_modifier = {
+				target = WSR
+				modifier = NIK_trans_atlantic_diplomacy
+			}
+		}
+	}
+}
+shared_focus = {
+	id = NIK_democratic_a_visit_to_washington
+	icon = GFX_align_america
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_across_the_ocean
+	}
+	x = 2
+	y = 3
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_a_visit_to_washington"
+		USA = {
+			country_event = {
+				id = komi_dem_generic.30
+				days = 1
+			}
+		}
+	}
+}
+shared_focus = { #Actually "Apply for OFN aid"
+	id = NIK_democratic_apply_for_ofn_observer
+	icon = GFX_CAN_praise_the_ofn
+	cost = 3.6
+	prerequisite = {
+		focus = NIK_democratic_a_visit_to_washington
+	}
+	x = 2
+	y = 4
+	relative_position_id = NIK_democratic_onto_the_world_stage
+	ai_will_do = {
+		factor = 20
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_democratic_apply_for_ofn_observer"
+		USA = {
+			country_event = {
+				id = komi_dem_generic.39
+				days = 1
+			}
+		}
+	}
+}
+
+###KOMI BILLS/LAWS TREE
+
+shared_focus = {
+	id = NIK_the_affairs_of_the_legislature
+	icon = GFX_NIK_affairs_of_national_assembly
+	x = 13
+	y = 0
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_the_affairs_of_the_legislature"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_1962_budget
+	icon = GFX_NIK_the_1962_budget
+	x = 13
+	y = 1
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_the_affairs_of_the_legislature
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_1962_budget"
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			country_event = {
+				id = komilaws.1
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				has_government = social_liberal
+			}
+			country_event = {
+				id = komilaws.7
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				has_government = social_conservative
+			}
+			country_event = {
+				id = komilaws.8
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = authoritarian_democrat
+					has_country_leader = {
+						name = "Svetlana Stalina"
+						ruling_only = yes
+					}
+				}
+			}
+			country_event = {
+				id = komilaws.11
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_infrastructure_repair_bill
+	icon = GFX_NIK_infrastructure_repair_act
+	x = 11
+	y = 2
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_bill_the_1962_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_infrastructure_repair_bill"
+		country_event = {
+			id = komilaws.13
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_mandated_minority_representation_bill
+	icon = GFX_NIK_minority_representation_act
+	x = 15
+	y = 2
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_bill_the_1962_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_mandated_minority_representation_bill"
+		country_event = {
+			id = komilaws.14
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_defense_of_the_republic_bill
+	icon = GFX_NIK_defense_of_the_republic_act
+	x = 14
+	y = 3
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_bill_the_1962_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_defense_of_the_republic_bill"
+		country_event = {
+			id = komilaws.15
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_equal_zoning_bill
+	icon = GFX_NIK_equal_zoning_act
+	x = 12
+	y = 3
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_bill_the_1962_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_equal_zoning_bill"
+		country_event = {
+			id = komilaws.16
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_bill_the_municipal_pacification_bill
+	icon = GFX_NIK_municipal_pacification_act
+	x = 13
+	y = 2
+	cost = 2
+	available_if_capitulated = yes
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = NIK_bill_the_1962_budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_bill_the_municipal_pacification_bill"
+		country_event = {
+			id = komilaws.17
+			days = 1
+		}
+	}
+}
+
+### Democratic expansion tree ###
+
+shared_focus = {
+	id = NIK_demexpansion_the_republic_saved
+	icon = GFX_NIK_democratic_flag
+	cost = 1
+	x = 5
+	y = 0
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	available = {
+		NOT = {
+			has_idea = RUS_terror_bombing
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_the_republic_saved"
+		add_stability = 0.05
+		set_country_flag = COUPS_DONE
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_assemble_the_armories
+	icon = GFX_TNO_generic_gun_production
+	cost = 3
+	x = 4
+	y = 1
+	prerequisite = {
+		focus = NIK_demexpansion_the_republic_saved
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_assemble_the_armories"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 800
+			producer = NIK
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = NIK
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 100
+			producer = NIK
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_infrastructure_programs
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 3
+	x = 6
+	y = 1
+	prerequisite = {
+		focus = NIK_demexpansion_the_republic_saved
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_infrastructure_programs"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_the_army_of_the_republic
+	icon = GFX_goal_ARC_The_Proud_Russian_Army
+	cost = 3
+	x = 5
+	y = 2
+	prerequisite = {
+		focus = NIK_demexpansion_assemble_the_armories
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_infrastructure_programs
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_the_army_of_the_republic"
+		army_experience = 15
+		country_event = {
+			id = NIK.319
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_reform_a_true_army
+	icon = GFX_ORE_reorganizing_the_militias
+	cost = 3
+	x = 4
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_the_army_of_the_republic
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_keep_the_militia_structure
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_reform_a_true_army"
+		add_manpower = 2500
+		TNO_improve_army_professionalism_high = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_elevate_gifted_officers
+	icon = GFX_JAP_the_military_is_enough
+	cost = 3
+	x = 3
+	y = 4
+	prerequisite = {
+		focus = NIK_demexpansion_reform_a_true_army
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_elevate_gifted_officers"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_keep_the_militia_structure
+	icon = GFX_MAG_Siberian_Army
+	cost = 3
+	x = 6
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_the_army_of_the_republic
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_reform_a_true_army
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_keep_the_militia_structure"
+		add_war_support = 0.10
+		add_manpower = 7500
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_popular_mobilization
+	icon = GFX_ORE_the_best_officer_candidates
+	cost = 3
+	x = 7
+	y = 4
+	prerequisite = {
+		focus = NIK_demexpansion_keep_the_militia_structure
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_popular_mobilization"
+		add_manpower = 2500
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_mission_to_vologda
+	icon = GFX_IME_an_armed_peace
+	cost = 3
+	x = 5
+	y = 4
+	prerequisite = {
+		focus = NIK_demexpansion_reform_a_true_army
+		focus = NIK_demexpansion_keep_the_militia_structure
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_mission_to_vologda"
+		VOL = {
+			country_event = {
+				id = komidiplo.20
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_an_alliance_for_peace
+	icon = GFX_dove_of_peace
+	cost = 3
+	x = 3
+	y = 5
+	prerequisite = {
+		focus = NIK_demexpansion_mission_to_vologda
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_popular_mobilization
+		focus = NIK_demexpansion_elevate_gifted_officers
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_the_republic_alone
+	}
+	available = {
+		always = no
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_an_alliance_for_peace"
+		custom_effect_tooltip = NIK_demexpansion_an_alliance_for_peace_tt
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_establish_economic_ties
+	icon = GFX_JAP_a_streamlined_economy
+	cost = 3
+	x = 2
+	y = 6
+	prerequisite = {
+		focus = NIK_demexpansion_an_alliance_for_peace
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_establish_economic_ties"
+		VOL = {
+			country_event = {
+				id = komidiplo.23
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_freedom_of_movement
+	icon = GFX_ORE_discuss_further_cooperation
+	cost = 3
+	x = 4
+	y = 6
+	prerequisite = {
+		focus = NIK_demexpansion_an_alliance_for_peace
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_freedom_of_movement"
+		VOL = {
+			country_event = {
+				id = komidiplo.24
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_mutual_defense
+	icon = GFX_BAS_defensive_preparations
+	cost = 3
+	x = 3
+	y = 7
+	prerequisite = {
+		focus = NIK_demexpansion_establish_economic_ties
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_freedom_of_movement
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	allow_branch = {
+		always = yes
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_mutual_defense"
+		VOL = {
+			give_guarantee = NIK
+		}
+		NIK = {
+			give_guarantee = VOL
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_the_republic_alone
+	icon = GFX_Generic_Authoritarian_Democracy
+	cost = 3
+	x = 7
+	y = 5
+	prerequisite = {
+		focus = NIK_demexpansion_mission_to_vologda
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_popular_mobilization
+		focus = NIK_demexpansion_elevate_gifted_officers
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_an_alliance_for_peace
+	}
+	available = {
+		always = no
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	allow_branch = {
+		always = yes
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_the_republic_alone"
+		custom_effect_tooltip = NIK_demexpansion_the_republic_alone_tt
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_enemies_on_all_sides
+	icon = GFX_BAS_fortification_production_charter
+	cost = 3
+	x = 6
+	y = 6
+	prerequisite = {
+		focus = NIK_demexpansion_the_republic_alone
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	allow_branch = {
+		always = yes
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_enemies_on_all_sides"
+		add_ideas = NIK_enemies_on_all_sides
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_expand_emergency_conscription
+	icon = GFX_Quantity_Recruitment
+	cost = 3
+	x = 8
+	y = 6
+	prerequisite = {
+		focus = NIK_demexpansion_the_republic_alone
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	allow_branch = {
+		always = yes
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_expand_emergency_conscription"
+		tno_conscription_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_watch_and_wait
+	icon = GFX_BAS_Fortification_Building
+	cost = 3
+	x = 7
+	y = 7
+	prerequisite = {
+		focus = NIK_demexpansion_enemies_on_all_sides
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_expand_emergency_conscription
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_watch_and_wait"
+		add_stability = 0.05
+		country_event = {
+			id = NIK.320
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_between_three_foes
+	icon = GFX_Oran_Perimeter
+	cost = 1
+	x = 5
+	y = 8
+	prerequisite = {
+		focus = NIK_demexpansion_mutual_defense
+		focus = NIK_demexpansion_watch_and_wait
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_between_three_foes"
+		add_war_support = 0.10
+		if = {
+			limit = {
+				VOL = {
+					exists = yes
+				}
+			}
+			VOL = {
+				country_event = {
+					id = komidiplo.25
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_negotiate_with_vologda
+	icon = GFX_generic_vologda_diplo
+	cost = 3
+	x = 4
+	y = 9
+	prerequisite = {
+		focus = NIK_demexpansion_between_three_foes
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_execute_plan_blue
+	}
+	available = {
+		has_country_flag = VOL_ACCEPTED_ANNEXATION
+	}
+	allow_branch = {
+		always = yes
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_negotiate_with_vologda"
+		add_stability = 0.15
+		add_war_support = -0.10
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_merge_the_institutions
+	icon = GFX_ORE_institute_common_judicial_guidelines
+	cost = 3
+	x = 4
+	y = 10
+	prerequisite = {
+		focus = NIK_demexpansion_negotiate_with_vologda
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 200
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_merge_the_institutions"
+		VOL = {
+			every_unit_leader = {
+				set_nationality = NIK
+			}
+		}
+		annex_country = {
+			target = VOL
+			transfer_troops = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_execute_plan_blue
+	icon = GFX_NIK_execute_plan_blue
+	cost = 3
+	x = 6
+	y = 9
+	prerequisite = {
+		focus = NIK_demexpansion_between_three_foes
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_negotiate_with_vologda
+	}
+	available = {
+		has_country_flag = VOL_DENIED_ANNEXATION
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = VOL
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_execute_plan_blue"
+		declare_war_on = {
+			target = VOL
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_pacify_the_territory
+	icon = GFX_TNO_generic_riot_police
+	cost = 3
+	x = 6
+	y = 10
+	prerequisite = {
+		focus = NIK_demexpansion_execute_plan_blue
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_pacify_the_territory"
+		add_manpower = -1250
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_defense_stratagems
+	icon = GFX_ORE_establish_the_planning_commission
+	cost = 1
+	x = 5
+	y = 11
+	prerequisite = {
+		focus = NIK_demexpansion_pacify_the_territory
+		focus = NIK_demexpansion_merge_the_institutions
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	allow_branch = {
+		always = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_defense_stratagems"
+		army_experience = 20
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_fill_the_gaps
+	icon = GFX_Quantity_Recruitment
+	cost = 3
+	x = 5
+	y = 12
+	prerequisite = {
+		focus = NIK_demexpansion_defense_stratagems
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 80
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_fill_the_gaps"
+		add_manpower = 15000
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_execute_plan_red
+	icon = GFX_NIK_execute_plan_red
+	cost = 3
+	x = 7
+	y = 13
+	prerequisite = {
+		focus = NIK_demexpansion_fill_the_gaps
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = WRS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_execute_plan_red"
+		add_timed_idea = { idea = NIK_plan_red days = 90 }
+		declare_war_on = {
+			target = WRS
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_execute_plan_white
+	icon = GFX_NIK_execute_plan_white
+	cost = 3
+	x = 5
+	y = 13
+	prerequisite = {
+		focus = NIK_demexpansion_fill_the_gaps
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		KIR = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = KIR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_execute_plan_white"
+		add_timed_idea = { idea = NIK_plan_white days = 90 }
+		declare_war_on = {
+			target = KIR
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_execute_plan_black
+	icon = GFX_NIK_execute_plan_black
+	cost = 3
+	x = 3
+	y = 13
+	prerequisite = {
+		focus = NIK_demexpansion_fill_the_gaps
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	will_lead_to_war_with = GAY
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_execute_plan_black"
+		add_timed_idea = { idea = NIK_plan_black days = 90 }
+		declare_war_on = {
+			target = GAY
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_room_to_breathe
+	icon = GFX_JAP_window_of_opportunity
+	cost = 3
+	x = 5
+	y = 14
+	prerequisite = {
+		focus = NIK_demexpansion_execute_plan_red
+		#focus = NIK_demexpansion_down_from_the_barricades
+		focus = NIK_demexpansion_execute_plan_white
+		focus = NIK_demexpansion_execute_plan_black
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		WRS = {
+			exists = no
+		}
+		KIR = {
+			exists = no
+		}
+		GAY = {
+			exists = no
+		}
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_room_to_breathe"
+		RUS_integration_cost_days_decrease = yes
+		hidden_effect = {
+			country_event = {
+				id = yakovlev.1
+				days = 30
+				random = 120
+			}
+		}
+		hidden_effect = {
+			country_event = { id = komi.25 days = 15 random = 380 }
+		}
+		if = {
+			limit = {
+				has_idea = NIK_enemies_on_all_sides
+			}
+			remove_ideas = NIK_enemies_on_all_sides
+		}
+		if = {
+			limit = {
+				has_idea = NIK_plan_black
+			}
+			remove_ideas = NIK_plan_black
+		}
+		if = {
+			limit = {
+				has_idea = NIK_plan_white
+			}
+			remove_ideas = NIK_plan_white
+		}
+		if = {
+			limit = {
+				has_idea = NIK_plan_red
+			}
+			remove_ideas = NIK_plan_red
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_unto_unity
+	icon = GFX_SLO_Open_to_the_World
+	cost = 3
+	x = 5
+	y = 15
+	prerequisite = {
+		focus = NIK_demexpansion_room_to_breathe
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_unto_unity"
+		add_manpower = 2500
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_silver
+	icon = GFX_NIK_prepare_plan_silver
+	cost = 3
+	x = 1
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	will_lead_to_war_with = MAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_silver"
+		create_wargoal = {
+			type = annex_everything
+			target = MAR
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_grey
+	icon = GFX_NIK_prepare_plan_grey
+	cost = 3
+	x = 3
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = PRM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_grey"
+		create_wargoal = {
+			type = annex_everything
+			target = PRM
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_green
+	icon = GFX_NIK_prepare_plan_green
+	cost = 3
+	x = 5
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = CHU
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_green"
+		create_wargoal = {
+			type = annex_everything
+			target = CHU
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_violet
+	icon = GFX_NIK_prepare_plan_violet
+	cost = 3
+	x = 7
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_negotiate_with_tatarstan
+	}
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = TAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_violet"
+		create_wargoal = {
+			type = annex_everything
+			target = TAR
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_negotiate_with_tatarstan
+	icon = GFX_generic_tatar_diplo
+	cost = 3
+	x = 9
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_plan_violet
+	}
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 180
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_negotiate_with_tatarstan"
+		TAR = {
+			country_event = {
+				id = komidiplo.28
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_yellow
+	icon = GFX_NIK_prepare_plan_yellow
+	cost = 3
+	x = 11
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_negotiate_with_bashkiria
+	}
+	allow_branch = {
+		always = yes
+	}
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = BKR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_yellow"
+		create_wargoal = {
+			type = annex_everything
+			target = BKR
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_negotiate_with_bashkiria
+	icon = GFX_generic_bashkir_diplo
+	cost = 3
+	x = 13
+	y = 16
+	prerequisite = {
+		focus = NIK_demexpansion_unto_unity
+	}
+	mutually_exclusive = {
+		focus = NIK_demexpansion_plan_yellow
+	}
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 180
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_negotiate_with_bashkiria"
+		BKR = {
+			country_event = {
+				id = komidiplo.31
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_consolidate_gained_resources
+	icon = GFX_RAJ_Our_Available_Resources
+	cost = 5
+	x = 5
+	y = 17
+	prerequisite = {
+		focus = NIK_demexpansion_plan_silver
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_plan_grey
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_plan_green
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_plan_violet
+		focus = NIK_demexpansion_negotiate_with_tatarstan
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_plan_yellow
+		focus = NIK_demexpansion_negotiate_with_bashkiria
+	}
+	available = {
+		has_war = no
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_consolidate_gained_resources"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_ensure_industrial_preparedness
+	icon = GFX_Generic_Industry
+	cost = 3
+	x = 4
+	y = 18
+	prerequisite = {
+		focus = NIK_demexpansion_consolidate_gained_resources
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_ensure_industrial_preparedness"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_secure_operational_integrity
+	icon = GFX_new_model_army_goal
+	cost = 3
+	x = 6
+	y = 18
+	prerequisite = {
+		focus = NIK_demexpansion_consolidate_gained_resources
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_secure_operational_integrity"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 3
+			category = land_doctrine
+		}
+		add_manpower = 1500
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_plan_brown
+	icon = GFX_NIK_prepare_plan_brown
+	cost = 3
+	x = 5
+	y = 19
+	prerequisite = {
+		focus = NIK_demexpansion_secure_operational_integrity
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_ensure_industrial_preparedness
+	}
+	allow_branch = {
+		always = yes
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		SAM = {
+			exists = no
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	will_lead_to_war_with = SAM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_plan_brown"
+		create_wargoal = {
+			type = annex_everything
+			target = SAM
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_consolidating_the_republic
+	icon = GFX_Democacy_Saved
+	cost = 3
+	x = 5
+	y = 20
+	prerequisite = {
+		focus = NIK_demexpansion_plan_brown
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+		custom_trigger_tooltip = {
+			tooltip = NIK_political_matters_resolved
+			has_country_flag = NIK_POLITICS_RESOLVED
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_consolidating_the_republic"
+		add_timed_idea = { idea = NIK_consolidating_republic days = 100 }
+		hidden_effect = {
+			country_event = {
+				id = katushev.1
+				days = 10
+				random = 24
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_a_centered_capital
+	icon = GFX_The_Model_City
+	cost = 3
+	x = 5
+	y = 21
+	prerequisite = {
+		focus = NIK_demexpansion_consolidating_the_republic
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_a_centered_capital"
+		country_event = {
+			id = NIK.366
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_the_west_russian_census
+	icon = GFX_generic_writing
+	cost = 5
+	x = 3
+	y = 21
+	prerequisite = {
+		focus = NIK_demexpansion_consolidating_the_republic
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_the_west_russian_census"
+		add_manpower = 16500
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_faith_in_democracy
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 5
+	x = 1
+	y = 21
+	prerequisite = {
+		focus = NIK_demexpansion_consolidating_the_republic
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_faith_in_democracy"
+		add_stability = 0.10
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = yakovlev.2
+				days = 10
+				random = 24
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_activate_the_factories
+	icon = GFX_ORE_no_more_closed_factories
+	cost = 5
+	x = 7
+	y = 21
+	prerequisite = {
+		focus = NIK_demexpansion_consolidating_the_republic
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_activate_the_factories"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = katushev.2
+				days = 60
+				random = 24
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_get_the_peasants_on_board
+	icon = GFX_RAJ_security_in_farming
+	cost = 3
+	x = 9
+	y = 21
+	prerequisite = {
+		focus = NIK_demexpansion_consolidating_the_republic
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	available = {
+		has_war = no
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_get_the_peasants_on_board"
+		add_political_power = 50
+		TNO_improve_agriculture_med = yes #coded with a script
+		hidden_effect = {
+			country_event = { id = komi.27 days = 300 random = 1380 }
+		}
+	}
+}
+
+#shared_focus = {
+#	id = NIK_demexpansion_meet_with_the_finns
+#	icon = GFX_RAJ_India_Diplo_Japan_Gateway
+#	cost = 3
+#	x = 5
+#	y = 22
+#	prerequisite = {
+#		focus = NIK_demexpansion_a_centered_capital
+#	}
+#	prerequisite = {
+#		focus = NIK_demexpansion_the_west_russian_census
+#	}
+#	prerequisite = {
+#		focus = NIK_demexpansion_faith_in_democracy
+#	}
+#	prerequisite = {
+#		focus = NIK_demexpansion_activate_the_factories
+#	}
+#	prerequisite = {
+#		focus = NIK_demexpansion_get_the_peasants_on_board
+#	}
+#	bypass = {
+#		VTY = {
+#			exists = no
+#		}
+#	}
+#	available = {
+#		has_war = no
+#		has_country_flag = RUS_regional_stage
+#	}
+#	ai_will_do = {
+#		factor = 100
+#	}
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_meet_with_the_finns"
+#		FIN = {
+#			country_event = {
+#				id = russiadiplo.37
+#				days = 1
+#			}
+#		}
+#		
+#	}
+#}
+
+### switchable section thing ###
+
+shared_focus = {
+	id = NIK_demexpansion_restoring_order
+	icon = GFX_NIK_lady_justice
+	cost = 2.2
+	x = 15
+	y = 0
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_restoring_order"
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_root_out_paramilitary_commanders
+	icon = GFX_CAU_purge_the_officers
+	cost = 2.2
+	x = 13
+	y = 1
+	mutually_exclusive = {
+		focus = NIK_demexpansion_codify_the_unwritten_rules
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_restoring_order
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_root_out_paramilitary_commanders"
+		country_event = {
+			id = komi_opposition.0
+			days = 1
+		}
+		add_timed_idea = { idea = NIK_purged_commanders days = 120 }
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_arrest_sources_of_information
+	icon = GFX_NIK_arrest_officers
+	cost = 2.2
+	x = 12
+	y = 2
+	prerequisite = {
+		focus = NIK_demexpansion_root_out_paramilitary_commanders
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_arrest_sources_of_information"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = communist
+			popularity = -0.075
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.075
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.075
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.075
+		}
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.075
+		}
+		add_popularity = {
+			ideology = despotism
+			popularity = -0.075
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_make_an_example
+	icon = GFX_GER_A_Gentle_Purge
+	cost = 2.2
+	x = 12
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_arrest_sources_of_information
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_make_an_example"
+		add_manpower = -150
+		add_political_power = -25
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_instate_weapons_regulations
+	icon = GFX_NIK_gun_control
+	cost = 2.2
+	x = 14
+	y = 2
+	prerequisite = {
+		focus = NIK_demexpansion_root_out_paramilitary_commanders
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_instate_weapons_regulations"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = NIK
+		}
+		add_stability = -0.025
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_ban_unregistered_armed_groups
+	icon = GFX_NIK_ban_paramils
+	cost = 2.2
+	x = 14
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_instate_weapons_regulations
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_ban_unregistered_armed_groups"
+		add_stability = 0.1
+		add_war_support = -0.05
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_to_order
+	icon = GFX_NIK_to_order
+	cost = 2.2
+	x = 13
+	y = 4
+	prerequisite = {
+		focus = NIK_demexpansion_make_an_example
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_ban_unregistered_armed_groups
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_to_order"
+		remove_ideas = NIK_syvtyvkartsi
+		add_stability = 0.2
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_codify_the_unwritten_rules
+	icon = GFX_ORE_draft_the_workers_constitution
+	cost = 2.2
+	x = 17
+	y = 1
+	mutually_exclusive = {
+		focus = NIK_demexpansion_root_out_paramilitary_commanders
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_restoring_order
+	}
+	available = {
+		NOT = {
+			has_government = authoritarian_democrat
+		}
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_codify_the_unwritten_rules"
+		add_war_support = 0.05
+		NIK_decrease_clash_shadows_peaceful = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_negotiate_with_the_remnants
+	icon = GFX_Generic_Shady_Deal
+	cost = 2.2
+	x = 16
+	y = 2
+	prerequisite = {
+		focus = NIK_demexpansion_codify_the_unwritten_rules
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_negotiate_with_the_remnants"
+		country_event = {
+			id = NIK.365
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_the_vilegodsk_conference
+	icon = GFX_ORE_balancing_the_council
+	cost = 2.2
+	x = 16
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_negotiate_with_the_remnants
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_the_vilegodsk_conference"
+		add_stability = -0.025
+		add_political_power = 50
+		NIK_decrease_center_power_high = yes
+		NIK_decrease_clash_shadows_peaceful = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_centralize_redistricting
+	icon = GFX_BEN_Local_City_Names
+	cost = 2.2
+	x = 18
+	y = 2
+	prerequisite = {
+		focus = NIK_demexpansion_codify_the_unwritten_rules
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_centralize_redistricting"
+		add_stability = 0.05
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_a_united_army
+	icon = GFX_YUN_Every_Man_A_Soldier
+	cost = 2.2
+	x = 18
+	y = 3
+	prerequisite = {
+		focus = NIK_demexpansion_centralize_redistricting
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_a_united_army"
+		add_manpower = 1500
+		NIK_decrease_clash_shadows_peaceful = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_to_arms
+	icon = GFX_NIK_to_arms
+	cost = 2.2
+	x = 17
+	y = 4
+	prerequisite = {
+		focus = NIK_demexpansion_the_vilegodsk_conference
+	}
+	prerequisite = {
+		focus = NIK_demexpansion_a_united_army
+	}
+	allow_branch = {
+		always = yes
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_to_arms"
+		swap_ideas = {
+			remove_idea = NIK_syvtyvkartsi
+			add_idea = NIK_syvtyvkartsi_final
+		}
+		NIK_decrease_clash_shadows_peaceful = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_peace_for_now
+	icon = GFX_NIK_peace
+	cost = 2.2
+	x = 15
+	y = 5
+	prerequisite = {
+		focus = NIK_demexpansion_to_order
+		focus = NIK_demexpansion_to_arms
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_peace_for_now"
+		add_stability = 0.05
+		if = {
+			limit = {
+				has_government = social_democrat
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = 0.075
+			}
+		}
+		if = {
+			limit = {
+				has_government = social_liberal
+			}
+			add_popularity = {
+				ideology = social_liberal
+				popularity = 0.075
+			}
+		}
+		if = {
+			limit = {
+				has_government = authoritarian_democrat
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.075
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_a_new_democratic_foundation
+	icon = GFX_NIK_democratic_foundation
+	cost = 2.2
+	x = 15
+	y = 6
+	prerequisite = {
+		focus = NIK_demexpansion_peace_for_now
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_a_new_democratic_foundation"
+		country_event = {
+			id = NIK.407
+			days = 1
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_new_election_cycles
+	icon = GFX_VOL_The_Election
+	cost = 2.2
+	x = 14
+	y = 7
+	prerequisite = {
+		focus = NIK_demexpansion_a_new_democratic_foundation
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_new_election_cycles"
+		add_stability = 0.1
+		NIK_increase_center_power_random = yes
+	}
+}
+
+shared_focus = {
+	id = NIK_demexpansion_formalize_our_claims
+	icon = GFX_NIK_constitutional_convention
+	cost = 2.2
+	x = 16
+	y = 7
+	prerequisite = {
+		focus = NIK_demexpansion_a_new_democratic_foundation
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_formalize_our_claims"
+		every_neighbor_country = {
+			add_war_support = -0.05
+		}
+		set_country_flag = NIK_POLITICS_RESOLVED
+	}
+}
+### Reconstruction Government stuff
+
+#This tree was done on International Women's Day, and it makes one beg the question - does Svetlana Stalina have girl power?
+#If so, is instating a dictatorship in the name of preventing a radical takeover of the government an acceptable manifestation of girl power?
+#If you read these comments, post your thoughts on the subreddit or something. Assuming this mod ever actually comes out.
+#- Pacifica
+shared_focus = {
+	id = NIK_stalexpansion_restoring_order
+	icon = GFX_NIK_Stalina
+	cost = 2.2
+	x = 15
+	y = 0
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_demexpansion_restoring_order"
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_devolve_judicial_power
+	icon = GFX_CAU_purge_the_officers
+	cost = 2.2
+	x = 15
+	y = 1
+	prerequisite = {
+		focus = NIK_stalexpansion_restoring_order
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_devolve_judicial_power"
+		add_timed_idea = { idea = NIK_purged_commanders days = 120 }
+		add_stability = -0.15
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_arrest_sources_of_information
+	icon = GFX_NIK_arrest_officers
+	cost = 2.2
+	x = 14
+	y = 2
+	prerequisite = {
+		focus = NIK_stalexpansion_devolve_judicial_power
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_arrest_sources_of_information"
+		add_stability = 0.05
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = national_socialism
+			popularity = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_make_an_example
+	icon = GFX_GER_A_Gentle_Purge
+	cost = 2.2
+	x = 14
+	y = 3
+	prerequisite = {
+		focus = NIK_stalexpansion_arrest_sources_of_information
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_make_an_example"
+		add_manpower = -250
+		add_political_power = -25
+		add_war_support = 0.10
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_seize_unregistered_firearms
+	icon = GFX_NIK_gun_control
+	cost = 2.2
+	x = 16
+	y = 2
+	prerequisite = {
+		focus = NIK_stalexpansion_devolve_judicial_power
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_instate_weapons_regulations"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 550
+			producer = NIK
+		}
+		add_stability = -0.025
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_clear_the_streets
+	icon = GFX_NIK_ban_paramils
+	cost = 2.2
+	x = 16
+	y = 3
+	prerequisite = {
+		focus = NIK_stalexpansion_seize_unregistered_firearms
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_clear_the_streets"
+		add_stability = 0.1
+		add_war_support = -0.05
+	}
+}
+#If you objectify a real-life woman who lived a more or less inobtrusive life, and most certainly never consented to being fetishized by people on the Internet, you should re-think your attitudes towards women.
+shared_focus = {
+	id = NIK_stalexpansion_the_crisis_calmed
+	icon = GFX_RAJ_Fight_Global_Warming
+	cost = 2.2
+	x = 15
+	y = 4
+	prerequisite = {
+		focus = NIK_stalexpansion_make_an_example
+	}
+	prerequisite = {
+		focus = NIK_stalexpansion_clear_the_streets
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_the_crisis_calmed"
+		remove_ideas = NIK_syvtyvkartsi
+		add_stability = 0.2
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_the_national_reconstruction_council
+	icon = GFX_ORE_the_best_officer_candidates
+	cost = 2.2
+	x = 13
+	y = 5
+	prerequisite = {
+		focus = NIK_stalexpansion_the_crisis_calmed
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_the_national_reconstruction_council"
+		country_event = {
+			id = komi_despotism.10
+			days = 1
+		}
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.075
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_guarantees_to_the_national_assembly
+	icon = GFX_Democacy_Saved
+	cost = 2.2
+	x = 12
+	y = 6
+	prerequisite = {
+		focus = NIK_stalexpansion_the_national_reconstruction_council
+	}
+	mutually_exclusive = {
+		focus = NIK_stalexpansion_extend_emergency_powers
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_guarantees_to_the_national_assembly"
+		country_event = {
+			id = komi_despotism.11
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_extend_emergency_powers
+	icon = GFX_NIK_to_order
+	cost = 2.2
+	x = 14
+	y = 6
+	prerequisite = {
+		focus = NIK_stalexpansion_the_national_reconstruction_council
+	}
+	mutually_exclusive = {
+		focus = NIK_stalexpansion_guarantees_to_the_national_assembly
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_extend_emergency_powers"
+		add_stability = -0.025
+		country_event = {
+			id = komi_despotism.12
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_issue_the_fundamental_directives
+	icon = GFX_generic_authoritarian_constitution
+	cost = 2.2
+	x = 13
+	y = 7
+	prerequisite = {
+		focus = NIK_stalexpansion_extend_emergency_powers
+		focus = NIK_stalexpansion_guarantees_to_the_national_assembly
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_the_national_reconstruction_council"
+		add_political_power = 25
+		country_event = {
+			id = komi_despotism.13
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_liquidate_anti_democratic_apparatus
+	icon = GFX_TNO_generic_prison
+	cost = 2.2
+	x = 17
+	y = 5
+	prerequisite = {
+		focus = NIK_stalexpansion_the_crisis_calmed
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_liquidate_anti_democratic_organizations"
+		add_war_support = 0.1
+		add_manpower = -1500
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.25
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.25
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.25
+		}
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.10
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_a_blueprint_for_integration
+	icon = GFX_ORE_establish_the_planning_commission
+	cost = 2.2
+	x = 17
+	y = 6
+	prerequisite = {
+		focus = NIK_stalexpansion_liquidate_anti_democratic_apparatus
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_a_blueprint_for_integration"
+		#Have this make integration faster
+		custom_effect_tooltip = NIK_stalexpansion_a_blueprint_for_integration_tt
+		subtract_from_variable = { RUS_integration_cost_days = 10 }
+		clamp_variable = { var = RUS_integration_cost_days max = 1000 min = 0 }
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_democracy_is_non_negotiable
+	icon = GFX_JAP_Blood_Iron_and_Representative_Democracy
+	cost = 2.2
+	x = 17
+	y = 7
+	prerequisite = {
+		focus = NIK_stalexpansion_a_blueprint_for_integration
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_a_blueprint_for_integration"
+		add_war_support = 0.075
+		add_manpower = 5000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+			producer = NIK
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 300
+			producer = NIK
+		}
+	}
+}
+
+shared_focus = {
+	id = NIK_stalexpansion_the_road_to_enduring_freedom
+	icon = GFX_ITA_The_Road_To_Democratic_Socialism
+	cost = 2.2
+	x = 15
+	y = 8
+	prerequisite = {
+		focus = NIK_stalexpansion_issue_the_fundamental_directives
+	}
+	prerequisite = {
+		focus = NIK_stalexpansion_democracy_is_non_negotiable
+	}
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NIK_stalexpansion_a_blueprint_for_integration"
+		add_stability = 0.15
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.1
+		}
+		set_country_flag = NIK_POLITICS_RESOLVED
+		country_event = {
+			id = komi_despotism.14
+			days = 1
+		}
+	}
+}

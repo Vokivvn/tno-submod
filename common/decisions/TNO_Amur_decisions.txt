@@ -1,0 +1,251 @@
+AMR_japanese_relations = {
+	AMR_improve_JAP_relations = {
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		visible = {
+			check_variable = { AMR_JAP_support < 80 }
+		}
+		days_re_enable = 60
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_improve_JAP_relations"
+			AMR_increase_JAP_support_low = yes
+		}
+	}
+
+	AMR_buy_JAP_guns = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_20_support_tp
+				ROOT = {
+					check_variable = { AMR_JAP_support > 19 }
+				}
+			}
+			any_controlled_state = {
+				is_coastal = yes
+				naval_base > 0
+			}
+		}
+		days_remove = 14
+		days_re_enable = 180
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_buy_JAP_guns"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_buy_JAP_guns"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = JAP
+			}
+		}
+	}
+
+	AMR_buy_JAP_trucks = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_40_support_tp
+				ROOT = {
+					check_variable = { AMR_JAP_support > 39 }
+				}
+			}
+			any_controlled_state = {
+				is_coastal = yes
+				naval_base > 1
+			}
+		}
+		days_remove = 14
+		days_re_enable = 180
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_buy_JAP_trucks"
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_0
+				amount = 200
+				producer = JAP
+			}
+		}
+	}
+
+	AMR_buy_JAP_artillery = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_60_support_tp
+				ROOT = {
+					check_variable = { AMR_JAP_support > 59 }
+				}
+			}
+			any_controlled_state = {
+				is_coastal = yes
+				naval_base > 1
+			}
+		}
+		days_remove = 14
+		days_re_enable = 180
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_buy_JAP_artillery"
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 150
+				producer = JAP
+			}
+		}
+	}
+
+	AMR_industrial_experts = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_60_support_tp
+				ROOT = {
+					check_variable = { AMR_JAP_support > 59 }
+				}
+			}
+			any_controlled_state = {
+				is_coastal = yes
+				naval_base > 2
+			}
+		}
+		days_remove = 14
+		days_re_enable = 365
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_industrial_experts"
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.75
+				uses = 1
+				category = industry
+			}
+		}
+	}
+
+	AMR_electronics_experts = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_60_support_tp
+				ROOT = {
+					check_variable = { AMR_JAP_support > 59 }
+				}
+			}
+			any_controlled_state = {
+				is_coastal = yes
+				naval_base > 2
+			}
+		}
+		days_remove = 14
+		days_re_enable = 365
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_electronics_experts"
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.75
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+}
+
+AMR_kill_NAJUA_category = {
+	AMR_anti_NAJUA_propaganda = {
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		days_remove = 7
+		days_re_enable = 365
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_anti_NAJUA_propaganda"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_anti_NAJUA_propaganda"
+			AMR_decrease_NAJUA_low = yes
+		}
+	}
+
+	AMR_raid_NAJUA_supplies = {
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		days_remove = 14
+		days_re_enable = 365
+		custom_cost_trigger = {
+			has_manpower > 500
+		}
+		custom_cost_text = AMR_strike_NAJUA_leadership_cost
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_raid_NAJUA_supplies"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_raid_NAJUA_supplies"
+			AMR_decrease_NAJUA_low = yes
+			add_manpower = -500
+		}
+	}
+
+	AMR_strike_NAJUA_leadership = {
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		days_remove = 14
+		days_re_enable = 365
+		custom_cost_trigger = {
+			has_manpower > 500
+		}
+		custom_cost_text = AMR_strike_NAJUA_leadership_cost
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_strike_NAJUA_leadership"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_strike_NAJUA_leadership"
+			AMR_decrease_NAJUA_low = yes
+			add_manpower = -500
+		}
+	}
+
+	AMR_terror_campaign = {
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		days_remove = 14
+		days_re_enable = 365
+		custom_cost_trigger = {
+			has_political_power > 50
+			has_manpower > 500
+		}
+		custom_cost_text = TOB_not_so_red_army_cost
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_terror_campaign"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_terror_campaign"
+			AMR_decrease_NAJUA_low = yes
+			add_manpower = -500
+		}
+	}
+
+	AMR_assassinate_kim = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = AMR_NAJUA_weak_tp
+				ROOT = {
+					check_variable = { AMR_NAJUA < 1 }
+				}
+			}
+		}
+		days_remove = 14
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision AMR_assassinate_kim"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove AMR_assassinate_kim"
+			country_event = { id = amur.82 }
+		}
+	}
+}

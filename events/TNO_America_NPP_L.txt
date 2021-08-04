@@ -1,0 +1,365 @@
+############################
+## America NPP - Left events
+############################
+
+add_namespace = HAL
+#hall is here to stay babe-ee
+country_event = {
+	id = HAL.1
+ 	title = HAL.1.t
+	desc = HAL.1.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.1.a
+
+ 	}
+}
+
+
+###BARRY THESE ARE THE BILL EVENTS###
+
+#SUPER-CRA PASSES#
+country_event = {
+	id = HAL.2
+ 	title = HAL.2.t
+	desc = HAL.2.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.2.a
+		if = {
+			limit = { has_country_flag = RD_R_negotiated }
+				USA_increase_civil_rights = yes
+				hidden_effect = {
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				}
+			}
+		else = {
+			USA_increase_civil_rights = yes
+			hidden_effect = {
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+				USA_increase_civil_rights = yes
+			}
+		}
+		custom_effect_tooltip = USA_NPP_R_popularity_grows_low
+		custom_effect_tooltip = USA_add_RD_D_popularity_high
+		hidden_effect = {
+			add_ideas = tno_minorities_affirmative_action
+			if = {
+			limit = { has_idea = tno_minorities_segregation }
+			tno_minorities_improve = yes
+			}
+			if = {
+				limit = { NOT = { has_idea = tno_minorities_equal_rights } }
+				tno_minorities_improve = yes
+			}
+			tno_racial_integration_improve = yes
+				every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.15 }
+				add_to_variable = { NPP_popularity = 0.1}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						}
+					}
+				add_to_variable = { RD_popularity = 0.14 }
+				add_to_variable = { RD_D_bonus_popularity = 0.1 }
+			}
+		}
+		USA_bill_clear = yes
+ 	}
+}
+
+#SUPER-CRA FAILS#
+country_event = {
+	id = HAL.3
+ 	title = HAL.3.t
+	desc = HAL.3.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.3.a
+		USA_bill_clear = yes
+
+		custom_effect_tooltip = USA_NPP_L_popularity_grows
+		custom_effect_tooltip = USA_NPP_R_popularity_grows_low
+		custom_effect_tooltip = USA_add_RD_D_popularity_high
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.05 }
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+					}
+				}
+				add_to_variable = { NPP_L_bonus_popularity = 0.1 }
+				add_to_variable = { NPP_popularity = 0.1}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						}
+					}
+				add_to_variable = { RD_popularity = 0.1 }
+			}
+		}
+ 	}
+}
+
+###thanks tex love you man###
+
+#pardon of john brown
+country_event = {
+	id = HAL.4
+ 	title = HAL.4.t
+	desc = HAL.4.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.4.a
+		add_stability = -0.01
+		custom_effect_tooltip = USA_subtract_NPP_popularity_low_south
+		custom_effect_tooltip = USA_NPP_FR_popularity_grows_low
+		custom_effect_tooltip = USA_NPP_R_popularity_grows_low
+		custom_effect_tooltip = USA_add_RD_D_popularity_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05 }
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_popularity = -0.05}
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { NPP_L_bonus_popularity = 0.05 }
+			}
+		}
+ 	}
+}
+
+#crus hthe fifth column
+country_event = {
+	id = HAL.5
+ 	title = HAL.5.t
+	desc = HAL.5.desc
+
+	picture = GFX_report_event_whitehouse_bnw
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.5.a
+
+ 	}
+}
+
+#hoover
+country_event = {
+	id = HAL.6
+ 	title = HAL.6.t
+	desc = HAL.6.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_hoover
+ 	option = {
+		name = HAL.6.a
+		custom_effect_tooltip = USA_gus_72_investigation_time_tt
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = HAL.7
+					days = 25
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = HAL.7
+ 	title = HAL.7.t
+	desc = HAL.7.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_hoover
+ 	option = {
+		name = HAL.7.a
+		custom_effect_tooltip = USA_gus_72_ladies_and_gentlemen_we_got_him_tt
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = HAL.8
+					days = 2
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = HAL.8
+ 	title = HAL.8.t
+	desc = HAL.8.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_generic_riot
+ 	option = {
+		name = HAL.8.a
+		add_political_power = 35
+		add_stability = -0.01
+		hidden_effect = {
+			USA = {
+				country_event = {
+					id = HAL.9
+					days = 30
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = HAL.9
+ 	title = HAL.9.t
+	desc = HAL.9.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_doj
+ 	option = {
+		name = HAL.9.a
+
+ 	}
+}
+
+country_event = {
+	id = HAL.10
+ 	title = HAL.10.t
+	desc = HAL.10.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+
+	picture = GFX_report_event_generic_sign_treaty1
+ 	option = {
+		name = HAL.10.a
+
+ 	}
+}
+
+country_event = {
+	id = HAL.11
+ 	title = HAL.11.t
+	desc = HAL.11.desc
+
+	picture = GFX_report_event_whitehouse_bnw
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	option = {
+		name = HAL.11.a
+		add_political_power = 75
+ 	}
+}
+
+country_event = {
+	id = HAL.12
+ 	title = HAL.12.t
+	desc = HAL.12.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_Flatcap_Worker
+
+ 	option = {
+		name = HAL.12.a
+		custom_effect_tooltip = USA_subtract_societal_unity
+		custom_effect_tooltip = USA_NPP_L_popularity_grows_low
+		add_to_variable = { USA_unity = -2 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_L_bonus_popularity = 0.05 }
+			}
+			USA = {
+				country_event = {
+					id = HAL.13
+					days = 2
+				}
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = HAL.13
+ 	title = HAL.13.t
+	desc = HAL.13.desc
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+	picture = GFX_report_event_cia
+	 
+ 	option = {
+		name = HAL.13.a
+		add_political_power = 120
+		add_stability = -0.12
+		USA_CIA_decrease_expertise_50 = yes
+		set_country_flag = TNO_closing_screen_show 
+ 	}
+}

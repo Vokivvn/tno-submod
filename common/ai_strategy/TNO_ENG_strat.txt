@@ -1,0 +1,165 @@
+FEN_war_strat_garrison = {
+	enable = {
+		original_tag = FEN
+		FEN = {
+			OR = {
+				has_war_with = ENG
+				has_war_with = CRN
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = garrison
+		value = -100
+	}
+}
+
+ENG_war_strat_garrison = {
+	enable = {
+		original_tag = ENG
+		ENG = {
+			OR = {
+				has_war_with = FEN
+				has_war_with = WAL
+				has_war_with = SCO
+				has_war_with = CRN
+			}
+			NOT = { has_country_flag = ENG_sealion_prep }
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = garrison
+		value = -100
+	}
+}
+
+FEN_dab_on_cornwall = {
+	enable = {
+		original_tag = FEN
+		ENG = {
+			exists = no
+		}
+		FEN = {
+		has_war_with = CRN
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type =  conquer		
+		id = CRN
+		value = 100
+	}
+	ai_strategy = {
+		type =  consider_weak		
+		id = CRN
+		value = 100
+	}
+	ai_strategy = {
+		type = antagonize
+		id = CRN
+		value = 100
+	}
+}
+
+ENG_dab_on_cornwall = {
+	enable = {
+		original_tag = ENG
+		ENG = {
+			has_war_with = CRN
+			NOT = {
+				has_war_with = GER
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = conquer		
+		id = CRN
+		value = 100
+	}
+	ai_strategy = {
+		type = consider_weak		
+		id = CRN
+		value = 100
+	}
+	ai_strategy = {
+		type = antagonize
+		id = CRN
+		value = 100
+	}
+}
+
+ENG_dont_help_me_unite = {
+	enable = {
+		is_in_faction_with = ENG
+		NOT = {
+			has_global_flag = TNO_world_tension_WW3
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = "ENG"
+		value = 100
+	}
+}
+
+ENG_dont_spy_on_port = {
+	enable = {
+		original_tag = ENG
+		1375 = {
+			is_demilitarized_zone = yes
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		state = 1375
+		value = -100
+	}
+}
+
+ENG_prep_WAL = {
+	enable = {
+		original_tag = ENG
+		ENG = {
+			NOT = { has_country_flag = ENG_sealion_prep }
+			has_country_flag = ENG_welsh_diplomatic_crisis
+		}
+	}
+	abort = {
+		WAL = { exists = no }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = prepare_for_war
+		id = WAL
+		value = 1000
+	}
+}
+
+ENG_prep_SCO = {
+	enable = {
+		ENG = {
+			NOT = { has_country_flag = ENG_sealion_prep }
+			has_country_flag = ENG_scottish_diplomatic_crisis
+		}
+	}
+	abort = {
+		SCO = { exists = no }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = prepare_for_war
+		id = SCO
+		value = 1000
+	}
+	ai_strategy = {
+		type = invade
+		id = SCO		
+		value = 50
+	}
+}

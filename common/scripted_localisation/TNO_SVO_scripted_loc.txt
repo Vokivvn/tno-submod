@@ -1,0 +1,341 @@
+#
+defined_text = {
+	name = SVOGetArmyModInPercent
+	text = {
+		trigger = {
+			set_temp_variable = { SVO_Army_Modernization_display = SVO_Army_Modernization_monthly_change }
+			multiply_temp_variable = { SVO_Army_Modernization_display = 0.01 }
+		}
+		localization_key = SVOGetArmyModInPercent_text
+	}
+}
+
+defined_text = {
+	name = SVOGet20CPColor
+	text = {
+		trigger = {
+			check_variable = { command_power > 20 }
+		}
+		localization_key = SVO_Army_20_CP_Y_cost_tt
+	}
+	text = {
+		localization_key = SVO_Army_20_CP_R_cost_tt
+	}
+}
+
+defined_text = {
+	name = SVO_GetPowerStruggle
+	text = {
+		trigger = {
+			check_variable = { SVO_MON_divide < -2 }
+		}
+		localization_key = SVO_Mongol_Power_Good
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_MON_divide < 0 }
+		}
+		localization_key = SVO_Mongol_Power
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_MON_divide < 2 }
+		}
+		localization_key = SVO_Russian_Power
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_MON_divide > 2 }
+		}
+		localization_key = SVO_Russian_Power_Good
+	}
+}
+
+defined_text = {
+	name = SVO_GetArmyPower
+	text = {
+		trigger = {
+			check_variable = { SVO_Army_Power < 30 }
+		}
+		localization_key = SVO_Army_Power_low
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_Army_Power < 70 }
+		}
+		localization_key = SVO_Army_Power_med
+	}
+	text = {
+		localization_key = SVO_Army_Power_high
+	}
+}
+
+defined_text = {
+	name = SVO_GetArmyLoyalty
+	text = {
+		trigger = {
+			check_variable = { SVO_Army_Loyalty < 30 }
+		}
+		localization_key = SVO_Army_Loyalty_low
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_Army_Loyalty < 70 }
+		}
+		localization_key = SVO_Army_Loyalty_med
+	}
+	text = {
+		localization_key = SVO_Army_Loyalty_high
+	}
+}
+
+defined_text = {
+	name = SVO_GetCivilianPower
+	text = {
+		trigger = {
+			check_variable = { SVO_Civilian_Power < 30 }
+		}
+		localization_key = SVO_Civilian_Power_low
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_Civilian_Power < 70 }
+		}
+		localization_key = SVO_Civilian_Power_med
+	}
+	text = {
+		localization_key = SVO_Civilian_Power_high
+	}
+}
+
+defined_text = {
+	name = SVO_GetCivilianLoyalty
+	text = {
+		trigger = {
+			check_variable = { SVO_Civilian_Loyalty < 30 }
+		}
+		localization_key = SVO_Civilian_Loyalty_low
+	}
+	text = {
+		trigger = {
+			check_variable = { SVO_Civilian_Loyalty < 70 }
+		}
+		localization_key = SVO_Civilian_Loyalty_med
+	}
+	text = {
+		localization_key = SVO_Civilian_Loyalty_high
+	}
+}
+
+defined_text = {
+	name = GetSVO_owner
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 1 }
+		}
+		localization_key = SVO_Civilian_Owned
+	}
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = -1 }
+		}
+		localization_key = SVO_Military_Owned
+	}
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+		}
+		localization_key = SVO_Not_Owned
+	}
+}
+
+defined_text = {
+	name = GetSVO_remove_status
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+		}
+		localization_key = GFX_SVO_army_unavailable
+	}
+	text = {
+		trigger = {
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				check_variable = { THIS.SVO_Owner = 1 }
+			}
+		}
+		localization_key = GFX_SVO_army_info
+	}
+}
+
+defined_text = {
+	name = GetSVO_remove_status_text
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+		}
+		localization_key = SVO_remove_status_tt_unavailable
+	}
+	text = {
+		trigger = {
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				check_variable = { THIS.SVO_Owner = 1 }
+			}
+		}
+		localization_key = SVO_remove_status_tt_available
+	}
+}
+
+defined_text = {
+	name = GetSVO_civilian_status_text
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+			NOT = { SVO = { has_country_flag = SVO_destroyed_citzenry } }
+			OR = {
+				is_core_of = SVO 
+				SVO = { has_country_flag = SVO_can_give_non_cores }
+			}
+		}
+		localization_key = SVO_civ_status_tt_available
+	}
+	text = {
+		trigger = {
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				SVO = { has_country_flag = SVO_destroyed_citzenry }
+				check_variable = { THIS.SVO_Owner = 1 }
+				AND = {
+					NOT = { is_core_of = SVO }
+					SVO = { NOT = { has_country_flag = SVO_can_give_non_cores } }
+				}
+			}
+		}
+		localization_key = SVO_civ_status_tt_unavailable
+	}
+}
+
+defined_text = {
+	name = GetSVO_military_status_text
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+			NOT = { SVO = { has_country_flag = SVO_destroyed_military } }
+			OR = {
+				is_core_of = SVO 
+				SVO = { has_country_flag = SVO_can_give_non_cores }
+			}
+		}
+		localization_key = SVO_mil_status_tt_available
+	}
+	text = {
+		trigger = {
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				check_variable = { THIS.SVO_Owner = 1 }
+				SVO = { has_country_flag = SVO_destroyed_military }
+				AND = {
+					NOT = { is_core_of = SVO }
+					SVO = { NOT = { has_country_flag = SVO_can_give_non_cores } }
+				}
+			}
+		}
+		localization_key = SVO_mil_status_tt_unavailable
+	}
+}
+
+defined_text = {
+	name = GetSVO_remove_status_tt
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+		}
+		localization_key = SVO_remove_status_ttip_unavailable
+	}
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 1 }
+		}
+		localization_key = SVO_remove_status_ttip_available_civ
+	}
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = -1 }
+		}
+		localization_key = SVO_remove_status_ttip_available_mil
+	}
+}
+
+defined_text = {
+	name = GetSVO_civilian_status_tt
+	text = {
+		trigger = {
+			NOT = { 
+				is_core_of = SVO
+				SVO = { has_country_flag = SVO_can_give_non_cores }
+			}
+		}
+		localization_key = SVO_civ_status_ttip_not_cored
+	}
+	text = {
+		trigger = {
+			SVO = { has_country_flag = SVO_destroyed_citzenry }
+		}
+		localization_key = SVO_civilian_status_tt_none
+	}
+	text = {
+		trigger = {
+			SVO = { NOT = { has_country_flag = SVO_destroyed_citzenry } }
+			check_variable = { THIS.SVO_Owner = 0 }
+		}
+		localization_key = SVO_civ_status_ttip_available
+	}
+	text = {
+		trigger = {
+			SVO = { NOT = { has_country_flag = SVO_destroyed_citzenry } }
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				check_variable = { THIS.SVO_Owner = 1 }
+			}
+		}
+		localization_key = SVO_civ_status_ttip_unavailable
+	}
+}
+
+defined_text = {
+	name = GetSVO_military_status_tt
+	text = {
+		trigger = {
+			NOT = { 
+				is_core_of = SVO
+				SVO = { has_country_flag = SVO_can_give_non_cores }
+			}
+		}
+		localization_key = SVO_civ_status_ttip_not_cored
+	}
+	text = {
+		trigger = {
+			SVO = { has_country_flag = SVO_destroyed_military }
+		}
+		localization_key = SVO_mil_status_tt_none
+	}
+	text = {
+		trigger = {
+			check_variable = { THIS.SVO_Owner = 0 }
+			SVO = { NOT = { has_country_flag = SVO_destroyed_military } }
+		}
+		localization_key = SVO_mil_status_ttip_available
+	}
+	text = {
+		trigger = {
+			SVO = { NOT = { has_country_flag = SVO_destroyed_military } }
+			OR = {
+				check_variable = { THIS.SVO_Owner = -1 }
+				check_variable = { THIS.SVO_Owner = 1 }
+			}
+		}
+		localization_key = SVO_civ_status_ttip_unavailable
+	}
+	
+}

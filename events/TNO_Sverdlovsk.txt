@@ -1,0 +1,3317 @@
+﻿##################################################################################################################
+## ██████╗ ███████╗██████╗      █████╗ ██████╗ ███╗   ███╗██╗   ██╗    ██████╗  ██████╗ ███╗   ██╗██╗███╗   ██╗ ##
+## ██╔══██╗██╔════╝██╔══██╗    ██╔══██╗██╔══██╗████╗ ████║╚██╗ ██╔╝    ██╔══██╗██╔═══██╗████╗  ██║██║████╗  ██║ ##
+## ██████╔╝█████╗  ██║  ██║    ███████║██████╔╝██╔████╔██║ ╚████╔╝     ██████╔╝██║   ██║██╔██╗ ██║██║██╔██╗ ██║ ##
+## ██╔══██╗██╔══╝  ██║  ██║    ██╔══██║██╔══██╗██║╚██╔╝██║  ╚██╔╝      ██╔══██╗██║   ██║██║╚██╗██║██║██║╚██╗██║ ##
+## ██║  ██║███████╗██████╔╝    ██║  ██║██║  ██║██║ ╚═╝ ██║   ██║       ██║  ██║╚██████╔╝██║ ╚████║██║██║ ╚████║ ##
+## ╚═╝  ╚═╝╚══════╝╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ##
+##################################################################################################################
+
+add_namespace = TOB #Warlord stage and general events
+add_namespace = sverdreg #Regional events
+add_namespace = batov #Batov events
+add_namespace = yeltsin #Yeltsin's political events
+
+#National focus events 1-50
+country_event = { #A Bastion of Freedom
+	id = TOB.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.1"}
+	title = TOB.1.t
+	desc = TOB.1.desc
+	picture = GFX_report_event_russia_soldiers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.1.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		add_stability = 0.01
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.02
+		}
+	}
+}
+
+country_event = { #Look Around You
+	id = TOB.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.2"}
+	title = TOB.2.t
+	desc = TOB.2.desc
+	picture = GFX_report_event_russian_letter	
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.2.a
+		ai_chance = { factor = 1 }
+		add_political_power = 15
+		add_war_support = -0.01
+		hidden_effect = {
+			country_event = { id = TOB.3 days = 3 }
+		}
+	}
+}
+
+country_event = { #Not All Hope is Lost
+	id = TOB.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.3"}
+	title = TOB.3.t
+	desc = TOB.3.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.3.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = TOB.4 days = 3 }
+		}
+	}
+}
+
+country_event = { #Defend Your Mother
+	id = TOB.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.4"}
+	title = TOB.4.t
+	desc = TOB.4.desc
+	picture = GFX_report_event_russia_motherland_calls_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.4.a
+		ai_chance = { factor = 1 }
+		add_manpower = 1
+	}
+}
+
+country_event = { #Do Your Duty
+	id = TOB.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.5"}
+	title = TOB.5.t
+	desc = TOB.5.desc
+	picture = GFX_report_event_russia_red_army_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.5.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.02
+		add_manpower = 2000
+		add_political_power = 40
+	}
+}
+
+country_event = { #A Semblance of Safety
+	id = TOB.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.6"}
+	title = TOB.6.t
+	desc = TOB.6.desc
+	picture = GFX_report_event_russia_devastated_village
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.6.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.02
+		}
+		add_political_power = 25
+	}
+}
+
+country_event = { #Making the Best of Things
+	id = TOB.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.7"}
+	title = TOB.7.t
+	desc = TOB.7.desc
+	picture = GFX_report_event_russian_city
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.7.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+	}
+}
+
+country_event = { #Scavenging events start
+	id = TOB.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.8"}
+	title = TOB.8.t
+	desc = TOB.8.desc
+	picture = GFX_report_event_russia_novotroitsk
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.8.a
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 232
+			producer = WRS
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 36
+			producer = WRS
+		}
+		hidden_effect = {
+			country_event = { id = TOB.101 days = 35 }
+		}
+	}
+}
+
+country_event = { #Our Work Begins
+	id = TOB.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.9"}
+	title = TOB.9.t
+	desc = TOB.9.desc
+	picture = GFX_report_event_russia_siberian_worker
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.9.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_war_support = 0.05
+		add_manpower = 5000
+		add_political_power = 25
+	}
+}
+
+country_event = { #Trust in the Marshal
+	id = TOB.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.10"}
+	title = TOB.10.t
+	desc = TOB.10.desc
+	picture = GFX_report_event_russia_rokossovsky
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.10.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #An End to Outdated Tactics
+	id = TOB.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.11"}
+	title = TOB.11.t
+	desc = TOB.11.desc
+	picture = GFX_report_event_russia_special_forces
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.11.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.05
+	}
+}
+
+country_event = { # Drawing Out the Plans
+	id = TOB.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.12"}
+	title = TOB.12.t
+	desc = TOB.12.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Attack Tyumen
+		name = TOB.12.a
+		ai_chance = { factor = 1 }
+		trigger = {
+			country_exists = ISH
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 200
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_equipment_1
+			amount = 50
+		}
+		complete_national_focus = TOB_Operation_blue
+	}
+	option = { #Attack Yugra
+		name = TOB.12.b
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 200
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_equipment_1
+			amount = 50
+		}
+		complete_national_focus = TOB_Operation_Orange
+	}
+}
+
+country_event = { #Operation: Orange
+	id = TOB.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.13"}
+	title = TOB.13.t
+	desc = TOB.13.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.13.a
+		ai_chance = { factor = 1 }
+		add_manpower = 2500
+		add_war_support = 0.05
+	}
+}
+
+country_event = { #Operation: Blue
+	id = TOB.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.14"}
+	title = TOB.14.t
+	desc = TOB.14.desc
+	picture = GFX_report_event_russia_sappers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.14.a
+		ai_chance = { factor = 1 }
+		add_manpower = 5000
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+	}
+}
+
+country_event = { #Withdrawing Agents - intelligence leak idea to tyumen
+	id = TOB.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.15"}
+	title = TOB.15.t
+	desc = TOB.15.desc
+	picture = GFX_report_event_secret_squirrel_stuff
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.15.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = { idea = TOB_intelligence_leaks days = 70 }
+	}
+}
+
+country_event = { #Operation: Black
+	id = TOB.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.16"}
+	title = TOB.16.t
+	desc = TOB.16.desc
+	picture = GFX_report_event_russia_red_army_march
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.16.a
+		ai_chance = { factor = 1 }
+		add_manpower = 5000
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = -0.05
+		}
+	}
+}
+
+country_event = { #Promise a Better Life
+	id = TOB.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.17"}
+	title = TOB.17.t
+	desc = TOB.17.desc
+	picture =  GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.17.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Novosibirsk choice to assist?
+	id = TOB.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.18"}
+	title = TOB.18.t
+	desc = TOB.18.desc
+	picture = GFX_report_event_russia_soldier_weapon_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ofcourse!
+		name = TOB.18.a
+		ai_chance = { factor = 5 }
+		ROOT = { 
+			add_political_power = -10
+			add_opinion_modifier = {
+				target = OMS
+				modifier = TOB_harassing_our_lands
+			}
+		}
+		OMS = {
+			country_event = { id = TOB.50 days = 4 }
+		}
+		hidden_effect = {
+			TOB = {
+				country_event = { id = TOB.49 days = 1 }
+			}
+		}
+	}
+	option = { #I'm a bitch
+		name = TOB.18.b
+		ai_chance = { factor = 1 }
+		FROM = { 
+			add_political_power = 10
+		}
+		hidden_effect = {
+			TOB = {
+				country_event = { id = TOB.51 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #Operation: Red
+	id = TOB.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.19"}
+	title = TOB.19.t
+	desc = TOB.19.desc
+	picture = GFX_report_event_russian_military
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.19.a
+		ai_chance = { factor = 1 }
+		add_manpower = 2500
+		add_war_support = 0.05
+	}
+}
+
+country_event = { #Surrender offer to VOR
+	id = TOB.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.20"}
+	title = TOB.20.t
+	desc = TOB.20.desc
+	picture = GFX_report_event_russian_handshake
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = TOB.20.a
+		ai_chance = { 
+			factor = 5
+			modifier = {
+				factor = 2
+				NOT = { country_exists = ISH }
+				#country_exists = OMS
+			}
+			modifier = {
+				factor = 3
+				AND = {
+					NOT = { country_exists = ISH }
+					NOT = { country_exists = OMS }
+				}	
+			}
+		}
+		TOB = {
+			country_event = { id = TOB.21 days = 2 }
+		}
+	}
+	option = { #No
+		name = TOB.20.b
+		ai_chance = { 
+			factor = 50
+		}
+		TOB = {
+			country_event = { id = TOB.22 days = 2 }
+		}
+	}
+}
+
+country_event = { # VOR accept surrender offer
+	id = TOB.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.21"}
+	title = TOB.21.t
+	desc = TOB.21.desc
+	picture = GFX_report_event_russia_vorkutlag
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Don't let Blokhin in
+		name = TOB.21.a
+		ai_chance = { factor = 100 }
+		annex_country = {
+			target = VOR
+			transfer_troops = no
+		}
+		863 = {
+			add_core_of = TOB
+			remove_core_of = VOR
+		}
+	}
+	option = { #Let Blokhin in
+	name = TOB.21.b
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = VOR
+			transfer_troops = no
+		}
+		863 = {
+			add_core_of = TOB
+			remove_core_of = VOR
+		}
+		add_political_power = 25
+		add_stability = -0.15
+	}
+	
+}
+
+country_event = { # VOR decline surrender offer
+	id = TOB.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.22"}
+	title = TOB.22.t
+	desc = TOB.22.desc
+	picture = GFX_report_event_russia_vorkutlag
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.22.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.1
+		add_political_power = -25
+	}
+}
+
+country_event = { #Zlatoust surrender offer
+	id = TOB.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.23"}
+	title = TOB.23.t
+	desc = TOB.23.desc
+	picture = GFX_report_event_russia_bunker_command
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Accept
+		name = TOB.23.a
+		ai_chance = { 
+			factor = 10
+			modifier = {
+				add = 35
+				OR = {
+					FROM = {
+						strength_ratio = {
+							tag = UDM
+							ratio = 2
+						}
+					}
+					has_completed_focus = TOB_a_deal_with_the_devil
+					FROM = {
+						is_ai = yes
+					}
+				}
+			}	
+		}
+		FROM = { 
+			country_event = { id = TOB.24 }
+		}
+	}
+	option = { #Decline
+		name = TOB.23.b
+		ai_chance = { 
+			factor = 45
+		}
+		FROM = { 
+			country_event = { id = TOB.25 }
+		}
+	}
+}
+
+country_event = { #Zlatoust accepts
+	id = TOB.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.24"}
+	title = TOB.24.t
+	desc = TOB.24.desc
+	picture = GFX_report_event_russia_zlatoust_dragunov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.24.a
+		ai_chance = { factor = 1 }
+		UDM = {
+			every_unit_leader = {
+				set_nationality = TOB
+			}
+		}
+		annex_country = {
+			target = UDM
+			transfer_troops = yes
+		}
+		hidden_effect = {
+			set_country_flag = TOB_zlatoust_peace
+		}
+	}
+}
+
+country_event = { #So you have chosen death (player only)
+	id = TOB.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.25"}
+	title = TOB.25.t
+	desc = TOB.25.desc
+	picture = GFX_report_event_russia_zlatoust_dragunov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #wtf bruh?
+		name = TOB.25.a
+		ai_chance = { factor = 1 }
+		diplomatic_relation = {
+			country = UDM
+			relation = non_aggression_pact
+			active = no
+		}
+		declare_war_on = {
+			target = UDM
+			type = russian_reclaimation
+		}
+		hidden_effect = {
+			set_country_flag = TOB_zlatoust_war
+		}
+	}
+}
+
+# country_event = { #sending some materials to Free aviators
+# 	id = TOB.26
+# 	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.26"}
+# 	title = TOB.26.t
+# 	desc = TOB.26.desc
+# 	#picture = 
+	
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+	
+# 	option = { # cool
+# 		name = TOB.26.a
+# 		ai_chance = { factor = 1 }
+# 		FAV = {
+# 			country_event = TOB.27
+# 		}
+# 		add_to_variable = {
+# 			var = FAVScrapMetalBank
+# 			value = 150
+# 			tooltip = "Send 150 aircraft scrap to Free Aviators"
+# 		}
+# 		add_to_variable = {
+# 			var = TOB_aviator_happiness 
+# 			value = 10
+# 			tooltip = "Add 10% to aviator integration"
+# 		}
+# 	}
+# }
+
+# country_event = { #FAV receiving materials
+# 	id = TOB.27
+# 	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.27"}
+# 	title = TOB.27.t
+# 	desc = TOB.27.desc
+# 	#picture = 
+	
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+	
+# 	option = { #thanks
+# 		name = TOB.27.a
+# 		ai_chance = { factor = 1 }
+# 		custom_effect_tooltip = "We will receive 150 aircraft scrap"
+# 	}
+# }
+
+country_event = { #Internal enemies description about the huge presence of Tyumen revisionists & Black League
+	id = TOB.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.28"}
+	title = TOB.28.t
+	desc = TOB.28.desc
+	picture = GFX_report_event_russia_partisan
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.28.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = { #River marines time
+	id = TOB.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.29"}
+	title = TOB.29.t
+	desc = TOB.29.desc
+	picture = GFX_report_event_russia_marines
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.29.a
+		ai_chance = { factor = 1 }
+		create_corps_commander = {
+			name = "Viktor Leonov"
+			picture = "Portrait_Sverdlovsk_Viktor_Leonov.dds"
+			traits = { trait_reckless commando naval_invader }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 2
+			id = 3564
+		}
+	}
+}
+
+country_event = { #Information about annexing FAV
+	id = TOB.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.30"}
+	title = TOB.30.t
+	desc = TOB.30.desc
+	picture = GFX_report_event_pilots
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #send event to FAV
+		name = TOB.30.a
+		ai_chance = { factor = 1 }
+		FAV = {
+			country_event = { id = TOB.31 days = 2 }
+		}
+	}
+}
+
+country_event = { #event for annexation to FAV
+	id = TOB.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.31"}
+	title = TOB.31.t
+	desc = TOB.31.desc
+	picture = GFX_report_event_pilots
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK
+		name = TOB.31.a
+		ai_chance = { factor = 1 }
+		FROM = {
+			country_event = TOB.32
+		}
+	}
+	option = { #NO (player only)
+		name = TOB.31.b
+		ai_chance = { factor = 0 }
+		FROM = {
+			country_event = TOB.33
+		}
+	}
+}
+
+country_event = { #they accept (ai always accepts)
+	id = TOB.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.32"}
+	title = TOB.32.t
+	desc = TOB.32.desc
+	picture = GFX_report_event_pilots
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #very cool
+		name = TOB.32.a
+		ai_chance = { factor = 1 }
+		air_experience = 25
+		annex_country = {
+			target = FAV
+			transfer_troops = yes
+		}
+		add_state_core = 579
+		
+	}
+}
+
+country_event = { #FAV declines annexation (player only)
+	id = TOB.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.33"}
+	title = TOB.33.t
+	desc = TOB.33.desc
+	picture = GFX_report_event_pilots
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.33.a
+		ai_chance = { factor = 1 }
+		declare_war_on = {
+			target = FAV
+			type = russian_reclaimation
+		}
+	}
+}
+
+country_event = { #Batov intro event
+	id = TOB.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.34"}
+	title = TOB.34.t
+	desc = TOB.34.desc
+	picture = GFX_report_event_russia_batov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.34.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Restoring Nationwide Administration
+	id = TOB.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.35"}
+	title = TOB.35.t
+	desc = TOB.35.desc
+	picture = GFX_report_event_russia_court
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.35.a
+		ai_chance = { factor = 1 }
+		add_political_power = 50
+		add_stability = 0.035
+	}
+}
+
+country_event = { #TOB_promote_heroes
+	id = TOB.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.36"}
+	title = TOB.36.t
+	desc = TOB.36.desc
+	picture = GFX_report_event_soviet_russian_officers_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.36.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #New Security Service
+	id = TOB.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.37"}
+	title = TOB.37.t
+	desc = TOB.37.desc
+	picture = GFX_report_event_secret_squirrel_stuff
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = TOB.37.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = { #A Difference of Opinion
+	id = TOB.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.38"}
+	title = TOB.38.t
+	desc = TOB.38.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.38.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = TOB.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.39"}
+	title = TOB.39.t
+	desc = TOB.39.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.39.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = TOB.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.40"}
+	title = TOB.40.t
+	desc = TOB.40.desc
+	picture = GFX_report_event_black_league_symbol
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.40.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+		black_league_influence_decrease = yes
+	}
+}
+
+country_event = { #
+	id = TOB.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.41"}
+	title = TOB.41.t
+	desc = TOB.41.desc
+	picture = GFX_report_event_russia_red_army_march
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.41.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+		revisionist_influence_decrease = yes
+	}
+}
+
+country_event = { #Black League influence annihilated!
+	id = TOB.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.42"}
+	title = TOB.42.t
+	desc = TOB.42.desc
+	picture = GFX_report_event_black_league_symbol
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.42.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.075
+		}
+	}
+}
+
+country_event = { #Tyumen revisionist influence annihilated!
+	id = TOB.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.43"}
+	title = TOB.43.t
+	desc = TOB.43.desc
+	picture = GFX_report_event_russia_soldier_beaten
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.43.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.075
+		}
+	}
+}
+
+country_event = { #Foundations of Democracy - A group of democratic dissidents led by Boris Yeltsin discuss their plans
+	id = TOB.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.44"}
+	title = TOB.44.t
+	desc = TOB.44.desc
+	picture = GFX_report_event_russia_yeltsin
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.44.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.05
+		}
+		create_country_leader = {
+			name = "Boris Yeltsin"
+			desc = "POLITICS_BORIS_YELTSIN_DESC"
+			picture = "Portrait_Sverdlovsk_Boris_Yeltsin.dds"
+			expire = "1999.1.1"
+			ideology = social_conservative_subtype
+			traits = {
+				#
+			}
+		}
+		hidden_effect = {
+			country_event = { id = TOB.45 days = 7 random = 48 }
+		}
+	}
+}
+
+country_event = { #A democratic rally is held in Sverdlovsk, quickly dispersed by Marshal Rokossovsky's forces
+	id = TOB.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.45"}
+	title = TOB.45.t
+	desc = TOB.45.desc
+	picture = GFX_report_event_komi_rally_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.45.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.46 days = 5 random = 48 }
+		}
+	}
+}
+
+country_event = { #A PR disaster
+	id = TOB.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.46"}
+	title = TOB.46.t
+	desc = TOB.46.desc
+	picture = GFX_report_event_komi_rally_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Arrest the soldiers responsible for opening fire on the crowd
+		name = TOB.46.a
+		ai_chance = { factor = 1 }
+		add_political_power = -50
+		add_stability = 0.05
+	}
+	option = { #Double down; they were assaulting the soldiers
+		name = TOB.46.b
+		ai_chance = { factor = 1 }
+		add_political_power = 75
+		add_stability = -0.05
+	}
+}
+
+country_event = { #Fall of the Black League
+	id = TOB.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.47"}
+	title = TOB.47.t
+	desc = TOB.47.desc
+	picture = GFX_report_event_russia_omsk_endgame
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.47.a
+		ai_chance = { factor = 1 }
+		remove_mission = TOB_cl_influence_ticker
+	}
+}
+
+country_event = { #Reminiscence
+	id = TOB.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.48"}
+	title = TOB.48.t
+	desc = TOB.48.desc
+	picture = GFX_report_event_river
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.48.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Support from the Federation
+	id = TOB.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.49"}
+	title = TOB.49.t
+	desc = TOB.49.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.49.a
+		ai_chance = { factor = 1 }
+		add_political_power = 5
+		add_war_support = 0.025
+	}
+}
+
+country_event = { #Omsk event about getting shelled
+	id = TOB.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.50"}
+	title = TOB.50.t
+	desc = TOB.50.desc
+	picture = GFX_report_event_anti_air
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.50.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = { idea = TOB_novosibirsk_harassment days = 45 }
+		random_owned_controlled_state = {
+			damage_building = {
+			    type = industrial_complex
+			    damage = 1
+			}
+		}
+	}
+}
+
+country_event = { #We Stand Alone - Novosib refused to aid against Omsk
+	id = TOB.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.51"}
+	title = TOB.51.t
+	desc = TOB.51.desc
+	picture = GFX_report_event_russian_letter
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.51.a
+		ai_chance = { factor = 1 }
+		add_political_power = -5
+	}
+}
+
+country_event = { #The Death of the Marshal - Rokossovsky ded
+	id = TOB.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.100"}
+	title = TOB.100.t
+	desc = TOB.100.desc
+	picture = GFX_report_event_generic_funeral
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.100.a
+		ai_chance = { factor = 1 }
+		kill_country_leader = yes
+		add_political_power = -25
+		add_stability = -0.05
+		create_country_leader = {
+			name = "Pavel Batov"
+			desc = "POLITICS_PAVEL_BATOV_DESC"
+			picture = "Portrait_Sverdlovsk_Pavel_Batov.dds"
+			traits = { the_modern_suvorov }
+			expire = "1999.1.1"
+			ideology = authoritarian_democrat_subtype
+		}
+		every_unit_leader = {
+			limit = { has_id = 3551 }
+			retire = yes
+		}
+		every_unit_leader = {
+			limit = { has_id = 3552 }
+			promote_leader = yes
+		}
+		hidden_effect = {
+			load_focus_tree = { tree = TOB_regional_trees keep_completed = no }
+			swap_ideas = {
+				remove_idea = TOB_Pavel_Batov_hog
+				add_idea = TOB_Ivan_Bagramyan_hog
+			}
+			swap_ideas = {
+				remove_idea = TOB_Ivan_Bagramyan_sec
+				add_idea = TOB_Hamazasp_Babadzhanian_sec
+			}
+		}
+	}
+}
+#101 - 150 triggered events
+country_event = { #loot
+	id = TOB.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.101"}
+	title = TOB.101.t
+	desc = TOB.101.desc
+	picture = GFX_report_event_crate_of_guns
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #police station
+		name = TOB.101.a
+		ai_chance = { factor = 1 }
+
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 534
+			producer = WRS
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 65
+			producer = WRS
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_1
+			amount = 83
+			producer = WRS
+		}
+		add_to_variable = { loot_amount = 1	}
+		custom_effect_tooltip = gain_loot_1
+		hidden_effect = {
+			country_event = { id = TOB.102 days = 35 }
+		}
+	}
+}
+
+country_event = { #loot
+	id = TOB.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.102"}
+	title = TOB.102.t
+	desc = TOB.102.desc
+	picture = GFX_report_event_guns_crate_mosin
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #random military base
+		name = TOB.102.a
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 437
+			producer = WRS
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 55
+			producer = WRS
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment_1
+			amount = 64
+			producer = ISH
+		}
+		hidden_effect = {
+			country_event = { id = TOB.103 days = 35 }
+		}
+	}
+}
+
+country_event = { #random military base
+	id = TOB.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.103"}
+	title = TOB.103.t
+	desc = TOB.103.desc
+	picture = GFX_report_event_crate_of_guns
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.103.a
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 343
+			producer = ISH
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 35
+			producer = ISH
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 156
+			producer = ISH
+		}
+		add_to_variable = { loot_amount = 1	}
+		custom_effect_tooltip = gain_loot_1
+		hidden_effect = {
+			country_event = { id = TOB.104 days = 35 }
+		}
+	}
+}
+
+country_event = { #tank storage, lend lease
+	id = TOB.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.104"}
+	title = TOB.104.t
+	desc = TOB.104.desc
+	picture = GFX_IRK_tanks_at_night
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.104.a
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = MBT_equipment_0
+			amount = 45
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = IFV_equipment_0
+			amount = 45
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment_0
+			amount = 45
+			producer = USA
+		}
+		hidden_effect = {
+			country_event = { id = TOB.105 days = 35 }
+		}
+	}
+}
+
+country_event = { #airfield
+	id = TOB.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.105"}
+	title = TOB.105.t
+	desc = TOB.105.desc
+	picture = GFX_report_event_generic_ace_promoted
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.105.a
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = interceptor_equipment_1
+			amount = 25
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = fighter_equipment_1
+			amount = 20
+			producer = ISH
+		}
+		add_equipment_to_stockpile = {
+			type = tac_bomber_equipment_1
+			amount = 15
+			producer = USA
+		}
+		653 = { 
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+#event chain 1 - not so red army
+country_event = { # start of event chain - intro, red army sympathies 
+	id = TOB.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.110"}
+	title = TOB.110.t
+	desc = TOB.110.desc
+	picture = GFX_report_event_komi_bombing_2
+		
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #OK
+		name = TOB.110.a
+		ai_chance = { factor = 1 }
+		black_league_influence_increase = yes
+		hidden_effect = {
+			set_country_flag = TOB_NOT_SO_RED_ARMY
+			country_event = { id = TOB.119 days = 35 }
+			country_event = { id = TOB.111 days = 450 }
+		}
+	}
+}
+
+country_event = { # extremist black league thoughts gaining traction
+	id = TOB.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.111"}
+	title = TOB.111.t
+	desc = TOB.111.desc
+	picture = GFX_report_event_russian_military
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #split the worst agitators
+		name = TOB.111.a
+		ai_chance = { factor = 1 }
+		add_political_power = -15
+		hidden_effect = { 
+			country_event = { id = TOB.112 days = 30}
+		}
+	}
+	option = { #start cracking down
+		name = TOB.111.b
+		ai_chance = { factor = 1 }
+		add_political_power = -30
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.114 days = 30 }
+		}
+	}
+}
+
+country_event = { #everything seems to be fine
+	id = TOB.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.112"}
+	title = TOB.112.t
+	desc = TOB.112.desc
+	picture = GFX_report_event_russia_tank_crew
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #great, we did it!
+		name = TOB.112.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		hidden_effect = {
+			country_event = { id = TOB.113 days = 30 }
+		}
+	}
+}
+
+country_event = { #split groups basically converting the local populace 
+	id = TOB.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.113"}
+	title = TOB.113.t
+	desc = TOB.113.desc
+	picture = GFX_report_event_russia_war_planning
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #we have to crack down on it now
+		name = TOB.113.a
+		ai_chance = { factor = 1 }
+		add_political_power = -30
+		add_stability = -0.1
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.114 days = 30 }
+		}
+	}
+}
+
+country_event = { #black league cells start appearing
+	id = TOB.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.114"}
+	title = TOB.114.t
+	desc = TOB.114.desc
+	picture = GFX_report_event_soviet_russian_map
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	
+	option = { #attempt to inflitrate
+		name = TOB.114.a
+		ai_chance = { factor = 1 }
+		add_political_power = -50
+		hidden_effect = {
+			country_event = { id = TOB.115 days = 30 }
+		}
+		
+	}
+	option = { #martial law now
+		name = TOB.114.b
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		add_stability = 0.05
+		add_war_support = -0.1
+		hidden_effect = { 
+			country_event = { id = TOB.117 days = 30}
+		}
+		
+	}
+}
+
+country_event = { #spies return information on cells, others dont report
+	id = TOB.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.115"}
+	title = TOB.115.t
+	desc = TOB.115.desc
+	picture = GFX_report_event_vodka
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.115.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = ultranational_socialism
+			popularity = 0.05
+		}
+		hidden_effect = { 
+			country_event = { id = TOB.116 days = 30 }
+		}
+	}
+}
+
+country_event = { #turns out they were returning false information!
+	id = TOB.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.116"}
+	title = TOB.116.t
+	desc = TOB.116.desc
+	picture = GFX_report_event_russia_sappers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.116.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.05
+		
+		hidden_effect = { 
+			country_event = { id = TOB.117 days = 30 }
+		}
+	}
+}
+
+country_event = { #black league members caught crossing into territory
+	id = TOB.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.117"}
+	title = TOB.117.t
+	desc = TOB.117.desc
+	picture = GFX_report_event_russia_bunker_command
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #interrogate them
+		name = TOB.117.a
+		ai_chance = { factor = 1 }
+		add_political_power = 30
+		hidden_effect = { 
+			country_event = { id = TOB.118 days = 30 }
+		}
+	}
+}
+
+country_event = { #perform raids
+	id = TOB.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.118"}
+	title = TOB.118.t
+	desc = TOB.118.desc
+	picture = GFX_report_event_exploding_building1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #black league under control
+		name = TOB.118.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.05
+		add_manpower = -2500
+		black_league_influence_decrease = yes
+	}
+}
+
+country_event = { #red army dudes deserting from sverdlovsk
+	id = TOB.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.119"}
+	title = TOB.119.t
+	desc = TOB.119.desc
+	picture = GFX_report_event_russia_novotroitsk
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #place harsh restrictions
+		name = TOB.119.a
+		ai_chance = { factor = 1 }
+		add_manpower = -5000
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.127 days = 20}
+		}
+	}
+	option = { #further incentivize army
+		name = TOB.119.b
+		ai_chance = { factor = 1 }
+		add_political_power = -50
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.120 days = 20}
+		}
+	}
+}
+
+country_event = { #higher soldier morale at cost of civs
+	id = TOB.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.120"}
+	title = TOB.120.t
+	desc = TOB.120.desc
+	picture = GFX_report_event_russia_famine
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #take the opportunity to recuit civs
+		name = TOB.120.a
+		ai_chance = { factor = 1 }
+		add_political_power = -40
+		add_manpower = 7000
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.121 days = 30}
+		}
+	}
+	option = { #we need civilians in the factories
+		name = TOB.120.b
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		add_political_power = 25
+		add_stability = -0.05
+		add_war_support = -0.05
+		hidden_effect = {
+			country_event = { id = TOB.124 days = 30}
+		}
+	}
+}
+
+country_event = { #a bunch of agitators slip into the ranks
+	id = TOB.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.121"}
+	title = TOB.121.t
+	desc = TOB.121.desc
+	picture = GFX_report_event_soviet_propoganda
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #start looking for agitators
+		name = TOB.121.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.05
+		add_war_support = -0.05
+		hidden_effect = {
+			country_event = { id = TOB.122 days = 30}
+		}
+	}
+	option = { #place harsh restrictions
+		name = TOB.121.b
+		ai_chance = { factor = 1 }
+		add_manpower = -5000
+		add_war_support = -0.05
+		hidden_effect = {
+			country_event = { id = TOB.127 days = 30}
+		}
+	}
+}
+
+country_event = { #agitators caught and interrogated
+	id = TOB.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.122"}
+	title = TOB.122.t
+	desc = TOB.122.desc
+	picture = GFX_report_event_russia_bunker_command
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #place harsh restrictions
+		name = TOB.122.a
+		ai_chance = { factor = 1 }
+		add_manpower = -6000
+		add_war_support = -0.05
+		hidden_effect = {
+			country_event = { id = TOB.128 days = 30}
+		}
+	}
+	option = { #purge remaining agitators
+		name = TOB.122.b
+		ai_chance = { factor = 1 }
+		add_political_power = -50
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.123 days = 30}
+		}
+	}
+}
+
+country_event = { #army demoralized from purges
+	id = TOB.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.123"}
+	title = TOB.123.t
+	desc = TOB.123.desc
+	picture = GFX_report_event_russia_tank_crew
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.123.a
+		ai_chance = { factor = 1 }
+		add_war_support = -0.1
+
+		#add temp idea
+		add_timed_idea = {
+			idea = TOB_demoralized_army
+		 	days = 120
+		}
+		hidden_effect = {
+			country_event = { id = TOB.128 days = 30}
+		}
+	}
+}
+
+country_event = { #civilians protesting in the streets
+	id = TOB.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.124"}
+	title = TOB.124.t
+	desc = TOB.124.desc
+	picture = GFX_report_event_russia_kazakh_crowd
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #give in on demands
+		name = TOB.124.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = {
+			idea = TOB_worker_concessions
+			days = 120
+		}
+		add_political_power = -25
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.05
+		}
+		tno_tax_rate_worsen = yes
+		hidden_effect = { 
+			country_event = { id = TOB.126 days = 30 }
+		}
+		
+	}
+	option = { #SEND IN THE TANKS
+		name = TOB.124.b
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		add_political_power = 50
+		hidden_effect = { 
+			country_event = { id = TOB.125 days = 30 }
+		}
+	}
+}
+
+country_event = { #defenseless civilians get smoked
+	id = TOB.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.125"}
+	title = TOB.125.t
+	desc = TOB.125.desc
+	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.125.a
+		ai_chance = { factor = 1 }
+		#debuffs production, stability, war support
+		add_timed_idea = {
+			idea = TOB_unhappy_workers
+			days = 120
+		}
+		add_stability = 0.05
+		add_war_support = -0.1
+		add_manpower = -1000
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = { id = TOB.127 days = 30}
+		}
+	}
+}
+
+country_event = { #civilians return to work, army not happy
+	id = TOB.126
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.126"}
+	title = TOB.126.t
+	desc = TOB.126.desc
+	picture = GFX_report_event_russian_city
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.126.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.1
+		}
+		#debuffs on army
+		add_timed_idea = {
+		 	idea = TOB_unhappy_army
+		 	days = 120
+		 }
+		hidden_effect = {
+			country_event = { id = TOB.127 days = 30}
+		}
+	}
+}
+
+country_event = { #demoralized soldiers
+	id = TOB.127
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.127"}
+	title = TOB.127.t
+	desc = TOB.127.desc
+	picture = GFX_report_event_russian_commissar
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.127.a
+		ai_chance = { factor = 1 }
+		#hard debuffs on army
+		add_timed_idea = {
+		 	idea = TOB_demoralized_army
+		 	days = 60
+		}
+		hidden_effect = {
+			country_event = { id = TOB.128 days = 25 }
+		}
+	}
+}
+
+country_event = { #deserters from army to tyumen
+	id = TOB.128
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.128"}
+	title = TOB.128.t
+	desc = TOB.128.desc
+	picture = GFX_report_event_ural_farm
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.128.a
+		ai_chance = { factor = 1 }
+		add_war_support = -0.05
+		add_manpower = -2500
+		hidden_effect = {
+			ISH = { 
+				country_event = { id = TOB.132 days = 2 }
+			}
+			country_event = { id = TOB.129 days = 20 }
+		}
+		
+	}
+}
+
+country_event = { #only real loyal soldiers remain
+	id = TOB.129
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.129"}
+	title = TOB.129.t
+	desc = TOB.129.desc
+	picture = GFX_report_event_russian_military
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.129.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		remove_ideas = TOB_notso_redarmy
+	}
+}
+
+country_event = { # waning black league influence
+	id = TOB.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.130"}
+	title = TOB.130.t
+	desc = TOB.130.desc
+	picture = GFX_report_event_russia_advertisements
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.130.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+	}
+}
+
+country_event = { # waning revisionist influence
+	id = TOB.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.131"}
+	title = TOB.131.t
+	desc = TOB.131.desc
+	picture = GFX_report_event_russia_advertisements
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.131.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+	}
+}
+
+country_event = { #ISH event gain manpower from deserters
+	id = TOB.132
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.132"}
+	title = TOB.132.t
+	desc = TOB.132.desc
+	picture = GFX_report_event_russian_refugees
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #ok
+		name = TOB.132.a
+		ai_chance = { factor = 1 }
+		add_manpower = 2000
+	}
+
+	option = { #must be inflitrators
+		name = TOB.132.b
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+	}
+}
+
+#Declare war events
+country_event = { #omsk tier 1
+	id = TOB.140
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.140"}
+	title = TOB.140.t
+	desc = TOB.140.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.140.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_war_support = 0.1
+	}
+}
+
+country_event = { #omsk tier 2
+	id = TOB.141
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.141"}
+	title = TOB.141.t
+	desc = TOB.141.desc
+	picture = GFX_report_event_russia_advertisements
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.141.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_black_league_sabotage
+	}
+}
+
+country_event = { #omsk tier 3
+	id = TOB.142
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.142"}
+	title = TOB.142.t
+	desc = TOB.142.desc
+	picture = GFX_report_event_soviet_militia2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.142.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_black_league_terrorism
+	}
+}
+
+country_event = { #omsk tier 4
+	id = TOB.143
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.143"}
+	title = TOB.143.t
+	desc = TOB.143.desc
+	picture = GFX_report_event_russia_omsk_redemption_brigade
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.143.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_black_league_terrorism
+		black_league_uprising = yes
+	}
+}
+
+country_event = { #tyumen tier 1
+	id = TOB.144
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.144"}
+	title = TOB.144.t
+	desc = TOB.144.desc
+	picture = GFX_report_event_russia_partisan
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.144.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_war_support = 0.1
+	}
+}
+
+country_event = { #tyumen tier 2
+	id = TOB.145
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.145"}
+	title = TOB.145.t
+	desc = TOB.145.desc
+	picture = GFX_report_event_russia_soldiers_bombed_city
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.145.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_revisionist_sabotage
+	}
+}
+
+country_event = { #tyumen tier 3
+	id = TOB.146
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.146"}
+	title = TOB.146.t
+	desc = TOB.146.desc
+	picture = GFX_report_event_komi_rally_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.146.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_revisionist_terrorism
+	}
+}
+
+country_event = { #tyumen tier 4
+	id = TOB.147
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.147"}
+	title = TOB.147.t
+	desc = TOB.147.desc
+	picture = GFX_report_event_soviet_militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		revisionist_uprising = yes
+	}
+	option = { #
+		name = TOB.147.a
+		ai_chance = { factor = 1 }
+		add_ideas = TOB_revisionist_terrorism
+	}
+}
+
+### More national focus events ###
+country_event = { #A Silent Morning - bombings deterred
+	id = TOB.150
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.150"}
+	title = TOB.150.t
+	desc = TOB.150.desc
+	picture = GFX_report_event_Milkman
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.150.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.1
+		hidden_effect = {
+			if = { 
+				limit = {
+					is_ai = yes
+				}
+				revisionist_influence_increase = yes
+				black_league_influence_increase = yes
+			}
+			load_focus_tree = sverdlovsk_after_bombing
+		}
+	}
+}
+
+country_event = { #The Aviators over the Military District
+	id = TOB.151
+	immediate = {log = "[GetDateText]: [Root.GetName]: event TOB.151"}
+	title = TOB.151.t
+	desc = TOB.151.desc
+	picture = GFX_report_event_generic_bombers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = TOB.151.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+### Regional events ###
+country_event = { #Status of the District
+	id = sverdreg.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.1" }
+	title = sverdreg.1.t
+	desc = sverdreg.1.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.1.a
+		ai_chance = { factor = 1 }
+		add_political_power = 20
+	}
+}
+
+country_event = { #The Marshal's Proclamation - from The Guiding Hand of the Marshal focus
+	id = sverdreg.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.2" }
+	title = sverdreg.2.t
+	desc = sverdreg.2.desc
+	picture = GFX_report_event_russia_batov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.2.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.05
+	}
+}
+
+country_event = { #The Trial of Lazar Kaganovich
+	id = sverdreg.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.3" }
+	title = sverdreg.3.t
+	desc = sverdreg.3.desc
+	picture = GFX_report_event_court_case_1
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.3.a
+		ai_chance = { factor = 1 }
+		add_political_power = 35
+		add_stability = 0.05
+		hidden_effect = {
+			clr_country_flag = TOB_kaganovich_loyalists_dealt_with
+		}
+	}
+}
+
+country_event = { #The Trial of Dmitry Yazov
+	id = sverdreg.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.4" }
+	title = sverdreg.4.t
+	desc = sverdreg.4.desc
+	picture = GFX_report_event_court_case_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.4.a
+		ai_chance = { factor = 1 }
+		add_political_power = 35
+		add_war_support = 0.05
+		hidden_effect = {
+			clr_country_flag = TOB_black_league_remnants_dealt_with
+		}
+	}
+}
+
+country_event = { #Ease Martial Law
+	id = sverdreg.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.5" }
+	title = sverdreg.5.t
+	desc = sverdreg.5.desc
+	picture = GFX_report_event_russian_city
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.5.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Enlistment Benefits - a young lad wants to sign up and be a soldier/hero
+	id = sverdreg.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.6" }
+	title = sverdreg.6.t
+	desc = sverdreg.6.desc
+	picture = GFX_report_event_russia_novotroitsk
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.6.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The Sentinels of Russia
+	id = sverdreg.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.7" }
+	title = sverdreg.7.t
+	desc = sverdreg.7.desc
+	picture = GFX_report_event_russia_batov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.7.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Rebuilding the District
+	id = sverdreg.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.8" }
+	title = sverdreg.8.t
+	desc = sverdreg.8.desc
+	picture = GFX_report_event_russia_siberian_worker
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.8.a
+		ai_chance = { factor = 1 }
+		add_to_variable = { var = GDP_growth value = 0.005 }
+		custom_effect_tooltip = TOB_economic_recovery_tt
+	}
+}
+
+country_event = { #Resources of Siberia - Farman Salmanov finds more oil in Surgut!
+	id = sverdreg.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.9" }
+	title = sverdreg.9.t
+	desc = sverdreg.9.desc
+	picture = GFX_report_event_russia_farman_salmanov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.9.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = { idea = TOB_efficient_resource_extraction days = 730 }
+		add_resource = {
+			type = oil
+			amount = 10
+			state = 579
+		}
+	}
+}
+
+country_event = { #Taking Inventory - A quartermaster going over all the confiscated equipment from the regional unification; commenting on the fighting, etc.
+	id = sverdreg.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.10" }
+	title = sverdreg.10.t
+	desc = sverdreg.10.desc
+	picture = GFX_report_event_guns_crate_mosin
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.10.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #On the Way to Recovery - Things are improving economically in the District
+	id = sverdreg.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.11" }
+	title = sverdreg.11.t
+	desc = sverdreg.11.desc
+	picture = GFX_report_event_generic_train
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.11.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.035
+	}
+}
+
+country_event = { #The Cream of the Crop - The drill instructor from the earlier event starts training a new batch of recruits
+	id = sverdreg.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.12" }
+	title = sverdreg.12.t
+	desc = sverdreg.12.desc
+	picture = GFX_report_event_soldiers_training
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.12.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Legacy of the 3rd Army - A 3rd Army veteran reminisces about wars past and thinks about the future and the wars to come; the 3rd Army will always protect the people
+	id = sverdreg.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.13" }
+	title = sverdreg.13.t
+	desc = sverdreg.13.desc
+	picture = GFX_report_event_russia_red_army_march
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.13.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Airfields of Surgut - The Free Aviators aces continue to protect the skies
+	id = sverdreg.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.14" }
+	title = sverdreg.14.t
+	desc = sverdreg.14.desc
+	picture = GFX_report_event_ffr_female_aviators
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.14.a
+		ai_chance = { factor = 1 }
+		add_ace = {
+			name = "Yevdokia"
+			surname = "Bocharova"
+			callsign = "Vedimy-01"
+			type = bomber_genius
+			is_female = yes
+		}
+		add_ace = {
+			name = "Irina"
+			surname = "Sebrova"
+			callsign = "Vedimy-02"
+			type = bomber_genius
+			is_female = yes
+		}
+	}
+}
+
+country_event = { #Reaching Out - Establishing a Foreign Affairs office
+	id = sverdreg.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.15" }
+	title = sverdreg.15.t
+	desc = sverdreg.15.desc
+	picture = GFX_report_event_komi_syktyvkar_5
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.15.a
+		ai_chance = { factor = 1 }
+		add_political_power = 50
+	}
+}
+
+country_event = { #Approach the Eagle - USA perspective; We've been approached by the Foreign Office of Sverdlovsk. They asked for recognition and trade relations. They have plenty of resources (oil especially)
+	id = sverdreg.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.16" }
+	title = sverdreg.16.t
+	desc = sverdreg.16.desc
+	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Sounds like a good deal, tell them we said yes, let's see what we get
+		name = sverdreg.16.a
+		ai_chance = { factor = 100 }
+		add_political_power = 10
+		hidden_effect = {
+			TOB = {
+				country_event = { id = sverdreg.17 }
+			}
+		}
+	}
+}
+
+country_event = { #Approach the Eagle - Sverd perspective; Americans said yes to opening trade relations!
+	id = sverdreg.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.17" }
+	title = sverdreg.17.t
+	desc = sverdreg.17.desc
+	picture = GFX_report_event_USA_congress_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.17.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+		custom_effect_tooltip = TOB_foreign_trade_tt
+		add_to_variable = { var = TOB_foreign_trade_consumer_goods value = -0.025 }
+		add_to_variable = { var = TOB_foreign_trade_opinion value = 0.05 }
+	}
+}
+
+country_event = { #Establishing a Consulate - US perspective
+	id = sverdreg.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.18" }
+	title = sverdreg.18.t
+	desc = sverdreg.18.desc
+	picture = GFX_report_event_USA_congress_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Allow the West Siberians to establish a consulate
+		name = sverdreg.18.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = { target = TOB modifier = TOB_consulate_in_washington }
+		hidden_effect = {
+			TOB = {
+				country_event = { id = sverdreg.19 }
+			}
+		}
+	}
+}
+
+country_event = { #Establishing a Consulate - Sverd perspective. Americans said yes!
+	id = sverdreg.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.19" }
+	title = sverdreg.19.t
+	desc = sverdreg.19.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.19.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = { target = USA modifier = TOB_consulate_in_washington }
+		custom_effect_tooltip = TOB_foreign_trade_tt
+		add_to_variable = { var = TOB_foreign_trade_political_power value = 0.035 }
+		add_to_variable = { var = TOB_foreign_trade_opinion value = 0.025 }
+		hidden_effect = {
+			country_event = { id = sverdreg.23 days = 3 random = 24 }
+			if = {
+				limit = {
+					has_government = social_conservative
+				}
+				country_event = { id = sverdreg.24 days = 7 random = 24 }
+				USA = {
+					country_event = { id = sverdreg.24 days = 7 random = 24 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Establishing a Consulate - Sverd perspective. Americans said no (NOT HOOKED UP; MAY USE LATER)
+	id = sverdreg.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.20" }
+	title = sverdreg.20.t
+	desc = sverdreg.20.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.20.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Dragunov's Connections - Zlatoust peacefully annexed
+	id = sverdreg.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.21" }
+	title = sverdreg.21.t
+	desc = sverdreg.21.desc
+	picture = GFX_report_event_russia_zlatoust_dragunov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #His connections are useful
+		name = sverdreg.21.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = TOB_foreign_trade_tt
+		add_to_variable = { var = TOB_foreign_trade_consumer_goods value = -0.025 }
+		add_to_variable = { var = TOB_foreign_trade_local_resources value = 0.025 }
+		add_to_variable = { var = TOB_foreign_trade_min_export value = -0.005 }
+	}
+
+	option = { #Use his connections and make Dragunov ForMin
+		name = sverdreg.21.b
+		ai_chance = { factor = 1 }
+		add_political_power = -35
+		set_country_flag = TOB_dragunov_minister
+		custom_effect_tooltip = TOB_foreign_trade_tt
+		add_to_variable = { var = TOB_foreign_trade_consumer_goods value = -0.025 }
+		add_to_variable = { var = TOB_foreign_trade_local_resources value = 0.025 }
+		add_to_variable = { var = TOB_foreign_trade_min_export value = -0.015 }
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = TOB_Anatoly_Dobrynin_for
+				add_idea = TOB_Yevgeny_Dragunov_for
+			}
+		}
+	}
+}
+
+country_event = { #Dragunov's Connections - Went to war with Zlatoust, Dragunov was arrested
+	id = sverdreg.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.22" }
+	title = sverdreg.22.t
+	desc = sverdreg.22.desc
+	picture = GFX_report_event_russia_zlatoust_dragunov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Pardon him, use what connections are left
+		name = sverdreg.22.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = TOB_foreign_trade_tt
+		add_to_variable = { var = TOB_foreign_trade_consumer_goods value = -0.005 }
+		add_to_variable = { var = TOB_foreign_trade_local_resources value = 0.005 }
+	}
+}
+
+country_event = { #Some soldiers featured in earlier events get sent to Washington as part of the military attaché
+	id = sverdreg.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.23" }
+	title = sverdreg.23.t
+	desc = sverdreg.23.desc
+	picture = GFX_report_event_wales_officer
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.23.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Yeltsin comes to the US as part of a trade deal and meets a white house aid named Bill Clinton who he has some drinks with
+	id = sverdreg.24
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.24" }
+	title = sverdreg.24.t
+	desc = sverdreg.24.desc
+	picture = GFX_report_event_vodka
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = sverdreg.24.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Appeal to Italy for recognition - ITA perspective
+	id = sverdreg.25
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.25" }
+	title = sverdreg.25.t
+	desc = sverdreg.25.desc
+	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Say yes
+		name = sverdreg.25.a
+		ai_chance = { factor = 10 }
+		hidden_effect = {
+			TOB = {
+				country_event = { id = sverdreg.27 days = 4 random = 48 }
+			}
+		}
+	}
+
+	option = { #Say no
+		name = sverdreg.25.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				AND = {
+					ITA = {
+						has_government = fascism
+					}
+					TOB = {
+						has_government = social_conservative
+					}
+				}
+				add = 35
+			}
+		}
+		hidden_effect = {
+			TOB = {
+				country_event = { id = sverdreg.28 days = 4 random = 48 }
+			}
+		}
+	}
+}
+
+country_event = { #West Siberians start trading with us, they have good resources
+	id = sverdreg.26
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.26" }
+	title = sverdreg.26.t
+	desc = sverdreg.26.desc
+	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = sverdreg.26.a
+		ai_chance = { factor = 1 }
+		ROOT = {
+			add_opinion_modifier = {
+				target = TOB
+				modifier = RUS_trade
+			}
+		}
+	}
+}
+
+country_event = { #Italy says yes! - Gazprom ENI time
+	id = sverdreg.27
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.27" }
+	title = sverdreg.27.t
+	desc = sverdreg.27.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.27.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		add_opinion_modifier = {
+			target = FROM
+			modifier = RUS_trade
+		}
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = RUS_trade
+			}
+		}
+		if = {
+			limit = {
+				has_government = authoritarian_democrat
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.1
+			}
+		}
+	}
+}
+
+country_event = { #Italy says no :(
+	id = sverdreg.28
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.28" }
+	title = sverdreg.28.t
+	desc = sverdreg.28.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = sverdreg.28.a
+		ai_chance = { factor = 1 }
+		add_political_power = -25
+	}
+}
+
+country_event = { #Hunting down some Yugra bandit holdouts
+	id = sverdreg.29
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.29" }
+	title = sverdreg.29.t
+	desc = sverdreg.29.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.29.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.025
+	}
+}
+
+country_event = { #Election event
+	id = sverdreg.30
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.30" }
+	title = sverdreg.30.t
+	desc = sverdreg.30.desc
+	picture = GFX_report_event_iberia_election_line_inside
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.30.a
+		hidden_effect = {
+			RUS_run_election = yes
+			set_country_flag = RUS_ELECTION_RESULTS_SHOW
+			country_event = { id = russian_democracy_helpers.2 days = 60 }
+			country_event = { id = russian_democracy_helpers.5 days = 30 }
+			if = { #Batov victory
+				limit = {
+					has_country_flag = RUS_ELECTION_AUTH_VICTORY
+				}
+				country_event = batov.1
+			}
+			if = { #Yeltsin victory
+				limit = {
+					has_country_flag = RUS_ELECTION_CONSERVATIVE_VICTORY
+				}
+				country_event = yeltsin.1
+			}
+		}
+	}
+}
+
+country_event = { #The Grand Russian Army
+	id = sverdreg.31
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.31" }
+	title = sverdreg.31.t
+	desc = sverdreg.31.desc
+	picture = GFX_report_event_soviet_russian_soldiers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.31.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #A Lost Soul
+	id = sverdreg.32
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.32" }
+	title = sverdreg.32.t
+	desc = sverdreg.32.desc
+	picture = GFX_report_event_komi_syktyvkar_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.32.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Across The Bay
+	id = sverdreg.33
+	immediate = { log = "[GetDateText]: [Root.GetName]: event sverdreg.33" }
+	title = sverdreg.33.t
+	desc = sverdreg.33.desc
+	picture = GFX_report_event_soviet_russian_officers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = sverdreg.33.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.01
+	}
+}
+
+### Batov events ###
+country_event = { #Batov Victory
+	id = batov.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.1" }
+	title = batov.1.t
+	desc = batov.1.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.1.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			load_focus_tree = { tree = TOB_regional_trees_batov keep_completed = yes }
+		}
+	}
+}
+
+country_event = { #A Union of the People
+	id = batov.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.2" }
+	title = batov.2.t
+	desc = batov.2.desc
+	picture = GFX_report_event_russia_batov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.2.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Freedom from Persecution
+	id = batov.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.3" }
+	title = batov.3.t
+	desc = batov.3.desc
+	picture = GFX_report_event_russia_red_army_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.3.a
+		ai_chance = { factor = 1 }
+		add_manpower = 1
+		hidden_effect = {
+			country_event = { id = batov.9 days = 14 random = 48 }
+		}
+	}
+}
+
+country_event = { #Reintegrate the Remnants
+	id = batov.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.4" }
+	title = batov.4.t
+	desc = batov.4.desc
+	picture = GFX_report_event_russia_red_army_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.4.a
+		ai_chance = { factor = 1 }
+		WSR = {
+			every_unit_leader = {
+				limit = {
+					OR = {
+						has_id = 3381
+						has_id = 3394
+					}
+				}
+				set_nationality = TOB
+			}
+		}
+	}
+}
+
+country_event = { #The Council's Plan
+	id = batov.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.5" }
+	title = batov.5.t
+	desc = batov.5.desc
+	picture = GFX_report_event_komi_congress_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.5.a
+		ai_chance = { factor = 1 }
+		add_command_power = 20
+	}
+}
+
+country_event = { #Eagles's Soar - USA
+	id = batov.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.6" }
+	title = batov.6.t
+	desc = batov.6.desc
+	picture = GFX_report_event_generic_sign_treaty2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.6.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = batov.8 days = 7 }
+			TOB = {
+				country_event = { id = batov.8 days = 7 }
+			}
+		}
+	}
+}
+
+country_event = { #To Serve Russia
+	id = batov.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.7" }
+	title = batov.7.t
+	desc = batov.7.desc
+	picture = GFX_report_event_russia_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.7.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Eagles's Soar II
+	id = batov.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.8" }
+	title = batov.8.t
+	desc = batov.8.desc
+	picture = GFX_white_house_picture
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = batov.8.a
+		ai_chance = { factor = 1 }
+		trigger = {
+			tag = USA
+		}
+		add_opinion_modifier = {
+			target = TOB
+			modifier = TNO_good_diplomatic_relations
+		}
+	}
+	option = { #
+		name = batov.8.b
+		ai_chance = { factor = 1 }
+		trigger = {
+			tag = TOB
+		}
+		add_opinion_modifier = {
+			target = USA
+			modifier = TNO_good_diplomatic_relations
+		}
+	}
+}
+
+country_event = { #Misfits
+	id = batov.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.9" }
+	title = batov.9.t
+	desc = batov.9.desc
+	picture = GFX_report_event_soviet_russian_soldiers_3
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = batov.9.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #A "Red" Army?
+	id = batov.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.10" }
+	title = batov.10.t
+	desc = batov.10.desc
+	picture = GFX_report_event_soviet_russian_officers_4
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = batov.10.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Batov Epilogue
+	id = batov.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.11" }
+	title = batov.11.t
+	desc = batov.11.desc
+	picture = GFX_report_event_russia_monument
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = batov.11.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			create_country_leader = {
+				name = "Pavel Batov"
+				desc = "POLITICS_PAVEL_BATOV_70S_DESC"
+				picture = "Portrait_Sverdlovsk_Pavel_Batov_70s.dds"
+				expire = "1999.1.1"
+				ideology = authoritarian_democrat_subtype
+				traits = { the_modern_suvorov }
+			}
+			TNO_russia_ending_screen = yes
+		}
+	}
+}
+
+country_event = { #Promise Of Payback
+	id = batov.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event batov.12" }
+	title = batov.12.t
+	desc = batov.12.desc
+	picture = GFX_report_event_soviet_russian_officers_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = batov.12.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.01
+	}
+}
+
+### Yeltsin events ###
+country_event = { #Yeltsin wins in the elections
+	id = yeltsin.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.1" }
+	title = yeltsin.1.t
+	desc = yeltsin.1.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.1.a
+		ai_chance = { factor = 1 }
+		set_cosmetic_tag = TOB_republic
+		set_politics = {
+			ruling_party = social_conservative
+		}
+		add_ideas = {
+			TOB_Yevgeniy_Primakov_hog
+			TOB_Ivan_Silayev_for
+			TOB_Alexander_Tizyakov_eco
+			TOB_Pavel_Batov_sec
+		}
+		add_popularity = { ideology = social_conservative popularity = 0.1 }
+		hidden_effect = {
+			load_focus_tree = { tree = TOB_regional_trees_yeltsin keep_completed = yes }
+		}
+	}
+}
+
+country_event = { #Meet With The Marshal
+	id = yeltsin.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.2" }
+	title = yeltsin.2.t
+	desc = yeltsin.2.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.2.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+
+country_event = { #For A Better Tomorrow
+	id = yeltsin.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.3" }
+	title = yeltsin.3.t
+	desc = yeltsin.3.desc
+	picture = GFX_report_event_russia_forest_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.3.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+
+country_event = { #Victory for Democracy!
+	id = yeltsin.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.4" }
+	title = yeltsin.4.t
+	desc = yeltsin.4.desc
+	picture = GFX_report_event_komi_congress_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.4.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #Democracy Triumphant
+	id = yeltsin.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.5" }
+	title = yeltsin.5.t
+	desc = yeltsin.5.desc
+	picture = GFX_report_event_komi_congress_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.5.a
+		ai_chance = { factor = 1 }
+		add_popularity = { ideology = social_conservative popularity = 0.035 }
+	}
+}
+
+country_event = { #Bury the Past
+	id = yeltsin.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.6" }
+	title = yeltsin.6.t
+	desc = yeltsin.6.desc
+	picture = GFX_report_event_secret_squirrel_stuff
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.6.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		add_stability = -0.05
+	}
+}
+
+country_event = { #A Breath of Fresh Air
+	id = yeltsin.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.7" }
+	title = yeltsin.7.t
+	desc = yeltsin.7.desc
+	picture = GFX_report_event_russian_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.7.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Back to Washington
+	id = yeltsin.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.8" }
+	title = yeltsin.8.t
+	desc = yeltsin.8.desc
+	picture = GFX_white_house_picture
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.8.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = TOB
+			modifier = TNO_good_diplomatic_relations
+		}
+		TOB = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = TNO_good_diplomatic_relations
+			}
+		}
+	}
+}
+
+country_event = { #Throne of Bayonets
+	id = yeltsin.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.9" }
+	title = yeltsin.9.t
+	desc = yeltsin.9.desc
+	picture = GFX_report_event_komi_congress_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.9.a
+		ai_chance = { factor = 1 }
+		add_political_power = -25
+		army_experience = 10
+	}
+}
+
+country_event = { #Rise From the Ashes
+	id = yeltsin.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event yeltsin.10" }
+	title = yeltsin.10.t
+	desc = yeltsin.10.desc
+	picture = GFX_report_event_russia_yeltsin
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = yeltsin.10.a
+		ai_chance = { factor = 1 }
+	}
+}

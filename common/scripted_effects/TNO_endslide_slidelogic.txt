@@ -1,0 +1,469 @@
+#          ____                __           ___            __                               #
+#         /\  _`\             /\ \         /\_ \    __    /\ \                              #
+#         \ \ \L\_\    ___    \_\ \    ____\//\ \  /\_\   \_\ \     __    ____              #
+#          \ \  _\L  /' _ `\  /'_` \  /',__\ \ \ \ \/\ \  /'_` \  /'__`\ /',__\             #
+#           \ \ \L\ \/\ \/\ \/\ \L\ \/\__, `\ \_\ \_\ \ \/\ \L\ \/\  __//\__, `\            #
+#            \ \____/\ \_\ \_\ \___,_\/\____/ /\____\\ \_\ \___,_\ \____\/\____/            #
+#             \/___/  \/_/\/_/\/__,_ /\/___/  \/____/ \/_/\/__,_ /\/____/\/___/             #
+#                                                                                           #
+# ______                                   __        __                   __                #
+#/\__  _\                                 /\ \__    /\ \__               /\ \  __           #
+#\/_/\ \/       __  __  __     __      ___\ \ ,_\   \ \ ,_\   ___        \_\ \/\_\     __   #
+#   \ \ \      /\ \/\ \/\ \  /'__`\  /' _ `\ \ \/    \ \ \/  / __`\      /'_` \/\ \  /'__`\ #
+#    \_\ \__   \ \ \_/ \_/ \/\ \L\.\_/\ \/\ \ \ \_    \ \ \_/\ \L\ \    /\ \L\ \ \ \/\  __/ #
+#    /\_____\   \ \___x___/'\ \__/.\_\ \_\ \_\ \__\    \ \__\ \____/    \ \___,_\ \_\ \____\#
+#    \/_____/    \/__//__/   \/__/\/_/\/_/\/_/\/__/     \/__/\/___/      \/__,_ /\/_/\/____/#
+#                                                                                           #
+#						The hardest choices require the strongest wills.					#
+#<=========================================================================================>#
+#>================================|  Endslide Slidelogic  |================================<#
+#<=========================================================================================>#
+
+#
+
+### URAL SLIDES ###
+#0-25
+tno_endslides_logic_URL = {
+	###Normal Endings
+	##1-7
+	if = {
+		limit = { check_variable = { endscrn = 0 } } #Ural Intro
+		if = { limit = { endscrn_ORE_URL_friendly = yes } set_variable = { endscrn = 2 } }
+		else_if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 3 } }
+		else_if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 4 } }
+		else_if = { limit = { endscrn_URL_guard_maintained = yes } set_variable = { endscrn = 5 } }
+		else_if = { limit = { endscrn_URL_militia_reforms = yes } set_variable = { endscrn = 6 } }
+		else_if = { limit = { endscrn_URL_militia_reforms_and_guard = yes } set_variable = { endscrn = 7 } }
+		else = { set_variable = { endscrn = 11 } }
+	}
+	else_if = { 
+		limit = { check_variable = { endscrn = 1 } } #ORS dead
+		if = { limit = { endscrn_ORE_URL_friendly = yes } set_variable = { endscrn = 2 } }
+		else_if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 3 } }
+		else_if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 4 } }
+		else_if = { limit = { endscrn_URL_guard_maintained = yes } set_variable = { endscrn = 5 } }
+		else_if = { limit = { endscrn_URL_militia_reforms = yes } set_variable = { endscrn = 6 } }
+		else_if = { limit = { endscrn_URL_militia_reforms_and_guard = yes } set_variable = { endscrn = 7 } }
+		else = { set_variable = { endscrn = 11 } }
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 2 } } #ORE URL friends
+		if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 3 } }
+		else_if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 4 } }
+		else_if = { limit = { endscrn_URL_guard_maintained = yes } set_variable = { endscrn = 5 } }
+		else_if = { limit = { endscrn_URL_militia_reforms = yes } set_variable = { endscrn = 6 } }
+		else_if = { limit = { endscrn_URL_militia_reforms_and_guard = yes } set_variable = { endscrn = 7 } }
+		else = { set_variable = { endscrn = 11 } }
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 3 } } #Lysenko Yote
+		if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 4 } }
+		else_if = { limit = { endscrn_URL_guard_maintained = yes } set_variable = { endscrn = 5 } }
+		else_if = { limit = { endscrn_URL_militia_reforms = yes } set_variable = { endscrn = 6 } }
+		else_if = { limit = { endscrn_URL_militia_reforms_and_guard = yes } set_variable = { endscrn = 7 } }
+		else = { set_variable = { endscrn = 11 } }
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 4 } } #NKVD In power
+		if = { limit = { endscrn_URL_guard_maintained = yes } set_variable = { endscrn = 5 } }
+		else_if = { limit = { endscrn_URL_militia_reforms = yes } set_variable = { endscrn = 6 } }
+		else_if = { limit = { endscrn_URL_militia_reforms_and_guard = yes } set_variable = { endscrn = 7 } }
+		else = { set_variable = { endscrn = 11 } }
+	}
+	
+	##8-10
+	else_if = {
+		#Status of the Guard
+		limit = { OR = { check_variable = { endscrn = 5 } check_variable = { endscrn = 6 } check_variable = { endscrn = 7 } } }
+		if = { limit = { endscrn_ORS_dead = yes  NOT = { endscrn_ORE_URL_friendly = yes } } set_variable = { endscrn = 8 } }
+
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 8 } } #Dirly dead but not friends with ORE
+		if = { limit = { endscrn_ORE_URL_hostile = yes } set_variable = { endscrn = 9 } }
+		else_if = { limit = { endscrn_URL_dead = yes } set_variable = { endscrn = 10 } }
+		else = {
+			random_list = { #random future ending
+				1 = { set_variable = { endscrn = 11 } }
+				1 = { set_variable = { endscrn = 12 } }
+				1 = { set_variable = { endscrn = 13 } }
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 9 } } #ORE & URL actively hostile
+		if = { limit = { endscrn_URL_dead = yes } set_variable = { endscrn = 10 } }
+		else = {
+			random_list = { #random future ending
+				1 = { set_variable = { endscrn = 11 } }
+				1 = { set_variable = { endscrn = 12 } }
+				1 = { set_variable = { endscrn = 13 } }
+			}
+		}
+	}
+
+	###Ending Slides
+	##Bonus
+	else_if = {
+		limit = { check_variable = { endscrn = 10 } } #time for random ending
+		random_list = { #random future ending
+			1 = { set_variable = { endscrn = 11 } }
+			1 = { set_variable = { endscrn = 12 } }
+			1 = { set_variable = { endscrn = 13 } }
+		}
+	}
+	##Final
+	else_if = {
+		#from random ending to final slides
+		limit = { OR = { check_variable = { endscrn = 11 } check_variable = { endscrn = 12 } check_variable = { endscrn = 13 } } }
+		if = { limit = { NOT = { endscrn_URL_dead = yes } } set_variable = { endscrn = 14 } } #The Guard is strong
+		else = { set_variable = { endscrn = 15 } } #A light extinguished
+	}
+	##Clearing Flag Slides
+	else_if = {
+		limit = { OR = { check_variable = { endscrn = 14 } check_variable = { endscrn = 15 } } }
+		set_variable = { endscrn = 0 }
+		clr_country_flag = endscreen_flag_open
+	}
+}
+
+### ORENBURG SLIDES ###
+#25-50
+tno_endslides_logic_ORE = {
+	###Normal Endings
+	if = {
+		limit = { check_variable = { endscrn = 25 } } #Opening
+		if = { limit = { endscrn_ORE_URL_friendly = yes endscrn_ORS_dead = yes } set_variable = { endscrn = 26 } }
+		else_if = { limit = { NOT = { endscrn_ORE_URL_friendly = yes } endscrn_ORS_dead = yes } set_variable = { endscrn = 27 } }
+		else_if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 28 } }
+		else_if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 29 } }
+		else_if = { limit = { endscrn_ORE_communes_maintained = yes } set_variable = { endscrn = 30 } }
+		else_if = { limit = { endscrn_ORE_communes_beaten_down = yes } set_variable = { endscrn = 31 } }
+		else_if = { limit = { endscrn_ORE_dead = yes } set_variable = { endscrn = 37 } } #ORE dead
+		else = { set_variable = { endscrn = 38 } }
+	}
+
+	else_if = {
+		limit = { OR = { check_variable = { endscrn = 26 } check_variable = { endscrn = 27 } } }
+		if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 28 } }
+		else_if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 29 } }
+		else_if = { limit = { endscrn_ORE_communes_maintained = yes } set_variable = { endscrn = 30 } }
+		else_if = { limit = { endscrn_ORE_communes_beaten_down = yes } set_variable = { endscrn = 31 } }
+		else_if = { limit = { endscrn_ORE_dead = yes } set_variable = { endscrn = 37 } } #ORE dead
+		else = { set_variable = { endscrn = 38 } }		
+	}
+
+	else_if = {
+		limit = { check_variable = { endscrn = 28 } }
+		if = { limit = { endscrn_BAS_NKVD = yes } set_variable = { endscrn = 29 } }
+		else_if = { limit = { endscrn_ORE_communes_maintained = yes } set_variable = { endscrn = 30 } }
+		else_if = { limit = { endscrn_ORE_communes_beaten_down = yes } set_variable = { endscrn = 31 } }
+		else_if = { limit = { endscrn_ORE_dead = yes } set_variable = { endscrn = 37 } } #ORE dead
+		else = { set_variable = { endscrn = 38 } }		
+	}
+
+	#We can guarantee, that if the Communes where maintained, Malenkov/Burba did not win
+	else_if = {
+		limit = { check_variable = { endscrn = 30 } }
+		if = { limit = { endscrn_ORE_council = yes } set_variable = { endscrn = 34 } }
+		else_if = { limit = { endscrn_ORE_dead = yes } set_variable = { endscrn = 37 } } #ORE dead
+		else = { set_variable = { endscrn = 38 } }		
+	}
+
+	#And vice versa
+	else_if = {
+		limit = { check_variable = { endscrn = 31 } }
+		if = { limit = { endscrn_ORE_burba = yes } set_variable = { endscrn = 32 } }
+		else_if = { limit = { endscrn_ORE_malenkov = yes } set_variable = { endscrn = 33 } }
+		else = { set_variable = { endscrn = 37 } } #ORE dead
+	}
+
+	else_if = {
+		##32,33, or 34
+		limit = { OR = { check_variable = { endscrn = 32 } check_variable = { endscrn = 33 } check_variable = { endscrn = 34 } } }
+		if = { limit = { endscrn_ORE_URL_welcomed = yes } set_variable = { endscrn = 35 } }
+		else_if = { limit = { endscrn_ORE_URL_refused = yes } set_variable = { endscrn = 36 } }
+		else_if = { limit = { endscrn_ORE_germans = yes } set_variable = { endscrn = 38 } }
+		else_if = { limit = { endscrn_ORE_khazaks = yes } set_variable = { endscrn = 39 } }
+	}
+
+	else_if = {
+		limit = { OR = { check_variable = { endscrn = 35 } check_variable = { endscrn = 36 } } }
+		if = { limit = { endscrn_ORE_germans = yes } set_variable = { endscrn = 38 } }
+		else_if = { limit = { endscrn_ORE_khazaks = yes } set_variable = { endscrn = 39 } }
+	}
+	
+	#Final Slides
+	else_if = {
+		limit = { check_variable = { endscrn > 37 } check_variable = { endscrn < 40 } }
+		if = { limit = { endscrn_ORE_malenkov = yes } set_variable = { endscrn = 40 } }
+		else_if = { limit = { endscrn_ORE_burba = yes } set_variable = { endscrn = 41 } }
+		else_if = { limit = { endscrn_ORE_council = yes } set_variable = { endscrn = 42 } }
+		else_if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 43 } }
+	}
+	
+	else_if = {
+		limit = { check_variable = { endscrn > 39 } check_variable = { endscrn < 43 } }
+		if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 43 } }
+	}
+
+	#Closing
+	else = {
+		set_variable = { endscrn = 0 }
+		clr_country_flag = endscreen_flag_open
+	}
+}
+
+### DIRLEWANGER SLIDES ###
+#50-75
+tno_endslides_logic_ORS = {
+	if = {
+		limit = { check_variable = { endscrn = 51 } }
+		if = { limit = { endscrn_capped_ORE = yes } set_variable = { endscrn = 52 } }
+		else_if = { limit = { endscrn_capped_URL = yes } set_variable = { endscrn = 53 } }
+		else_if = { limit = { endscrn_capped_BAS = yes } set_variable = { endscrn = 54 } }
+		else_if = { limit = { endscrn_capped_BAS_NVKD = yes } set_variable = { endscrn = 55 } }
+		else_if = { limit = { endscrn_looted_others = yes } set_variable = { endscrn = 56 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endsrn = 57 } }
+		else_if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 58 } }
+		else = { set_variable = { endscrn = 60 } }
+	}
+
+	else_if = {
+		limit = { check_variable = { endscrn = 52 } }
+		if = { limit = { endscrn_capped_URL = yes  } set_variable = { endscrn = 53 } }
+		else_if = { limit = { endscrn_capped_BAS = yes } set_variable = { endscrn = 54 } }
+		else_if = { limit = { endscrn_capped_BAS_NVKD = yes } set_variable = { endscrn = 55 } }
+		else_if = { limit = { endscrn_looted_others = yes } set_variable = { endscrn = 56 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endsrn = 57 } }
+		else_if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 58 } }
+		else = { set_variable = { endscrn = 59 } }
+	}
+
+	else_if = {
+		limit = {check_variable = { endscrn = 53 }  }
+		if = { limit = { endscrn_capped_BAS = yes } set_variable = { endscrn = 54 } }
+		else_if = { limit = { endscrn_capped_BAS_NVKD = yes } set_variable = { endscrn = 55 } }
+		else_if = { limit = { endscrn_looted_others = yes } set_variable = { endscrn = 56 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endsrn = 57 } }
+		else_if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 58 } }
+		else = { set_variable = { endscrn = 58 } }
+	}
+
+	else_if = {
+		limit = { OR = { check_variable = { endscrn = 54 } check_variable = { endscrn = 55 } } }
+		if = { limit = { endscrn_looted_others = yes } set_variable = { endscrn = 56 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endsrn = 57 } }
+		else_if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 58 } }
+		else = { set_variable = { endscrn = 58 } }
+	}
+
+	else_if = {
+		limit = { OR = { check_variable = { endscrn = 54 } check_variable = { endscrn = 55 } } }
+		if = { limit = { endscrn_looted_others = yes } set_variable = { endscrn = 56 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endsrn = 57 } }
+		else_if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 58 } }
+		else = { set_variable = { endscrn = 58 } }
+	}
+
+	###Ending Slides
+	#Below is a special case way to deal w/ the way Dirlie's slides are structured.
+	#Don't recycle this unless you know what it does and why.
+	else_if = {
+		limit = { check_variable = { endscrn = 58 } }
+		if = { limit = { endscrn_dirly_alive = yes } set_variable = { endscrn = 59 } }
+		else_if = { limit = { endscrn_collapsed_band = yes } set_variable = { endscrn = 60 } }
+		else_if = { limit = { endscrn_alexanders_legacy = yes } set_variable = { endscrn = 61 } }
+	}
+
+	#Closing
+	else_if = {
+		limit = { check_variable = { endscrn > 58 } }
+		clr_country_flag = endscreen_flag_open
+		set_variable = { endscrn = 0 }
+	}
+}
+
+### LYSENKO SLIDES ###
+#75-100
+tno_endslides_logic_BAS = {
+	if = { 
+		limit = { check_variable = { endscrn = 75 } } # From intro slide to next slide
+		if = { limit = { endscrn_betrayed_ORE = yes } set_variable = { endscrn = 76 } }
+		else_if = { limit = { endscrn_capped_URL = yes } set_variable = { endscrn = 77 } }
+		else_if = { limit = { endscrn_betrayed_ORS = yes } set_variable = { endscrn = 78 } }
+		else_if = { limit = { endscrn_BAS_dead_dirlewanger = yes } set_variable = { endscrn = 79 } }
+		else_if = { limit = { endscrn_experiments_untested = yes } set_variable = { endscrn = 80 } }
+		else_if = { limit = { endscrn_experiments_failed = yes } set_variable = { endscrn = 81 } }
+		else_if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn  = 82 } }
+		else_if = { limit = { endscrn_BAS_dead = yes } set_variable = { endscrn = 88 } }
+	}
+	else_if = {
+		limit = { check_variable = { endscrn = 76 } } # from capped orenburg to next slide
+		if = { limit = { endscrn_capped_URL = yes } set_variable = { endscrn = 77 } }
+		else_if = { limit = { endscrn_betrayed_ORS = yes } set_variable = { endscrn = 78 } }
+		else_if = { limit = { endscrn_BAS_dead_dirlewanger = yes } set_variable = { endscrn = 79 } }
+		else_if = { limit = { endscrn_experiments_untested = yes } set_variable = { endscrn = 80 } }
+		else_if = { limit = { endscrn_experiments_failed = yes } set_variable = { endscrn = 81 } }
+		else_if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn  = 82 } }
+	}
+	else_if = { 
+		limit = { check_variable = { endscrn = 77 } } # from capped ural league to next slide
+		if = { limit = { endscrn_betrayed_ORS = yes } set_variable = { endscrn = 78 } }
+		else_if = { limit = { endscrn_BAS_dead_dirlewanger = yes } set_variable = { endscrn = 79 } }
+		else_if = { limit = { endscrn_experiments_untested = yes } set_variable = { endscrn = 80 } }
+		else_if = { limit = { endscrn_experiments_failed = yes } set_variable = { endscrn = 81 } }
+		else_if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn  = 82 } }
+	}
+	else_if = { 
+		limit = { check_variable = { endscrn = 78 } } # from capped ORS to next slide
+		if = { limit = { endscrn_BAS_dead_dirlewanger = yes } set_variable = { endscrn = 79 } }
+		else_if = { limit = { endscrn_experiments_untested = yes } set_variable = { endscrn = 80 } }
+		else_if = { limit = { endscrn_experiments_failed = yes } set_variable = { endscrn = 81 } }
+		else_if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn  = 82 } }
+	}
+	else_if = { 
+		limit = { check_variable = { endscrn = 79 } } # from dead dirlewanger either experiments or a fitting end
+		if = { limit = { endscrn_experiments_untested = yes } set_variable = { endscrn = 80 } }
+		else_if = { limit = { endscrn_experiments_failed = yes } set_variable = { endscrn = 81 } }
+		else_if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn  = 82 } }
+	}
+	else_if = { # from lysenko influence slides to living lysenko slides
+		limit = {
+			OR = {
+				check_variable = { endscrn = 80 }
+				check_variable = { endscrn = 81 }
+			}
+		}
+		if = { limit = { endscrn_a_fitting_end = yes } set_variable = { endscrn = 82 } }
+		else_if = { limit = { endscrn_lysenko_alive = yes } set_variable = { endscrn = 83 } }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { endscrn = 82 }
+				check_variable = { endscrn = 83 }
+			}
+		}
+		if = { limit = { endscr_lysenko_bonus_slide = yes }
+			random_list = {
+				1 = { set_variable = { endscrn = 84 } }
+				1 = { set_variable = { endscrn = 85 } }
+				1 = { set_variable = { endscrn = 86 } }
+			}
+		}
+		else = {
+			set_variable = { endscrn = 88 }
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { endscrn = 84 }
+				check_variable = { endscrn = 85 }
+				check_variable = { endscrn = 86 }
+			}
+		}
+		set_variable = { endscrn = 87 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { endscrn = 87 }
+				check_variable = { endscrn = 88 }
+			}
+		}
+		clr_country_flag = endscreen_flag_open
+		set_variable = { endscrn = 0 }
+	}
+}
+
+### NKVD SLIDES ###
+#100-125
+tno_endslides_logic_BAS_NKVD = {
+	if = { # From NKVD intro slide to evil slides
+		limit = { check_variable = { endscrn = 100 } }
+		if = { limit = { endscrn_BAS_NKVD_high_evil = yes } set_variable = { endscrn = 101 } }
+		else_if = { limit = { endscrn_BAS_NKVD_med_high_evil = yes } set_variable = { endscrn = 102 } }
+		else_if = { limit = { endscrn_BAS_NKVD_med_low_evil = yes } set_variable = { endscrn = 103 } }
+		else_if = { limit = { endscrn_BAS_NKVD_low_evil = yes } set_variable = { endscrn = 104 } }
+		else_if = { limit = { endscrn_NKVD_dead = yes } set_variable = { endscrn = 114 } }
+	}
+	else_if = { #from evil slides to Orenburg/Ural slides or lysenko slides
+		limit = {
+			OR = {
+				check_variable = { endscrn = 101 }
+				check_variable = { endscrn = 102 }
+				check_variable = { endscrn = 103 }
+				check_variable = { endscrn = 104 }
+			}
+		}
+		if = { limit = { endscrn_BAS_NKVD_orenburg_spared = yes } set_variable = { endscrn = 105 } }
+		else_if = { limit = { endscrn_BAS_NKVD_orenburg_stomped_on = yes } set_variable = { endscrn = 106 } }
+		else_if = { limit = { endscrn_BAS_NKVD_ural_league_stomped_on = yes } set_variable = { endscrn = 107 } }
+		else_if = { limit = { endscrn_BAS_NKVD_low_lysenko_influence = yes } set_variable = { endscrn = 108 } }
+		else_if = { limit = { endscrn_BAS_NKVD_high_lysenko_influence = yes } set_variable = { endscrn = 109 } }
+	}
+	else_if = { # from Orenburg slides to ural slides or lysenko slides
+		limit = {
+			OR = {
+				check_variable = { endscrn = 105 }
+				check_variable = { endscrn = 106 }
+			}
+		}
+		if = { limit = { endscrn_BAS_NKVD_ural_league_stomped_on = yes } set_variable = { endscrn = 107 } }
+		else_if = { limit = { endscrn_BAS_NKVD_low_lysenko_influence = yes } set_variable = { endscrn = 108 } }
+		else_if = { limit = { endscrn_BAS_NKVD_high_lysenko_influence = yes } set_variable = { endscrn = 109 } }
+	}
+	else_if = {
+		limit = {
+			check_variable = { endscrn = 107 }
+		}
+		if = { limit = { endscrn_BAS_NKVD_low_lysenko_influence = yes } set_variable = { endscrn = 108 } }
+		else_if = { limit = { endscrn_BAS_NKVD_high_lysenko_influence = yes } set_variable = { endscrn = 109 } }
+	}
+	else_if = { # from lysenko slides to bonus slides
+		limit = {
+			OR = {
+				check_variable = { endscrn = 108 }
+				check_variable = { endscrn = 109 }
+			}
+		}
+		if = {
+			limit = { endscrn_BAS_NKVD_bonus_slides = yes }
+			random_list = {
+				1 = {
+					set_variable = { endscrn = 110 }
+				}
+				1 = {
+					set_variable = { endscrn = 111 }
+				}
+				1 = {
+					set_variable = { endscrn = 112 }
+				}
+			}
+		}
+		else_if = { limit = { endscrn_NKVD_dead = yes } set_variable = { endscrn = 114 } }
+		else = { set_variable = { endscrn = 113 } }
+	}
+	else_if = { # from bonus slides to final slides
+		limit = {
+			OR = {
+				check_variable = { endscrn = 110 }
+				check_variable = { endscrn = 111 }
+				check_variable = { endscrn = 112 }
+			}
+		}
+		set_variable = { endscrn = 113 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { endscrn = 113 }
+				check_variable = { endscrn = 114 }
+			}
+		}
+		set_variable = { endscrn = 0 }
+		clr_country_flag = endscreen_flag_open
+	}
+}

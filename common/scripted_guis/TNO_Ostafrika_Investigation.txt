@@ -1,0 +1,217 @@
+scripted_gui = {
+	MZB_gui_investigation_display_container = {
+		window_name = "MZB_gui_investigation_display"
+		context_type = decision_category
+
+		visible = { always = yes }
+
+		dynamic_lists = {
+			MZB_gui_investigation_gridbox_muller = {
+				array = MZB_evidence_muller_index_array
+				index = MZB_evidence_muller_index_array_i
+				change_scope = no
+	
+				entry_container = MZB_gui_investigation_evidence_container_muller
+			}
+
+			MZB_gui_investigation_gridbox_schenck = {
+				array = MZB_evidence_schenck_index_array
+				index = MZB_evidence_schenck_index_array_i
+				change_scope = no
+	
+				entry_container = MZB_gui_investigation_evidence_container_schenck
+			}
+		}
+
+		triggers = {
+			MZB_gui_investigation_evidence_frame_selected_muller_visible = {
+				OR = {
+					check_variable = { MZB_muller_case_array^0 = MZB_evidence_muller_index_array_i }
+					check_variable = { MZB_muller_case_array^1 = MZB_evidence_muller_index_array_i }
+					check_variable = { MZB_muller_case_array^2 = MZB_evidence_muller_index_array_i }
+					check_variable = { MZB_muller_case_array^3 = MZB_evidence_muller_index_array_i }
+				}
+			}
+
+			MZB_gui_investigation_evidence_frame_locked_visible = {
+				check_variable = { MZB_evidence_muller_index_array^MZB_evidence_muller_index_array_i = 0 }
+				NOT = {
+					OR = {
+						check_variable = { MZB_muller_case_array^0 = MZB_evidence_muller_index_array_i }
+						check_variable = { MZB_muller_case_array^1 = MZB_evidence_muller_index_array_i }
+						check_variable = { MZB_muller_case_array^2 = MZB_evidence_muller_index_array_i }
+						check_variable = { MZB_muller_case_array^3 = MZB_evidence_muller_index_array_i }
+					}
+				}
+			}
+
+
+
+			MZB_gui_investigation_evidence_frame_selected_schenck_visible = {
+				OR = {
+					check_variable = { MZB_schenck_case_array^0 = MZB_evidence_schenck_index_array_i }
+					check_variable = { MZB_schenck_case_array^1 = MZB_evidence_schenck_index_array_i }
+					check_variable = { MZB_schenck_case_array^2 = MZB_evidence_schenck_index_array_i }
+					check_variable = { MZB_schenck_case_array^3 = MZB_evidence_schenck_index_array_i }
+				}
+			}
+
+			MZB_gui_investigation_evidence_frame_locked_visible = {
+				check_variable = { MZB_evidence_schenck_index_array^MZB_evidence_schenck_index_array_i = 0 }
+				NOT = {
+					OR = {
+						check_variable = { MZB_schenck_case_array^0 = MZB_evidence_schenck_index_array_i }
+						check_variable = { MZB_schenck_case_array^1 = MZB_evidence_schenck_index_array_i }
+						check_variable = { MZB_schenck_case_array^2 = MZB_evidence_schenck_index_array_i }
+						check_variable = { MZB_schenck_case_array^3 = MZB_evidence_schenck_index_array_i }
+					}
+				}
+			}
+		}
+
+		effects = {
+			MZB_gui_investigation_evidence_add_to_case_muller_click = {
+				meta_effect = {
+				    text = {
+				    	if = {
+				    		limit = {
+				    			check_variable = { MZB_evidence_muller_index_array^MZB_evidence_muller_index_array_i = 1 }
+				    		}
+					    	if = {
+								limit = {
+									OR = {
+										check_variable = { MZB_muller_case_array^0 = [EVIDENCE_VALUE_MULLER] }
+										check_variable = { MZB_muller_case_array^1 = [EVIDENCE_VALUE_MULLER] }
+										check_variable = { MZB_muller_case_array^2 = [EVIDENCE_VALUE_MULLER] }
+										check_variable = { MZB_muller_case_array^3 = [EVIDENCE_VALUE_MULLER] }
+									}
+								}
+
+								for_each_loop = {
+									array = MZB_muller_case_array
+									index = i
+									
+									if = {
+										limit = {
+											check_variable = { MZB_muller_case_array^i = [EVIDENCE_VALUE_MULLER] }
+										}
+										set_variable = { MZB_muller_case_array^i = -1 }
+									}	
+								}
+							}
+
+					    	else = {
+						        if = {
+									limit = {
+										check_variable = { MZB_muller_case_array^0 = -1 }
+									}
+									set_variable = { MZB_muller_case_array^0 = [EVIDENCE_VALUE_MULLER] }
+								}
+
+								else = {
+									if = {
+										limit = {
+											check_variable = { MZB_muller_case_array^1 = -1 }
+										}
+										set_variable = { MZB_muller_case_array^1 = [EVIDENCE_VALUE_MULLER] }
+									}
+
+									else = {
+										if = {
+											limit = {
+												check_variable = { MZB_muller_case_array^2 = -1 }
+											}
+											set_variable = { MZB_muller_case_array^2 = [EVIDENCE_VALUE_MULLER] }
+										}
+
+										else = {
+											if = {
+												limit = {
+													check_variable = { MZB_muller_case_array^3 = -1 }
+												}
+												set_variable = { MZB_muller_case_array^3 = [EVIDENCE_VALUE_MULLER] }
+											}
+										}
+									}
+								}
+							}
+					    }
+				    }
+				    EVIDENCE_VALUE_MULLER = MZB_evidence_muller_index_array_i
+				}
+			}
+
+			MZB_gui_investigation_evidence_add_to_case_schenck_click = {
+				meta_effect = {
+				    text = {
+					    if = {
+				    		limit = {
+				    			check_variable = { MZB_evidence_schenck_index_array^MZB_evidence_schenck_index_array_i = 1 }
+				    		}
+					    	if = {
+								limit = {
+									OR = {
+										check_variable = { MZB_schenck_case_array^0 = [EVIDENCE_VALUE_SCHENCK] }
+										check_variable = { MZB_schenck_case_array^1 = [EVIDENCE_VALUE_SCHENCK] }
+										check_variable = { MZB_schenck_case_array^2 = [EVIDENCE_VALUE_SCHENCK] }
+										check_variable = { MZB_schenck_case_array^3 = [EVIDENCE_VALUE_SCHENCK] }
+									}
+								}
+
+								for_each_loop = {
+									array = MZB_schenck_case_array
+									index = i
+									
+									if = {
+										limit = {
+											check_variable = { MZB_schenck_case_array^i = [EVIDENCE_VALUE_SCHENCK] }
+										}
+										set_variable = { MZB_schenck_case_array^i = -1 }
+									}	
+								}
+							}
+
+					    	else = {
+						        if = {
+									limit = {
+										check_variable = { MZB_schenck_case_array^0 = -1 }
+									}
+									set_variable = { MZB_schenck_case_array^0 = [EVIDENCE_VALUE_SCHENCK] }
+								}
+
+								else = {
+									if = {
+										limit = {
+											check_variable = { MZB_schenck_case_array^1 = -1 }
+										}
+										set_variable = { MZB_schenck_case_array^1 = [EVIDENCE_VALUE_SCHENCK] }
+									}
+
+									else = {
+										if = {
+											limit = {
+												check_variable = { MZB_schenck_case_array^2 = -1 }
+											}
+											set_variable = { MZB_schenck_case_array^2 = [EVIDENCE_VALUE_SCHENCK] }
+										}
+
+										else = {
+											if = {
+												limit = {
+													check_variable = { MZB_schenck_case_array^3 = -1 }
+												}
+												set_variable = { MZB_schenck_case_array^3 = [EVIDENCE_VALUE_SCHENCK] }
+											}
+										}
+									}
+								}
+							}
+					    }
+				    }
+
+				    EVIDENCE_VALUE_SCHENCK = MZB_evidence_schenck_index_array_i
+				}
+			}
+		}
+	}
+}

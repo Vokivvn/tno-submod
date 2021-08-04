@@ -1,0 +1,878 @@
+#Globalplan Adler
+
+#fuck you doc#
+
+shared_focus = { #batman begins
+	id = BRG_globalplan_adler
+	icon = GFX_BRG_Globalplan_adler
+	cost = 4
+	x = 19
+	y = 10
+	allow_branch = {
+		check_variable = {BRG_GP_Adler_Status_Var = 2}
+		has_country_flag = view_Adler_actions
+	}
+	offset = {
+		x = 11
+		y = 0
+		trigger = {
+			has_country_flag = BRG_fall_ragnarchar_allowed
+		}
+	}
+	offset = {
+		x = 1
+		y = 0
+		trigger = {
+			has_country_flag = BRG_infrastructure_phase_2
+		}
+	}
+	
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_batman_begins
+		
+	}
+}
+
+shared_focus = { #Speer Branch
+	id = BRG_der_ruin_des_architekten
+	icon = GFX_GER_SGR_die_anarchie
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_globalplan_adler
+	}
+	allow_branch = {
+		has_global_flag = german_civil_war_speervic
+		check_variable = {BRG_GP_Adler_Status_Var = 2}
+		has_country_flag = view_Adler_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_der_ruin_des_architekten.tt
+		hidden_effect = { country_event = { id = BRG_adler.1 days = 1 } }
+	}
+	relative_position_id = BRG_globalplan_adler
+}
+
+shared_focus = { #fuck with stability
+	id = BRG_stable_no_more
+	icon = GFX_GER_Everyone_Calm_Down
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_der_ruin_des_architekten
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_stable_no_more.tt
+	}
+	relative_position_id = BRG_der_ruin_des_architekten
+}
+
+shared_focus = { #fuck with stability 2
+	id = BRG_deform_his_image
+	icon = GFX_GER_ein_fuhrer
+	cost = 4
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_stable_no_more
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_deform_his_image.tt
+		GER = { country_event = { id = BRG_adler.3 days = 4 } }
+	}
+	relative_position_id = BRG_stable_no_more
+}
+
+shared_focus = { #make germany resistant to reforms
+	id = BRG_polarize_the_climate
+	icon = GFX_GER_end_aryan_lineage_studies
+	cost = 4
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = BRG_stable_no_more
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_polarize_the_climate.tt
+	}
+	relative_position_id = BRG_stable_no_more
+}
+
+shared_focus = { #support em
+	id = BRG_support_the_wehwirtchaftsfuhrer
+	icon = GFX_GER_sell_megacorps
+	cost = 4
+	x = 0
+	y = 2
+	prerequisite = {
+		focus = BRG_polarize_the_climate
+		focus = BRG_deform_his_image
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_support_the_wehwirtchaftsfuhrer.tt
+		hidden_effect = { country_event = { id = BRG_adler.4 days = 1 } }
+	}
+	relative_position_id = BRG_stable_no_more
+}
+
+shared_focus = { #fuck over reforms
+	id = BRG_count_the_four
+	icon = GFX_BRG_Focus_Ignite_The_Powderkeg
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_support_the_wehwirtchaftsfuhrer
+	}
+	allow_branch = {
+		GER = { has_country_flag = SGR_phase2 }
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_count_the_four.tt
+	}
+	relative_position_id = BRG_support_the_wehwirtchaftsfuhrer
+}
+
+shared_focus = { #fuck over rnd
+	id = BRG_target_rnd
+	icon = GFX_GER_reichsnachrichtendienst
+	cost = 4
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = BRG_count_the_four
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_target_rnd.tt
+	}
+	relative_position_id = BRG_count_the_four
+}
+
+shared_focus = { #fuck stability 3? 4?
+	id = BRG_whatever_it_takes
+	icon = GFX_BRG_get_inside_their_heads
+	cost = 4
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = BRG_count_the_four
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_whatever_it_takes.tt
+	}
+	relative_position_id = BRG_count_the_four
+}
+
+shared_focus = { #wtf slave revolt
+	id = BRG_the_revolt
+	icon = GFX_BRG_Focus_Workers_Are_Resources
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_count_the_four
+	}
+	allow_branch = {
+		has_global_flag = SGR_Slave_Revolt
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_the_revolt.tt
+		hidden_effect = { GER = { country_event = { id = BRG_adler.5 days = 1 } } }
+	}
+	relative_position_id = BRG_count_the_four
+}
+
+shared_focus = { #wtf support schorner
+	id = BRG_load_schroners_die
+	icon = GFX_GER_Schorner
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_the_revolt
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_load_schroners_die.tt
+	}
+	relative_position_id = BRG_the_revolt
+}
+
+shared_focus = { #Bormann Branch
+	id = BRG_the_conservative
+	icon = GFX_GER_BGR_die_anarchie
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_globalplan_adler
+	}
+	allow_branch = {
+		has_global_flag = german_civil_war_bormannvic
+		check_variable = {BRG_GP_Adler_Status_Var = 2}
+		has_country_flag = view_Adler_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_the_conservative_tt
+	}
+	relative_position_id = BRG_globalplan_adler
+}
+
+shared_focus = { #help bormann
+	id = BRG_secure_his_control
+	icon = GFX_BRG_Fuel_Of_Progress
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_the_conservative
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_secure_his_control_tt
+		
+		country_event = BRG_adler.15
+		
+	}
+	relative_position_id = BRG_the_conservative
+}
+
+#shared_focus = { #help bormann
+#	id = BRG_placeholder
+#	icon = GFX_goal_unknown
+#	cost = 4
+#	x = 2
+#	y = 1
+#	prerequisite = {
+#		focus = BRG_the_conservative
+#	}
+#
+#	available = {
+#		NOT = {
+#			has_country_flag = BRG_state_of_crisis_flag
+#		}
+#	}
+#	ai_will_do = {
+#		factor = 100
+#	}
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+#		
+#	}
+#	relative_position_id = BRG_the_conservative
+#}
+
+shared_focus = { #slow down abolition
+	id = BRG_slow_down_abolition
+	icon = GFX_GER_survival_at_all_costs
+	cost = 4
+	x = -2
+	y = 0
+	prerequisite = {
+		focus = BRG_the_conservative
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_slow_down_abolition_tt
+		country_event = BRG_adler.13
+		GER = { country_event = BRG_adler.14 }
+	}
+	relative_position_id = BRG_secure_his_control
+}
+
+#shared_focus = { #not so great game
+#	id = BRG_not_so_great_game
+#	icon = GFX_goal_unknown
+#	cost = 4
+#	x = 2
+#	y = 1
+#	prerequisite = {
+#		focus = BRG_secure_his_control
+#	}
+#
+#	available = {
+#		NOT = {
+#			has_country_flag = BRG_state_of_crisis_flag
+#	}
+#	ai_will_do = {
+#		factor = 100
+#	}
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+#		
+#	}
+#	relative_position_id = BRG_secure_his_control
+#}
+
+shared_focus = { #sway the kommisars
+	id = BRG_sway_the_kommisars
+	icon = GFX_BRG_focus_deploy_the_abwehr
+	cost = 4
+	x = 2
+	y = 0
+	prerequisite = {
+		focus = BRG_the_conservative
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_sway_the_kommisars_tt
+		
+		GER = { country_event = BRG_adler.16 }
+	}
+	relative_position_id = BRG_secure_his_control
+}
+
+shared_focus = { #oil crissi done fucked
+	id = BRG_reap_what_we_sow
+	icon = GFX_BRG_reapwhatwevesown
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_sway_the_kommisars
+	}
+	prerequisite = {
+		focus = BRG_slow_down_abolition
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_reap_what_we_sow_tt
+	}
+	relative_position_id = BRG_secure_his_control
+}
+
+#shared_focus = { #paranoia
+#	id = BRG_play_on_paranoia
+#	icon = GFX_goal_unknown
+#	cost = 4
+#	x = 0
+#	y = 1
+#	prerequisite = {
+#		focus = BRG_reap_what_we_sow
+#	}
+#
+#	available = {
+#		NOT = {
+#			has_country_flag = BRG_state_of_crisis_flag
+#		}
+#	}
+#	ai_will_do = {
+#		factor = 100
+#	}
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+#		
+#	}
+#	relative_position_id = BRG_reap_what_we_sow
+#}
+
+shared_focus = { #Goering Branch
+	id = BRG_the_militarist
+	icon = GFX_GER_GGR_die_anarchie
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_globalplan_adler
+	}
+	allow_branch = {
+		has_global_flag = german_civil_war_goeringvic
+		check_variable = {BRG_GP_Adler_Status_Var = 2}
+		has_country_flag = view_Adler_actions
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		#country_event = { id = BRG_adler.7 }
+		custom_effect_tooltip = BRG_the_militarist.tt
+	}
+	relative_position_id = BRG_globalplan_adler
+}
+
+shared_focus = { #Equipment to their enemies
+	id = BRG_equipment_to_their_enemies
+	icon = GFX_BRG_levantine_guns_and_arms
+	cost = 4
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_the_militarist
+	}
+
+	available = {
+		has_global_flag = GER_war_plan_a_happened
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_equipment_to_their_enemies.tt
+	}
+	relative_position_id = BRG_the_militarist
+}
+
+shared_focus = { #Equipment to their enemies
+	id = BRG_failure_for_their_friends
+	icon = GFX_BRG_focus_new_model_intelligence
+	cost = 4
+	x = 1
+	y = 2
+	prerequisite = {
+		focus = BRG_equipment_to_their_enemies
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		has_global_flag = GER_war_plan_a_happened
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_failure_for_their_friends.tt
+	}
+	relative_position_id = BRG_the_militarist
+}
+
+shared_focus = { #Focus on weakspots
+	id = BRG_focus_on_weakspots
+	icon = GFX_GER_Blame_Schorner
+	cost = 4
+	x = 3
+	y = 1
+	prerequisite = {
+		focus = BRG_the_militarist
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+		has_global_flag = GER_war_plan_a_happened
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		add_political_power = 100
+		custom_effect_tooltip = BRG_focus_on_weakspots.tt
+	}
+	relative_position_id = BRG_the_militarist
+}
+
+shared_focus = { #Cut the Strings
+	id = BRG_cut_the_strings
+	icon = GFX_GER_Everyone_Calm_Down
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_focus_on_weakspots
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		add_political_power = 100
+		custom_effect_tooltip = BRG_cut_the_strings.tt
+	}
+	relative_position_id = BRG_focus_on_weakspots
+}
+
+shared_focus = { #Goodbye Goering!
+	id = BRG_goodbye_goering
+	icon = GFX_BRG_Focus_Ignite_The_Powderkeg
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_cut_the_strings
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		add_political_power = 100
+		custom_effect_tooltip = BRG_goodbye_goering.tt
+	}
+	relative_position_id = BRG_cut_the_strings
+}
+
+shared_focus = { #block_warplan_b
+	id = BRG_block_warplan_b
+	icon = GFX_GER_war_plan_B
+	cost = 4
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_equipment_to_their_enemies
+	}
+	allow_branch = {
+		has_global_flag = GER_war_plan_B_happened
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		country_event = { id = BRG_adler.8 }
+		custom_effect_tooltip = BRG_block_warplan_b.tt
+	}
+	relative_position_id = BRG_equipment_to_their_enemies
+}
+
+shared_focus = { #another_shot
+	id = BRG_another_shots
+	icon = GFX_UPO_Friends_in_Russia
+	cost = 4
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = BRG_block_warplan_b
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_another_shots.tt
+	}
+	relative_position_id = BRG_block_warplan_b
+}
+
+shared_focus = { #another road block
+	id = BRG_another_road_block
+	icon = GFX_GER_Burn_The_Peninsula
+	cost = 4
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = BRG_block_warplan_b
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		custom_effect_tooltip = BRG_another_road_block.tt
+	}
+	relative_position_id = BRG_block_warplan_b
+}
+
+shared_focus = { #prepare for our turn
+	id = BRG_prepare_for_our_turn
+	icon = GFX_GER_it_is_their_turn_to_fear_the_dark
+	cost = 4
+	x = -1
+	y = 2
+	prerequisite = {
+		focus = BRG_another_road_block
+		focus = BRG_another_shots
+	}
+	allow_branch = {
+		has_global_flag = GER_war_plan_C_happened
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		country_event = { id = BRG_adler.11 }
+		27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+				}
+			}
+		}
+	}
+	relative_position_id = BRG_another_road_block
+}
+
+shared_focus = { #the rapture - der entruckung
+	id = BRG_der_entruckung
+	icon = GFX_BRG_Our_Grasp
+	cost = 4
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = BRG_prepare_for_our_turn
+	}
+	
+	available = {
+		has_war_with = GER
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_puma "
+		27 = {
+		add_extra_state_shared_building_slots = 3
+		 add_building_construction = {
+                type = arms_factory
+                level = 3
+                instant_build = yes
+            }
+		}
+		27 = {
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+			}
+	}
+	relative_position_id = BRG_prepare_for_our_turn
+}

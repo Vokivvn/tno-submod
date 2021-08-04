@@ -1,0 +1,788 @@
+#List of the States and Other Handy Info -
+#State1 - 36, West Frisia
+#State2 - 7, Holland
+#State3 - 35, Brabant
+#State4 - 6, Flandern
+#State5 - 34, Wallonien
+#State6 - 29, Pickardien
+#State7 - 18, Kampen
+#State8 - 17, Freigrafschaft
+#State9 - 15, Normandie
+#State10 - 16, Grossraum Paris
+#State11 - 786, Paris
+#State12 - 788, Meau
+#State13 - 747, Breton France
+#State14 - 791, Evreux
+#State15 - 787, Versailles
+#State16 - 792, Sully-sur-Loire
+#State17 - 27, Burgund
+#State18 - 14, Bretagne
+#State19 - 30, Loire
+#State20 - 24, Centre
+#State21 - 33, Centre-Sud
+#State22 - 789, Vichy
+#State23 - 20, Rhone
+#State24 - 790, Vallon-Pont-d'Arc
+#State25 - 32, Alpenland
+#
+#Purple - Himmler :)
+#Yellow - Walloon/Degrelle AAAAAAAAAAAA
+#Orange - Langemarck who?
+#Blue - Charlemagne hou hou
+
+BRG_Domestic_GUI_Initialize = {
+
+	set_country_flag = Walloon_Questionable
+	set_country_flag = Langemarck_Loyal
+	set_country_flag = Charlemagne_Loyal
+
+	every_owned_state = {
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+	}
+
+	for_each_scope_loop = {
+		array = BurgundyDomesticGUIStates
+
+		set_variable = { THIS.HimmlerSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 0 }
+		set_variable = { THIS.BRG_Skilled_Worker_Pop_Monthly_Change = 100 }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+
+	every_owned_state = {
+		add_to_variable = { THIS.HimmlerSupport = 60 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+	}
+
+	### Add specific values per state
+
+	34 = { #### Wallonien
+		add_to_variable = { WalloonSupport = 65 }
+		add_to_variable = { LangemarckSupport = 28 }
+		add_to_variable = { CharlemagneSupport = 15 }
+	}
+
+	18 = { #### Kampen
+		add_to_variable = { WalloonSupport = 28 }
+		add_to_variable = { LangemarckSupport = 13 }
+		add_to_variable = { CharlemagneSupport = 37 }
+	}
+
+	29 = { #### Pickardien
+		add_to_variable = { WalloonSupport = 4 }
+		add_to_variable = { LangemarckSupport = 23 }
+		add_to_variable = { CharlemagneSupport = 42 }
+	}
+
+	6 = { #### Flanders
+		add_to_variable = { WalloonSupport = 29 }
+		add_to_variable = { LangemarckSupport = 47 }
+		add_to_variable = { CharlemagneSupport = 8 }
+	}
+
+	15 = { #### Normandie
+		add_to_variable = { WalloonSupport = 3 }
+		add_to_variable = { LangemarckSupport = 9 }
+		add_to_variable = { CharlemagneSupport = 45 }
+	}
+
+	16 = { #### Greater Paris
+		add_to_variable = { WalloonSupport = 0 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 14 }
+		add_to_variable = { HimmlerSupport = 12 }
+	}
+
+	788 = { #### Meua
+		add_to_variable = { WalloonSupport = 0 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 19 }
+		add_to_variable = { HimmlerSupport = 3 }
+	}
+
+	27 = { #### Burgund
+		add_to_variable = { WalloonSupport = 4 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 21 }
+	}
+
+	17 = { #### Friegshafdt
+		add_to_variable = { WalloonSupport = 5 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 17 }
+	}
+
+	20 = { #### Rhone
+		add_to_variable = { WalloonSupport = 0 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 26 }
+	}
+
+	32 = { #### Rhone
+		add_to_variable = { WalloonSupport = 0 }
+		add_to_variable = { LangemarckSupport = 0 }
+		add_to_variable = { CharlemagneSupport = 6 }
+		add_to_variable = { HimmlerSupport = 7 }
+	}
+
+	set_variable = { BRG_Normandy_Cap = 10001 }
+	set_variable = { BRG_Worker_Cap = 3000 }
+}
+
+BRG_Domestic_GUI_Clamp = {
+	BRG = {
+
+	clamp_variable = {
+		var = BRG_Degrelle_Sus
+		min = 0
+		max = 100
+	}
+
+	clamp_variable = {
+		var = BRG_Charla_Sus
+		min = 0
+		max = 100
+	}
+
+	clamp_variable = {
+		var = BRG_RPY_Sus
+		min = 0
+		max = 100
+	}
+
+	clamp_variable = {
+		var = BRG_WLN_Sus
+		min = 0
+		max = 100
+	}
+
+	clamp_variable = {
+		var = BRG_Gathered_Intelligence
+		min = 0
+		max = 100
+	}
+
+		every_owned_state = {
+			clamp_variable = {
+				var = THIS.HimmlerSupport
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = THIS.WalloonSupport
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = THIS.LangemarckSupport
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = THIS.CharlemagneSupport
+				min = 0
+				max = 100
+			}
+
+			clamp_variable = {
+				var = THIS.BRG_Skilled_Worker_Pop
+				min = 0
+			}
+		}
+	}
+}
+
+BRG_Domestic_GUI_Add_France = {
+	792 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	787 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	786 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	791 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	24 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	33 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	789 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	790 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+		
+	}
+
+	set_variable = { 791.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } # Evreux
+	set_variable = { 786.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } # Paris
+	set_variable = { 24.BRG_Skilled_Worker_Pop_Monthly_Change = 50 } # Centre
+	set_variable = { 33.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } # Centre Sud
+	set_variable = { 790.BRG_Skilled_Worker_Pop_Monthly_Change = 50 } # Vallonpont
+	set_variable = { 789.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } # Vichy
+	set_variable = { 792.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } #Sully Sur Loire
+	set_variable = { 787.BRG_Skilled_Worker_Pop_Monthly_Change = 50  } # Versaille
+
+
+	BRG_Domestic_GUI_Clamp = yes
+}
+
+BRG_Domestic_GUI_Add_Brittany = {
+	14 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_Skilled_Worker_Pop_Monthly_Change = 50 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	747 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_Skilled_Worker_Pop_Monthly_Change = 50 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+	30 = {
+		set_variable = { THIS.HimmlerSupport = 50 }
+		set_variable = { THIS.LangemarckSupport = 0 }
+		set_variable = { THIS.WalloonSupport = 0 }
+		set_variable = { THIS.CharlemagneSupport = 25 }
+		set_variable = { BRG_Skilled_Worker_Pop_Monthly_Change = 50 }
+		set_variable = { BRG_brutalist_city_level = 0 }
+		BRG = { add_to_array = {BurgundyDomesticGUIStates = PREV } }
+		set_variable = { THIS.BRG_Cop_To_Worker_Ratio = 2 }
+	}
+
+	BRG_Domestic_GUI_Clamp = yes
+}
+
+BRG_Domestic_GUI_Add_Netherlands = {
+	36 = {
+		add_to_variable = { THIS.HimmlerSupport = 50 }
+	}
+	7 = {
+		add_to_variable = { THIS.HimmlerSupport = 50 }
+	}
+	35 = {
+		add_to_variable = { THIS.HimmlerSupport = 50 }
+	}
+
+	BRG_Domestic_GUI_Clamp = yes
+}
+
+BRG_Domestic_GUI_Increase_Walloon_Loyalty = {
+	if = {
+		limit = {
+			has_country_flag = Walloon_Loyal
+		}
+		#Nothing
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Walloon_Obedient
+		}
+		clr_country_flag = Walloon_Obedient
+		set_country_flag = Walloon_Loyal
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Walloon_Questionable
+		}
+		clr_country_flag = Walloon_Questionable
+		set_country_flag = Walloon_Obedient
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Walloon_Disloyal
+		}
+		clr_country_flag = Walloon_Disloyal
+		set_country_flag = Walloon_Questionable
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Walloon_Revolting
+		}
+		clr_country_flag = Walloon_Revolting
+		set_country_flag = Walloon_Disloyal
+	}
+}
+BRG_Domestic_GUI_Decrease_Walloon_Loyalty = {
+	every_owned_state = {#Weighted loyalty decrease, average loyalty decreased by 5
+		limit = {
+			state = 34
+		}
+		set_temp_variable = {WalloonChangeCalc = WalloonSupport}
+		divide_temp_variable = {WalloonChangeCalc = BRG.WalloonSupportAverage}
+		multiply_temp_variable = {WalloonChangeCalc = -5}
+		add_to_variable = {WalloonSupport = WalloonChangeCalc}
+		round_variable = WalloonSupport
+	}
+	if = {#Execute this only every second tick
+		limit = {
+			check_variable = {BRG_Loyalty_Calc_Counter_2 = 0}
+		}
+		set_variable = {BRG_Loyalty_Calc_Counter_2 = 1}
+	}
+	else = {
+		if = {
+			limit = {
+				has_country_flag = Walloon_Loyal
+			}
+			clr_country_flag = Walloon_Loyal
+			set_country_flag = Walloon_Obedient
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Walloon_Obedient
+			}
+			clr_country_flag = Walloon_Obedient
+			set_country_flag = Walloon_Questionable
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Walloon_Questionable
+			}
+			clr_country_flag = Walloon_Questionable
+			set_country_flag = Walloon_Disloyal
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Walloon_Disloyal
+			}
+			clr_country_flag = Walloon_Disloyal
+			set_country_flag = Walloon_Revolting
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Walloon_Revolting
+			}
+			#Nothing
+		}
+	}
+}
+BRG_Domestic_GUI_Increase_Langemarck_Loyalty = {
+	if = {
+		limit = {
+			has_country_flag = Langemarck_Loyal
+		}
+		#Nothing
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Langemarck_Obedient
+		}
+		clr_country_flag = Langemarck_Obedient
+		set_country_flag = Langemarck_Loyal
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Langemarck_Questionable
+		}
+		clr_country_flag = Langemarck_Questionable
+		set_country_flag = Langemarck_Obedient
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Langemarck_Disloyal
+		}
+		clr_country_flag = Langemarck_Disloyal
+		set_country_flag = Langemarck_Questionable
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Langemarck_Revolting
+		}
+		clr_country_flag = Langemarck_Revolting
+		set_country_flag = Langemarck_Disloyal
+	}
+}
+BRG_Domestic_GUI_Decrease_Langemarck_Loyalty = {
+	every_owned_state = {#Weighted loyalty decrease, average loyalty decreased by 5
+		limit = {
+			state = 6
+		}
+		set_temp_variable = {LangemarckChangeCalc = LangemarckSupport}
+		divide_temp_variable = {LangemarckChangeCalc = BRG.LangemarckSupportAverage}
+		multiply_temp_variable = {LangemarckChangeCalc = -5}
+		add_to_variable = {LangemarckSupport = LangemarckChangeCalc}
+		round_variable = LangemarckSupport
+	}
+	if = {#Execute this only every second tick
+		limit = {
+			check_variable = {BRG_Loyalty_Calc_Counter_2 = 0}
+		}
+		set_variable = {BRG_Loyalty_Calc_Counter_2 = 1}
+	}
+	else = {
+		if = {
+			limit = {
+				has_country_flag = Langemarck_Loyal
+			}
+			clr_country_flag = Langemarck_Loyal
+			set_country_flag = Langemarck_Obedient
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Langemarck_Obedient
+			}
+			clr_country_flag = Langemarck_Obedient
+			set_country_flag = Langemarck_Questionable
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Langemarck_Questionable
+			}
+			clr_country_flag = Langemarck_Questionable
+			set_country_flag = Langemarck_Disloyal
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Langemarck_Disloyal
+			}
+			clr_country_flag = Langemarck_Disloyal
+			set_country_flag = Langemarck_Revolting
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Langemarck_Revolting
+			}
+			#Nothing
+		}
+	}
+}
+BRG_Domestic_GUI_Increase_Charlemagne_Loyalty = {
+	if = {
+		limit = {
+			has_country_flag = Charlemagne_Loyal
+		}
+		#Nothing
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Charlemagne_Obedient
+		}
+		clr_country_flag = Charlemagne_Obedient
+		set_country_flag = Charlemagne_Loyal
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Charlemagne_Questionable
+		}
+		clr_country_flag = Charlemagne_Questionable
+		set_country_flag = Charlemagne_Obedient
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Charlemagne_Disloyal
+		}
+		clr_country_flag = Charlemagne_Disloyal
+		set_country_flag = Charlemagne_Questionable
+	}
+	else_if = {
+		limit = {
+			has_country_flag = Charlemagne_Revolting
+		}
+		clr_country_flag = Charlemagne_Revolting
+		set_country_flag = Charlemagne_Disloyal
+	}
+}
+BRG_Domestic_GUI_Decrease_Charlemagne_Loyalty = {
+	every_owned_state = {#Weighted loyalty decrease, average loyalty decreased by 5
+		limit = {
+			NOT = {
+				OR = {
+					state = 6
+					state = 34
+				}
+			}
+		}
+		set_temp_variable = {CharlemagneChangeCalc = CharlemagneSupport}
+		divide_temp_variable = {CharlemagneChangeCalc = BRG.CharlemagneSupportAverage}
+		multiply_temp_variable = {CharlemagneChangeCalc = -5}
+		add_to_variable = {CharlemagneSupport = CharlemagneChangeCalc}
+		round_variable = CharlemagneSupport
+	}
+	if = {#Execute this only every second tick
+		limit = {
+			check_variable = {BRG_Loyalty_Calc_Counter_2 = 0}
+		}
+		set_variable = {BRG_Loyalty_Calc_Counter_2 = 1}
+	}
+	else = {
+		if = {
+			limit = {
+				has_country_flag = Charlemagne_Loyal
+			}
+			clr_country_flag = Charlemagne_Loyal
+			set_country_flag = Charlemagne_Obedient
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Charlemagne_Obedient
+			}
+			clr_country_flag = Charlemagne_Obedient
+			set_country_flag = Charlemagne_Questionable
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Charlemagne_Questionable
+			}
+			clr_country_flag = Charlemagne_Questionable
+			set_country_flag = Charlemagne_Disloyal
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Charlemagne_Disloyal
+			}
+			clr_country_flag = Charlemagne_Disloyal
+			set_country_flag = Charlemagne_Revolting
+		}
+		else_if = {
+			limit = {
+				has_country_flag = Charlemagne_Revolting
+			}
+			#Nothing
+		}
+	}
+}
+
+BRG_Domestic_GUI_Clear_Windows = {
+	clr_country_flag = BRG_Domestic_GUI_State_Window_1
+	clr_country_flag = BRG_Domestic_GUI_State_Window_2
+	clr_country_flag = BRG_Domestic_GUI_State_Window_3
+	clr_country_flag = BRG_Domestic_GUI_State_Window_4
+	clr_country_flag = BRG_Domestic_GUI_State_Window_5
+	clr_country_flag = BRG_Domestic_GUI_State_Window_6
+	clr_country_flag = BRG_Domestic_GUI_State_Window_7
+	clr_country_flag = BRG_Domestic_GUI_State_Window_8
+	clr_country_flag = BRG_Domestic_GUI_State_Window_9
+	clr_country_flag = BRG_Domestic_GUI_State_Window_10
+	clr_country_flag = BRG_Domestic_GUI_State_Window_11
+	clr_country_flag = BRG_Domestic_GUI_State_Window_12
+	clr_country_flag = BRG_Domestic_GUI_State_Window_13
+	clr_country_flag = BRG_Domestic_GUI_State_Window_14
+	clr_country_flag = BRG_Domestic_GUI_State_Window_15
+	clr_country_flag = BRG_Domestic_GUI_State_Window_16
+	clr_country_flag = BRG_Domestic_GUI_State_Window_17
+	clr_country_flag = BRG_Domestic_GUI_State_Window_18
+	clr_country_flag = BRG_Domestic_GUI_State_Window_19
+	clr_country_flag = BRG_Domestic_GUI_State_Window_20
+	clr_country_flag = BRG_Domestic_GUI_State_Window_21
+	clr_country_flag = BRG_Domestic_GUI_State_Window_22
+	clr_country_flag = BRG_Domestic_GUI_State_Window_23
+	clr_country_flag = BRG_Domestic_GUI_State_Window_24
+	clr_country_flag = BRG_Domestic_GUI_State_Window_25
+}
+
+
+#Political Tree DynMod Calculator based on Domestic GUI
+
+BRG_Update_Political_Dynmod = {
+	set_temp_variable = {HimmlerSupportAverage = 0}
+	set_temp_variable = {WalloonSupportAverage = 0}
+	set_temp_variable = {LangemarckSupportAverage = 0}
+	set_temp_variable = {CharlemagneSupportAverage = 0}
+
+	#Gather sum of all loyalties for each SS Legion in their home regions
+	every_owned_state = {  #Technically not needed for Walloon/Langemarck, used for generalised structure and modularity
+		BRG = {
+			add_to_temp_variable = {HimmlerSupportAverage = PREV.HimmlerSupport}
+			if = {
+				limit = { #Only Flanders
+					PREV = {
+						state = 6
+					}
+				}
+				add_to_temp_variable = {LangemarckSupportAverage = PREV.LangemarckSupport}
+			}
+			if = {
+				limit = { #Only Wallonia
+					PREV = {
+						state = 34
+					}
+				}
+				add_to_temp_variable = {WalloonSupportAverage = PREV.WalloonSupport}
+			}
+			if = {
+				limit = { #Not Wallonia or Flanders
+					PREV = {
+						NOT = {
+							OR = {
+								state = 6
+								state = 34
+							}
+						}
+					}
+				}
+				add_to_temp_variable = {CharlemagneSupportAverage = PREV.CharlemagneSupport}
+			}
+		}
+	}
+
+
+	#Determine average by dividing through number of states in Home Region
+	divide_temp_variable = {HimmlerSupportAverage = num_owned_states}
+	divide_temp_variable = {WalloonSupportAverage = 1 } #Technically not needed, but included for future modularity
+	divide_temp_variable = {LangemarckSupportAverage = 1 } #Technically not needed, but included for future modularity
+	set_temp_variable = {CharlemagneStates = num_owned_states} #Charlemagne average calculated over all states minus Belgians
+	add_to_temp_variable = {CharlemagneStates = -2}
+	divide_temp_variable = {CharlemagneSupportAverage = CharlemagneStates}
+
+	round_temp_variable = HimmlerSupportAverage
+	round_temp_variable = WalloonSupportAverage
+	round_temp_variable = LangemarckSupportAverage
+	round_temp_variable = CharlemagneSupportAverage
+
+	if = {#Execute this only every second tick
+		limit = {
+			check_variable = {BRG_Loyalty_Calc_Counter = 0}
+		}
+		set_variable = {BRG_Loyalty_Calc_Counter = 1}
+	}
+	else = {
+		if = { #Deduct loyalties if average legion loyalty is below loyality to Himmler
+			limit = {check_variable = {WalloonSupportAverage > HimmlerSupportAverage}}
+			BRG_Domestic_GUI_Decrease_Walloon_Loyalty = yes
+		}
+
+		if = {
+			limit = {check_variable = {LangemarckSupportAverage > HimmlerSupportAverage}}
+			BRG_Domestic_GUI_Decrease_Langemarck_Loyalty = yes
+		}
+
+		if = {
+			limit = {check_variable = {CharlemagneSupportAverage > HimmlerSupportAverage}}
+			BRG_Domestic_GUI_Decrease_Charlemagne_Loyalty = yes
+		}
+		set_variable = {BRG_Loyalty_Calc_Counter = 0}
+	}
+
+
+	divide_temp_variable = {HimmlerSupportAverage = 2}
+	divide_temp_variable = {WalloonSupportAverage = 2 }
+	divide_temp_variable = {LangemarckSupportAverage = 2 }
+	divide_temp_variable = {CharlemagneSupportAverage = 2 }
+
+	set_temp_variable = {BRG_Himmler_Support_Calc = HimmlerSupportAverage } #Include Base loyalties
+	set_temp_variable = {BRG_Walloon_Mod_Calc = WalloonSupportAverage }
+	set_temp_variable = {BRG_Lange_Mod_Calc = LangemarckSupportAverage }
+	set_temp_variable = {BRG_Charla_Mod_Calc = CharlemagneSupportAverage }
+
+	subtract_from_temp_variable = {BRG_Himmler_Support_Calc = BRG_Himmler_Support_Base_Loyalty} #Determine difference
+	subtract_from_temp_variable = {BRG_Walloon_Mod_Calc = BRG_Walloon_Mod_Base_Loyalty}
+	subtract_from_temp_variable = {BRG_Lange_Mod_Calc = BRG_Lange_Mod_Base_Loyalty}
+	subtract_from_temp_variable = {BRG_Charla_Mod_Calc = BRG_Charla_Mod_Base_Loyalty}
+
+
+	divide_temp_variable = {BRG_Himmler_Support_Calc = 2000} #Normalize (effective range of change -5 to +5 percentage points, Himmler -2.5 to +2.5, Lange -50 to +50)
+	divide_temp_variable = {BRG_Walloon_Mod_Calc = 1000}
+	divide_temp_variable = {BRG_Lange_Mod_Calc = 100}
+	divide_temp_variable = {BRG_Charla_Mod_Calc = 1000}
+
+
+
+
+	multiply_temp_variable = {BRG_Himmler_Support_Calc = BRG_Himmler_Support_Loyalty_Effect_Factor} #Include static multipliers
+	multiply_temp_variable = {BRG_Walloon_Mod_Calc = BRG_Walloon_Mod_Loyalty_Effect_Factor}
+	multiply_temp_variable = {BRG_Lange_Mod_Calc = BRG_Lange_Mod_Loyalty_Effect_Factor}
+	multiply_temp_variable = {BRG_Charla_Mod_Calc = BRG_Charla_Mod_Loyalty_Effect_Factor}
+
+	add_to_temp_variable = {BRG_Walloon_Mod_Calc = BRG_Himmler_Support_Calc} #Add Himmler Loyalty Support
+	add_to_temp_variable = {BRG_Lange_Mod_Calc = BRG_Himmler_Support_Calc}
+	add_to_temp_variable = {BRG_Charla_Mod_Calc = BRG_Himmler_Support_Calc}
+
+	add_to_variable = {BRG_Political_Dynamic_Mod_Stability_Charla = BRG_Charla_Mod_Calc} #Add to Dynamic Modifier
+	add_to_variable = {BRG_Political_Dynamic_Mod_War_Support_Charla = BRG_Charla_Mod_Calc}
+	add_to_variable = {BRG_Political_Dynamic_Mod_PP_Gain_Lange = BRG_Lange_Mod_Calc}
+	add_to_variable = {BRG_Political_Dynamic_Mod_Factory_Output_Walloon = BRG_Walloon_Mod_Calc}
+	add_to_variable = {BRG_Political_Dynamic_Mod_Construction_Speed_Walloon = BRG_Walloon_Mod_Calc}
+
+	clamp_variable = { #Clamp
+		var = BRG_Political_Dynamic_Mod_Stability_Charla
+		min = -0.15
+		max = 0.15
+	}
+	clamp_variable = {
+		var = BRG_Political_Dynamic_Mod_War_Support_Charla
+		min = -0.15
+		max = 0.15
+	}
+	clamp_variable = {
+		var = BRG_Political_Dynamic_Mod_PP_Gain_Lange
+		min = -0.15
+		max = 0.15
+	}
+	clamp_variable = {
+		var = BRG_Political_Dynamic_Mod_Factory_Output_Walloon
+		min = -0.15
+		max = 0.15
+	}
+	clamp_variable = {
+		var = BRG_Political_Dynamic_Mod_Construction_Speed_Walloon
+		min = -0.15
+		max = 0.15
+	}
+
+	force_update_dynamic_modifier = yes
+}

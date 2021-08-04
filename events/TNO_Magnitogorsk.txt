@@ -1,0 +1,4160 @@
+﻿######
+#Lysenko
+######
+add_namespace = BAS
+
+###############
+#Focus rewards#
+###############
+country_event = {	#The Black Mountain Awakes
+	id = BAS.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.100"}
+	title = BAS.100.t
+	desc = BAS.100.desc
+	picture = GFX_report_event_russia_magnitogorsk_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The work begins...
+		name = BAS.100.a
+		hidden_effect = {
+			set_country_flag = NKVD_Bribe_1
+		}
+	}
+}
+
+country_event = {	#Obstructions removed
+	id = BAS.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.101"}
+	title = BAS.101.t
+	desc = BAS.101.desc
+	picture = GFX_report_event_iberia_road_work_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#There can be no obstacles
+		name = BAS.101.a
+	}
+}
+
+country_event = {	#Armament Planning
+	id = BAS.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.102"}
+	title = BAS.102.t
+	desc = BAS.102.desc
+	picture = GFX_report_event_german_arms
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Plan C is the optimal choice
+		name = BAS.102.a
+	}
+}
+
+country_event = {	#Supply Production Planning
+	id = BAS.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.103"}
+	title = BAS.103.t
+	desc = BAS.103.desc
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Efficiency is essential
+		name = BAS.103.a
+	}
+}
+
+country_event = {	#Combat Preparation Readiness
+	id = BAS.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.104"}
+	title = BAS.104.t
+	desc = BAS.104.desc
+	picture = GFX_report_event_russia_red_army_march
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Our soldiers must be ready for anything
+		name = BAS.104.a
+	}
+}
+
+country_event = {	#Force Weaponry Integration
+	id = BAS.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.105"}
+	title = BAS.105.t
+	desc = BAS.105.desc
+	picture = GFX_report_event_crate_of_guns
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#We must use everything
+		name = BAS.105.a
+	}
+}
+
+country_event = {	#Extraction Regime Training
+	id = BAS.106
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.106"}
+	title = BAS.106.t
+	desc = BAS.106.desc
+	picture = GFX_report_generic_prisoners3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Subjects are essential for our work
+		name = BAS.106.a
+	}
+}
+
+country_event = {	#Soviet Training
+	id = BAS.107
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.107"}
+	title = BAS.107.t
+	desc = BAS.107.desc
+	picture = GFX_report_event_Siberian_Troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The Union did not fall due to their tactics
+		name = BAS.107.a
+	}
+}
+
+country_event = {	#Our enemies' enemies
+	id = BAS.108
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.108"}
+	title = BAS.108.t
+	desc = BAS.108.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Invite the German, but watch him closely
+		name = BAS.108.a
+		BAS = {
+			country_event = {
+				id = BAS.109
+				days = 10
+			}
+		}
+	}
+	option = { #Draw the vermin in, then strike
+		name = BAS.108.b
+		ai_chance = { factor = 0 }
+		ORS = {
+			country_event = {
+				id = BAS.110
+				days = 10
+			}
+		}
+	}
+	option = { #Refuse such an idea
+		name = BAS.108.c
+		ai_chance = { factor = 0 }
+		add_political_power = 100
+	}
+
+}
+
+country_event = {	#The Men from Magnitogorsk
+	id = BAS.109
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.109"}
+	title = BAS.109.t
+	desc = BAS.109.desc
+	picture = GFX_report_event_russia_magnitogorsk
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Very well, we will attend
+		name = BAS.109.a
+		BAS = {
+			country_event = {
+				id = BAS.111
+				days = 20
+			}
+		}
+	}
+	option = {	#Refuse these weaklings
+		ai_chance = {
+			factor = 0
+		}
+		name = BAS.109.b
+		BAS = {
+			country_event = {
+				id = BAS.112
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = {	#The Men from Magnitogorsk(Betrayal)
+	id = BAS.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.110"}
+	title = BAS.110.t
+	desc = BAS.110.desc
+	picture = GFX_report_event_russia_magnitogorsk
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Very well, we will attend(and be ambushed)
+		name = BAS.110.a
+		BAS = {
+			country_event = {
+				id = BAS.113
+				days = 10
+			}
+		}
+	}
+	option = {	#Refuse these weaklings
+		name = BAS.110.b
+		BAS = {
+			country_event = {
+				id = BAS.112
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = {	#A deal with Dirlewanger
+	id = BAS.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.111"}
+	title = BAS.111.t
+	desc = BAS.111.desc
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#This will benefit both of us
+		name = BAS.111.a
+	}
+}
+
+country_event = {	#The degenerate refuses
+	id = BAS.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.112"}
+	title = BAS.112.t
+	desc = BAS.112.desc
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Hah, we are better off alone
+		name = BAS.112.a
+		hidden_effect = {
+			ORS = {
+				set_country_flag = ORS_no_lysenko_cooperation
+			}
+		}
+	}
+}
+
+country_event = {	#Dirlewanger approaches
+	id = BAS.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.113"}
+	title = BAS.113.t
+	desc = BAS.113.desc
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Goodbye, Dirlewanger
+		name = BAS.113.a
+		hidden_effect = {
+			random_list = {
+				80 = {
+					country_event = {
+						id = BAS.114
+						days = 10
+					}
+				}
+				10 = {
+					country_event = {
+						id = BAS.115
+						days = 5
+					}
+				}
+				10 = {
+					country_event = {
+						id = BAS.116
+						days = 10
+					}
+				}
+			}
+			hidden_effect = {
+				ORS = {
+					set_country_flag = ORS_no_lysenko_cooperation
+				}
+			}
+		}
+	}
+}
+
+country_event = {	#Dirlewanger evades our trap!
+	id = BAS.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.114"}
+	title = BAS.114.t
+	desc = BAS.114.desc
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Fools! Prepare the defenses!
+		name = BAS.114.a
+		declare_war_on = {
+			target = ORS
+			type = annex_everything
+		}
+		hidden_effect = {
+			lysenko_army_preperation_idea_assignment = yes
+			lysenko_army_drill_idea_assignment = yes
+		}
+		ORS = {
+			country_event = {
+				id = ORS.162
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {	#Dirlewanger is killed in the pass
+	id = BAS.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.115"}
+	title = BAS.115.t
+	desc = BAS.115.desc
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Now to finish off the rest
+		name = BAS.115.a
+		declare_war_on = {
+			target = ORS
+			type = annex_everything
+		}
+		hidden_effect = {
+			lysenko_army_preperation_idea_assignment = yes
+			lysenko_army_drill_idea_assignment = yes
+		}
+		ORS = {
+			country_event = {
+				id = ORS.472
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {	#Dirlewanger is captured in the Planning Centre
+	id = BAS.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.116"}
+	title = BAS.116.t
+	desc = BAS.116.desc
+	picture = GFX_report_event_ORS_Dirlwanger_overthrown
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Now to finish off the rest
+		name = BAS.116.a
+		declare_war_on = {
+			target = ORS
+			type = annex_everything
+		}
+		hidden_effect = {
+			lysenko_army_preperation_idea_assignment = yes
+			lysenko_army_drill_idea_assignment = yes
+		}
+		ORS = {
+			country_event = {
+				id = ORS.473
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {	#Fortification Charter
+	id = BAS.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.117"}
+	title = BAS.117.t
+	desc = BAS.117.desc
+	picture = GFX_report_event_german_bunker
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The Mountain must be impenetrable
+		name = BAS.117.a
+	}
+}
+
+country_event = {	#Super Soldata
+	id = BAS.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.118"}
+	title = BAS.118.t
+	desc = BAS.118.desc
+	picture = GFX_report_event_russia_red_army_march
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#With these weapons, we shall reclaim Mother Russia
+		name = BAS.118.a
+		add_political_power = 20
+		add_war_support = 0.03
+	}
+}
+
+country_event = {	#Exploit the acquired areas
+	id = BAS.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.119"}
+	title = BAS.119.t
+	desc = BAS.119.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Take everything. We need it all.
+		name = BAS.119.a
+	}
+}
+
+country_event = {	#Synergistic Cooperation
+	id = BAS.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.122"}
+	title = BAS.122.t
+	desc = BAS.122.desc
+	picture = GFX_report_event_generic_sign_treaty3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Let us see what these Bandits have to offer.
+		name = BAS.122.a
+	}
+}
+
+country_event = {	#Foreign Training
+	id = BAS.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.123"}
+	title = BAS.123.t
+	desc = BAS.123.desc
+	picture = GFX_report_event_russian_military
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Listen closely, we may have to use this against them...
+		name = BAS.123.a
+	}
+}
+
+country_event = {	#A Treaty with the Bandits
+	id = BAS.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.124"}
+	title = BAS.124.t
+	desc = BAS.124.desc
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Let us hope this will redirect their ire
+		name = BAS.124.a
+	}
+}
+
+country_event = {	#Advisory methods
+	id = BAS.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.125"}
+	title = BAS.125.t
+	desc = BAS.125.desc
+	picture = GFX_report_event_china_russia
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Invincible. I like the sound of that.
+		name = BAS.125.a
+	}
+}
+
+country_event = {	#The New Russians to the rescue
+	id = BAS.126
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.126"}
+	title = BAS.126.t
+	desc = BAS.126.desc
+	picture = GFX_report_event_russia_forest_battle
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Behold. The legions I command.
+		name = BAS.126.a
+		country_event = {
+			id = BAS.132
+			hours = 6
+		}
+	}
+}
+
+
+country_event = {	#Rewarded by Lysenko
+	id = BAS.127
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.127"}
+	title = BAS.127.t
+	desc = BAS.127.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#A pleasure, Comrade Lysenko
+		name = BAS.127.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = URL
+		}
+	}
+}
+
+country_event = {	#It was an honor
+	id = BAS.128
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.128"}
+	title = BAS.128.t
+	desc = BAS.128.desc
+	picture = GFX_report_event_hungary_handshake
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The Degenerate has expended his use, prepare the soldiers
+		name = BAS.128.a
+	}
+}
+
+country_event = {	#The Mountain stands firm
+	id = BAS.129
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.129"}
+	title = BAS.129.t
+	desc = BAS.129.desc
+	picture = GFX_report_event_russia_magnitogorsk_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The Men of Magnitogorsk are as hard as the iron within
+		name = BAS.129.a
+	}
+}
+
+country_event = {	#The Road We Tread
+	id = BAS.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.130"}
+	title = BAS.130.t
+	desc = BAS.130.desc
+	picture = GFX_report_event_iberia_road_work_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Only Magnitogorsk, only Lysenko could have delivered us from the depths
+		name = BAS.130.a
+	}
+}
+
+country_event = {	#Quiet around the Mountain
+	id = BAS.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.131"}
+	title = BAS.131.t
+	desc = BAS.131.desc
+	picture = GFX_report_event_generic_mountain
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Now our work truly begins...
+		name = BAS.131.a
+		hidden_effect = {
+			owb_endslide_start = yes
+		}
+	}
+}
+
+country_event = {	#The Super Soldiers rebel
+	id = BAS.132
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.132"}
+	title = BAS.132.t
+	desc = BAS.132.desc
+	picture = GFX_report_event_italy_violent_riot
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#Our precious subjects...Do not harm them!
+		name = BAS.132.a
+		add_manpower = -1000
+		add_ideas = BAS_magnitogorsk_collapse
+		random_list = {
+			20 = {
+				kill_country_leader = yes
+				create_country_leader = {
+					name = "Stepan Bunkov"
+					desc = "POLITICS_STEPAN_BUNKOV_DESC"
+					picture = "Portrait_Magnitogorsk_Stepan_Bunkov.dds"
+					expire = "1990.1.1"
+					ideology = despotism_subtype
+				}
+				hidden_effect = {
+					remove_ideas = {
+						BAS_SANITY_NEUTRAL
+						BAS_SANITY_LOW
+						BAS_SANITY_HIGH
+						BAS_mad_scientist
+					}
+				}
+				set_global_flag = BAS_lysenko_dead
+			}
+			80 = {
+			}
+		}
+	}
+}
+
+country_event = {	#Magnitogorsk targets us
+	id = BAS.133
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.133"}
+	title = BAS.133.t
+	desc = BAS.133.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#We should not be suprised. Prepare our defenses!
+		name = BAS.133.a
+	}
+}
+
+country_event = {	#Magnitogorsk requests tribute from our lands
+	id = BAS.134
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.134"}
+	title = BAS.134.t
+	desc = BAS.134.desc
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+	fire_only_once = no
+
+	option = {	#Give them what they ask
+		name = BAS.134.a
+		BAS = {
+			country_event = {
+				id = BAS.135
+				days = 2
+			}
+		}
+	}
+	option = { #We do not share our spoils
+		name = BAS.134.b
+		BAS = {
+			country_event = {
+				id = BAS.136
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #The Brigade delivers the tribute
+	id = BAS.135
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.135"}
+	title = BAS.135.t
+	desc = BAS.135.desc
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+	fire_only_once = no
+
+	option = {	#A welcome sight
+		name = BAS.135.a
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 200
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = ORS
+		}
+	}
+}
+
+country_event = { #The Brigade refuses the tribute
+	id = BAS.136
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.136"}
+	title = BAS.136.t
+	desc = BAS.136.desc
+	picture = GFX_report_event_ORS_camp
+
+	is_triggered_only = yes
+	fire_only_once = no
+
+	option = {	#Those scum!
+		name = BAS.136.a
+		add_opinion_modifier = {
+			target = ROOT
+			modifier = refused_help
+		}
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 10
+		}
+	}
+}
+country_event = {	#Scavenging for Soviet Equipment
+	id = BAS.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.51"}
+	title = BAS.51.t
+	desc = BAS.51.d
+	picture = GFX_report_event_crate_of_guns
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {	#The North
+		name = BAS.51.a
+		hidden_effect = {
+			set_country_flag = north
+			country_event = {
+				id = BAS.52
+				hours = 36
+			}
+		}
+	}
+	option = {	#The South
+		name = BAS.51.b
+		hidden_effect = {
+			country_event = {
+				id = BAS.53
+				hours = 40
+			}
+		}
+	}
+	option = {	#The Center
+		name = BAS.51.c
+		hidden_effect = {
+			set_country_flag = center
+			country_event = {
+				id = BAS.52
+				hours = 30
+			}
+		}
+	}
+}
+
+country_event = {	#Mild success
+	id = BAS.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.52"}
+	title = BAS.52.t
+	desc = BAS.52.d
+	picture = GFX_report_event_crate_of_guns
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = BAS.52.a
+		if = {
+			limit = {
+				has_country_flag = center
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2500
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 3200
+				}
+			}
+		}
+	}
+}
+
+country_event = {	#Huge success
+	id = BAS.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.53"}
+	title = BAS.53.t
+	desc = BAS.53.d
+	picture = GFX_report_event_crate_of_guns
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = BAS.53.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5500
+		}
+	}
+}
+
+
+country_event = {	#Magnitogorsk asks for tribute
+	id = BAS.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.54"}
+	title = "Magnitogorsk asks for tribute"
+	desc = BAS.54.d
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = "Of course we'll supply!"
+		BAS = {
+			country_event = {
+				id = BAS.56
+				hours = 12
+			}
+		}
+		effect_tooltip = {
+			BAS = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = BAS_URL_tribute_refused
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "Who do they think they are?"
+		BAS = {
+			country_event = {
+				id = BAS.55
+				hours = 12
+			}
+		}
+		effect_tooltip = {
+			BAS = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = BAS_URL_tribute_refused
+				}
+			}
+		}
+	}
+}
+country_event = {	#Generic refuses tribute
+	id = BAS.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.55"}
+	title = "[From.GetLeader] refused tribute."
+	desc = BAS.55.d
+	picture = GFX_report_event_ORS_novotroitsk_city
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = "How dare they?"
+		add_opinion_modifier = {
+			target = FROM
+			modifier = BAS_URL_tribute_refused
+		}
+		create_wargoal = {
+			target = FROM
+			type = annex_everything
+		}
+		hidden_effect = {
+			lysenko_army_preperation_idea_assignment = yes
+			lysenko_army_drill_idea_assignment = yes
+		}
+	}
+}
+
+country_event = {	#Generic delivers tribute
+	id = BAS.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.56"}
+	title = "[From.GetLeader] delivers tribute."
+	desc = BAS.56.d
+	picture = GFX_report_event_ORS_looting
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = "It wasn't a choice eitherway"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 2500
+			producer = BAS
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = BAS_URL_tribute_accepted
+		}
+	}
+}
+country_event = {	#Subjects captured in war against Dirle
+	id = BAS.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.120"}
+	title = BAS.120.t
+	desc = BAS.120.d
+	picture = GFX_report_generic_prisoners2
+
+	trigger = {
+		if = {
+			limit = { country_exists = BAS }
+			BAS = {
+				NOT = { has_global_flag = BAS_NKVD_coup }
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			random_list = {
+				25 = {
+					country_event = {
+						id = BAS.121
+						days = 16
+					}
+				}
+				25 = {
+					country_event = {
+						id = BAS.121
+						days = 29
+					}
+				}
+				25 = {
+					country_event = {
+						id = BAS.121
+						days = 42
+					}
+				}
+				30 = {
+					country_event = {
+						id = BAS.121
+						days = 51
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = BAS.120.a
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 275
+		}
+		event_target:lysenko_attacker = { add_manpower = -275 }
+		custom_effect_tooltip = "275 Subjects will be acquired."
+	}
+}
+
+country_event = {	#Subjects captured again
+	id = BAS.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.121"}
+	title = BAS.121.t
+	desc = BAS.121.d
+	picture = GFX_report_event_ORS_hand_them_over
+
+	trigger = {
+		if = {
+			limit = { country_exists = BAS }
+			BAS = {
+				NOT = { has_global_flag = BAS_NKVD_coup }
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.121.a
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 150
+		}
+		event_target:lysenko_attacker = { add_manpower = -150 }
+		custom_effect_tooltip = "150 Subjects will be acquired"
+	}
+}
+
+country_event = { #event for low sanity
+	id = BAS.255
+	title = BAS.255.t
+	desc = BAS.255.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	fire_only_once = yes
+
+	trigger = {
+		AND = {
+			has_country_leader = {name = "Trofim Lysenko"}
+			check_variable = { lysenko_sanity < 25 }
+		}
+		NOT = {
+			has_country_flag = low_sanity
+		}
+		has_country_flag = neutral_sanity
+		original_tag = BAS
+	}
+
+	option = {
+		name = BAS.255.a
+		swap_ideas = {
+			remove_idea = BAS_SANITY_NEUTRAL
+			add_idea = BAS_SANITY_LOW
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = low_sanity
+					}
+				}
+				set_country_flag = low_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = high_sanity
+				}
+				clr_country_flag = high_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = neutral_sanity
+				}
+				clr_country_flag = neutral_sanity
+			}
+		}
+	}
+}
+
+country_event = { #event for medium sanity
+	id = BAS.256
+	title = BAS.256.t
+	desc = BAS.256.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	fire_only_once = yes
+
+	trigger = {
+		has_country_leader = {name = "Trofim Lysenko"}
+		check_variable = { lysenko_sanity > 25 }
+		check_variable = { lysenko_sanity < 75}
+		NOT = {
+			has_country_flag = neutral_sanity
+		}
+		OR = {
+			has_country_flag = low_sanity
+			has_country_flag = high_sanity
+		}
+		original_tag = BAS
+	}
+
+	option = {
+		name = BAS.256.a
+		if = {
+			limit = {
+				has_idea = BAS_SANITY_LOW
+			}
+			swap_ideas = {
+				remove_idea = BAS_SANITY_LOW
+				add_idea = BAS_SANITY_NEUTRAL
+			}
+		}
+		if = {
+			limit = {
+				has_idea = BAS_SANITY_HIGH
+			}
+			swap_ideas = {
+				remove_idea = BAS_SANITY_HIGH
+				add_idea = BAS_SANITY_NEUTRAL
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = neutral_sanity
+					}
+				}
+				set_country_flag = neutral_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = high_sanity
+				}
+				clr_country_flag = high_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = low_sanity
+				}
+				clr_country_flag = low_sanity
+			}
+		}
+	}
+}
+
+country_event = { #event for high sanity
+	id = BAS.257
+	title = BAS.257.t
+	desc = BAS.257.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	trigger = {
+		has_country_leader = {name = "Trofim Lysenko"}
+		check_variable = {lysenko_sanity > 75}
+		NOT = {
+			has_country_flag = high_sanity
+		}
+		has_country_flag = neutral_sanity
+		original_tag = BAS
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = BAS.257.a
+		swap_ideas = {
+			remove_idea = BAS_SANITY_NEUTRAL
+			add_idea = BAS_SANITY_HIGH
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = high_sanity
+					}
+				}
+				set_country_flag = high_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = neutral_sanity
+				}
+				clr_country_flag = neutral_sanity
+			}
+			if = {
+				limit = {
+					has_country_flag = low_sanity
+				}
+				clr_country_flag = low_sanity
+			}
+		}
+	}
+}
+
+country_event = { #Lysenko sanity hits 0
+	id = BAS.258
+	title = BAS.258.t
+	desc = BAS.258.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	trigger = {
+		has_country_leader = {name = "Trofim Lysenko"}
+		check_variable = {
+			var = lysenko_sanity
+			value = 0
+			compare = equals
+		}
+		original_tag = BAS
+	}
+	fire_only_once = yes
+
+	option = {
+		name = BAS.258.a
+		hidden_effect = {
+			country_event = {
+				id = BAS.85
+				days = 1
+			}
+		}
+	}
+}
+
+
+##ORS Strike at the peasants - Black Mountains responce
+country_event = {
+	id = BAS.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.1"}
+	title = BAS.1.t
+	desc = BAS.1.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.1.a
+		ai_chance = { factor = 80 }
+		add_manpower = 1000
+		add_political_power = 50
+		hidden_effect = {
+			ORS = {
+				country_event = { id = ORS.209 days = 2 }
+			}
+		}
+	}
+}
+
+##The Deal Changed - Lysenko's Responce
+country_event = {
+	id = BAS.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.2"}
+	title = BAS.2.t
+	desc = BAS.2.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.2.a
+		ai_chance = { factor = 60 }
+		ORS = {
+			country_event = { id = ORS.252 days = 1 }
+		}
+	}
+
+	option = {
+		name = BAS.2.b
+		ai_chance = { factor = 40 }
+		ORS = {
+			country_event = { id = ORS.254 days = 1 }
+		}
+	}
+}
+
+##Demand Double - Dirlewanger Demands Double
+country_event = {
+	id = BAS.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.3"}
+	title = BAS.3.t
+	desc = BAS.3.d
+	picture = GFX_report_event_dirlewanger
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.3.a
+		hidden_effect = {
+			ORS = {
+				country_event = { id = ORS.255 days = 5 }
+			}
+		}
+	}
+
+	option = {
+		name = BAS.3.b
+		hidden_effect = {
+			ORS = {
+				country_event = { id = ORS.220 days = 5 }
+			}
+		}
+	}
+}
+
+#Communique 142.a
+country_event = {
+	id = BAS.142
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.142"}
+	title = BAS.142.t
+	desc = BAS.142.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.142.a
+	}
+}
+
+###Backfire events for focus tree (remove army prep and army drill)
+
+country_event = { #Escape tunnel collapsed
+	id = BAS.500
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.500"}
+	title = BAS.500.t
+	desc = BAS.500.desc
+	picture = GFX_report_event_tunnel_collapse
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.500.a
+		custom_effect_tooltip = "BAS.500.a.tt"
+		add_to_variable = {
+			var = army_preperation
+			value = -4
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Defensive preparations are lacking and must be worked on more
+	id = BAS.501
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.501"}
+	title = BAS.501.t
+	desc = BAS.501.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.501.a
+		custom_effect_tooltip = "BAS.501.a.tt"
+		add_to_variable = {
+			var = army_preperation
+			value = -8
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #NKVD mad cause of foreign training doctrines
+	id = BAS.502
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.502"}
+	title = BAS.502.t
+	desc = BAS.502.desc
+	picture = GFX_report_event_russia_nkvd_officer
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.502.a
+		custom_effect_tooltip = "BAS.502.a.tt"
+		add_to_variable = {
+			var = army_drill
+			value = -8
+		}
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Arms shipments from warlords are smaller than anticipated
+	id = BAS.503
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.503"}
+	title = BAS.503.t
+	desc = BAS.503.desc
+	picture = GFX_report_event_guns_crate_mosin
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.503.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -300
+			producer = BAS
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = -150
+			producer = BAS
+		}
+		custom_effect_tooltip = "BAS.503.a.tt"
+		add_to_variable = {
+			var = army_drill
+			value = -8
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Soldiers have low morale because of excessive drilling
+	id = BAS.504
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.504"}
+	title = BAS.504.t
+	desc = BAS.504.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.504.a
+		custom_effect_tooltip = "BAS.504.a.tt"
+		add_to_variable = {
+			var = army_drill
+			value = -10
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #NKVD mad cause of foreign advisors
+	id = BAS.505
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.505"}
+	title = BAS.505.t
+	desc = BAS.505.desc
+	picture = GFX_report_event_russia_nkvd_officer
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.505.a
+		custom_effect_tooltip = "BAS.505.a.tt"
+		add_to_variable = {
+			var = army_drill
+			value = -8
+		}
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+#ACTUAL SUBJECTS EVENTS
+
+country_event = { #Endurance Testing
+	id = BAS.600
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.600"}
+	title = BAS.600.t
+	desc = BAS.600.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.600.a
+		custom_effect_tooltip = "BAS.600.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 25
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 25
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 63
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Limited Rationing Testing
+	id = BAS.601
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.601"}
+	title = BAS.601.t
+	desc = BAS.601.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.601.a
+		custom_effect_tooltip = "BAS.601.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 20
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 150
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Drug Testing
+	id = BAS.602
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.602"}
+	title = BAS.602.t
+	desc = BAS.602.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.602.a
+		custom_effect_tooltip = "BAS.602.a.tt"
+
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 30
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 30
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 277
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #Childhood upbringing Testing
+	id = BAS.603
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.603"}
+	title = BAS.603.t
+	desc = BAS.603.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.603.a
+		custom_effect_tooltip = "BAS.603.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 20
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 346
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #sleep deprevation
+	id = BAS.604
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.604"}
+	title = BAS.604.t
+	desc = BAS.604.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.604.a
+		custom_effect_tooltip = "BAS.604.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 20
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 149
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #language deprevation
+	id = BAS.605
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.605"}
+	title = BAS.605.t
+	desc = BAS.605.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.605.a
+		custom_effect_tooltip = "BAS.605.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 15
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 15
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 145
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+
+country_event = { #psychic
+	id = BAS.607
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.607"}
+	title = BAS.607.t
+	desc = BAS.607.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.607.a
+		custom_effect_tooltip = "BAS.607.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 5
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 77
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+country_event = { #chemical weapons
+	id = BAS.608
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.608"}
+	title = BAS.608.t
+	desc = BAS.608.desc
+	picture = GFX_report_event_lysenko_experiment
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.608.a
+		custom_effect_tooltip = "BAS.608.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		add_to_variable = {
+			var = lysenko_sanity
+			value = 20
+		}
+		clamp_variable = {
+			var = lysenko_sanity
+			max = 100
+			min = 0
+		}
+		add_to_variable = {
+			var = lysenko_subjects
+			value = 17
+		}
+		add_to_variable = { global.lysenko_testing = 1}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+	}
+}
+
+#LYSENKO CULTURE EVENTS
+
+country_event = {	#The greatest sacrifice
+	id = BAS.2000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.2000"}
+	title = BAS.2000.t
+	desc = BAS.2000.desc
+	picture = GFX_report_event_ORS_Lysenko
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = BAS.2000.a
+	}
+}
+
+###Warlord starter pack
+
+country_event = {
+	id = BAS.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.4"}
+	title = BAS.4.t
+	desc = BAS.4.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.4.a
+	}
+}
+
+country_event = {
+	id = BAS.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.5"}
+	title = BAS.5.t
+	desc = BAS.5.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.5.a
+	}
+}
+
+country_event = {
+	id = BAS.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.6"}
+	title = BAS.6.t
+	desc = BAS.6.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.6.a
+	}
+}
+
+country_event = {
+	id = BAS.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.7"}
+	title = BAS.7.t
+	desc = BAS.7.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.7.a
+	}
+}
+
+country_event = {
+	id = BAS.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.8"}
+	title = BAS.8.t
+	desc = BAS.8.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.8.a
+	}
+}
+
+country_event = {
+	id = BAS.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.9"}
+	title = BAS.9.t
+	desc = BAS.9.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.9.a
+	}
+}
+
+country_event = {
+	id = BAS.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.10"}
+	title = BAS.10.t
+	desc = BAS.10.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.10.a
+	}
+}
+
+country_event = {
+	id = BAS.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.11"}
+	title = BAS.11.t
+	desc = BAS.11.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.11.a
+	}
+}
+
+country_event = {
+	id = BAS.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.12"}
+	title = BAS.12.t
+	desc = BAS.12.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.12.a
+	}
+}
+
+country_event = {
+	id = BAS.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.13"}
+	title = BAS.13.t
+	desc = BAS.13.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.13.a
+	}
+}
+
+country_event = {
+	id = BAS.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.14"}
+	title = BAS.14.t
+	desc = BAS.14.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.14.a
+	}
+}
+
+country_event = {
+	id = BAS.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.15"}
+	title = BAS.15.t
+	desc = BAS.15.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.15.a
+	}
+}
+
+country_event = {
+	id = BAS.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.16"}
+	title = BAS.16.t
+	desc = BAS.16.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.16.a
+	}
+}
+
+country_event = {
+	id = BAS.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.17"}
+	title = BAS.17.t
+	desc = BAS.17.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.17.a
+	}
+}
+
+country_event = {
+	id = BAS.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.18"}
+	title = BAS.18.t
+	desc = BAS.18.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.18.a
+	}
+}
+
+country_event = {
+	id = BAS.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.19"}
+	title = BAS.19.t
+	desc = BAS.19.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.19.a
+	}
+}
+
+country_event = {
+	id = BAS.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.20"}
+	title = BAS.20.t
+	desc = BAS.20.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.20.a
+	}
+}
+
+country_event = {
+	id = BAS.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.21"}
+	title = BAS.21.t
+	desc = BAS.21.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.21.a
+	}
+}
+
+country_event = {
+	id = BAS.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.22"}
+	title = BAS.22.t
+	desc = BAS.22.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.22.a
+	}
+}
+
+country_event = {
+	id = BAS.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.23"}
+	title = BAS.23.t
+	desc = BAS.23.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.23.a
+	}
+}
+
+country_event = {
+	id = BAS.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.24"}
+	title = BAS.24.t
+	desc = BAS.24.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.24.a
+	}
+}
+
+country_event = {
+	id = BAS.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.25"}
+	title = BAS.25.t
+	desc = BAS.25.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.25.a
+	}
+}
+
+country_event = {
+	id = BAS.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.26"}
+	title = BAS.26.t
+	desc = BAS.26.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.26.a
+	}
+}
+
+country_event = {
+	id = BAS.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.27"}
+	title = BAS.27.t
+	desc = BAS.27.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.27.a
+	}
+}
+
+country_event = {
+	id = BAS.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.28"}
+	title = BAS.28.t
+	desc = BAS.28.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.28.a
+	}
+}
+
+country_event = {
+	id = BAS.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.29"}
+	title = BAS.29.t
+	desc = BAS.29.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.29.a
+	}
+}
+
+country_event = {
+	id = BAS.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.30"}
+	title = BAS.30.t
+	desc = BAS.30.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.30.a
+	}
+}
+
+country_event = {
+	id = BAS.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.31"}
+	title = BAS.31.t
+	desc = BAS.31.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.31.a
+	}
+}
+
+country_event = {
+	id = BAS.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.32"}
+	title = BAS.32.t
+	desc = BAS.32.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.32.a
+	}
+}
+
+country_event = {
+	id = BAS.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.33"}
+	title = BAS.33.t
+	desc = BAS.33.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.33.a
+	}
+}
+
+country_event = {
+	id = BAS.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.34"}
+	title = BAS.34.t
+	desc = BAS.34.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.34.a
+	}
+}
+
+country_event = {
+	id = BAS.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.35"}
+	title = BAS.35.t
+	desc = BAS.35.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.35.a
+	}
+}
+
+country_event = {
+	id = BAS.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.36"}
+	title = BAS.36.t
+	desc = BAS.36.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.36.a
+	}
+}
+
+country_event = {
+	id = BAS.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.37"}
+	title = BAS.37.t
+	desc = BAS.37.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.37.a
+	}
+}
+
+country_event = {
+	id = BAS.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.38"}
+	title = BAS.38.t
+	desc = BAS.38.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.38.a
+	}
+}
+
+country_event = {
+	id = BAS.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.39"}
+	title = BAS.39.t
+	desc = BAS.39.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.39.a
+	}
+}
+
+country_event = {
+	id = BAS.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.40"}
+	title = BAS.40.t
+	desc = BAS.40.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.40.a
+	}
+}
+
+country_event = {
+	id = BAS.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.41"}
+	title = BAS.41.t
+	desc = BAS.41.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.41.a
+	}
+}
+
+country_event = {
+	id = BAS.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.42"}
+	title = BAS.42.t
+	desc = BAS.42.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.42.a
+	}
+}
+
+country_event = {
+	id = BAS.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.43"}
+	title = BAS.43.t
+	desc = BAS.43.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.43.a
+	}
+}
+
+country_event = {
+	id = BAS.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.44"}
+	title = BAS.44.t
+	desc = BAS.44.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.44.a
+	}
+}
+
+country_event = {
+	id = BAS.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.45"}
+	title = BAS.45.t
+	desc = BAS.45.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.45.a
+	}
+}
+
+country_event = {
+	id = BAS.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.46"}
+	title = BAS.46.t
+	desc = BAS.46.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.46.a
+	}
+}
+
+country_event = {
+	id = BAS.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.47"}
+	title = BAS.47.t
+	desc = BAS.47.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.47.a
+	}
+}
+
+country_event = {
+	id = BAS.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.48"}
+	title = BAS.48.t
+	desc = BAS.48.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.48.a
+	}
+}
+
+country_event = {
+	id = BAS.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.49"}
+	title = BAS.49.t
+	desc = BAS.49.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.49.a
+	}
+}
+
+country_event = {
+	id = BAS.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.50"}
+	title = BAS.50.t
+	desc = BAS.50.d
+	picture = GFX_report_event_lithuania_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = BAS.50.a
+	}
+}
+
+
+######################
+# NKVD Loyalty events#
+######################
+
+country_event = {	#An outspoken soldier
+	id = BAS.80
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.80"}
+	title = BAS.80.t
+	desc = BAS.80.desc
+	picture = GFX_report_event_russia_soviet_soldier
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #There can be no dissent
+		name = BAS.80.a
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		add_manpower = -1
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko."
+	}
+}
+
+country_event = {	#The dissenter was not alone
+	id = BAS.81
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.81"}
+	title = BAS.81.t
+	desc = BAS.81.desc
+	picture = GFX_report_event_russia_bunker_command
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Order a thorough investigation
+		name = BAS.81.a
+		country_event = {
+			id = BAS.82
+			days = 20
+		}
+	}
+
+	option = { #The NKVD will deal with it
+		name = BAS.81.b
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko."
+	}
+}
+
+country_event = {	#The investigation
+	id = BAS.82
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.82"}
+	title = BAS.82.t
+	desc = BAS.82.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Purge the Old Guard
+		name = BAS.82.a
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 15
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+	}
+	option = { #Target the newcomer
+		name = BAS.82.b
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 10
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+	}
+	option = { #Scapegoat the foreigner
+		name = BAS.82.c
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+	}
+	option = { #Issue a statement
+		name = BAS.82.d
+	}
+}
+
+country_event = {	#Unmanned posts
+	id = BAS.83
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.83"}
+	title = BAS.83.t
+	desc = BAS.83.desc
+	picture = GFX_report_event_empty_post
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Demand an example
+		name = BAS.83.a
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 20
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+	}
+	option = { #Ignore the transgression
+		name = BAS.83.b
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 10
+		}
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+	}
+	option = { #Found a replacement security force
+		name = BAS.83.c
+		country_event = {
+			id = BAS.90
+			days = 30
+		}
+	}
+}
+
+
+country_event = {	#The NKVD confront Lysenko
+	id = BAS.84
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.84"}
+	title = BAS.84.t
+	desc = BAS.84.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Promise changes
+		name = BAS.84.a
+		set_variable = {
+			var = lysenko_nkvd_disloyalty
+			amount = 50
+		}
+		add_ideas = BAS_nkvd_concessions
+	}
+	option = { #Lysenko rules the Black Mountain
+		name = BAS.84.c
+		country_event = {
+			id = BAS.85
+			hours = 1
+		}
+	}
+}
+
+country_event = { #NKVD arrest and execute Lysenko
+	id = BAS.85
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.85"}
+	title = BAS.85.t
+	desc = BAS.85.desc
+	picture = GFX_report_event_CAU_execution
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #The Madman of Magnitogorsk is dead
+		name = BAS.85.a
+		kill_country_leader = yes
+		set_party_name = {
+			ideology = despotism
+			long_name = BAS_nkvd_coup_despotism_long
+			name = BAS_nkvd_coup_despotism
+		}
+		set_global_flag = BAS_NKVD_coup
+		set_cosmetic_tag = BAS_NKVD
+		create_country_leader = {
+			name = "Stepan Bunkov"
+			desc = "POLITICS_STEPAN_BUNKOV_DESC"
+			picture = "Portrait_Magnitogorsk_Stepan_Bunkov.dds"
+			expire = "1990.1.1"
+			ideology = despotism_subtype
+		}
+		add_ideas = BAS_magnitogorsk_collapse
+		remove_ideas = BAS_mad_scientist
+		add_ideas = {
+			BAS_Andrey_Golovko_hog
+			BAS_Nikolay_Vasilyev_sec
+			BAS_Nikolay_Dudetsky_for
+			BAS_Avraami_Zavenyagin_eco
+		}
+		hidden_effect = {
+			remove_ideas = {
+				BAS_SANITY_NEUTRAL
+				BAS_SANITY_LOW
+				BAS_SANITY_HIGH
+				BAS_Lysenko_Influence_Very_High
+				BAS_Lysenko_Influence_High
+				BAS_Lysenko_Influence_Medium
+				BAS_Lysenko_Influence_Low
+				BAS_Lysenko_Influence_Very_Low
+			}
+		}
+		clear_variable = lysenko_nkvd_disloyalty_counter
+		clear_variable = lysenko_nkvd_disloyalty
+		country_event = {
+			id = BAS_NKVD.1000
+			days = 3
+		}
+		#add_to_variable = {
+			#var = lysenko_nkvd_influence
+			#value = 47
+			#}
+		hidden_effect = {
+			lysenko_army_readiness_check = yes
+		}
+		if = {
+			limit = {
+				ORS = {
+					exists = yes
+				}
+			}
+			ORS = { country_event ={id=ORS.400 days=1 random =20} }
+		}
+	}
+}
+
+
+country_event = {	#New security force
+	id = BAS.90
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.90"}
+	title = BAS.90.t
+	desc = BAS.90.desc
+	picture = GFX_report_event_russia_red_army_march
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Protect only Lysenko
+		name = BAS.90.a
+		set_country_flag = lysenko_loyal_security
+		custom_effect_tooltip = "This will allow us to view the NKVD's loyalty"
+		set_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 60
+		}
+	}
+
+	option = { #Protect the inner circle
+		name = BAS.90.b
+		set_country_flag = lysenko_loyal_security
+		custom_effect_tooltip = "This will allow us to view the NKVD's loyalty"
+		set_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 40
+		}
+	}
+
+	option = { #Replace the NKVD entirely
+		name = BAS.90.c
+		custom_effect_tooltip = "We must hope the NKVD don't get wind of this..."
+		random_list = {
+			80 = {
+				custom_effect_tooltip = "The NKVD find out..."
+				hidden_effect = {
+					country_event = {
+						id = BAS.84
+					}
+				}
+			}
+			20 = {
+				custom_effect_tooltip = "The replacement succeeds."
+				set_variable = {
+					var = lysenko_nkvd_disloyalty
+					value = 0
+				}
+				set_country_flag = lysenko_loyal_security
+			}
+		}
+	}
+}
+
+country_event = {	#Supplies stolen from Soviet caches
+	id = BAS.200
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.200"}
+	title = BAS.200.t
+	desc = BAS.200.desc
+	picture = GFX_report_event_ORS_looting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_completed_focus = BAS_soviet_supply_cache_search
+	}
+
+	option = { #Demand the execution of the thieves and their officers
+		name = BAS.200.a
+		custom_effect_tooltip = "BAS.200.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 10
+		}
+		add_political_power = 25
+		army_experience = -5
+	}
+	option = { #Have only the perpetrators punished
+		name = BAS.200.b
+		custom_effect_tooltip = "This will harm the NKVD's loyalty to Lysenko"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+	}
+	option = { #Let this slide, though ensure their silence
+		name = BAS.200.c
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -100
+			producer = BAS
+		}
+	}
+	option = { #Share the loot with all the NKVD, so they may all benefit
+		name = BAS.200.d
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -400
+			producer = BAS
+		}
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = -10
+		}
+		add_war_support = 0.02
+		custom_effect_tooltip = "BAS.200.d.tt"
+	}
+}
+
+country_event = {	#NKVD protest the forced use of mistmatching weapons
+	id = BAS.201
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.201"}
+	title = BAS.201.t
+	desc = BAS.201.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_completed_focus = BAS_force_weaponry_integration
+	}
+
+	option = { #Demote the officers, or have them flogged. Whichever is easiest.
+		name = BAS.201.a
+		custom_effect_tooltip = "BAS.201.a.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 10
+		}
+		add_to_variable = {
+			var = army_drill
+			value = -3
+		}
+
+	}
+	option = { #Reinforce our orders, then arrange some 'accidents'
+		name = BAS.201.b
+		custom_effect_tooltip = "BAS.201.b.tt"
+		add_to_variable = {
+			var = lysenko_nkvd_disloyalty
+			value = 5
+		}
+		add_political_power = -25
+	}
+	option = { #They have a point, make it seem like we wanted this
+		name = BAS.201.c
+		add_to_variable = {
+			var = army_drill
+			value = 2
+		}
+		add_to_variable = {
+			var = army_preperation
+			value = 2
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -100
+			producer = BAS
+		}
+	}
+}
+
+#Lysenko Victory Against Dirlewanger
+country_event = {
+	id = BAS.300
+	title = BAS.300.t
+	desc = BAS.300.desc
+	picture = GFX_report_event_german_pow_russia
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.300"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS.300.a
+		set_global_flag = BAS_ORS_capped
+	}
+}
+
+#Lysenko Victory Against The League
+country_event = {
+	id = BAS.301
+	title = BAS.301.t
+	desc = BAS.301.desc
+	picture = GFX_report_event_russian_military
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.301"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS.301.a
+		set_global_flag = BAS_URL_capped
+	}
+}
+
+#Lysenko Victory Against Orenburg
+country_event = {
+	id = BAS.302
+	title = BAS.302.t
+	desc = BAS.302.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.302"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS.302.a
+		set_global_flag = BAS_ORE_capped
+	}
+}
+
+#Gloves Come Off
+country_event = {
+	id = BAS.2500
+	title = BAS.2500.t
+	desc = BAS.2500.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS.2500"}
+
+	fire_only_once = yes
+	trigger = {
+		ORS = {
+			exists = no
+		}
+		NOT = {
+			owns_state = 846
+		}
+		tag = BAS
+	}
+
+	option = { #Send it
+		name = BAS.2500.a
+		add_timed_idea = {
+			idea = BAS_gloves_off
+			days = 180
+		}
+		582 = {
+			add_building_construction = {
+				type = bunker
+				level = 4
+				province = 7328
+				instant_build = yes
+			}
+		}
+		754 = {
+			add_building_construction = {
+				type = bunker
+				level = 4
+				province = 12584
+				instant_build = yes
+			}
+		}
+	}
+}
+
+#######################################
+#NKVD Government Events - LEGACY STUFF#
+#######################################
+
+
+add_namespace = BAS_NKVD
+
+country_event = {
+	id = BAS_NKVD.1000
+	title = BAS_NKVD.1000.t
+	desc = BAS_NKVD.1000.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1000"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1000.a
+		load_focus_tree = { tree = BAS_NKVD_coup_initial keep_completed = yes }
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1001
+	title = BAS_NKVD.1001.t
+	desc = BAS_NKVD.1001.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1001"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1000.a
+		load_focus_tree = { tree = BAS_NKVD_coup_pushback keep_completed = yes }
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1002
+	title = BAS_NKVD.1002.t
+	desc = BAS_NKVD.1002.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1002"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1002.a
+		load_focus_tree = { tree = BAS_NKVD_coup_good keep_completed = yes }
+		set_party_name = { 
+		ideology = communist
+		long_name = BAS_nkvd_coup_communist_long
+		name = BAS_nkvd_coup_communist
+		}
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1003
+	title = BAS_NKVD.1003.t
+	desc = BAS_NKVD.1003.desc
+	picture = GFX_report_event_russian_refugees
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1003"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1003.a
+		load_focus_tree = { tree = BAS_NKVD_coup_evil keep_completed = yes }
+	}
+}
+country_event = { #Civvies Demand Reparations
+	id = BAS_NKVD.1004
+	title = BAS_NKVD.1004.t
+	desc = BAS_NKVD.1004.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1004"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1004.a
+		add_stability = -0.05
+	}
+}
+country_event = { #Memories of Monsters
+	id = BAS_NKVD.1005
+	title = BAS_NKVD.1005.t
+	desc = BAS_NKVD.1005.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1005"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1005.a
+		add_political_power = -15
+	}
+}
+country_event = { #FOLLOW INSTRUCTIONS COMRADE
+	id = BAS_NKVD.1006
+	title = BAS_NKVD.1006.t
+	desc = BAS_NKVD.1006.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1006"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1006.a
+		add_manpower = -15
+	}
+}
+country_event = { #Dangerous Roads
+	id = BAS_NKVD.1007
+	title = BAS_NKVD.1007.t
+	desc = BAS_NKVD.1007.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1007"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1007.a
+		add_stability = -0.02
+	}
+}
+country_event = { #Sunset and Sunrise
+	id = BAS_NKVD.1008
+	title = BAS_NKVD.1008.t
+	desc = BAS_NKVD.1008.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1008"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1008.a
+	}
+}
+country_event = { #The Sleeping Mountain
+	id = BAS_NKVD.1009
+	title = BAS_NKVD.1009.t
+	desc = BAS_NKVD.1009.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1009"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1009.a
+		add_political_power = -15
+	}
+}
+country_event = { #Loose Ends
+	id = BAS_NKVD.1010
+	title = BAS_NKVD.1010.t
+	desc = BAS_NKVD.1010.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1010"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1010.a
+		add_stability = -0.02
+	}
+}
+country_event = { #Shade o' Black
+	id = BAS_NKVD.1011
+	title = BAS_NKVD.1011.t
+	desc = BAS_NKVD.1011.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1011"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1011.a
+		add_political_power = -15
+	}
+}
+country_event = { #Hearts and Minds
+	id = BAS_NKVD.1012
+	title = BAS_NKVD.1012.t
+	desc = BAS_NKVD.1012.desc
+	picture = GFX_report_event_revolt
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1012"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1012.a
+		add_manpower = -10
+	}
+}
+country_event = { #Pushback from locals
+	id = BAS_NKVD.1050
+	title = BAS_NKVD.1050.t
+	desc = BAS_NKVD.1050.desc
+	picture = GFX_report_event_revolt
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1050"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1050.a
+		add_political_power = -35
+		set_variable = {
+			var = global.NKVD_badboy
+			amount = 0
+		}
+	}
+}
+
+country_event = { #Punish them
+	id = BAS_NKVD.1051
+	title = BAS_NKVD.1051.t
+	desc = BAS_NKVD.1051.desc
+	picture = GFX_report_event_russia_burning_village
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1051"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1051.a
+		add_stability = 0.06
+		add_manpower = -500
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+}
+
+country_event = { #Placate them
+	id = BAS_NKVD.1055
+	title = BAS_NKVD.1055.t
+	desc = BAS_NKVD.1055.desc
+	picture = GFX_report_event_russia_novotroitsk
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1055"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1055.a
+
+	}
+}
+
+country_event = { #Lessons Learned (Punish)
+	id = BAS_NKVD.1056
+	title = BAS_NKVD.1056.t
+	desc = BAS_NKVD.1056.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1056"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1056.a
+
+	}
+}
+country_event = { #Lessons Learned (Placate)
+	id = BAS_NKVD.1057
+	title = BAS_NKVD.1057.t
+	desc = BAS_NKVD.1057.desc
+	picture = GFX_report_event_peasant_council
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1057"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1057.a
+
+	}
+}
+
+
+
+
+country_event = { #Bring Back the Lists
+	id = BAS_NKVD.1052
+	title = BAS_NKVD.1052.t
+	desc = BAS_NKVD.1052.desc
+	picture = GFX_report_event_russia_magnitogorsk
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1052"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = BAS_NKVD.1052.a
+		add_manpower = -250
+		add_stability = 0.05
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #no
+		name = BAS_NKVD.1052.b
+		add_stability = -0.05
+	}
+}
+
+country_event = { #Spies in the communities
+	id = BAS_NKVD.1053
+	title = BAS_NKVD.1053.t
+	desc = BAS_NKVD.1053.desc
+	picture = GFX_report_event_russia_magnitogorsk_2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1053"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = BAS_NKVD.1053.a
+		add_stability = 0.05
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #no
+		name = BAS_NKVD.1053.b
+		add_stability = -0.05
+	}
+}
+
+country_event = { #Villiage Commisars
+	id = BAS_NKVD.1054
+	title = BAS_NKVD.1054.t
+	desc = BAS_NKVD.1054.desc
+	picture = GFX_report_event_russia_red_army_march
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1054"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = BAS_NKVD.1054.a
+		add_war_support = 0.05
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #no
+		name = BAS_NKVD.1054.b
+		add_war_support = -0.05
+	}
+}
+
+country_event = { #Defend the Mountain
+	id = BAS_NKVD.1059
+	title = BAS_NKVD.1059.t
+	desc = BAS_NKVD.1059.desc
+	picture = GFX_report_event_german_bunker
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1059"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = BAS_NKVD.1059.a
+		add_war_support = 0.03
+	}
+}
+
+country_event = { #What to do with Orenburg
+	id = BAS_NKVD.1080
+	title = BAS_NKVD.1080.t
+	desc = BAS_NKVD.1080.desc
+	picture = GFX_report_event_russia_orenburg2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1080"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #annexation
+		name = BAS_NKVD.1080.a
+		ORE = {country_event = {id = ORE.1050
+			}
+		}
+	}
+	option = { #autonomy
+		name = BAS_NKVD.1080.b
+		ORE = {country_event = {id = ORE.1051
+			}
+		}
+		set_global_flag = NKVD_Oreburg_friend
+
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { country_exists = ORS }
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = BAS
+							original_tag = ORE
+							original_tag = URL
+							original_tag = ORS
+						}
+					}
+					country_event = { id = TNO_endscreen.100 days = 10 }
+				}
+			}
+		}
+	}
+	option = { #Friendship
+		name = BAS_NKVD.1080.c
+		ORE = {country_event = {id = ORE.1052}}
+		set_global_flag = NKVD_Oreburg_friend
+
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { country_exists = ORS }
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = BAS
+							original_tag = ORE
+							original_tag = URL
+							original_tag = ORS
+						}
+					}
+					country_event = { id = TNO_endscreen.100 days = 10 }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #They Deny
+	id = BAS_NKVD.1081
+	title = BAS_NKVD.1081.t
+	desc = BAS_NKVD.1081.desc
+	picture = GFX_report_event_russia_orenburg2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1081"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #war
+		name = BAS_NKVD.1081.a
+		declare_war_on = { type = annex_everything    target = ORE }
+		add_war_support = 0.05
+	}
+	option = { #no war
+		name = BAS_NKVD.1081.b
+		add_political_power = -50
+		add_stability = -0.05
+		add_war_support = -0.1
+	}
+}
+country_event = { #They Accept(autonomy)
+	id = BAS_NKVD.1082
+	title = BAS_NKVD.1082.t
+	desc = BAS_NKVD.1082.desc
+	picture = GFX_report_event_russia_orenburg2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1082"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #cooleo
+		name = BAS_NKVD.1082.a
+		add_political_power = 20
+		BAS = {puppet = ORE}
+
+	}
+}
+country_event = { #They Accept(Annexation)
+	id = BAS_NKVD.1083
+	title = BAS_NKVD.1083.t
+	desc = BAS_NKVD.1083.desc
+	picture = GFX_report_event_russia_orenburg2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1083"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #cooleo
+		name = BAS_NKVD.1083.a
+		annex_country = { target = ORE transfer_troops = yes }
+
+
+	}
+}
+
+country_event = { #They Accept(Friendship)
+	id = BAS_NKVD.1084
+	title = BAS_NKVD.1084.t
+	desc = BAS_NKVD.1084.desc
+	picture = GFX_report_event_russia_orenburg2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1084"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #cooleo
+		name = BAS_NKVD.1084.a
+		ORE = {give_guarantee = BAS}
+		BAS = {give_guarantee = ORE}
+
+	}
+}
+
+
+
+country_event = { #Remind them of their duty
+	id = BAS_NKVD.1060
+	title = BAS_NKVD.1060.t
+	desc = BAS_NKVD.1060.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1060"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #do it
+		name = BAS_NKVD.1060.a
+		add_stability = 0.02
+		add_war_support = 0.03
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #don't do it
+		name = BAS_NKVD.1060.b
+		add_stability = -0.02
+		add_political_power = -20
+	}
+}
+
+country_event = { #League connections
+	id = BAS_NKVD.1061
+	title = BAS_NKVD.1061.t
+	desc = BAS_NKVD.1061.desc
+	picture = GFX_report_event_ural_road
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1061"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #do it
+		name = BAS_NKVD.1061.a
+		add_stability = 0.08
+		add_political_power = 25
+		add_manpower = -1000
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #don't do it
+		name = BAS_NKVD.1061.b
+		add_stability = -0.02
+		add_political_power = -5
+	}
+}
+
+country_event = { #mass propaganda
+	id = BAS_NKVD.1062
+	title = BAS_NKVD.1062.t
+	desc = BAS_NKVD.1062.desc
+	picture = GFX_report_event_ural_road
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1062"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #do it
+		name = BAS_NKVD.1062.a
+		add_stability = 0.1
+		add_political_power = 25
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #don't do it
+		name = BAS_NKVD.1062.b
+		add_stability = -0.1
+		add_political_power = -25
+	}
+}
+
+country_event = { #and when you finally dissappear...
+	id = BAS_NKVD.1063
+	title = BAS_NKVD.1063.t
+	desc = BAS_NKVD.1063.desc
+	picture = GFX_report_generic_prisoners
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1063"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #murdered Orenburg
+		name = BAS_NKVD.1063.a
+		trigger = {
+			owns_state = 652
+		}
+		add_ideas = BAS_NKVD_camps_orenburg
+	}
+
+	option = { #didn't murder Orenburg
+		name = BAS_NKVD.1063.b
+		trigger = {
+			NOT = { owns_state = 652 }
+		}
+		add_ideas = BAS_NKVD_camps_no_orenburg
+	}
+}
+
+country_event = { #...we'll just say you were never here - nice?
+	id = BAS_NKVD.1064
+	title = BAS_NKVD.1064.t
+	desc = BAS_NKVD.1064.desc
+	picture = GFX_report_generic_prisoners
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1064"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #didn't murder Orenburg
+		name = BAS_NKVD.1064.a
+		swap_ideas = {
+			remove_idea = BAS_NKVD_camps_no_orenburg
+			add_idea = BAS_NKVD_camps_no_orenburg_2
+		}
+		hidden_effect = {
+			country_event = { id = TNO_endscreen.100 }
+		}
+	}
+}
+
+country_event = { #...we'll just say you were never here - not nice
+	id = BAS_NKVD.1065
+	title = BAS_NKVD.1065.t
+	desc = BAS_NKVD.1065.desc
+	picture = GFX_report_generic_prisoners
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1065"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #murdered Orenburg
+		name = BAS_NKVD.1065.a
+		swap_ideas = {
+			remove_idea = BAS_NKVD_camps_orenburg
+			add_idea = BAS_NKVD_camps_orenburg_2
+		}
+		hidden_effect = {
+			country_event = { id = TNO_endscreen.100 }
+		}
+	}
+}
+
+country_event = { #De-Lysenkoization
+	id = BAS_NKVD.1071
+	title = BAS_NKVD.1071.t
+	desc = BAS_NKVD.1071.desc
+	picture = GFX_report_event_russia_nkvd_officer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1071"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Purge all staff and relatives
+		name = BAS_NKVD.1071.a
+		add_stability = 0.05
+		add_political_power = 50
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+	option = { #leave some alive
+		name = BAS_NKVD.1071.b
+		add_stability = -0.1
+		add_war_support = -0.05
+		add_political_power = -25
+	}
+}
+
+country_event = { #Purge of Intelligentsias
+	id = BAS_NKVD.1072
+	title = BAS_NKVD.1072.t
+	desc = BAS_NKVD.1072.desc
+	picture = GFX_report_event_russia_bunker_command
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1072"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Bang bang, kill them all
+		name = BAS_NKVD.1072.a
+		add_stability = 0.1
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #spare them
+		name = BAS_NKVD.1072.b
+		add_political_power = -50
+	}
+}
+country_event = { #Bandit Connections
+	id = BAS_NKVD.1073
+	title = BAS_NKVD.1073.t
+	desc = BAS_NKVD.1073.desc
+	picture = GFX_report_event_dirlewanger
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1073"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Send in the Lists
+		name = BAS_NKVD.1073.a
+		add_political_power = 50
+		add_stability = 0.03
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #spare them
+		name = BAS_NKVD.1073.b
+		add_political_power = -50
+		add_stability = -0.05
+	}
+}
+country_event = { #Approved Texts
+	id = BAS_NKVD.1074
+	title = BAS_NKVD.1074.t
+	desc = BAS_NKVD.1074.desc
+	picture = GFX_report_event_novel
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1074"}
+
+
+
+
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = { #Ban ban ban
+		name = BAS_NKVD.1074.a
+
+		add_stability = 0.1
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = { #who reads anyways?
+		name = BAS_NKVD.1074.b
+		add_political_power = -25
+		add_stability = -0.1
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1075
+	title = BAS_NKVD.1075.t
+	desc = BAS_NKVD.1075.desc
+	picture = GFX_report_event_generic_mountain
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1075"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1075.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1076
+	title = BAS_NKVD.1076.t
+	desc = BAS_NKVD.1076.desc
+	picture = GFX_report_event_ORS_Lysenko
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1076"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1076.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1077
+	title = BAS_NKVD.1077.t
+	desc = BAS_NKVD.1077.desc
+	picture = GFX_report_event_ORS_camp
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1077"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1077.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1078
+	title = BAS_NKVD.1078.t
+	desc = BAS_NKVD.1078.desc
+	picture = GFX_report_event_MAN_truck
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1078"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1076.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1079
+	title = BAS_NKVD.1079.t
+	desc = BAS_NKVD.1079.desc
+	picture = GFX_report_event_ORE_malenkov1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1079"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1079.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1090
+	title = BAS_NKVD.1090.t
+	desc = BAS_NKVD.1090.desc
+	picture = GFX_report_event_russia_burba_angry
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1090"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1090.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1091
+	title = BAS_NKVD.1091.t
+	desc = BAS_NKVD.1091.desc
+	picture = GFX_report_event_ORS_forest_patrol
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1091"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1091.a
+	}
+}
+
+country_event = {
+	id = BAS_NKVD.1092 #NKVD science
+	title = BAS_NKVD.1092.t
+	desc = BAS_NKVD.1092.desc
+	picture = GFX_report_event_orenburg_school
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1092"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = BAS_NKVD.1092.a #burn all of lysenko's papers
+		hidden_effect = {
+			add_to_variable = {
+				var = global.NKVD_badboy
+				value = 1
+			}
+		}
+	}
+
+	option = {
+		name = BAS_NKVD.1092.b #keep them
+		add_tech_bonus = {
+			bonus = 0.05
+			uses = 1
+			category = electronics
+		}
+		add_political_power = -50
+	}
+}
+
+
+country_event = { # Justice for the Dead
+	id = BAS_NKVD.1200
+	title = BAS_NKVD.1200.t
+	desc = BAS_NKVD.1200.desc
+	picture = GFX_report_event_russia_devastated_village
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1200"}
+
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Peace: For Living and the Dead
+		name = BAS_NKVD.1200.a
+		add_timed_idea = {
+			idea = BAS_tallying_dead
+			days = 100
+		}
+	}
+}
+
+
+country_event = { # Peace and Order
+	id = BAS_NKVD.1201
+	title = BAS_NKVD.1201.t
+	desc = BAS_NKVD.1201.desc
+	picture = GFX_report_event_ORS_looting
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1201"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = BAS_NKVD.1201.a
+		add_war_support = 0.05
+		add_stability = -0.05
+	}
+	option = {
+		name = BAS_NKVD.1201.b
+		add_stability = 0.05
+		add_war_support = -0.05
+	}
+}
+
+country_event = { # We were misguided
+	id = BAS_NKVD.1202
+	title = BAS_NKVD.1202.t
+	desc = BAS_NKVD.1202.desc
+	picture = GFX_report_event_command_table
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1202"}
+	option = { # dont tell the truth
+		name = BAS_NKVD.1202.a
+		add_political_power = -35
+		add_stability = 0.05
+	}
+	option = { # tell the truth
+		name = BAS_NKVD.1202.b
+		add_political_power = -60
+		add_stability = 0.1
+	}
+}
+
+country_event = { # Blackmail the Former Experiments
+	id = BAS_NKVD.1203
+	title = BAS_NKVD.1203.t
+	desc = BAS_NKVD.1203.desc
+	picture = GFX_report_event_russia_hunters
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1200"}
+
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Every man must fight
+		name = BAS_NKVD.1203.a
+		ai_chance = { factor = 33 }
+		add_manpower = 1000
+	}
+	option = { # Every man must serve
+		name = BAS_NKVD.1203.b
+		ai_chance = { factor = 33 }
+		add_political_power = 150
+	}
+	option = { # Every man must believe
+		name = BAS_NKVD.1203.c
+		ai_chance = { factor = 34 }
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.1
+		}
+	}
+
+}
+country_event = { # Threaten Their Loved Ones
+	id = BAS_NKVD.1204
+	title = BAS_NKVD.1204.t
+	desc = BAS_NKVD.1204.desc
+	picture = GFX_report_event_russian_commissar
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1200"}
+
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Thank you for your cooperation.
+		name = BAS_NKVD.1204.a
+		add_political_power = 150
+	}
+}
+country_event = { # Conscription for the NKVD?
+	id = BAS_NKVD.1205
+	title = BAS_NKVD.1205.t
+	desc = BAS_NKVD.1205.desc
+	picture = GFX_report_event_russian_irregulars
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1200"}
+
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # They will fight!
+		name = BAS_NKVD.1205.a
+		if = {
+			limit = {
+				has_idea = tno_conscription_four_year_draft
+			}
+			swap_ideas = {
+				remove_idea = tno_conscription_four_year_draft
+				add_idea = tno_conscription_service_by_requirement
+			}
+		}
+		if = {
+			limit = {
+				has_idea = tno_conscription_two_year_draft
+			}
+			swap_ideas = {
+				remove_idea = tno_conscription_two_year_draft
+				add_idea = tno_conscription_four_year_draft
+			}
+		}
+	}
+
+	option = { # We must not be hasty
+		name = BAS_NKVD.1205.b
+		add_war_support = 0.15
+	}
+}
+country_event = { # Rogue State of the League
+	id = BAS_NKVD.1206
+	title = BAS_NKVD.1206.t
+	desc = BAS_NKVD.1206.desc
+	picture = GFX_report_event_ural_guard
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.1200"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Our path is clear.
+		name = BAS_NKVD.1206.a
+		add_war_support = 0.1
+	}
+}
+
+#NKVD Victory Against Dirlewanger
+country_event = {
+	id = BAS_NKVD.2000
+	title = BAS_NKVD.2000.t
+	desc = BAS_NKVD.2000.desc
+	picture = GFX_report_event_german_pow_russia
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.2000"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS_NKVD.2000.a
+	}
+}
+
+#NKVD Victory Against The League
+country_event = {
+	id = BAS_NKVD.2001
+	title = BAS_NKVD.2001.t
+	desc = BAS_NKVD.2001.desc
+	picture = GFX_report_event_russian_military
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.2001"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS_NKVD.2001.a
+		set_global_flag = BAS_NKVD_capped_URL
+	}
+}
+
+#NKVD Victory Against Orenburg
+country_event = {
+	id = BAS_NKVD.2002
+	title = BAS_NKVD.2002.t
+	desc = BAS_NKVD.2002.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.2002"}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Woooo
+		name = BAS_NKVD.2002.a
+		set_global_flag = BAS_NKVD_capped_ORE
+	}
+}
+
+#hidden event that removes lyneskos ideas
+country_event ={
+	id = BAS_NKVD.3000
+	title = BAS_NKVD.3000.t
+	desc = BAS_NKVD.3000.desc
+	picture = GFX_report_event_ORS_strike_orenburg
+
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BAS_NKVD.3000"}
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		#OR = {
+			#has_idea = BAS_Lysenko_Influence_Very_High
+			#has_idea = BAS_Lysenko_Influence_High
+			#has_idea = BAS_Lysenko_Influence_Medium
+			#has_idea = BAS_Lysenko_Influence_Low
+			#has_idea = BAS_Lysenko_Influence_Very_Low
+			#}
+		has_global_flag = BAS_NKVD_coup
+	}
+
+	#immediate = {
+		#remove_ideas = BAS_Lysenko_Influence_Very_High
+		#remove_ideas = BAS_Lysenko_Influence_High
+		#remove_ideas = BAS_Lysenko_Influence_Medium
+		#remove_ideas = BAS_Lysenko_Influence_Low
+		#remove_ideas = BAS_Lysenko_Influence_Very_Low
+		#}
+
+	option = {
+		name = BAS_NKVD.3000.a
+	}
+}

@@ -1,0 +1,460 @@
+WCH_initial_investments_category = {
+	WCH_civilian_initial_investments = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_military_investing
+			}
+		}
+
+		cost = 20
+
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = WCH_civilian_investing
+			WHC_tax_conflict_towards_civilians = yes
+			custom_effect_tooltip = WHC_Civil_favoured
+
+		}
+		remove_effect = {
+			clr_country_flag = WCH_civilian_investing
+		}
+	}
+
+	WCH_military_initial_investments = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_civilian_investing
+			}
+		}
+
+		cost = 20
+
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = WCH_military_investing
+			WHC_tax_conflict_towards_military = yes
+			custom_effect_tooltip = WHC_Army_favoured
+		}
+		remove_effect = {
+			clr_country_flag = WCH_military_investing
+		}
+	}
+}
+
+
+
+WCH_a_quiet_dinner_category = {
+	WCH_unlock_militarist_decisions = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_unlock_militarist_decisions"
+			set_country_flag = WCH_increase_militarist_influence
+		}
+	}
+	WCH_disable_militarist_decisions = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+
+		visible = {
+			has_country_flag = WCH_increase_militarist_influence
+		}
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_disable_militarist_decisions"
+			clr_country_flag = WCH_increase_militarist_influence
+		}
+	}
+	WCH_pro_military_decision_1 = { #Employ military for factory construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_industrial_complex_factor = 0.2
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_1"
+			WCH_military_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_military_decision_2 = { #Employ military for infrastructure construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_infrastructure_factor = 0.25
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_2"
+			WCH_military_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_military_decision_3 = { #Employ military for naval construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_dockyard_factor = 0.15
+			production_speed_naval_base_factor = 0.15
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_3"
+			WCH_military_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_military_decision_4 = { #Employ military for resource extraction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			local_resources_factor = 0.2
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_4"
+			WCH_military_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_military_decision_5 = { #Employ military for land clearing
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 60
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_5"
+			WCH_military_influence_increase_medium = yes
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	WCH_pro_military_decision_6 = { #Employ military for fortification construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_bunker_factor = 0.2
+			production_speed_coastal_bunker_factor = 0.2
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_military_decision_6"
+			WCH_military_influence_increase_medium = yes
+		}
+	}
+
+	WCH_unlock_loyalist_decisions = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_unlock_loyalist_decisions"
+			set_country_flag = WCH_increase_loyalist_influence
+		}
+	}
+	WCH_disable_loyalist_decisions = {
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		available = {
+			NOT = {
+				has_country_flag = WCH_increase_militarist_influence
+			}
+		}
+
+		visible = {
+			has_country_flag = WCH_increase_loyalist_influence
+		}
+
+		cost = 0
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_disable_loyalist_decisions"
+			clr_country_flag = WCH_increase_loyalist_influence
+		}
+	}
+	WCH_pro_civilian_decision_1 = { #Employ civilian for factory construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+
+		modifier = {
+			production_speed_industrial_complex_factor = 0.1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_1"
+			WCH_civilian_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_civilian_decision_2 = { #Employ civilian for infrastructure construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_infrastructure_factor = 0.2
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_2"
+			WCH_civilian_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_civilian_decision_3 = { #Employ civilian for naval construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_dockyard_factor = 0.1
+			production_speed_naval_base_factor = 0.1
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_3"
+			WCH_civilian_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_civilian_decision_4 = { #Employ civilian for resource extraction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			local_resources_factor = 0.15
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_4"
+			WCH_civilian_influence_increase_medium = yes
+		}
+	}
+	WCH_pro_civilian_decision_5 = { #Employ civilian for land clearing
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 60
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_5"
+			WCH_civilian_influence_increase_medium = yes
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	WCH_pro_civilian_decision_6 = { #Employ civilian for fortification construction
+		allowed = {
+			tag = WCH
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		visible = {
+			hidden_trigger = {
+				has_country_flag = WCH_increase_loyalist_influence
+			}
+		}
+		cost = 50
+		days_remove = 150
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_bunker_factor = 0.15
+			production_speed_coastal_bunker_factor = 0.15
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision WCH_pro_civilian_decision_6"
+			WCH_civilian_influence_increase_medium = yes
+		}
+	}
+}

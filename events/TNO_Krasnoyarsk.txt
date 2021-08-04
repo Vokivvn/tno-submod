@@ -1,0 +1,254 @@
+﻿add_namespace = SAH
+
+## Intro Event
+country_event = {
+	id = SAH.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.1"}
+	title = SAH.1.t
+	desc = SAH.1.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.1.a
+		ai_chance = { factor = 10 }
+	}
+}
+
+## The People's Apocalypse
+country_event = {
+	id = SAH.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.2"}
+	title = SAH.2.t
+	desc = SAH.2.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+
+	option = {
+		name = SAH.2.a
+		ai_chance = { factor = 10 }
+		add_political_power = -10
+	}
+}
+
+## Temp Organ Unification Event One
+country_event = {
+	id = SAH.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.3"}
+	title = SAH.3.t
+	desc = SAH.3.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Offer Unification
+		name = SAH.3.a
+		ai_chance = { factor = 10 }
+		SVO = {
+			country_event = {
+				id = SAH.4
+				days = 2
+			}
+		}
+	}
+}
+
+## Temp Organ Unification Event Two
+country_event = {
+	id = SAH.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.4"}
+	title = SAH.4.t
+	desc = SAH.4.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Say Yes
+		name = SAH.4.a
+		ai_chance = { factor = 10 }
+		SAH = {
+			country_event = {
+				id = SAH.5
+				days = 2
+			}
+			change_tag_from = SVO
+		}
+	}
+	option = { #Say No
+		name = SAH.4.a
+		ai_chance = { factor = 10 }
+		SAH = {
+			country_event = {
+				id = SAH.6
+				days = 2
+			}
+		}
+	}
+}
+
+## Temp Organ Unification Event Three
+country_event = {
+	id = SAH.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.5"}
+	title = SAH.5.t
+	desc = SAH.5.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.5.a
+		ai_chance = { factor = 10 }
+		annex_country = {
+			target = SVO
+			transfer_troops = yes
+		}
+		set_country_flag = SAH_unified_with_organ
+	}
+}
+
+## Temp Organ Unification Event Four
+country_event = {
+	id = SAH.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.6"}
+	title = SAH.6.t
+	desc = SAH.6.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.6.a
+		ai_chance = { factor = 10 }
+		create_wargoal = {
+			type = annex_everything
+			target = SVO
+		}
+		set_country_flag = SAH_organ_refused_to_unify
+	}
+}
+
+## Temp Oyrotia Unification Event One
+country_event = {
+	id = SAH.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.7"}
+	title = SAH.7.t
+	desc = SAH.7.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Offer Unification
+		name = SAH.7.a
+		ai_chance = { factor = 10 }
+		ALT = {
+			country_event = {
+				id = SAH.8
+				days = 2
+			}
+		}
+	}
+}
+
+## Temp Oyrotia Unification Event Two
+country_event = {
+	id = SAH.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.8"}
+	title = SAH.8.t
+	desc = SAH.8.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Say Yes
+		name = SAH.8.a
+		ai_chance = { factor = 10 }
+		SAH = {
+			country_event = {
+				id = SAH.9
+				days = 2
+			}
+			change_tag_from = ALT
+		}
+	}
+	option = { #Say No
+		name = SAH.8.a
+		ai_chance = { factor = 10 }
+		SAH = {
+			country_event = {
+				id = SAH.10
+				days = 2
+			}
+		}
+	}
+}
+
+## Temp Oyrotia Unification Event Three
+country_event = {
+	id = SAH.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.9"}
+	title = SAH.9.t
+	desc = SAH.9.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.9.a
+		ai_chance = { factor = 10 }
+		annex_country = {
+			target = ALT
+			transfer_troops = no
+		}
+		set_country_flag = SAH_unified_with_oyrotia
+	}
+}
+
+## Temp Oyrotia Unification Event Four
+country_event = {
+	id = SAH.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.10"}
+	title = SAH.10.t
+	desc = SAH.10.d
+	picture = GFX_report_generic_prisoners2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.10.a
+		ai_chance = { factor = 10 }
+		create_wargoal = {
+			type = annex_everything
+			target = ALT
+		}
+		set_country_flag = SAH_oyrotia_refused_to_unify
+	}
+}
+
+## Rurik Execution
+country_event = {
+	id = SAH.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SAH.11"}
+	title = SAH.11.t
+	desc = SAH.11.d
+	picture = GFX_report_event_firing_squad
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SAH.11.a
+		ai_chance = { factor = 10 }
+	}
+}

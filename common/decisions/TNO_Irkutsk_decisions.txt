@@ -1,0 +1,1065 @@
+IRK_reforms_category = {
+	IRK_appease_party_faction = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_appease_party_faction_tt
+				check_variable = { IRK_state_balance > 49.99 }
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			NOT = {
+				has_country_flag = IRK_party_influence_locked_in
+				has_country_flag = IRK_state_influence_locked_in
+			}
+		}
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_appease_party_faction"
+			IRK_increase_party_influence_low = yes
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 0
+			
+		}
+	}
+	IRK_appease_state_faction = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_appease_state_faction_tt
+				check_variable = { IRK_party_balance > 49.99 }
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			NOT = {
+				has_country_flag = IRK_party_influence_locked_in
+				has_country_flag = IRK_state_influence_locked_in
+			}
+		}
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_appease_state_faction"
+			IRK_increase_nkvd_influence_low = yes
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	IRK_persuade_party_faction = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_appease_party_faction_tt
+				check_variable = { IRK_state_balance > 49.99 }
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			NOT = {
+				has_country_flag = IRK_party_influence_locked_in
+				has_country_flag = IRK_state_influence_locked_in
+			}
+		}
+		cost = 30
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_persuade_party_faction"
+			IRK_increase_nkvd_influence_low = yes
+			add_stability = -0.02
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+	IRK_persuade_state_faction = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_appease_state_faction_tt
+				check_variable = { IRK_party_balance > 49.99 }
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			NOT = {
+				has_country_flag = IRK_party_influence_locked_in
+				has_country_flag = IRK_state_influence_locked_in
+			}
+		}
+		cost = 30
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_persuade_state_faction"
+			IRK_increase_party_influence_low = yes
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+	###PARTY REFORMS
+	IRK_elect_new_premier = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_elect_new_premier_tt
+				check_variable = { IRK_party_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+		}
+		cost = 75
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_elect_new_premier"
+			custom_effect_tooltip = IRK_elect_new_premier_effect_tt
+			IRK_increase_party_influence_high = yes
+			set_country_flag = IRK_party_influence_locked_in
+			country_event = {
+				id = IRK.24
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+	IRK_strengthen_the_red_army = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_strengthen_the_red_army_tt
+				check_variable = { IRK_party_balance > 54.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_strengthen_the_red_army"
+			custom_effect_tooltip = IRK_strengthen_the_red_army_effect_tt
+			hidden_effect = {
+				IRK_weaken_securocracy = yes
+			}
+			IRK_increase_party_influence_low = yes
+			if = {
+				limit = {
+					has_idea = IRK_additional_army_commissars
+				}
+				swap_ideas = {
+					remove_idea = IRK_additional_army_commissars
+					add_idea = IRK_empowered_red_army
+				}
+			}
+			else = {
+				add_ideas = IRK_empowered_red_army
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+	IRK_establish_the_kgb = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_establish_the_kgb_tt
+				check_variable = { IRK_party_balance > 59.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_establish_the_kgb"
+			custom_effect_tooltip = IRK_establish_the_kgb_effect_tt
+			hidden_effect = {
+				IRK_weaken_securocracy = yes
+			}
+			IRK_increase_party_influence_med = yes
+			add_ideas = IRK_the_kgb
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+	IRK_weaken_ministry_powers = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_weaken_ministry_powers_tt
+				check_variable = { IRK_party_balance > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_weaken_ministry_powers"
+			custom_effect_tooltip = IRK_weaken_ministry_powers_effect_tt
+			hidden_effect = {
+				tno_pollution_improve = yes
+				tno_safety_improve = yes
+			}
+			IRK_increase_party_influence_low = yes
+			if = {
+				limit = {
+					has_idea = IRK_strengthened_ministries
+				}
+				swap_ideas = {
+					remove_idea = IRK_strengthened_ministries
+					add_idea = IRK_ministry_reorganizations
+				}
+			}
+			else = {
+				add_ideas = IRK_ministry_reorganizations
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+	IRK_relax_media_censorship = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_relax_media_censorship_tt
+				check_variable = { IRK_party_balance > 54.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_relax_media_censorship"
+			custom_effect_tooltip = IRK_relax_media_censorship_effect_tt
+			swap_ideas = {
+				remove_idea = tno_press_rights_state_press_only
+				add_idea = tno_press_rights_censored_press
+			}
+			add_stability = 0.05
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	#TIER TWO REFORMS
+
+	IRK_party_reform_1 = { #Removing Yagoda from his position
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_party_reform_1_tt
+				check_variable = { IRK_party_balance > 89.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_party_reform_1"
+			custom_effect_tooltip = IRK_party_reform_1_effect_tt
+			country_event = {
+				id = IRK.62
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	IRK_party_reform_2 = { #Expand the Regional Councils
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_party_reform_2_tt
+				check_variable = { IRK_party_balance > 84.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_party_reform_2"
+			custom_effect_tooltip = IRK_party_reform_2_effect_tt
+			tno_safety_improve = yes
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			country_event = {
+				id = IRK.63
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	IRK_party_reform_3 = { #Promote the Young Bureaucrats
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_party_reform_3_tt
+				check_variable = { IRK_party_balance > 79.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_party_reform_3"
+			custom_effect_tooltip = IRK_party_reform_3_effect_tt
+			TNO_improve_academic_base_low = yes
+			TNO_improve_poverty_low = yes
+			add_political_power = 50
+			country_event = {
+				id = IRK.64
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	IRK_party_reform_4 = { #Instate Universal Identification
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_party_reform_4_tt
+				check_variable = { IRK_party_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_party_reform_4"
+			custom_effect_tooltip = IRK_party_reform_4_effect_tt
+			hidden_effect = {
+				every_state = {
+					limit = {
+						OR = {
+							has_state_category = large_city
+							has_state_category = metropolis
+						}
+					}
+					add_manpower = 60000
+					add_extra_state_shared_building_slots = 1
+				}
+				every_state = {
+					limit = {
+						OR = {
+							has_state_category = city
+						}
+					}
+					add_manpower = 95000
+					add_extra_state_shared_building_slots = 3
+				}
+				every_state = {
+					limit = {
+						OR = {
+							has_state_category = large_town
+						}
+					}
+					add_manpower = 75000
+					add_extra_state_shared_building_slots = 2
+				}
+				every_state = {
+					limit = {
+						NOT = {
+							has_state_category = city
+							has_state_category = large_city
+							has_state_category = large_town
+							has_state_category = metropolis
+						}
+					}
+					add_manpower = -45000
+				}
+			}
+			country_event = {
+				id = IRK.67
+				days = 1
+			}
+			add_to_variable = { national_debt = 120 }
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	IRK_party_reform_5 = { #Encourage Socialist Egalitarianism
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_party_reform_5_tt
+				check_variable = { IRK_party_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_party_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_party_reform_5"
+			custom_effect_tooltip = IRK_party_reform_5_effect_tt
+			tno_gender_rights_improve = yes
+			country_event = {
+				id = IRK.69
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_YAGODA
+				factor = 0
+			}
+		}
+	}
+
+	#STATE REFORMS
+	IRK_strengthen_general_secretary_powers = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_strengthen_general_secretary_powers_tt
+				check_variable = { IRK_state_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+		}
+		cost = 75
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_strengthen_general_secretary_powers"
+			custom_effect_tooltip = IRK_strengthen_general_secretary_powers_effect_tt
+			country_event = {
+				id = IRK.25
+				days = 1
+			}
+			set_country_flag = IRK_state_influence_locked_in
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+	IRK_expand_nkvd_jurisdiction = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_expand_nkvd_jurisdiction_tt
+				check_variable = { IRK_state_balance > 64.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_expand_nkvd_jurisdiction"
+			custom_effect_tooltip = IRK_expand_nkvd_jurisdiction_effect_tt
+			IRK_increase_nkvd_influence_low = yes
+			hidden_effect = {
+				IRK_strengthen_securocracy = yes
+				load_oob = IRK_NKVD_more
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+	IRK_strengthen_ministry_powers = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_strengthen_ministry_powers_tt
+				check_variable = { IRK_state_balance > 59.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_strengthen_ministry_powers"
+			custom_effect_tooltip = IRK_strengthen_ministry_powers_effect_tt
+			IRK_increase_nkvd_influence_low = yes
+			if = {
+				limit = {
+					has_idea = IRK_ministry_reorganizations
+				}
+				swap_ideas = {
+					remove_idea = IRK_ministry_reorganizations
+					add_idea = IRK_strengthened_ministries
+				}
+			}
+			else = {
+				add_ideas = IRK_strengthened_ministries
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+	IRK_appoint_army_commissars = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_appoint_army_commissars_tt
+				check_variable = { IRK_state_balance > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_appoint_army_commissars"
+			custom_effect_tooltip = IRK_appoint_army_commissars_effect_tt
+			IRK_increase_nkvd_influence_med = yes
+			hidden_effect = {
+				IRK_strengthen_securocracy = yes
+			}
+			if = {
+				limit = {
+					has_idea = IRK_empowered_red_army
+				}
+				swap_ideas = {
+					remove_idea = IRK_empowered_red_army
+					add_idea = IRK_additional_army_commissars
+				}
+			}
+			else = {
+				add_ideas = IRK_additional_army_commissars
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+	IRK_expand_rehabiliatory_labor_system = {
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_expand_rehabiliatory_labor_system_tt
+				check_variable = { IRK_state_balance > 54.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_expand_rehabiliatory_labor_system"
+			custom_effect_tooltip = IRK_expand_rehabiliatory_labor_system_effect_tt
+			add_ideas = IRK_expanded_the_gulag
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+	#TIER TWO REFORMS
+	IRK_state_reform_1 = { #Purge the Party Faction
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_state_reform_1_tt
+				check_variable = { IRK_state_balance > 89.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_state_reform_1"
+			custom_effect_tooltip = IRK_state_reform_1_effect_tt
+			country_event = {
+				id = IRK.55
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+	IRK_state_reform_2 = { #Escalate Anti-Corruption Campaigns
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_state_reform_2_tt
+				check_variable = { IRK_state_balance > 84.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_state_reform_2"
+			custom_effect_tooltip = IRK_state_reform_2_effect_tt
+			add_to_variable = { misc_costs = -250 }
+			add_political_power = 50
+			TNO_improve_poverty_low = yes
+			country_event = {
+				id = IRK.56
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+	IRK_state_reform_3 = { #Escalate Foreign Censorship
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_state_reform_3_tt
+				check_variable = { IRK_state_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_state_reform_3"
+			custom_effect_tooltip = IRK_state_reform_3_effect_tt
+			add_ideas = IRK_foreign_censorship_increased
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.1
+			}
+			country_event = {
+				id = IRK.59
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+	IRK_state_reform_4 = { #Professionalize the Judiciary
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_state_reform_4_tt
+				check_variable = { IRK_state_balance > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_state_reform_4"
+			custom_effect_tooltip = IRK_state_reform_4_effect_tt
+			TNO_improve_academic_base_med = yes
+			add_stability = 0.025
+			country_event = {
+				id = IRK.60
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+	IRK_state_reform_5 = { #Reform Industrial Efficiency
+		allowed = {
+			tag = IRK
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = IRK_state_reform_5_tt
+				check_variable = { IRK_state_balance > 69.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = IRK_reform_timer_tt
+				NOT = {
+					has_idea = IRK_reformed
+				}
+			}
+		}
+		visible = {
+			check_variable = { IRK_state_balance > 49.99 }
+			has_country_flag = UNLOCK_TIER_TWO_REFORM
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision IRK_state_reform_5"
+			custom_effect_tooltip = IRK_state_reform_5_effect_tt
+			add_to_variable = { GDP = 350 }
+			country_event = {
+				id = IRK.61
+				days = 1
+			}
+			hidden_effect = {
+				add_timed_idea = { idea = IRK_reformed days = 180 }
+			}
+		}
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				has_country_flag = IRK_AI_REFORM
+				factor = 0
+			}
+		}
+	}
+
+}

@@ -1,0 +1,354 @@
+
+shared_focus = {
+	id = cor_a_mercenary_republic
+	icon = GFX_COR_Mercenary_Republic
+	cost = 1.00
+	x = 6
+	y = 0
+	completion_reward = {
+		country_event = {
+			id = COR.1
+		}
+	}
+}
+
+shared_focus = {
+	id = cor_civilian_precautions
+	icon = GFX_generic_target_liberty
+	cost = 5.00
+	prerequisite = {
+		focus = cor_a_mercenary_republic
+	}
+	completion_reward = {
+		add_ideas = COR_civilian_precautions_1
+	}
+	x = 2
+	y = 1
+}
+
+shared_focus = {
+	id = cor_limit_public_meetings
+	icon = GFX_SLO_Limited_State_Newspaper
+	cost = 5.00
+	prerequisite = {
+		focus = cor_civilian_precautions
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = tno_public_meetings_regulated
+			add_idea = tno_public_meetings_outlawed
+		}
+	}
+	x = 2
+	y = 2
+}
+
+shared_focus = {
+	id = cor_only_one_opinion
+	icon = GFX_generic_propaganda
+	cost = 5.00
+	prerequisite = {
+		focus = cor_limit_public_meetings
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = COR_civilian_precautions_1
+			add_idea = COR_civilian_precautions_2
+		}
+	}
+	x = 2
+	y = 3
+}
+
+shared_focus = {
+	id = cor_repurpose_civilian_goods
+
+	cost = 5.00
+	prerequisite = {
+		focus = cor_a_mercenary_republic
+	}
+
+	completion_reward = {
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = arms_factory
+					size > 1
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	x = 4
+	y = 1
+}
+
+shared_focus = {
+	id = cor_arms_of_the_settlers
+	icon = GFX_RAJ_rifles_guns_cannons
+	cost = 5.00
+	prerequisite = {
+		focus = cor_repurpose_civilian_goods
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = COR
+		}
+	}
+	x = 4
+	y = 2
+}
+
+shared_focus = {
+	id = cor_fortify_local_cities
+	icon = GFX_COG_Fortify_The_Border
+	cost = 5.00
+	prerequisite = {
+		focus = cor_arms_of_the_settlers
+	}
+	x = 4
+	y = 3
+
+	completion_reward = {
+		1111 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = 10921
+			}
+		}
+	}
+
+}
+
+shared_focus = {
+	id = cor_building_a_bureaucracy
+	icon = GFX_JAP_Get_to_Work
+	cost = 5.00
+	prerequisite = {
+		focus = cor_fortify_local_cities
+	}
+	prerequisite = {
+		focus = cor_only_one_opinion
+	}
+	completion_reward = {
+		add_ideas = COR_building_a_bureaucracy }
+	x = 3
+	y = 4
+}
+
+shared_focus = {
+	id = cor_seize_what_can_be_found
+	icon = GFX_TNO_generic_gun_production
+	cost = 5.00
+	prerequisite = {
+		focus = cor_a_mercenary_republic
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = COR
+		}
+	}
+	x = 6
+	y = 1
+}
+
+shared_focus = {
+	id = cor_whats_yours_is_ours
+	icon = GFX_generic_machine_gun
+	cost = 5.00
+	prerequisite = {
+		focus = cor_seize_what_can_be_found
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = COR
+		}
+	}
+	x = 6
+	y = 2
+}
+
+shared_focus = {
+	id = cor_leopolds_guide_to_success
+	icon = GFX_IEA_Lessons_From_Leopold
+	cost = 5.00
+	prerequisite = {
+		focus = cor_whats_yours_is_ours
+	}
+	completion_reward = {
+		add_ideas = COR_leopolds_guide_to_success
+	}
+	x = 6
+	y = 3
+}
+
+shared_focus = {
+	id = cor_working_overtime
+	icon = GFX_GER_back_to_work
+	cost = 5.00
+	prerequisite = {
+		focus = cor_a_mercenary_republic
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = tno_max_workhours_12_hour_work_day
+			add_idea = tno_max_workhours_14_hour_work_day
+		}
+	}
+	x = 8
+	y = 1
+
+}
+
+shared_focus = {
+	id = cor_work_them_dry
+	icon = GFX_USA_workers_for_business
+	cost = 5.00
+	prerequisite = {
+		focus = cor_working_overtime
+	}
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = tno_max_workhours_14_hour_work_day
+			add_idea = tno_max_workhours_unlimited_work_day
+		}
+	}
+	x = 8
+	y = 2
+
+}
+
+shared_focus = {
+	id = cor_more_no_matter_the_cost
+
+	cost = 5.00
+	prerequisite = {
+		focus = cor_work_them_dry
+	}
+	completion_reward = {
+		add_ideas = COR_more_no_matter_the_cost
+	}
+
+	x = 8
+	y = 3
+}
+
+shared_focus = {
+	id = cor_for_our_greater_good
+	icon = GFX_generic_skull_rifles
+	cost = 5.00
+	prerequisite = {
+		focus = cor_fortify_local_cities
+	}
+	prerequisite = {
+		focus = cor_leopolds_guide_to_success
+	}
+	prerequisite = {
+		focus = cor_more_no_matter_the_cost
+	}
+	completion_reward = {
+		add_timed_idea = { idea = COR_for_our_greater_good days = 180 }
+	}
+
+	x = 6
+	y = 4
+}
+
+shared_focus = {
+	id = cor_utilize_the_black_market
+	icon = GFX_COR_Utilize_The_Black_Market
+	cost = 5.00
+	prerequisite = {
+		focus = cor_a_mercenary_republic
+	}
+	completion_reward = {
+		add_political_power = -100
+		add_timed_idea = { idea = COR_utilize_the_black_market_1 days = 180 }
+	}
+	x = 10
+	y = 1
+}
+
+shared_focus = {
+	id = cor_underground_support
+
+	cost = 5.00
+	prerequisite = {
+		focus = cor_utilize_the_black_market
+	}
+	completion_reward = {
+		add_political_power = -100
+		add_timed_idea = { idea = COR_utilize_the_black_market_2 days = 180 }
+	}
+
+	x = 10
+	y = 2
+}
+
+shared_focus = {
+	id = cor_maybe_a_little_illegal
+
+	cost = 5.00
+	prerequisite = {
+		focus = cor_underground_support
+	}
+	completion_reward = {
+		add_political_power = -50
+		add_timed_idea = { idea = COR_utilize_the_black_market_3 days = 180 }
+	}
+	x = 10
+	y = 3
+}
+
+shared_focus = {
+	id = cor_a_penny_pinching_nation
+	icon = GFX_USA_money_wall
+	cost = 5.00
+	prerequisite = {
+		focus = cor_more_no_matter_the_cost
+	}
+	prerequisite = {
+		focus = cor_maybe_a_little_illegal
+	}
+	completion_reward = {
+		add_ideas = COR_a_penny_pinching_nation
+	}
+	x = 9
+	y = 4
+}
+
+shared_focus = {
+	id = cor_victory_is_approaching
+	icon = GFX_generic_strike
+	cost = 5.00
+	prerequisite = {
+		focus = cor_building_a_bureaucracy
+	}
+	prerequisite = {
+		focus = cor_a_penny_pinching_nation
+	}
+	prerequisite = {
+		focus = cor_for_our_greater_good
+	}
+	completion_reward = {
+		add_timed_idea = { idea = COR_victory_is_approaching days = 180 }
+	}
+
+
+	x = 6
+	y = 5
+}

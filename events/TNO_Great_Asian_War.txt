@@ -1,0 +1,1694 @@
+﻿##################################
+###   Great Asian War Events   ###
+##################################
+
+add_namespace = gaw
+add_namespace = gawnews
+
+#ids: 
+#1-99 - General Events
+#100-199 - Japanese GAW events
+#200-299 - Chinese GAW events
+#300-499 - General GAW events
+#500-599 - Peace and Post-GAW
+
+#Events related to the Great Asian War, aka that one time Asia caught fire again
+
+country_event = {#GAW starts
+	id = gaw.1
+	title = gaw.1.t
+	desc = gaw.1.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.1"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gaw.1.a
+	}
+}
+
+country_event = {#Warlords join the fray
+	id = gaw.2
+	title = gaw.2.t
+	desc = gaw.2.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.2"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {
+		name = gaw.2.a
+	}
+}
+
+country_event = {#Hidden Cta Preventer Remover
+	id = gaw.3
+	title = gaw.3.t
+	desc = gaw.3.d
+	picture = GFX_report_event_CHI_nanjing_summit_start 
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.3"
+		if = {
+			limit = {
+				ROOT = {
+					is_puppet_of = JAP
+				}
+			}
+			set_rule = {can_decline_call_to_war = no}
+		}
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	hidden = yes
+
+	option = {
+		name = gaw.3
+	}
+}
+
+country_event = {#China falls, warlords still remain
+	id = gaw.100
+	title = gaw.100.t
+	desc = gaw.100.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.100"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = {
+		name = gaw.100.a
+		hidden_effect = {
+			GAW_JAP_send_warlord_ultimatum = yes #Warlord ultimatum
+		}
+		custom_effect_tooltip = gaw.100.a.tt
+	}
+}
+
+country_event = {#China falls, warlords were all defeated before
+	id = gaw.101
+	title = gaw.101.t
+	desc = gaw.101.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.101"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gaw.101.a
+		hidden_effect = {
+			if = {
+				limit = {
+					any_of_scopes = {
+						array = global.chinese_warlords
+						NOT = {
+							OR = {
+								original_tag = TIB
+								original_tag = ETR
+								original_tag = YAA
+								original_tag = XSM
+								original_tag = SIK
+							}
+						}
+						has_country_flag = GAW_neutral
+					}
+				}
+				GAW_JAP_send_warlord_ultimatum = yes
+			}
+		}
+	}
+}
+
+country_event = {#Warlord Ultimatum Response
+	id = gaw.102
+	title = gaw.102.t
+	desc = {
+		text = gaw.102.d_warlord_submit
+		trigger = {
+			all_of_scopes = {
+				array = global.chinese_warlords
+				NOT = {has_war_with = JAP} 
+			}
+		}
+	}
+	desc = {
+		text = gaw.102.d_warlord_resist
+		trigger = {
+			any_of_scopes = {
+				array = global.chinese_warlords 
+				has_war_with = JAP
+			}
+		}
+	}
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.102"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = {#All warlords have submitted
+		trigger = {
+			all_of_scopes = {
+				array = global.chinese_warlords
+				NOT = {has_war_with = JAP} 
+			}
+		}
+		name = gaw.102.a
+		hidden_effect = {country_event = {id = gaw.103 hours = 3}}
+	}
+	option = {#warlords remain
+		trigger = {
+			any_of_scopes = {
+				array = global.chinese_warlords 
+				has_war_with = JAP
+			}
+		}
+		name = gaw.102.b
+	}
+}
+
+country_event = {#End of the Great Asian War - Japan victorious
+	id = gaw.103
+	title = gaw.103.t
+	desc = gaw.103.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.103"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gaw.103.a
+		hidden_effect = {country_event = {id = gaw.104 hours = 3}}
+		set_global_flag = GAW_JAP_victory
+		clr_global_flag = GAW_in_progress
+	}
+}
+
+country_event = {# What shall Japan do with China?
+	id = gaw.104
+	title = gaw.104.t
+	desc = gaw.104.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.104"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {#boring ol sphere china
+		name = gaw.104.a
+		#hidden_effect = {
+		#	JAP = {
+		#		transfer_state = 1021
+		#		transfer_state = 613
+		#		transfer_state = 591
+		#		transfer_state = 810
+		#		transfer_state = 811
+		#		transfer_state = 812
+		#		transfer_state = 813
+		#		transfer_state = 1022
+		#	}
+		#	CHI = {
+		#		transfer_state = 595
+		#		transfer_state = 596
+		#		transfer_state = 597
+		#		transfer_state = 598
+		#		transfer_state = 600
+		#		transfer_state = 602
+		#		transfer_state = 606
+		#		transfer_state = 607
+    	#		transfer_state = 608
+    	#		transfer_state = 614
+    	#		transfer_state = 615
+    	#		transfer_state = 620
+    	#		transfer_state = 959
+    	#		transfer_state = 961
+    	#		transfer_state = 1014
+    	#		transfer_state = 1015
+    	#		transfer_state = 1016
+    	#		transfer_state = 1019
+    	#		transfer_state = 1020
+    	#		transfer_state = 1023
+    	#	}
+    	#	puppet = CHI
+    	#	CHI = {
+		#		set_cosmetic_tag = CHI_JAP
+		#		kill_country_leader = yes
+		#		set_politics = {
+		#			ruling_party = fascism
+		#			last_election = "1960.11.11"
+		#			election_frequency = 36
+		#			elections_allowed = no
+        #    }
+#
+        #        set_popularities = {
+        #            communist = 7
+        #            ultranational_socialism = 0
+        #            socialist = 5
+        #            social_democrat = 7
+        #            social_liberal = 5
+        #            social_conservative = 3
+        #            authoritarian_democrat = 13
+        #            despotism = 11
+        #            fascism = 49
+        #            national_socialism = 0
+        #            burgundian_system = 0
+        #        }
+		#		create_country_leader = {
+		#			name = "Chen Gongbo"
+		#			picture = "Portrait_China_Chen_Gongbo.tga"
+		#			desc = "POLITICS_CHEN_GONGBO_DESC"
+		#			expire = "2000.1.1"
+		#			ideology = fascism_subtype
+		#			traits = {
+		#					#
+		#			}
+		#		}
+		#		set_capital = 608
+		#	}
+		#	GXC = {
+		#		transfer_state = 599
+		#		transfer_state = 594
+		#	}
+		#	puppet = GXC
+		#	GUZ = {
+		#		transfer_state = 603
+		#	}
+		#	puppet = GUZ
+		#	YUN = {
+		#		transfer_state = 325
+		#		transfer_state = 960
+		#	}
+		#	puppet = YUN
+		#	if = {
+		#		limit = {
+		#			YAA = {NOT = {has_country_flag = GAW_neutral}}
+		#		}
+		#		YAA = {
+		#			transfer_state = 964
+		#			transfer_state = 905
+		#		}
+		#		puppet = YAA
+		#	}
+		#	SIC = {
+		#		transfer_state = 605
+		#	}
+		#	puppet = SIC
+		#	SHX = {
+		#		transfer_state = 622
+		#		transfer_state = 956
+		#	}
+		#	puppet = SHX
+		#	MEN = {
+		#		transfer_state = 955
+		#		transfer_state = 621
+		#		
+		#		transfer_state = 612
+		#		transfer_state = 815
+		#		transfer_state = 330
+		#	}
+		#	if = {
+		#		limit = {
+		#			JAP = {
+		#				has_full_control_of_state = 814
+		#				has_full_control_of_state = 329
+		#			}
+		#		}
+		#		MEN = {
+		#			transfer_state = 814
+		#			transfer_state = 329
+		#		}
+		#	}
+		#	puppet = MEN
+		#	if = {
+		#		limit = {
+		#			TIB = {
+		#				NOT = {has_country_flag = GAW_neutral}
+		#			}
+		#		}
+		#		TIB = {
+		#			transfer_state = 765
+		#			transfer_state = 322
+		#			transfer_state = 601
+		#		}
+		#		puppet = TIB
+		#	}
+		#	if = {
+		#		limit = {NOT = {country_exists = MAN}}
+		#		MAN = {
+		#			transfer_state = 707
+		#			transfer_state = 714
+		#			transfer_state = 328
+		#			transfer_state = 801
+		#			transfer_state = 715
+		#			transfer_state = 716
+		#			transfer_state = 610
+		#			transfer_state = 609
+		#		}
+		#		if = {
+		#			limit = {
+		#				JAP = {
+		#					has_full_control_of_state = 408
+		#					has_full_control_of_state = 409
+		#					has_full_control_of_state = 657
+		#				}
+		#			}
+		#			MAN = {
+		#				transfer_state = 408
+		#				transfer_state = 409
+		#				transfer_state = 657
+		#			}
+		#		}
+		#		puppet = MAN
+		#	}
+		#	if = {
+		#		limit = {
+		#			XSM = {
+		#				OR = {
+		#					has_country_flag = GAW_jap_ally
+		#				}
+		#			}
+		#		}
+		#		HUI = {
+		#			transfer_state = 283
+		#			transfer_state = 616
+		#			transfer_state = 764
+		#		}
+		#		XSM = {
+		#			transfer_state = 906
+		#			transfer_state = 604
+		#		}
+		#		if = {
+		#			limit = {
+		#				TIB = {
+		#					has_country_flag = GAW_chi_ally
+		#				}
+		#				XSM = {
+		#					has_country_flag = GAW_jap_ally
+		#				}
+		#			}
+		#			XSM = {
+		#				transfer_state = 601
+		#				add_state_core = 601
+		#			}
+		#			TIB = {
+		#				remove_state_core = 601
+		#			}
+		#		}
+		#		puppet = HUI
+		#		puppet = XSM
+		#	}
+		#	else_if = {
+		#		limit = {
+		#			XSM = {has_country_flag = GAW_neutral}
+		#		}
+		#		HUI = {
+		#			transfer_state = 283
+		#			transfer_state = 616
+		#			transfer_state = 764
+		#			set_cosmetic_tag = HUI_northwest	
+		#		}
+		#		puppet = HUI
+		#	}
+		#	else = {
+		#		HUI = {
+		#			transfer_state = 283
+		#			transfer_state = 616
+		#			transfer_state = 764
+		#			transfer_state = 906
+		#			add_state_core = 906
+		#			transfer_state = 604
+		#			add_state_core = 604
+		#			set_cosmetic_tag = HUI_northwest
+		#		}
+		#		XSM = {
+		#			remove_state_core = 906
+		#			remove_state_core = 604
+		#		}
+		#		if = {
+		#			limit = {
+		#				TIB = {
+		#					has_country_flag = GAW_chi_ally
+		#				}
+		#			}
+		#			HUI = {
+		#				transfer_state = 601
+		#				add_state_core = 601 
+		#			}
+		#			TIB = {
+		#				remove_state_core = 601
+		#			}
+		#		}
+		#		puppet = HUI
+		#	}
+		#	if = {
+		#		limit = {
+		#			SIK = {
+		#				OR = {
+		#					has_country_flag = GAW_chi_ally
+		#					has_country_flag = GAW_jap_ally
+		#				}
+		#			}
+		#		}
+		#		SIK = {
+		#			transfer_state = 618
+		#			transfer_state = 617
+		#			transfer_state = 957
+		#			transfer_state = 958
+		#		}
+		#		if = {
+		#			limit = {
+		#				ETR = {
+		#					OR = {
+		#						NOT = {has_country_flag = GAW_neutral}
+		#						exists = no
+		#					}
+		#				}
+		#			}
+		#			SIK = {
+		#				transfer_state = 619
+		#			}
+		#			ETR = {
+		#				remove_state_core = 619
+		#				remove_state_claim = 618
+		#				remove_state_claim = 617
+		#				remove_state_claim = 957
+		#				remove_state_core = 958
+		#			}
+		#		}
+		#		puppet = SIK
+		#	}
+		#	else_if = {
+		#		limit = {
+		#			ETR = {
+		#				OR = {
+		#					has_country_flag = GAW_chi_ally
+		#					has_country_flag = GAW_jap_ally
+		#				}
+		#			}
+		#		}
+		#		ETR = {
+		#			transfer_state = 619
+		#		}
+		#		if = {
+		#			limit = {
+		#				SIK = {
+		#					OR = {
+		#						NOT = {has_country_flag = GAW_neutral}
+		#						exists = no
+		#					}
+		#				}
+		#			}
+		#			ETR = {
+		#				transfer_state = 618
+		#				transfer_state = 617
+		#				transfer_state = 957
+		#				transfer_state = 958
+		#			}
+		#			SIK = {
+		#				remove_state_core = 619
+		#				remove_state_core = 618
+		#				remove_state_core = 617
+		#				remove_state_core = 957
+		#				remove_state_core = 958
+		#			}
+		#		}
+		#		puppet = ETR
+		#	}
+		#	GAW_clear_warlord_flags = yes
+		#	GAW_remove_Chinese_claims = yes
+		#}
+    }
+
+	option = {#fucked up shina
+		name = gaw.104.b
+		#hidden_effect = {
+		#	JAP = {
+		#		transfer_state = 1021
+		#		transfer_state = 613
+		#		transfer_state = 591
+		#		transfer_state = 810
+		#		transfer_state = 811
+		#		transfer_state = 812
+		#		transfer_state = 813
+		#		transfer_state = 1022
+		#	}
+    	#	CHI = {
+		#		transfer_state = 597
+		#		transfer_state = 598
+		#		transfer_state = 606
+		#		transfer_state = 607
+    	#		transfer_state = 608
+    	#		transfer_state = 614
+    	#		transfer_state = 615
+    	#		transfer_state = 1014
+    	#		transfer_state = 1015
+    	#		transfer_state = 1020
+    	#		transfer_state = 1023
+    	#	}
+    	#	HUU = {
+		#		transfer_state = 602
+		#		add_state_core = 602
+		#		transfer_state = 961
+		#		add_state_core = 961
+		#		transfer_state = 620
+		#		add_state_core = 620
+		#		transfer_state = 1016
+		#		add_state_core = 1016
+		#		transfer_state = 600
+		#		add_state_core = 600
+		#	}
+		#	HJN = {
+		#		transfer_state = 595
+		#		add_state_core = 595
+		#		transfer_state = 596
+		#		add_state_core = 596
+		#		transfer_state = 959
+		#		add_state_core = 959
+    	#		transfer_state = 1019
+    	#		add_state_core = 1019
+		#	}
+    	#	JAP = {
+		#		puppet = CHI
+		#		puppet = HUU
+		#		puppet = HJN
+		#	}
+		#	CHI = {
+		#		set_cosmetic_tag = CHI_JAP_PUP
+		#		kill_country_leader = yes
+		#		set_politics = {
+		#			ruling_party = fascism
+		#			last_election = "1960.11.11"
+		#			election_frequency = 36
+		#			elections_allowed = no
+       #     }
+#
+       #         set_popularities = {
+       #             communist = 7
+       #             ultranational_socialism = 0
+       #             socialist = 5
+       #             social_democrat = 7
+       #             social_liberal = 5
+       #             social_conservative = 3
+       #             authoritarian_democrat = 13
+       #             despotism = 11
+       #             fascism = 49
+       #             national_socialism = 0
+       #             burgundian_system = 0
+       #         }
+		#		create_country_leader = {
+		#			name = "Chen Gongbo"
+		#			picture = "Portrait_China_Chen_Gongbo.tga"
+		#			desc = "POLITICS_CHEN_GONGBO_DESC"
+		#			expire = "2000.1.1"
+		#			ideology = fascism_subtype
+		#			traits = {
+		#					#
+		#			}
+		#		}
+		#		set_capital = 608
+		#	}
+		#	if = {
+		#		limit = {country_exists = SHX}
+		#		SHX = {
+		#			transfer_state = 615
+		#			add_state_core = 615
+		#		}
+		#		if = {
+		#			limit = {
+		#				NOT = {SHX = {is_puppet_of = JAP}}
+		#			}
+		#			puppet = SHX
+		#		}
+		#	}
+		#	else = {
+		#		SHX = {
+		#			transfer_state = 615
+		#			add_state_core = 615
+		#			transfer_state = 622
+		#			transfer_state = 956
+		#		}
+		#		puppet = SHX
+		#	}
+		#	if = {
+		#		limit = {
+		#			GXC = {
+		#				is_ai = no
+		#				exists = yes
+		#			}
+		#		}
+		#		GXC = {
+		#			transfer_state = 594
+		#			add_state_core = 594
+		#			transfer_state = 599
+		#			add_state_core = 599
+		#			transfer_state = 592
+		#			add_state_core = 592
+		#			transfer_state = 593
+		#			add_state_core = 593
+		#			transfer_state = 1017
+		#			add_state_core = 1017
+		#			set_cosmetic_tag = GNG_liangguang
+		#		}
+		#		puppet = GXC
+		#	}
+		#	else = {
+		#		GNG = {
+		#			transfer_state = 594
+		#			add_state_core = 594
+		#			transfer_state = 599
+		#			add_state_core = 599
+		#			transfer_state = 592
+		#			transfer_state = 593
+		#			transfer_state = 1017
+		#			transfer_state = 729
+		#			transfer_state = 326
+		#			set_cosmetic_tag = GNG_liangguang
+		#		}
+		#		puppet = GNG
+		#	}
+		#	MEN = {
+		#		transfer_state = 955
+		#		transfer_state = 621
+		#		transfer_state = 612
+		#		transfer_state = 815
+		#		transfer_state = 330
+		#		transfer_state = 616
+		#		add_state_core = 616
+		#	}
+		#	HUI = {
+		#		remove_state_core = 616
+		#	}
+		#	XSM = {
+		#		remove_state_core = 616
+		#	}
+		#	if = {
+		#		limit = {
+		#			JAP = {
+		#				has_full_control_of_state = 814
+		#				has_full_control_of_state = 329
+		#			}
+		#		}
+		#		MEN = {
+		#			transfer_state = 814
+		#			transfer_state = 329
+		#		}
+		#	}
+		#	puppet = MEN
+		#	if = {
+		#		limit = {
+		#			TIB = {NOT = {has_country_flag = GAW_neutral}}
+		#		}
+		#		TIB = {
+		#			transfer_state = 765
+		#			transfer_state = 322
+		#			transfer_state = 601
+		#		}
+		#		puppet = TIB
+		#	}
+		#	if = {
+		#		limit =  {
+		#			XSM = {
+		#				is_ai = no
+		#				has_country_flag = GAW_jap_ally
+		#			}
+		#		}
+		#		XSM = {
+		#			transfer_state = 906
+		#			transfer_state = 604
+		#			transfer_state = 283
+		#			add_state_core = 283
+		#			transfer_state = 764
+		#			add_state_core = 764
+		#			set_cosmetic_tag = HUI_northwest
+		#		}
+		#		HUI = {
+		#			remove_state_core = 283
+		#			remove_state_core = 764
+		#		}
+		#		if = {
+		#			limit = {
+		#				TIB = {has_country_flag = GAW_chi_ally}
+		#			}
+		#			XSM = {
+		#				transfer_state = 601
+		#				add_state_core = 601
+		#			}
+		#			TIB = {
+		#				remove_state_core = 601
+		#			}
+		#		}
+		#		puppet = XSM
+		#	}
+		#	else = {
+		#		HUI = {
+		#			transfer_state = 283
+		#			transfer_state = 764
+		#			set_cosmetic_tag = HUI_northwest
+		#		}
+		#		if = {
+		#			limit = {
+		#				XSM = {
+		#					NOT = {has_country_flag = GAW_neutral}
+		#				}
+		#			}
+		#			HUI = {
+		#				transfer_state = 906
+		#				add_state_core = 906
+		#				transfer_state = 604
+		#				add_state_core = 604
+		#			}
+		#			XSM = {
+		#				remove_state_core = 906
+		#				remove_state_core = 604
+		#			}
+		#			if = {
+		#				limit = {
+		#					TIB = {has_country_flag = GAW_chi_ally}
+		#				}
+		#				HUI = {
+		#					transfer_state = 601
+		#					add_state_core = 601
+		#				}
+		#				TIB = {
+		#					remove_state_core = 601
+		#				}
+		#			}
+		#		}
+		#		puppet = HUI
+		#	}
+		#	if = {
+		#		limit = {
+		#			SIK = {NOT = {has_country_flag = gaw_neutral}}
+		#		}
+		#		SIK = {
+		#			transfer_state = 958
+		#			transfer_state = 617
+		#			transfer_state = 957
+		#			transfer_state = 618
+		#		}
+		#		if = {
+		#			limit = {
+		#				ETR = {
+		#					OR = {
+		#						NOT = {has_country_flag = gaw_neutral}
+		#						exists = no
+		#					}
+		#				}
+		#			}
+		#			SIK = {
+		#				transfer_state = 619
+		#			}
+		#			ETR = {
+		#				remove_state_core = 958
+		#				remove_state_claim = 617
+		#				remove_state_claim = 957
+		#				remove_state_claim = 618
+		#				remove_state_core = 619
+		#			}
+		#		}
+		#		puppet = SIK
+		#	}
+		#	if = {
+		#		limit = {
+		#			GUZ = {
+		#				has_country_flag = GAW_jap_ally
+		#			}
+		#		}
+		#		GUZ = {
+		#			transfer_state = 603
+		#			transfer_state = 325
+		#			add_state_core = 325
+		#			transfer_state = 960
+		#			add_state_core = 960
+		#			set_cosmetic_tag = YUN_xinan
+		#			set_capital = 325
+		#		}
+		#		YUN = {
+		#			remove_state_core = 325
+		#			remove_state_core = 960
+		#		}
+		#		puppet = GUZ
+		#	}
+		#	else = {
+		#		YUN = {
+		#			transfer_state = 603
+		#			add_state_core = 603
+		#			transfer_state = 325
+		#			transfer_state = 960
+		#			set_cosmetic_tag = YUN_xinan
+		#		}
+		#		GUZ = {
+		#			remove_state_core = 603
+		#		}
+		#		puppet = YUN
+		#	}
+		#	if = {
+		#		limit = {
+		#			YAA = {has_country_flag = GAW_neutral}
+		#		}
+		#		SIC = {
+		#			transfer_state = 605
+		#			set_cosmetic_tag = SIC_large
+		#		}
+		#		puppet = SIC
+		#	}
+		#	else_if = {
+		#		limit = {
+		#			YAA = {has_country_flag = GAW_jap_ally}
+		#		}
+		#		YAA = {
+		#			transfer_state = 605
+		#			add_state_core = 605
+		#			transfer_state = 905
+		#			transfer_state = 964
+		#			set_cosmetic_tag = SIC_large
+		#			set_capital = 605
+		#		}
+		#		SIC = {
+		#			remove_state_core = 605
+		#		}
+		#		puppet = YAA
+		#	}
+		#	else = {
+		#		SIC = {
+		#			transfer_state = 605
+		#			transfer_state = 905
+		#			add_state_core = 905
+		#			transfer_state = 964
+		#			add_state_core = 964
+		#			set_cosmetic_tag = SIC_large
+		#		}
+		#		YAA = {
+		#			remove_state_core = 905
+		#			remove_state_core = 964
+		#		}
+		#		puppet = SIC
+		#	}
+		#	MAN = {
+		#		transfer_state = 609
+		#		transfer_state = 610
+		#		transfer_state = 716
+		#		transfer_state = 715
+		#		transfer_state = 328
+		#		transfer_state = 801
+		#		transfer_state = 714
+		#		transfer_state = 717
+		#		if = {
+		#			limit = {
+		#				JAP = {
+		#					has_full_control_of_state = 657
+		#					has_full_control_of_state = 409
+		#					has_full_control_of_state = 408
+		#				}
+		#			}
+		#			transfer_state = 657
+		#			transfer_state = 409
+		#			transfer_state = 408
+		#		}
+		#	}
+		#	puppet = MAN
+		#	GAW_clear_warlord_flags = yes
+		#	GAW_remove_Chinese_claims = yes
+		#}
+	}
+
+	option = {#REALLY GOOD IDEA
+		name = gaw.104.c
+		#hidden_effect = {
+		#	JAP = {
+		#		transfer_state = 1021
+		#		transfer_state = 613
+		#		transfer_state = 813
+		#		transfer_state = 812
+		#		transfer_state = 811
+		#		transfer_state = 810
+		#		transfer_state = 591
+		#	}
+		#	CHI = {
+    	#		transfer_state = 595
+		#		transfer_state = 596
+		#		transfer_state = 597
+		#		transfer_state = 598
+		#		transfer_state = 600
+		#		transfer_state = 602
+		#		transfer_state = 606
+		#		transfer_state = 607
+    	#		transfer_state = 608
+    	#		transfer_state = 614
+    	#		transfer_state = 615
+    	#		transfer_state = 620
+    	#		transfer_state = 959
+    	#		transfer_state = 961
+    	#		transfer_state = 1014
+    	#		transfer_state = 1015
+    	#		transfer_state = 1016
+    	#		transfer_state = 1019
+    	#		transfer_state = 1020
+    	#		transfer_state = 1023
+		#		transfer_state = 622
+		#		add_state_core = 622
+		#		transfer_state = 956
+		#		add_state_core = 956
+		#		transfer_state = 599
+		#		add_state_core = 599
+		#		transfer_state = 594
+		#		add_state_core = 594
+		#		transfer_state = 605
+		#		add_state_core = 605
+		#		transfer_state = 603
+		#		add_state_core = 603
+		#		transfer_state = 325
+		#		add_state_core = 325
+		#		transfer_state = 960
+		#		add_state_core = 960
+    	#	}
+    	#	puppet = CHI
+    	#	CHI = {
+		#		set_cosmetic_tag = CHI_JAP
+		#		kill_country_leader = yes
+		#		set_politics = {
+		#			ruling_party = fascism
+		#			last_election = "1960.11.11"
+		#			election_frequency = 36
+		#			elections_allowed = no
+        #    }
+#
+        #        set_popularities = {
+        #            communist = 7
+        #            ultranational_socialism = 0
+        #            socialist = 5
+        #            social_democrat = 7
+        #            social_liberal = 5
+        #            social_conservative = 3
+        #            authoritarian_democrat = 13
+        #            despotism = 11
+        #            fascism = 49
+        #            national_socialism = 0
+        #            burgundian_system = 0
+        #        }
+		#		create_country_leader = {
+		#			name = "Chen Gongbo"
+		#			picture = "Portrait_China_Chen_Gongbo.tga"
+		#			desc = "POLITICS_CHEN_GONGBO_DESC"
+		#			expire = "2000.1.1"
+		#			ideology = fascism_subtype
+		#			traits = {
+		#					#
+		#			}
+		#		}
+		#		set_capital = 608
+		#	}
+		#	SHX = {
+		#		remove_state_core = 956
+		#		remove_state_core = 622
+		#	}
+		#	GXC = {
+		#		remove_state_core = 599
+		#		remove_state_core = 594
+		#	}
+		#	SIC = {
+		#		remove_state_core = 605
+		#	}
+		#	GUZ = {
+		#		remove_state_core = 603
+		#	}
+		#	YUN = {
+		#		remove_state_core = 325
+		#		remove_state_core = 960
+		#	}
+		#	if = {
+		#		limit = {
+		#			YAA = {NOT = {has_country_flag = GAW_neutral}}
+		#		}
+		#		CHI = {
+		#			transfer_state = 964
+		#			add_state_core = 964
+		#			transfer_state = 905
+		#			add_state_core = 905
+		#		}
+		#		YAA = {
+		#			remove_state_core = 964
+		#			remove_state_core = 905
+		#		}
+		#	}
+		#	HUI = {
+		#		transfer_state = 283
+		#		transfer_state = 764
+		#		set_cosmetic_tag = HUI_northwest
+		#	}
+		#	if = {
+		#		limit = {
+		#			XSM = {NOT = {has_country_flag = GAW_neutral}}
+		#		}
+		#		HUI = {
+		#			transfer_state = 906
+		#			add_state_core = 906
+		#			transfer_state = 604
+		#			add_state_core = 604
+		#		}
+		#		XSM = {
+		#			remove_state_core = 906
+		#			remove_state_core = 604
+		#		}
+		#		if = {
+		#			limit = {
+		#				TIB = {NOT = {has_country_flag = GAW_neutral}}
+		#			}
+		#			TIB = {
+		#				transfer_state = 765
+		#				transfer_state = 322
+		#				remove_state_core = 601
+		#			}
+		#			HUI = {
+		#				transfer_state = 601
+		#				add_state_core = 601
+		#			}
+		#		}
+		#	}
+		#	if = {
+		#		limit = {
+		#			SIK =  {
+		#				OR = {
+		#					has_country_flag = GAW_jap_ally
+		#					has_country_flag = GAW_chi_ally
+		#				}
+		#			}
+		#		}
+		#		HUI = {
+		#			transfer_state = 958
+		#			add_state_core = 958
+		#			transfer_state = 617
+		#			add_state_core = 617
+		#			transfer_state = 957
+		#			add_state_core = 957
+		#			transfer_state = 618
+		#			add_state_core = 618
+		#		}
+		#		SIK = {
+		#			remove_state_core = 958
+		#			remove_state_core = 617
+		#			remove_state_core = 957
+		#			remove_state_core = 618
+		#			remove_state_core = 619
+		#		}
+		#		if = {
+		#			limit = {
+		#				ETR = {
+		#					OR = {
+		#						exists = yes
+		#					}
+		#				}
+		#			}
+		#			HUI = {
+		#				transfer_state = 619
+		#				add_state_core = 619
+		#			}
+		#			ETR = {
+		#				remove_state_core = 958
+		#				remove_state_claim = 617
+		#				remove_state_claim = 957
+		#				remove_state_claim = 618
+		#				remove_state_core = 619
+		#			}
+		#		}
+		#	}
+		#	else = {
+		#		HUI = {
+		#			transfer_state = 958
+		#			add_state_core = 958
+		#			transfer_state = 617
+		#			add_state_core = 617
+		#			transfer_state = 957
+		#			add_state_core = 957
+		#			transfer_state = 618
+		#			add_state_core = 618 
+		#			transfer_state = 619
+		#			add_state_core = 619
+		#		}
+		#		ETR = {
+		#			remove_state_core = 958
+		#			remove_state_claim = 617
+		#			remove_state_claim = 957
+		#			remove_state_claim = 618
+		#			remove_state_core = 619
+		#		}
+		#	}
+		#	puppet = HUI
+		#	GNG = {
+		#		transfer_state = 592
+		#		transfer_state = 593
+		#		transfer_state = 326
+		#		transfer_state = 729
+		#		transfer_state = 1017
+		#	}
+		#	puppet = GNG
+		#	MEN = {
+		#		transfer_state = 955
+		#		transfer_state = 621
+		#		transfer_state = 612
+		#		transfer_state = 815
+		#		transfer_state = 330
+		#		transfer_state = 616
+		#		add_state_core = 616
+		#		if = {
+		#			limit = {
+		#				JAP = {
+		#					has_full_control_of_state = 814
+		#					has_full_control_of_state = 329
+		#				}
+		#			}
+		#			MEN = {
+		#				transfer_state = 814
+		#				transfer_state = 329
+		#			}
+		#		}
+		#	}
+		#	HUI = {
+		#		remove_state_core = 616
+		#	}
+		#	XSM = {
+		#		remove_state_core = 616
+		#	}
+		#	puppet = MEN
+		#	MAN = {
+		#		transfer_state = 609
+		#		transfer_state = 610
+		#		transfer_state = 716
+		#		transfer_state = 715
+		#		transfer_state = 328
+		#		transfer_state = 801
+		#		transfer_state = 714
+		#		transfer_state = 717
+		#		if = {
+		#			limit = {
+		#				JAP = {
+		#					has_full_control_of_state = 657
+		#					has_full_control_of_state = 409
+		#					has_full_control_of_state = 408
+		#				}
+		#			}
+		#			transfer_state = 657
+		#			transfer_state = 409
+		#			transfer_state = 408
+		#		}
+		#	}
+		#	puppet = MAN
+		#	GAW_clear_warlord_flags = yes
+		#	GAW_remove_Chinese_claims = yes
+		#}
+	}
+}
+
+country_event = {#NLF moves into Korea, Japanese ultimatum
+	id = gaw.105
+	title = gaw.105.t
+	desc = gaw.105.d
+	picture = GFX_report_event_CHI_nanjing_summit_start 
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.105"
+		set_global_flag = GAW_JAP_nuke_ultimatum
+	}
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = gaw.105.a
+		CHI = {
+			country_event = {id = gaw.206}
+		}
+	}
+}
+
+country_event = {#Chinese peace offer for Japan - Chinese total victory
+	id = gaw.106
+	title = gaw.106.t
+	desc = gaw.106.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.106"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {#accept peace and basically lose the cold war
+		ai_chance = {factor = 100}
+		name = gaw.106.a
+		hidden_effect = {
+			CHI = {
+				country_event = {id = gaw.201 hours = 3}
+			}
+		}
+	}
+	option = {#reject the peace and try for a desperate last push
+		name = gaw.106.b
+		hidden_effect = {
+			CHI = {
+				country_event = {id = gaw.202 hours = 3}
+			}
+		}
+	}
+}
+
+country_event = {#End of the GAW - China victorious
+	id = gaw.200
+	title = gaw.200.t
+	desc = gaw.200.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.200"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gaw.200
+	}
+}
+
+country_event = {#Japan accepts peace deal
+	id = gaw.201
+	title = gaw.201.t
+	desc = gaw.201.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.201"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {#Ends Conflict with Japan
+		name = gaw.201.a
+		custom_effect_tooltip = gaw.201.a.tt
+		hidden_effect = {
+			country_event = {id = gaw.203 hours = 3}
+			GAW_JAP_surrender_chinese_states = yes
+			every_country = {
+				limit = {
+					has_war_with = CHI
+				}
+				white_peace = CHI
+			}
+		}
+	}
+}
+
+country_event = {#Japan rejects peace deal
+	id = gaw.202
+	title = gaw.202.t
+	desc = gaw.202.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.202"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {#The War drags on
+		name = gaw.202.a
+
+	}
+}
+
+country_event = {#Time to deal with the warlords
+	id = gaw.203
+	title = gaw.203.t
+	desc = gaw.203.d
+
+	picture = GFX_report_event_CHI_nanjing_summit_start 
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.203"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {#Send the Ultimatum
+		name = gaw.203.a
+		custom_effect_tooltip = gaw.203.a.tt
+		GAW_CHI_send_warlord_ultimatum = yes
+	}
+}
+
+country_event = {#Warlord Ultimatum Response
+	id = gaw.204
+	title = gaw.204.t
+	desc = {
+		text = gaw.204.d_warlord_submit
+		trigger = {
+			all_of_scopes = {
+				array = global.chinese_warlords
+				NOT = {has_war_with = CHI} 
+			}
+		}
+	}
+	desc = {
+		text = gaw.204.d_warlord_resist
+		trigger = {
+			any_of_scopes = {
+				array = global.chinese_warlords 
+				has_war_with = CHI
+			}
+		}
+	}
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.204"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = {#All warlords have submitted
+		trigger = {
+			all_of_scopes = {
+				array = global.chinese_warlords
+				NOT = {has_war_with = CHI} 
+			}
+		}
+		name = gaw.204.a
+		hidden_effect = {country_event = {id = gaw.205 hours = 3}}
+	}
+	option = {#warlords remain
+		trigger = {
+			any_of_scopes = {
+				array = global.chinese_warlords 
+				has_war_with = CHI
+			}
+		}
+		name = gaw.204.b
+	}
+}
+
+country_event = {#End of the GAW - China victorious
+	id = gaw.205
+	title = gaw.205
+	desc = gaw.205
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.205"
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gaw.205.a
+		set_global_flag = GAW_CHI_victory
+		clr_global_flag = GAW_in_progress
+	}
+}
+
+country_event = {#Japanese nuclear ultimatum if Korea is threatened
+	id = gaw.206
+	title = gaw.206.t
+	desc = gaw.206.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.206"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {#submit
+		name = gaw.206.a
+		country_event = gaw.201
+	}	
+	option = {#Fight on and get nuked
+		name = gaw.206.b
+		hidden_effect = {
+			JAP = {
+				country_event = {
+					id = nuclearwar.6
+					days = 1
+				}
+			}
+			set_global_flag = tno_speed_warning
+		}
+	}
+}
+
+country_event = {#Manchuria Falls
+	id = gaw.300
+	title = gaw.300.t
+	desc = gaw.300.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.300"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {#China/Chinese ally
+		trigger = {
+			has_country_flag = gaw_chi_ally
+		}
+		name = gaw.300.a
+	}
+	option = {#Japan/Japanese Ally
+		trigger = {
+			has_country_flag = gaw_jap_ally
+		}
+		name = gaw.300.b
+	}
+	option = {#Everyone else
+		trigger = {
+			has_country_flag = gaw_neutral
+		}
+		name = gaw.300.c
+	}
+}
+
+country_event = {#Guangdong Falls
+	id = gaw.301
+	title = gaw.301.t
+	desc = gaw.301.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.301"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {#China/Chinese ally
+		trigger = {
+			has_country_flag = gaw_chi_ally
+		}
+		name = gaw.301.a
+	}
+	option = {#Japan/Japanese Ally
+		trigger = {
+			has_country_flag = gaw_jap_ally
+		}
+		name = gaw.301.b
+	}
+	option = {#Everyone else
+		trigger = {
+			has_country_flag = gaw_neutral
+		}
+		name = gaw.301.c
+	}
+}
+
+country_event = {#Mengjiang Falls
+	id = gaw.302
+	title = gaw.302.t
+	desc = gaw.302.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.302"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	option = {#China/Chinese ally
+		trigger = {
+			has_country_flag = gaw_chi_ally
+		}
+		name = gaw.302.a
+	}
+	option = {#Japan/Japanese Ally
+		trigger = {
+			has_country_flag = gaw_jap_ally
+		}
+		name = gaw.302.b
+	}
+	option = {#Everyone else
+		trigger = {
+			has_country_flag = gaw_neutral
+		}
+		name = gaw.302.c
+	}
+}
+
+country_event = {#Shanghai is captured by China
+	id = gaw.303
+	title = gaw.303.t
+	desc = gaw.303.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.303"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no 
+
+	trigger = {
+		NOT = {has_global_flag = GAW_CHI_Shanghai}
+	}
+
+	option = {
+		name = gaw.303.a
+		set_global_flag = GAW_CHI_Shanghai
+	}
+}
+
+country_event = {#Shanghai is recaptured by Japan
+	id = gaw.304
+	title = gaw.304.t
+	desc = gaw.304.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.304"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+	trigger = {
+		NOT = {has_global_flag = GAW_JAP_Shanghai}
+	}
+
+	option = {
+		name = gaw.304.a
+		set_global_flag = GAW_JAP_Shanghai
+	}
+}
+
+
+
+country_event = {#NLF moves into Korea, Japanese ultimatum
+	id = gaw.305
+	title = gaw.305.t
+	desc = gaw.305.d
+	picture = GFX_report_event_CHI_nanjing_summit_start 
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.305"
+		set_global_flag = GAW_JAP_nuke_ultimatum
+	}
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = gaw.305.a
+		YUN = {
+			country_event = {id = gaw.306}
+		}
+	}
+}
+
+country_event = {#Japanese nuclear ultimatum if Korea is threatened
+	id = gaw.306
+	title = gaw.306.t
+	desc = gaw.306.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Event_gaw.306"
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {#submit
+		name = gaw.306.a
+	}	
+	option = {#Fight on and get nuked
+		name = gaw.306.b 
+		hidden_effect = {
+			JAP = {
+				country_event = {
+					id = nuclearwar.6
+					days = 1
+				}
+			}
+			set_global_flag = tno_speed_warning
+		}
+	}
+}

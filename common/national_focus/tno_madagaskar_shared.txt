@@ -1,0 +1,1472 @@
+#################################################################################
+#################################################################################
+
+  ##### #   # ##### ####   ###
+    #   ##  #   #   #   # #   #
+    #   # # #   #   ####  #   #
+    #   #  ##   #   #   # #   #
+  ##### #   #   #   #   #  ###
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_the_red_island
+	icon = GFX_goal_MAD_focus_the_red_island
+	cost = 2
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_red_island"
+		add_political_power = 50
+		#country_event = MADAGASKAR_FOCUS.1
+	}
+}
+
+shared_focus = {
+	id = MAD_benefits_of_a_lifted_blockade
+	icon = GFX_generic_change_law_trade
+	cost = 2
+	prerequisite = {
+		focus = MAD_the_red_island
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_benefits_of_a_lifted_blockade"
+		add_timed_idea = {
+		    idea = MAD_idea_benefits_of_the_lifted_blockade
+		    days = 180
+		}
+		#country_event = MADAGASKAR_FOCUS.2
+	}
+}
+
+shared_focus = {
+	id = MAD_toliara_projects
+	icon = GFX_CHI_Modern_Construction_Equipment
+	cost = 2
+	prerequisite = {
+		focus = MAD_benefits_of_a_lifted_blockade
+	}
+	x = 2
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_toliara_projects"
+		946 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		#country_event = MADAGASKAR_FOCUS.3
+	}
+}
+
+shared_focus = {
+	id = MAD_trust_the_gma
+	icon = GFX_generic_change_law_enforcement
+	cost = 2
+	prerequisite = {
+		focus = MAD_toliara_projects
+	}
+	x = 2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_trust_the_gma"
+		add_political_power = 25
+		#country_event = MADAGASKAR_FOCUS.4
+	}
+}
+
+shared_focus = {
+	id = MAD_dealing_with_rebels
+	icon = GFX_generic_pillage
+	cost = 2
+	prerequisite = {
+		focus = MAD_the_red_island
+	}
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_dealing_with_rebels"
+		#country_event = MADAGASKAR_FOCUS.5
+		swap_ideas = {
+		    remove_idea = MAD_idea_increased_rebel_activity
+		    add_idea = MAD_idea_managed_rebel_activity
+		}
+	}
+}
+
+shared_focus = {
+	id = MAD_support_the_garrison
+	icon = GFX_generic_advanced_weapons
+	cost = 2
+	prerequisite = {
+		focus = MAD_benefits_of_a_lifted_blockade
+	}
+	prerequisite = {
+		focus = MAD_dealing_with_rebels
+	}
+	x = 5
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_support_the_garrison"
+		#country_event = MADAGASKAR_FOCUS.6
+		swap_ideas = {
+		    remove_idea = MAD_idea_managed_rebel_activity
+		    add_idea = MAD_idea_handled_rebel_activity
+		}
+	}
+}
+
+shared_focus = {
+	id = MAD_coordinate_with_milch
+	icon = GFX_goal_MAD_focus_coordinate_with_milch
+	cost = 2
+	prerequisite = {
+		focus = MAD_support_the_garrison
+	}
+	x = 4
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_coordinate_with_milch"
+		country_event = MADAGASKAR_FOCUS.7
+	}
+}
+
+shared_focus = {
+	id = MAD_wir_lagen_vor_madagaskar
+	icon = GFX_goal_MAD_focus_wir_lagen_vor_madagaskar
+	cost = 2
+	prerequisite = {
+		focus = MAD_trust_the_gma
+	}
+	prerequisite = {
+		focus = MAD_coordinate_with_milch
+	}
+	available = {
+		NOT = { has_country_flag = MAD_die_schwarze_pest_flag }
+	}
+	x = 3
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_wir_lagen_vor_madagaskar"
+		country_event = MADAGASKAR_FOCUS.8
+		custom_effect_tooltip = MAD_unlocks_new_commercial_prospects_tt
+	}
+}
+
+#################################################################################
+#################################################################################
+
+  ####  #      ###   #### #   # #####
+  #   # #     #   # #     #   # #
+  ####  #     ##### # ### #   # ###
+  #     #     #   # #   # #   # #
+  #     ##### #   #  ###   ###  #####
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_die_schwarze_pest
+	icon = GFX_goal_MAD_focus_die_schwarze_pest
+	cost = 3
+	x = 12
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_die_schwarze_pest"
+		country_event = MADAGASKAR_FOCUS.9
+	}
+}
+
+shared_focus = {
+	id = MAD_request_german_aid
+	icon = GFX_GER_Boxes_Fragile
+	cost = 3
+	prerequisite = {
+		focus = MAD_die_schwarze_pest
+	}
+	x = 11
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_request_german_aid"
+		country_event = MADAGASKAR_FOCUS.10
+	}
+}
+
+shared_focus = {
+	id = MAD_regional_quarantine_areas
+	icon = GFX_Generic_Gas_Soldier
+	cost = 3
+	prerequisite = {
+		focus = MAD_request_german_aid
+	}
+	x = 9
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_regional_quarantine_areas"
+		#country_event = MADAGASKAR_FOCUS.15
+		custom_effect_tooltip = MAD_unlocks_quarantine_decisions_tt
+	}
+}
+
+shared_focus = {
+	id = MAD_the_ghetto_problem
+	icon = GFX_focus_MAD_take_to_the_villages
+	cost = 3
+	prerequisite = {
+		focus = MAD_regional_quarantine_areas
+	}
+	available = {
+		NOT = { has_country_flag = MAD_political_crisis_flag }
+	}
+	x = 9
+	y = 3
+	ai_will_do = {
+			factor = 2
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_ghetto_problem"
+		country_event = MADAGASKAR_FOCUS.12
+	}
+}
+
+shared_focus = {
+	id = MAD_we_need_more_doctors
+	icon = GFX_generic_change_law_healthcare
+	cost = 3
+	prerequisite = {
+		focus = MAD_request_german_aid
+	}
+	x = 11
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_we_need_more_doctors"
+		#country_event = MADAGASKAR_FOCUS.13
+		custom_effect_tooltip = MAD_helps_healthcare_situation_in_rural_areas_tt
+
+		hidden_effect = {
+			every_state = {
+				if = {
+					limit = {
+						has_state_category = rural
+					}
+					add_to_variable = { MAD_plague_healthcare_access = 0.1 }
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MAD_we_need_everything
+	icon = GFX_GER_industry_calls
+	cost = 3
+	prerequisite = {
+		focus = MAD_we_need_more_doctors
+	}
+	available = {
+		NOT = { has_country_flag = MAD_political_crisis_flag }
+	}
+	x = 11
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_we_need_everything"
+		#country_event = MADAGASKAR_FOCUS.14
+		custom_effect_tooltip = MAD_can_produce_more_kits_tt
+	}
+}
+
+shared_focus = {
+	id = MAD_request_ostafrikaner_aid
+	icon = GFX_GER_Boxes_Fragile
+	cost = 3
+	prerequisite = {
+		focus = MAD_die_schwarze_pest
+	}
+	x = 13
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_request_ostafrikaner_aid"
+		country_event = MADAGASKAR_FOCUS.11
+	}
+}
+
+shared_focus = {
+	id = MAD_deploy_the_planes
+	icon = GFX_USA_bomb_em_into_the_stone_age
+	cost = 3
+	prerequisite = {
+		focus = MAD_request_ostafrikaner_aid
+	}
+	x = 13
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_deploy_the_planes"
+		#country_event = MADAGASKAR_FOCUS.16
+		custom_effect_tooltip = MAD_helps_containment_disease_tt
+		divide_variable = { MAD_plague_base_contamination_factor = 2 }
+	}
+}
+
+shared_focus = {
+	id = MAD_burn_down_contaminated_villages
+	icon = GFX_UPO_burn_their_barns
+	cost = 3
+	prerequisite = {
+		focus = MAD_deploy_the_planes
+	}
+	prerequisite = {
+		focus = MAD_without_reaction
+	}
+	available = {
+		NOT = { has_country_flag = MAD_political_crisis_flag }
+	}
+	x = 13
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_burn_down_contaminated_villages"
+		#country_event = MADAGASKAR_FOCUS.17
+		custom_effect_tooltip = MAD_helps_containment_disease_tt
+		divide_variable = { MAD_plague_base_contamination_factor = 2 }
+	}
+}
+
+shared_focus = {
+	id = MAD_our_last_resort
+	icon = GFX_generic_execute
+	cost = 3
+	prerequisite = {
+		focus = MAD_the_ghetto_problem
+	}
+	prerequisite = {
+		focus = MAD_we_need_everything
+	}
+	prerequisite = {
+		focus = MAD_burn_down_contaminated_villages
+	}
+	available = {
+		NOT = { has_country_flag = MAD_political_crisis_flag }
+	}
+	x = 12
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_our_last_resort"
+		country_event = MADAGASKAR_FOCUS.18
+	}
+}
+
+shared_focus = {
+	id = MAD_time_for_action
+	icon = GFX_goal_MAD_focus_time_for_action
+	cost = 3
+	prerequisite = {
+		focus = MAD_die_schwarze_pest
+	}
+	x = 15
+	y = 1
+
+	ai_will_do = {
+			factor = 2
+	}
+	
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_time_for_action"
+		#country_event = MADAGASKAR_FOCUS.19
+		custom_effect_tooltip = MAD_unlocks_send_medical_aid_decisions_tt
+	}
+}
+
+shared_focus = {
+	id = MAD_without_reaction
+	icon = GFX_goal_MAD_focus_without_reaction
+	cost = 3
+	prerequisite = {
+		focus = MAD_time_for_action
+	}
+	x = 15
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_without_reaction"
+		#country_event = MADAGASKAR_FOCUS.20
+		add_political_power = 75
+	}
+}
+
+#################################################################################
+#################################################################################
+
+   #### ####  #####  #### #####  ####
+  #     #   #   #   #       #   #
+  #     ####    #    ###    #    ###
+  #     #   #   #       #   #       #
+   #### #   # ##### ####  ##### ####
+
+#################################################################################
+#################################################################################
+
+#################################################################################
+# GERMAN SIDES
+#################################################################################
+
+shared_focus = {
+	id = MAD_crisis_on_the_red_island
+	icon = GFX_goal_MAD_focus_crisis_on_the_red_island
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_crisis_on_the_red_island"
+		country_event = MADAGASKAR_FOCUS.21
+	}
+}
+
+#################################################################################
+# MAURICE
+#################################################################################
+
+shared_focus = {
+	id = MAD_crisis_on_the_red_island_maurice
+	icon = GFX_goal_MAD_focus_crisis_on_the_red_island
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+
+	}
+}
+
+shared_focus = {
+	id = MAD_all_eyes_on_the_reichskommissar
+	icon = GFX_goal_MAD_focus_all_eyes_on_the_reichskommissar
+	cost = 1
+	prerequisite = {
+		focus = MAD_crisis_on_the_red_island_maurice
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_maurice
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_all_eyes_on_the_reichskommissar"
+		add_political_power = 5
+	}
+}
+
+shared_focus = {
+	id = MAD_shuffle_the_papers
+	icon = GFX_goal_MAD_focus_shuffle_the_papers
+	cost = 1
+	prerequisite = {
+		focus = MAD_all_eyes_on_the_reichskommissar
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_maurice
+	x = -1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_shuffle_the_papers"
+		add_political_power = 15
+	}
+}
+
+shared_focus = {
+	id = MAD_chew_on_your_pen
+	icon = GFX_goal_MAD_focus_chew_on_your_pen
+	cost = 1
+	prerequisite = {
+		focus = MAD_all_eyes_on_the_reichskommissar
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_maurice
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_chew_on_your_pen"
+		add_political_power = 10
+	}
+}
+
+shared_focus = {
+	id = MAD_meet_the_gma
+	icon = GFX_goal_MAD_focus_meet_the_gma
+	cost = 1
+	prerequisite = {
+		focus = MAD_shuffle_the_papers
+	}
+	prerequisite = {
+		focus = MAD_chew_on_your_pen
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_maurice
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_meet_the_gma"
+		country_event = MADAGASKAR_FOCUS.26
+		clr_country_flag = MAD_die_schwarze_pest_flag
+	}
+}
+
+#################################################################################
+# MILCH
+#################################################################################
+
+shared_focus = {
+	id = MAD_crisis_on_the_red_island_milch
+	icon = GFX_goal_MAD_focus_crisis_on_the_red_island
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+
+	}
+}
+
+shared_focus = {
+	id = MAD_weakness_must_be_crushed
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_crisis_on_the_red_island_milch
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_milch
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_weakness_must_be_crushed"
+		country_event = MADAGASKAR_FOCUS.27
+	}
+}
+
+shared_focus = {
+	id = MAD_trust_the_garrison
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_weakness_must_be_crushed
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_milch
+	x = -1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_trust_the_garrison"
+		country_event = MADAGASKAR_FOCUS.28
+	}
+}
+
+shared_focus = {
+	id = MAD_close_the_streets
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_weakness_must_be_crushed
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_milch
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_close_the_streets"
+		country_event = MADAGASKAR_FOCUS.29
+	}
+}
+
+shared_focus = {
+	id = MAD_o_deutschland_we_yearn_for_thee
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_close_the_streets
+	}
+	prerequisite = {
+		focus = MAD_trust_the_garrison
+	}
+	relative_position_id = MAD_crisis_on_the_red_island_milch
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_o_deutschland_we_yearn_for_thee"
+		country_event = MADAGASKAR_FOCUS.30
+		clr_country_flag = MAD_die_schwarze_pest_flag
+	}
+}
+
+#################################################################################
+# NATIVE SIDES
+#################################################################################
+
+shared_focus = {
+	id = MAD_a_bright_future
+	icon = GFX_goal_MAD_focus_a_bright_future
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_a_bright_future"
+		country_event = MADAGASKAR_FOCUS.22
+	}
+}
+
+#################################################################################
+# HITNAGDUT
+#################################################################################
+
+shared_focus = {
+	id = MAD_a_bright_future_hitnagdut
+	icon = GFX_goal_MAD_focus_a_bright_future
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+
+	}
+}
+
+shared_focus = {
+	id = MAD_organize_the_ghetto
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_a_bright_future_hitnagdut
+	}
+	relative_position_id = MAD_a_bright_future_hitnagdut
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_organize_the_ghetto"
+		country_event = MADAGASKAR_FOCUS.31
+	}
+}
+
+shared_focus = {
+	id = MAD_zion_must_be_made
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_organize_the_ghetto
+	}
+	relative_position_id = MAD_a_bright_future_hitnagdut
+	x = -1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_zion_must_be_made"
+		country_event = MADAGASKAR_FOCUS.32
+	}
+}
+
+shared_focus = {
+	id = MAD_prepare_the_arsenic
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_organize_the_ghetto
+	}
+	relative_position_id = MAD_a_bright_future_hitnagdut
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_prepare_the_arsenic"
+		country_event = MADAGASKAR_FOCUS.33
+	}
+}
+
+shared_focus = {
+	id = MAD_hitnagdut
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_zion_must_be_made
+	}
+	prerequisite = {
+		focus = MAD_prepare_the_arsenic
+	}
+	relative_position_id = MAD_a_bright_future_hitnagdut
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_hitnagdut"
+		country_event = MADAGASKAR_FOCUS.34
+		clr_country_flag = MAD_die_schwarze_pest_flag
+	}
+}
+
+#################################################################################
+# MALAGASY
+#################################################################################
+
+shared_focus = {
+	id = MAD_a_bright_future_malagasy
+	icon = GFX_goal_MAD_focus_a_bright_future
+	cost = 1
+	x = 7
+	y = 5
+	completion_reward = {
+
+	}
+}
+
+shared_focus = {
+	id = MAD_unite_the_militias
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_a_bright_future_malagasy
+	}
+	relative_position_id = MAD_a_bright_future_malagasy
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_unite_the_militias"
+		country_event = MADAGASKAR_FOCUS.35
+	}
+}
+
+shared_focus = {
+	id = MAD_fight_for_the_homeland
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_unite_the_militias
+	}
+	relative_position_id = MAD_a_bright_future_malagasy
+	x = -1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_fight_for_the_homeland"
+		country_event = MADAGASKAR_FOCUS.36
+	}
+}
+
+shared_focus = {
+	id = MAD_protect_the_villages
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_unite_the_militias
+	}
+	relative_position_id = MAD_a_bright_future_malagasy
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_protect_the_villages"
+		country_event = MADAGASKAR_FOCUS.37
+	}
+}
+
+shared_focus = {
+	id = MAD_fahafahana
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_fight_for_the_homeland
+	}
+	prerequisite = {
+		focus = MAD_protect_the_villages
+	}
+	relative_position_id = MAD_a_bright_future_malagasy
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_fahafahana"
+		country_event = MADAGASKAR_FOCUS.38
+		clr_country_flag = MAD_die_schwarze_pest_flag
+	}
+}
+
+#################################################################################
+#################################################################################
+
+  #   #  ###  #   # ####  #####  #### #####
+  ## ## #   # #   # #   #   #   #     #
+  # # # ##### #   # ####    #   #     ###
+  #   # #   # #   # #   #   #   #     #
+  #   # #   #  ###  #   # #####  #### #####
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_maurice_last_year
+	icon = GFX_MAG_Desperate_Times
+	cost = 1
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_maurice_last_year"
+		add_political_power = 10
+		#country_event = MADAGASKAR_MAURICE.1
+	}
+}
+
+shared_focus = {
+	id = MAD_the_offer
+	icon = GFX_MAD_the_OFNs_offer
+	cost = 1
+	prerequisite = {
+		focus = MAD_maurice_last_year
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_offer"
+		country_event = MADAGASKAR_MAURICE.2
+	}
+}
+
+shared_focus = {
+	id = MAD_the_american_connection
+	icon = GFX_MAD_meet_with_moorer
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_offer
+	}
+	x = 1
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_american_connection"
+		country_event = MADAGASKAR_MAURICE.3
+	}
+}
+
+shared_focus = {
+	id = MAD_root_out_the_traitors
+	icon = GFX_WAL_Anti-Unionist_Purge
+	cost = 1
+	prerequisite = {
+		focus = MAD_maurice_last_year
+	}
+	mutually_exclusive = {
+		focus = MAD_gather_the_loyalists
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_root_out_the_traitors"
+		country_event = MADAGASKAR_MAURICE.4
+	}
+}
+
+shared_focus = {
+	id = MAD_gather_the_loyalists
+	icon = GFX_Generic_Soldiers_Red
+	cost = 1
+	prerequisite = {
+		focus = MAD_maurice_last_year
+	}
+	mutually_exclusive = {
+		focus = MAD_root_out_the_traitors
+	}
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_gather_the_loyalists"
+		country_event = MADAGASKAR_MAURICE.7
+	}
+}
+
+shared_focus = {
+	id = MAD_stregthen_current_positions
+	icon = GFX_COG_Fortify_The_Border
+	cost = 1
+	prerequisite = {
+		focus = MAD_root_out_the_traitors
+		focus = MAD_gather_the_loyalists
+	}
+	mutually_exclusive = {
+		focus = MAD_recall_troops_from_the_interior
+	}
+	x = 3
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_stregthen_current_positions"
+		country_event = MADAGASKAR_MAURICE.5
+	}
+}
+
+shared_focus = {
+	id = MAD_recall_troops_from_the_interior
+	icon = GFX_CAU_Prepare_the_Troops
+	cost = 1
+	prerequisite = {
+		focus = MAD_root_out_the_traitors
+		focus = MAD_gather_the_loyalists
+	}
+	mutually_exclusive = {
+		focus = MAD_stregthen_current_positions
+	}
+	x = 5
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_recall_troops_from_the_interior"
+		country_event = MADAGASKAR_MAURICE.8
+	}
+}
+
+shared_focus = {
+	id = MAD_abandon_the_north
+	icon = GFX_goal_MAD_focus_abandon_the_north
+	cost = 1
+	prerequisite = {
+		focus = MAD_stregthen_current_positions
+		focus = MAD_recall_troops_from_the_interior
+	}
+	mutually_exclusive = {
+		focus = MAD_abandon_the_south
+	}
+	x = 3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_abandon_the_north"
+		country_event = MADAGASKAR_MAURICE.6
+	}
+}
+
+shared_focus = {
+	id = MAD_abandon_the_south
+	icon = GFX_goal_MAD_focus_abandon_the_south
+	cost = 1
+	prerequisite = {
+		focus = MAD_stregthen_current_positions
+		focus = MAD_recall_troops_from_the_interior
+	}
+	mutually_exclusive = {
+		focus = MAD_abandon_the_north
+	}
+	x = 5
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_abandon_the_south"
+		country_event = MADAGASKAR_MAURICE.9
+	}
+}
+
+shared_focus = {
+	id = MAD_a_call_to_moorer
+	icon = GFX_MAD_contact_moorer
+	cost = 1
+	prerequisite = {
+		focus = MAD_abandon_the_north
+		focus = MAD_abandon_the_south
+	}
+	prerequisite = {
+		focus = MAD_pass_down_the_burden
+	}
+	prerequisite = {
+		focus = MAD_the_american_connection
+	}
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_a_call_to_moorer"
+		country_event = MADAGASKAR_MAURICE.10
+	}
+}
+
+shared_focus = {
+	id = MAD_the_successor
+	icon = GFX_generic_change_law_enforcement
+	cost = 1
+	prerequisite = {
+		focus = MAD_maurice_last_year
+	}
+	x = 7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_successor"
+		country_event = MADAGASKAR_MAURICE.11
+	}
+}
+
+shared_focus = {
+	id = MAD_pass_down_the_burden
+	icon = GFX_goal_MAD_focus_shuffle_the_papers
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_successor
+	}
+	x = 7
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_pass_down_the_burden"
+		country_event = MADAGASKAR_MAURICE.12
+	}
+}
+
+#################################################################################
+#################################################################################
+
+  #   # ##### #      #### #   #
+  ## ##   #   #     #     #   #
+  # # #   #   #     #     #####
+  #   #   #   #     #     #   #
+  #   # ##### #####  #### #   #
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_the_heer_will_rise
+	icon = GFX_goal_unknown
+	cost = 1
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_heer_will_rise"
+		country_event = MADAGASKAR_MILCH.1
+	}
+}
+
+shared_focus = {
+	id = MAD_cut_all_communications
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_heer_will_rise
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_cut_all_communications"
+		country_event = MADAGASKAR_MILCH.2
+	}
+}
+
+shared_focus = {
+	id = MAD_solidify_our_hold_of_toliara
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_cut_all_communications
+	}
+	x = 3
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_solidify_our_hold_of_toliara"
+		country_event = MADAGASKAR_MILCH.3
+	}
+}
+
+shared_focus = {
+	id = MAD_madagaskarische_abwehr
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_solidify_our_hold_of_toliara
+	}
+	x = 2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_madagaskarische_abwehr"
+		country_event = MADAGASKAR_MILCH.4
+	}
+}
+
+shared_focus = {
+	id = MAD_anti_partisan_effort
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_heer_will_rise
+	}
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_anti_partisan_effort"
+		country_event = MADAGASKAR_MILCH.5
+	}
+}
+
+shared_focus = {
+	id = MAD_boot_out_the_natives
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_anti_partisan_effort
+	}
+	x = 5
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_boot_out_the_natives"
+		country_event = MADAGASKAR_MILCH.6
+	}
+}
+
+shared_focus = {
+	id = MAD_prepare_our_defenses
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_solidify_our_hold_of_toliara
+	}
+	prerequisite = {
+		focus = MAD_boot_out_the_natives
+	}
+	x = 4
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_prepare_our_defenses"
+		country_event = MADAGASKAR_MILCH.7
+	}
+}
+
+shared_focus = {
+	id = MAD_gather_our_stockpile
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_boot_out_the_natives
+	}
+	x = 6
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_gather_our_stockpile"
+		country_event = MADAGASKAR_MILCH.8
+	}
+}
+
+shared_focus = {
+	id = MAD_execute_the_coup
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_prepare_our_defenses
+	}
+	prerequisite = {
+		focus = MAD_madagaskarische_abwehr
+	}
+	prerequisite = {
+		focus = MAD_gather_our_stockpile
+	}
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_execute_the_coup"
+		country_event = MADAGASKAR_MILCH.9
+	}
+}
+
+#################################################################################
+#################################################################################
+
+  #   # ##### ##### #   #  ###   #### ####  #   # #####
+  #   #   #     #   ##  # #   # #     #   # #   #   #
+  #####   #     #   # # # ##### # ### #   # #   #   #
+  #   #   #     #   #  ## #   # #   # #   # #   #   #
+  #   # #####   #   #   # #   #  #### ####   ###    #
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_the_plan
+	icon = GFX_goal_unknown
+	cost = 1
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_plan"
+		country_event = MADAGASKAR_HITNAGDUT.1
+	}
+}
+
+shared_focus = {
+	id = MAD_the_poisoners_plot
+	icon = GFX_MAD_the_poisoners_plot
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_plan
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_poisoners_plot"
+		country_event = MADAGASKAR_HITNAGDUT.2
+	}
+}
+
+shared_focus = {
+	id = MAD_send_the_letter
+	icon = GFX_MAD_send_the_letter
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_poisoners_plot
+	}
+	available = {
+		has_country_flag = MAD_HITNAGDUT_has_antrax_flag
+	}
+	bypass = {
+		has_country_flag = MAD_HITNAGDUT_no_antrax_flag
+	}
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_send_the_letter"
+		country_event = MADAGASKAR_HITNAGDUT.3
+	}
+}
+
+shared_focus = {
+	id = MAD_the_snipers_plot
+	icon = GFX_MAD_the_snipers_plot
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_plan
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_snipers_plot"
+		country_event = MADAGASKAR_HITNAGDUT.4
+	}
+}
+
+shared_focus = {
+	id = MAD_snipe_the_reichkomissar
+	icon = GFX_MAD_snipe_the_reichskommissar
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_snipers_plot
+	}
+	bypass = {
+		has_country_flag = MAD_HITNAGDUT_reichkomissar_lost_flag
+	}
+	x = 3
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_snipe_the_reichkomissar"
+		country_event = MADAGASKAR_HITNAGDUT.5
+	}
+}
+
+shared_focus = {
+	id = MAD_the_grenadiers_plot
+	icon = GFX_MAD_the_grenadiers_plot
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_plan
+	}
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_grenadiers_plot"
+		country_event = MADAGASKAR_HITNAGDUT.6
+	}
+}
+
+shared_focus = {
+	id = MAD_blow_up_the_capital
+	icon = GFX_MAD_blow_up_the_capital
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_grenadiers_plot
+	}
+	x = 5
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_blow_up_the_capital"
+		country_event = MADAGASKAR_HITNAGDUT.7
+	}
+}
+
+shared_focus = {
+	id = MAD_the_burglars_plot
+	icon = GFX_MAD_the_burglars_plot
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_plan
+	}
+	x = 7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_burglars_plot"
+		country_event = MADAGASKAR_HITNAGDUT.8
+	}
+}
+
+shared_focus = {
+	id = MAD_the_knife_in_the_dark
+	icon = GFX_MAD_the_knife_in_the_dark
+	cost = 1
+	prerequisite = {
+		focus = MAD_the_burglars_plot
+	}
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_knife_in_the_dark"
+		country_event = MADAGASKAR_HITNAGDUT.9
+	}
+}
+
+shared_focus = {
+	id = MAD_the_perfect_plan
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_send_the_letter
+	}
+	prerequisite = {
+		focus = MAD_snipe_the_reichkomissar
+	}
+	prerequisite = {
+		focus = MAD_blow_up_the_capital
+	}
+	prerequisite = {
+		focus = MAD_the_knife_in_the_dark
+	}
+	x = 4
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_the_perfect_plan"
+		country_event = MADAGASKAR_HITNAGDUT.10
+	}
+}
+
+#################################################################################
+#################################################################################
+
+  #   #  ###  #      ###   ####  ###   #### #   #
+  ## ## #   # #     #   # #     #   # #      # #
+  # # # ##### #     ##### # ### #####  ###    #
+  #   # #   # #     #   # #   # #   #     #   #
+  #   # #   # ##### #   #  #### #   # ####    #
+
+#################################################################################
+#################################################################################
+
+shared_focus = {
+	id = MAD_imperialism_must_be_fought
+	icon = GFX_goal_unknown
+	cost = 1
+	x = 4
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_imperialism_must_be_fought"
+		country_event = MADAGASKAR_MALAGASY.1
+	}
+}
+
+shared_focus = {
+	id = MAD_arm_the_jungles
+	icon = GFX_MAD_take_to_the_jungles
+	cost = 1
+	prerequisite = {
+		focus = MAD_imperialism_must_be_fought
+	}
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_arm_the_jungles"
+		country_event = MADAGASKAR_MALAGASY.2
+	}
+}
+
+shared_focus = {
+	id = MAD_arm_the_villages
+	icon = GFX_focus_MAD_take_to_the_villages
+	cost = 1
+	prerequisite = {
+		focus = MAD_arm_the_jungles
+	}
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_arm_the_villages"
+		country_event = MADAGASKAR_MALAGASY.3
+	}
+}
+
+shared_focus = {
+	id = MAD_adopt_guerrilla_tactics
+	icon = GFX_MAD_overwhelm_the_outposts
+	cost = 1
+	prerequisite = {
+		focus = MAD_arm_the_villages
+	}
+	x = 3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_adopt_guerrilla_tactics"
+		country_event = MADAGASKAR_MALAGASY.4
+	}
+}
+
+shared_focus = {
+	id = MAD_take_control_of_the_streets
+	icon = GFX_MAD_take_to_the_streets
+	cost = 1
+	prerequisite = {
+		focus = MAD_imperialism_must_be_fought
+	}
+	x = 4
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_take_control_of_the_streets"
+		country_event = MADAGASKAR_MALAGASY.5
+	}
+}
+
+shared_focus = {
+	id = MAD_continue_our_covert_operations
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_imperialism_must_be_fought
+	}
+	x = 6
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_continue_our_covert_operations"
+		country_event = MADAGASKAR_MALAGASY.6
+	}
+}
+
+shared_focus = {
+	id = MAD_meeting_with_the_generals
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_continue_our_covert_operations
+	}
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_meeting_with_the_generals"
+		country_event = MADAGASKAR_MALAGASY.7
+	}
+}
+
+shared_focus = {
+	id = MAD_funnel_german_equipment
+	icon = GFX_goal_unknown
+	cost = 1
+	prerequisite = {
+		focus = MAD_meeting_with_the_generals
+	}
+	x = 5
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_funnel_german_equipment"
+		country_event = MADAGASKAR_MALAGASY.8
+	}
+}
+
+shared_focus = {
+	id = MAD_secure_antanarivo
+	icon = GFX_MAD_overwhelm_the_capital
+	cost = 1
+	prerequisite = {
+		focus = MAD_adopt_guerrilla_tactics
+	}
+	prerequisite = {
+		focus = MAD_funnel_german_equipment
+	}
+	prerequisite = {
+		focus = MAD_take_control_of_the_streets
+	}
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MAD_secure_antanarivo"
+		country_event = MADAGASKAR_MALAGASY.9
+	}
+}

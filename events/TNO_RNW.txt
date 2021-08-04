@@ -1,0 +1,119 @@
+﻿###########
+#RNW Events
+###########
+
+add_namespace = RNW
+
+#Goering killed
+country_event = {
+	id = RNW.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.2"}
+	title = RNW.2.t
+	desc = RNW.2.desc
+	picture = GFX_report_event_german_Army3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = RNW.2.a
+	}
+}
+
+#Volkssturm
+country_event = {
+	id = RNW.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.3"}
+	title = RNW.3.t
+	desc = RNW.3.desc
+	picture = GFX_report_event_volkssturm
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = RNW.3.a
+	}
+}
+#RNW Win Civil War
+country_event = {
+	id = RNW.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.4"}
+	title = RNW.4.t
+	desc = RNW.4.desc
+	picture = GFX_report_event_bormann_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = RNW.4.a
+		set_cosmetic_tag = RNW_reich
+		clr_global_flag = german_civil_war
+		set_global_flag = german_civil_war_end
+		set_global_flag = german_civil_war_rnwvic
+		annex_country = { target = GER }
+		annex_country = { target = GGR }
+		annex_country = { target = BGR }
+		annex_country = { target = SGR }
+		annex_country = { target = DSR }
+		annex_country = { target = HGR }
+
+		every_unit_leader = {
+			limit = {
+				is_RNW_unit_leader = yes
+			}
+			set_nationality = GER
+		}
+		hidden_effect = {
+			every_country = { news_event = WORLD.20611 }
+		}
+	}
+}
+
+#Spiedel now has to face RNW
+country_event = {
+	id = RNW.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.5"}
+    title = RNW.5.t
+    desc = RNW.5.desc
+    picture = GFX_report_event_german_Army
+
+    fire_only_once = yes 
+	is_triggered_only = yes
+    option = {
+        name = RNW.5.a
+		GER = { country_event = { id = reich.40 days = 1 } }
+    }
+}
+
+
+#Spiedel hates us lol
+country_event = {
+	id = RNW.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.6"}
+    title = RNW.6.t
+    desc = RNW.6.desc
+    picture = GFX_report_event_german_Army
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = {
+        name = RNW.6.a
+    }
+}
+
+country_event = { #Himmler orchestrates a scary report that makes every shit their pants
+	id = RNW.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event RNW.7"}
+		title = RNW.7.t
+		desc = RNW.7.d
+		picture = GFX_report_event_generic_german_arrests
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		option = {
+			name = RNW.7.a
+		}
+	}

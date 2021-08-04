@@ -1,0 +1,1901 @@
+# ████████╗░█████╗░███╗░░░███╗░█████╗░██╗░░██╗  ███████╗██╗░░░░░███████╗░█████╗░████████╗██╗░█████╗░███╗░░██╗░██████╗
+# ╚══██╔══╝██╔══██╗████╗░████║██╔══██╗██║░██╔╝  ██╔════╝██║░░░░░██╔════╝██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║██╔════╝
+# ░░░██║░░░██║░░██║██╔████╔██║██║░░╚═╝█████═╝░  █████╗░░██║░░░░░█████╗░░██║░░╚═╝░░░██║░░░██║██║░░██║██╔██╗██║╚█████╗░
+# ░░░██║░░░██║░░██║██║╚██╔╝██║██║░░██╗██╔═██╗░  ██╔══╝░░██║░░░░░██╔══╝░░██║░░██╗░░░██║░░░██║██║░░██║██║╚████║░╚═══██╗
+# ░░░██║░░░╚█████╔╝██║░╚═╝░██║╚█████╔╝██║░╚██╗  ███████╗███████╗███████╗╚█████╔╝░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝
+# ░░░╚═╝░░░░╚════╝░╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚═╝  ╚══════╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░
+#by Wendell
+
+####HOW TO USE SCRIPTED EFFECTS (IN TNO_Tomsk_scripted_effects.txt)
+####ERS_<Increase/Decrease>_Turnout_<low/med/high> = yes (USE IN STATE SCOPE)
+####ERS_<Increase/Decrease>_<Dec/Mod/Hum/Bas>_Pop_<low/med/high> = yes (USE IN STATE SCOPE)
+####ERS_<Increase/Decrease>_<Dec/Mod/Hum/Bas>_Auth_<low/med/high> = yes (INCREASES SALON AUTHORITY)
+####ERS_<Increase/Decrease>_<Dec/Mod/Hum/Bas>_<lower/upper>_house_support_<low/med/high> = yes (INCREASES SALON SUPPORT TO RULING FACTION)
+####ERS_<Increase/Decrease>_Idealism_<low/med/high> = yes (REGIONAL MECHANICS, MODIFIES IDEALISM BAR)
+####ERS_<Increase/Decrease>_Political_Outsiders_<low/med/high> = yes (REGIONAL MECHANICS, MODIFIES POLITICAL INTEGRATION BAR)
+#CITIES WITH DISTRICT LIST
+#Tomsk (4) #ID 578
+#Krasnoyarsk (7) #ID 757
+#Novosibirsk (8) #ID 570
+#Kemerovo (5) #ID 569
+
+ERS_setup_starting_variables = {
+	set_country_flag = Decembrist_Constitution
+
+	#REGIONAL VARIABLES
+
+	set_variable = { ERS_Idealism_Value = 54 }
+	set_variable = { ERS_Integration_Value = 31 }
+
+	set_variable = { ERS_Idealism_Tracker = 0 }
+	set_variable = { ERS_Cynicism_Tracker = 0 }
+
+	#
+
+	set_variable = { ERS_Mod_Salon_Authority = 31 }
+	set_variable = { ERS_Bas_Salon_Authority = 23 }
+	set_variable = { ERS_Dec_Salon_Authority = 28 }
+	set_variable = { ERS_Hum_Salon_Authority = 18 }
+
+	set_variable = { ERS_Seat_num = 99 }
+	set_variable = { ERS_Upper_House_Approval = 100 }
+
+	set_variable = { ERS_Hum_lower_house_support = 0.40 }
+	set_variable = { ERS_Mod_lower_house_support = 0.50 }
+	set_variable = { ERS_Bas_lower_house_support = 0.30 }
+	set_variable = { ERS_Dec_lower_house_support = 0.60 }
+
+	set_variable = { ERS_Hum_upper_house_support = 0.45 }
+	set_variable = { ERS_Mod_upper_house_support = 0.60 }
+	set_variable = { ERS_Bas_upper_house_support = 0.50 }
+	set_variable = { ERS_Dec_upper_house_support = 0.80 }
+
+	set_variable = { ERS_total_district_num = 4 }
+	hidden_effect = {
+		578 = {
+			set_variable = { ERS_Voting_Turnout = 0.43 }
+			set_state_flag = ERS_election_state
+			add_to_array = { ERS_Dec_Popularities = 0 }
+			resize_array = { ERS_Dec_Popularities = 4 }
+
+			add_to_array = { ERS_Mod_Popularities = 0 }
+			resize_array = { ERS_Mod_Popularities = 4 }
+
+			add_to_array = { ERS_Hum_Popularities = 0 }
+			resize_array = { ERS_Hum_Popularities = 4 }
+
+			add_to_array = { ERS_Bas_Popularities = 0 }
+			resize_array = { ERS_Bas_Popularities = 4 }
+
+			set_variable = { ERS_Dec_Popularities^0 = 26 }
+			set_variable = { ERS_Mod_Popularities^0 = 28 }
+			set_variable = { ERS_Hum_Popularities^0 = 22 }
+			set_variable = { ERS_Bas_Popularities^0 = 24 }
+
+			set_variable = { ERS_Dec_Popularities^1 = 27 }
+			set_variable = { ERS_Mod_Popularities^1 = 23 }
+			set_variable = { ERS_Hum_Popularities^1 = 22 }
+			set_variable = { ERS_Bas_Popularities^1 = 28 }
+
+			set_variable = { ERS_Dec_Popularities^2 = 25 }
+			set_variable = { ERS_Mod_Popularities^2 = 28 }
+			set_variable = { ERS_Hum_Popularities^2 = 26 }
+			set_variable = { ERS_Bas_Popularities^2 = 21 }
+
+			set_variable = { ERS_Dec_Popularities^3 = 30 }
+			set_variable = { ERS_Mod_Popularities^3 = 24 }
+			set_variable = { ERS_Hum_Popularities^3 = 24 }
+			set_variable = { ERS_Bas_Popularities^3 = 22 }
+		}
+	}
+	ERS_update_General_pop_values = yes
+
+	ERS_Dec_and_Bas_get_upper_house = yes
+	ERS_get_lower_house = yes
+}
+
+ERS_Apply_Dec_Duma = {
+	set_country_flag = Decembrist_Constitution
+	clr_country_flag = Humanist_Constitution
+	clr_country_flag = Modernist_Constitution
+	clr_country_flag = Bastillard_Constitution
+
+	set_variable = { ERS_Seat_num = 99 }
+	ERS_get_lower_house = yes
+	ERS_Dec_and_Bas_get_upper_house = yes
+}
+
+ERS_Apply_Bas_Duma = {
+	set_country_flag = Bastillard_Constitution
+	clr_country_flag = Humanist_Constitution
+	clr_country_flag = Decembrist_Constitution
+	clr_country_flag = Modernist_Constitution
+
+	set_variable = { ERS_Seat_num = 99 }
+	ERS_get_lower_house = yes
+	ERS_Dec_and_Bas_get_upper_house = yes
+}
+
+ERS_Apply_Hum_Duma = {
+
+	set_country_flag = Humanist_Constitution
+	clr_country_flag = Modernist_Constitution
+	clr_country_flag = Decembrist_Constitution
+	clr_country_flag = Bastillard_Constitution
+
+	clear_array = ERS_Upper_House_Display
+	set_variable = { ERS_Seat_num = 105 }
+	ERS_get_lower_house = yes
+
+	set_variable = { ERS_Hum_upper_seats = 0 }
+	set_variable = { ERS_Mod_upper_seats = 0 }
+	set_variable = { ERS_Dec_upper_seats = 0 }
+	set_variable = { ERS_Bas_upper_seats = 0 }
+}
+
+ERS_Apply_Mod_Duma = {
+	set_country_flag = Modernist_Constitution
+	clr_country_flag = Humanist_Constitution
+	clr_country_flag = Decembrist_Constitution
+	clr_country_flag = Bastillard_Constitution
+
+	#Colour Code: 1 for Modernist, 2 for Bastillards, 3 for Decembrists, 4 for Humanists
+	#ERS_Mod_Ministers^0 = #Industry
+	#ERS_Mod_Ministers^1 = #Technology
+	#ERS_Mod_Ministers^2 = #Science
+	#ERS_Mod_Ministers^3 = #Infrastructure
+	#ERS_Mod_Ministers^4 = #Education
+	#ERS_Mod_Ministers^5 = #Commerce
+	#ERS_Mod_Ministers^6 = #Military pursits
+	
+	ERS_Mod_get_ministers = yes	
+}
+
+ERS_update_General_pop_values = {
+	set_variable = { ERS_Dec_General_Pop = 0 }
+	set_variable = { ERS_Mod_General_Pop = 0 }
+	set_variable = { ERS_Hum_General_Pop = 0 }
+	set_variable = { ERS_Bas_General_Pop = 0 }
+
+	every_owned_state = {
+		limit = { ERS_can_have_elections_in_state = yes }
+		set_variable = { ERS_Dec_Average_Pop = 0 }
+		set_variable = { ERS_Mod_Average_Pop = 0 }
+		set_variable = { ERS_Hum_Average_Pop = 0 }
+		set_variable = { ERS_Bas_Average_Pop = 0 }
+
+		for_each_loop = {
+			array = ERS_Dec_Popularities
+			add_to_variable = { ERS.ERS_Dec_General_Pop = v }
+			add_to_variable = { ERS_Dec_Average_Pop = v }
+		}
+		for_each_loop = {
+			array = ERS_Mod_Popularities
+			add_to_variable = { ERS.ERS_Mod_General_Pop = v }
+			add_to_variable = { ERS_Mod_Average_Pop = v }
+		}
+		for_each_loop = {
+			array = ERS_Hum_Popularities
+			add_to_variable = { ERS.ERS_Hum_General_Pop = v }
+			add_to_variable = { ERS_Hum_Average_Pop = v }
+		}
+		for_each_loop = {
+			array = ERS_Bas_Popularities
+			add_to_variable = { ERS.ERS_Bas_General_Pop = v }
+			add_to_variable = { ERS_Bas_Average_Pop = v }
+		}
+		divide_variable = { ERS_Dec_Average_Pop = ERS_Dec_Popularities^num }
+		divide_variable = { ERS_Mod_Average_Pop = ERS_Mod_Popularities^num }
+		divide_variable = { ERS_Hum_Average_Pop = ERS_Hum_Popularities^num }
+		divide_variable = { ERS_Bas_Average_Pop = ERS_Bas_Popularities^num }
+	}
+
+	divide_variable = { ERS_Dec_General_Pop = ERS_total_district_num }
+	divide_variable = { ERS_Mod_General_Pop = ERS_total_district_num }
+	divide_variable = { ERS_Hum_General_Pop = ERS_total_district_num }
+	divide_variable = { ERS_Bas_General_Pop = ERS_total_district_num }
+
+	set_temp_variable = { 100_sum = ERS_Dec_General_Pop }
+	add_to_temp_variable = { 100_sum = ERS_Mod_General_Pop }
+	add_to_temp_variable = { 100_sum = ERS_Hum_General_Pop }
+	add_to_temp_variable = { 100_sum = ERS_Bas_General_Pop }
+	log = "[GetDateText]: [Root.GetName]: TOMSK: General Pop : Dec: [?ERS_Dec_General_Pop] Mod: [?ERS_Mod_General_Pop] Hum: [?ERS_Hum_General_Pop] Bas: [?ERS_Bas_General_Pop]"
+	if = {
+		limit = {
+			check_variable = { 100_sum = 100 }
+		}
+		log = "[GetDateText]: [Root.GetName]: TOMSK: General Popularities sum up to 100"
+	}
+	else = {
+		set_temp_variable = { ERS_fix_100_sum = 100_sum }
+		add_to_temp_variable = { ERS_fix_100_sum = -100 }
+		multiply_temp_variable = { ERS_fix_100_sum = -1 }
+		log = "[GetDateText]: [Root.GetName]: TOMSK: Popularities does not sum up to 100, adding [?ERS_fix_100_sum] to each faction"
+		if = {
+			limit = { has_government = social_conservative }
+			add_to_variable = { ERS_Dec_General_Pop = ERS_fix_100_sum }
+		}
+		else_if = {
+			limit = { has_government = social_liberal }
+			add_to_variable = { ERS_Mod_General_Pop = ERS_fix_100_sum }
+		}
+		else_if = {
+			limit = { has_government = social_democrat }
+			add_to_variable = { ERS_Hum_General_Pop = ERS_fix_100_sum }
+		}
+		else_if = {
+			limit = { has_government = authoritarian_democrat }
+			add_to_variable = { ERS_Bas_General_Pop = ERS_fix_100_sum }
+		}
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Updated General Pop: Dec: [?ERS_Dec_General_Pop] Mod: [?ERS_Mod_General_Pop] Hum: [?ERS_Hum_General_Pop] Bas: [?ERS_Bas_General_Pop]"
+
+	set_popularities = {
+		social_democrat = var:ERS_Hum_General_Pop
+		social_liberal = var:ERS_Mod_General_Pop
+		social_conservative = var:ERS_Dec_General_Pop
+		authoritarian_democrat = var:ERS_Bas_General_Pop
+	}
+}
+
+ERS_setup_novosibirsk_variables = {
+	custom_effect_tooltip = ERS_setup_novosibirsk_variables_tt
+	hidden_effect = {
+		add_to_variable = { ERS_total_district_num = 8 }
+		570 = {
+			set_state_flag = ERS_election_state
+			set_variable = { ERS_Voting_Turnout = 0.23 }
+			add_to_array = { ERS_Dec_Popularities = 0 }
+			resize_array = { ERS_Dec_Popularities = 8 }
+
+			add_to_array = { ERS_Mod_Popularities = 0 }
+			resize_array = { ERS_Mod_Popularities = 8 }
+
+			add_to_array = { ERS_Hum_Popularities = 0 }
+			resize_array = { ERS_Hum_Popularities = 8 }
+
+			add_to_array = { ERS_Bas_Popularities = 0 }
+			resize_array = { ERS_Bas_Popularities = 8 }
+
+			set_variable = { ERS_Dec_Popularities^0 = 35 }
+			set_variable = { ERS_Mod_Popularities^0 = 25 }
+			set_variable = { ERS_Hum_Popularities^0 = 15 }
+			set_variable = { ERS_Bas_Popularities^0 = 25 }
+
+			set_variable = { ERS_Dec_Popularities^1 = 40 }
+			set_variable = { ERS_Mod_Popularities^1 = 10 }
+			set_variable = { ERS_Hum_Popularities^1 = 5 }
+			set_variable = { ERS_Bas_Popularities^1 = 45 }
+
+			set_variable = { ERS_Dec_Popularities^2 = 20 }
+			set_variable = { ERS_Mod_Popularities^2 = 35 }
+			set_variable = { ERS_Hum_Popularities^2 = 15 }
+			set_variable = { ERS_Bas_Popularities^2 = 30 }
+
+			set_variable = { ERS_Dec_Popularities^3 = 40 }
+			set_variable = { ERS_Mod_Popularities^3 = 25 }
+			set_variable = { ERS_Hum_Popularities^3 = 15 }
+			set_variable = { ERS_Bas_Popularities^3 = 20 }
+
+			set_variable = { ERS_Dec_Popularities^4 = 45 }
+			set_variable = { ERS_Mod_Popularities^4 = 15 }
+			set_variable = { ERS_Hum_Popularities^4 = 15 }
+			set_variable = { ERS_Bas_Popularities^4 = 25 }
+
+			set_variable = { ERS_Dec_Popularities^5 = 30 }
+			set_variable = { ERS_Mod_Popularities^5 = 15 }
+			set_variable = { ERS_Hum_Popularities^5 = 15 }
+			set_variable = { ERS_Bas_Popularities^5 = 40 }
+
+			set_variable = { ERS_Dec_Popularities^6 = 40 }
+			set_variable = { ERS_Mod_Popularities^6 = 25 }
+			set_variable = { ERS_Hum_Popularities^6 = 15 }
+			set_variable = { ERS_Bas_Popularities^6 = 20 }
+
+			set_variable = { ERS_Dec_Popularities^7 = 25 }
+			set_variable = { ERS_Mod_Popularities^7 = 35 }
+			set_variable = { ERS_Hum_Popularities^7 = 20 }
+			set_variable = { ERS_Bas_Popularities^7 = 20 }
+		}
+		ERS_update_General_pop_values = yes
+	}
+}
+
+ERS_setup_krasnoyarsk_variables = {
+	custom_effect_tooltip = ERS_setup_krasnoyarsk_variables_tt
+	hidden_effect = {
+		add_to_variable = { ERS_total_district_num = 7 }
+		757 = {
+			set_variable = { ERS_Voting_Turnout = 0.32 }
+			set_state_flag = ERS_election_state
+			add_to_array = { ERS_Dec_Popularities = 0 }
+			resize_array = { ERS_Dec_Popularities = 7 }
+
+			add_to_array = { ERS_Mod_Popularities = 0 }
+			resize_array = { ERS_Mod_Popularities = 7 }
+
+			add_to_array = { ERS_Hum_Popularities = 0 }
+			resize_array = { ERS_Hum_Popularities = 7 }
+
+			add_to_array = { ERS_Bas_Popularities = 0 }
+			resize_array = { ERS_Bas_Popularities = 7 }
+
+			set_variable = { ERS_Dec_Popularities^0 = 20 }
+			set_variable = { ERS_Mod_Popularities^0 = 40 }
+			set_variable = { ERS_Hum_Popularities^0 = 15 }
+			set_variable = { ERS_Bas_Popularities^0 = 25 }
+
+			set_variable = { ERS_Dec_Popularities^1 = 45 }
+			set_variable = { ERS_Mod_Popularities^1 = 40 }
+			set_variable = { ERS_Hum_Popularities^1 = 10 }
+			set_variable = { ERS_Bas_Popularities^1 = 5 }
+
+			set_variable = { ERS_Dec_Popularities^2 = 20 }
+			set_variable = { ERS_Mod_Popularities^2 = 35 }
+			set_variable = { ERS_Hum_Popularities^2 = 30 }
+			set_variable = { ERS_Bas_Popularities^2 = 15 }
+
+			set_variable = { ERS_Dec_Popularities^3 = 20 }
+			set_variable = { ERS_Mod_Popularities^3 = 25 }
+			set_variable = { ERS_Hum_Popularities^3 = 45 }
+			set_variable = { ERS_Bas_Popularities^3 = 10 }
+
+			set_variable = { ERS_Dec_Popularities^4 = 40 }
+			set_variable = { ERS_Mod_Popularities^4 = 25 }
+			set_variable = { ERS_Hum_Popularities^4 = 15 }
+			set_variable = { ERS_Bas_Popularities^4 = 20 }
+
+			set_variable = { ERS_Dec_Popularities^5 = 15 }
+			set_variable = { ERS_Mod_Popularities^5 = 30 }
+			set_variable = { ERS_Hum_Popularities^5 = 40 }
+			set_variable = { ERS_Bas_Popularities^5 = 15 }
+
+			set_variable = { ERS_Dec_Popularities^6 = 40 }
+			set_variable = { ERS_Mod_Popularities^6 = 25 }
+			set_variable = { ERS_Hum_Popularities^6 = 20 }
+			set_variable = { ERS_Bas_Popularities^6 = 15 }
+		}
+		ERS_update_General_pop_values = yes
+	}
+}
+
+ERS_setup_kemerovo_variables = {
+	custom_effect_tooltip = ERS_setup_kemerovo_variables_tt
+	hidden_effect = {
+		add_to_variable = { ERS_total_district_num = 5 }
+		569 = {
+			set_variable = { ERS_Voting_Turnout = 0.39 }
+			set_state_flag = ERS_election_state
+			add_to_array = { ERS_Dec_Popularities = 0 }
+			resize_array = { ERS_Dec_Popularities = 5 }
+
+			add_to_array = { ERS_Mod_Popularities = 0 }
+			resize_array = { ERS_Mod_Popularities = 5 }
+
+			add_to_array = { ERS_Hum_Popularities = 0 }
+			resize_array = { ERS_Hum_Popularities = 5 }
+
+			add_to_array = { ERS_Bas_Popularities = 0 }
+			resize_array = { ERS_Bas_Popularities = 5 }
+
+			set_variable = { ERS_Dec_Popularities^0 = 20 }
+			set_variable = { ERS_Mod_Popularities^0 = 25 }
+			set_variable = { ERS_Hum_Popularities^0 = 30 }
+			set_variable = { ERS_Bas_Popularities^0 = 25 }
+
+			set_variable = { ERS_Dec_Popularities^1 = 10 }
+			set_variable = { ERS_Mod_Popularities^1 = 45 }
+			set_variable = { ERS_Hum_Popularities^1 = 40 }
+			set_variable = { ERS_Bas_Popularities^1 = 5 }
+
+			set_variable = { ERS_Dec_Popularities^2 = 20 }
+			set_variable = { ERS_Mod_Popularities^2 = 35 }
+			set_variable = { ERS_Hum_Popularities^2 = 30 }
+			set_variable = { ERS_Bas_Popularities^2 = 15 }
+
+			set_variable = { ERS_Dec_Popularities^3 = 40 }
+			set_variable = { ERS_Mod_Popularities^3 = 25 }
+			set_variable = { ERS_Hum_Popularities^3 = 15 }
+			set_variable = { ERS_Bas_Popularities^3 = 20 }
+
+			set_variable = { ERS_Dec_Popularities^4 = 25 }
+			set_variable = { ERS_Mod_Popularities^4 = 25 }
+			set_variable = { ERS_Hum_Popularities^4 = 35 }
+			set_variable = { ERS_Bas_Popularities^4 = 15 }
+		}
+		ERS_update_General_pop_values = yes
+	}
+}
+
+ERS_clamp_Auth_vars = {
+	set_temp_variable = { ERS_Fix_Numbers = ERS_Dec_Salon_Authority }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Mod_Salon_Authority }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Hum_Salon_Authority }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Bas_Salon_Authority }
+	add_to_temp_variable = { ERS_Fix_Numbers = -100 }
+	if = {
+		limit = {
+			count_triggers = {
+				amount = 3
+				check_variable = { ERS_Dec_Salon_Authority < 0.01 }
+				check_variable = { ERS_Mod_Salon_Authority < 0.01 }
+				check_variable = { ERS_Hum_Salon_Authority < 0.01 }
+				check_variable = { ERS_Bas_Salon_Authority < 0.01 }
+			}
+		}
+		divide_temp_variable = { ERS_Fix_Numbers = -1 }
+	}
+	else_if = {
+		limit = {
+			count_triggers = {
+				amount = 2
+				check_variable = { ERS_Dec_Salon_Authority < 0.01 }
+				check_variable = { ERS_Mod_Salon_Authority < 0.01 }
+				check_variable = { ERS_Hum_Salon_Authority < 0.01 }
+				check_variable = { ERS_Bas_Salon_Authority < 0.01 }
+			}
+		}
+		divide_temp_variable = { ERS_Fix_Numbers = -2 }
+	}
+	else_if = {
+		limit = {
+			count_triggers = {
+				amount = 1
+				check_variable = { ERS_Dec_Salon_Authority < 0.01 }
+				check_variable = { ERS_Mod_Salon_Authority < 0.01 }
+				check_variable = { ERS_Hum_Salon_Authority < 0.01 }
+				check_variable = { ERS_Bas_Salon_Authority < 0.01 }
+			}
+		}
+		divide_temp_variable = { ERS_Fix_Numbers = -3 }
+	}
+	else = {
+		divide_temp_variable = { ERS_Fix_Numbers = -4 }
+	}
+	
+	if = {
+		limit = {
+			check_variable = { ERS_Dec_Salon_Authority > 0.01 }
+		}
+		add_to_variable = { ERS_Dec_Salon_Authority = ERS_Fix_Numbers }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_Mod_Salon_Authority > 0.01 }
+		}
+		add_to_variable = { ERS_Mod_Salon_Authority = ERS_Fix_Numbers }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_Hum_Salon_Authority > 0.01 }
+		}
+		add_to_variable = { ERS_Hum_Salon_Authority = ERS_Fix_Numbers }
+	}
+	if = {
+		limit = {
+			check_variable = { ERS_Bas_Salon_Authority > 0.01 }
+		}
+		add_to_variable = { ERS_Bas_Salon_Authority = ERS_Fix_Numbers }
+	}
+
+	clamp_variable = { var = ERS_Dec_Salon_Authority min = 0 max = 100 }
+	clamp_variable = { var = ERS_Mod_Salon_Authority min = 0 max = 100 }
+	clamp_variable = { var = ERS_Hum_Salon_Authority min = 0 max = 100 }
+	clamp_variable = { var = ERS_Bas_Salon_Authority min = 0 max = 100 }
+}
+
+ERS_clamp_Pop_vars = {
+	set_variable = { ERS_Dec_General_Pop = 0 }
+	set_variable = { ERS_Mod_General_Pop = 0 }
+	set_variable = { ERS_Hum_General_Pop = 0 }
+	set_variable = { ERS_Bas_General_Pop = 0 }
+
+	hidden_effect = {
+		every_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			for_each_loop = {
+				array = ERS_Dec_Popularities
+				set_temp_variable = { 100_sum = ERS_Dec_Popularities^i }
+				add_to_temp_variable = { 100_sum = ERS_Hum_Popularities^i }
+				add_to_temp_variable = { 100_sum = ERS_Mod_Popularities^i }
+				add_to_temp_variable = { 100_sum = ERS_Bas_Popularities^i }
+				#log = "[GetDateText]: [Root.GetName]: TOMSK: SUM OF DISTRICT [?i] POPS = [?100_sum]"
+				if = {
+					limit = {
+						check_variable = { 100_sum = 100 }
+					}
+					#log = "[GetDateText]: [Root.GetName]: TOMSK: Popularities sum up to 100"
+				}
+				else = {
+					set_temp_variable = { ERS_fix_100_sum = 100_sum }
+					add_to_temp_variable = { ERS_fix_100_sum = -100 }
+
+					if = {
+						limit = {
+							count_triggers = {
+								amount = 3
+								check_variable = { ERS_Dec_Popularities^i < 0.01 }
+								check_variable = { ERS_Hum_Popularities^i < 0.01 }
+								check_variable = { ERS_Mod_Popularities^i < 0.01 }
+								check_variable = { ERS_Bas_Popularities^i < 0.01 }
+							}
+						}
+						divide_temp_variable = { ERS_fix_100_sum = -1 }
+					}
+					else_if = {
+						limit = {
+							count_triggers = {
+								amount = 2
+								check_variable = { ERS_Dec_Popularities^i < 0.01 }
+								check_variable = { ERS_Hum_Popularities^i < 0.01 }
+								check_variable = { ERS_Mod_Popularities^i < 0.01 }
+								check_variable = { ERS_Bas_Popularities^i < 0.01 }
+							}
+						}
+						divide_temp_variable = { ERS_fix_100_sum = -2 }
+					}
+					else_if = {
+						limit = {
+							count_triggers = {
+								amount = 1
+								check_variable = { ERS_Dec_Popularities^i < 0.01 }
+								check_variable = { ERS_Hum_Popularities^i < 0.01 }
+								check_variable = { ERS_Mod_Popularities^i < 0.01 }
+								check_variable = { ERS_Bas_Popularities^i < 0.01 }
+							}
+						}
+						divide_temp_variable = { ERS_fix_100_sum = -3 }
+					}
+					else = {
+						divide_temp_variable = { ERS_fix_100_sum = -4 }
+					}
+
+					if = {
+						limit = {
+							check_variable = { ERS_Dec_Popularities^i > 0.01 }
+						}
+						add_to_variable = { ERS_Dec_Popularities^i = ERS_fix_100_sum }
+					}
+					if = {
+						limit = {
+							check_variable = { ERS_Mod_Popularities^i > 0.01 }
+						}
+						add_to_variable = { ERS_Mod_Popularities^i = ERS_fix_100_sum }
+					}
+					if = {
+						limit = {
+							check_variable = { ERS_Hum_Popularities^i > 0.01 }
+						}
+						add_to_variable = { ERS_Hum_Popularities^i = ERS_fix_100_sum }
+					}
+					if = {
+						limit = {
+							check_variable = { ERS_Bas_Popularities^i  > 0.01 }
+						}
+						add_to_variable = { ERS_Bas_Popularities^i  = ERS_fix_100_sum }
+					}
+					#log = "[GetDateText]: [Root.GetName]: TOMSK: Popularities does not sum up to 100, adding [?ERS_fix_100_sum] to each faction"
+				}
+				#log = "[GetDateText]: [Root.GetName]: TOMSK: District Index [?i] Final Popularities, DEC : [?ERS_Dec_Popularities^i] MOD: [?ERS_Mod_Popularities^i] HUM : [?ERS_Hum_Popularities^i] BAS : [?ERS_Bas_Popularities^i]"
+			}
+
+			for_each_loop = {
+				array = ERS_Dec_Popularities
+				clamp_variable = { var = ERS_Dec_Popularities^i min = 0 max = 100 }
+			}
+			for_each_loop = {
+				array = ERS_Hum_Popularities
+				clamp_variable = { var = ERS_Hum_Popularities^i min = 0 max = 100 }
+			}
+			for_each_loop = {
+				array = ERS_Mod_Popularities
+				clamp_variable = { var = ERS_Mod_Popularities^i min = 0 max = 100 }
+			}
+			for_each_loop = {
+				array = ERS_Bas_Popularities
+				clamp_variable = { var = ERS_Bas_Popularities^i min = 0 max = 100 }
+			}
+		}
+	}
+	ERS_update_General_pop_values = yes
+}
+
+ERS_clamp_support_variables = {
+	clamp_variable = { var = ERS_Mod_lower_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Hum_lower_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Dec_lower_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Bas_lower_house_support min = 0 max = 1 }
+
+	clamp_variable = { var = ERS_Mod_upper_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Hum_upper_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Dec_upper_house_support min = 0 max = 1 }
+	clamp_variable = { var = ERS_Bas_upper_house_support min = 0 max = 1 }
+}
+
+ERS_clamp_regional_variables = {
+	clamp_variable = { var = ERS_Idealism_Value min = 0 max = 100 }
+	clamp_variable = { var = ERS_Integration_Value min = 0 max = 100 }
+	ERS_set_idea_variable = yes
+}
+
+ERS_set_idea_variable = {
+	if = {
+		limit = {
+			check_variable = { ERS_Idealism_Value > 70 }
+			NOT = { has_idea = ERS_idea_High_idealism }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Moderate_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_Moderate_idealism
+				add_idea = ERS_idea_High_idealism
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Flagging_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_Flagging_idealism
+				add_idea = ERS_idea_High_idealism
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ERS_Idealism_Value > 30 }
+			check_variable = { ERS_Idealism_Value < 70 }
+			NOT = { has_idea = ERS_idea_Moderate_idealism }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_High_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_High_idealism
+				add_idea = ERS_idea_Moderate_idealism
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Flagging_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_Flagging_idealism
+				add_idea = ERS_idea_Moderate_idealism
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ERS_Idealism_Value < 30 }
+			NOT = { has_idea = ERS_idea_Flagging_idealism }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Moderate_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_Moderate_idealism
+				add_idea = ERS_idea_Flagging_idealism
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Moderate_idealism }
+			swap_ideas = {
+				remove_idea = ERS_idea_Moderate_idealism
+				add_idea = ERS_idea_Flagging_idealism
+			}
+		}
+	}
+	#
+	if = {
+		limit = {
+			check_variable = { ERS_Integration_Value > 90 }
+			NOT = { has_idea = ERS_idea_Entirely_integrated_society }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_some_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_some_political_outsiders
+				add_idea = ERS_idea_Entirely_integrated_society
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_numerous_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_numerous_political_outsiders
+				add_idea = ERS_idea_Entirely_integrated_society
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_extreme_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_extreme_political_outsiders
+				add_idea = ERS_idea_Entirely_integrated_society
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ERS_Integration_Value > 70 }
+			check_variable = { ERS_Integration_Value < 90 }
+			NOT = { has_idea = ERS_idea_some_political_outsiders }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Entirely_integrated_society }
+			swap_ideas = {
+				remove_idea = ERS_idea_Entirely_integrated_society
+				add_idea = ERS_idea_some_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_numerous_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_numerous_political_outsiders
+				add_idea = ERS_idea_some_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_extreme_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_extreme_political_outsiders
+				add_idea = ERS_idea_some_political_outsiders
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ERS_Integration_Value > 30 }
+			check_variable = { ERS_Integration_Value < 70 }
+			NOT = { has_idea = ERS_idea_numerous_political_outsiders }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Entirely_integrated_society }
+			swap_ideas = {
+				remove_idea = ERS_idea_Entirely_integrated_society
+				add_idea = ERS_idea_numerous_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_some_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_some_political_outsiders
+				add_idea = ERS_idea_numerous_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_extreme_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_extreme_political_outsiders
+				add_idea = ERS_idea_numerous_political_outsiders
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { ERS_Integration_Value < 30 }
+			NOT = { has_idea = ERS_idea_extreme_political_outsiders }
+		}
+		if = {
+			limit = { has_idea = ERS_idea_Entirely_integrated_society }
+			swap_ideas = {
+				remove_idea = ERS_idea_Entirely_integrated_society
+				add_idea = ERS_idea_extreme_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_some_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_some_political_outsiders
+				add_idea = ERS_idea_extreme_political_outsiders
+			}
+		}
+		if = {
+			limit = { has_idea = ERS_idea_numerous_political_outsiders }
+			swap_ideas = {
+				remove_idea = ERS_idea_numerous_political_outsiders
+				add_idea = ERS_idea_extreme_political_outsiders
+			}
+		}
+	}
+}
+
+ERS_save_current_values = {
+	if = {
+		limit = {
+			OR = {
+				has_country_flag = Decembrist_Constitution
+				has_country_flag = Bastillard_Constitution
+			}
+		}
+		set_variable = { ERS_Dec_upper_house_old_value = ERS_Dec_upper_seats }
+		set_variable = { ERS_Mod_upper_house_old_value = ERS_Mod_upper_seats }
+		set_variable = { ERS_Hum_upper_house_old_value = ERS_Hum_upper_seats }
+		set_variable = { ERS_Bas_upper_house_old_value = ERS_Bas_upper_seats }
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = Modernist_Constitution
+			}
+		}
+		set_variable = { ERS_Dec_lower_house_old_value = ERS_Dec_lower_seats }
+		set_variable = { ERS_Mod_lower_house_old_value = ERS_Mod_lower_seats }
+		set_variable = { ERS_Hum_lower_house_old_value = ERS_Hum_lower_seats }
+		set_variable = { ERS_Bas_lower_house_old_value = ERS_Bas_lower_seats }
+	}
+	if = {
+		limit = {
+			has_country_flag = Modernist_Constitution
+		}
+		add_to_array = { ERS_Mod_Ministers_old_value = 0 }
+		resize_array = { ERS_Mod_Ministers_old_value = 7 }
+		for_each_loop = {
+			array = ERS_Mod_Ministers
+			set_variable = { ERS_Mod_Ministers_old_value^i = v }
+		}
+	}
+}
+
+ERS_calculate_new_values = {
+	if = {
+		limit = {
+			OR = {
+				has_country_flag = Decembrist_Constitution
+				has_country_flag = Bastillard_Constitution
+			}
+		}
+		set_variable = { ERS_Dec_upper_house_display = ERS_Dec_upper_seats }
+		subtract_from_variable = { ERS_Dec_upper_house_display = ERS_Dec_upper_house_old_value }
+		set_variable = { ERS_Mod_upper_house_display = ERS_Mod_upper_seats }
+		subtract_from_variable = { ERS_Mod_upper_house_display = ERS_Mod_upper_house_old_value }
+		set_variable = { ERS_Hum_upper_house_display = ERS_Hum_upper_seats }
+		subtract_from_variable = { ERS_Hum_upper_house_display = ERS_Hum_upper_house_old_value }
+		set_variable = { ERS_Bas_upper_house_display = ERS_Bas_upper_seats }
+		subtract_from_variable = { ERS_Bas_upper_house_display = ERS_Bas_upper_house_old_value }
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = Modernist_Constitution
+			}
+		}
+		set_variable = { ERS_Dec_lower_house_display = ERS_Dec_lower_seats }
+		subtract_from_variable = { ERS_Dec_lower_house_display = ERS_Dec_lower_house_old_value }
+		set_variable = { ERS_Mod_lower_house_display = ERS_Mod_lower_seats }
+		subtract_from_variable = { ERS_Mod_lower_house_display = ERS_Mod_lower_house_old_value }
+		set_variable = { ERS_Hum_lower_house_display = ERS_Hum_lower_seats }
+		subtract_from_variable = { ERS_Hum_lower_house_display = ERS_Hum_lower_house_old_value }
+		set_variable = { ERS_Bas_lower_house_display = ERS_Bas_lower_seats }
+		subtract_from_variable = { ERS_Bas_lower_house_display = ERS_Bas_lower_house_old_value }
+	}
+}
+
+ERS_clear_all_values = {
+	clear_variable = ERS_Dec_upper_house_old_value
+	clear_variable = ERS_Mod_upper_house_old_value
+	clear_variable = ERS_Hum_upper_house_old_value
+	clear_variable = ERS_Bas_upper_house_old_value
+
+	clear_variable = ERS_Dec_lower_house_old_value
+	clear_variable = ERS_Mod_lower_house_old_value
+	clear_variable = ERS_Hum_lower_house_old_value
+	clear_variable = ERS_Bas_lower_house_old_value
+
+	clear_variable = ERS_Dec_lower_house_display
+	clear_variable = ERS_Mod_lower_house_display
+	clear_variable = ERS_Hum_lower_house_display
+	clear_variable = ERS_Bas_lower_house_display
+
+	clear_variable = ERS_Dec_upper_house_display
+	clear_variable = ERS_Mod_upper_house_display
+	clear_variable = ERS_Hum_upper_house_display
+	clear_variable = ERS_Bas_upper_house_display
+
+	clear_array = ERS_Mod_Ministers_old_value
+}
+
+ERS_get_voting_value_from_array = {
+	set_temp_variable = { ERS_voting_temp_value = v }
+	multiply_temp_variable = { ERS_voting_temp_value = ERS_Voting_Turnout }
+}
+
+ERS_get_presidential_election = {
+	add_to_array = { ERS_Presidental_Election_Array = 0 }
+	resize_array = { ERS_Presidental_Election_Array = 4 }
+
+	hidden_effect = {
+		every_owned_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			for_each_loop = {
+				array = ERS_Mod_Popularities
+				ERS_get_voting_value_from_array = yes
+				add_to_variable = { ERS.ERS_Presidental_Election_Array^0 = ERS_voting_temp_value }
+			}
+			for_each_loop = {
+				array = ERS_Dec_Popularities
+				ERS_get_voting_value_from_array = yes
+				add_to_variable = { ERS.ERS_Presidental_Election_Array^1 = ERS_voting_temp_value }
+			}
+			for_each_loop = {
+				array = ERS_Hum_Popularities
+				ERS_get_voting_value_from_array = yes
+				add_to_variable = { ERS.ERS_Presidental_Election_Array^2 = ERS_voting_temp_value }
+			}
+			for_each_loop = {
+				array = ERS_Bas_Popularities
+				ERS_get_voting_value_from_array = yes
+				add_to_variable = { ERS.ERS_Presidental_Election_Array^3 = ERS_voting_temp_value }
+			}
+		}
+	}
+	
+	log = "[GetDateText]: [Root.GetName]: TOMSK ELECTIONS: MOD TOTAL SUPPORT [?ERS_Presidental_Election_Array^0]"
+	log = "[GetDateText]: [Root.GetName]: TOMSK ELECTIONS: DEC TOTAL SUPPORT [?ERS_Presidental_Election_Array^1]"
+	log = "[GetDateText]: [Root.GetName]: TOMSK ELECTIONS: HUM TOTAL SUPPORT [?ERS_Presidental_Election_Array^2]"
+	log = "[GetDateText]: [Root.GetName]: TOMSK ELECTIONS: BAS TOTAL SUPPORT [?ERS_Presidental_Election_Array^3]"
+
+	find_highest_in_array = { array = ERS_Presidental_Election_Array }
+
+	log = "[GetDateText]: [Root.GetName]: TOMSK: [?i] FACTION WON WITH [?v] TOTAL POPULARITY"
+
+	hidden_effect = { ##ADD YOUR STUFF HERE
+		if = {
+			limit = {
+				check_variable = { i = 0 } #Modernists
+			}
+			if = {
+				limit = { has_country_flag = ERS_63_Elections }
+				country_event = ERS_elections.8
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_67_Elections }
+				country_event = ERS_elections.4
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_71_Elections }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { i = 1 } #Decembrists
+			}
+			if = {
+				limit = { has_country_flag = ERS_63_Elections }
+				country_event = ERS_elections.7
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_67_Elections }
+				country_event = ERS_elections.3
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_71_Elections }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { i = 2 } #Humanists
+			}
+			if = {
+				limit = { has_country_flag = ERS_63_Elections }
+				country_event = ERS_elections.6
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_67_Elections }
+				country_event = ERS_elections.2
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_71_Elections }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { i = 3 } #Bastillards
+			}
+			if = {
+				limit = { has_country_flag = ERS_63_Elections }
+				country_event = ERS_elections.9
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_67_Elections }
+				country_event = ERS_elections.5
+			}
+			else_if = {
+				limit = { has_country_flag = ERS_71_Elections }
+			}
+		}
+	}
+	clr_country_flag = ERS_63_Elections
+	clr_country_flag = ERS_67_Elections
+	clr_country_flag = ERS_71_Elections
+
+	clr_country_flag = ERS_Dec_Campaign
+	clr_country_flag = ERS_Mod_Campaign
+	clr_country_flag = ERS_Hum_Campaign
+	clr_country_flag = ERS_Bas_Campaign
+	clear_array = ERS_Presidental_Election_Array
+}
+
+ERS_Mod_get_ministers = {
+	set_variable = { ERS_Hum_lower_seats = 0 }
+	set_variable = { ERS_Mod_lower_seats = 0 }
+	set_variable = { ERS_Dec_lower_seats = 0 }
+	set_variable = { ERS_Bas_lower_seats = 0 }
+
+	set_variable = { ERS_Hum_upper_seats = 0 }
+	set_variable = { ERS_Mod_upper_seats = 0 }
+	set_variable = { ERS_Dec_upper_seats = 0 }
+	set_variable = { ERS_Bas_upper_seats = 0 }
+
+	clear_array = ERS_Mod_Ministers
+	clear_array = ERS_Lower_House_Display
+	clear_array = ERS_Upper_House_Display
+
+	add_to_array = { ERS_Mod_Ministers = 0 }
+	resize_array = { ERS_Mod_Ministers = 7 }
+
+	set_temp_variable = { ERS_Hum_cabinet_temp = 0 }
+	set_temp_variable = { ERS_Mod_cabinet_temp = 0 }
+	set_temp_variable = { ERS_Dec_cabinet_temp = 0 }
+	set_temp_variable = { ERS_Bas_cabinet_temp = 0 }
+
+	every_owned_state = {
+		limit = { ERS_can_have_elections_in_state = yes }
+		for_each_loop = {
+			array = ERS_Hum_Popularities
+			ERS_get_voting_value_from_array = yes
+			add_to_temp_variable = { ERS.ERS_Hum_cabinet_temp = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Mod_Popularities
+			ERS_get_voting_value_from_array = yes
+			add_to_temp_variable = { ERS.ERS_Mod_cabinet_temp = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Dec_Popularities
+			ERS_get_voting_value_from_array = yes
+			add_to_temp_variable = { ERS.ERS_Dec_cabinet_temp = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Bas_Popularities
+			ERS_get_voting_value_from_array = yes
+			add_to_temp_variable = { ERS.ERS_Bas_cabinet_temp = ERS_voting_temp_value }
+		}
+	}
+
+	divide_temp_variable = { ERS_Hum_cabinet_temp = 4 }
+	multiply_temp_variable = { ERS_Hum_cabinet_temp = 0.07 }
+
+	divide_temp_variable = { ERS_Mod_cabinet_temp = 4 }
+	multiply_temp_variable = { ERS_Mod_cabinet_temp = 0.07 }
+
+	divide_temp_variable = { ERS_Dec_cabinet_temp = 4 }
+	multiply_temp_variable = { ERS_Dec_cabinet_temp = 0.07 }
+
+	divide_temp_variable = { ERS_Bas_cabinet_temp = 4 }
+	multiply_temp_variable = { ERS_Bas_cabinet_temp = 0.07 }
+
+	round_temp_variable = ERS_Hum_cabinet_temp
+	round_temp_variable = ERS_Mod_cabinet_temp
+	round_temp_variable = ERS_Dec_cabinet_temp
+	round_temp_variable = ERS_Bas_cabinet_temp
+
+	log = "[GetDateText]: [Root.GetName]: TOMSK: DEC: [?ERS_Dec_cabinet_temp]  MOD: [?ERS_Mod_cabinet_temp]  HUM: [?ERS_Hum_cabinet_temp]  BAS: [?ERS_Bas_cabinet_temp]"
+
+	#Fix if Minister numbers isn't 7
+	set_temp_variable = { ERS_Fix_Numbers = ERS_Hum_cabinet_temp }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Mod_cabinet_temp }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Dec_cabinet_temp }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Bas_cabinet_temp }
+	add_to_temp_variable = { ERS_Fix_Numbers = -7 }
+	multiply_temp_variable = { ERS_Fix_Numbers = -1 }
+	set_temp_variable = { ERS_check_loop = 1 }
+	for_loop_effect = {
+		end = 7
+		if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers < 0 }
+			}
+			set_temp_variable = {  ERS_check_fix_numbers = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers > 0 }
+			}
+			set_temp_variable = { ERS_check_fix_numbers = 1 }
+		}
+		else_if = {
+			limit = { 
+				check_variable = { ERS_Fix_Numbers = 0 }
+			}
+			log = "[GetDateText]: [Root.GetName]: Tomsk Cabinet: Break For Loop"
+			set_temp_variable = { break = 1 }
+		}
+		
+		if = {
+			limit = { #fuck you johan
+				check_variable = { break = 0 }
+			}
+			if = {
+				limit = {
+					check_variable = { ERS_check_loop = 1 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+					}
+					add_to_temp_variable = { ERS_Mod_cabinet_temp = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_temp_variable = { ERS_Mod_cabinet_temp = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 2 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+					}
+					add_to_temp_variable = { ERS_Dec_cabinet_temp = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_temp_variable = { ERS_Dec_cabinet_temp = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 3 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+					}
+					add_to_temp_variable = { ERS_Hum_cabinet_temp = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_temp_variable = { ERS_Hum_cabinet_temp = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 4 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+					}
+					add_to_temp_variable = { ERS_Bas_cabinet_temp = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_temp_variable = { ERS_Bas_cabinet_temp = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else = {
+				set_temp_variable = { ERS_check_loop = 1 }
+			}
+		}
+	}
+	
+
+	hidden_effect = {
+		for_each_loop = {
+			array = ERS_Mod_Ministers
+			random_list = {
+				25 = {
+					set_variable = { ERS_Mod_Ministers^i = 1 }
+					add_to_variable = { ERS_Mod_upper_seats = 1 }
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { ERS_Mod_upper_seats = ERS_Mod_cabinet_temp }
+							check_variable = { ERS_Mod_upper_seats > ERS_Mod_cabinet_temp }
+						}
+					}
+				}
+				25 = {
+					set_variable = { ERS_Mod_Ministers^i = 2 }
+					add_to_variable = { ERS_Bas_upper_seats = 1 }
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { ERS_Bas_upper_seats = ERS_Bas_cabinet_temp }
+							check_variable = { ERS_Bas_upper_seats > ERS_Bas_cabinet_temp }
+						}
+					}
+				}
+				25 = {
+					set_variable = { ERS_Mod_Ministers^i = 3 }
+					add_to_variable = { ERS_Dec_upper_seats = 1 }
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { ERS_Dec_upper_seats = ERS_Dec_cabinet_temp }
+							check_variable = { ERS_Dec_upper_seats > ERS_Dec_cabinet_temp }
+						}
+					}
+				}
+				25 = {
+					set_variable = { ERS_Mod_Ministers^i = 4 }
+					add_to_variable = { ERS_Hum_upper_seats = 1 }
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { ERS_Hum_upper_seats = ERS_Hum_cabinet_temp }
+							check_variable = { ERS_Hum_upper_seats > ERS_Hum_cabinet_temp }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Final Cabinet DEC: [?ERS_Dec_upper_seats]  MOD: [?ERS_Mod_upper_seats]  HUM: [?ERS_Hum_upper_seats]  BAS: [?ERS_Bas_upper_seats]"
+}
+
+ERS_get_lower_house = {
+	set_temp_variable = { ERS_seat_to_distribute = ERS_Seat_num }
+	divide_temp_variable = { ERS_seat_to_distribute = ERS_total_district_num }
+	divide_temp_variable = { ERS_seat_to_distribute = 100 }
+
+	set_variable = { ERS_Hum_lower_seats = 0 }
+	set_variable = { ERS_Mod_lower_seats = 0 }
+	set_variable = { ERS_Dec_lower_seats = 0 }
+	set_variable = { ERS_Bas_lower_seats = 0 }
+
+	every_owned_state = {
+		limit = { ERS_can_have_elections_in_state = yes }
+
+		for_each_loop = {
+			array = ERS_Hum_Popularities
+			ERS_get_voting_value_from_array = yes
+			multiply_temp_variable = { ERS_voting_temp_value = ERS.ERS_seat_to_distribute }
+			add_to_variable = { ERS.ERS_Hum_lower_seats = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Mod_Popularities
+			ERS_get_voting_value_from_array = yes
+			multiply_temp_variable = { ERS_voting_temp_value = ERS.ERS_seat_to_distribute }
+			add_to_variable = { ERS.ERS_Mod_lower_seats = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Dec_Popularities
+			ERS_get_voting_value_from_array = yes
+			multiply_temp_variable = { ERS_voting_temp_value = ERS.ERS_seat_to_distribute }
+			add_to_variable = { ERS.ERS_Dec_lower_seats = ERS_voting_temp_value }
+		}
+
+		for_each_loop = {
+			array = ERS_Bas_Popularities
+			ERS_get_voting_value_from_array = yes
+			multiply_temp_variable = { ERS_voting_temp_value = ERS.ERS_seat_to_distribute }
+			add_to_variable = { ERS.ERS_Bas_lower_seats = ERS_voting_temp_value }
+		}
+	}
+
+	round_variable = ERS_Hum_lower_seats
+	round_variable = ERS_Mod_lower_seats
+	round_variable = ERS_Dec_lower_seats
+	round_variable = ERS_Bas_lower_seats
+
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Temp Lower Seats , DEC : [?ERS_Dec_lower_seats] MOD: [?ERS_Mod_lower_seats] HUM : [?ERS_Hum_lower_seats] BAS : [?ERS_Bas_lower_seats]"
+	
+	set_temp_variable = { ERS_Fix_Numbers = ERS_Hum_lower_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Mod_lower_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Dec_lower_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Bas_lower_seats }
+
+	subtract_from_temp_variable = { ERS_Fix_Numbers = ERS_Seat_num }
+	multiply_temp_variable = { ERS_Fix_Numbers = -1 }
+	set_temp_variable = { ERS_check_loop = 1 }
+	for_loop_effect = {
+		end = 110
+		if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers < 0 }
+			}
+			set_temp_variable = {  ERS_check_fix_numbers = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers > 0 }
+			}
+			set_temp_variable = { ERS_check_fix_numbers = 1 }
+		}
+		else_if = {
+			limit = { 
+				check_variable = { ERS_Fix_Numbers = 0 }
+			}
+			log = "[GetDateText]: [Root.GetName]: Tomsk Elections: Break For Loop"
+			set_temp_variable = { break = 1 }
+		}
+		
+		if = {
+			limit = { #fuck you johan
+				check_variable = { break = 0 }
+			}
+			if = {
+				limit = {
+					check_variable = { ERS_check_loop = 1 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Dec_upper_seats > 0 }
+					}
+					add_to_variable = { ERS_Dec_lower_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Dec_lower_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 2 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Mod_lower_seats > 0 }
+					}
+					add_to_variable = { ERS_Mod_lower_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Mod_lower_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 3 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Hum_lower_seats > 0 }
+					}
+					add_to_variable = { ERS_Hum_lower_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Hum_lower_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 4 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Bas_lower_seats > 0 }
+					}
+					add_to_variable = { ERS_Bas_lower_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Bas_lower_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else = {
+				set_temp_variable = { ERS_check_loop = 1 }
+			}
+		}
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Final Lower Seats , DEC : [?ERS_Dec_lower_seats] MOD: [?ERS_Mod_lower_seats] HUM : [?ERS_Hum_lower_seats] BAS : [?ERS_Bas_lower_seats]"
+	ERS_Get_Lower_House_Array = yes
+}
+
+ERS_Get_Lower_House_Array = {
+	clear_array = ERS_Lower_House_Display
+	add_to_array = { ERS_Lower_House_Display = 0 }
+	resize_array = { ERS_Lower_House_Display = ERS_Seat_num }
+	for_each_loop = {
+		array = ERS_Lower_House_Display
+		set_temp_variable = { temp_index = i }
+		add_to_variable = { temp_index = -0.01 }
+		if = {
+			limit = {
+				check_variable = { ERS_Dec_lower_seats > temp_index }
+			}
+			set_variable = { ERS_Lower_House_Display^i = 1 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: LOWER HOUSE: ADDED 1 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Mod_Gui_temp = ERS_Dec_lower_seats }
+				add_to_temp_variable = { ERS_Mod_Gui_temp = ERS_Mod_lower_seats }
+				check_variable = { ERS_Mod_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Lower_House_Display^i = 2 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: LOWER HOUSE: ADDED 2 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Hum_Gui_temp = ERS_Dec_lower_seats }
+				add_to_temp_variable = { ERS_Hum_Gui_temp = ERS_Mod_lower_seats }
+				add_to_temp_variable = { ERS_Hum_Gui_temp = ERS_Hum_lower_seats }
+				check_variable = { ERS_Hum_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Lower_House_Display^i = 3 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: LOWER HOUSE: ADDED 3 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Bas_Gui_temp = ERS_Dec_lower_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Mod_lower_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Hum_lower_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Bas_lower_seats }
+				check_variable = { ERS_Bas_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Lower_House_Display^i = 4 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: LOWER HOUSE: ADDED 4 TO [?i]"
+		}
+		
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: LOWER HOUSE ARRAY LENGHT [?ERS_Lower_House_Display^num]"
+}
+	
+ERS_Dec_and_Bas_get_upper_house = {
+	set_temp_variable = { ERS_Mod_upper_house_num = ERS_Mod_Salon_Authority }
+	set_temp_variable = { ERS_Bas_upper_house_num = ERS_Bas_Salon_Authority }
+	set_temp_variable = { ERS_Dec_upper_house_num = ERS_Dec_Salon_Authority }
+	set_temp_variable = { ERS_Hum_upper_house_num = ERS_Hum_Salon_Authority }
+
+	multiply_temp_variable = { ERS_Mod_upper_house_num = 0.50 }
+	multiply_temp_variable = { ERS_Bas_upper_house_num = 0.50 }
+	multiply_temp_variable = { ERS_Dec_upper_house_num = 0.50 }
+	multiply_temp_variable = { ERS_Hum_upper_house_num = 0.50 }
+
+	set_variable = { ERS_Bas_upper_seats = ERS_Mod_upper_house_num }
+	set_variable = { ERS_Mod_upper_seats = ERS_Bas_upper_house_num }
+	set_variable = { ERS_Dec_upper_seats = ERS_Dec_upper_house_num }
+	set_variable = { ERS_Hum_upper_seats = ERS_Hum_upper_house_num }
+
+	round_variable = ERS_Hum_upper_seats
+	round_variable = ERS_Mod_upper_seats
+	round_variable = ERS_Dec_upper_seats
+	round_variable = ERS_Bas_upper_seats
+
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Temp Upper Seats , DEC : [?ERS_Dec_upper_seats] MOD: [?ERS_Mod_upper_seats] HUM : [?ERS_Hum_upper_seats] BAS : [?ERS_Bas_upper_seats]"
+	
+	set_temp_variable = { ERS_Fix_Numbers = ERS_Hum_upper_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Mod_upper_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Dec_upper_seats }
+	add_to_temp_variable = { ERS_Fix_Numbers = ERS_Bas_upper_seats }
+
+	subtract_from_temp_variable = { ERS_Fix_Numbers = 50 }
+	multiply_temp_variable = { ERS_Fix_Numbers = -1 }
+	set_temp_variable = { ERS_check_loop = 1 }
+	for_loop_effect = {
+		end = 55
+		if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers < 0 }
+			}
+			set_temp_variable = {  ERS_check_fix_numbers = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { ERS_Fix_Numbers > 0 }
+			}
+			set_temp_variable = { ERS_check_fix_numbers = 1 }
+		}
+		else_if = {
+			limit = { 
+				check_variable = { ERS_Fix_Numbers = 0 }
+			}
+			log = "[GetDateText]: [Root.GetName]: Tomsk Elections: Break For Loop"
+			set_temp_variable = { break = 1 }
+		}
+		
+		if = {
+			limit = { #fuck you johan
+				check_variable = { break = 0 }
+			}
+			if = {
+				limit = {
+					check_variable = { ERS_check_loop = 1 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Dec_upper_seats > 0 }
+					}
+					add_to_variable = { ERS_Dec_upper_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Dec_upper_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 2 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Mod_upper_seats > 0 }
+					}
+					add_to_variable = { ERS_Mod_upper_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Mod_upper_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 3 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Hum_upper_seats > 0 }
+					}
+					add_to_variable = { ERS_Hum_upper_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Hum_upper_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { ERS_check_loop = 4 }
+				}
+				add_to_temp_variable = { ERS_check_loop = 1 }
+				if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 0 }
+						check_variable = { ERS_Bas_upper_seats > 0 }
+					}
+					add_to_variable = { ERS_Bas_upper_seats = -1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_check_fix_numbers = 1 }
+					}
+					add_to_variable = { ERS_Bas_upper_seats = 1 }
+					add_to_temp_variable = { ERS_Fix_Numbers = -1 }
+				}
+			}
+			else = {
+				set_temp_variable = { ERS_check_loop = 1 }
+			}
+		}
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: Final Upper Seats , DEC : [?ERS_Dec_upper_seats] MOD: [?ERS_Mod_upper_seats] HUM : [?ERS_Hum_upper_seats] BAS : [?ERS_Bas_upper_seats]"
+	ERS_Get_Upper_House_Array = yes
+}
+
+ERS_Get_Upper_House_Array = {
+	clear_array = ERS_Upper_House_Display
+	add_to_array = { ERS_Upper_House_Display = 0 }
+	resize_array = { ERS_Upper_House_Display = 50 }
+
+	for_each_loop = {
+		array = ERS_Upper_House_Display
+		set_temp_variable = { temp_index = i }
+		add_to_variable = { temp_index = -0.01 }
+		if = {
+			limit = {
+				check_variable = { ERS_Dec_upper_seats > temp_index }
+			}
+			set_variable = { ERS_Upper_House_Display^i = 1 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: UPPER HOUSE: ADDED 1 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Mod_Gui_temp = ERS_Dec_upper_seats }
+				add_to_temp_variable = { ERS_Mod_Gui_temp = ERS_Mod_upper_seats }
+				check_variable = { ERS_Mod_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Upper_House_Display^i = 2 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: UPPER HOUSE: ADDED 2 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Hum_Gui_temp = ERS_Dec_upper_seats }
+				add_to_temp_variable = { ERS_Hum_Gui_temp = ERS_Mod_upper_seats }
+				add_to_temp_variable = { ERS_Hum_Gui_temp = ERS_Hum_upper_seats }
+				check_variable = { ERS_Hum_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Upper_House_Display^i = 3 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: UPPER HOUSE: ADDED 3 TO [?i]"
+		}
+		else_if = {
+			limit = {
+				set_temp_variable = { ERS_Bas_Gui_temp = ERS_Dec_upper_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Mod_upper_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Hum_upper_seats }
+				add_to_temp_variable = { ERS_Bas_Gui_temp = ERS_Bas_upper_seats }
+				check_variable = { ERS_Bas_Gui_temp > temp_index }
+			}
+			set_variable = { ERS_Upper_House_Display^i = 4 }
+			#log = "[GetDateText]: [Root.GetName]: TOMSK: UPPER HOUSE: ADDED 4 TO [?i]"
+		}
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: UPPER HOUSE ARRAY LENGHT [?ERS_Upper_House_Display^num]"
+}
+
+ERS_Choose_Random_District = {
+	random_list = {
+		10 = {
+			set_temp_variable = { District = 0 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 0.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 1 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 1.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 2 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 2.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 3 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 3.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 4 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 4.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 5 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 5.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 6 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 6.99 }
+			}
+		}
+		10 = {
+			set_temp_variable = { District = 7 }
+			modifier = {
+				factor = 0
+				check_variable = { ERS_Dec_Popularities^num < 7.99 }
+			}
+		}
+	}
+	log = "[GetDateText]: [Root.GetName]: TOMSK: District Index [?District] chosen, Current Popularities: DEC : [?ERS_Dec_Popularities^District] MOD: [?ERS_Mod_Popularities^District] HUM : [?ERS_Hum_Popularities^District] BAS : [?ERS_Bas_Popularities^District]"
+}
+
+ERS_Campaign_Effects = {
+	clr_country_flag = ERS_Is_Campaigning
+	if = {
+		limit = { has_country_flag = ERS_Dec_Campaign }
+		var:ERS_state_to_campaign = {
+			random_list = {
+				40 = { ERS_Increase_Dec_Pop_low = yes }
+				35 = { ERS_Increase_Dec_Pop_med = yes }
+				25 = { ERS_Increase_Dec_Pop_high = yes }
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = ERS_Mod_Campaign }
+		var:ERS_state_to_campaign = {
+			random_list = {
+				40 = { ERS_Increase_Mod_Pop_low = yes }
+				35 = { ERS_Increase_Mod_Pop_med = yes }
+				25 = { ERS_Increase_Mod_Pop_high = yes }
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = ERS_Hum_Campaign }
+		var:ERS_state_to_campaign = {
+			random_list = {
+				40 = { ERS_Increase_Hum_Pop_low = yes }
+				35 = { ERS_Increase_Hum_Pop_med = yes }
+				25 = { ERS_Increase_Hum_Pop_high = yes }
+			}
+		}
+	}
+	else_if = {
+		limit = { has_country_flag = ERS_Bas_Campaign }
+		var:ERS_state_to_campaign = {
+			random_list = {
+				40 = { ERS_Increase_Bas_Pop_low = yes }
+				35 = { ERS_Increase_Bas_Pop_med = yes }
+				25 = { ERS_Increase_Bas_Pop_high = yes }
+			}
+		}
+	}
+}
+
+ERS_Decrease_Ruling_Party_Auth = {
+	if = {
+		limit = {
+			has_government = social_conservative
+		}
+		ERS_Decrease_Dec_Auth_med = yes
+	}
+	else = {
+		ERS_Increase_Dec_Auth_med = yes
+	}
+	if = {
+		limit = {
+			has_government = social_democrat
+		}
+		ERS_Decrease_Hum_Auth_med = yes
+	}
+	else = {
+		ERS_Increase_Hum_Auth_med = yes
+	}
+	if = {
+		limit = {
+			has_government = social_liberal
+		}
+		ERS_Decrease_Mod_Auth_med = yes
+	}
+	else = {
+		ERS_Increase_Mod_Auth_med = yes
+	}
+	if = {
+		limit = {
+			has_government = authoritarian_democrat
+		}
+		ERS_Decrease_Bas_Auth_med = yes
+	}
+	else = {
+		ERS_Increase_Bas_Auth_med = yes
+	}
+}
+
+ERS_Decrease_Ruling_Pary_Pop = {
+	if = {
+		limit = {
+			has_government = social_conservative
+		}
+		random_owned_controlled_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Decrease_Dec_Pop_med = yes
+		}
+	}
+	if = {
+		limit = {
+			has_government = social_democrat
+		}
+		random_owned_controlled_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Decrease_Hum_Pop_med = yes
+		}
+	}
+	if = {
+		limit = {
+			has_government = social_liberal
+		}
+		random_owned_controlled_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Decrease_Mod_Pop_med = yes
+		}
+	}
+	if = {
+		limit = {
+			has_government = authoritarian_democrat
+		}
+		random_owned_controlled_state = {
+			limit = { ERS_can_have_elections_in_state = yes }
+			ERS_Decrease_Bas_Pop_med = yes
+		}
+	}
+}
+
+ERS_Dec_Interaction_cooldown = {
+	custom_effect_tooltip = ERS_Interaction_cooldown_tt
+	add_political_power = -25
+	hidden_effect = {
+		set_country_flag = Dec_Interact
+		country_event = { id = ERS.147 days = 30 }
+	}
+}
+
+ERS_Mod_Interaction_cooldown = {
+	custom_effect_tooltip = ERS_Interaction_cooldown_tt
+	add_political_power = -25
+	hidden_effect = {
+		set_country_flag = Mod_Interact
+		country_event = { id = ERS.148 days = 30 }
+	}
+}
+
+ERS_Hum_Interaction_cooldown = {
+	custom_effect_tooltip = ERS_Interaction_cooldown_tt
+	add_political_power = -25
+	hidden_effect = {
+		set_country_flag = Hum_Interact
+		country_event = { id = ERS.149 days = 30 }
+	}
+}
+
+ERS_Bas_Interaction_cooldown = {
+	custom_effect_tooltip = ERS_Interaction_cooldown_tt
+	add_political_power = -25
+	hidden_effect = {
+		set_country_flag = Bas_Interact
+		country_event = { id = ERS.150 days = 30 }
+	}
+}

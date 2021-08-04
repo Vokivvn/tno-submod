@@ -1,0 +1,1314 @@
+siberia_development_decision_category = {
+	SIB_improve_resource_extraction_infrastructure = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 50
+
+		days_re_enable = 75
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_improve_resource_extraction_infrastructure"
+			SIB_increase_resources_high = yes
+			SIB_decrease_construction_speed_low = yes
+			SIB_increase_consumer_goods_med = yes
+		}
+	}
+
+	SIB_streamline_production_facilities = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 60
+
+		days_re_enable = 75
+
+		cost = 55
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_streamline_production_facilities"
+			SIB_increase_ic_low = yes
+			SIB_decrease_efficiency_gain_med = yes
+			SIB_increase_max_efficiency_high = yes
+		}
+	}
+
+	SIB_reorganize_production_facility_networks = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 60
+
+		days_re_enable = 75
+
+		cost = 55
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_reorganize_production_facility_networks"
+			SIB_increase_ic_low = yes
+			SIB_increase_efficiency_gain_high = yes
+			SIB_decrease_max_efficiency_med = yes
+		}
+	}
+
+	SIB_optimize_consumer_goods_production = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_optimize_consumer_goods_production"
+			SIB_decrease_consumer_goods_high = yes
+			SIB_decrease_ic_low = yes
+		}
+	}
+
+	SIB_invest_in_construction_techniques = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_invest_in_construction_techniques"
+			SIB_increase_construction_speed_high = yes
+			SIB_increase_consumer_goods_low = yes
+		}
+	}
+
+	SIB_increase_production_quotas = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_increase_production_quotas"
+			SIB_increase_ic_high = yes
+			SIB_increase_worker_tension_high = yes
+		}
+	}
+
+	SIB_implement_worker_concenssions = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_implement_worker_concenssions"
+			SIB_increase_consumer_goods_med = yes
+			SIB_decrease_worker_tension_med = yes
+		}
+	}
+
+	SIB_divert_civilian_production = {
+
+		ai_will_do = {
+			factor = 30
+		}
+
+		days_remove = 30
+
+		days_re_enable = 75
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SIB_divert_civilian_production"
+			SIB_decrease_consumer_goods_high = yes
+			SIB_increase_worker_tension_low = yes
+			add_stability = -0.025
+		}
+	}
+}
+
+
+warlord_development_decision_category = {
+	warlord_development_war_planning = {
+
+		modifier = {
+			stability_weekly = -0.002
+			war_support_weekly = 0.003
+			planning_speed = 0.1
+		}
+
+		ai_will_do = {
+			factor = 30
+
+			modifier = {
+				factor = 0
+				has_war_support > 0.9
+			}
+		}
+
+		days_remove = 75
+
+		days_re_enable = 75
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_war_planning"
+		}
+	}
+	warlord_development_foreign_investments = {
+
+		modifier = {
+			political_power_gain = -0.15
+			consumer_goods_factor = -0.1
+		}
+
+		ai_will_do = {
+			factor = 20
+
+			modifier = {
+				factor = 0
+				political_power_growth < 0.15
+			}
+		}
+
+		days_remove = 75
+
+		days_re_enable = 75
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_foreign_investments"
+		}
+	}
+	warlord_development_invest_in_infrastructure = {
+
+		modifier = {
+			consumer_goods_factor = 0.075
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = warlord_development_infrastructure_tt
+				any_owned_state = {			
+					infrastructure < 10
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 35
+		}
+
+		days_remove = 75
+
+		days_re_enable = 75
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_invest_in_infrastructure"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove warlord_development_invest_in_infrastructure"
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure < 10
+					OR = {
+						infrastructure < 5
+						NOT = {
+							owner = {
+								any_owned_state = {
+									infrastructure < 5
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	warlord_development_industrial_investments = {
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = warlord_development_industrial_tt
+				any_owned_state = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				num_of_factories < 5
+				factor = 10
+			}
+		}
+
+		days_remove = 60
+
+		days_re_enable = 75
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_industrial_investments"
+		}
+		fixed_random_seed = no
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove warlord_development_industrial_investments"
+			random_list = {
+				30 = {
+					add_offsite_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				30 = {
+					random_owned_controlled_state = {
+						limit = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					add_offsite_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				20 = {
+					random_owned_controlled_state = {
+						limit = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	warlord_development_research_focus = {
+
+		ai_will_do = {
+			factor = 20
+
+			modifier = {
+				factor = 0
+				political_power_growth < 0.25
+			}
+		}
+
+		modifier = {
+			political_power_gain = -0.25
+			research_speed_factor = 0.1
+		}
+
+		days_remove = 60
+
+		days_re_enable = 75
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_research_focus"
+		}
+	}
+	warlord_development_train_troops = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+			experience_gain_army_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				has_manpower < 1000
+				factor = 10
+			}
+		}
+
+		days_remove = 60
+
+		days_re_enable = 75
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_train_troops"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove warlord_development_train_troops"
+			add_manpower = 1000
+			army_experience = 5
+		}
+	}
+	warlord_development_political_campaign = {
+
+		visible = {
+			always = yes
+		}
+
+		ai_will_do = {
+			factor = 30
+
+			modifier = {
+				factor = 0
+				OR = {
+					political_power_growth > 0.3
+					has_stability < 0
+					has_decision = warlord_secure_control
+				}
+			}
+		}
+
+		modifier = {
+			stability_weekly = -0.002
+			political_power_gain = 0.5
+		}
+
+		days_remove = 75
+
+		days_re_enable = 75
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_political_campaign"
+		}
+	}
+	warlord_secure_control = {
+
+		visible = {
+			always = yes
+		}
+
+		ai_will_do = {
+			factor = 40
+
+			modifier = {
+				factor = 0
+				OR = {
+					political_power_growth < 0.2
+					has_stability > 0.9
+					has_decision = warlord_development_political_campaign
+				}
+			}
+		}
+
+		modifier = {
+			stability_weekly = 0.0025
+			political_power_gain = -0.2
+		}
+
+		days_remove = 75
+
+		days_re_enable = 75
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision warlord_development_political_campaign"
+		}
+	}
+}
+
+regional_development_decision_category = {
+	regional_democratic_encourage_political_thought = {
+
+		visible = {
+			OR = {
+				has_government = authoritarian_democrat
+				has_government = social_democrat
+				has_government = social_liberal
+				has_government = social_conservative
+			}
+		}
+
+		modifier = {
+			political_power_gain = 0.35
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 60
+
+		days_re_enable = 365
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_democratic_encourage_political_thought"
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_democratic_encourage_political_thought"
+			add_stability = 0.05
+			custom_effect_tooltip = regional_democratic_encourage_political_thought_tt
+			hidden_effect = {
+				add_popularity = {
+					ideology = communist
+					popularity = -0.025
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = -0.025
+				}
+				add_popularity = {
+					ideology = ultranational_socialism
+					popularity = -0.025
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = -0.025
+				}
+				add_popularity = {
+					ideology = burgundian_system
+					popularity = -0.025
+				}
+				add_popularity = {
+					ideology = national_socialism
+					popularity = -0.025
+				}
+			}
+		}
+	}
+
+	regional_democratic_expand_state_welfare_programs = {
+
+		visible = {
+			OR = {
+				has_government = authoritarian_democrat
+				has_government = social_democrat
+				has_government = social_liberal
+				has_government = social_conservative
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 3
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_democratic_expand_state_welfare_programs"
+			custom_effect_tooltip = regional_democratic_expand_state_welfare_programs_cost_tt
+			add_to_variable = { misc_costs = 250 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_democratic_expand_state_welfare_programs"
+			TNO_improve_poverty_low = yes
+			add_stability = 0.025
+			add_to_variable = { GDP = 65 }
+			custom_effect_tooltip = regional_democratic_expand_state_welfare_programs_tt
+		}
+	}
+
+	regional_democratic_advance_developmental_subsidies = {
+
+		visible = {
+			OR = {
+				has_government = authoritarian_democrat
+				has_government = social_democrat
+				has_government = social_liberal
+				has_government = social_conservative
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 3
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_democratic_advance_developmental_subsidies"
+			custom_effect_tooltip = regional_democratic_advance_developmental_subsidies_cost_tt
+			add_to_variable = { national_debt = 300 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_democratic_advance_developmental_subsidies"
+			custom_effect_tooltip = regional_democratic_advance_developmental_subsidies_tt
+			add_to_variable = { GDP = 150 }
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	regional_left_empower_workers_organizations = {
+
+		visible = {
+			OR = {
+				has_government = communist
+				has_government = socialist
+			}
+		}
+
+		modifier = {
+			political_power_gain = 0.35
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 60
+
+		days_re_enable = 365
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_left_empower_workers_organizations"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_left_empower_workers_organizations"
+			custom_effect_tooltip = regional_left_empower_workers_organizations_tt
+			TNO_improve_industrial_expertise_low = yes
+			hidden_effect = {
+				if = {
+					limit = {
+						has_government = communist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.035
+					}
+				}
+				if = {
+					limit = {
+						has_government = socialist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.035
+					}
+				}
+			}
+		}
+	}
+	regional_left_repurpose_soviet_infrastructure = {
+
+		visible = {
+			OR = {
+				has_government = communist
+				has_government = socialist
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 3
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_left_repurpose_soviet_infrastructure"
+			custom_effect_tooltip = regional_left_repurpose_soviet_infrastructure_cost_tt
+			add_to_variable = { national_debt = 180 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_left_repurpose_soviet_infrastructure"
+			TNO_improve_industrial_equipment_low = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = { GDP = 80 }
+			custom_effect_tooltip = regional_left_repurpose_soviet_infrastructure_tt
+		}
+	}
+	regional_left_escalate_land_reform_programs = {
+
+		visible = {
+			OR = {
+				has_government = communist
+				has_government = socialist
+			}
+		}
+
+		modifier = {
+			MONTHLY_POPULATION = 0.15
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_left_escalate_land_reform_programs"
+			custom_effect_tooltip = regional_left_escalate_land_reform_programs_cost_tt
+			add_to_variable = { national_debt = 150 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_left_escalate_land_reform_programs"
+			TNO_improve_agriculture_low = yes
+			RUS_integration_cost_days_decrease = yes
+			add_to_variable = { GDP = 75 }
+			custom_effect_tooltip = regional_left_escalate_land_reform_programs_tt
+
+		}
+	}
+	regional_right_revitalize_national_service_programs = {
+
+		visible = {
+			OR = {
+				has_government = despotism
+				has_government = fascism
+				has_government = national_socialism
+				has_government = ultranational_socialism
+				has_government = burgundian_system
+			}
+		}
+
+		modifier = {
+			consumer_goods_factor = -0.10
+			weekly_manpower = 750
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 60
+
+		days_re_enable = 365
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_right_revitalize_national_service_programs"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_right_revitalize_national_service_programs"
+			add_stability = -0.025
+			add_war_support = 0.05
+		}
+	}
+	regional_right_consolidate_state_resource_corporations = {
+
+		visible = {
+			OR = {
+				has_government = despotism
+				has_government = fascism
+				has_government = national_socialism
+				has_government = ultranational_socialism
+				has_government = burgundian_system
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 3
+			local_resources_factor = 0.15
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_right_consolidate_state_resource_corporations"
+			custom_effect_tooltip = regional_right_consolidate_state_resource_corporations_cost_tt
+			add_to_variable = { national_debt = 200 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_right_consolidate_state_resource_corporations"
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+					has_resources_amount = {
+						resource = oil
+						amount > 1
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+					has_resources_amount = {
+						resource = chromium
+						amount > 1
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = chromium
+					amount = 10
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5
+					has_resources_amount = {
+						resource = tungsten
+						amount > 1
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = tungsten
+					amount = 10
+				}
+			}
+			add_to_variable = { GDP = 80 }
+			custom_effect_tooltip = regional_right_consolidate_state_resource_corporations_tt
+		}
+	}
+	regional_right_prioritize_military_industrial_development = {
+
+		visible = {
+			OR = {
+				has_government = despotism
+				has_government = fascism
+				has_government = national_socialism
+				has_government = ultranational_socialism
+				has_government = burgundian_system
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 3
+			conversion_cost_civ_to_mil_factor = 0.25
+			production_speed_arms_factory_factor = 0.25
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_right_prioritize_military_industrial_development"
+			custom_effect_tooltip = regional_right_prioritize_military_industrial_development_cost_tt
+			add_to_variable = { national_debt = 250 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_right_prioritize_military_industrial_development"
+			TNO_improve_industrial_equipment_low = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = { GDP = 110 }
+			custom_effect_tooltip = regional_right_prioritize_military_industrial_development_tt
+		}
+	}
+	regional_invest_in_construction = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			production_speed_buildings_factor = 0.15
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_invest_in_construction"
+			custom_effect_tooltip = regional_invest_in_construction_cost_tt
+			add_to_variable = { national_debt = 100 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_invest_in_construction"
+			add_to_variable = { GDP = 75 }
+			custom_effect_tooltip = regional_invest_in_construction_tt
+		}
+	}
+	regional_improve_worker_training = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 30
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_improve_worker_training"
+			custom_effect_tooltip = regional_improve_worker_training_cost_tt
+			add_to_variable = { national_debt = 150 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_improve_worker_training"
+			TNO_improve_industrial_expertise_low = yes
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+			add_to_variable = { GDP = 55 }
+			custom_effect_tooltip = regional_improve_worker_training_tt
+		}
+	}
+	regional_invest_in_scientific_research = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 30
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_invest_in_scientific_research"
+			custom_effect_tooltip = regional_invest_in_scientific_research_cost_tt
+			add_to_variable = { national_debt = 200 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_invest_in_scientific_research"
+			TNO_improve_research_facilities_low = yes
+			add_to_variable = { GDP = 80 }
+			custom_effect_tooltip = regional_invest_in_scientific_research_tt
+		}
+	}
+	regional_allocate_education_funding = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 30
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_increase_education_funding"
+			custom_effect_tooltip = regional_allocate_education_funding_cost_tt
+			add_to_variable = { national_debt = 175 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_increase_education_funding"
+			TNO_improve_academic_base_low = yes
+			add_to_variable = { GDP = 100 }
+			custom_effect_tooltip = regional_allocate_education_funding_tt
+		}
+	}
+	regional_import_heavy_machinery = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_import_heavy_machinery"
+			custom_effect_tooltip = regional_import_heavy_machinery_cost_tt
+			add_to_variable = { national_debt = 350 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_import_heavy_machinery"
+			TNO_improve_industrial_equipment_low = yes
+			add_to_variable = { GDP = 210 }
+			custom_effect_tooltip = regional_import_heavy_machinery_tt
+		}
+	}
+	regional_instate_poverty_relief_programs = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_instate_poverty_relief_programs"
+			custom_effect_tooltip = regional_instate_poverty_relief_programs_cost_tt
+			add_to_variable = { national_debt = 200 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_instate_poverty_relief_programs"
+			TNO_improve_poverty_low = yes
+			add_to_variable = { GDP_growth = 0.007 }
+			custom_effect_tooltip = regional_instate_poverty_relief_programs_tt
+		}
+	}
+	regional_encourage_agricultural_mechanization = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 30
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_encourage_agricultural_mechanization"
+			custom_effect_tooltip = regional_encourage_agricultural_mechanization_cost_tt
+			add_to_variable = { national_debt = 145 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_encourage_agricultural_mechanization"
+			TNO_improve_agriculture_low = yes
+		}
+	}
+	regional_hire_foreign_instructors = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+			experience_gain_army_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 45
+
+		days_re_enable = 365
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_hire_foreign_instructors"
+			add_to_variable = { national_debt = 130 }
+			custom_effect_tooltip = regional_hire_foreign_instructors_cost_tt
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_hire_foreign_instructors"
+			army_experience = 15
+			TNO_improve_army_professionalism_low = yes
+		}
+	}
+	regional_encourage_returning_expatriates = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			weekly_manpower = 1000
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 35
+
+		days_re_enable = 365
+
+		cost = 35
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_encourage_returning_expatriates"
+			custom_effect_tooltip = regional_encourage_returning_expatriates_cost_tt
+			add_to_variable = { national_debt = 30 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_encourage_returning_expatriates"
+			add_stability = 0.03
+			add_to_variable = { GDP = 25 }
+			custom_effect_tooltip = regional_encourage_returning_expatriates_tt
+		}
+	}
+	regional_initiate_propaganda_programs = {
+
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			stability_weekly = 0.02
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		days_remove = 35
+
+		days_re_enable = 365
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_initiate_propaganda_programs"
+			custom_effect_tooltip = regional_initiate_propaganda_programs_cost_tt
+			add_to_variable = { national_debt = 15 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_initiate_propaganda_programs"
+			add_war_support = 0.05
+		}
+	}
+}

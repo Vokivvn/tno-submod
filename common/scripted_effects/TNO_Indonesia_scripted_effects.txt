@@ -1,0 +1,1058 @@
+INS_reload_starting_tree = {
+	mark_focus_tree_layout_dirty = yes
+}
+
+INS_rally_events = {
+	random_list = {
+		10 = {
+			country_event = {
+				id = indonesia_rally.1
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	        	factor = 0
+	    		INS = { has_country_flag = rally_1 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.2
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	        	factor = 0
+	            INS = { has_country_flag = rally_2 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.3
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	        	factor = 0
+	            INS = { has_country_flag = rally_3 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.4
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	            factor = 0
+	            INS = { has_country_flag = rally_4 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.5
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	            factor = 0
+	            INS = { has_country_flag = rally_5 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.6
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	            factor = 0
+	            INS = { has_country_flag = rally_6 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.7
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	        	factor = 0
+	        	INS = { has_country_flag = rally_7 }
+	        }
+		}
+		10 = {
+			country_event = {
+				id = indonesia_rally.8
+				days = 1
+				random = 240		
+			}
+			modifier = {
+	        	factor = 0
+	            INS = { has_country_flag = rally_8 }
+	        }
+		}
+	}	
+}
+
+INS_get_japan_popularity = {
+	if = {
+		limit = { 
+			check_variable = { JAP_support < 20 }
+		}
+		set_country_flag = INS_JAP_Worse
+	}
+	else_if = {
+		limit = { 
+			check_variable = { JAP_support < 40 }
+		}
+		set_country_flag = INS_JAP_no_Support
+	}
+	else_if = {
+		limit = { 
+			check_variable = { JAP_support < 60 }
+		}
+		set_country_flag = INS_JAP_Minimal_Support
+	}
+}
+
+INS_get_army_popularity = {
+	if = {
+		limit = { 
+			check_variable = { ARMY_support < 20 }
+		}
+		set_country_flag = INS_ARMY_No_Control
+	}
+	else_if = {
+		limit = { 
+			check_variable = { ARMY_support < 40 }
+		}
+		set_country_flag = INS_ARMY_defections
+	}
+}
+
+INS_get_NU_popularity = {
+	if = {
+		limit = { 
+			check_variable = { NU_support < 20 }
+		}
+		set_country_flag = INS_ARMY_early_civil_war
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NU_support < 40 }
+		}
+		set_country_flag = INS_ARMY_support_Opposition
+	}
+}
+
+FRI_reload_war_tree = {
+	mark_focus_tree_layout_dirty = yes
+}
+
+INS_check_FRI_cells = {
+	INS = {
+		INS_refresh_FRI_cell_detection = yes
+		set_temp_variable = {FRI_combined_CS = 0}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_North_Sumatra = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_north_sumatra}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_South_Sumatra = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_south_sumatra}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_West_Java = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_west_java}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_East_Java = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_east_java}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_Kalimantan = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_kalimantan}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_Sulawesi = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_sulawesi}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_Papua = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_papua}
+		}
+		if = {
+			limit = {
+				FRI = {FRI_has_majority_control_Moluccas = yes}
+			}
+			add_to_temp_variable = {FRI_combined_CS = FRI.FRI_cs_moluccas}
+		}
+		random_list = {
+			100 = {#Check failed
+				set_country_flag = INS_failed_cellcheck
+			}
+			1 = {#Cells detected
+				modifier = {
+					factor = 10
+					check_variable = {var = FRI_combined_CS value = 5 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 15}
+				}
+				modifier = {
+					factor = 20
+					check_variable = {var = FRI_combined_CS value = 15 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 25}
+				}
+				modifier = {
+					factor = 40
+					check_variable = {var = FRI_combined_CS value = 25 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 35}
+				}
+				modifier = {
+					factor = 60
+					check_variable = {var = FRI_combined_CS value = 35 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 45}
+				}
+				modifier = {
+					factor = 80
+					check_variable = {var = FRI_combined_CS value = 45 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 55}
+				}
+				modifier = {
+					factor = 100
+					check_variable = {var = FRI_combined_CS value = 55 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 65}
+				}
+				modifier = {
+					factor = 150
+					check_variable = {var = FRI_combined_CS value = 65 compare = greater_than_or_equals}
+					check_variable = {FRI_combined_CS < 75}
+				}
+				modifier = {
+					factor = 200
+					check_variable = {var = FRI_combined_CS value = 75 compare = greater_than_or_equals}
+				}
+				random_list = {
+					10 = {#North Sumatra
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_North_Sumatra = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_north_sumatra value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_north_sumatra < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_north_sumatra value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_north_sumatra < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_north_sumatra value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_north_sumatra < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_north_sumatra value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_north_sumatra_cell = 2}
+					}
+					10 = {#South Sumatra
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_South_Sumatra = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_south_sumatra value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_south_sumatra < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_south_sumatra value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_south_sumatra < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_south_sumatra value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_south_sumatra < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_south_sumatra value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_south_sumatra_cell = 2}
+					}
+					10 = {#Western Java
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_West_Java = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_western_java value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_western_java < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_western_java value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_western_java < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_western_java value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_western_java < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_western_java value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_western_java_cell = 2}
+					}
+					10 = {#Eastern Java
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_East_Java = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_eastern_java value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_eastern_java < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_eastern_java value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_eastern_java < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_eastern_java value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_eastern_java < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_eastern_java value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_eastern_java_cell = 2}
+					}
+					10 = {#Kalimantan
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_Kalimantan = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_kalimantan value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_kalimantan < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_kalimantan value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_kalimantan < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_kalimantan value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_kalimantan < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_kalimantan value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_kalimantan_cell = 2}
+					}
+					10 = {#Sulawesi
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_Sulawesi = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_sulawesi value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_sulawesi < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_sulawesi value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_sulawesi < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_sulawesi value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_sulawesi < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_sulawesi value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_sulawesi_cell = 2}
+					}
+					10 = {#Papua
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_Papua = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_papua value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_papua < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_papua value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_papua < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_papua value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_papua < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_papua value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_papua_cell = 2}
+					}
+					10 = {#The Moluccas
+						modifier = {
+							factor = 0
+							FRI = {FRI_has_majority_control_Moluccas = yes}
+						}
+						modifier = {
+							factor = 2
+							check_variable = {var = FRI.FRI_cs_moluccas value = 2 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_moluccas < 4}					
+						}
+						modifier = {
+							factor = 3
+							check_variable = {var = FRI.FRI_cs_moluccas value = 4 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_moluccas < 6}					
+						}
+						modifier = {
+							factor = 4
+							check_variable = {var = FRI.FRI_cs_moluccas value = 6 compare = greater_than_or_equals}	
+							check_variable = {FRI.FRI_cs_moluccas < 8}					
+						}
+						modifier = {
+							factor = 5
+							check_variable = {var = FRI.FRI_cs_moluccas value = 8 compare = greater_than_or_equals}						
+						}
+						set_variable = {INS_busted_moluccas_cell = 2}
+					}
+				}
+			}
+		}
+		country_event = {id = indonesia.1001}
+	}
+	FRI = {country_event = {id = fri.1000}}
+}
+
+INS_refresh_FRI_cell_detection = {
+	if = {
+		limit = {
+			has_country_flag = INS_failed_cellcheck
+		}
+		clr_country_flag = INS_failed_cellcheck
+	}
+	if = {
+		limit = {has_variable = INS_busted_north_sumatra_cell}
+		if = {
+			limit = {check_variable = {INS_busted_north_sumatra_cell > 0}}
+			add_to_variable = {INS_busted_north_sumatra_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_north_sumatra_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_south_sumatra_cell}
+		if = {
+			limit = {check_variable = {INS_busted_south_sumatra_cell > 0}}
+			add_to_variable = {INS_busted_south_sumatra_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_south_sumatra_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_western_java_cell}
+		if = {
+			limit = {check_variable = {INS_busted_western_java_cell > 0}}
+			add_to_variable = {INS_busted_western_java_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_western_java_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_eastern_java_cell}
+		if = {
+			limit = {check_variable = {INS_busted_eastern_java_cell > 0}}
+			add_to_variable = {INS_busted_eastern_java_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_eastern_java_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_kalimantan_cell}
+		if = {
+			limit = {check_variable = {INS_busted_kalimantan_cell > 0}}
+			add_to_variable = {INS_busted_kalimantan_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_kalimantan_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_sulawesi_cell}
+		if = {
+			limit = {check_variable = {INS_busted_sulawesi_cell > 0}}
+			add_to_variable = {INS_busted_sulawesi_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_sulawesi_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_papua_cell}
+		if = {
+			limit = {check_variable = {INS_busted_papua_cell > 0}}
+			add_to_variable = {INS_busted_papua_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_papua_cell
+		}
+	}
+	if = {
+		limit = {has_variable = INS_busted_moluccas_cell}
+		if = {
+			limit = {check_variable = {INS_busted_moluccas_cell > 0}}
+			add_to_variable = {INS_busted_moluccas_cell = -1}
+		}
+		else = {
+			clear_variable = INS_busted_moluccas_cell
+		}
+	}
+}
+
+INS_Military_Status_GUI = {
+	if = { #CONCESSION IV
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 1
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Concession_III
+		add_ideas = INS_Military_Concession_IV
+		add_political_power = -200
+		set_country_flag = INS_Military_Status_Confirmed_flag
+		set_country_flag = INS_Disable_Military_Buttons_flag
+	}
+	else_if = { #CONCESSION III
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 2
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Concession_II
+		remove_ideas = INS_Military_Concession_IV
+		add_ideas = INS_Military_Concession_III
+		add_political_power = -150
+	}
+	else_if = { #CONCESSION II
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 3
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Concession_I
+		remove_ideas = INS_Military_Concession_III
+		add_ideas = INS_Military_Concession_II
+		add_political_power = -100
+	}
+	else_if = { #CONCESSION I
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 4
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Purge_I
+		remove_ideas = INS_Military_Concession_II
+		add_ideas = INS_Military_Concession_I
+		add_political_power = -50
+	}
+	else_if = { #PURGE I
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 5
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Purge_II
+		remove_ideas = INS_Military_Concession_I
+		add_ideas = INS_Military_Purge_I
+		add_political_power = -50
+	}
+	else_if = { #PURGE II
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 6
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Purge_III
+		remove_ideas = INS_Military_Purge_I
+		add_ideas = INS_Military_Purge_II
+		add_political_power = -100
+	}
+	else_if = { #PURGE III
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 7
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Purge_IV
+		remove_ideas = INS_Military_Purge_II
+		add_ideas = INS_Military_Purge_III
+		add_political_power = -150
+	}
+	else_if = { #PURGE IV
+		limit = {
+			check_variable = {
+				var = INS_Military_Status
+				value = 8
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Military_Purge_III
+		add_ideas = INS_Military_Purge_IV
+		add_political_power = -200
+		set_country_flag = INS_Military_Status_Ended_flag
+		set_country_flag = INS_Disable_Military_Buttons_flag
+	}
+}
+
+INS_SKN_Status_GUI = {
+	if = { #CONCESSION IV
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 1
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Concession_III
+		add_ideas = INS_SKN_Concession_IV
+		add_political_power = -200
+		set_country_flag = INS_SKN_Status_Confirmed_flag
+		set_country_flag = INS_Disable_SKN_Buttons_flag
+	}
+	else_if = { #CONCESSION III
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 2
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Concession_II
+		remove_ideas = INS_SKN_Concession_IV
+		add_ideas = INS_SKN_Concession_III
+		add_political_power = -150
+	}
+	else_if = { #CONCESSION II
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 3
+				compare = equals
+			}
+		}
+		custom_effect_tooltip = INS_Political_Purge_tt
+		remove_ideas = INS_SKN_Concession_I
+		remove_ideas = INS_SKN_Concession_III
+		add_ideas = INS_SKN_Concession_II
+		add_political_power = -100
+	}
+	else_if = { #CONCESSION I
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 4
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Purge_I
+		remove_ideas = INS_SKN_Concession_II
+		add_ideas = INS_SKN_Concession_I
+		add_political_power = -50
+	}
+	else_if = { #PURGE I
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 5
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Purge_II
+		remove_ideas = INS_SKN_Concession_I
+		add_ideas = INS_SKN_Purge_I
+		add_political_power = -50
+	}
+	else_if = { #PURGE II
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 6
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Purge_III
+		remove_ideas = INS_SKN_Purge_I
+		add_ideas = INS_SKN_Purge_II
+		add_political_power = -100
+	}
+	else_if = { #PURGE III
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 7
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Purge_IV
+		remove_ideas = INS_SKN_Purge_II
+		add_ideas = INS_SKN_Purge_III
+		add_political_power = -150
+	}
+	else_if = { #PURGE IV
+		limit = {
+			check_variable = {
+				var = INS_SKN_Status
+				value = 8
+				compare = equals
+			}
+		}
+		remove_ideas = INS_SKN_Purge_III
+		add_ideas = INS_SKN_Purge_IV
+		add_political_power = -200
+		set_country_flag = INS_SKN_Status_Ended_flag
+		set_country_flag = INS_Disable_SKN_Buttons_flag
+	}
+}
+
+INS_Political_Status_GUI = {
+	if = { #CONCESSION IV
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 1
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Concession_III
+		add_ideas = INS_Political_Concession_IV
+		add_political_power = -225
+		set_country_flag = INS_Political_Status_Confirmed_flag
+		set_country_flag = INS_Disable_Political_Buttons_flag
+	}
+	else_if = { #CONCESSION III
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 2
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Concession_II
+		remove_ideas = INS_Political_Concession_IV
+		add_ideas = INS_Political_Concession_III
+		add_political_power = -175
+	}
+	else_if = { #CONCESSION II
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 3
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Concession_I
+		remove_ideas = INS_Political_Concession_III
+		add_ideas = INS_Political_Concession_II
+		add_political_power = -125
+	}
+	else_if = { #CONCESSION I
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 4
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Purge_I
+		remove_ideas = INS_Political_Concession_II
+		add_ideas = INS_Political_Concession_I
+		add_political_power = -75
+	}
+	else_if = { #PURGE I
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 5
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Purge_II
+		remove_ideas = INS_Political_Concession_I
+		add_ideas = INS_Political_Purge_I
+		add_political_power = -75
+	}
+	else_if = { #PURGE II
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 6
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Purge_III
+		remove_ideas = INS_Political_Purge_I
+		add_ideas = INS_Political_Purge_II
+		add_political_power = -125
+	}
+	else_if = { #PURGE III
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 7
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Purge_IV
+		remove_ideas = INS_Political_Purge_II
+		add_ideas = INS_Political_Purge_III
+		add_political_power = -175
+	}
+	else_if = { #PURGE IV
+		limit = {
+			check_variable = {
+				var = INS_Political_Status
+				value = 8
+				compare = equals
+			}
+		}
+		remove_ideas = INS_Political_Purge_III
+		add_ideas = INS_Political_Purge_IV
+		add_political_power = -225
+		set_country_flag = INS_Political_Status_Ended_flag
+		set_country_flag = INS_Disable_Political_Buttons_flag
+	}
+}
+
+###EFFECTS BELOW IS USED FOR USA'S ELECTION CHECKS
+FRI_get_surrender = {
+	if = {
+		limit = { FRI = { surrender_progress > 89}}
+		set_variable = { FRI_surrender = 9}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 79
+				surrender_progress < 90
+			}	
+		}
+		set_variable = { FRI_surrender = 8}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 69
+				surrender_progress < 80
+			}	
+		}
+		set_variable = { FRI_surrender = 7}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 59
+				surrender_progress < 70
+			}	
+		}
+		set_variable = { FRI_surrender = 6}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 49
+				surrender_progress < 60
+			}	
+		}
+		set_variable = { FRI_surrender = 5}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 39
+				surrender_progress < 50
+			}	
+		}
+		set_variable = { FRI_surrender = 4}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 29
+				surrender_progress < 40
+			}	
+		}
+		set_variable = { FRI_surrender = 3}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 19
+				surrender_progress < 30
+			}	
+		}
+		set_variable = { FRI_surrender = 2}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 9
+				surrender_progress < 20
+			}	
+		}
+		set_variable = { FRI_surrender = 1}
+	}
+	else_if = {
+		limit = { 
+			FRI = { 
+				surrender_progress > 0
+				surrender_progress < 10
+			}	
+		}
+		set_variable = { FRI_surrender = 0}
+	}
+}
+INS_get_surrender = {
+	if = {
+		limit = { INS = { surrender_progress > 89}}
+		set_variable = { INS_surrender = 9}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 79
+				surrender_progress < 90
+			}	
+		}
+		set_variable = { INS_surrender = 8}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 69
+				surrender_progress < 80
+			}	
+		}
+		set_variable = { INS_surrender = 7}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 59
+				surrender_progress < 70
+			}	
+		}
+		set_variable = { INS_surrender = 6}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 49
+				surrender_progress < 60
+			}	
+		}
+		set_variable = { INS_surrender = 5}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 39
+				surrender_progress < 50
+			}	
+		}
+		set_variable = { INS_surrender = 4}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 29
+				surrender_progress < 40
+			}	
+		}
+		set_variable = { INS_surrender = 3}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 19
+				surrender_progress < 30
+			}	
+		}
+		set_variable = { INS_surrender = 2}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 9
+				surrender_progress < 20
+			}	
+		}
+		set_variable = { INS_surrender = 1}
+	}
+	else_if = {
+		limit = { 
+			INS = { 
+				surrender_progress > 0
+				surrender_progress < 10
+			}	
+		}
+		set_variable = { INS_surrender = 0}
+	}
+}
+####################################################

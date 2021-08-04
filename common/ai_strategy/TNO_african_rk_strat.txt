@@ -1,0 +1,135 @@
+RK_SAF_STRAT_COG = {
+	enable = {
+		OR = {
+			original_tag = COG
+			original_tag = MZB
+			original_tag = ANG
+		}
+		OR = {
+			AND = {
+				SAF = { has_war_with = BOR }
+				has_idea = RK_Africa_Surprise_attack
+			}
+			AND = {
+				SAF = {
+					#has_completed_focus = SAF_Respond_to_the_riots
+					NOT = { has_war_with = BOR }
+				}
+			}
+		}
+		NOT = { has_global_flag = SAF_ceasefire }
+	}
+
+	abort = {
+		OR = {
+			has_global_flag = SAF_ceasefire
+			NOT = { country_exists = SAF }
+		}
+	}
+
+	ai_strategy = {
+		type =  conquer
+		id = SAF
+		value = 100
+	}
+	ai_strategy = {
+		type =  consider_weak
+		id = SAF
+		value = 100
+	}
+	ai_strategy = {
+		type = antagonize
+		id = SAF
+		value = 100
+	}
+	#stop naval invading capetown you incompetent facist fucks
+	ai_strategy = {
+		type = naval_avoid_region
+		id = 65
+		value = 1000
+	}
+	ai_strategy = {
+		type = invasion_unit_request
+		tag = SAF
+		value = -1000
+	}
+	ai_strategy = {
+		type = front_unit_request
+		tag = SAF
+		value = 100
+	}
+}
+
+RK_SAF_STRAT_SAF = {
+	enable = {
+		original_tag = SAF
+		OR = {
+			SAF = { has_war_with = BOR }
+			SAF = {	has_war_with = ANG }
+			SAF = {	has_war_with = MZB }
+			SAF = {	has_war_with = COG }
+		}
+		NOT = { has_global_flag = SAF_ceasefire }
+		NOT = { MZB = { has_idea = RK_Africa_Surprise_attack } }
+	}
+
+	abort = {
+		OR = {
+			has_global_flag = SAF_ceasefire
+			NOT = { country_exists = SAF }
+		}
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MZB
+		value = 75
+	}
+	ai_strategy = {
+		type = conquer
+		id = ANG
+		value = 100
+	}
+	ai_strategy = {
+		type = conquer
+		id = COG
+		value = 75
+	}
+	ai_strategy = {
+		type = conquer
+		id = BOR
+		value = 75
+	}
+}
+
+RK_SAF_STRAT_SAF_invade_ANG = {
+	enable = {
+		original_tag = SAF
+		USA = { has_country_flag = invading_in_africa }
+	}
+
+	abort = {
+		OR = {
+			has_global_flag = SAF_ceasefire
+		}
+		NOT = { USA = { has_country_flag = invading_in_africa } }
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = ANG
+		value = 50
+	}
+
+	ai_strategy = {
+		type = invade
+		id = ANG
+		value = 50
+	}
+
+	ai_strategy = {
+		type = consider_weak
+		id = ANG
+		value = 20
+	}
+}

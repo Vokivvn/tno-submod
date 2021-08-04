@@ -1,0 +1,134 @@
+﻿############################
+## African Reichskommissars Events
+############################
+
+add_namespace = COG
+
+# Form Afrika-Schild
+ country_event = {
+	id = COG.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event COG.2"}
+ 	title = COG.2.t
+ 	desc = COG.2.desc
+ 	picture = GFX_report_event_germania_tank
+ 	
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	
+ 	option = { #uhoh
+		ai_chance = {
+			factor = 100
+		}
+ 		name = COG.2.a
+		create_faction = "afrika_schild"
+		country_event = { id = COG.3 days = 5 }
+		#ANG = {
+		#	country_event = { days = 1 id = GERAF.4 }
+		#}
+		#MZB = {
+		#	country_event = { days = 1 id = GERAF.4 }
+		#}
+ 	}
+ }
+ 
+ # Amerikans kill our PoW's!
+ country_event = {
+	id = COG.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event COG.3"}
+ 	title = COG.3.t
+ 	desc = COG.3.desc
+ 	picture = GFX_report_event_germania_tank
+ 	
+	is_triggered_only = yes
+ 	fire_only_once = yes
+ 	
+ 	option = { #uhoh
+		ai_chance = {
+			factor = 100
+		}
+ 		name = COG.3.a
+		#shush i'll do work later
+ 	}
+ }
+
+ country_event = {
+	id = COG.555 #Investor happiness decrease
+	immediate = {log = "[GetDateText]: [Root.GetName]: event COG.555"}
+ 	title = COG.555.t
+ 	desc = COG.555.desc
+ 	picture = GFX_report_event_germania_tank
+ 	
+	is_triggered_only = yes
+ 	
+ 	option = { 
+		ai_chance = {
+			factor = 33
+		}
+		name = COG.555.a
+		add_political_power = -50
+		add_to_variable = { COG_Investor_Happiness = 0.05 }
+		custom_effect_tooltip = COG_investors_pleased_tt
+	}
+
+	option = { 
+		ai_chance = {
+			factor = 33
+		}
+		name = COG.555.b
+		add_manpower = -1000
+		add_to_variable = { COG_Investor_Happiness = 0.05 }
+		custom_effect_tooltip = COG_investors_pleased_tt
+	 }
+	 
+	 option = { 
+		ai_chance = {
+			factor = 33
+		}
+		name = COG.555.c
+		add_stability = -0.1
+		add_to_variable = { COG_Investor_Happiness = 0.05 }
+		custom_effect_tooltip = COG_investors_pleased_tt
+ 	}
+ }
+
+ country_event = {
+	id = COG.556 #Investor happiness increase
+	immediate = {log = "[GetDateText]: [Root.GetName]: event COG.556"}
+ 	title = COG.556.t
+ 	desc = COG.556.desc
+ 	picture = GFX_report_event_germania_tank
+ 	
+	is_triggered_only = yes
+ 	
+ 	option = { 
+		ai_chance = {
+			factor = 100
+		}
+ 		name = COG.556.a
+		
+ 	}
+ }
+
+ country_event = {
+	id = COG.557 #Investor retract support
+	immediate = {log = "[GetDateText]: [Root.GetName]: event COG.557"}
+ 	title = COG.557.t
+ 	desc = COG.557.desc
+ 	picture = GFX_report_event_germania_tank
+ 	
+	is_triggered_only = yes
+ 	
+	trigger = { NOT = { has_global_flag = south_african_war } }
+
+ 	option = { 
+		ai_chance = {
+			factor = 100
+		}
+		name = COG.557.a
+		set_country_flag = COG_Investors_Gone
+		custom_effect_tooltip = COG_Investors_Assets_Gone_tt
+		add_political_power = -50
+		add_stability = -0.2
+ 	}
+ }
+

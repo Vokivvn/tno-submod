@@ -1,0 +1,78 @@
+PAV_narodnik_investigation_category = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_VTY_political_fighting
+
+	allowed = {
+		original_tag = PAV
+	}
+	
+	visible = {
+		has_country_flag = PAV_narodnik_investigation_flag
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+	}
+
+	visible_when_empty = yes
+
+	priority = {
+		base = 5
+	}
+}
+
+PAV_siberian_expansion_category = {
+	icon = GFX_decision_category_military_operation
+	picture = GFX_FAV_decision_diplomacy
+	allowed = {
+		tag = PAV
+	}
+	visible = {
+		OR = {
+			has_country_flag = PAV_central_sib_expansion
+			AND = {
+				date > 1963.5.1
+				is_ai = yes
+			}
+		}
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+	}
+}
+
+PAV_research_and_development_category = {
+	icon = GFX_decision_category_generic_political_actions
+
+	picture = GFX_FAV_decision_deployment
+
+	allowed = {
+		original_tag = PAV
+	}
+	visible = {
+		has_country_flag = PAV_research_and_development_flag
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+	}
+}
+
+PAV_The_Election_category = {
+	icon = GFX_decision_category_generic_democracy
+	allowed = {
+		tag = PAV
+	}
+	visible = {
+		has_country_flag = PAV_elections_season
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+	}
+	scripted_gui = PAV_Election_GUI
+	visible_when_empty = yes
+	priority = 100
+}
+
+PAV_USA_vs_Japan_category = {
+	icon = decision_category_generic_industry
+	picture = GFX_decision_PAV_category_USA_vs_Japan
+	allowed = {
+		tag = PAV
+	}
+	visible = {
+		has_country_flag = PAV_active_JAPvsUSA
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+	}
+	visible_when_empty = yes
+}

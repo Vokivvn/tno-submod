@@ -1,0 +1,2626 @@
+ENG_DECCAT_ENGGOOGLEMAPS = {
+	ENG_DEC_ENGGOOGLEMAPS_HMMLR_TOGGLE_DEBUG = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			is_debug = yes			
+		}
+		available = {
+			is_debug = yes
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					has_country_flag = ENG_Player_HMMLR
+				}
+			clr_country_flag = ENG_Player_HMMLR
+			set_country_flag = ENG_Player_Collab
+			}
+			else_if = {
+				limit = {
+					has_country_flag = ENG_Player_Collab
+				}
+				clr_country_flag = ENG_Player_Collab
+				set_country_flag = ENG_Player_HMMLR
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_country_flag = ENG_Player_Collab
+							has_country_flag = ENG_Player_HMMLR
+						}
+					}
+				}
+				set_country_flag = ENG_Player_HMMLR
+			}
+			ENG_GoogleMaps_Math = yes
+		}
+	}
+	ENG_DEC_HMMLROpposition = {
+		icon = GFX_decision_generic_prepare_civil_war
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		activation = {
+			hidden_trigger = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+			} }
+		}
+		visible = {
+			hidden_trigger = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+			} }
+		}
+
+		fixed_random_seed = no
+		cancel_if_not_visible = yes
+		is_good = yes
+		days_mission_timeout = 15
+		days_remove = 5
+		days_re_enable = 10
+		timeout_effect = {
+			hidden_effect = {
+				every_owned_state = {
+					set_variable = { THIS.ENG_StateStats_Opposition = random }
+					if = {
+						limit = {
+							check_variable = { THIS.ENG_StateStats_Opposition < 0.60 }
+							date < 1963.2.2
+						}
+						add_to_variable = { THIS.ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+						hidden_effect = {
+							ENG_GoogleMaps_Math = yes
+						}
+					}
+					else_if = {
+						limit = { check_variable = { THIS.ENG_StateStats_Opposition > 0.80 } }
+						add_to_variable = { THIS.ENG_StateStats_Stability = -5 }
+						ENG_SE_ClampStateStability = yes
+					}
+					else = {
+						add_to_variable = { THIS.ENG_StateStats_HmmlrSupport = 2.5 }
+						ENG_SE_ClampHmmlrSupport = yes
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	
+	ENG_DEC_CollabOpposition = {
+		icon = GFX_decision_generic_prepare_civil_war
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		activation = {
+			hidden_trigger = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+			} }
+		}
+		visible = {
+			hidden_trigger = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+			} }
+		}
+
+		fixed_random_seed = no
+		cancel_if_not_visible = yes
+		is_good = yes
+		days_mission_timeout = 15
+		days_remove = 5
+		days_re_enable = 10
+		timeout_effect = {
+			hidden_effect = {
+				every_owned_state = {
+					set_variable = { THIS.ENG_StateStats_Opposition = random }
+					if = {
+						limit = {
+							check_variable = { THIS.ENG_StateStats_Opposition < 0.60 }
+							date < 1963.2.2
+						}
+						add_to_variable = { THIS.ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+						hidden_effect = {
+							ENG_GoogleMaps_Math = yes
+						}
+					}
+					else_if = {
+						limit = { check_variable = { THIS.ENG_StateStats_Opposition > 0.80 } }
+						add_to_variable = { THIS.ENG_StateStats_Stability = -5 }
+						ENG_SE_ClampStateStability = yes
+					}
+					else = {
+						add_to_variable = { THIS.ENG_StateStats_HmmlrSupport = -2.5 }
+						ENG_SE_ClampHmmlrSupport = yes
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	
+	####HMMLR GOOGLEMAPS DECISIONS ####
+	# Note by Lavo: Every state has their own decisions because HOI4 
+	# does not refresh decisions instantly but requires 1 day between each
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_1300 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_1300 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_1300 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_131 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_131 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_131 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_130 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_130 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_130 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_132 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_132 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_132 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_129 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_129 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_129 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_128 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_128 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_128 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_885 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_885 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_885 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_125 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_125 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_125 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_126 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_126 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_126 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_777 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_777 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_777 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_338 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_338 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_338 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASEHMMLRSUPPORT_127 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = 2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes	
+			}
+		}
+	}
+	ENG_DEC_INCREASEHMMLRTREND_127 = {
+		icon = GFX_decision_category_infiltration
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = 0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASEHMMLRTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_HMMLRSTABILISE_127 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_HMMLR
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Hmmlr_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Hmmlr_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_HMMLRSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	#### COLLAB GOOGLEMAPS DECISIONS ####
+	# Note by Lavo: Every state has their own decisions because HOI4 
+	# does not refresh decisions instantly but requires 1 day between each
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_1300 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_1300 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_1300 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 1300.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_130 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_130 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_130 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 130.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_132 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_132 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_132 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 132.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_131 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_131 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_131 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 131.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_129 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_129 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_129 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 129.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_128 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_128 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_128 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 128.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_127 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_127 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_127 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 127.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_126 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_126 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_126 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 126.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_125 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_125 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_125 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 125.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_885 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_885 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_885 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 885.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABSUPPORT_338 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_338 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_338 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 338.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+	ENG_DEC_INCREASECOLLABSUPPORT_777 = {
+		icon = GFX_decision_category_generic_propaganda
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_HmmlrSupport = -2.5 }
+				ENG_SE_ClampHmmlrSupport = yes
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABSUPPORT_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_INCREASECOLLABTREND_777 = {
+		icon = GFX_decision_englishcop
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_RawHmmlrSupportTrend = -0.5 }
+				custom_effect_tooltip = [ENG_DEC_INCREASECOLLABTREND_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	ENG_DEC_COLLABSTABILISE_777 = {
+		icon = GFX_decision_humanitarian_aid_increase
+		visible = {
+			AND = {
+				has_country_flag = ENG_Player_Collab
+				has_country_flag = ENG_GoogleMaps_ActiveDecisions
+				check_variable = { ENG_EnglishGoogleMaps_ChosenState = 777.id }
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "We have not carried out any actions in this state this month."
+				var:ENG_EnglishGoogleMaps_ChosenState = {
+					check_variable = { ENG_StateStats_RecentAction = 0 }
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = { ENG_Collab_Guns > 9 }
+		}
+		custom_cost_text = ENG_googlemaps_cost_tt
+		complete_effect = {
+			add_to_variable = { ENG_Collab_Guns = -10 }
+			var:ENG_EnglishGoogleMaps_ChosenState = {
+				add_to_variable = { ENG_StateStats_Stability = 5 }
+				ENG_SE_ClampStateStability = yes
+				custom_effect_tooltip = [ENG_DEC_COLLABSTABILISE_tt]
+				set_variable = { ENG_StateStats_RecentAction = 1 }
+			}
+			hidden_effect = {
+				ENG_GoogleMaps_Math = yes
+			}
+		}
+	}
+	
+}

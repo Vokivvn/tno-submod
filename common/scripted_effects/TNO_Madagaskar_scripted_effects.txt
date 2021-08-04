@@ -1,0 +1,693 @@
+MAD_plague_sim_initial_setup = {
+	MAD = {
+		# INITIALISATION
+		every_owned_state = {
+			set_variable = { MAD_plague_pop_state_density = 0.5 }
+			set_variable = { MAD_plague_healthcare_access = 0.5 }
+		}
+
+		# MAD_plague_pop_state_density - Relates to the state's population density (0 is uninhabited, 1 is urban density)
+		# MAD_plague_healthcare_access - Relates to access to healthcare (0 is no access, 1 is easy access)
+
+		# If MAD_plague_healthcare_access > MAD_plague_pop_state_density, the disease will start to be eliminated by itself
+
+		543 = { # Rural
+			set_variable = { MAD_plague_pop_state_density = 0.5 }
+			set_variable = { MAD_plague_healthcare_access = 0.2 }
+		}
+
+		706 = { # Small Island
+			set_variable = { MAD_plague_pop_state_density = 0.6 }
+			set_variable = { MAD_plague_healthcare_access = 0.5 }
+		}
+
+		707 = { # Small Island
+			set_variable = { MAD_plague_pop_state_density = 0.6 }
+			set_variable = { MAD_plague_healthcare_access = 0.4 }
+		}
+
+		944 = { # Town
+			set_variable = { MAD_plague_pop_state_density = 0.8 }
+			set_variable = { MAD_plague_healthcare_access = 0.8 }
+		}
+
+		945 = { # Town
+			set_variable = { MAD_plague_pop_state_density = 0.7 }
+			set_variable = { MAD_plague_healthcare_access = 0.3 }
+		}
+
+		946 = { # Town
+			set_variable = { MAD_plague_pop_state_density = 0.6 }
+			set_variable = { MAD_plague_healthcare_access = 0.5 }
+		}
+
+		947 = { # Rural
+			set_variable = { MAD_plague_pop_state_density = 0.2 }
+			set_variable = { MAD_plague_healthcare_access = 0.1 }
+		}
+
+		1041 = { # Rural
+			set_variable = { MAD_plague_pop_state_density = 0.3 }
+			set_variable = { MAD_plague_healthcare_access = 0.2 }
+		}
+
+		1042 = { # Rural
+			set_variable = { MAD_plague_pop_state_density = 0.5 }
+			set_variable = { MAD_plague_healthcare_access = 0.2 }
+		}
+
+		1043 = { # Rural
+			set_variable = { MAD_plague_pop_state_density = 0.3 }
+			set_variable = { MAD_plague_healthcare_access = 0.1 }
+		}
+
+		set_variable = { MAD_plague_number_aid = 5 }
+		set_variable = { MAD_plague_base_contamination_factor = 0.3 }
+
+		# COMPUTE ISLAND GLOBAL STATUS
+
+		set_variable = { MAD_plague_percent_global = 0 }
+		set_variable = { MAD_plague_percent_global_norm = 0 }
+
+		every_owned_state = {
+			add_to_variable = { MAD.MAD_plague_percent_global = MAD_plague_percent_population }
+			add_to_variable = { MAD.MAD_plague_percent_global_norm = 1 }
+		}
+
+		divide_variable = { MAD_plague_percent_global = MAD_plague_percent_global_norm }
+
+		MAD_modify_plague_status = yes
+	}
+}
+
+MAD_plague_sim_tick = {
+	MAD = {
+		every_owned_state = {
+			# MAD_plague_percent_population - Piece of the population currently contaminated (%)
+			# MAD_plague_pop_state_density - Local population density of the state (factor)
+			# MAD_plague_healthcare_access - Access to hospital or basic healthcare (factor)
+			# MAD_plague_contamination_prob - Probability of contaminationin the state (%)
+			# MAD_plague_across_border_prob - Probability for the disease to spread to a neighboring state (%)
+
+			set_temp_variable = { MAD_plague_contamination_prob = MAD_plague_pop_state_density }
+			divide_temp_variable = { MAD_plague_contamination_prob = MAD_plague_healthcare_access }
+			multiply_temp_variable = { MAD_plague_contamination_prob = MAD_plague_base_contamination_factor }
+			multiply_temp_variable = { MAD_plague_contamination_prob = MAD_plague_percent_population }
+			clamp_temp_variable = {
+				var = MAD_plague_contamination_prob
+			    min = 0
+			    max = 1
+			}
+
+			set_temp_variable = { MAD_plague_healthy_population = 1 }
+			subtract_from_temp_variable = { MAD_plague_healthy_population = MAD_plague_percent_population }
+
+			set_temp_variable = { MAD_plague_newly_contaminated_population = MAD_plague_healthy_population }
+			multiply_temp_variable = { MAD_plague_newly_contaminated_population = MAD_plague_contamination_prob }
+
+			set_temp_variable = { MAD_plague_new_percent_population = MAD_plague_percent_population }
+			add_to_temp_variable = { MAD_plague_new_percent_population = MAD_plague_newly_contaminated_population }
+			clamp_temp_variable = {
+				var = MAD_plague_new_percent_population
+			    min = 0
+			    max = 1
+			}
+
+			set_variable = { MAD_plague_percent_population = MAD_plague_new_percent_population }
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: COMPUTING NEIGHBORS SPREADING"
+
+			every_neighbor_state = {
+				set_temp_variable = { MAD_plague_across_border_prob = 0.1 }
+
+				set_temp_variable = { MAD_plague_add_percent_population = MAD_plague_across_border_prob }
+				multiply_temp_variable = { MAD_plague_add_percent_population = PREV.MAD_plague_percent_population }
+				# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_add_percent_population = [?This.MAD_plague_add_percent_population]"
+
+				if = {
+					limit = {
+						has_state_flag = MAD_state_quarantined
+					}
+					divide_temp_variable = { MAD_plague_add_percent_population = 10 }
+				}
+
+				if = {
+					limit = {
+						PREV = {
+							has_state_flag = MAD_state_quarantined
+						}
+					}
+					divide_temp_variable = { MAD_plague_add_percent_population = 10 }
+				}
+
+				add_to_variable = { MAD_plague_percent_population = MAD_plague_add_percent_population }
+				clamp_variable = {
+					var = MAD_plague_percent_population
+					min = 0
+					max = 1
+				}
+			}
+
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_percent_population = [?This.MAD_plague_percent_population]"
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_pop_state_density = [?This.MAD_plague_pop_state_density]"
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_healthcare_access = [?This.MAD_plague_healthcare_access]"
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_contamination_prob = [?This.MAD_plague_contamination_prob]"
+			# log = "[GetDateText]: [Root.GetName] - [This.GetName]: MAD_plague_across_border_prob = [?This.MAD_plague_across_border_prob]"
+		}
+
+		# COMPUTE ISLAND GLOBAL STATUS
+
+		set_variable = { MAD_plague_percent_global = 0 }
+		set_variable = { MAD_plague_percent_global_norm = 0 }
+
+		every_owned_state = {
+			add_to_variable = { MAD.MAD_plague_percent_global = MAD_plague_percent_population }
+			add_to_variable = { MAD.MAD_plague_percent_global_norm = 1 }
+		}
+
+		divide_variable = { MAD_plague_percent_global = MAD_plague_percent_global_norm }
+
+		MAD_modify_plague_status = yes
+	}
+}
+
+MAD_modify_plague_status = {
+	if = {
+		limit = { 
+			check_variable = { MAD_plague_percent_global = 0 }
+		}
+
+		if = {
+			limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_insignificant } }
+
+			remove_ideas = {
+				MAD_idea_die_schwarze_pest_insignificant
+				MAD_idea_die_schwarze_pest_small
+				MAD_idea_die_schwarze_pest_concerning
+				MAD_idea_die_schwarze_pest_catastrophic
+				MAD_idea_die_schwarze_pest_disastrous
+			}
+		}
+	}
+
+	if = {
+		limit = { 
+			check_variable = { MAD_plague_percent_global > 0 }
+			check_variable = { MAD_plague_percent_global < 0.05 }
+		}
+
+		if = {
+			limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_insignificant } }
+
+			remove_ideas = {
+				MAD_idea_die_schwarze_pest_small
+				MAD_idea_die_schwarze_pest_concerning
+				MAD_idea_die_schwarze_pest_catastrophic
+				MAD_idea_die_schwarze_pest_disastrous
+			}
+
+			add_ideas = { MAD_idea_die_schwarze_pest_insignificant }
+		}
+	}
+
+	else = {
+		if = {
+			limit = { 
+				check_variable = { MAD_plague_percent_global > 0.05 }
+				check_variable = { MAD_plague_percent_global < 0.2 }
+			}
+
+			if = {
+				limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_small } }
+
+				remove_ideas = {
+					MAD_idea_die_schwarze_pest_insignificant
+					MAD_idea_die_schwarze_pest_concerning
+					MAD_idea_die_schwarze_pest_catastrophic
+					MAD_idea_die_schwarze_pest_disastrous
+				}
+
+				add_ideas = { MAD_idea_die_schwarze_pest_small }
+			}
+		}
+
+		else = {
+			if = {
+				limit = { 
+					check_variable = { MAD_plague_percent_global > 0.2 }
+					check_variable = { MAD_plague_percent_global < 0.4 }
+				}
+
+				if = {
+					limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_concerning } }
+
+					remove_ideas = {
+						MAD_idea_die_schwarze_pest_insignificant
+						MAD_idea_die_schwarze_pest_small
+						MAD_idea_die_schwarze_pest_catastrophic
+						MAD_idea_die_schwarze_pest_disastrous
+					}
+
+					add_ideas = { MAD_idea_die_schwarze_pest_concerning }
+				}
+			}
+
+			else = {
+				if = {
+					limit = { 
+						check_variable = { MAD_plague_percent_global > 0.4 }
+						check_variable = { MAD_plague_percent_global < 0.6 }
+					}
+
+					if = {
+						limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_catastrophic } }
+
+						remove_ideas = {
+							MAD_idea_die_schwarze_pest_insignificant
+							MAD_idea_die_schwarze_pest_small
+							MAD_idea_die_schwarze_pest_concerning
+							MAD_idea_die_schwarze_pest_disastrous
+						}
+
+						add_ideas = { MAD_idea_die_schwarze_pest_catastrophic }
+					}
+				}
+
+				else = {
+					if = {
+						limit = { NOT = { has_idea = MAD_idea_die_schwarze_pest_disastrous } }
+
+						remove_ideas = {
+							MAD_idea_die_schwarze_pest_insignificant
+							MAD_idea_die_schwarze_pest_small
+							MAD_idea_die_schwarze_pest_concerning
+							MAD_idea_die_schwarze_pest_catastrophic
+						}
+
+						add_ideas = { MAD_idea_die_schwarze_pest_disastrous }
+					}
+				}
+			}
+		}
+	}
+}
+
+MAD_setup_civil_war = {
+	hidden_effect = {
+	    MAD = {
+	    	every_owned_state = {
+				set_demilitarized_zone = no
+			}
+
+	    	leave_faction = yes
+			GER = {
+				end_puppet = MAD
+			}
+
+			remove_unit_leader = 400
+			remove_unit_leader = 401
+			remove_unit_leader = 402
+			remove_unit_leader = 403
+			remove_unit_leader = 404
+			remove_unit_leader = 4040
+
+			set_country_flag = MAD_civil_war
+
+			delete_unit_template_and_units = {
+				division_template = "SS-Division"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Garnision Madagaskar"
+			}
+
+			remove_ideas = MAD_idea_mismanaged_rebel_activity
+
+			if = {
+				limit = {
+					has_idea = MAD_reichkommisar_maurice_1
+				}
+				load_oob = MAD_CIVIL_WAR_1
+				remove_ideas = MAD_reichkommisar_maurice_1
+			}
+			if = {
+				limit = {
+					has_idea = MAD_reichkommisar_maurice_2
+				}
+				load_oob = MAD_CIVIL_WAR_2
+				remove_ideas = MAD_reichkommisar_maurice_2
+			}
+			if = {
+				limit = {
+					has_idea = MAD_reichkommisar_maurice_3
+				}
+				load_oob = MAD_CIVIL_WAR_3
+				remove_ideas = MAD_reichkommisar_maurice_3
+			}
+			if = {
+				limit = {
+					has_idea = MAD_reichkommisar_maurice_4
+				}
+				load_oob = MAD_CIVIL_WAR_4
+				remove_ideas = MAD_reichkommisar_maurice_4
+			}
+			if = {
+				limit = {
+					has_idea = MAD_reichkommisar_maurice_5
+				}
+				load_oob = MAD_CIVIL_WAR_5
+				remove_ideas = MAD_reichkommisar_maurice_5
+			}
+
+			if = {
+				limit = {
+					has_country_flag = MAD_OFN_support
+				}
+				USA = {
+					proxy_war_increase_advisors = yes
+					proxy_war_increase_advisors = yes
+				}
+			}
+		}
+		
+		MDJ = { # Jewish Partisans
+			transfer_state = 543
+			transfer_state = 706
+			transfer_state = 707
+			transfer_state = 947
+			add_state_core = 543
+			add_state_core = 706
+			add_state_core = 707
+			add_state_core = 947
+			
+			inherit_technology = PREV
+
+			add_ideas = {
+				MDJ_Marek_Edelman_hog
+				MDJ_Robert_Gamzon_for
+				MDJ_Shmuel_Gonen_eco
+				MDJ_Haim_Bar_Lev_sec
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_madagaskar_plan_1 }
+				}
+				load_oob = MDJ_CIVIL_WAR_1
+				MAD = { remove_ideas = MAD_madagaskar_plan_1 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_madagaskar_plan_2 }
+				}
+				load_oob = MDJ_CIVIL_WAR_2
+				MAD = { remove_ideas = MAD_madagaskar_plan_2 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_madagaskar_plan_3 }
+				}
+				load_oob = MDJ_CIVIL_WAR_3
+				MAD = { remove_ideas = MAD_madagaskar_plan_3 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_madagaskar_plan_4 }
+				}
+				load_oob = MDJ_CIVIL_WAR_4
+				MAD = { remove_ideas = MAD_madagaskar_plan_4 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_madagaskar_plan_5 }
+				}
+				load_oob = MDJ_CIVIL_WAR_5
+				MAD = { remove_ideas = MAD_madagaskar_plan_5 }
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_idea_die_schwarze_pest_insignificant }
+				}
+				add_ideas = MAD_idea_die_schwarze_pest_insignificant
+			}
+
+			else = {
+				if = {
+					limit = {
+						MAD = { has_idea = MAD_idea_die_schwarze_pest_small }
+					}
+					add_ideas = MAD_idea_die_schwarze_pest_small
+				}
+
+				else = {
+					if = {
+						limit = {
+							MAD = { has_idea = MAD_idea_die_schwarze_pest_concerning }
+						}
+						add_ideas = MAD_idea_die_schwarze_pest_concerning
+					}
+
+					else = {
+						if = {
+							limit = {
+								MAD = { has_idea = MAD_idea_die_schwarze_pest_catastrophic }
+							}
+							add_ideas = MAD_idea_die_schwarze_pest_catastrophic
+						}
+
+						else = {
+							add_ideas = MAD_idea_die_schwarze_pest_disastrous
+						}
+					}
+				}
+			}
+		}
+
+		MDM = { # Malagasy Rebels
+			transfer_state = 945
+			add_state_core = 945
+			transfer_state = 1041
+			add_state_core = 1041
+			
+			inherit_technology = PREV
+
+			add_ideas = {
+				MDM_Gabriel_Ramanantsoa_hog
+				MDM_Jacques_Rabemananjara_for
+				MDM_Philibert_Tsiranana_eco
+				MDM_Didier_Ratsiraka_sec
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_malagasy_uproars_1 }
+				}
+				load_oob = MDM_CIVIL_WAR_1
+				MAD = { remove_ideas = MAD_malagasy_uproars_1 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_malagasy_uproars_2 }
+				}
+				load_oob = MDM_CIVIL_WAR_2
+				MAD = { remove_ideas = MAD_malagasy_uproars_2 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_malagasy_uproars_3 }
+				}
+				load_oob = MDM_CIVIL_WAR_3
+				MAD = { remove_ideas = MAD_malagasy_uproars_3 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_malagasy_uproars_4 }
+				}
+				load_oob = MDM_CIVIL_WAR_4
+				MAD = { remove_ideas = MAD_malagasy_uproars_4 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_malagasy_uproars_5 }
+				}
+				load_oob = MDM_CIVIL_WAR_5
+				MAD = { remove_ideas = MAD_malagasy_uproars_5 }
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_idea_die_schwarze_pest_insignificant }
+				}
+				add_ideas = MAD_idea_die_schwarze_pest_insignificant
+			}
+
+			else = {
+				if = {
+					limit = {
+						MAD = { has_idea = MAD_idea_die_schwarze_pest_small }
+					}
+					add_ideas = MAD_idea_die_schwarze_pest_small
+				}
+
+				else = {
+					if = {
+						limit = {
+							MAD = { has_idea = MAD_idea_die_schwarze_pest_concerning }
+						}
+						add_ideas = MAD_idea_die_schwarze_pest_concerning
+					}
+
+					else = {
+						if = {
+							limit = {
+								MAD = { has_idea = MAD_idea_die_schwarze_pest_catastrophic }
+							}
+							add_ideas = MAD_idea_die_schwarze_pest_catastrophic
+						}
+
+						else = {
+							add_ideas = MAD_idea_die_schwarze_pest_disastrous
+						}
+					}
+				}
+			}
+		}
+
+		MDG = { # German Garrison
+			transfer_state = 946
+			transfer_state = 1043
+			add_state_core = 946
+			add_state_core = 1043
+			
+			inherit_technology = PREV
+
+			add_ideas = {
+				MDG_Werner_Goldberg_hog
+				MDG_Paul_Ludwig_Hirschfeld_for
+				MDG_Alexander_Stahlberg_eco
+				MDG_Walter_Hollaender_sec
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_german_garrisons_1 }
+				}
+				load_oob = MDG_CIVIL_WAR_1
+				MAD = { remove_ideas = MAD_german_garrisons_1 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_german_garrisons_2 }
+				}
+				load_oob = MDG_CIVIL_WAR_2
+				MAD = { remove_ideas = MAD_german_garrisons_2 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_german_garrisons_3 }
+				}
+				load_oob = MDG_CIVIL_WAR_3
+				MAD = { remove_ideas = MAD_german_garrisons_3 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_german_garrisons_4 }
+				}
+				load_oob = MDG_CIVIL_WAR_4
+				MAD = { remove_ideas = MAD_german_garrisons_4 }
+			}
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_german_garrisons_5 }
+				}
+				load_oob = MDG_CIVIL_WAR_5
+				MAD = { remove_ideas = MAD_german_garrisons_5 }
+			}
+
+			if = {
+				limit = {
+					MAD = { has_idea = MAD_idea_die_schwarze_pest_insignificant }
+				}
+				add_ideas = MAD_idea_die_schwarze_pest_insignificant
+			}
+
+			else = {
+				if = {
+					limit = {
+						MAD = { has_idea = MAD_idea_die_schwarze_pest_small }
+					}
+					add_ideas = MAD_idea_die_schwarze_pest_small
+				}
+
+				else = {
+					if = {
+						limit = {
+							MAD = { has_idea = MAD_idea_die_schwarze_pest_concerning }
+						}
+						add_ideas = MAD_idea_die_schwarze_pest_concerning
+					}
+
+					else = {
+						if = {
+							limit = {
+								MAD = { has_idea = MAD_idea_die_schwarze_pest_catastrophic }
+							}
+							add_ideas = MAD_idea_die_schwarze_pest_catastrophic
+						}
+
+						else = {
+							add_ideas = MAD_idea_die_schwarze_pest_disastrous
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+MAD_launch_civil_war = {
+	hidden_effect = {
+		every_country = {
+		    news_event = {
+				id = WORLD.67
+				days = 1
+			}
+		}
+
+		set_global_flag = madagaskar_civil_war
+
+		MAD = {
+			add_named_threat = {
+				threat = 5
+				name = threat.22.t
+			}
+		}
+		TNO_World_Tension_add_5 = yes
+
+		MDJ = {
+			declare_war_on = {
+				target = MAD
+				type = annex_everything
+			}
+		}
+		MDM = {
+			declare_war_on = {
+				target = MAD
+				type = annex_everything
+			}
+		}
+		MDG = {
+			declare_war_on = {
+				target = MAD
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MDJ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MDM
+				type = annex_everything
+			}
+		}
+	}
+}

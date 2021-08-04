@@ -1,0 +1,433 @@
+shared_focus = {
+	id = BRG_die_letzle_schlacht
+	icon = GFX_BRG_focus_der_schattenkrieg
+	cost = 2.00
+	x = 30
+	y = 10
+	allow_branch = { has_country_flag = BRG_collapsed }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		add_dynamic_modifier = { modifier = BRG_the_last_stand_modifier }
+		if = { 
+			limit = { 
+			country_exists = PIC
+				}
+			PIC = {
+			set_variable = { brg_last_speed_break = 0 }
+			set_variable = { brg_last_defense_break = 0 }
+			add_dynamic_modifier = { modifier = BRG_the_last_stand_for_the_breakaways_modifier }
+			}
+		}
+		if = { 
+			limit = { 
+			country_exists = RPY
+				}
+			RPY = {
+			set_variable = { brg_last_speed_break = 0 }
+			set_variable = { brg_last_defense_break = 0 }
+			add_dynamic_modifier = { modifier = BRG_the_last_stand_for_the_breakaways_modifier }
+			}
+		}
+		if = { 
+			limit = { 
+			country_exists = FLR
+				}
+			FLR = {
+			set_variable = { brg_last_speed_break = 0 }
+			set_variable = { brg_last_defense_break = 0 }
+			add_dynamic_modifier = { modifier = BRG_the_last_stand_for_the_breakaways_modifier }
+			}
+		}
+		if = { 
+			limit = { 
+			country_exists = BEL
+				}
+			BEL = {
+			set_variable = { brg_last_speed_break = 0 }
+			set_variable = { brg_last_defense_break = 0 }
+			add_dynamic_modifier = { modifier = BRG_the_last_stand_for_the_breakaways_modifier }
+			}
+		}
+		#Domestic
+		set_variable = { brg_last_speed = 0 }
+		set_variable = { brg_last_attack = 0 }
+		set_variable = { brg_last_defense = 0 }
+		set_variable = { brg_last_conscription = 0 }
+		set_variable = { brg_last_training_time = 0 }
+		set_variable = { brg_last_training_morale = 0 }
+		#Breakaways
+		set_variable = { brg_last_speed_break = 0 }
+		set_variable = { brg_last_defense_break = 0 }
+	}
+}
+ 
+shared_focus = {
+	id = BRG_we_will_speed_up
+	icon = GFX_BRG_Focus_The_Burgundian_Rail_System
+	cost = 2.00
+	x = -2
+	y = 1
+	prerequisite = { focus = BRG_die_letzle_schlacht }
+	mutually_exclusive = { focus = BRG_slow_them_down }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_raise_our_speed
+		add_to_variable = { brg_last_speed = 0.1 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_slow_them_down
+	icon = GFX_BRG_Focus_Workers_Are_Resources
+	cost = 2.00
+	x = 2
+	y = 1
+	mutually_exclusive = { focus = BRG_we_will_speed_up }
+	prerequisite = { focus = BRG_die_letzle_schlacht }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_slow_them_down_tt
+	hidden_effect = {
+			PIC = {
+			add_to_variable = { brg_last_speed_break = -0.1 }
+			}
+			RPY = {
+			add_to_variable = { brg_last_speed_break = -0.1 }
+			}
+			FLR = {
+			add_to_variable = { brg_last_speed_break = -0.1 }
+			}
+			BEL = {
+			add_to_variable = { brg_last_speed_break = -0.1 }
+				}
+			}
+		}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_mandatory_service
+	icon = GFX_BRG_focus_aryan_logistics
+	cost = 2.00
+	x = -2
+	y = 2
+	mutually_exclusive = { focus = BRG_using_the_ss }
+	prerequisite = { 
+	focus = BRG_slow_them_down
+	focus = BRG_we_will_speed_up
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_raise_conscription
+		add_to_variable = { brg_last_conscription = 0.1 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_mass_fortification
+	icon = GFX_BRG_focus_heavy_armor_transport
+	cost = 2.00
+	x = -2
+	y = 3
+	mutually_exclusive = { focus = BRG_mass_militarization }
+	prerequisite = { 
+	focus = BRG_mandatory_service
+	focus = BRG_using_the_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+			}
+		}
+	}
+	27 = { 
+		add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+		province = {
+			all_provinces = yes
+			limit_to_border = yes
+				}
+			}
+		}
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+
+shared_focus = {
+	id = BRG_using_the_ss
+	icon = GFX_BRG_focus_recall_the_ss
+	cost = 2.00
+	x = 2
+	y = 2
+	mutually_exclusive = { focus = BRG_mandatory_service }
+	prerequisite = { 
+	focus = BRG_slow_them_down
+	focus = BRG_we_will_speed_up
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_raise_defense
+		add_to_variable = { brg_last_defense = 0.10 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_mass_militarization
+	icon = GFX_BRG_focus_heavy_armor_transport
+	cost = 2.00
+	x = 2
+	y = 3
+	mutually_exclusive = { focus = BRG_mass_fortification }
+	prerequisite = { 
+	focus = BRG_mandatory_service
+	focus = BRG_using_the_ss
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		27 = {
+		add_extra_state_shared_building_slots = 3
+		 add_building_construction = {
+                type = arms_factory
+                level = 3
+                instant_build = yes
+            }
+		}
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_emergency_militias
+	icon = GFX_BRG_focus_the_new_way_of_life
+	cost = 2.00
+	x = -2
+	y = 4
+	mutually_exclusive = { focus = BRG_lower_the_standards }
+	prerequisite = { 
+	focus = BRG_mass_militarization
+	focus = BRG_mass_fortification
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		27 = {
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+		create_unit = {
+					division = "name = \"Emergency Militias \" division_template = \"Staatliche Polizei\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					prioritize_location = 3506
+					owner = BRG
+				}
+			}
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_lower_the_standards
+	icon = GFX_BRG_focus_a_gun_in_every_hand
+	cost = 2.00
+	x = 2
+	y = 4
+	mutually_exclusive = { focus = BRG_emergency_militias }
+	prerequisite = { 
+	focus = BRG_mass_militarization
+	focus = BRG_mass_fortification
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_lower_standards
+		add_to_variable = { brg_last_training_time = -0.1 }
+		add_to_variable = { brg_last_training_morale = -0.1 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_schools_out
+	icon = GFX_BRG_focus_ignorance_is_strength
+	cost = 2.00
+	x = -3
+	y = 5
+	mutually_exclusive = { focus = BRG_paper_to_practice }
+	prerequisite = { 
+	focus = BRG_lower_the_standards
+	focus = BRG_emergency_militias
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		TNO_worsen_academic_base_med = yes
+		custom_effect_tooltip = BRG_child_soldiers
+		add_to_variable = { brg_last_training_morale = -0.05 }
+		add_to_variable = { brg_last_conscription = 0.05 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_paper_to_practice
+	icon = GFX_BRG_focus_enhanced_engines
+	cost = 2.00
+	x = 3
+	y = 5
+	mutually_exclusive = { focus = BRG_schools_out }
+	prerequisite = { 
+	focus = BRG_lower_the_standards
+	focus = BRG_emergency_militias
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		add_to_variable = { brg_last_conscription = 0.05 }
+		custom_effect_tooltip = BRG_raise_conscription
+		TNO_worsen_research_facilities_med = yes
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_the_enemy
+	icon = GFX_BRG_our_germanic_heritage
+	cost = 2.00
+	x = 0
+	y = 6
+	prerequisite = { 
+	focus = BRG_paper_to_practice
+	focus = BRG_schools_out
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		country_event = { id = BRG_collapse.1 }
+	}
+	relative_position_id = BRG_die_letzle_schlacht
+}
+
+shared_focus = {
+	id = BRG_ready_the_silos
+	icon = GFX_BRG_Focus_The_Ordensstaats_Future
+	cost = 2.00
+	x = -2
+	y = 1
+	available = {
+	surrender_progress > 0.6
+	}
+	mutually_exclusive = { focus = BRG_la_toree_delle_milizie }
+	prerequisite = { focus = BRG_the_enemy }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		country_event = { id = BRG_collapse.4 }
+	}
+	relative_position_id = BRG_the_enemy
+}
+
+shared_focus = {
+	id = BRG_ragnarok_must_wait
+	icon = GFX_BRG_focus_apply_grenzeschild_knowledge
+	cost = 2.00
+	x = -2
+	y = 2
+	prerequisite = { focus = BRG_ready_the_silos }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		custom_effect_tooltip = BRG_its_happening
+		set_country_flag = BRG_will_nuke
+	}
+	relative_position_id = BRG_the_enemy
+}
+
+shared_focus = {
+	id = BRG_la_toree_delle_milizie
+	icon = GFX_BRG_Slash_And_Burn
+	cost = 2.00
+	x = 2
+	y = 1
+	available = { surrender_progress > 0.6 }
+	mutually_exclusive = { focus = BRG_ready_the_silos }
+	prerequisite = { focus = BRG_the_enemy }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		country_event = { id = BRG_collapse.2 }
+	}
+	relative_position_id = BRG_the_enemy
+}
+
+shared_focus = {
+	id = BRG_a_glorious_shipwreck
+	icon = GFX_BRG_pyrrhic_victory
+	cost = 2.00
+	x = 2
+	y = 2
+	prerequisite = { focus = BRG_la_toree_delle_milizie }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		country_event = { id = BRG_collapse.3 }
+	}
+	relative_position_id = BRG_the_enemy
+}
+
+shared_focus = {
+	id = BRG_das_letze_schlacht
+	icon = GFX_BRG_The_Extended_System
+	cost = 2.00
+	x = 0
+	y = 3
+	prerequisite = { 
+	focus = BRG_ragnarok_must_wait
+	focus = BRG_a_glorious_shipwreck
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_unternehmen_ludwig"
+		clr_country_flag = BRG_collapsed
+		add_war_support = 0.05
+		add_stability = 0.08
+		add_political_power = 50
+		TNO_BRG_domestic_tree_swap = yes
+	}
+	relative_position_id = BRG_the_enemy
+}

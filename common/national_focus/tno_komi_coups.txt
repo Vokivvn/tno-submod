@@ -1,0 +1,1882 @@
+focus_tree = {
+	id = NIK_pcoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_pcoup_ponomaryovs_coup
+		icon = GFX_NIK_ponomaryov
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_ponomaryovs_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_appeal_for_a_united_party
+		icon = GFX_generic_socialist_constitution
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_pcoup_ponomaryovs_coup
+		prerequisite = {
+			focus = NIK_pcoup_ponomaryovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_appeal_for_a_united_party"
+			NIK_decrease_coup_risk_static_med = yes
+			country_event = {
+				id = NIK.181
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_find_zhdanovs_connections
+		icon = GFX_NIK_zhdanov
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_pcoup_appeal_for_a_united_party
+		prerequisite = {
+			focus = NIK_pcoup_appeal_for_a_united_party
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_find_zhdanovs_connections"
+			country_event = {
+				id = NIK.182
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_repurpose_the_systems
+		icon = GFX_generic_elections_rigged
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_pcoup_appeal_for_a_united_party
+		prerequisite = {
+			focus = NIK_pcoup_appeal_for_a_united_party
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_repurpose_the_systems"
+			country_event = {
+				id = NIK.185
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_on_suslovs_orders
+		icon = GFX_RAJ_The_Second_Congress
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_pcoup_find_zhdanovs_connections
+		prerequisite = {
+			focus = NIK_pcoup_find_zhdanovs_connections
+		}
+		prerequisite = {
+			focus = NIK_pcoup_repurpose_the_systems
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_on_suslovs_orders"
+			NIK_increase_Suslov_influence_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_lock_down_syktyvkar
+		icon = GFX_CAU_Lock_down_the_streets
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_pcoup_ponomaryovs_coup
+		prerequisite = {
+			focus = NIK_pcoup_ponomaryovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_lock_down_syktyvkar"
+			country_event = {
+				id = NIK.189
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_mobilize_suslovs_men
+		icon = GFX_TNO_generic_socialist_recruitment
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_pcoup_lock_down_syktyvkar
+		prerequisite = {
+			focus = NIK_pcoup_lock_down_syktyvkar
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_mobilize_suslovs_men"
+			add_manpower = 1000
+			country_event = {
+				id = NIK.191
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_hunt_down_Taboritsky
+		icon = GFX_TNO_generic_socialist_purge
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_pcoup_lock_down_syktyvkar
+		prerequisite = {
+			focus = NIK_pcoup_lock_down_syktyvkar
+		}
+		bypass = {
+			OR = {
+				has_country_flag = NIK_Serov_Dead
+				has_country_flag = NIK_Serov_Arrested
+				has_country_flag = NIK_Serov_Retired
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_hunt_down_Taboritsky"
+			country_event = {
+				id = NIK.192
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_paralyze_the_army
+		icon = GFX_CAU_The_Business_Purge
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_pcoup_hunt_down_Taboritsky
+		prerequisite = {
+			focus = NIK_pcoup_hunt_down_Taboritsky
+		}
+		prerequisite = {
+			focus = NIK_pcoup_mobilize_suslovs_men
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_paralyze_the_army"
+			NIK_decrease_coup_risk_static_med = yes
+			add_manpower = -500
+			add_war_support = -0.10
+		}
+	}
+
+	focus = {
+		id = NIK_pcoup_komi_belongs_to_the_communist_party
+		icon = GFX_Generic_Authoritarian_Socialism
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_pcoup_paralyze_the_army
+		prerequisite = {
+			focus = NIK_pcoup_paralyze_the_army
+		}
+		prerequisite = {
+			focus = NIK_pcoup_on_suslovs_orders
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_pcoup_komi_belongs_to_the_communist_party"
+			NIK_increase_left_power_high = yes
+			NIK_increase_Suslov_influence_high = yes
+			add_political_power = 100
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_zcoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_zcoup_zhdanovs_coup
+		icon = GFX_NIK_zhdanov
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_zhdanovs_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_the_peoples_alternative
+		icon = GFX_CNT_no_more_victimless_crimes
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_zcoup_zhdanovs_coup
+		prerequisite = {
+			focus = NIK_zcoup_zhdanovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_the_peoples_alternative"
+			country_event = {
+				id = NIK.210
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_connections_in_the_remnants
+		icon = GFX_NIK_Voznesensky
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_zcoup_the_peoples_alternative
+		prerequisite = {
+			focus = NIK_zcoup_the_peoples_alternative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_connections_in_the_remnants"
+			country_event = {
+				id = NIK.211
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_strike_against_tyranny
+		icon = GFX_RAJ_India_A_Socialist_Society
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_zcoup_the_peoples_alternative
+		prerequisite = {
+			focus = NIK_zcoup_the_peoples_alternative
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_strike_against_tyranny"
+			NIK_decrease_coup_risk_static_med = yes
+			add_political_power = -25
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_promise_true_freedom
+		icon = GFX_OST_Fight_for_Freedom
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_zcoup_connections_in_the_remnants
+		prerequisite = {
+			focus = NIK_zcoup_connections_in_the_remnants
+		}
+		prerequisite = {
+			focus = NIK_zcoup_strike_against_tyranny
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_promise_true_freedom"
+			NIK_increase_coup_risk_low = yes
+			NIK_decrease_coup_risk_static_med = yes
+			tno_lgbt_rights_improve = yes
+			tno_gender_rights_improve = yes
+			tno_minorities_improve = yes
+			tno_penal_system_improve = yes
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_peoples_political_struggle
+		icon = GFX_socialism_of_the_people
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_zcoup_zhdanovs_coup
+		prerequisite = {
+			focus = NIK_zcoup_zhdanovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_peoples_political_struggle"
+			add_war_support = 0.05
+			country_event = {
+				id = NIK.228
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_freeze_the_activities
+		icon = GFX_OST_The_future_frozen
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_zcoup_peoples_political_struggle
+		prerequisite = {
+			focus = NIK_zcoup_peoples_political_struggle
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_freeze_the_activities"
+			NIK_decrease_coup_risk_low = yes
+			add_manpower = -625
+			NIK_decrease_center_power_low = yes
+			NIK_decrease_right_power_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_seed_the_files
+		icon = GFX_RAJ_India_Seal_The_Case
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_zcoup_peoples_political_struggle
+		prerequisite = {
+			focus = NIK_zcoup_peoples_political_struggle
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_seed_the_files"
+			country_event = {
+				id = NIK.229
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_silence_the_unswayed
+		icon = GFX_TNO_generic_socialist_purge
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_zcoup_freeze_the_activities
+		prerequisite = {
+			focus = NIK_zcoup_freeze_the_activities
+		}
+		prerequisite = {
+			focus = NIK_zcoup_seed_the_files
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_silence_the_unswayed"
+			country_event = {
+				id = NIK.232
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_zcoup_komi_belongs_to_the_people
+		icon = GFX_Generic_Libertarian_Socialism
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_zcoup_promise_true_freedom
+		prerequisite = {
+			focus = NIK_zcoup_promise_true_freedom
+		}
+		prerequisite = {
+			focus = NIK_zcoup_silence_the_unswayed
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_zcoup_komi_belongs_to_the_people"
+			NIK_increase_left_power_high = yes
+			NIK_increase_Zhdanov_influence_high = yes
+			add_political_power = 100
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_bcoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_bcoup_bukharinas_coup
+		icon = GFX_NIK_bukharina
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_bukharinas_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_the_legitimate_option
+		icon = GFX_TNO_generic_soviet_flag
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_bcoup_bukharinas_coup
+		prerequisite = {
+			focus = NIK_bcoup_bukharinas_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_the_legitimate_option"
+			NIK_decrease_coup_risk_static_med = yes
+			country_event = {
+				id = NIK.277
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_fully_seize_the_party
+		icon = GFX_RAJ_Wrap_Up_The_Congress
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_bcoup_the_legitimate_option
+		prerequisite = {
+			focus = NIK_bcoup_the_legitimate_option
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_fully_seize_the_party"
+			NIK_increase_Bukharina_influence_high = yes
+			NIK_decrease_coup_risk_med = yes
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_propaganda_blackout
+		icon = GFX_SLO_Peoples_Television
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_bcoup_the_legitimate_option
+		prerequisite = {
+			focus = NIK_bcoup_the_legitimate_option
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_propaganda_blackout"
+			country_event = {
+				id = NIK.278
+				days = 1
+			}
+			add_war_support = -0.05
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_we_are_benevolent
+		icon = GFX_TNO_generic_socialist_recruitment
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_bcoup_fully_seize_the_party
+		prerequisite = {
+			focus = NIK_bcoup_fully_seize_the_party
+		}
+		prerequisite = {
+			focus = NIK_bcoup_propaganda_blackout
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_we_are_benevolent"
+			NIK_increase_left_power_med = yes
+			NIK_increase_Bukharina_influence_med = yes
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = NIK_Gumilyov_Dead
+							has_country_flag = NIK_Gumilyov_Retired
+							has_country_flag = NIK_Gumilyov_Arrested
+						}
+					}
+					random_list = {
+						40 = {
+							country_event = {
+								id = NIK.283
+								days = 1
+							}
+						}
+						60 = {
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_fight_to_save_us_all
+		icon = GFX_USA_We_fight_for_Stability
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_bcoup_bukharinas_coup
+		prerequisite = {
+			focus = NIK_bcoup_bukharinas_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_fight_to_save_us_all"
+			add_war_support = 0.05
+			add_manpower = -450
+			NIK_decrease_coup_risk_static_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_make_peace_where_we_can
+		icon = GFX_dove_of_peace
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_bcoup_fight_to_save_us_all
+		prerequisite = {
+			focus = NIK_bcoup_fight_to_save_us_all
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_make_peace_where_we_can"
+			add_war_support = -0.10
+			NIK_decrease_coup_risk_static_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_make_war_everywhere_else
+		icon = GFX_TNO_generic_global_anti_fascism
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_bcoup_fight_to_save_us_all
+		prerequisite = {
+			focus = NIK_bcoup_fight_to_save_us_all
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_make_war_everywhere_else"
+			country_event = {
+				id = NIK.284
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_out_of_harms_way
+		icon = GFX_SLO_Social_Liberalization
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_bcoup_make_peace_where_we_can
+		prerequisite = {
+			focus = NIK_bcoup_make_peace_where_we_can
+		}
+		prerequisite = {
+			focus = NIK_bcoup_make_war_everywhere_else
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_out_of_harms_way"
+			NIK_decrease_coup_risk_low = yes
+			add_political_power = 50
+			NIK_increase_left_power_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_bcoup_komi_belongs_to_the_soviets
+		icon = GFX_ORE_balancing_the_council
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_bcoup_we_are_benevolent
+		prerequisite = {
+			focus = NIK_bcoup_we_are_benevolent
+		}
+		prerequisite = {
+			focus = NIK_bcoup_out_of_harms_way
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_bcoup_komi_belongs_to_the_soviets"
+			add_political_power = 100
+			NIK_increase_Bukharina_influence_high = yes
+			NIK_increase_left_power_high = yes
+		}
+	}
+}
+
+focus_tree = { #Actually Serov
+	id = NIK_gcoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_gcoup_gumilyovs_coup
+		icon = GFX_GER_The_Peoples_coup
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_gumilyovs_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_shut_down_the_stagnant
+		icon = GFX_INS_purge_bureaucracy
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_gcoup_gumilyovs_coup
+		prerequisite = {
+			focus = NIK_gcoup_gumilyovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_shut_down_the_stagnant"
+			add_manpower = -500
+			NIK_decrease_center_power_high = yes
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_absorb_belozerov
+		icon = GFX_RAJ_India_A_Socialist_Society
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_gcoup_shut_down_the_stagnant
+		prerequisite = {
+			focus = NIK_gcoup_shut_down_the_stagnant
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_absorb_belozerov"
+			country_event = {
+				id = NIK.321
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_align_Taboritsky
+		icon = GFX_NIK_taboritsky
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_gcoup_shut_down_the_stagnant
+		prerequisite = {
+			focus = NIK_gcoup_shut_down_the_stagnant
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_align_Taboritsky"
+			NIK_increase_Taboritsky_influence_high = yes
+			NIK_decrease_coup_risk_static_low = yes
+			NIK_increase_right_power_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_appeal_to_the_clergy
+		icon = GFX_Generic_Orthodox_Cross
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_gcoup_absorb_belozerov
+		prerequisite = {
+			focus = NIK_gcoup_absorb_belozerov
+		}
+		prerequisite = {
+			focus = NIK_gcoup_align_Taboritsky
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_appeal_to_the_clergy"
+			add_political_power = 50
+			NIK_decrease_coup_risk_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_flood_the_streets
+		icon = GFX_CAU_The_Government_Purge
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_gcoup_gumilyovs_coup
+		prerequisite = {
+			focus = NIK_gcoup_gumilyovs_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_flood_the_streets"
+			add_manpower = -250
+			country_event = {
+				id = NIK.324
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_crowd_dispersal
+		icon = GFX_CAU_The_Business_Purge
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_gcoup_flood_the_streets
+		prerequisite = {
+			focus = NIK_gcoup_flood_the_streets
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_crowd_dispersal"
+			country_event = {
+				id = NIK.325
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_nobody_enters
+		icon = GFX_CAU_Lock_down_the_streets
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_gcoup_flood_the_streets
+		prerequisite = {
+			focus = NIK_gcoup_flood_the_streets
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_nobody_enters"
+			NIK_decrease_coup_risk_low = yes
+			add_war_support = -0.1
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_the_guns_of_the_passionariyy
+		icon = GFX_IME_Advance_my_Legions
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_gcoup_crowd_dispersal
+		prerequisite = {
+			focus = NIK_gcoup_crowd_dispersal
+		}
+		prerequisite = {
+			focus = NIK_gcoup_nobody_enters
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_the_guns_of_the_passionariyy"
+			add_manpower = 150
+			NIK_decrease_coup_risk_static_med = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 100
+				producer = NIK
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_gcoup_komi_belongs_to_the_faithful
+		icon = GFX_Generic_National_Socialism
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_gcoup_appeal_to_the_clergy
+		prerequisite = {
+			focus = NIK_gcoup_appeal_to_the_clergy
+		}
+		prerequisite = {
+			focus = NIK_gcoup_the_guns_of_the_passionariyy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_gcoup_komi_belongs_to_the_faithful"
+			add_political_power = 100
+			NIK_increase_serov_influence_high = yes
+			NIK_increase_right_power_high = yes
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_dcoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_dcoup_Taboritskys_coup
+		icon = GFX_NIK_taboritsky
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_Taboritskys_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_crush_the_institutions
+		icon = GFX_UPO_Burn_It_All
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_dcoup_Taboritskys_coup
+		prerequisite = {
+			focus = NIK_dcoup_Taboritskys_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_crush_the_institutions"
+			NIK_decrease_center_power_high = yes
+			NIK_decrease_left_power_low = yes
+			add_political_power = 100
+			add_manpower = -100
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_no_more_unwritten_rules
+		icon = GFX_GER_burn_the_blacklist
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_dcoup_crush_the_institutions
+		prerequisite = {
+			focus = NIK_dcoup_crush_the_institutions
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_no_more_unwritten_rules"
+			country_event = {
+				id = NIK.326
+				days = 1
+			}
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_no_more_disorder
+		icon = GFX_generic_crowd_cheering
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_dcoup_crush_the_institutions
+		prerequisite = {
+			focus = NIK_dcoup_crush_the_institutions
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_no_more_disorder"
+			NIK_decrease_coup_risk_static_high = yes
+			add_manpower = -500
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_march_to_the_tick_of_the_clock
+		icon = GFX_FSR_Only_God_And_His_Servants
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_dcoup_no_more_unwritten_rules
+		prerequisite = {
+			focus = NIK_dcoup_no_more_unwritten_rules
+		}
+		prerequisite = {
+			focus = NIK_dcoup_no_more_disorder
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_march_to_the_tick_of_the_clock"
+			NIK_increase_right_power_med = yes
+			NIK_increase_Taboritsky_influence_high = yes
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_unleash_the_stormtroopers
+		icon = GFX_CZE_Soldier_Saluting_Rubble
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_dcoup_Taboritskys_coup
+		prerequisite = {
+			focus = NIK_dcoup_Taboritskys_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_unleash_the_stormtroopers"
+			country_event = {
+				id = NIK.331
+				days = 1
+			}
+
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_open_the_arsenals
+		icon = GFX_generic_gas
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_dcoup_unleash_the_stormtroopers
+		prerequisite = {
+			focus = NIK_dcoup_unleash_the_stormtroopers
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_open_the_arsenals"
+			swap_ideas = {
+				remove_idea = RUS_syktyvkar_arsenal
+				add_idea = NIK_unrestricted_arsenal
+			}
+			NIK_decrease_coup_risk_static_med = yes
+			NIK_increase_coup_risk_low = yes
+			add_war_support = -0.05
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_no_limits
+		icon = GFX_GER_A_Gentle_Purge
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_dcoup_unleash_the_stormtroopers
+		prerequisite = {
+			focus = NIK_dcoup_unleash_the_stormtroopers
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_no_limits"
+			country_event = {
+				id = NIK.332
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_the_only_movement_left
+		icon = GFX_SPA_Democratic_Mirage
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_dcoup_open_the_arsenals
+		prerequisite = {
+			focus = NIK_dcoup_open_the_arsenals
+		}
+		prerequisite = {
+			focus = NIK_dcoup_no_limits
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_the_only_movement_left"
+			NIK_increase_coup_risk_low = yes
+			NIK_decrease_center_power_high = yes
+			NIK_decrease_left_power_high = yes
+		}
+	}
+
+	focus = {
+		id = NIK_dcoup_komi_belongs_to_the_sturmoviks
+		icon = GFX_goal_KIR_Many_Shades_of_Monarchism
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_dcoup_march_to_the_tick_of_the_clock
+		prerequisite = {
+			focus = NIK_dcoup_march_to_the_tick_of_the_clock
+		}
+		prerequisite = {
+			focus = NIK_dcoup_the_only_movement_left
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_dcoup_komi_belongs_to_the_sturmoviks"
+			add_political_power = 100
+			NIK_increase_Taboritsky_influence_high = yes
+			NIK_increase_right_power_high = yes
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_scoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_scoup_stalinas_coup
+		icon = GFX_NIK_Stalina
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_stalinas_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_declare_the_reconstruction_government
+		icon = GFX_generic_authoritarian_constitution
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_scoup_stalinas_coup
+		prerequisite = {
+			focus = NIK_scoup_stalinas_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_declare_the_reconstruction_government"
+			NIK_decrease_left_power_med = yes
+			NIK_decrease_right_power_med = yes
+			NIK_decrease_coup_risk_low = yes
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_a_single_democratic_party
+		icon = GFX_CHI_liberate_population
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_scoup_declare_the_reconstruction_government
+		prerequisite = {
+			focus = NIK_scoup_declare_the_reconstruction_government
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_a_single_democratic_party"
+			country_event = {
+				id = NIK.300
+				days = 1
+			}
+			add_ideas = tno_political_parties_controlled_opposition
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_a_united_armed_force
+		icon = GFX_ORE_reorganizing_the_militias
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_scoup_declare_the_reconstruction_government
+		prerequisite = {
+			focus = NIK_scoup_declare_the_reconstruction_government
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_a_united_armed_force"
+			country_event = {
+				id = NIK.301
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_shut_down_the_chaos
+		icon = GFX_ORE_call_the_council_to_order
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_scoup_a_single_democratic_party
+		prerequisite = {
+			focus = NIK_scoup_a_single_democratic_party
+		}
+		prerequisite = {
+			focus = NIK_scoup_a_united_armed_force
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_shut_down_the_chaos"
+			NIK_decrease_coup_risk_static_med = yes
+			add_manpower = -150
+			add_war_support = 0.15
+			NIK_increase_Stalina_influence_high = yes
+			add_ideas = tno_press_rights_censored_press
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_destroy_radicalism
+		icon = GFX_CAU_The_Government_Purge
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_scoup_stalinas_coup
+		prerequisite = {
+			focus = NIK_scoup_stalinas_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_destroy_radicalism"
+			country_event = {
+				id = NIK.305
+				days = 1
+			}
+			add_ideas = tno_public_meetings_regulated
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_tear_up_the_unwritten_rules
+		icon = GFX_generic_suspend_constitution
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_scoup_destroy_radicalism
+		prerequisite = {
+			focus = NIK_scoup_destroy_radicalism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_tear_up_the_unwritten_rules"
+			add_war_support = 0.10
+			NIK_decrease_coup_risk_low = yes
+			NIK_increase_coup_risk_static_low = yes
+			NIK_increase_Stalina_influence_med = yes
+			add_ideas = tno_security_security_service
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_hunt_their_leaders
+		icon = GFX_MAD_the_snipers_plot
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_scoup_destroy_radicalism
+		prerequisite = {
+			focus = NIK_scoup_destroy_radicalism
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_hunt_their_leaders"
+			set_country_flag = Stalina_Open_Season
+			custom_effect_tooltip = NIK_scoup_hunt_their_leaders_tt
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_send_a_message
+		icon = GFX_BRY_broadcast_message
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_scoup_tear_up_the_unwritten_rules
+		prerequisite = {
+			focus = NIK_scoup_tear_up_the_unwritten_rules
+		}
+		prerequisite = {
+			focus = NIK_scoup_hunt_their_leaders
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_send_a_message"
+			add_manpower = -750
+			add_war_support = 0.05
+			NIK_decrease_coup_risk_static_med = yes
+			NIK_increase_Stalina_influence_high = yes
+		}
+	}
+
+	focus = {
+		id = NIK_scoup_komi_belongs_to_the_coalition
+		icon = GFX_generic_liberty
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_scoup_shut_down_the_chaos
+		prerequisite = {
+			focus = NIK_scoup_shut_down_the_chaos
+		}
+		prerequisite = {
+			focus = NIK_scoup_send_a_message
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_scoup_komi_belongs_to_the_coalition"
+			add_political_power = 100
+			NIK_increase_center_power_high = yes
+			NIK_increase_Stalina_influence_high = yes
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_countercoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_countercoup_democrats_coup
+		icon = GFX_NIK_democratic_foundation
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_democrats_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_defend_democracy
+		icon = GFX_OST_Fight_for_Freedom
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_countercoup_democrats_coup
+		prerequisite = {
+			focus = NIK_countercoup_democrats_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_defend_democracy"
+			NIK_increase_center_power_high = yes
+			NIK_decrease_coup_risk_static_med = yes
+			add_war_support = 0.10
+			add_manpower = 750
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_expel_the_radicals
+		icon = GFX_ITA_Massacare_the_Reds
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_countercoup_defend_democracy
+		prerequisite = {
+			focus = NIK_countercoup_defend_democracy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_expel_the_radicals"
+			country_event = {
+				id = NIK.293
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_every_last_resource
+		icon = GFX_URL_we_can_use_more
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_countercoup_defend_democracy
+		prerequisite = {
+			focus = NIK_countercoup_defend_democracy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_every_last_resource"
+			add_manpower = 150
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 250
+				producer = NIK
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_emergency_rule
+		icon = GFX_JAP_Red_Alert
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_countercoup_expel_the_radicals
+		prerequisite = {
+			focus = NIK_countercoup_expel_the_radicals
+		}
+		prerequisite = {
+			focus = NIK_countercoup_every_last_resource
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_emergency_rule"
+			country_event = {
+				id = NIK.294
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_restore_order
+		icon = GFX_NIK_government_check
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_countercoup_democrats_coup
+		prerequisite = {
+			focus = NIK_countercoup_democrats_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_restore_order"
+			country_event = {
+				id = NIK.295
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_our_loyal_sympathizers
+		icon = GFX_Generic_Soldiers_Red
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_countercoup_restore_order
+		prerequisite = {
+			focus = NIK_countercoup_restore_order
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_our_loyal_sympathizers"
+			country_event = {
+				id = NIK.296
+				days = 1
+			}
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_paralyze_the_paramilitaries
+		icon = GFX_RAJ_Cut_Military_Spending
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_countercoup_restore_order
+		prerequisite = {
+			focus = NIK_countercoup_restore_order
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_paralyze_the_paramilitaries"
+			NIK_decrease_coup_risk_low = yes
+			NIK_increase_center_power_high = yes
+			NIK_increase_Stalina_influence_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_restore_the_quiet
+		icon = GFX_fatherland_lies_silent
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_countercoup_our_loyal_sympathizers
+		prerequisite = {
+			focus = NIK_countercoup_our_loyal_sympathizers
+		}
+		prerequisite = {
+			focus = NIK_countercoup_paralyze_the_paramilitaries
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_restore_the_quiet"
+			country_event = {
+				id = NIK.298
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_countercoup_komi_belongs_to_the_citizens
+		icon = GFX_generic_liberty
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_countercoup_emergency_rule
+		prerequisite = {
+			focus = NIK_countercoup_emergency_rule
+		}
+		prerequisite = {
+			focus = NIK_countercoup_restore_the_quiet
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_countercoup_komi_belongs_to_the_citizens"
+			add_political_power = 100
+			NIK_increase_center_power_high = yes
+			if = {
+				limit = {
+					has_government = social_liberal
+				}
+				NIK_increase_Kosygin_influence_high = yes
+			}
+			if = {
+				limit = {
+					has_government = social_democrat
+				}
+				NIK_increase_Voznesensky_influence_high = yes
+			}
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_ucoup
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_ucoup_eurasianists_coup
+		icon = GFX_NIK_gumilyov
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_eurasianists_coup"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_social_sphere_permeation
+		icon = GFX_RAJ_help_social_progression
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_ucoup_eurasianists_coup
+		prerequisite = {
+			focus = NIK_ucoup_eurasianists_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_social_sphere_permeation"
+			NIK_increase_gumilyov_influence_med = yes
+			NIK_decrease_coup_risk_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_a_common_cause
+		icon = GFX_ITA_Massacare_the_Reds
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_ucoup_social_sphere_permeation
+		prerequisite = {
+			focus = NIK_ucoup_social_sphere_permeation
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_a_common_cause"
+			NIK_decrease_left_power_high = yes
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_sideline_Taboritsky
+		icon = GFX_BRG_focus_purity_tests
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_ucoup_social_sphere_permeation
+		prerequisite = {
+			focus = NIK_ucoup_social_sphere_permeation
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_sideline_Taboritsky"
+			country_event = {
+				id = NIK.333
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_the_eurasia_plan
+		icon = GFX_CNT_Asia
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_ucoup_a_common_cause
+		prerequisite = {
+			focus = NIK_ucoup_a_common_cause
+		}
+		prerequisite = {
+			focus = NIK_ucoup_sideline_Taboritsky
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_the_eurasia_plan"
+			add_war_support = 0.15
+			NIK_decrease_right_power_med = yes
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_secure_the_concept
+		icon = GFX_Focus_Russia_Orthographic
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_ucoup_eurasianists_coup
+		prerequisite = {
+			focus = NIK_ucoup_eurasianists_coup
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_secure_the_concept"
+			NIK_decrease_coup_risk_med = yes
+			every_country = {
+				limit = {
+					is_neighbor_of = NIK
+				}
+				add_war_support = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_highlight_external_threats
+		icon = GFX_generic_diplomacy_expansion
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_ucoup_secure_the_concept
+		prerequisite = {
+			focus = NIK_ucoup_secure_the_concept
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_highlight_external_threats"
+			add_war_support = 0.10
+			NIK_decrease_coup_risk_static_med = yes
+			397 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 99
+				}
+			}
+			868 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3177
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_an_army_of_radicals
+		icon = GFX_RAJ_orange_bannered_army
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_ucoup_secure_the_concept
+		prerequisite = {
+			focus = NIK_ucoup_secure_the_concept
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_an_army_of_radicals"
+			country_event = {
+				id = NIK.334
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_none_may_contest
+		icon = GFX_URL_Accept_No_Substitutes
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_ucoup_highlight_external_threats
+		prerequisite = {
+			focus = NIK_ucoup_highlight_external_threats
+		}
+		prerequisite = {
+			focus = NIK_ucoup_an_army_of_radicals
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_none_may_contest"
+			NIK_increase_right_power_med = yes
+			NIK_decrease_coup_risk_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_ucoup_komi_belongs_to_the_true_passionarists
+		icon = GFX_Generic_Ultranationalism
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_ucoup_the_eurasia_plan
+		prerequisite = {
+			focus = NIK_ucoup_the_eurasia_plan
+		}
+		prerequisite = {
+			focus = NIK_ucoup_none_may_contest
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_ucoup_komi_belongs_to_the_true_passionarists"
+			add_political_power = 100
+			NIK_increase_right_power_high = yes
+			NIK_increase_gumilyov_influence_high = yes
+		}
+	}
+}
+
+focus_tree = {
+	id = NIK_unstable_victory
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NIK
+		}
+	}
+	default = no
+
+	focus = {
+		id = NIK_unstable_victory_a_victory_for_democracy
+		icon = GFX_generic_political_chaos
+		cost = 0.8
+		x = 5
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_a_victory_for_democracy"
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_secure_the_republic
+		icon = GFX_NIK_government_check
+		cost = 0.8
+		x = -2
+		y = 1
+		relative_position_id = NIK_unstable_victory_a_victory_for_democracy
+		prerequisite = {
+			focus = NIK_unstable_victory_a_victory_for_democracy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_secure_the_republic"
+			country_event = {
+				id = NIK.233
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_a_standing_coalition
+		icon = GFX_ORE_accept_their_aid
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_unstable_victory_secure_the_republic
+		prerequisite = {
+			focus = NIK_unstable_victory_secure_the_republic
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_a_standing_coalition"
+			add_political_power = 50
+			NIK_increase_center_power_med = yes
+			NIK_decrease_coup_risk_static_low = yes
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_the_defense_plan
+		icon = GFX_ORE_establish_the_planning_commission
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_unstable_victory_secure_the_republic
+		prerequisite = {
+			focus = NIK_unstable_victory_secure_the_republic
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_the_defense_plan"
+			country_event = {
+				id = NIK.238
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_stalinas_speech
+		icon = GFX_NIK_Stalina
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_unstable_victory_a_standing_coalition
+		prerequisite = {
+			focus = NIK_unstable_victory_a_standing_coalition
+		}
+		prerequisite = {
+			focus = NIK_unstable_victory_the_defense_plan
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_stalinas_speech"
+			country_event = {
+				id = NIK.234
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_direct_action
+		icon = GFX_CAU_Militarize_The_Outskirts
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_unstable_victory_a_victory_for_democracy
+		prerequisite = {
+			focus = NIK_unstable_victory_a_victory_for_democracy
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_direct_action"
+			add_war_support = 0.05
+			country_event = {
+				id = NIK.239
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_acquire_the_information
+		icon = GFX_Generic_Espionage
+		cost = 0.8
+		x = -1
+		y = 1
+		relative_position_id = NIK_unstable_victory_direct_action
+		prerequisite = {
+			focus = NIK_unstable_victory_direct_action
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_acquire_the_information"
+			country_event = {
+				id = NIK.244
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_surround_the_neighborhoods
+		icon = GFX_CAU_Lock_down_the_streets
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_unstable_victory_direct_action
+		prerequisite = {
+			focus = NIK_unstable_victory_direct_action
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_surround_the_neighborhoods"
+			add_political_power = -50
+			397 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 99
+				}
+			}
+			868 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3177
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_nip_it_in_the_bud
+		icon = GFX_Generic_Soldiers_Red
+		cost = 0.8
+		x = 1
+		y = 1
+		relative_position_id = NIK_unstable_victory_acquire_the_information
+		prerequisite = {
+			focus = NIK_unstable_victory_acquire_the_information
+		}
+		prerequisite = {
+			focus = NIK_unstable_victory_surround_the_neighborhoods
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_nip_it_in_the_bud"
+			country_event = {
+				id = NIK.248
+				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = NIK_unstable_victory_komi_is_strong_and_stable
+		icon = GFX_generic_conservative_constitution
+		cost = 0.8
+		x = 2
+		y = 1
+		relative_position_id = NIK_unstable_victory_stalinas_speech
+		prerequisite = {
+			focus = NIK_unstable_victory_stalinas_speech
+		}
+		prerequisite = {
+			focus = NIK_unstable_victory_nip_it_in_the_bud
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus NIK_unstable_victory_komi_is_strong_and_stable"
+			NIK_increase_center_power_high = yes
+			add_political_power = 100
+		}
+	}
+}

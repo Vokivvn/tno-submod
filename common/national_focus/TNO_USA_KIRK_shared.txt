@@ -1,0 +1,355 @@
+#...CIA mainframe online
+#...booting interface
+#...initializing system
+#Enter Login Credentials
+#Username: JKirkPatrick
+#Password: ************
+#Loading focus tree
+#Welcome President Kirkpatrick
+
+shared_focus = {
+	id = USA_kirk_72_the_kirkpatrick_presidency
+	icon = GFX_USA_Kirkpatrick_Presidency
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_the_kirkpatrick_presidency"
+		country_event = { id = KIRK.1 }
+		add_political_power = 50
+	}
+	x = 6
+	y = 0
+}
+
+shared_focus = {
+	id = USA_kirk_72_meet_with_the_director
+	icon = GFX_USA_CIA
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_kirk_72_the_kirkpatrick_presidency
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_meet_with_the_director"
+		country_event = { id = KIRK.2 }
+		add_war_support = 0.05
+	}
+	x = -4
+	y = 1
+	relative_position_id = USA_kirk_72_the_kirkpatrick_presidency
+}
+
+shared_focus = {
+	id = USA_kirk_72_open_the_floodgates
+	icon = GFX_USA_Wiretap_the_NPP
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_kirk_72_meet_with_the_director
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_open_the_floodgates"
+		custom_effect_tooltip = USA_KIRK_unlock_mhchaos
+		country_event = { id = KIRK.8 }
+		if = {
+			limit = {
+				has_completed_focus = USA_kirk_72_restore_war_powers
+				has_completed_focus = USA_kirk_72_find_a_frontman
+			}
+			custom_effect_tooltip = USA_KIRK_unlock_coup
+		}
+	}
+	x = 0
+	y = 3
+	relative_position_id = USA_kirk_72_meet_with_the_director
+}
+
+shared_focus = {
+	id = USA_kirk_72_the_kirkpatrick_doctrine
+	icon = GFX_USA_Kirkpatrick_Doctrine
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_kirk_72_the_kirkpatrick_presidency
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_the_kirkpatrick_doctrine"
+		custom_effect_tooltip = USA_KIRK_cia_budget_boost
+		country_event = { id = KIRK.3 }
+		add_to_variable = { USA_CIA_Budget = 50 }
+		add_ideas = USA_72_KIRK_doctrine
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_kirk_72_the_kirkpatrick_presidency
+}
+
+shared_focus = {
+	id = USA_kirk_72_make_the_shipments
+	icon = GFX_SAF_Buy_American_Guns
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_kirk_72_the_kirkpatrick_doctrine
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_make_the_shipments"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1500
+		}
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_kirk_72_the_kirkpatrick_doctrine
+}
+
+shared_focus = {
+	id = USA_kirk_72_begin_the_destabilization
+	icon = GFX_Generic_Revolution
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_kirk_72_the_kirkpatrick_doctrine
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_begin_the_destabilization"
+		DOM = { add_stability = -0.05 }
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_kirk_72_the_kirkpatrick_doctrine
+}
+
+shared_focus = {
+	id = USA_kirk_72_find_a_frontman
+	icon = GFX_Generic_Despotism
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = { focus = USA_kirk_72_make_the_shipments }
+	prerequisite = { focus = USA_kirk_72_begin_the_destabilization }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_find_a_frontman"
+		country_event = { id = KIRK.4 }
+		if = {
+			limit = {
+				has_completed_focus = USA_kirk_72_open_the_floodgates
+				has_completed_focus = USA_kirk_72_restore_war_powers
+			}
+			custom_effect_tooltip = USA_KIRK_unlock_coup
+		}
+
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_kirk_72_make_the_shipments
+}
+
+shared_focus = {
+	id = USA_kirk_72_rally_the_party
+	icon = GFX_USA_March_Straight_Forwards
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_kirk_72_the_kirkpatrick_presidency
+	}
+	completion_reward = {
+		country_event = { id = KIRK.9 }
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_rally_the_party"
+		custom_effect_tooltip = USA_add_NPP_unity
+		add_to_variable = { USA_NPP_Unity = 1 }
+
+	}
+	x = 4
+	y = 1
+	relative_position_id = USA_kirk_72_the_kirkpatrick_presidency
+}
+
+shared_focus = {
+	id = USA_kirk_72_restore_war_powers
+	icon = GFX_USA_Wrangle_the_Senate
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_kirk_72_rally_the_party
+	}
+
+	select_effect = { 
+		kirk_war_powers_act = yes
+	}
+
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_restore_war_powers"
+		custom_effect_tooltip = USA_KIRK_introduce_war_powers
+		if = {
+			limit = {
+				has_completed_focus = USA_kirk_72_open_the_floodgates
+				has_completed_focus = USA_kirk_72_find_a_frontman
+			}
+			custom_effect_tooltip = USA_KIRK_unlock_coup
+		}
+		hidden_effect = {
+			check_if_bill_passed = yes
+			if = {
+				limit = { has_country_flag = bill_passed }
+				country_event = { id = KIRK.7 }
+			}
+			else = { country_event = { id = KIRK.6 } }
+			USA_bill_clear = yes
+		}
+	}
+	x = 0
+	y = 3
+	relative_position_id = USA_kirk_72_rally_the_party
+}
+
+shared_focus = {
+	id = USA_kirk_72_make_the_call
+	icon = GFX_Generic_Shady_Deal
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_KIRK_not_couped_yet
+			always = no
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = { focus = USA_kirk_72_open_the_floodgates }
+	prerequisite = { focus = USA_kirk_72_find_a_frontman }
+	prerequisite = { focus = USA_kirk_72_restore_war_powers }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_kirk_72_make_the_call"
+		custom_effect_tooltip = USA_KIRK_foreshadowing
+	}
+	x = 0
+	y = 2
+	relative_position_id = USA_kirk_72_find_a_frontman
+}

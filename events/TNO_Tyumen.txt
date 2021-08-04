@@ -1,0 +1,3208 @@
+﻿###################
+## Tyumen events ##
+###################
+
+add_namespace = ISH
+add_namespace = ISH_khrushchev
+
+country_event = { #Intro event
+	id = ISH.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.1"}
+	title = ISH.1.t
+	desc = ISH.1.d
+	picture = GFX_report_event_soviet_symbol
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.1.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+#Free-to-a-good home event skeletons by SPQR
+
+country_event = { #West vs. East
+	id = ISH.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.2"}
+	title = ISH.2.t
+	desc = ISH.2.d
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.2.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Holding Out
+	id = ISH.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.3"}
+	title = ISH.3.t
+	desc = ISH.3.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.3.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.03
+	}
+}
+
+country_event = { #Military holdouts
+	id = ISH.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.4"}
+	title = ISH.4.t
+	desc = ISH.4.d
+	picture = GFX_report_event_german_bunker
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.4.a
+		ai_chance = { factor = 1 }
+		army_experience = 10
+	}
+}
+
+country_event = { #Scavenger's Paradise
+	id = ISH.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.5"}
+	title = ISH.5.t
+	desc = ISH.5.d
+	picture = GFX_report_event_russia_soldiers_bombed_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Focus on civilian goods
+		name = ISH.5.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = { idea = ISH_trove_of_salvage days = 90 }
+
+	}
+	option = { #Focus on military equipment
+		name = ISH.5.b
+		ai_chance = { factor = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = ISH
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 100
+			producer = ISH
+		}
+	}
+	option = { #Focus on fuel stores
+		name = ISH.5.c
+		ai_chance = { factor = 1 }
+		add_resource = {
+			type = oil
+			amount = 5
+			state = 572
+		}
+	}
+}
+
+country_event = { #Survival Society
+	id = ISH.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.6"}
+	title = ISH.6.t
+	desc = ISH.6.d
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Prioritize women and children
+		name = ISH.6.a
+		ai_chance = { factor = 1 }
+		add_manpower = 150
+		add_to_variable = { ISH_survial_programs_population = 0.07 }
+		custom_effect_tooltip = ISH_hidden_communes_tt
+	}
+	option = { #We must prioritize our protectors
+		name = ISH.6.b
+		ai_chance = { factor = 1 }
+		add_war_support = 0.03
+		add_to_variable = { ISH_survival_programs_army_org = 0.05 }
+		custom_effect_tooltip = ISH_survival_society_tt
+	}
+}
+
+country_event = { #The Underground World
+	id = ISH.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.7"}
+	title = ISH.7.t
+	desc = ISH.7.d
+	picture = GFX_report_event_bunker_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Underground Safety Regulations
+		name = ISH.7.a
+		ai_chance = { factor = 1 }
+		add_stability = 0.03
+		add_political_power = -10
+	}
+	option = { #Fuck that shit
+		name = ISH.7.b
+		ai_chance = { factor = 1 }
+		add_to_variable = { ISH_survival_programs_building_speed = 0.05 }
+		add_to_variable = { ISH_survial_programs_population = -0.03 }
+		custom_effect_tooltip = ISH_increase_building_speed_tt
+	}
+}
+
+country_event = { #
+	id = ISH.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.8"}
+	title = ISH.8.t
+	desc = ISH.8.d
+	picture = GFX_report_event_russia_bunker_command
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Do it
+		name = ISH.8.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		custom_effect_tooltip = ISH_lower_consumer_goods_tt
+		add_to_variable = { ISH_survival_programs_consumer_goods = -0.05 }
+
+	}
+	option = { #Not worth sacrificing QoL
+		name = ISH.8.b
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+		custom_effect_tooltip = ISH_hidden_communes_tt
+		add_to_variable = { ISH_survial_programs_population = 0.02 }
+
+	}
+}
+
+country_event = { #Findings on the bombings
+	id = ISH.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.9"}
+	title = ISH.9.t
+	desc = ISH.9.d
+	picture = GFX_report_event_german_bombing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.9.a
+		ai_chance = { factor = 1 }
+		army_experience = 5
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = radar_tech
+		}
+	}
+	option = { #
+		name = ISH.9.b
+		ai_chance = { factor = 1 }
+		air_experience = 5
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = air_doctrine
+		}
+	}
+}
+
+country_event = { #The Mikhail System
+	id = ISH.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.10"}
+	title = ISH.10.t
+	desc = ISH.10.d
+	picture = GFX_report_event_iberia_meeting_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.10.a
+		ai_chance = { factor = 1 }
+		add_political_power = -15
+	}
+}
+
+country_event = { #
+	id = ISH.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.11"}
+	title = ISH.11.t
+	desc = ISH.11.d
+	picture = GFX_report_event_german_bombing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Go with Mikhail's Proposal
+		name = ISH.11.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.015
+		}
+		add_to_variable = { ISH_survial_programs_population = 0.03 }
+		custom_effect_tooltip = ISH_hidden_communes_tt
+	}
+	option = { #Lazar's
+		name = ISH.11.b
+		ai_chance = { factor = 1 }
+		add_political_power = 30
+		add_to_variable = { ISH_survival_programs_building_speed = 0.05 }
+		custom_effect_tooltip = ISH_the_underground_world_tt
+	}
+}
+
+country_event = { #Black Zones
+	id = ISH.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.12"}
+	title = ISH.12.t
+	desc = ISH.12.d
+	picture = GFX_report_event_tunnel_collapse
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.12.a
+		ai_chance = { factor = 1 }
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = { #The Successes Of The Program
+	id = ISH.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.13"}
+	title = ISH.13.t
+	desc = ISH.13.d
+	picture = GFX_report_event_russia_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.13.a
+		ai_chance = { factor = 1 }
+		set_country_flag = ISH_remove_mod
+		force_update_dynamic_modifier = yes
+		hidden_effect = {
+			country_event = {
+				id = ISH.14
+				days = 7
+			}
+		}
+		custom_effect_tooltip = ISH_remove_mod_tt
+	}
+}
+
+country_event = { #Mikhail's Popularity Surges
+	id = ISH.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.14"}
+	title = ISH.14.t
+	desc = ISH.14.d
+	picture = GFX_report_event_india_communists
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.14.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+
+country_event = { #Take women off work duty until they have a sufficiency of children?
+	id = ISH.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.15"}
+	title = ISH.15.t
+	desc = ISH.15.d
+	picture = GFX_report_event_woman_sign
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #This would be unethical.
+		name = ISH.15.a
+		ai_chance = { factor = 1 }
+		add_political_power = 15
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.035
+		}
+	}
+	option = { #
+		name = ISH.15.b
+		ai_chance = { factor = 1 }
+		tno_gender_rights_worsen = yes
+		swap_ideas = {
+			remove_idea = ISH_repopulation_program
+			add_idea = ISH_repopulation_program_2
+		}
+	}
+}
+
+country_event = { #Breakup The Unit
+	id = ISH.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.16"}
+	title = ISH.16.t
+	desc = ISH.16.d
+	picture = GFX_report_event_commune_protest
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.16.a
+		ai_chance = { factor = 1 }
+		add_manpower = 750
+		tno_conscription_worsen = yes
+	}
+	option = { #
+		name = ISH.16.b
+		ai_chance = { factor = 1 }
+		add_stability = 0.07
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.025
+		}
+	}
+}
+
+country_event = { #Rebuilding an Army
+	id = ISH.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.17"}
+	title = ISH.17.t
+	desc = ISH.17.d
+	picture = GFX_report_event_russia_red_army_march
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.17.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Red Armor
+	id = ISH.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.18"}
+	title = ISH.18.t
+	desc = ISH.18.d
+	picture = GFX_report_event_soviet_russian_tank_factory
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.18.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Study Performance
+	id = ISH.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.19"}
+	title = ISH.19.t
+	desc = ISH.19.d
+	picture = GFX_report_event_soviet_russian_soldiers_tank
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.19.a
+		ai_chance = { factor = 1 }
+		army_experience = 10
+	}
+}
+
+country_event = { #Our own stratagems
+	id = ISH.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.20"}
+	title = ISH.20.t
+	desc = ISH.20.d
+	picture = GFX_report_event_orenburg_school
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.20.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Study The Results
+	id = ISH.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.21"}
+	title = ISH.21.t
+	desc = ISH.21.d
+	picture = GFX_report_event_soviet_russian_tanks_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.21.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #The Red Army
+	id = ISH.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.22"}
+	title = ISH.22.t
+	desc = ISH.22.d
+	picture = GFX_report_event_soviet_russian_tanks_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.22.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Reform the NKVD
+	id = ISH.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.23"}
+	title = ISH.23.t
+	desc = ISH.23.d
+	picture = GFX_report_event_russia_nkvd_officer
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.23.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Russia's Finest
+	id = ISH.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.24"}
+	title = ISH.24.t
+	desc = ISH.24.d
+	picture = GFX_report_event_russia_soviet_soldier
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.24.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Fixing The Republic
+	id = ISH.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.25"}
+	title = ISH.25.t
+	desc = ISH.25.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.25.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Pertinent Matters
+	id = ISH.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.26"}
+	title = ISH.26.t
+	desc = ISH.26.d
+	picture = GFX_report_event_soviet_russian_soldiers_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.26.a
+		ai_chance = { factor = 1 }
+		add_political_power = 50
+	}
+}
+
+country_event = { #Free Aviators - Tyumen is nice.
+	id = ISH.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.27"}
+	title = ISH.27.t
+	desc = ISH.27.d
+	picture = GFX_report_event_russia_motherland_calls_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Awww thanks.
+		name = ISH.27.a
+		ai_chance = { factor = 1 }
+		ISH = {
+			country_event = {
+				id = ISH.29
+				days = 3
+			}
+		}
+		add_opinion_modifier = {
+			target = ISH
+			modifier = ISH_our_proud_sponsor
+		}
+	}
+	option = { #Nope.
+		name = ISH.27.b
+		ai_chance = { factor = 1 }
+		ISH = {
+			country_event = {
+				id = ISH.28
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Free Aviators are not nice :(
+	id = ISH.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.28"}
+	title = ISH.28.t
+	desc = ISH.28.d
+	picture = GFX_report_event_russia_motherland_calls_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.28.a
+		ai_chance = { factor = 1 }
+		add_political_power = -25
+	}
+}
+
+country_event = { #Free aviators are nice
+	id = ISH.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.29"}
+	title = ISH.29.t
+	desc = ISH.29.d
+	picture = GFX_report_event_russia_motherland_calls_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.29.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = FAV
+			modifier = ISH_honoring_the_heroes
+		}
+	}
+}
+
+country_event = { #Will you join us?
+	id = ISH.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.30"}
+	title = ISH.30.t
+	desc = ISH.30.d
+	picture = GFX_report_event_russia_motherland_calls_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.30.a
+		ai_chance = { factor = 100 }
+		ISH = {
+			country_event = {
+				id = ISH.31
+				days = 3
+			}
+		}
+	}
+	option = { #
+		name = ISH.30.b
+		ai_chance = { factor = 1 }
+		ISH = {
+			country_event = {
+				id = ISH.32
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Free Aviators join
+	id = ISH.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.31"}
+	title = ISH.31.t
+	desc = ISH.31.d
+	picture = GFX_report_event_woman_sign
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.31.a
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = FAV
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = { #*Sigh*
+	id = ISH.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.32"}
+	title = ISH.32.t
+	desc = ISH.32.d
+	picture = GFX_report_event_woman_sign
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.32.a
+		ai_chance = { factor = 1 }
+		declare_war_on = {
+			target = FAV
+			type = annex_everything
+		}
+	}
+}
+
+country_event = { #Sedition
+	id = ISH.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.33"}
+	title = ISH.33.t
+	desc = ISH.33.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.33.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = communist
+			popularity = 0.13
+		}
+		add_war_support = -0.1
+	}
+}
+
+country_event = { #Cores of the Republic recaptured
+	id = ISH.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.34"}
+	title = ISH.34.t
+	desc = ISH.34.d
+	picture = GFX_report_event_soviet_symbol
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.34.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+	}
+}
+
+country_event = { #Expanding the Republic
+	id = ISH.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.35"}
+	title = ISH.35.t
+	desc = ISH.35.d
+	picture = GFX_report_event_soviet_russian_officers_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.35.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Caravans arrested
+	id = ISH.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.36"}
+	title = ISH.36.t
+	desc = ISH.36.d
+	picture = GFX_report_event_russia_trade_caravan
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.36.a
+		ai_chance = { factor = 1 }
+		add_manpower = -75
+		add_stability = -0.03
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = -50
+			producer = UDM
+		}
+	}
+}
+
+country_event = { #Tyumen fucks with us
+	id = ISH.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.37"}
+	title = ISH.37.t
+	desc = ISH.37.d
+	picture = GFX_report_event_riot_chaos
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.37.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.075
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.075
+		}
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.075
+		}
+		add_political_power = -25
+	}
+}
+
+country_event = { #The Great Popular Triumph
+	id = ISH.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.38"}
+	title = ISH.38.t
+	desc = ISH.38.d
+	picture = GFX_report_event_woman_books
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.38.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Springtime For the Soviet People
+	id = ISH.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.39"}
+	title = ISH.39.t
+	desc = ISH.39.d
+	picture = GFX_report_event_woman_books
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.39.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Continue the Five-Year Plan
+	id = ISH.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.40"}
+	title = ISH.40.t
+	desc = ISH.40.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.40.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #The Workers' and Peasants' Red Army
+	id = ISH.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.41"}
+	title = ISH.41.t
+	desc = ISH.41.d
+	picture = GFX_report_event_soviet_russian_officers_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.41.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Returning To The World
+	id = ISH.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.42"}
+	title = ISH.42.t
+	desc = ISH.42.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.42.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Kaganovich says hello to USA
+	id = ISH.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.43"}
+	title = ISH.43.t
+	desc = ISH.43.d
+	picture = GFX_report_event_usa_supreme_court
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.43.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+	}
+}
+
+country_event = { #Kaganovich makes friends with Khazak Soviet
+	id = ISH.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.44"}
+	title = ISH.44.t
+	desc = ISH.44.d
+	picture = GFX_report_event_iberia_meeting_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Welcome Comrades
+		name = ISH.44.a
+		ai_chance = { factor = 1 }
+		ISH = {
+			diplomatic_relation = {
+				country = ROOT
+				relation = non_aggression_pact
+				active = yes
+			}
+		}
+	}
+}
+
+country_event = { #Send Arms to Central Asia
+	id = ISH.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.45"}
+	title = ISH.45.t
+	desc = ISH.45.d
+	picture = GFX_report_event_guns_crate_mosin
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.45.a
+		ai_chance = { factor = 1 }
+		ISH = {
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 1000
+				target = ROOT
+			}
+			send_equipment = {
+				equipment = anti_tank_equipment
+				amount = 250
+				target = ROOT
+			}
+		}
+	}
+}
+
+country_event = { #Tyumen Condemns Japan
+	id = ISH.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.46"}
+	title = ISH.46.t
+	desc = ISH.46.d
+	picture = GFX_report_event_japan_diet_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.46.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = ISH
+			modifier = BRY_GER_JAP_denounced_us
+		}
+		ISH = {
+			add_political_power = 50
+			add_war_support = 0.05
+			add_opinion_modifier = {
+				target = JAP
+				modifier = BRY_GER_JAP_denounced_us
+			}
+		}
+	}
+}
+
+country_event = { #Tyumen Condemns Germany
+	id = ISH.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.47"}
+	title = ISH.47.t
+	desc = ISH.47.d
+	picture = GFX_report_event_reichstag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.47.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = ISH
+			modifier = BRY_GER_JAP_denounced_us
+		}
+		ISH = {
+			add_political_power = 50
+			add_war_support = 0.05
+			add_opinion_modifier = {
+				target = GER
+				modifier = BRY_GER_JAP_denounced_us
+			}
+		}
+	}
+}
+
+country_event = { #Contact Central Asia
+	id = ISH.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.48"}
+	title = ISH.48.t
+	desc = ISH.48.d
+	picture = GFX_report_event_iberia_meeting_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.48.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = ISH
+			modifier = TNO_opened_diplomatic_relations
+		}
+		add_political_power = 50
+		ISH = {
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_opened_diplomatic_relations
+			}
+		}
+	}
+}
+
+country_event = { #Solidarity with Socialists
+	id = ISH.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.49"}
+	title = ISH.49.t
+	desc = ISH.49.d
+	picture = GFX_report_event_generic_communist_congress
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.49.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = ISH
+			modifier = TNO_opened_diplomatic_relations
+		}
+		add_political_power = 15
+		ISH = {
+			add_political_power = 15
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_opened_diplomatic_relations
+			}
+		}
+	}
+}
+
+country_event = { #Compliment Communist Nations
+	id = ISH.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.50"}
+	title = ISH.50.t
+	desc = ISH.50.d
+	picture = GFX_report_event_russia_motherland_calls_poster
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.50.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = ISH
+			modifier = TNO_opened_diplomatic_relations
+		}
+		add_political_power = 15
+		ISH = {
+			add_political_power = 15
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_opened_diplomatic_relations
+			}
+		}
+	}
+}
+
+country_event = { #Kaganovichgrad Conference Invitation
+	id = ISH.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.51"}
+	title = ISH.51.t
+	desc = ISH.51.d
+	picture = GFX_report_event_communist_party
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Accept Invitation
+		name = ISH.51.a
+		ai_chance = {
+			factor = 3
+			modifier = {
+				has_government = communist
+				factor = 4
+			}
+			modifier = {
+				has_government = socialist
+				factor = 2
+			}
+		}
+		country_event = { #The Conference: Attendee Perspective
+			id = ISH.53
+			days = 4
+		}
+		set_country_flag = ATTENDED_KAGANOVICHGRAD_CONFERENCE
+		add_opinion_modifier = {
+			target = FROM
+			modifier = TNO_kaganovichgrad_conference
+		}
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_kaganovichgrad_conference
+			}
+		}
+	}
+	option = { #Refuse Invitation
+		name = ISH.51.b
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = { #Conference Begins
+	id = ISH.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.52"}
+	title = ISH.52.t
+	desc = ISH.52.d
+	picture = GFX_report_event_commune_protest
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.52.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = ISH_kaganovich_proposes_socintern_tt
+		hidden_effect = {
+			add_ideas = NIK_socintern_member
+			every_other_country = {
+				limit = {
+					has_country_flag = ATTENDED_KAGANOVICHGRAD_CONFERENCE
+					NOT = {
+						OR = {
+							tag = ZZZ
+							tag = DSR
+							is_russian_nation = yes
+						}
+					}
+				}
+				country_event = {
+					id = ISH.54
+					days = 3
+					random = 36
+				}
+			}
+			every_country = {
+				news_event = {
+					id = WORLD.2023
+					days = 17
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Conference Attendee Perspective
+	id = ISH.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.53"}
+	title = ISH.53.t
+	desc = ISH.53.d
+	picture = GFX_report_event_generic_communist_congress
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.53.a
+		ai_chance = { factor = 1 }
+		add_popularity = {
+			ideology = communist
+			popularity = 0.01
+		}
+	}
+}
+
+country_event = { #Offer to Join Cominform
+	id = ISH.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.54"}
+	title = ISH.54.t
+	desc = ISH.54.d
+	picture = GFX_report_event_generic_communist_congress
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {#Accept SocIntern Membership
+		name = ISH.54.a
+		ai_chance = {
+			factor = 60
+		}
+		add_ideas = NIK_socintern_member
+		set_country_flag = SOCINTERN_MEMBER
+		diplomatic_relation = {
+			country = FROM
+			relation = non_aggression_pact
+			active = yes
+		}
+		FROM = {
+			country_event = {
+				id = ISH.55
+				days = 5
+				random = 2
+			}
+		}
+	}
+	option = { #Associate Status
+		name = ISH.54.b
+		ai_chance = {
+			factor = 30
+		}
+		add_ideas = NIK_socintern_associate
+		set_country_flag = SOCINTERN_MEMBER
+		FROM = {
+			country_event = {
+				id = ISH.56
+				days = 5
+				random = 2
+			}
+		}
+	}
+	option = { #Refuse
+		name = ISH.54.c
+		ai_chance = {
+			factor = 10
+		}
+		FROM = {
+			country_event = {
+				id = ISH.57
+				days = 5
+				random = 2
+			}
+		}
+	}
+}
+
+country_event = { #Accepted Membership
+	id = ISH.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.55"}
+	title = ISH.55.t
+	desc = ISH.55.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.55.a
+		ai_chance = { factor = 1 }
+		add_political_power = 3
+		add_opinion_modifier = {
+			target = FROM
+			modifier = TNO_socintern_member
+		}
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_socintern_member
+			}
+		}
+		diplomatic_relation = {
+			country = FROM
+			relation = non_aggression_pact
+			active = yes
+		}
+	}
+}
+
+country_event = { #Associate Status
+	id = ISH.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.56"}
+	title = ISH.56.t
+	desc = ISH.56.d
+	picture = GFX_report_event_soviet_symbol
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.56.a
+		ai_chance = { factor = 1 }
+		add_opinion_modifier = {
+			target = FROM
+			modifier = TNO_socintern_associate
+		}
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = TNO_socintern_associate
+			}
+		}
+		add_political_power = 10
+	}
+}
+
+country_event = { #Refused
+	id = ISH.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.57"}
+	title = ISH.57.t
+	desc = ISH.57.d
+	picture = GFX_report_event_german_communists_riot
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.57.a
+		ai_chance = { factor = 1 }
+		add_political_power = -5
+	}
+}
+
+country_event = { #Debug regional tree
+	id = ISH.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.59"}
+	title = ISH.59.t
+	desc = ISH.59.d
+	picture = GFX_report_event_woman_books
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.59.a
+		ai_chance = { factor = 1 }
+		load_focus_tree = tyumen_regional
+	}
+}
+
+country_event = { #New Soviet Life
+	id = ISH.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.60"}
+	title = ISH.60.t
+	desc = ISH.60.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.60.a
+		ai_chance = { factor = 1 }
+		add_political_power = -15
+	}
+	option = { #
+		name = ISH.60.b
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = ISH_stalinism_consumer_goods_factor_increase_025_tt
+		add_to_variable = { ISH_stalinism_consumer_goods_factor = 0.025 }
+	}
+}
+
+country_event = { #Spiritual and Political Flourishing
+	id = ISH.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.61"}
+	title = ISH.61.t
+	desc = ISH.61.d
+	picture = GFX_report_event_generic_communist_congress
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.61.a
+		ai_chance = { factor = 1 }
+		tno_press_rights_improve = yes
+	}
+}
+
+country_event = { #Proletarian Culture
+	id = ISH.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.62"}
+	title = ISH.62.t
+	desc = ISH.62.d
+	picture = GFX_report_event_woman_books
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.62.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+	}
+}
+
+country_event = { #New Soviet Spirit
+	id = ISH.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.63"}
+	title = ISH.63.t
+	desc = ISH.63.d
+	picture = GFX_report_event_commune_protest
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.63.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #Rehabilitated Nationalism
+	id = ISH.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.64"}
+	title = ISH.64.t
+	desc = ISH.64.d
+	picture = GFX_report_event_india_communists
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.64.a
+		ai_chance = { factor = 1 }
+		add_war_support = 0.025
+	}
+}
+
+country_event = { #developments for soldier
+	id = ISH.65
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.65"}
+	title = ISH.65.t
+	desc = ISH.65.d
+	picture = GFX_report_event_soviet_militia2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.65.a
+		ai_chance = { factor = 1 }
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = infantry_weapons
+		}
+		add_political_power = 5
+	}
+}
+
+country_event = { #IS-Tank
+	id = ISH.66
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.66"}
+	title = ISH.66.t
+	desc = ISH.66.d
+	picture = GFX_report_event_soviet_russian_tanks_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.66.a
+		ai_chance = { factor = 1 }
+		army_experience = 5
+	}
+}
+
+country_event = { #Legacy of the Aviators
+	id = ISH.67
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.67"}
+	title = ISH.67.t
+	desc = ISH.67.d
+	picture = GFX_report_event_crashed_plane
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.67.a
+		ai_chance = { factor = 1 }
+		air_experience = 15
+	}
+	option = { #
+		name = ISH.67.b
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.03
+		}
+	}
+}
+
+country_event = { #The Aviators over the People's Republic
+	id = ISH.71
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.67"}
+	title = ISH.71.t
+	desc = ISH.71.d
+	picture = GFX_report_event_generic_bombers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH.71.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Kryushchev takes over
+	id = ISH_khrushchev.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.1"}
+	title = ISH_khrushchev.1.t
+	desc = ISH_khrushchev.1.d
+	picture = GFX_report_event_generic_communist_congress
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.1.a
+		ai_chance = { factor = 1 }
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Nikita Khrushchev"
+			desc = "POLITICS_NIKITA_KHRUSHCHEV_DESC"
+			picture = "Portrait_Tyumen_Nikita_Khrushchev.dds"
+			expire = "1995.1.1"
+			ideology = communist_subtype
+			traits = {
+			}
+		}
+		add_ideas = {
+ 			ISH_Fyodor_Kulakov_hog
+ 			ISH_Andrei_Gromyko_for
+ 			ISH_Dmitry_Polyansky_eco
+		}
+	}
+}
+
+country_event = { #ISH_the_new_institutions event
+	id = ISH_khrushchev.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.2"}
+	title = ISH_khrushchev.2.t
+	desc = ISH_khrushchev.2.d
+	picture = GFX_report_event_soviet_symbol
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.2.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_uphold_progressive_values event
+	id = ISH_khrushchev.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.3"}
+	title = ISH_khrushchev.3.t
+	desc = ISH_khrushchev.3.d
+	picture = GFX_report_event_female_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.3.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_a_state_to_make_stalin_proud event
+	id = ISH_khrushchev.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.4"}
+	title = ISH_khrushchev.4.t
+	desc = ISH_khrushchev.4.d
+	picture = GFX_report_event_commune_protest
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.4.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_out_with_the_old event
+	id = ISH_khrushchev.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.5"}
+	title = ISH_khrushchev.5.t
+	desc = ISH_khrushchev.5.d
+	picture = GFX_report_event_iberia_salazar_speech
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.5.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_the_secret_speech event
+	id = ISH_khrushchev.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.6"}
+	title = ISH_khrushchev.6.t
+	desc = ISH_khrushchev.6.d
+	picture = GFX_report_event_command_table
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.6.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_repudiate_literary_policy event
+	id = ISH_khrushchev.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.7"}
+	title = ISH_khrushchev.7.t
+	desc = ISH_khrushchev.7.d
+	picture = GFX_report_event_orenburg_school
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.7.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_an_end_to_extraneous_repression event
+	id = ISH_khrushchev.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.8"}
+	title = ISH_khrushchev.8.t
+	desc = ISH_khrushchev.8.d
+	picture = GFX_report_generic_prisoners3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.8.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #ISH_shining_in_glory event
+	id = ISH_khrushchev.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH_khrushchev.9"}
+	title = ISH_khrushchev.9.t
+	desc = ISH_khrushchev.9.d
+	picture = GFX_report_event_soviet_propoganda
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = ISH_khrushchev.9.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+#### More events, so Tyumen is no longer the worst warlord ####
+country_event = {
+	id = ISH.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.101"}
+ 	title = ISH.101.t
+ 	desc = ISH.101.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.101.a
+ 	}
+}
+
+country_event = {
+	id = ISH.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.102"}
+ 	title = ISH.102.t
+ 	desc = ISH.102.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.102.a
+ 	}
+}
+
+country_event = {
+	id = ISH.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.103"}
+ 	title = ISH.103.t
+ 	desc = ISH.103.d
+ 	picture = GFX_report_event_soviet_russian_tank_factory_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.103.a
+ 	}
+}
+
+country_event = {
+	id = ISH.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.104"}
+ 	title = ISH.104.t
+ 	desc = ISH.104.d
+ 	picture = GFX_report_event_kazakh_rider
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.104.a
+ 	}
+}
+
+country_event = {
+	id = ISH.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.105"}
+ 	title = ISH.105.t
+ 	desc = ISH.105.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.105.a
+ 	}
+}
+
+country_event = {
+	id = ISH.106
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.106"}
+ 	title = ISH.106.t
+ 	desc = ISH.106.d
+ 	picture = GFX_report_event_russia_soldiers_bombed_city
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.106.a
+ 	}
+}
+
+country_event = {
+	id = ISH.107
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.107"}
+ 	title = ISH.107.t
+ 	desc = ISH.107.d
+ 	picture = GFX_night_sky
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.107.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.108
+				days = 1
+				random = 15
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.108
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.108"}
+ 	title = ISH.108.t
+ 	desc = ISH.108.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.108.a
+ 	}
+}
+
+country_event = {
+	id = ISH.109
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.109"}
+ 	title = ISH.109.t
+ 	desc = ISH.109.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.109.a
+ 	}
+}
+
+country_event = {
+	id = ISH.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.110"}
+ 	title = ISH.110.t
+ 	desc = ISH.110.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.110.a
+ 	}
+}
+
+country_event = {
+	id = ISH.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.111"}
+ 	title = ISH.111.t
+ 	desc = ISH.111.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.111.a
+ 	}
+}
+
+country_event = {
+	id = ISH.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.112"}
+ 	title = ISH.112.t
+ 	desc = ISH.112.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.112.a
+ 	}
+}
+
+country_event = {
+	id = ISH.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.113"}
+ 	title = ISH.113.t
+ 	desc = ISH.113.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.113.a
+ 	}
+}
+
+country_event = {
+	id = ISH.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.114"}
+ 	title = ISH.114.t
+ 	desc = ISH.114.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.114.a
+ 	}
+}
+
+country_event = {
+	id = ISH.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.115"}
+ 	title = ISH.115.t
+ 	desc = ISH.115.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.115.a
+ 	}
+}
+
+country_event = {
+	id = ISH.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.116"}
+ 	title = ISH.116.t
+ 	desc = ISH.116.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.116.a
+ 	}
+}
+
+country_event = {
+	id = ISH.117
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.117"}
+ 	title = ISH.117.t
+ 	desc = ISH.117.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.117.a
+ 	}
+}
+
+country_event = {
+	id = ISH.118
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.118"}
+ 	title = ISH.118.t
+ 	desc = ISH.118.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.118.a
+ 	}
+}
+
+country_event = {
+	id = ISH.119
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.119"}
+ 	title = ISH.119.t
+ 	desc = ISH.119.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.119.a
+ 	}
+}
+
+country_event = {
+	id = ISH.120
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.120"}
+ 	title = ISH.120.t
+ 	desc = ISH.120.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.120.a
+ 	}
+}
+
+country_event = {
+	id = ISH.121
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.121"}
+ 	title = ISH.121.t
+ 	desc = ISH.121.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.121.a
+ 	}
+}
+
+country_event = {
+	id = ISH.122
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.122"}
+ 	title = ISH.122.t
+ 	desc = ISH.122.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.122.a
+ 	}
+}
+
+country_event = { # Eyes on the Nomenklatura
+	id = ISH.123
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.123"}
+ 	title = ISH.123.t
+ 	desc = ISH.123.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.123.a
+		add_manpower = -1
+ 	}
+}
+
+## Khrushev Coup Begins Here
+
+country_event = {
+	id = ISH.124
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.124"}
+ 	title = ISH.124.t
+ 	desc = ISH.124.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.124.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.125
+				days = 1
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.125
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.125"}
+ 	title = ISH.125.t
+ 	desc = ISH.125.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.125.a
+ 	}
+}
+
+country_event = {
+	id = ISH.126
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.126"}
+ 	title = ISH.126.t
+ 	desc = ISH.126.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.126.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.127
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.127
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.127"}
+ 	title = ISH.127.t
+ 	desc = ISH.127.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.127.a
+		 hidden_effect = {
+			country_event = {
+				id = ISH.128
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.128
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.128"}
+ 	title = ISH.128.t
+ 	desc = ISH.128.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.128.a
+		 hidden_effect = {
+			country_event = {
+				id = ISH.129
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.129
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.129"}
+ 	title = ISH.129.t
+ 	desc = ISH.129.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.129.a
+ 	}
+}
+
+country_event = {
+	id = ISH.130
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.130"}
+ 	title = ISH.130.t
+ 	desc = ISH.130.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.130.a
+		 hidden_effect = {
+			country_event = {
+				id = ISH.131
+				days = 2
+			}
+		 }
+ 	}
+}
+
+country_event = {
+	id = ISH.131
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.131"}
+ 	title = ISH.131.t
+ 	desc = ISH.131.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.131.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.132
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.132
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.132"}
+ 	title = ISH.132.t
+ 	desc = ISH.132.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.132.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.133
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.133
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.133"}
+ 	title = ISH.133.t
+ 	desc = ISH.133.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.133.a
+		 hidden_effect = {
+			country_event = {
+				id = ISH.134
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.134
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.134"}
+ 	title = ISH.134.t
+ 	desc = ISH.134.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.134.a
+		 hidden_effect = {
+			country_event = {
+				id = ISH.135
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.135
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.135"}
+ 	title = ISH.135.t
+ 	desc = ISH.135.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.135.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Nikita Khrushchev"
+			desc = "POLITICS_NIKITA_KHRUSHCHEV_DESC"
+			picture = "Portrait_Tyumen_Nikita_Khrushchev.dds"
+			expire = "1995.1.1"
+			ideology = communist_subtype
+			traits = {
+			}
+		}
+		add_ideas = {
+ 			ISH_Fyodor_Kulakov_hog
+ 			ISH_Andrei_Gromyko_for
+ 			ISH_Dmitry_Polyansky_eco
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.136
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.136"}
+ 	title = ISH.136.t
+ 	desc = ISH.136.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.136.a
+ 	}
+}
+
+ ##Khrushev Coup Event Stuff Ends Here ##
+
+country_event = {
+	id = ISH.137
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.137"}
+ 	title = ISH.137.t
+ 	desc = ISH.137.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.137.a
+ 	}
+}
+
+country_event = {
+	id = ISH.138
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.138"}
+ 	title = ISH.138.t
+ 	desc = ISH.138.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.138.a
+ 	}
+}
+
+country_event = {
+	id = ISH.139
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.139"}
+ 	title = ISH.139.t
+ 	desc = ISH.139.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.139.a
+ 	}
+}
+
+country_event = {
+	id = ISH.140
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.140"}
+ 	title = ISH.140.t
+ 	desc = ISH.140.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.140.a
+ 	}
+}
+
+country_event = {
+	id = ISH.141
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.141"}
+ 	title = ISH.141.t
+ 	desc = ISH.141.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.141.a
+ 	}
+}
+
+country_event = {
+	id = ISH.142
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.142"}
+ 	title = ISH.142.t
+ 	desc = ISH.142.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.142.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.143
+				days = 1
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.143
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.143"}
+ 	title = ISH.143.t
+ 	desc = ISH.143.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.143.a
+ 	}
+}
+
+country_event = {
+	id = ISH.144
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.144"}
+ 	title = ISH.144.t
+ 	desc = ISH.144.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.144.a
+ 	}
+}
+
+country_event = {
+	id = ISH.145
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.145"}
+ 	title = ISH.145.t
+ 	desc = ISH.145.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.145.a
+ 	}
+}
+
+country_event = {
+	id = ISH.146
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.146"}
+ 	title = ISH.146.t
+ 	desc = ISH.146.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.146.a
+ 	}
+}
+
+country_event = {
+	id = ISH.147
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.147"}
+ 	title = ISH.147.t
+ 	desc = ISH.147.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.147.a
+ 	}
+}
+
+country_event = {
+	id = ISH.148
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.148"}
+ 	title = ISH.148.t
+ 	desc = ISH.148.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.148.a
+		hidden_effect = {
+			country_event = {
+				id = ISH.149
+				days = 2
+			}
+		}
+ 	}
+}
+
+country_event = {
+	id = ISH.149
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.149"}
+ 	title = ISH.149.t
+ 	desc = ISH.149.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.149.a
+		add_manpower = -3000
+ 	}
+}
+
+country_event = {
+	id = ISH.150
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.150"}
+ 	title = ISH.150.t
+ 	desc = ISH.150.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.150.a
+ 	}
+}
+
+country_event = {
+	id = ISH.151
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.151"}
+ 	title = ISH.151.t
+ 	desc = ISH.151.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.151.a
+ 	}
+}
+
+country_event = {
+	id = ISH.152
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.152"}
+ 	title = ISH.152.t
+ 	desc = ISH.152.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.152.a
+ 	}
+}
+
+country_event = {
+	id = ISH.153
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.153"}
+ 	title = ISH.153.t
+ 	desc = ISH.153.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.153.a
+ 	}
+}
+
+country_event = {
+	id = ISH.154
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.154"}
+ 	title = ISH.154.t
+ 	desc = ISH.154.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.154.a
+ 	}
+}
+
+country_event = {
+	id = ISH.155
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.155"}
+ 	title = ISH.155.t
+ 	desc = ISH.155.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.155.a
+ 	}
+}
+
+country_event = {
+	id = ISH.156
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.156"}
+ 	title = ISH.156.t
+ 	desc = ISH.156.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.156.a
+ 	}
+}
+
+country_event = {
+	id = ISH.157
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.157"}
+ 	title = ISH.157.t
+ 	desc = ISH.157.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.157.a
+ 	}
+}
+
+country_event = {
+	id = ISH.158
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.158"}
+ 	title = ISH.158.t
+ 	desc = ISH.158.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.158.a
+		add_manpower = -2
+ 	}
+}
+
+country_event = {
+	id = ISH.159
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.159"}
+ 	title = ISH.159.t
+ 	desc = ISH.159.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.159.a
+ 	}
+}
+
+country_event = {
+	id = ISH.160
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.160"}
+ 	title = ISH.160.t
+ 	desc = ISH.160.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.160.a
+ 	}
+}
+
+country_event = {
+	id = ISH.161
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.161"}
+ 	title = ISH.161.t
+ 	desc = ISH.161.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.161.a
+ 	}
+}
+
+country_event = {
+	id = ISH.162
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.162"}
+ 	title = ISH.162.t
+ 	desc = ISH.162.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.162.a
+ 	}
+}
+
+country_event = {
+	id = ISH.163
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.163"}
+ 	title = ISH.163.t
+ 	desc = ISH.163.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.163.a
+ 	}
+}
+
+country_event = {
+	id = ISH.164
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.164"}
+ 	title = ISH.164.t
+ 	desc = ISH.164.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.164.a
+ 	}
+}
+
+country_event = {
+	id = ISH.165
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.165"}
+ 	title = ISH.165.t
+ 	desc = ISH.165.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.165.a
+ 	}
+}
+
+country_event = {
+	id = ISH.166
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.166"}
+ 	title = ISH.166.t
+ 	desc = ISH.166.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.166.a
+ 	}
+}
+
+country_event = {
+	id = ISH.167
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.167"}
+ 	title = ISH.167.t
+ 	desc = ISH.167.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.167.a
+ 	}
+}
+
+country_event = {
+	id = ISH.168
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.168"}
+ 	title = ISH.168.t
+ 	desc = ISH.168.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.168.a
+ 	}
+}
+
+country_event = {
+	id = ISH.169
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.169"}
+ 	title = ISH.169.t
+ 	desc = ISH.169.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.169.a
+ 	}
+}
+
+country_event = {
+	id = ISH.170
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.170"}
+ 	title = ISH.170.t
+ 	desc = ISH.170.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.170.a
+ 	}
+}
+
+country_event = {
+	id = ISH.171
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.171"}
+ 	title = ISH.171.t
+ 	desc = ISH.171.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.171.a
+ 	}
+}
+
+country_event = {
+	id = ISH.172
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.172"}
+ 	title = ISH.172.t
+ 	desc = ISH.172.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.172.a
+ 	}
+}
+
+country_event = {
+	id = ISH.173
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.173"}
+ 	title = ISH.173.t
+ 	desc = ISH.173.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.173.a
+ 	}
+}
+
+country_event = {
+	id = ISH.174
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.174"}
+ 	title = ISH.174.t
+ 	desc = ISH.174.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.174.a
+ 	}
+}
+
+country_event = {
+	id = ISH.175
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.175"}
+ 	title = ISH.175.t
+ 	desc = ISH.175.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.175.a
+ 	}
+}
+
+country_event = {
+	id = ISH.176
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.176"}
+ 	title = ISH.176.t
+ 	desc = ISH.176.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.176.a
+ 	}
+}
+
+country_event = {
+	id = ISH.177
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.177"}
+ 	title = ISH.177.t
+ 	desc = ISH.177.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.177.a
+ 	}
+}
+
+country_event = {
+	id = ISH.178
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.178"}
+ 	title = ISH.178.t
+ 	desc = ISH.178.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.178.a
+ 	}
+}
+
+country_event = {
+	id = ISH.179
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.179"}
+ 	title = ISH.179.t
+ 	desc = ISH.179.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.179.a
+ 	}
+}
+
+country_event = {
+	id = ISH.180
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.180"}
+ 	title = ISH.180.t
+ 	desc = ISH.180.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.180.a
+ 	}
+}
+
+country_event = {
+	id = ISH.181
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.181"}
+ 	title = ISH.181.t
+ 	desc = ISH.181.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.181.a
+ 	}
+}
+
+country_event = {
+	id = ISH.182
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.182"}
+ 	title = ISH.182.t
+ 	desc = ISH.182.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.182.a
+ 	}
+}
+
+country_event = {
+	id = ISH.183
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.183"}
+ 	title = ISH.183.t
+ 	desc = ISH.183.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.183.a
+ 	}
+}
+
+country_event = {
+	id = ISH.184
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.184"}
+ 	title = ISH.184.t
+ 	desc = ISH.184.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.184.a
+ 	}
+}
+
+country_event = {
+	id = ISH.185
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.185"}
+ 	title = ISH.185.t
+ 	desc = ISH.185.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.185.a
+ 	}
+}
+
+country_event = {
+	id = ISH.186
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.186"}
+ 	title = ISH.186.t
+ 	desc = ISH.186.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.186.a
+ 	}
+}
+
+country_event = {
+	id = ISH.187
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.187"}
+ 	title = ISH.187.t
+ 	desc = ISH.187.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.187.a
+ 	}
+}
+
+country_event = {
+	id = ISH.188
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.188"}
+ 	title = ISH.188.t
+ 	desc = ISH.188.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.188.a
+ 	}
+}
+
+country_event = {
+	id = ISH.189
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.189"}
+ 	title = ISH.189.t
+ 	desc = ISH.189.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.189.a
+ 	}
+}
+
+country_event = {
+	id = ISH.190
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.190"}
+ 	title = ISH.190.t
+ 	desc = ISH.190.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.190.a
+ 	}
+}
+
+country_event = {
+	id = ISH.191
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.191"}
+ 	title = ISH.191.t
+ 	desc = ISH.191.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.191.a
+ 	}
+}
+
+country_event = {
+	id = ISH.192
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.192"}
+ 	title = ISH.192.t
+ 	desc = ISH.192.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.192.a
+ 	}
+}
+
+country_event = {
+	id = ISH.193
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.193"}
+ 	title = ISH.193.t
+ 	desc = ISH.193.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.193.a
+ 	}
+}
+
+country_event = {
+	id = ISH.194
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.194"}
+ 	title = ISH.194.t
+ 	desc = ISH.194.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.194.a
+ 	}
+}
+
+country_event = {
+	id = ISH.195
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.195"}
+ 	title = ISH.195.t
+ 	desc = ISH.195.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.195.a
+ 	}
+}
+
+country_event = {
+	id = ISH.196
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.196"}
+ 	title = ISH.196.t
+ 	desc = ISH.196.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.196.a
+ 	}
+}
+
+country_event = {
+	id = ISH.197
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.197"}
+ 	title = ISH.197.t
+ 	desc = ISH.197.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.197.a
+ 	}
+}
+
+country_event = {
+	id = ISH.198
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.198"}
+ 	title = ISH.198.t
+ 	desc = ISH.198.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.198.a
+ 	}
+}
+
+country_event = {
+	id = ISH.199
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.199"}
+ 	title = ISH.199.t
+ 	desc = ISH.199.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.199.a
+ 	}
+}
+
+country_event = {
+	id = ISH.200
+	immediate = {log = "[GetDateText]: [Root.GetName]: event ISH.200"}
+ 	title = ISH.200.t
+ 	desc = ISH.200.d
+ 	picture = GFX_report_event_komi_bombing_2
+	
+	is_triggered_only = yes
+ 	
+ 	option = {
+ 		name = ISH.200.a
+ 	}
+}
+

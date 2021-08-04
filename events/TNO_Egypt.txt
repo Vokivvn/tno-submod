@@ -1,0 +1,1278 @@
+﻿#########
+# Egypt #
+#########
+
+add_namespace = egy
+add_namespace = egycw
+
+country_event = { #farouk's death
+	id = egy.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.15"}
+	title = egy.15.t
+	desc = egy.15.d
+	picture = GFX_report_event_egypt_party_farouk
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = egy.15.a
+		news_event = { id = WORLD.509 }
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Regency Council"
+			desc = "POLITICS_Egypt_Regency_Council_DESC"
+			picture = "Portrait_Egypt_Regency_Council.dds"
+			expire = "2018.01.01"
+			ideology = despotism_subtype
+			traits = {
+			}
+		}
+		set_global_flag = EGY_Farouk_Killed
+		hidden_effect = {
+			ITA = {
+				country_event = { id = empiremanagement_egypt.1 days = 470 }
+			}
+			country_event = { id = empiremanagement_egypt.16 days = 60 }
+		}
+	}
+}
+
+country_event = { #farouk's death
+	id = egy.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.16"}
+	title = egy.16.t
+	desc = egy.16.d
+	picture = GFX_report_event_egypt_party_farouk
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = egy.15.a
+		news_event = { id = WORLD.509 }
+		if = { # 0
+			limit = {
+				ITA = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 0
+						compare = equals
+					}
+				}
+			}
+			random_list = {
+				34 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Muhammad Abdel Moneim"
+						desc = "POLITICS_Muhammad_Abdel_Moneim_DESC"
+						picture = "Portrait_Egypt_Muhammad_Abdel_Moneim.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.912
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.4 days = 365 }
+						}
+						EGY = {
+							remove_all_ministers = yes
+							add_ideas = {
+								EGY_Ibrahim_Abdel_Hady_Pasha_hog
+								EGY_Fouad_Serageddin_eco
+								EGY_Ismail_Chirine_sec
+								EGY_Abdul_Khalek_Hassouna_for
+							}
+						}
+					}
+				}
+				33 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Adalberto di Savoia Genova"
+						desc = "POLITICS_FUAD_DESC"
+						picture = "Adalberto_di_Savoia_Genova_DDS.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.913
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.3 days = 365 }
+						}
+					}
+				}
+				33 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Anwar Sadat"
+						desc = "POLITICS_Anwar_Sadat_DESC"
+						picture = "Portrait_Egypt_Anwar_Sadat.dds"
+						expire = "2018.01.01"
+						ideology = authoritarian_democrat_subtype
+						traits = {
+						}
+					}
+					set_politics = {
+						ruling_party = authoritarian_democrat
+					}
+					set_popularities = {
+						social_democrat = 9
+						social_liberal = 7
+						social_conservative = 11
+						authoritarian_democrat = 43
+						communist = 21
+						socialist = 9
+					}
+					remove_all_ministers = yes
+					add_ideas = {
+						EGY_Minister_Mustafa_Khalil_hog
+						EGY_Minister_Ahmad_Ismail_Ali_sec
+						EGY_Minister_Mahmoud_Riad_for
+						EGY_Minister_Ahmed_Abu_Ismail_eco
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.911
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.5 days = 365 }
+						}
+					}
+				}
+			}
+		}
+		else_if = { # 1
+			limit = {
+				ITA = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 1
+						compare = equals
+					}
+				}
+			}
+			random_list = {
+				55 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Muhammad Abdel Moneim"
+						desc = "POLITICS_Muhammad_Abdel_Moneim_DESC"
+						picture = "Portrait_Egypt_Muhammad_Abdel_Moneim.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.912
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.4 days = 365 }
+						}
+						EGY = {
+							remove_all_ministers = yes
+							add_ideas = {
+								EGY_Ibrahim_Abdel_Hady_Pasha_hog
+								EGY_Fouad_Serageddin_eco
+								EGY_Ismail_Chirine_sec
+								EGY_Abdul_Khalek_Hassouna_for
+							}
+						}
+					}
+				}
+				25 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Adalberto di Savoia Genova"
+						desc = "POLITICS_FUAD_DESC"
+						picture = "Adalberto_di_Savoia_Genova_DDS.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.913
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.3 days = 365 }
+						}
+					}
+				}
+				20 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Anwar Sadat"
+						desc = "POLITICS_Anwar_Sadat_DESC"
+						picture = "Portrait_Egypt_Anwar_Sadat.dds"
+						expire = "2018.01.01"
+						ideology = authoritarian_democrat_subtype
+						traits = {
+						}
+					}
+					set_politics = {
+						ruling_party = authoritarian_democrat
+					}
+					set_popularities = {
+						social_democrat = 9
+						social_liberal = 7
+						social_conservative = 11
+						authoritarian_democrat = 43
+						communist = 21
+						socialist = 9
+					}
+					remove_all_ministers = yes
+					add_ideas = {
+						EGY_Minister_Mustafa_Khalil_hog
+						EGY_Minister_Ahmad_Ismail_Ali_sec
+						EGY_Minister_Mahmoud_Riad_for
+						EGY_Minister_Ahmed_Abu_Ismail_eco
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.911
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.5 days = 365 }
+						}
+					}
+				}
+			}
+		}
+		else_if = { # 2
+			limit = {
+				ITA = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 2
+						compare = equals
+					}
+				}
+			}
+			random_list = {
+				40 = {	
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Muhammad Abdel Moneim"
+						desc = "POLITICS_Muhammad_Abdel_Moneim_DESC"
+						picture = "Portrait_Egypt_Muhammad_Abdel_Moneim.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.912
+								days = 1
+							}
+							ITA = {
+								country_event = { id = empiremanagement_egypt.4 days = 365 }
+							}
+						}
+						EGY = {
+							remove_all_ministers = yes
+							add_ideas = {
+								EGY_Ibrahim_Abdel_Hady_Pasha_hog
+								EGY_Fouad_Serageddin_eco
+								EGY_Ismail_Chirine_sec
+								EGY_Abdul_Khalek_Hassouna_for
+							}
+						}
+					}
+				}
+				40 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Adalberto di Savoia Genova"
+						desc = "POLITICS_FUAD_DESC"
+						picture = "Adalberto_di_Savoia_Genova_DDS.dds"
+						expire = "2018.01.01"
+						ideology = despotism_subtype
+						traits = {
+						}
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.913
+								days = 1
+							}
+							ITA = {
+								country_event = { id = empiremanagement_egypt.3 days = 365 }
+							}
+						}
+					}
+				}
+				20 = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Anwar Sadat"
+						desc = "POLITICS_Anwar_Sadat_DESC"
+						picture = "Portrait_Egypt_Anwar_Sadat.dds"
+						expire = "2018.01.01"
+						ideology = authoritarian_democrat_subtype
+						traits = {
+						}
+					}
+					set_politics = {
+						ruling_party = authoritarian_democrat
+					}
+					set_popularities = {
+						social_democrat = 9
+						social_liberal = 7
+						social_conservative = 11
+						authoritarian_democrat = 43
+						communist = 21
+						socialist = 9
+					}
+					remove_all_ministers = yes
+					add_ideas = {
+						EGY_Minister_Mustafa_Khalil_hog
+						EGY_Minister_Ahmad_Ismail_Ali_sec
+						EGY_Minister_Mahmoud_Riad_for
+						EGY_Minister_Ahmed_Abu_Ismail_eco
+					}
+					hidden_effect = {
+						every_country = {
+							news_event = {
+								id = WORLD.911
+								days = 1
+							}
+						}
+						ITA = {
+							country_event = { id = empiremanagement_egypt.5 days = 365 }
+						}
+					}
+				}
+			}
+		}
+		else_if = { # 3
+			limit = {
+				ITA = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 3
+						compare = equals
+					}
+				}
+			}
+			ITA = {
+				country_event = { id = empiremanagement_egypt.2 days = 3 }
+			}
+		}
+		ITA = {
+			country_event = { id = empiremanagement_egypt.10 days = 5 }
+		}
+	}
+}
+
+country_event = { # EGYPT OIL CRISIS ITAL COMMIT
+	id = egy.999
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.999"}
+	title = egy.999.t
+	desc = egy.999.d
+	picture = GFX_unknown
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+	}
+	option = {
+		name = egy.999.a
+		trigger = {
+			ITA = {
+				check_variable = {
+					var = ITA_empire_management_coins
+					value = 0
+					compare = greater_than_or_equals
+				}
+				NOT = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 5
+						compare = greater_than_or_equals
+					}
+				}
+			}
+		}
+		EGY = {
+			country_event = { id = egy.45 }
+		}
+		ITA = {
+			country_event = { id = empiremanagement_egypt.11 days = 5 }
+		}
+	}
+	option = {
+		name = egy.999.b
+		trigger = {
+			ITA = {
+				check_variable = {
+					var = ITA_empire_management_coins
+					value = 5
+					compare = greater_than_or_equals
+				}
+				NOT = {
+					check_variable = {
+						var = ITA_empire_management_coins
+						value = 8
+						compare = greater_than_or_equals
+					}
+				}
+			}
+		}
+		EGY = {
+			country_event = { id = egy.44 }
+		}
+	}
+	option = {
+		name = egy.999.c
+		trigger = {
+			ITA = {
+				check_variable = {
+					var = ITA_empire_management_coins
+					value = 8
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		EGY = {
+			country_event = { id = egy.43 }
+		}
+		ITA = {
+			country_event = { id = empiremanagement_egypt.12 days = 5 }
+		}
+	}
+}
+
+country_event = { #Boom. (Low Power Ba'Athists)
+	id = egy.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.43"}
+	title = egy.43.t
+	desc = egy.43.d
+	picture = GFX_report_event_islamist_rally
+
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+	}
+	immediate = {
+		ITA = {
+			end_puppet = EGY
+		}
+		hidden_effect = {
+			country_event = {
+				id = sudandebug.1
+				days = 7
+			}
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = egy.43.a
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = WORLD.935
+					days = 1
+				}
+			}
+		}
+		EGB = {
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 1123
+			transfer_state = 456
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 1123
+			add_state_core = 456
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war_weak
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+		}
+	}
+
+	option = {
+		name = egy.43.b
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = WORLD.935
+					days = 1
+				}
+			}
+		}
+		EGB = {
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 1116
+			add_state_core = 1123
+			add_state_core = 456
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 1123
+			transfer_state = 456
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war_weak
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+			change_tag_from = EGY
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Boom. (Medium Power Ba'Athists)
+	id = egy.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.44"}
+	title = egy.44.t
+	desc = egy.44.d
+	picture = GFX_report_event_islamist_rally
+
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+	}
+
+	fire_only_once = yes
+	immediate = {
+		ITA = {
+			end_puppet = EGY
+		}
+		hidden_effect = {
+			country_event = {
+				id = sudandebug.1
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = egy.44.a
+		EGB = {
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 456
+			transfer_state = 1116
+			transfer_state = 1123
+			transfer_state = 551
+			transfer_state = 1125
+			transfer_state = 1124
+			transfer_state = 1127
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 456
+			add_state_core = 1123
+			add_state_core = 551
+			add_state_core = 1125
+			add_state_core = 1124
+			add_state_core = 1127
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+			change_tag_from = EGY
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+		}
+	}
+
+	option = {
+		name = egy.44.b
+		EGB = {
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 456
+			transfer_state = 1123
+			transfer_state = 551
+			transfer_state = 1125
+			transfer_state = 1124
+			transfer_state = 1127
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 456
+			add_state_core = 1123
+			add_state_core = 551
+			add_state_core = 1125
+			add_state_core = 1124
+			add_state_core = 1127
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+			change_tag_from = EGY
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Boom. (High Power Ba'Athists)
+	id = egy.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.45"}
+	title = egy.45.t
+	desc = egy.45.d
+	picture = GFX_report_event_islamist_rally
+
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+	}
+
+	fire_only_once = yes
+	immediate = {
+		ITA = {
+			end_puppet = EGY
+		}
+		hidden_effect = {
+			country_event = {
+				id = sudandebug.1
+				days = 7
+			}
+		}
+	}
+	option = {
+		name = egy.45.a
+		EGB = {
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 456
+			transfer_state = 1123
+			transfer_state = 551
+			transfer_state = 1125
+			transfer_state = 1124
+			transfer_state = 1127
+			transfer_state = 1126
+			transfer_state = 1136
+			transfer_state = 549
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 456
+			add_state_core = 1123
+			add_state_core = 551
+			add_state_core = 1125
+			add_state_core = 1124
+			add_state_core = 1127
+			add_state_core = 1126
+			add_state_core = 1136
+			add_state_core = 549
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war_strong
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+			TUR = {
+				country_event = {
+					id = turkey.28
+					days = 270
+				}
+			}
+		}
+	}
+
+	option = {
+		name = egy.45.b
+		EGB = {
+			transfer_state = 452
+			transfer_state = 1115
+			transfer_state = 456
+			transfer_state = 1123
+			transfer_state = 551
+			transfer_state = 1125
+			transfer_state = 1124
+			transfer_state = 1127
+			transfer_state = 1126
+			transfer_state = 1136
+			transfer_state = 549
+			add_state_core = 452
+			add_state_core = 1115
+			add_state_core = 456
+			add_state_core = 1123
+			add_state_core = 551
+			add_state_core = 1125
+			add_state_core = 1124
+			add_state_core = 1127
+			add_state_core = 1126
+			add_state_core = 1136
+			add_state_core = 549
+			set_country_flag = BaathistCountry
+		}
+		EGB = {
+			load_oob = EGB_civil_war_strong
+		}
+		EGY = {
+			if = {
+				limit = {
+					has_country_flag = egy_faud
+				}
+				country_event = {
+					id = egy.1005
+					days = 7
+				}
+			}
+		}
+		EGB = {
+			change_tag_from = EGY
+		}
+		EGB = {
+				declare_war_on = {
+					target = EGY
+					type = civil_war
+				}
+			}
+		set_global_flag = OIL_Egypt_Critical
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = egy_faud }
+				}
+				country_event = {
+					id = egy.1004
+					days = 3
+				}
+			}
+			TUR = {
+				country_event = {
+					id = turkey.28
+					days = 270
+				}
+			}
+		}
+	}
+}
+
+country_event = { #qutb rebel
+	id = egy.1004
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.1004"}
+	title = egy.1004.t
+	desc = egy.1004.d
+	picture = GFX_unknown
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = egy.1004.a
+		EGQ = {
+			transfer_state = 552
+			transfer_state = 1116
+			add_state_core = 552
+			add_state_core = 1116
+			declare_war_on = {
+				target = EGY
+				type = civil_war
+			}
+			declare_war_on = {
+				target = EGB
+				type = civil_war
+			}
+			load_oob = EGQ_oil_crisis
+		}
+	}
+}
+country_event = { #BALBO
+	id = egy.1005
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.1005"}
+	title = egy.1005.t
+	desc = egy.1005.d
+	picture = GFX_unknown
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = egy.1005.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Italo Balbo"
+			desc = "POLITICS_Italo_Balbo_DESC"
+			picture = "Portrait_Egypt_Italo_Balbo.dds"
+			expire = "1999.1.1"
+			ideology = despotism_subtype
+			traits = {
+
+			}
+		}
+		set_party_name = {
+			ideology = despotism
+			long_name = balbo_group
+			name = balbo_group
+		}
+		ITA = {
+			country_event = { id = empiremanagement_egypt.13 days = 5 }
+		}
+	}
+}
+
+country_event = { #Qutb joins Arab League
+	id = egy.1006
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.1006"}
+	title = egy.1006.t
+	desc = egy.1006.d
+	picture = GFX_unknown
+	trigger = {
+		tag = EGQ
+		AND = {
+			owns_state = 446
+			owns_state = 447
+			owns_state = 452
+		}
+	}
+	fire_only_once = yes
+
+
+	option = {
+		name = egy.1006.a
+		SAU = {
+			country_event = { id = egy.1007 }
+		}
+	}
+}
+
+country_event = { #Saudi Arabia: Qutb wants to join
+	id = egy.1007
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.1007"}
+	title = egy.1007.t
+	desc = egy.1007.d
+	picture = GFX_unknown
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = egy.1007.a
+		trigger = {
+			NOT = {
+				has_country_flag = scorza_faisal_deal
+			}
+		}
+		SAU = {
+			add_to_faction = EGQ
+		}
+	}
+	option = {
+		name = egy.1007.b
+		trigger = {
+			has_country_flag = scorza_faisal_deal
+		}
+	}
+}
+
+country_event = { #Nasser joins United Arab States
+	id = egy.1008
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egy.1008"}
+	title = egy.1008.t
+	desc = egy.1008.d
+	picture = GFX_unknown
+	trigger = {
+		tag = EGB
+		AND = {
+			owns_state = 446
+			owns_state = 447
+			owns_state = 452
+			owns_state = 1116
+			owns_state = 552
+		}
+		NOT = {
+			has_country_flag = ITA_nasser_isolated
+		}
+		SYR = {
+			exists = yes
+		}
+	}
+	fire_only_once = yes
+
+
+	option = {
+		name = egy.1008.a
+		SYR = {
+			country_event = { id = Syria.3 }
+		}
+	}
+}
+
+add_namespace = sudandebug
+
+country_event = { #Republic of Sudan
+	id = sudandebug.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sudandebug.1"}
+	title = sudandebug.1.t
+	desc = sudandebug.1.d
+	picture = GFX_report_event_islamist_rally
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = sudandebug.1.a
+
+		RPS = {
+			transfer_state = 551
+			transfer_state = 1119
+			transfer_state = 1120
+			transfer_state = 1121
+			transfer_state = 549
+			transfer_state = 1122
+			add_state_core = 551
+ 			add_state_core = 1119
+ 			add_state_core = 1120
+ 			add_state_core = 1121
+ 			add_state_core = 549
+ 			add_state_core = 1122
+			load_oob = RPS_civil_war
+		}
+		SDS = {
+			transfer_state = 1123
+			transfer_state = 1124
+			transfer_state = 1125
+			transfer_state = 1136
+			transfer_state = 1135
+			add_state_core = 1123
+			add_state_core = 1124
+			add_state_core = 1125
+			add_state_core = 1136
+			add_state_core = 1135
+			load_oob = SDS_civil_war
+			declare_war_on = {
+				target = RPS
+				type = civil_war
+			}
+			declare_war_on = {
+				target = AYA
+				type = civil_war
+			}
+			declare_war_on = {
+				target = AZA
+				type = civil_war
+			}
+		}
+		SDF = {
+			transfer_state = 1128
+			transfer_state = 1127
+			transfer_state = 1126
+			transfer_state = 1130
+			transfer_state = 1129
+			add_state_core = 1128
+			add_state_core = 1127
+			add_state_core = 1126
+			add_state_core = 1130
+			add_state_core = 1129
+			load_oob = SDF_civil_war
+			declare_war_on = {
+				target = SDS
+				type = civil_war
+			}
+			declare_war_on = {
+				target = RPS
+				type = civil_war
+			}
+			declare_war_on = {
+				target = AZA
+				type = civil_war
+			}
+			declare_war_on = {
+				target = AYA
+				type = civil_war
+			}
+		}
+		AZA = {
+			transfer_state = 1133
+			transfer_state = 1134
+			add_state_core = 1133
+			add_state_core = 1134
+			load_oob = AZA_civil_war
+			declare_war_on = {
+				target = AYA
+				type = civil_war
+			}
+		}
+		AYA = {
+			transfer_state = 1179
+			transfer_state = 1132
+			transfer_state = 1131
+			add_state_core = 1179
+			add_state_core = 1132
+			add_state_core = 1131
+			load_oob = AYA_civil_war
+			declare_war_on = {
+				target = AZA
+				type = civil_war
+			}
+		}
+	}
+}
+
+#Civil War victories#
+country_event = { #BaathistVic
+	id = egycw.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egycw.1"}
+	title = egycw.1.t
+	desc = egycw.1.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			limit = {
+				EGB = {
+					has_global_flag = OIL_Egypt_Critical
+					NOT = {
+						has_war_with = EGY 
+						has_war_with = EGQ 
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18007
+			days = 1
+		}
+	}
+}
+country_event = { #StatusquoVic
+	id = egycw.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egycw.2"}
+	title = egycw.2.t
+	desc = egycw.2.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			limit = {
+				EGY = {
+					has_global_flag = OIL_Egypt_Critical
+					NOT = {
+						has_war_with = EGB
+						has_war_with = EGQ
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18008
+			days = 1
+		}
+	}
+}
+country_event = { #QutbVic
+	id = egycw.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event egycw.3"}
+	title = egycw.3.t
+	desc = egycw.3.d
+	picture = GFX_report_event_egypt_party_farouk
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		date > 1969.10.8
+		NOT = { has_country_flag = TNO_my_world_is_on_fire_how_about_yours }
+		if = {
+			limit = {
+				EGQ = {
+					has_global_flag = OIL_Egypt_Critical
+					NOT = {
+						has_war_with = EGB
+						has_war_with = EGY
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		news_event = {
+			id = WORLD.18026
+			days = 1
+		}
+	}
+}

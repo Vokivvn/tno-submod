@@ -1,0 +1,475 @@
+RUS_strat_warlord_phase = {
+	enable = {
+		is_russian_nation = yes
+		NOT = {
+			has_country_flag = RUS_superregional_stage
+			has_country_flag = RUS_regional_stage
+		}
+	}
+
+	abort = {
+		OR = {
+			has_country_flag = RUS_superregional_stage
+			has_country_flag = RUS_regional_stage
+		}
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = armor
+		value = 500
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = infantry
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = build_army
+		id = mobile
+		value = 500
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = elite_infantry
+		value = 150
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = motorized
+		value = 250
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = infantry
+		value = 300
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = light_infantry
+		value = 225
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mobile
+		value = 30
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 20
+	}
+}
+
+Onega_finland_is_my_friend = {
+	enable = {
+		tag = VTY
+		has_war = no
+	}
+
+	abort = {
+		if = {
+			limit = {
+				country_exists = WSR
+			}
+			WSR = {
+				OR = {
+					has_decision = WSR_invade_onega
+					has_decision = WSR_diplomacy_with_onega
+				}
+			}
+		}
+		else = {
+			always = no
+		}
+	}
+
+	ai_strategy = {
+		type = front_unit_request
+		
+		state = 215
+		state = 216
+
+		value = -100
+	}
+}
+
+RUS_strat_prep_onega = {
+	enable = {
+		tag = WSR
+		WSR = {
+			OR = {
+				has_decision = WSR_invade_onega
+				has_decision = WSR_diplomacy_with_onega
+			}
+		}
+	}
+	
+	abort = {
+		has_war_with = VTY
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = VTY
+		value = 100
+	}
+
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 858
+		state = 859
+
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = garrison
+		value = -50
+	}
+}
+
+RUS_strat_kill_onega = {
+	enable = {
+		tag = WSR
+		OR = {
+			has_war_with = VTY
+			has_war_with = FIN
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = VTY
+		value = 100
+	}
+
+	ai_strategy = {
+		type = consider_weak
+		id = FIN
+		value = 50
+	}
+}
+
+VTY_strat_prep = {
+	enable = {
+		tag = VTY
+		if = {
+			limit = {
+				country_exists = WSR
+			}
+			WSR = {
+				OR = {
+					has_decision = WSR_invade_onega
+					has_decision = WSR_diplomacy_with_onega
+				}
+			}
+		}
+		else = {
+			always = no
+		}
+	}
+
+	abort = {
+		has_war_with = WSR
+	}
+
+	ai_strategy = {
+		type = front_unit_request
+
+		state = 214
+		state = 861
+
+		value = 10000
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSR
+		value = 100
+	}
+}
+
+FIN_strat_prep = {
+	enable = {
+		tag = FIN
+		if = {
+			limit = {
+				country_exists = WSR
+			}
+			WSR = {
+				OR = {
+					has_decision = WSR_invade_onega
+					has_decision = WSR_diplomacy_with_onega
+				}
+			}
+		}
+		else = {
+			always = no
+		}
+	}
+
+	abort = {
+		has_war_with = WSR
+	}
+
+	ai_strategy = {
+		type = put_unit_buffers
+
+		ratio = 2
+
+		states = {
+			858
+			859
+		}
+
+		subtract_invasions_from_need = no
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSR
+		value = 100
+	}
+}
+
+Southern_urals_strat_prep = {
+	enable = {
+		is_southern_urals_nation = yes
+		any_country = {
+			has_decision = RUS_launch_military_intervention
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSR
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSB
+		value = 100
+	}
+}
+
+WSR_urals_strat_prep = {
+	enable = {
+		tag = WSR
+		any_country = {
+			has_decision = RUS_launch_military_intervention
+		}
+	}
+
+	abort = {
+		OR = {
+			has_country_flag = RUS_southern_urals_choice
+			any_country = {
+				is_southern_urals_nation = yes
+				has_war_with = WSR
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ORE
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = URL
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = BAS
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ORS
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSB
+		value = 50
+	}
+}
+
+WSB_urals_strat_prep = {
+	enable = {
+		tag = WSB
+		any_country = {
+			has_decision = RUS_launch_military_intervention
+		}
+	}
+
+	abort = {
+		OR = {
+			has_country_flag = RUS_southern_urals_choice
+			any_country = {
+				is_southern_urals_nation = yes
+				has_war_with = WSB
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ORE
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = URL
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = BAS
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ORS
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = WSR
+		value = 50
+	}
+}
+
+KZK_strat_prep = {
+	enable = {
+		tag = KZK
+		any_country = {
+			has_decision = RUS_intervene_in_kazakhstan
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = RWS
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = SIB
+		value = 100
+	}
+}
+
+RWS_KZK_strat_prep = {
+	enable = {
+		tag = RWS
+		any_country = {
+			has_decision = RUS_intervene_in_kazakhstan
+		}
+	}
+
+	abort = {
+		OR = {
+			has_country_flag = RUS_kazakhstan_choice
+			has_war_with = KZK
+		}
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = KZK
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = SIB
+		value = 50
+	}
+}
+
+SIB_KZK_strat_prep = {
+	enable = {
+		tag = SIB
+		any_country = {
+			has_decision = RUS_intervene_in_kazakhstan
+		}
+	}
+
+	abort = {
+		OR = {
+			has_country_flag = RUS_kazakhstan_choice
+			has_war_with = KZK
+		}
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = KZK
+		value = 100
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = RWS
+		value = 50
+	}
+}
+
+Mongolia_war_strat = {
+	enable = {
+		is_russian_nation = yes
+		MEN = {
+			has_war_with = MON
+		}
+	}
+
+	abort = {
+		always = no
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		
+		state = 815
+		state = 330
+
+		value = -100
+	}
+}

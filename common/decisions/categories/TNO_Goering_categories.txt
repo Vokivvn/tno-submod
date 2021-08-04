@@ -1,0 +1,627 @@
+
+### GOERINGS MAGICAL ECONOMIC ADVENTURES START
+###				CARVOR WUZ HERE
+#GGR_economy = {
+#	picture = GFX_decision_GER_decision_economy_test
+#	icon = decision_generic_industry
+#	visible_when_empty = yes
+#	allowed = {
+#		original_tag = GER
+#	}
+#	visible = {
+#		has_completed_focus = GGR_five_year_industrial_plan
+#	}
+#}
+
+GGR_military_demands_category = {
+	icon = decision_generic_decision
+	picture = GFX_decision_USA_decision_political_situation
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+	    tag = GER
+	}
+	visible = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+}
+
+GGR_war_cabinet_category = {
+	icon = decision_generic_prepare_civil_war
+	picture = GFX_GER_decision_map
+	allowed = {
+		OR = {
+			tag = GER
+			tag = GGR
+		}
+	}
+	visible = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+}
+
+GGR_foreign_participation = {
+	picture = GFX_decision_GER_decision_economy_test
+	icon = border_conflicts
+	allowed = {
+		tag = GER
+	}	
+
+}
+GGR_homelesness = {
+	picture = GFX_decision_GER_decision_economy_test
+	icon = border_conflicts
+	allowed = {
+		tag = GER
+	}	
+
+}
+GGR_loot_category = {
+	picture = GFX_decision_GER_decision_economy_test
+	icon = border_conflicts
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		has_country_flag = GGR_economy_tree
+	}
+}
+
+GGR_destabalize_the_sphere_category = {
+	picture = GFX_decision_GER_decision_economy_test
+	icon = border_conflicts
+	allowed = {
+		tag = GER
+	}	
+
+}
+
+GGR_construct_the_ostwall_category = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_construction
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_construct_the_ostwall
+	}
+}
+
+GGR_improve_the_ploiesti_oil_fields_category = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_construction
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_the_lifeblood_of_the_reich
+	}
+}
+GGR_operation_rurik_trust_category = {
+	picture = GER_decision_political_situation
+	icon = decision_category_generic
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_operation_rurik
+		GGR_not_invaded_ukraine = yes
+		OR = {
+			has_global_flag = UKR_heerema
+			has_global_flag = UKR_leibbrandt
+		}
+	}
+}
+
+GGR_operation_rurik = {
+	picture = GER_decision_political_situation
+	icon = decision_category_generic_crisis
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_operation_rurik2
+		has_global_flag = UKR_freedom
+		GGR_ukraine_conquered = no
+	}
+}
+
+anti_goering_preparation_plan_A = {
+	picture = GER_decision_political_situation
+	icon = decision_category_generic_crisis
+	allowed = {
+		is_european_nation = yes
+	}
+	visible = {
+		has_country_flag = anti_goering_preparation # Doesnt say plan A as 
+	}
+}
+
+anti_goering_preparation_plan_C = {
+	picture = GER_decision_political_situation
+	icon = decision_category_generic_crisis
+	allowed = {
+		OR = {
+			original_tag = BRG
+			original_tag = JAP
+			original_tag = USA
+		}
+	}
+	visible = {
+		has_country_flag = anti_goering_preparation_plan_C
+	}
+}
+
+GGR_fall_rot_decisions = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_prepare_civil_war
+	allowed = {
+		original_tag = GER
+	}
+	visible = {
+		OR = {
+		has_completed_focus = GGR_across_the_east_and_far_away
+		NOT = {
+				GGR_not_invaded_russia = yes
+			}
+		}
+		NOT = {
+			has_completed_focus = GGR_the_end_of_the_rus
+		}
+	}
+}
+
+GGR_destablising_iberia_category = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_prepare_civil_war
+	allowed = {
+		original_tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_the_burgundian_method
+		GGR_iberia_conquered = no
+	}
+}
+
+GGR_GCW2_decisions = {
+	icon = decision_generic_decision
+	picture = GFX_decision_USA_decision_political_situation
+	allowed = { # Too many tags to add an allowed block properly, sorry for performance issues
+		
+	}
+	visible = {
+	    OR = {
+			has_war_with = GGR
+			has_war_with = event_target:speidel_nation
+			has_war_with = event_target:schorner_nation
+		}
+		has_global_flag = GGR_GCW2
+	}
+}
+
+GGR_wunderwaffe_projects = {
+	icon = decision_generic_decision
+	picture = GFX_decision_USA_decision_political_situation
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+	    tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_GOR_a_new_age_of_science
+	}
+}
+
+ARC_fall_rot_decisions = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_prepare_civil_war
+	allowed = {
+		is_russian_nation = yes
+	}
+	visible = {
+		GER = {
+			has_completed_focus = GGR_across_the_east_and_far_away
+		}
+		NOT = {
+			has_country_leader = {
+				name = "No Authority"
+				ruling_only = yes
+			}
+		}
+		NOT = {
+			OR = {
+				has_government = ultranational_socialism
+				has_government = burgundian_system
+			}
+		}
+	}
+}
+
+GGR_burgundian_schemes = {
+	picture = GER_decision_political_situation
+	icon = decision_generic_decision
+	allowed = {
+		tag = GER
+	}
+	visible = {
+		GER = {
+			has_completed_focus = GER_GOR_preparing_the_blow
+		}
+	}
+	visible_when_empty = yes
+}
+
+GGR_kriegsmarine_development_category = {
+	icon = decision_generic_decision
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_country_flag = GGR_kreigsmarine_development
+	}
+}
+
+GGR_crack_the_sphere_category = {
+	icon = decision_generic_decision
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GGR_operation_dammerung
+	}
+
+}
+
+invade_south_america_category = {
+	icon = decision_generic_decision
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_GOR_secure_more_lebensraum
+	}
+}
+
+invade_central_america_category = {
+	icon = decision_generic_decision
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_GOR_crush_central_america
+	}
+}
+
+invade_the_islands_category = {
+	icon = decision_generic_decision
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_GOR_island_hopping
+	}
+}
+
+invade_north_america_category = {
+	icon = decision_generic_decision
+	picture =  GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		has_completed_focus = GER_GOR_fall_rockwell
+	}
+}
+
+fall_blau_category = {
+	icon = decision_generic_prepare_civil_war
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	allowed = {
+		
+		tag = GER
+	}
+	visible = {
+		OR = {
+			has_completed_focus = GGR_fall_blau2
+			has_completed_focus = GGR_fall_blau3
+			has_completed_focus = GGR_fall_blau
+		}
+	}
+}
+
+Goring_ITA_great_game_category = {
+	icon = decision_generic_prepare_civil_war
+	picture = GFX_decision_IME_decision_operation_masada
+	allowed = {
+		OR = {
+			has_global_flag = goring_invading_hun
+			has_global_flag = goring_invading_rom
+			has_global_flag = goring_invading_ser
+			has_global_flag = goring_invading_bul
+		}
+			NOT = {	has_global_flag = goring_defeated_hun }
+			NOT = {	has_global_flag = goring_defeated_rom }
+			NOT = {	has_global_flag = goring_defeated_ser }
+			NOT = {	has_global_flag = goring_invading_bul }
+		
+	}
+
+	visible = {
+		tag = GER
+		OR = {
+			has_global_flag = goring_invading_hun
+			has_global_flag = goring_invading_rom
+			has_global_flag = goring_invading_ser
+			has_global_flag = goring_invading_bul
+		}
+			NOT = {	has_global_flag = goring_defeated_hun }
+			NOT = {	has_global_flag = goring_defeated_rom }
+			NOT = {	has_global_flag = goring_defeated_ser }
+			NOT = {	has_global_flag = goring_invading_bul }
+		
+	}
+	visible_when_empty = yes
+	priority = 100
+}
+
+Goering_madagaskar_category = {
+	icon = decision_generic_decision
+	picture = GFX_decision_IME_decision_operation_masada
+	allowed = {
+		original_tag = GER
+	}
+	visible = {
+		has_global_flag = german_civil_war_goeringvic
+		country_exists = MDG
+		NOT = {
+			GER = {
+				has_country_flag = GGR_no_madagaskar
+			}
+			MDG = {
+				is_puppet = yes
+			}
+		}
+	}
+}
+
+Goering_denmark_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_invade_denmark
+	}
+}
+
+Goering_poland_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_fall_augustus
+	}
+}
+
+Goering_slovakia_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_operation_fruhling
+	}
+}
+
+Goering_netherlands_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_wayward_sons
+	}
+}
+
+Goering_ostland_category_anarchy = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_anarchy_in_ostland
+	}
+}
+
+Goering_ostland_category_kovner = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_the_eastern_nightmare
+	}
+}
+
+Goering_ostland_category_landrut = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_operation_ostwind2
+	}
+}
+
+Goering_ostland_category_anarchy2 = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_anarchy_in_ostland2
+	}
+}
+
+Goering_ostland_category_jeckeln = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_a_most_convenient_foe
+	}
+}
+
+Goering_ostland_category_vituska = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_a_tin_pot_for_broken_men
+	}
+}
+
+Goering_ostland_category_drechsler = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_reigning_in_drechsler
+	}
+}
+
+Goering_ostland_category_stahlecker = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	allowed = {
+		tag = GER
+		
+	}
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		has_completed_focus = GGR_little_stahlecker
+	}
+}
+
+Goering_peter_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	
+	available = {
+		has_global_flag = german_civil_war_goeringvic
+	}
+	visible = {
+		tag = GER
+		
+		OR = {
+			has_completed_focus = GGR_operation_peter1
+			has_completed_focus = GGR_operation_peter2
+			has_completed_focus = GGR_operation_peter3
+		}
+	}
+}
+
+Goering_donitz_category = {
+	icon = decision_category_generic
+	picture = GFX_GER_decision_map
+	
+	allowed = {
+		tag = GER
+	}
+	available = {
+		hidden_trigger = { has_global_flag = german_civil_war_goeringvic }
+		GGR_ukraine_conquered = yes
+	}
+	visible = {
+		has_global_flag = german_civil_war_goeringvic
+		GGR_ukraine_conquered = yes
+		
+		has_completed_focus = GGR_plan_A
+	}
+}

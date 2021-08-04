@@ -1,0 +1,1644 @@
+shared_focus = {
+	id = MZB_afrika_forevermore
+	icon = GFX_MZB_Oberkommando_Afrika
+	cost = 1
+	ai_will_do = {
+		factor = 100
+	}
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_afrika_forevermore"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.1 }
+	}
+}
+
+#############################################################################################
+
+shared_focus = {
+	id = MZB_a_system_of_cleansing
+	icon = GFX_MZB_Your_Enemies_Are_Our_Enemies
+	cost = 5
+	prerequisite = {
+		focus = MZB_afrika_forevermore
+	}
+	x = 2
+	y = 1
+	ai_will_do = {
+		factor = 10
+		modifier = {
+	        add = 30
+	        
+	        has_stability < 0
+	    }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_a_system_of_cleansing"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.5 }
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = MZB_track_the_resistance
+	icon = GFX_MZB_A_Hundred_for_One
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_system_of_cleansing
+	}
+	x = 1
+	y = 2
+	ai_will_do = {
+		factor = 10
+		modifier = {
+	        add = 30
+	        
+	        has_stability < 0
+	    }
+	    modifier = {
+	    	factor = 0.1
+
+	    	check_variable = { MZB_REICHSTAAT_rebel_stability_tot > 0.4 }
+	    }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_track_the_resistance"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.6 }
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_find_their_leaders
+	icon = GFX_goal_MZB_Find_their_Leaders
+	cost = 5
+	prerequisite = {
+		focus = MZB_track_the_resistance
+	}
+	x = 1
+	y = 3
+	ai_will_do = {
+		factor = 10
+		modifier = {
+	        add = 30
+	        
+	        has_stability < 0
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 50
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 25
+	    }
+
+	    modifier = {
+	    	factor = 0.1
+
+	    	check_variable = { MZB_REICHSTAAT_rebel_stability_tot > 0.4 }
+	    }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_find_their_leaders"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.7 }
+		add_political_power = -25
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_find_the_members
+	icon = GFX_goal_MZB_Find_the_Members
+	cost = 5
+	prerequisite = {
+		focus = MZB_find_their_leaders
+	}
+	x = 1
+	y = 4
+	ai_will_do = {
+		factor = 10
+		modifier = {
+	        add = 30
+	        
+	        has_stability < 0
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 75
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 50
+	    }
+
+	    modifier = {
+	    	factor = 0.1
+
+	    	check_variable = { MZB_REICHSTAAT_rebel_stability_tot > 0.4 }
+	    }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_find_the_members"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.8 }
+		add_political_power = -50
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_find_their_supporters
+	icon = GFX_goal_MZB_Find_their_Supporters
+	cost = 5
+	prerequisite = {
+		focus = MZB_find_the_members
+	}
+	x = 1
+	y = 5
+	ai_will_do = {
+		factor = 0
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_find_their_supporters"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.9 }
+		add_political_power = -75
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+			clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_empty_the_homes
+	icon = GFX_SPS_Burning_House_Village
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_system_of_cleansing
+	}
+	x = 3
+	y = 2
+	ai_will_do = {
+		factor = 0
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_empty_the_homes"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.10 }
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 1 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_empty_the_cities
+	icon = GFX_goal_MZB_Empty_the_Cities
+	cost = 5
+	prerequisite = {
+		focus = MZB_empty_the_homes
+	}
+	x = 3
+	y = 3
+	ai_will_do = {
+		factor = 10
+		modifier = {
+	        add = 30
+	        
+	        has_stability < 0
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 50
+	    }
+
+	    modifier = {
+	        factor = 0.5
+	        
+	        has_political_power < 25
+	    }
+
+	    modifier = {
+	    	factor = 0.1
+
+	    	check_variable = { MZB_REICHSTAAT_rebel_stability_tot > 0.4 }
+	    }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_empty_the_cities"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.11 }
+		add_political_power = -25
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_empty_the_countryside
+	icon = GFX_goal_MZB_Empty_the_Countryside
+	cost = 5
+	prerequisite = {
+		focus = MZB_empty_the_cities
+	}
+	x = 3
+	y = 4
+	ai_will_do = {
+		factor = 0
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_empty_the_countryside"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.12 }
+		add_political_power = -50
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_empty_the_continent
+	icon = GFX_goal_MZB_Empty_the_Continent
+	cost = 5
+	prerequisite = {
+		focus = MZB_empty_the_countryside
+	}
+	x = 3
+	y = 5
+	ai_will_do = {
+		factor = 0
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_empty_the_continent"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.13 }
+		add_political_power = -75
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 10 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 3 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_the_great_purge
+	icon = GFX_MZB_burn_them_all
+	cost = 5
+	prerequisite = {
+		focus = MZB_find_their_supporters
+	}
+	prerequisite = {
+		focus = MZB_empty_the_continent
+	}
+	x = 2
+	y = 6
+	ai_will_do = {
+		factor = 0
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_the_great_purge"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.61 }
+		add_political_power = -100
+
+		for_each_loop = {
+		    array = MZB_REICHSTAAT_rebel_stability
+		    index = i
+		    
+		    add_to_variable = { MZB_REICHSTAAT_rebel_stability^i = 0.15 }
+		    clamp_variable = {
+				var = MZB_REICHSTAAT_rebel_stability^i
+				max = 1
+				min = 0
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 20 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 5 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_native_situation_improved_effect_tt
+	}
+}
+
+#############################################################################################
+
+shared_focus = {
+	id = MZB_a_system_of_repression
+	icon = GFX_GER_Restore_the_Slave_Camps
+	cost = 5
+	prerequisite = {
+		focus = MZB_afrika_forevermore
+	}
+	x = 6
+	y = 1
+	ai_will_do = {
+		factor = 30
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_a_system_of_repression"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.14 }
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = MZB_keeping_up_with_the_joneses
+	icon = GFX_BRG_Focus_Prepare_For_The_Wait
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_system_of_repression
+	}
+	mutually_exclusive = {
+		focus = MZB_new_states_new_policies
+	}
+	ai_will_do = {
+		factor = 30
+	}
+	x = 5
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_keeping_up_with_the_joneses"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.15 }
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MZB_a_more_burgundian_system
+	icon = GFX_goal_MZB_A_More_Burgundian_System
+	cost = 5
+	prerequisite = {
+		focus = MZB_keeping_up_with_the_joneses
+	}
+	x = 5
+	y = 3
+	ai_will_do = {
+		factor = 30
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_a_more_burgundian_system"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.16 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_administrative_unknowns
+		    add_idea = MZB_REICHSTAAT_the_afrikanischer_system
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_camp_equalization
+	icon = GFX_BRG_Total_darkness
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_more_burgundian_system
+	}
+	x = 5
+	y = 4
+	ai_will_do = {
+		factor = 30
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_camp_equalization"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.17 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_afrikanischer_system
+		    add_idea = MZB_REICHSTAAT_the_afrikanischer_system_2
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_afrika_burn_them_all
+	icon = GFX_UPO_burn_their_barns
+	cost = 5
+	prerequisite = {
+		focus = MZB_camp_equalization
+	}
+	x = 5
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_afrika_burn_them_all"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.18 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_afrikanischer_system_2
+		    add_idea = MZB_REICHSTAAT_the_afrikanischer_system_3
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_new_states_new_policies
+	icon = GFX_generic_authoritarian_constitution
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_system_of_repression
+	}
+	mutually_exclusive = {
+		focus = MZB_keeping_up_with_the_joneses
+	}
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_new_states_new_policies"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.19 }
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = MZB_continental_redesign
+	icon = GFX_Focus_Africa_Orthographic
+	cost = 5
+	prerequisite = {
+		focus = MZB_new_states_new_policies
+	}
+	x = 7
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_continental_redesign"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.20 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_administrative_unknowns
+		    add_idea = MZB_REICHSTAAT_the_kontinentales_system
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_increased_germanization_targets
+	icon = GFX_GER_Were_All_German
+	cost = 5
+	prerequisite = {
+		focus = MZB_continental_redesign
+	}
+	x = 7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_increased_germanization_targets"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.21 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_kontinentales_system
+		    add_idea = MZB_REICHSTAAT_the_kontinentales_system_2
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_total_integrate_or_die
+	icon = GFX_GER_some_are_more_german_than_others
+	cost = 5
+	prerequisite = {
+		focus = MZB_increased_germanization_targets
+	}
+	x = 7
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_total_integrate_or_die"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.22 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_kontinentales_system_2
+		    add_idea = MZB_REICHSTAAT_the_kontinentales_system_3
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_a_pure_africa
+	icon = GFX_GGR_Work_Towards_Integration
+	cost = 5
+	prerequisite = {
+		focus = MZB_afrika_burn_them_all
+		focus = MZB_total_integrate_or_die
+	}
+	x = 6
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_a_pure_africa"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.56 }
+
+		custom_effect_tooltip = MZB_a_pure_africa_tt
+
+		if = {
+			limit = {
+				has_idea = MZB_REICHSTAAT_the_kontinentales_system_3
+			}
+			swap_ideas = {
+			    remove_idea = MZB_REICHSTAAT_the_kontinentales_system_3
+			    add_idea = MZB_REICHSTAAT_the_kontinentales_system_4
+			}
+		}
+
+		if = {
+			limit = {
+				has_idea = MZB_REICHSTAAT_the_afrikanischer_system_3
+			}
+			swap_ideas = {
+			    remove_idea = MZB_REICHSTAAT_the_afrikanischer_system_3
+			    add_idea = MZB_REICHSTAAT_the_afrikanischer_system_4
+			}
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 10 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 3 }
+	}
+}
+
+#############################################################################################
+
+shared_focus = {
+	id = MZB_a_system_of_efficiency
+	icon = GFX_CHI_Improving_Factory_Efficiency
+	cost = 5
+	prerequisite = {
+		focus = MZB_afrika_forevermore
+	}
+	x = 10
+	y = 1
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_a_system_of_efficiency"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.23 }
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = MZB_strict_work_quotas
+	icon = GFX_PRM_Work_For_Your_Life
+	cost = 5
+	prerequisite = {
+		focus = MZB_a_system_of_efficiency
+	}
+	x = 10
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_strict_work_quotas"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.24 }
+
+		add_ideas = MZB_REICHSTAAT_eat_program_0
+		custom_effect_tooltip = MZB_start_eat_programm_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_german_management_focus
+	icon = GFX_ANG_industrial_magnates
+	cost = 5
+	prerequisite = {
+		focus = MZB_strict_work_quotas
+	}
+	mutually_exclusive = {
+		focus = MZB_african_exploitation_focus
+	}
+	x = 9
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_german_management_focus"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.25 }
+
+		add_ideas = MZB_REICHSTAAT_german_management
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 1 }
+	}
+}
+
+shared_focus = {
+	id = MZB_african_exploitation_focus
+	icon = GFX_BRT_Africa_Beckons
+	cost = 5
+	prerequisite = {
+		focus = MZB_strict_work_quotas
+	}
+	mutually_exclusive = {
+		focus = MZB_german_management_focus
+	}
+	x = 11
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_african_exploitation_focus"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.26 }
+
+		add_ideas = MZB_REICHSTAAT_african_exploitation
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_work_camps
+	icon = GFX_GER_factory_proliferation
+	cost = 5
+	prerequisite = {
+		focus = MZB_german_management_focus
+		focus = MZB_african_exploitation_focus
+	}
+	mutually_exclusive = {
+		focus = MZB_repurpose_the_villages
+	}
+	x = 9
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_work_camps"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.57 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_0
+		    add_idea = MZB_REICHSTAAT_eat_program_left_1
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 1 }
+	}
+}
+
+shared_focus = {
+	id = MZB_repurpose_the_villages
+	icon = GFX_ANG_clear_out_the_villages
+	cost = 5
+	prerequisite = {
+		focus = MZB_german_management_focus
+		focus = MZB_african_exploitation_focus
+	}
+	mutually_exclusive = {
+		focus = MZB_work_camps
+	}
+	x = 11
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_repurpose_the_villages"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.27 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_0
+		    add_idea = MZB_REICHSTAAT_eat_program_right_1
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 10 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_arsenals_in_your_abode
+	icon = GFX_focus_MAD_take_to_the_villages
+	cost = 5
+	prerequisite = {
+		focus = MZB_repurpose_the_villages
+	}
+	x = 11
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_arsenals_in_your_abode"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.28 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_right_1
+		    add_idea = MZB_REICHSTAAT_eat_program_right_2
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 10 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_raze_the_jungle
+	icon = GFX_COG_Clear_the_jungle
+	cost = 5
+	prerequisite = {
+		focus = MZB_arsenals_in_your_abode
+	}
+	x = 11
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_raze_the_jungle"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.60 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_right_2
+		    add_idea = MZB_REICHSTAAT_eat_program_right_3
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 10 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 3 }
+	}
+}
+
+shared_focus = {
+	id = MZB_factories_in_the_darkness
+	icon = GFX_BRG_Focus_Seine_Industrial_Complex
+	cost = 5
+	prerequisite = {
+		focus = MZB_work_camps
+	}
+	x = 9
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_factories_in_the_darkness"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.58 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_left_1
+		    add_idea = MZB_REICHSTAAT_eat_program_left_2
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 1 }
+	}
+}
+
+shared_focus = {
+	id = MZB_arms_for_the_soldiers
+	icon = GFX_SAM_German_Arms
+	cost = 5
+	prerequisite = {
+		focus = MZB_factories_in_the_darkness
+	}
+	x = 9
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_arms_for_the_soldiers"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.59 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_eat_program_left_2
+		    add_idea = MZB_REICHSTAAT_eat_program_left_3
+		}
+
+		add_to_variable = { MZB_REICHSTAAT_devastation_score = 5 }
+		add_to_variable = { MZB_REICHSTAAT_devastation_score_add = 1 }
+	}
+}
+
+#############################################################################################
+#############################################################################################
+
+shared_focus = {
+	id = MZB_the_african_disaster
+	icon = GFX_goal_MZB_The_African_Disaster
+	cost = 5
+	x = 14
+	y = 0
+	ai_will_do = {
+		factor = 10
+	}
+	available = {
+        has_completed_focus = MZB_afrika_forevermore
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_the_african_disaster"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.2 }
+	}
+}
+
+shared_focus = {
+	id = MZB_werewolves_against_the_silver
+	icon = GFX_MZB_ss_werewolves
+	cost = 5
+	prerequisite = {
+		focus = MZB_the_african_disaster
+	}
+	mutually_exclusive = {
+		focus = MZB_gather_our_strength
+	}
+	x = 13
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_werewolves_against_the_silver"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.29 }
+
+		custom_effect_tooltip = MZB_wake_the_werewolves_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_increase_arms_shipments
+	icon = GFX_TNO_generic_arms_shipments
+	cost = 5
+	prerequisite = {
+		focus = MZB_werewolves_against_the_silver
+	}
+	x = 13
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_increase_arms_shipments"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.30 }
+
+		custom_effect_tooltip = MZB_werewolves_more_shipments_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_coopt_the_natives
+	icon = GFX_MZB_conscript_the_tribes
+	cost = 5
+	prerequisite = {
+		focus = MZB_increase_arms_shipments
+	}
+	x = 13
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_coopt_the_natives"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.31 }
+
+		custom_effect_tooltip = MZB_coopt_the_natives_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_recover_the_boers
+	icon = GFX_GER_men_for_the_boers
+	cost = 5
+	prerequisite = {
+		focus = MZB_coopt_the_natives
+	}
+	x = 13
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_recover_the_boers"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.32 }
+
+		custom_effect_tooltip = MZB_recover_the_boers_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_spark_the_uprisings
+	icon = GFX_DSR_burn_it_down
+	cost = 5
+	prerequisite = {
+		focus = MZB_recover_the_boers
+	}
+	x = 13
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_spark_the_uprisings"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.33 }
+
+		custom_effect_tooltip = MZB_spark_the_uprisings_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_gather_our_strength
+	icon = GFX_MZB_Prioritize_SS_Development
+	cost = 5
+	prerequisite = {
+		focus = MZB_the_african_disaster
+	}
+	mutually_exclusive = {
+		focus = MZB_werewolves_against_the_silver
+	}
+	x = 15
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_gather_our_strength"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.34 }
+
+		custom_effect_tooltip = MZB_gather_our_strength_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_loot_and_burn_the_way_home
+	icon = GFX_SPS_Burning_House_Village
+	cost = 5
+	prerequisite = {
+		focus = MZB_gather_our_strength
+	}
+	x = 15
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_loot_and_burn_the_way_home"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.35 }
+
+		custom_effect_tooltip = MZB_loot_and_burn_the_way_home_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_abteilung_fuer_afrikanische_freiwillige
+	icon = GFX_goal_MZB_Abteilung_fuer_Afrikanische_Freiwillige
+	cost = 5
+	prerequisite = {
+		focus = MZB_loot_and_burn_the_way_home
+	}
+	x = 15
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_abteilung_fuer_afrikanische_freiwillige"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.36 }
+
+		custom_effect_tooltip = MZB_abteilung_fuer_afrikanische_freiwillige_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_salt_the_earth
+	icon = GFX_BRG_salt_the_earth
+	cost = 5
+	prerequisite = {
+		focus = MZB_abteilung_fuer_afrikanische_freiwillige
+	}
+	x = 15
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_salt_the_earth"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.37 }
+
+		custom_effect_tooltip = MZB_salt_the_earth_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_close_the_border
+	icon = GFX_COG_Fortify_The_Border
+	cost = 5
+	prerequisite = {
+		focus = MZB_salt_the_earth
+	}
+	x = 15
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_close_the_border"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.38 }
+
+		custom_effect_tooltip = MZB_close_the_border_tt
+	}
+}
+
+#############################################################################################
+#############################################################################################
+
+shared_focus = {
+	id = MZB_to_rule_a_continent
+	icon = GFX_goal_MZB_To_Rule_a_Continent
+	cost = 5
+	x = 18
+	y = 0
+	ai_will_do = {
+		factor = 40
+	}
+	available = {
+        has_completed_focus = MZB_afrika_forevermore
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_to_rule_a_continent"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.3 }
+	}
+}
+
+shared_focus = {
+	id = MZB_orders_to_the_boers
+	icon = GFX_MZB_supply_the_boers
+	cost = 5
+	prerequisite = {
+		focus = MZB_to_rule_a_continent
+	}
+	x = 17
+	y = 1
+	ai_will_do = {
+		factor = 30
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_orders_to_the_boers"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.39 }
+	}
+}
+
+shared_focus = {
+	id = MZB_southern_exploitation
+	icon = GFX_MZB_Develop_Boer_Industries
+	cost = 5
+	prerequisite = {
+		focus = MZB_orders_to_the_boers
+	}
+	x = 17
+	y = 2
+	ai_will_do = {
+		factor = 30
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_southern_exploitation"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.40 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_boer_vasallenstaat_profits_0
+		    add_idea = MZB_REICHSTAAT_boer_vasallenstaat_profits_1
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_POW_extradition
+	icon = GFX_TNO_generic_prison_camp
+	cost = 5
+	prerequisite = {
+		focus = MZB_southern_exploitation
+	}
+	x = 17
+	y = 3
+	ai_will_do = {
+		factor = 30
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_POW_extradition"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.41 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_hostage_program
+	icon = GFX_TNO_generic_prison
+	cost = 5
+	prerequisite = {
+		focus = MZB_POW_extradition
+	}
+	x = 17
+	y = 4
+	ai_will_do = {
+		factor = 30
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_hostage_program"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.42 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_enforce_the_vasallenstaat
+	icon = GFX_MZB_Prioritize_Garrison_Development
+	cost = 5
+	prerequisite = {
+		focus = MZB_hostage_program
+	}
+	x = 17
+	y = 5
+	ai_will_do = {
+		factor = 30
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_enforce_the_vasallenstaat"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.43 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_boer_vasallenstaat_profits_1
+		    add_idea = MZB_REICHSTAAT_boer_vasallenstaat_profits_2
+		}
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_a_lot_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_cleaning_up_the_OFN
+	icon = GFX_goal_MZB_icon_reinige_den_suden
+	cost = 5
+	prerequisite = {
+		focus = MZB_to_rule_a_continent
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	x = 19
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_cleaning_up_the_OFN"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.44 }
+	}
+}
+
+shared_focus = {
+	id = MZB_recover_african_military_records
+	icon = GFX_IBR_paperwork
+	cost = 5
+	prerequisite = {
+		focus = MZB_cleaning_up_the_OFN
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	x = 19
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_recover_african_military_records"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.45 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_track_down_the_veterans
+	icon = GFX_generic_show_trials
+	cost = 5
+	prerequisite = {
+		focus = MZB_recover_african_military_records
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	x = 19
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_track_down_the_veterans"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.46 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_find_socialists
+	icon = GFX_goal_Generic_Anti_Socialism
+	cost = 5
+	prerequisite = {
+		focus = MZB_track_down_the_veterans
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	x = 19
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_find_socialists"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.47 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_tt
+	}
+}
+
+shared_focus = {
+	id = MZB_firebomb_the_south
+	icon = GFX_ANG_bomber_buildup
+	cost = 5
+	prerequisite = {
+		focus = MZB_find_socialists
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = MZ_boer_stable_tt		
+			NOT = { has_global_flag = second_south_african_civil_war }
+		}
+    }
+	x = 19
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_firebomb_the_south"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.48 }
+
+		custom_effect_tooltip = MZB_REICHSTAAT_anc_influence_lessened_a_lot_tt
+		custom_effect_tooltip = MZB_REICHSTAAT_boer_situation_worsened_effect_tt
+	}
+}
+
+#############################################################################################
+#############################################################################################
+
+shared_focus = {
+	id = MZB_evil_and_betrayal
+	icon = GFX_goal_MZB_Evil_and_Betrayal
+	cost = 5
+	x = 21
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_evil_and_betrayal"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.4 }
+	}
+}
+
+shared_focus = {
+	id = MZB_the_boers_must_pay
+	icon = GFX_goal_MZB_The_Boers_must_Pay
+	cost = 5
+	prerequisite = {
+		focus = MZB_evil_and_betrayal
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 21
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_the_boers_must_pay"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.49 }
+
+		SFG = {
+			add_ideas = MZB_REICHSTAAT_reichsstaat_support_for_chmilewski
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_chemical_launches
+	icon = GFX_generic_chemical_program
+	cost = 5
+	prerequisite = {
+		focus = MZB_the_boers_must_pay
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 21
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_chemical_launches"
+
+		BOR = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+		SLF = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+		LTH = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+		SWZ = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_strike_the_border
+	icon = GFX_generic_artillery_warfare
+	cost = 5
+	prerequisite = {
+		focus = MZB_chemical_launches
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 21
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_strike_the_border"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.51 }
+
+		BOR = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+		SLF = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+		SWZ = { 
+			country_event = { 
+				id = MZB_REICHSTAAT_BOERS.114 
+				days = 1 
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_no_room_for_treason
+	icon = GFX_UPO_Strike_High
+	cost = 5
+	prerequisite = {
+		focus = MZB_strike_the_border
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 21
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_no_room_for_treason"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.52 }
+
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = MZB_saving_our_men
+	icon = GFX_BRG_Focus_Complet_The_Evacuation_Plans
+	cost = 5
+	prerequisite = {
+		focus = MZB_evil_and_betrayal
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 23
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_saving_our_men"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.53 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_boer_betrayal_0
+		    add_idea = MZB_REICHSTAAT_the_boer_betrayal_1
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_evacuate_state_personnel
+	icon = GFX_goal_MZB_Evacuate_State_Personnel
+	cost = 5
+	prerequisite = {
+		focus = MZB_saving_our_men
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 23
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_evacuate_state_personnel"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.54 }
+
+		SFG = {
+			add_ideas = MZB_REICHSTAAT_south_african_intel_ssafcw
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_evacuate_state_industries
+	icon = GFX_goal_MZB_Evacuate_State_Industries
+	cost = 5
+	prerequisite = {
+		focus = MZB_evacuate_state_personnel
+	}
+	available = {
+		country_exists = SFG
+	}
+	mutually_exclusive = {
+		focus = MZB_evacuate_state_armaments
+	}
+	x = 23
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_evacuate_state_industries"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.55 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_boer_betrayal_1
+		    add_idea = MZB_REICHSTAAT_the_boer_betrayal_2_industry
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_evacuate_state_armaments
+	icon = GFX_goal_MZB_Evacuate_State_Armaments
+	cost = 5
+	prerequisite = {
+		focus = MZB_evacuate_military_forces
+	}
+	available = {
+		country_exists = SFG
+	}
+	mutually_exclusive = {
+		focus = MZB_evacuate_state_industries
+	}
+	x = 25
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_evacuate_state_armaments"
+		# country_event = { id = MZB_REICHSTAAT_FOCUS.62 }
+
+		swap_ideas = {
+		    remove_idea = MZB_REICHSTAAT_the_boer_betrayal_1
+		    add_idea = MZB_REICHSTAAT_the_boer_betrayal_2_armament
+		}
+	}
+}
+
+shared_focus = {
+	id = MZB_evacuate_military_forces
+	icon = GFX_MZB_The_Home_of_the_Exile
+	cost = 5
+	prerequisite = {
+		focus = MZB_saving_our_men
+	}
+	available = {
+		country_exists = SFG
+	}
+	x = 25
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus MZB_evacuate_military_forces"
+		country_event = { id = MZB_REICHSTAAT_FOCUS.63 }
+
+		942 = {
+			create_unit = {
+				division = "division_template = \"Schutztruppe\" start_experience_factor = 0.5 start_equipment_factor = 0.85"
+				owner = SFG
+			}
+			create_unit = {
+				division = "division_template = \"Schutztruppe\" start_experience_factor = 0.5 start_equipment_factor = 0.85"
+				owner = SFG
+			}
+			create_unit = {
+				division = "division_template = \"Schutztruppe\" start_experience_factor = 0.5 start_equipment_factor = 0.85"
+				owner = SFG
+			}
+		}
+	}
+}

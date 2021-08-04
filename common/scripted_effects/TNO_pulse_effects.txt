@@ -1,0 +1,2877 @@
+first_every_month_script = {
+	log = "[GetDateText]: [Root.GetName]: first_every_month_script"
+	add_to_variable = { month_counter = 1 }
+	if = {
+		limit = {
+			check_variable = {
+				month_counter = 13
+			}
+		}
+		set_variable = { month_counter = 1 }
+		first_every_year_script = yes
+	}
+	add_manpower = -100
+
+	every_country = { #Brittany luxury goods thingy
+		if = {
+			limit = {
+				has_idea = BRT_black_market_present_one_luxury
+			}
+			random_list = {
+				25 = {
+					BRT = {
+						add_to_variable = {
+							brt_luxury_goods_counter = 1
+						}
+					}
+				}
+				75 = { }
+			}
+		}
+		if = {
+			limit = {
+				has_idea = BRT_black_market_present_two_luxury
+			}
+			random_list = {
+				35 = {
+					BRT = {
+						add_to_variable = {
+							brt_luxury_goods_counter = 1
+						}
+					}
+				}
+				65 = { }
+			}
+		}
+		if = {
+			limit = {
+				has_idea = BRT_black_market_present_three_luxury
+			}
+			random_list = {
+				45 = {
+					BRT = {
+						add_to_variable = {
+							brt_luxury_goods_counter = 1
+						}
+					}
+				}
+				55 = { }
+			}
+		}
+	}
+
+	# Replaced with monthly pulse below
+	#	COG = { #Zentralafrika Investor Happiness
+	#		subtract_from_variable = { COG_Investor_Happiness = 0.10 }
+	#		clamp_variable = {
+	#			var = COG_Investor_Happiness
+	#			min = 0
+	#			max = 1
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_1
+	#				check_variable = { COG_Investor_Happiness < 0.10 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_1
+	#				add_idea = COG_Heart_Of_Afrika_0
+	#			}
+	#			country_event = COG.557
+	#			subtract_from_variable = { misc_income = 8 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_2
+	#				check_variable = { COG_Investor_Happiness < 0.20 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_2
+	#				add_idea = COG_Heart_Of_Afrika_1
+	#			}
+	#			country_event = COG.555
+	#			subtract_from_variable = { misc_income = 6 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_3
+	#				check_variable = { COG_Investor_Happiness < 0.30 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_3
+	#				add_idea = COG_Heart_Of_Afrika_2
+	#			}
+	#			subtract_from_variable = { misc_income = 4 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_4
+	#				check_variable = { COG_Investor_Happiness < 0.40 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_4
+	#				add_idea = COG_Heart_Of_Afrika_3
+	#			}
+	#			subtract_from_variable = { misc_income = 2 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_5
+	#				check_variable = { COG_Investor_Happiness < 0.50 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_5
+	#				add_idea = COG_Heart_Of_Afrika_4
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_6
+	#				check_variable = { COG_Investor_Happiness < 0.60 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_6
+	#				add_idea = COG_Heart_Of_Afrika_5
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_7
+	#				check_variable = { COG_Investor_Happiness < 0.70 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_7
+	#				add_idea = COG_Heart_Of_Afrika_6
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_8
+	#				check_variable = { COG_Investor_Happiness < 0.80 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_8
+	#				add_idea = COG_Heart_Of_Afrika_7
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_9
+	#				check_variable = { COG_Investor_Happiness < 0.90 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_9
+	#				add_idea = COG_Heart_Of_Afrika_8
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_0
+	#				check_variable = { COG_Investor_Happiness > 0.09 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_0
+	#				add_idea = COG_Heart_Of_Afrika_1
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_1
+	#				check_variable = { COG_Investor_Happiness > 0.19 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_1
+	#				add_idea = COG_Heart_Of_Afrika_2
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_2
+	#				check_variable = { COG_Investor_Happiness > 0.29 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_2
+	#				add_idea = COG_Heart_Of_Afrika_3
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_3
+	#				check_variable = { COG_Investor_Happiness > 0.39 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_3
+	#				add_idea = COG_Heart_Of_Afrika_4
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_4
+	#				check_variable = { COG_Investor_Happiness > 0.49 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_4
+	#				add_idea = COG_Heart_Of_Afrika_5
+	#			}
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_5
+	#				check_variable = { COG_Investor_Happiness > 0.59 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_5
+	#				add_idea = COG_Heart_Of_Afrika_6
+	#			}
+	#			add_to_variable = { misc_income = 2 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_6
+	#				check_variable = { COG_Investor_Happiness > 0.69 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_6
+	#				add_idea = COG_Heart_Of_Afrika_7
+	#			}
+	#			add_to_variable = { misc_income = 4 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_7
+	#				check_variable = { COG_Investor_Happiness > 0.79 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_7
+	#				add_idea = COG_Heart_Of_Afrika_8
+	#			}
+	#			country_event = COG.556
+	#			add_to_variable = { misc_income = 6 }
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = COG_Heart_Of_Afrika_8
+	#				check_variable = { COG_Investor_Happiness > 0.89 }
+	#			}
+	#			swap_ideas = {
+	#				remove_idea = COG_Heart_Of_Afrika_8
+	#				add_idea = COG_Heart_Of_Afrika_9
+	#			}
+	#			country_event = COG.556
+	#			add_to_variable = { misc_income = 8 }
+	#		}
+	#	}
+	# Replaced with monthly pulse below
+	if = {
+		limit = {
+			SCO = {
+				has_country_flag = SCO_Election_Campaign_On
+			}
+		}
+		SCO = {
+			SCO_Get_Percentage_of_Vote_Highlands = yes
+			SCO_Get_Percentage_of_Vote_Aberdeenshire = yes
+			SCO_Get_Percentage_of_Vote_Lanark = yes
+			SCO_Get_Percentage_of_Vote_Fife = yes
+			SCO_Get_Percentage_of_Vote_Dumfries = yes
+			SCO_Get_Percentage_of_Vote_Lothian = yes
+			SCO_Get_Percentage_of_Vote_National = yes
+			SCO_Get_Turnout_National = yes
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = IRE_NIC_Over
+			}
+		}
+		IRE = {
+			add_to_variable = {
+				IRE_Groups_NIC_Corruption = IRE_Groups_NIC_Corruption_increase
+			}
+			IRE_Set_repression_effectiveness = yes
+			clamp_variable = {
+				var = IRE_Groups_NIC_Corruption
+				min = 1
+				max = 100
+			}
+			if = {
+				limit = {
+					check_variable = {
+						IRE_Groups_NIC_Corruption > 59
+					}
+				}
+				set_variable = { IRE_NIC_No_Terror = 82 }
+				set_variable = { IRE_NIC_Terror = 6 }
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						IRE_Groups_NIC_Corruption > 49
+					}
+				}
+				set_variable = { IRE_NIC_No_Terror = 85 }
+				set_variable = { IRE_NIC_Terror = 5 }
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						IRE_Groups_NIC_Corruption > 39
+					}
+				}
+				set_variable = { IRE_NIC_No_Terror = 88 }
+				set_variable = { IRE_NIC_Terror = 4 }
+			}
+			else = {
+				set_variable = { IRE_NIC_No_Terror = 91 }
+				set_variable = { IRE_NIC_Terror = 3 }
+			}
+			random_list = {
+				IRE_NIC_No_Terror = {
+				}
+				IRE_NIC_Terror = {
+					country_event = {
+						id = IRE_investigations.58
+						days = 1
+						random = 30
+					}
+				}
+				IRE_NIC_Terror = {
+					country_event = {
+						id = IRE_investigations.59
+						days = 1
+						random = 30
+					}
+				}
+				IRE_NIC_Terror = {
+					country_event = {
+						id = IRE_investigations.60
+						days = 1
+						random = 30
+					}
+				}
+			}
+
+
+			if = {
+				limit = {
+					AND = {
+						check_variable = {
+							ICG_Power > 89
+						}
+						check_variable = {
+							ICG_Anger = 3
+						}
+						NOT = {
+							has_country_flag = NIRA_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.53
+				}
+			}
+
+
+			if = {
+				limit = {
+					AND = {
+						check_variable = {
+							UVF_Power > 89
+						}
+						check_variable = {
+							UVF_Anger = 3
+						}
+						NOT = {
+							has_country_flag = UVF_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.52
+				}
+			}
+
+			if = {
+				limit = {
+					AND = {
+						check_variable = {
+							IRA_Power > 89
+						}
+						check_variable = {
+							IRA_Anger = 3
+						}
+						NOT = {
+							has_country_flag = SE_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.51
+				}
+			}
+
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = {
+								ICG_Power < 30
+							}
+							has_country_flag = NIRA_troubles
+						}
+						AND = {
+							check_variable = {
+								ICG_Anger = 1
+							}
+							has_country_flag = NIRA_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.56
+				}
+			}
+
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = {
+								UVF_Power < 30
+							}
+							has_country_flag = UVF_troubles
+						}
+						AND = {
+							check_variable = {
+								UVF_Anger = 1
+							}
+							has_country_flag = UVF_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.55
+				}
+			}
+
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = {
+								IRA_Power < 30
+							}
+							has_country_flag = SE_troubles
+						}
+						AND = {
+							check_variable = {
+								IRA_Anger = 1
+							}
+							has_country_flag = SE_troubles
+						}
+					}
+				}
+				country_event = {
+					id = IRE_crisis.54
+				}
+			}
+
+		}
+	}
+	if = {
+		limit = {
+			country_exists = SCO
+		}
+		SCO = {
+			add_to_variable = {
+				SCO_English_Population_Percent = SCO_English_Population_Percent_c
+			}
+			add_to_variable = {
+				SCO_English_Poverty_Percent = SCO_English_Poverty_Percent_c
+			}
+			add_to_variable = {
+				SCO_English_Approval = SCO_English_Approval_c
+			}
+			SCO_English_Minority_CALC = yes
+		}
+	}
+	if = {
+		limit = {
+			country_exists = IRE
+		}
+		IRE = {
+			IRE_terrorism_stab_cost = yes
+		}
+	}
+	if = {
+		limit = {
+			FAV = {
+				exists = yes
+			}
+		}
+		FAV = {
+			set_variable = { FAVTotalAirDeployed = FAVBasicAirDeployed }
+			add_to_variable = { FAVTotalAirDeployed = FAVAdvancedAirDeployed }
+			set_variable = { FAVAirStrength = 0 }
+			set_temp_variable = { FAVBasicStrength = 2 }
+			set_temp_variable = { FAVAdvancedStrength = 5 }
+			multiply_temp_variable = { FAVBasicStrength = FAVBasicAirDeployed }
+			multiply_temp_variable = { FAVAdvancedStrength = FAVAdvancedAirDeployed }
+			add_to_variable = { FAVAirStrength = FAVBasicStrength }
+			add_to_variable = { FAVAirStrength = FAVAdvancedStrength }
+		}
+	}
+
+	if = {
+		limit = { country_exists = ERS }
+		ERS = {
+			if = {
+				limit = { has_idea = ERS_idea_incompatible_army }
+				ERS_Decrease_Idealism_low = yes
+			}
+			if = {
+				limit = { has_idea = ERS_idea_incompatible_economy }
+				ERS_Decrease_Idealism_low = yes
+			}
+			if = {
+				limit = { has_idea = ERS_idea_political_crisis }
+				ERS_Decrease_Idealism_low = yes
+				ERS_Increase_Political_Outsiders_low = yes
+			}
+			if = {
+				limit = { has_idea = ERS_idea_novosibirsk_conference }
+				ERS_Increase_Idealism_low = yes
+				ERS_Increase_Political_Outsiders_low = yes
+			}
+			if = {
+				limit = { has_idea = ERS_idea_Bureau_of_integration }
+				ERS_Decrease_Idealism_low = yes
+				ERS_Decrease_Political_Outsiders_low = yes
+			}
+			if = {
+				limit = { has_decision = ERS_The_Outsiders_Act }
+				ERS_Increase_Idealism_low = yes
+				ERS_Decrease_Political_Outsiders_low = yes
+			}
+			if = {
+				limit = { has_country_flag = RUS_regional_stage }
+				if = {
+					limit = {
+						check_variable = { ERS_Idealism_Value > 60 }
+					}
+					add_to_variable = { ERS_Idealism_Tracker = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { ERS_Idealism_Value < 40 }
+					}
+					add_to_variable = { ERS_Cynicism_Tracker = 1 }
+				}
+			}
+			#############################
+			if = {
+				limit = { has_country_flag = ERS_started_megaproject }
+				add_to_variable = { ERS_megaproject_progress = ERS_megaproject_monthly_progress }
+				clamp_variable = { var = ERS_megaproject_progress min = 0 max = 100 }
+				clamp_variable = { var = ERS_megaproject_monthly_progress min = 0 max = 2.5 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			NIK = {
+				exists = yes
+				has_country_flag = NIK_EURASIAN_DREAM
+				NOT = {
+					has_country_flag = NIK_cancel_eurasia_mechanic
+				}
+			}
+		}
+		NIK = {
+			if = {
+				limit = {
+					check_variable = { NIKEurasiaLegitimacy > 75 }
+					NOT = {
+						has_country_flag = NIK_EURASIAN_DEBATE
+					}
+				}
+				country_event = {
+					id = eurasianism.56
+					days = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { NIKEurasiaLegitimacy < 20 }
+					NOT = {
+						has_idea = NIK_eurasia_forever_1
+					}
+				}
+				country_event = {
+					id = eurasianism.70
+					days = 1
+				}
+			}
+			subtract_from_variable = { NIKEurasiaLegitimacy = 5 }
+			clamp_variable = { var = NIKEurasiaLegitimacy min = 0 max = 100 }
+		}
+	}
+	
+	if = {
+		limit = {
+			NIK = {
+				exists = yes
+				AND = {
+					has_country_flag = NIK_Stalina_Arrested
+					has_country_flag = NIK_Bukharina_Arrested
+				}
+				NOT = {
+					has_country_flag = NIK_prison_chain_started
+				}
+			}
+		}
+		NIK = {
+			country_event = { id = komi.20 days = 180 random = 1000 }
+		}
+	}
+
+	if = {
+		limit = {
+			NIK = {
+				exists = yes
+				has_government = burgundian_system
+				has_country_flag = NIK_CLOCK_START_RUNNING
+				NOT = { has_country_flag = NIK_allowed_speedup }
+			}
+		}
+		NIK = {
+			add_to_variable = { NIK_tabby_time_accumulated = NIK_tabby_time_progress }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { NIK_tabby_time_accumulated > 59 }
+						NOT = {
+							check_variable = { NIK_tabby_time_hours > 23 }
+						}
+					}
+				}
+				set_variable = { NIK_tabby_time_accumulated = 0 }
+				add_to_variable = { NIK_tabby_time_hours = 1 }
+				NIK_tabby_fire_journal_event = yes
+			}
+			if = {
+				limit = {
+					AND = {
+						check_variable = { NIK_tabby_time_accumulated < -59 }
+						NOT = {
+							check_variable = { NIK_tabby_time_hours < 2 }
+						}
+					}
+				}
+				set_variable = { NIK_tabby_time_accumulated = 0 }
+				subtract_from_variable = { NIK_tabby_time_hours = 1 }
+			}
+		}
+	}
+	SVO = {
+		add_to_variable = { SVO_Army_Modernization = SVO_Army_Modernization_monthly_change } 
+		SVO_monthly_decay_estates = yes
+	}
+	
+	if = {
+		limit = {
+			SAM = {
+				exists = yes
+				has_country_flag = SAM_web_of_tensions
+			}
+		}
+		SAM = {
+			if = {
+				limit = {
+					check_variable = { SAM_military_tension < 20 }
+				}
+				add_to_variable = { SAM_military_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_military_tension < 40 }
+				}
+				add_to_variable = { SAM_military_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_military_tension < 50 }
+				}
+				add_to_variable = { SAM_military_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_civilian_tension < 20 }
+				}
+				add_to_variable = { SAM_civilian_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_civilian_tension < 40 }
+				}
+				add_to_variable = { SAM_civilian_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_civilian_tension < 50 }
+				}
+				add_to_variable = { SAM_civilian_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_inner_circle_tension < 20 }
+				}
+				add_to_variable = { SAM_inner_circle_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_inner_circle_tension < 40 }
+				}
+				add_to_variable = { SAM_inner_circle_tension = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { SAM_inner_circle_tension < 50 }
+				}
+				add_to_variable = { SAM_inner_circle_tension = 1 }
+			}
+			clamp_variable = { var = SAM_military_tension min = 0 max = 100 }
+			clamp_variable = { var = SAM_civilian_tension min = 0 max = 100 }
+			clamp_variable = { var = SAM_inner_circle_tension min = 0 max = 100 }
+			SAM_change_military_tension_spirit = yes
+			SAM_change_civilian_tension_spirit = yes
+			SAM_change_inner_circle_tension_spirit = yes
+		}
+	}
+
+	if = {
+		limit = {
+			country_exists = WSR
+		}
+		WSR = {
+			RUS_calculate_prestige_value = yes
+		}
+	}
+	if = {
+		limit = {
+			country_exists = WSB
+		}
+		WSB = {
+			RUS_calculate_prestige_value = yes
+		}
+	}
+	if = {
+		limit = {
+			country_exists = CSB
+		}
+		CSB = {
+			RUS_calculate_prestige_value = yes
+		}
+	}
+	if = {
+		limit = {
+			country_exists = FST
+		}
+		FST = {
+			RUS_calculate_prestige_value = yes
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				KIR = {
+					exists = yes
+				}
+				NIK = {
+					exists = yes
+				}
+				TOB = {
+					exists = yes
+				}
+			}
+		}
+		#State popularity generator
+		every_country = {
+			limit = {
+				is_russian_nation = yes
+			}
+			every_owned_state = {
+				RUS_get_state_special_party_pop = yes
+				log = "[GetDateText]: [THIS.Owner.GetName]:  [THIS.GetName]: Ran popularity script - C ([?RUS_state_conservative_pop]) - A ([?RUS_state_auth_pop]) - L ([?RUS_state_liberal_pop]) - S ([?RUS_state_socdem_pop])"
+			}
+		}
+	}
+
+	for_each_scope_loop = {
+		array = global.russian_warlords
+		if = {
+			limit = {
+				is_neighbor_of = PAV
+			}
+			random_list = {
+				10 = {
+					add_to_variable = { PAV_Takeover_Progress = -8 }
+				}
+				10 = {
+					add_to_variable = { PAV_Takeover_Progress = -5 }
+				}
+				10 = { }
+			}
+		}
+	}
+
+	for_each_scope_loop = {
+		array = global.RUS_democratic_nations
+		if = {
+			limit = {
+				has_country_flag = RUS_POLLS_ENABLE
+			}
+			country_event = { id = russian_democracy_helpers.4 days = 5 }
+		}
+	}
+
+	every_state = {
+		set_variable = { TNO_combined_factory_total = arms_factory_level }
+		add_to_variable = { TNO_combined_factory_total = industrial_complex_level }
+	}
+
+	URL = {
+		clamp_variable = {
+			var = Ural_initiates
+			min = 0
+			max = Ural_initiates_cap
+		}
+	}
+
+	if = {
+		limit = { country_exists = RWS }
+		RWS = { RUS_nuclear_program_effects = yes }
+	}
+	if = {
+		limit = { country_exists = SIB }
+		SIB = { RUS_nuclear_program_effects = yes }
+	}
+
+	every_country = {
+		TNO_div_limiter_calculate_unit_cap = yes
+		if = {
+			limit = {
+				any_neighbor_country = {
+					check_variable = { THIS.num_divisions > THIS.TNOLimiterIndustry }
+					check_variable = { THIS.TNOLimiterIndustry > ROOT.TNOLimiterIndustry }
+				}
+			}
+			TNO_div_limiter_escalator_mechanism_run = yes
+		}
+	}
+
+	if = {
+		limit = {
+			AND = {
+				JAP = {
+					is_ai = yes
+				}
+				GER = {
+					is_ai = yes
+				}
+				USA = {
+					is_ai = yes
+				}
+				BRG = {
+					is_ai = yes
+				}
+			}
+		}
+		set_global_flag = DISABLE_AI_CRISES
+	}
+
+	if = {
+		limit = {
+			AND = {
+				OR = {
+					JAP = {
+						is_ai = no
+					}
+					GER = {
+						is_ai = no
+					}
+					USA = {
+						is_ai = no
+					}
+					BRG = {
+						is_ai = no
+					}
+				}
+				has_global_flag = DISABLE_AI_CRISES
+			}	
+		}
+		clr_global_flag = DISABLE_AI_CRISES
+	}
+
+	if = {
+		limit = {
+			AND = {
+				URL = {
+					exists = no
+				}
+				ORE = {
+					exists = no
+				}
+				BAS = {
+					exists = no
+				}
+				ORS = {
+					exists = no
+				}
+				WSR = {
+					NOT = {
+						has_war_with = WSB
+					}
+				}
+				NOT = {
+					has_global_flag = RUS_SOUTHERN_URALS_CRISIS_OVER
+				}
+			}
+		}
+		set_global_flag = RUS_SOUTHERN_URALS_CRISIS_OVER
+		every_country = {
+			clr_global_flag = WSR_INTEGRATING_BAS
+			clr_global_flag = WSB_INTEGRATING_BAS
+			clr_global_flag = WSR_INTEGRATING_ORE
+			clr_global_flag = WSB_INTEGRATING_ORE
+			clr_global_flag = WSR_INTEGRATING_URL
+			clr_global_flag = WSB_INTEGRATING_URL
+			clr_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+			clr_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+			clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+			clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+			clr_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+			clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+			clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+			clr_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+			clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+			clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+			clr_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+			clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+			clr_country_flag = WSR_INFLUENCE_LEVEL_1
+			clr_country_flag = WSR_INFLUENCE_LEVEL_2
+			clr_country_flag = WSR_INFLUENCE_LEVEL_3
+			clr_country_flag = WSR_INFLUENCE_LEVEL_4
+			clr_country_flag = WSR_INFLUENCE_LEVEL_5
+			clr_country_flag = WSB_INFLUENCE_LEVEL_1
+			clr_country_flag = WSB_INFLUENCE_LEVEL_2
+			clr_country_flag = WSB_INFLUENCE_LEVEL_3
+			clr_country_flag = WSB_INFLUENCE_LEVEL_4
+			clr_country_flag = WSB_INFLUENCE_LEVEL_5
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				NOT = {
+					country_exists = KZK
+					country_exists = DON
+				}
+				NOT = {
+					has_global_flag = RUS_KAZAKH_CRISIS_OVER
+				}
+			}
+		}
+		set_global_flag = RUS_KAZAKH_CRISIS_OVER
+		every_country = {
+			limit = {
+				NOT = {
+					OR = {
+						tag = URL
+						tag = ORE
+						tag = BAS
+						tag = ORS
+					}
+				}
+			}
+			clr_global_flag = RWS_INTEGRATING_KAZ
+			clr_global_flag = SIB_INTEGRATING_KAZ
+			clr_global_flag = SIB_INTEGRATING_DON
+			clr_global_flag = RWS_INTEGRATING_DON
+			clr_country_flag = BEGUN_KAZAKH_CRISIS
+			clr_country_flag = URALS_CRISIS_KAZ_INFLUENCE_0
+			clr_country_flag = URALS_CRISIS_DON_INFLUENCE_0
+			clr_country_flag = URALS_CRISIS_KAZ_INFLUENCE_1
+			clr_country_flag = URALS_CRISIS_DON_INFLUENCE_1
+			clr_country_flag = URALS_CRISIS_KAZ_INFLUENCE_2
+			clr_country_flag = URALS_CRISIS_DON_INFLUENCE_2
+			clr_country_flag = URALS_CRISIS_KAZ_INFLUENCE_3
+			clr_country_flag = URALS_CRISIS_DON_INFLUENCE_3
+			clr_country_flag = WSR_INFLUENCE_LEVEL_1
+			clr_country_flag = WSR_INFLUENCE_LEVEL_2
+			clr_country_flag = WSR_INFLUENCE_LEVEL_3
+			clr_country_flag = WSR_INFLUENCE_LEVEL_4
+			clr_country_flag = WSR_INFLUENCE_LEVEL_5
+			clr_country_flag = WSB_INFLUENCE_LEVEL_1
+			clr_country_flag = WSB_INFLUENCE_LEVEL_2
+			clr_country_flag = WSB_INFLUENCE_LEVEL_3
+			clr_country_flag = WSB_INFLUENCE_LEVEL_4
+			clr_country_flag = WSB_INFLUENCE_LEVEL_5
+		}
+	}
+	if = {
+		limit = {
+			KHA = {
+				exists = yes
+				NOT = {
+					has_country_flag = KHA_NO_MORE_ANARCHISM
+					has_country_flag = KHA_NO_MORE_STATISM
+				}
+			}
+		}
+		KHA = {
+			KHA_set_black_army_control = yes
+		}
+	}
+
+	if = {
+		limit = {
+			date > 1963.11.11
+			NOT = {
+				OR = {
+					has_global_flag = RUS_shattered_kazakhstan
+					has_global_flag = KAZ_UNIFIED
+				}
+			}
+		}
+		ZZZ = {
+			country_event = {
+				id = release_dummy.5
+				days = 7
+				random = 24
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			ISH = {
+				exists = yes
+				has_country_flag = ISH_fyp_ongoing
+			}
+		}
+		ISH = {
+			subtract_from_variable = { ISHAgriculturalStrain = ISHAgriculturalStrainTicker }
+			if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain > 99.99 }
+				}
+				ISH_famine_worsen = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain < 0.01 }
+				}
+				ISH_famine_increase = yes
+			}
+			clamp_variable = {
+				var = NIK.ISHAgriculturalStrain
+				min = 0
+				max = 1000
+			}
+		}
+	}
+	
+	if = {
+		limit = {
+			ISH = {
+				exists = yes
+				has_country_flag = ISH_3rd_fyp_ongoing
+			}
+		}
+		ISH = {
+			subtract_from_variable = { ISHAgriculturalStrain = ISHAgriculturalStrainTicker }
+			if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain > 99.99 }
+				}
+				ISH_famine_worsen = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain < 0.01 }
+				}
+				ISH_famine_increase = yes
+			}
+			clamp_variable = {
+				var = NIK.ISHAgriculturalStrain
+				min = 0
+				max = 1000
+			}
+		}
+	}
+	
+	if = {
+		limit = {
+			ISH = {
+				exists = yes
+				has_country_flag = ISH_another_fyp_ongoing
+			}
+		}
+		ISH = {
+			subtract_from_variable = { ISHAgriculturalStrain = ISHAgriculturalStrainTicker }
+			if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain > 99.99 }
+				}
+				ISH_famine_worsen = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { ISHAgriculturalStrain < 0.01 }
+				}
+				ISH_famine_increase = yes
+			}
+		}
+	}
+
+	#if = {
+	#	limit = {
+	#		KOK = {
+	#			exists = yes
+	#		}
+	#	}
+	#	KOK = {
+	#		#khanate_legitimacy_overflow_check = yes
+	#		khanate_legitimacy_idea_assignment = yes
+	#
+	#		if = {
+	#			limit = {
+	#				NOT = { has_country_flag = KOK_FAIR_KHAN }
+	#			}
+	#			khanate_monthly_unrest_calc = yes
+	#			khanate_vibe_check = yes
+	#			khanate_slave_bonus_scaling = yes
+	#			khanate_monthly_slave_gain = yes
+	#		}
+	#		if = {
+	#			limit = {
+	#				check_variable = { khanate_slave_unrest_monthly > 0.01 }
+	#			}
+	#			khanate_unrest_increase = yes
+	#		}
+	#	}
+	#}
+
+	if = {
+		limit = {
+			tag = IBR
+			country_exists = IBR
+		}
+		hidden_effect = {
+			IBR_stability_update = yes
+		}
+	}
+
+
+	if = {
+		limit = {
+			NIK = {
+				exists = yes
+			}
+		}
+		NIK = {
+			clamp_variable = {
+				var = NIK.NIKCenterPower
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKLeftPower
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKRightPower
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKStalinaInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKBukharinaInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKKosyginInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKSuslovInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKTaboritskyInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKGumilyovInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKZhdanovInfluence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = NIK.NIKVoznesenskyInfluence
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	### COMECON
+	clear_array = global.COMECON_MEMBERS
+	clear_array = global.COMECON_ELIGIBLE
+	every_country = {
+		limit = {
+			OR = {
+				has_idea = NIK_socintern_member
+				has_idea = NIK_socintern_associate
+			}
+			NOT = {
+				has_war_with = ROOT
+			}
+			exists = yes		
+			NOT = {
+				tag = ZZZ
+			}
+			check_variable = { THIS.GDP < ROOT.GDP }
+		}
+		add_to_array = { global.COMECON_MEMBERS = THIS }
+	}
+	every_country = {
+		limit = {		
+			NOT = {
+				OR = {
+					has_idea = NIK_socintern_member
+					has_idea = NIK_socintern_associate
+				}
+			}	
+			OR = {
+				has_government = communist
+				has_government = socialist
+				has_government = social_democrat
+			}
+			NOT = {
+				has_war_with = ROOT
+			}
+			exists = yes		
+			NOT = {
+				tag = ZZZ
+			}
+			check_variable = { THIS.GDP < ROOT.GDP }	
+		}	
+		add_to_array = { global.COMECON_ELIGIBLE = THIS }
+	}
+	
+	every_country = { 
+		clr_country_flag = COMECON_dev_withdrawal_made
+		clr_country_flag = COMECON_def_withdrawal_made
+		clr_country_flag = COMECON_dev_deposit_made
+		clr_country_flag = COMECON_def_deposit_made
+		clr_country_flag = COMECON_aid_sent
+	}
+
+	if = {
+		limit = {
+			NIK = {
+				exists = yes
+				has_country_flag = NIK_ordosocialist_party_left_right
+			}
+		}
+		clamp_variable = {
+			var = NIKOrdosocialistLean
+			min = -3
+			max = 3
+		}
+	}
+	if = {
+		limit = {
+			FIN = { exists = yes }
+		}
+		set_variable = { FINTotalRevenue = 0 }
+		add_to_variable = { FINTotalRevenue = FINPaktRevenue }
+		add_to_variable = { FINTotalRevenue = FINOFNRevenue }
+	}
+	every_country = {
+		if = {
+			limit = {
+				econ_can_use_economy_system = yes
+			}
+			if = {
+				limit = { NOT = { has_idea = economy_multiplicative_modifiers_base } }
+				add_ideas = economy_multiplicative_modifiers_base
+			}
+			calculate_total_budget = yes
+			calculate_civilian_expenditures = yes
+			calculate_construction_expenditures = yes
+			calculate_military_expenditures = yes
+			calculate_total_expenditures = yes
+			calculate_total_expenditures_factor = yes
+			calculate_deficit = yes			
+			if = {
+				limit = {
+					NOT = { has_country_flag = ENG_CF_EnglishEconomy }
+				}
+				calculate_GDP_growth = yes
+			}
+			else = {
+				ENG_SE_GDPUpdate = yes
+			}
+			update_economy_tab = yes
+			if = {
+				limit = { is_ai = yes }
+				if = {
+					limit = { check_variable = { deficit_ratio < 0.25 } }
+					random_list = {
+						90 = {
+							tno_improve_construction_laws = yes
+						}
+						10 = {
+
+						}
+					}
+				}
+				else_if = {
+					limit = { check_variable = { deficit_ratio < 0.4 } }
+					random_list = {
+						50 = {
+							tno_improve_construction_laws = yes
+						}
+						40 = {
+
+						}
+						10 = {
+							tno_worsen_construction_laws = yes
+						}
+					}
+				}
+				else_if = {
+					limit = { check_variable = { deficit_ratio < 0.7 } }
+					random_list = {
+						70 = {
+
+						}
+						30 = {
+							tno_worsen_construction_laws = yes
+						}
+					}
+				}
+				else_if = {
+					limit = { check_variable = { deficit_ratio < 1.5 } }
+					random_list = {
+						20 = {
+
+						}
+						70 = {
+							tno_worsen_construction_laws = yes
+						}
+						10 = {
+							tno_worsen_construction_laws = yes
+							tno_worsen_construction_laws = yes
+						}
+					}
+				}
+				else = {
+					random_list = {
+						30 = {
+							tno_worsen_construction_laws = yes
+						}
+						70 = {
+							tno_worsen_construction_laws = yes
+							tno_worsen_construction_laws = yes
+						}
+					}
+				}
+			}
+
+		}
+		if = {
+			limit = {
+				check_variable = { modifier@monthly_population < -1 }
+			}
+			properly_reduce_population = yes
+		}
+	}
+	every_country = {
+		societal_development_monthly_check = yes
+	}
+
+	every_state = {
+		generate_state_gdps = yes
+	}
+	every_country = {
+		limit = {
+			check_variable = { GDP = 0 }
+		}
+		generate_country_gdp = yes
+	}
+	every_country = {
+		calculate_total_gdp = yes
+	}
+	every_country = {
+		resolve_excessive_state_gdp = yes
+	}
+
+	USA = {
+		USA_monthly_pulse_effect = yes
+	}
+
+	BRG = {
+		BRG_monthly_pulse_effect = yes
+	}
+
+	ANG = {
+		ANG_monthly_pulse_effect = yes
+	}
+
+	COG = {
+		COG_monthly_pulse_effect = yes 
+	}
+
+	SAF = {
+		add_to_variable = { SAF_diamond_count = SAF_diamond_gain }
+		log = "[GetDateText]: [THIS.GetName]: Added diamonds to SAF"
+	}
+
+	JAP = {
+		JAP_monthly_pulse = yes
+	}
+	PAV = {
+		PAV_monthly_pulse = yes
+	}
+	ENG = {
+	if = { 
+		limit = {
+			has_country_flag = ENG_MILMAN_INIT	
+		}
+		ENG_MILMAN_DECAY_EXEC = yes
+	}
+	ParliamentMechanic_GovStab_Calculate = yes
+	}
+	
+	if = {
+		limit = {
+			OR = {
+				check_variable = { ZZZ.month_counter = 3 }
+				check_variable = { ZZZ.month_counter = 6 }
+				check_variable = { ZZZ.month_counter = 9 }
+				check_variable = { ZZZ.month_counter = 12 }
+			}
+		}
+		for_each_scope_loop = {
+			array = global.chinese_warlords
+			clamp_chi_influence = yes
+			if = {
+				limit = {
+					NOT = {
+						original_tag = TIB
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { chi_influence < 48 }
+					}
+					add_to_variable = { chi_influence = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { chi_influence > 52 }
+					}
+					add_to_variable = { chi_influence = -1 }
+				}
+			}
+		}
+	}
+
+	#if = {
+		#	limit = {
+			#		DON = {
+				#			exists = yes
+				#			NOT = {
+					#				has_country_flag = DON_revolt
+					#			}
+				#		}
+			#	}
+		#	DON = {
+			#		add_to_variable = { DON_Polish_Approval = DON_Polish_Approval_monthly }
+			#		add_to_variable = { DON_Native_Unrest = DON_Native_Unrest_monthly }
+			#		add_to_variable = { DON_Food_Security = DON_Food_Security_monthly }
+			#		DON_clamp_all_variables = yes
+			#		DON_check_all_variables = yes
+			#	}
+		#}
+
+	if = {
+		limit = { has_global_flag = Iberian_Wars }
+		if = {
+			limit = {
+				GIB = {
+					has_government = despotism
+				}
+			}
+			GIB = {
+				log = "[GetDateText]: [THIS.GetName]: ran finance script "
+				#GIB_run_finance_script = yes
+			}
+			every_country = {
+				limit = {
+					has_country_flag = AUCTION_OPTED_IN
+				}
+				set_variable = { GDPDiv10 = GDP }
+				divide_variable = { GDPDiv10 = 10 }
+			}
+		}
+		every_country = {
+			limit = {
+				is_iberian_nation = yes
+			}
+			if = {
+				limit = { has_defensive_war = yes }
+				if = {
+					limit = { has_idea = Iberian_Wars_Minor	}
+					add_to_variable = { IberianWarExhaustion = 3 }
+				}
+				else_if = {
+					limit = { has_idea = Iberian_Wars_Major	}
+					add_to_variable = { IberianWarExhaustion = 1 }
+				}
+			}
+			if = {
+				limit = { has_defensive_war = yes }
+				if = {
+					limit = {
+						casualties > 2000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 1 }
+				}
+				else_if = {
+					limit = {
+						casualties > 5000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 2 }
+				}
+				else_if = {
+					limit = {
+						casualties > 10000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 3 }
+				}
+				else_if = {
+					limit = {
+						casualties > 25000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 4 }
+				}
+			}
+			if = {
+				limit = { has_offensive_war = yes }
+				if = {
+					limit = { has_idea = Iberian_Wars_Minor }
+					add_to_variable = { IberianWarExhaustion = 5 }
+				}
+				else_if = {
+					limit = { has_idea = Iberian_Wars_Major }
+					add_to_variable = { IberianWarExhaustion = 2 }
+				}
+			}
+			if = {
+				limit = { has_offensive_war = yes }
+				if = {
+					limit = {
+						casualties > 2000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 1.5 }
+				}
+				else_if = {
+					limit = {
+						casualties > 5000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 2.5 }
+				}
+				else_if = {
+					limit = {
+						casualties > 10000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 3.5 }
+				}
+				else_if = {
+					limit = {
+						casualties > 25000
+						has_war = yes
+					}
+					add_to_variable = { IberianWarExhaustion = 4.5 }
+				}
+			}
+			if = {
+				limit = { has_country_flag = SPS_WE1 }
+
+				add_to_variable = { IberianWarExhaustion = 1.5 }
+
+			}
+			if = {
+				limit = { has_country_flag = SPS_WE2 }
+
+				add_to_variable = { IberianWarExhaustion = 1.5 }
+
+			}
+			clamp_variable = {
+				var = IberianWarExhaustion
+				min = 0
+				max = 100
+			}
+			log = "[GetDateText]: [THIS.GetName]: ran war exhaustion pulse - war exhaustion [?THIS.IberianWarExhaustion] "
+			IBRCheckExhaustion = yes
+		}
+		GNS = {
+			if = {
+				limit = {
+					has_war = no
+					has_country_flag = GNS_war_Spain
+					NOT = {
+						has_country_flag = Iberian_Wars_Resigned
+					}
+				}
+				every_country = {
+					limit = {
+						is_iberianwar_mainland_nation = yes
+						OR = {
+							tag = GNS
+							is_puppet_of = GNS
+						}
+					}
+					GNS = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+		FZL = {
+			if = {
+				limit = {
+					has_war = no
+					has_country_flag = FZL_war_portugal
+					NOT = {
+						has_country_flag = Iberian_Wars_Resigned
+					}
+				}
+				every_country = {
+					limit = {
+						is_iberianwar_mainland_nation = yes
+						NOT = {
+							OR = {
+								tag = FZL
+								is_puppet_of = FZL
+							}
+						}
+					}
+					FZL = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+	}
+
+	BRG = { #Burgundy famine mechanic
+		BRG_famine_monthly_check = yes
+	}
+	# if = {
+	# 	limit = {
+	# 		OR = {
+	# 			country_exists = FEN
+	# 			country_exists = ENG
+	# 		}
+	# 	}
+	# 	ParliamentMechanic_GovStab_Calculate = yes
+	# }
+
+	USA = { #Burgundy's Globalplan Puma Ingrained into their minds focus effect, shifts America to the right by very small increments over time
+		if = {
+			limit = {
+				has_country_flag = BRG_ingrained_into_their_minds_flag
+			}
+			every_owned_state = {
+				add_to_variable = {
+					NPP_FR_popularity = 0.00125
+				}
+				add_to_variable = {
+					NPP_R_popularity = 0.00125
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = BRG_corrupt_the_youth_flag
+			}
+			every_owned_state = {
+				add_to_variable = {
+					NPP_FR_popularity = 0.0006
+				}
+				add_to_variable = {
+					NPP_R_popularity = 0.0006
+				}
+			}
+		}
+	}
+
+	ORS = { #Dirlywanker's System To Replace Ideas
+		add_to_variable = { ORS_Dirlewanger_Brigade_Angery_Level = 1 } #Balancing
+		add_to_variable = { ORS_Dirlewanger_Officer_Angery_Level = 1 } #Balancing
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Extra_Discontent_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level < 41 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Extra_Discontent_Idea
+				add_idea = ORS_Soldiers_Discontent_Idea
+			}
+			#country_event = ORS.371
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Discontent_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level > 40 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Discontent_Idea
+				add_idea = ORS_Soldiers_Extra_Discontent_Idea
+			}
+			#country_event = ORS.370
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Discontent_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level < 31 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Discontent_Idea
+				add_idea = ORS_Soldiers_Okay_Idea
+			}
+			#country_event = ORS.371
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Okay_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level > 30 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Okay_Idea
+				add_idea = ORS_Soldiers_Discontent_Idea
+			}
+			#country_event = ORS.370
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Okay_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level < 21 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Okay_Idea
+				add_idea = ORS_Soldiers_A_Bit_Happy_Idea
+			}
+			#country_event = ORS.371
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_A_Bit_Happy_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level > 20 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_A_Bit_Happy_Idea
+				add_idea = ORS_Soldiers_Okay_Idea
+			}
+			#country_event = ORS.370
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_A_Bit_Happy_Idea
+				check_variable = { ORS_Dirlewanger_Brigade_Angery_Level < 11 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_A_Bit_Happy_Idea
+				add_idea = ORS_Soldiers_Happy_Idea
+			}
+			#country_event = ORS.371
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Soldiers_Happy_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level > 10 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Soldiers_Happy_Idea
+				add_idea = ORS_Soldiers_A_Bit_Happy_Idea
+			}
+			#country_event = ORS.370
+		}
+		if = {
+			limit = { #Officers
+				has_idea = ORS_Officers_Disloyal_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level < 41 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Disloyal_Idea
+				add_idea = ORS_Officers_Disrespectful_Idea
+			}
+			#country_event = ORS.373
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Disrespectful_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level > 40 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Disrespectful_Idea
+				add_idea = ORS_Officers_Disloyal_Idea
+			}
+			#country_event = ORS.372
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Disrespectful_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level < 31 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Disrespectful_Idea
+				add_idea = ORS_Officers_Normal_Idea
+			}
+			#country_event = ORS.373
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Normal_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level > 30 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Normal_Idea
+				add_idea = ORS_Officers_Disrespectful_Idea
+			}
+			#country_event = ORS.372
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Normal_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level < 21 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Normal_Idea
+				add_idea = ORS_Officers_Respect_Idea
+			}
+			#country_event = ORS.373
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Respect_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level > 20 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Respect_Idea
+				add_idea = ORS_Officers_Normal_Idea
+			}
+			#country_event = ORS.372
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Respect_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level < 11 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Respect_Idea
+				add_idea = ORS_Officers_Unswayingly_Loyal_Idea
+			}
+			#country_event = ORS.373
+		}
+		if = {
+			limit = {
+				has_idea = ORS_Officers_Unswayingly_Loyal_Idea
+				check_variable = { ORS_Dirlewanger_Officer_Angery_Level > 10 }
+			}
+			swap_ideas = {
+				remove_idea = ORS_Officers_Unswayingly_Loyal_Idea
+				add_idea = ORS_Officers_Respect_Idea
+			}
+			#country_event = ORS.372
+		}
+	}
+
+	####IME resistance system if this breaks please call targai an idiot but don't actually he's very sensitive###
+	IME = {
+		if = {
+			limit = {
+				check_variable = {
+					var = IME_irgun_strength
+					value = 0
+					compare = greater_than
+				}
+				NOT = {
+					has_country_flag = IME_irgun_wiped_out
+				}
+			}
+			add_to_variable = {
+				var = IME_irgun_strength
+				value = 5
+			}
+			clamp_variable = {
+				var = IME_irgun_strength
+				max = 40
+				min = 0
+			}
+
+		}
+
+		if = {
+			limit = {
+				check_variable = {
+					var = IME_anm_strength
+					value = 0
+					compare = greater_than
+				}
+				NOT = {
+					has_country_flag = IME_anm_wiped_out
+				}
+			}
+			add_to_variable = {
+				var = IME_anm_strength
+				value = 5
+			}
+			clamp_variable = {
+				var = IME_anm_strength
+				max = 40
+				min = 0
+			}
+
+		}
+
+		if = {
+			limit = {
+				check_variable = {
+					var = IME_lehi_strength
+					value = 0
+					compare = greater_than
+				}
+				NOT = {
+					has_country_flag = IME_lehi_wiped_out
+				}
+			}
+			add_to_variable = {
+				var = IME_lehi_strength
+				value = 5
+			}
+			clamp_variable = {
+				var = IME_lehi_strength
+				max = 40
+				min = 0
+			}
+
+		}
+
+		if = {
+			limit = {
+				check_variable = {
+					var = IME_plfgc_strength
+					value = 0
+					compare = greater_than
+				}
+				NOT = {
+					has_country_flag = IME_plfgc_wiped_out
+				}
+			}
+			add_to_variable = {
+				var = IME_plfgc_strength
+				value = 5
+			}
+			clamp_variable = {
+				var = IME_plfgc_strength
+				max = 40
+				min = 0
+			}
+
+		}
+	}
+
+	#Lysenko sanity decrease
+	BAS = {
+		if = {
+			limit = {
+				check_variable = {
+					var = lysenko_sanity
+					value = 0
+					compare = greater_than
+				}
+				NOT = {
+					has_global_flag = BAS_NKVD_coup
+				}
+			}
+			subtract_from_variable = {
+				var = lysenko_sanity
+				value = 2
+			}
+			clamp_variable = {
+				var = lysenko_sanity
+				max = 100
+				min = 0
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {
+					var = lysenko_sanity
+					value = 0
+					compare = equals
+				}
+			}
+			country_event = {
+				id = BAS.255
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = BAS_NKVD_coup
+			}
+			remove_ideas = {
+				BAS_SANITY_NEUTRAL
+				BAS_SANITY_LOW
+				BAS_SANITY_HIGH
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = BAS_NKVD_coup
+				}
+			}
+			add_to_variable = { lysenko_nkvd_disloyalty = 0.5 }
+			add_to_variable = { lysenko_nkvd_influence = 0.5 }
+		}
+		#NKVD Stufffffff
+		if = {
+			limit = {
+				has_idea = BAS_Lysenko_Influence_Very_Low
+			}
+			remove_ideas = BAS_Lysenko_Influence_Very_Low
+		}
+		if = {
+			limit = {
+				has_idea = BAS_Lysenko_Influence_Low
+			}
+			remove_ideas = BAS_Lysenko_Influence_Low
+		}
+		if = {
+			limit = {
+				has_idea = BAS_Lysenko_Influence_Medium
+			}
+			remove_ideas = BAS_Lysenko_Influence_Medium
+		}
+		if = {
+			limit = {
+				has_idea = BAS_Lysenko_Influence_High
+			}
+			remove_ideas = BAS_Lysenko_Influence_High
+		}
+		if = {
+			limit = {
+				has_idea = BAS_Lysenko_Influence_Very_High
+			}
+			remove_ideas = BAS_Lysenko_Influence_Very_High
+		}
+		if = {
+			limit = {
+				check_variable = {
+					lysenko_nkvd_influence < 20
+				}
+			}
+			add_ideas = BAS_Lysenko_Influence_Very_Low
+		}
+		if = {
+			limit = {
+				check_variable = {
+					lysenko_nkvd_influence > 20
+				}
+				check_variable = {
+					lysenko_nkvd_influence < 41
+				}
+			}
+			add_ideas = BAS_Lysenko_Influence_Low
+		}
+		if = {
+			limit = {
+				check_variable = {
+					lysenko_nkvd_influence > 40
+				}
+				check_variable = {
+					lysenko_nkvd_influence < 61
+				}
+			}
+			add_ideas = BAS_Lysenko_Influence_Medium
+		}
+		if = {
+			limit = {
+				check_variable = {
+					lysenko_nkvd_influence > 60
+				}
+				check_variable = {
+					lysenko_nkvd_influence < 81
+				}
+			}
+			add_ideas = BAS_Lysenko_Influence_High
+		}
+		if = {
+			limit = {
+				check_variable = {
+					lysenko_nkvd_influence > 80
+				}
+			}
+			add_ideas = BAS_Lysenko_Influence_Very_High
+		}
+	}
+
+	# ARC stuff
+	set_temp_variable = { random_chance_var = random }
+	if = {
+		limit = {
+			check_variable = { global.ARC_unity < -4 }
+			NOT = {
+				has_global_flag = ARC_post_war_conference
+			}
+		}
+		every_country = {
+			limit = { has_country_flag = joined_ARC }
+			country_event = { id = ARC.34 }
+		}
+	}
+	if = {
+		limit = { check_variable = { random_chance_var > 0.3 } }
+		if = {
+			limit = { check_variable = { random_chance_var < 0.34 } }
+			random_country = {
+				limit = { has_country_flag = joined_ARC }
+				country_event = { id = ARC.31 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { random_chance_var < 0.67 } }
+			random_country = {
+				limit = { has_country_flag = joined_ARC }
+				country_event = { id = ARC.32 }
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					has_country_flag = joined_ARC
+				}
+				country_event = { id = ARC.33 }
+			}
+		}
+	}
+	OST = {
+		if = {
+			limit = { has_idea = OST_harsh_economic_integration }
+			add_to_variable = { national_debt = 75 }
+			GER = { add_to_variable = { money_reserves = 100 } }
+		}
+	}
+	# GERMANY MILITARY GUI INFLUENCERS
+	GER = {
+		GER_militarist_monthly_changes = yes
+	}
+	# Goerings wonderful economic adventures & other monthly things
+	GER = {
+		if = {
+			limit = {
+				has_global_flag = german_civil_war_goeringvic
+				has_country_flag = GGR_economy_tree
+			}
+			country_event = { id = goering.799 }
+		}
+		if = {
+			limit = {
+				check_variable = { GGR_leaving_militarists > 0 }
+			}
+			subtract_from_variable = { GGR_leaving_militarists = 1 }
+		}
+		if = {
+			limit = {
+				has_variable =  GGRCSI_corruption
+			}
+			set_temp_variable = { GGRCSI_monthly_costs = GGR_GGRCSI_spending }
+			multiply_temp_variable = { GGRCSI_monthly_costs = GGRCSI_corruption }
+			add_to_variable = { national_debt = GGRCSI_monthly_costs }
+			if = {
+				limit = {
+					check_variable = { GGR_GGRCSI_military_concern = 1 }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { GGR_GGRCSI_public_concern = 1 }
+				}
+
+			}
+		}
+		if = {
+			limit = {
+				has_completed_focus = GER_GOR_the_power_of_the_atom
+			}
+			GGRCSI_calculate_total_nuclear_reactors = yes
+		}
+		if = {
+			limit = {
+				has_country_flag = GGR_kreigsmarine_development
+			}
+			set_variable = {
+				var = GGR_ship_count
+				value = num_ships
+			}
+			set_variable = {
+				var = GGR_USA_ship_count
+				value = USA.num_ships
+			}
+			set_variable = {
+				var = GGR_JAP_ship_count
+				value = JAP.num_ships
+			}
+		}
+		if = {
+			limit = {
+				has_completed_focus = GGR_match_them
+			}
+			set_temp_variable = {
+				var = GGR_USA_ship_temp
+				value = USA.num_ships
+			}
+			multiply_temp_variable = {
+				var = GGR_USA_ship_temp
+				value = 0.75
+			}
+			set_temp_variable = {
+				var = GGR_JAP_ship_temp
+				value = JAP.num_ships
+			}
+			multiply_temp_variable = {
+				var = GGR_JAP_ship_temp
+				value = 0.75
+			}
+			set_variable = {
+				var = GGR_USA_ship_target
+				value = GGR_USA_ship_temp
+			}
+			set_variable = {
+				var = GGR_JAP_ship_target
+				value = GGR_JAP_ship_temp
+			}
+		}
+		if = {
+			limit = {
+				has_completed_focus = GGR_the_ringhorn_doctrine
+			}
+			set_variable = {
+				var = GGR_USA_ship_count_cruiser
+				value = USA.num_ships_with_type@cruiser
+			}
+			set_variable = {
+				var = GGR_JAP_ship_count_cruiser
+				value = JAP.num_ships_with_type@cruiser
+			}
+			set_temp_variable = {
+				var = GGR_USA_ship_cruiser_temp
+				value = USA.num_ships_with_type@cruiser
+			}
+			multiply_temp_variable = {
+				var = GGR_USA_ship_cruiser_temp
+				value = 0.70
+			}
+			set_temp_variable = {
+				var = GGR_JAP_ship_cruiser_temp
+				value = JAP.num_ships_with_type@cruiser
+			}
+			multiply_temp_variable = {
+				var = GGR_JAP_ship_cruiser_temp
+				value = 0.70
+			}
+			set_variable = {
+				var = GGR_USA_cruiser_target
+				value = GGR_USA_ship_cruiser_temp
+			}
+			set_variable = {
+				var = GGR_JAP_cruiser_target
+				value = GGR_JAP_ship_cruiser_temp
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = GGR_USA_cruiser_target
+						value = GGR_JAP_cruiser_target
+						compare = greater_than_or_equals
+					}
+				}
+				set_variable = {
+					var = GGR_cruiser_target
+					value = GGR_JAP_cruiser_target
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = GGR_USA_cruiser_target
+						value = GGR_JAP_cruiser_target
+						compare = less_than
+					}
+				}
+				set_variable = {
+					var = GGR_cruiser_target
+					value = GGR_USA_cruiser_target
+				}
+			}
+		}
+
+		#Based Speer stuff
+		if = {
+			limit = {
+				tag = GER
+				has_global_flag = german_civil_war_speervic
+				NOT = {has_global_flag = SGR_natsoc_collapse}
+			}
+			Speerconomics_monthly_pulse = yes
+			run_monthly_StateReich_pulse = yes
+			reset_StateReich_buttons = yes
+			RND_run_pulse = yes
+			set_country_flag = SGR_speergraph_button_visible
+			set_country_flag = SGR_RND_GUI_budget_button_enabled
+			set_country_flag = SGR_RND_GUI_equipment_button_enabled
+		}
+	}
+
+	GER = {
+	
+		if = {
+			limit = {
+				NOT = {
+					has_idea = GER_SGR_wehrmacht_division_limit_over
+				}
+				has_country_flag = sgr_werhmacht_division_limiter_activated
+				has_war = no
+				check_variable = { num_divisions > sgr_wehrmacht_div_limit }
+			}
+			add_ideas = GER_SGR_wehrmacht_division_limit_over
+			country_event = {
+				id = speermilitary.26
+			}
+		}
+		
+		if = {
+			limit = {
+				has_idea = GER_SGR_wehrmacht_division_limit_over
+				has_country_flag = sgr_werhmacht_division_limiter_activated
+				has_war = no
+				check_variable = { num_divisions < sgr_wehrmacht_div_limit }
+			}
+			remove_ideas = GER_SGR_wehrmacht_division_limit_over
+			country_event = {
+				id = speermilitary.27
+			}
+		}
+		
+		#if = {
+		#	limit = {
+		#		has_idea = GER_SGR_wehrmacht_division_limit_over
+		#		has_country_flag = sgr_werhmacht_division_limiter_activated
+		#		has_war = yes
+		#	}
+		#	remove_ideas = GER_SGR_wehrmacht_division_limit_over
+		#	country_event = {
+		#		id = speermilitary.28
+		#	}
+		#}
+	
+	}
+	
+	GER = {
+		if = {
+			limit = {
+				AND = {
+					has_global_flag = german_civil_war_speervic
+					MCW = { is_in_faction_with = GER }
+				}
+			}
+			country_event = {
+				id = speerflavor.97
+				days = 3
+			}
+			country_event = {
+				id = speerflavor.33
+				days = 10
+			}	
+		}
+	}
+	
+	PRM = {
+		if = {
+			limit = {
+				original_tag = PRM
+				check_variable = {PRM_months_since_sacrifice < 8}
+				NOT = {
+					has_idea = RUS_terror_bombing
+				}
+			}
+			add_to_variable = {PRM_months_since_sacrifice = 1}
+		}
+		if = {
+			limit = {
+				original_tag = PRM
+				check_variable = {PRM_months_since_sacrifice > 7.9}
+			}
+			set_variable = {PRM_months_since_sacrifice = 0}
+
+			if = {
+				limit = {
+					has_idea = PRM_aryan_control_1
+				}
+				country_event = {
+					id = PRM.1312
+					days = 2
+					random = 200
+				}
+			}
+			else = {
+				country_event = {
+					id = PRM.8
+					days = 2
+					random = 200
+				}
+			}
+		}
+	}
+
+	ENG = {
+		if = {
+			limit = {
+				has_country_flag = ENG_Faction_Start_Flag
+			}
+			add_to_variable = {
+				ENG_PAKT_Influence = ENG_PAKT_Influence_Increase
+			}
+			add_to_variable = {
+				ENG_OFN_Influence = ENG_OFN_Influence_Increase
+			}
+			clamp_variable = {
+				var = ENG_PAKT_Influence
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = ENG_OFN_Influence
+				min = 0
+				max = 100
+			}
+		}
+		if = {
+			limit = {
+				has_country_leader = { 
+					name = "Margaret Thatcher"
+					ruling_only = yes
+				}
+			}
+			ENG_Thatcher_Tick = yes
+		}
+		#MONTY COUP
+        if = {
+			limit = {
+				AND = {
+					is_ai = no
+					OR = {
+						has_country_leader = { 
+							name = "Margaret Thatcher"
+							ruling_only = yes
+						}
+						has_country_leader = { 
+							name = "Harold Macmillan"
+							ruling_only = yes
+						}
+					}
+					check_variable = { ParliamentMechanic_GovStab < 0.1 }
+				}	
+			}
+			country_event = {
+				id = ENG_Corn_crisis.21
+				days = 5
+			}
+		}
+		
+		#BUTLER COUP
+		if = {
+			limit = {
+				AND = {
+					is_ai = no
+					has_country_leader = { 
+						name = "Margaret Thatcher"
+						ruling_only = yes
+					}
+					check_variable = { ENG_OG_Party_Lead > 0.9 }
+				}
+			}
+			country_event = {
+				id = ENG_Government_Changes.14
+				days = 5
+			}
+		}
+		
+		#YDL COUP
+        if = {
+			limit = {
+				AND = {
+					is_ai = no
+					OR = {
+						has_country_flag = NDL_victorious
+						has_country_flag = SLP_victorious
+					}
+					check_variable = { ParliamentMechanic_GovStab < 0.1 }
+				}
+			}
+			country_event = {
+				id = ENG_Government_Changes.9
+				days = 5
+			}
+		}
+	}
+}
+
+BRG_famine_monthly_check = {
+	add_to_variable = { BRG_famine_counter = BRG_famine_monthly_change }
+
+	if = {
+		limit = {
+			check_variable = {
+				BRG_famine_counter > 99
+			}
+			BRG = {
+				has_country_flag = BRG_famine_flag
+			}
+		}
+		BRG = {
+			country_event = BRG.2050
+		}
+		add_to_variable = { BRG_famine_counter = -99 }
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				BRG_famine_counter < 1
+			}
+			BRG = {
+				has_country_flag = BRG_famine_flag
+			}
+		}
+		BRG = {
+			country_event = BRG.2051
+		}
+		add_to_variable = { BRG_famine_counter = 99 }
+	}
+}
+
+#for when monthly_population is less than -1
+properly_reduce_population = {
+	set_temp_variable = { manpower_to_remove_k = 0 }
+	every_owned_state = {
+		set_temp_variable = { manpower_to_remove_k = PREV.modifier@monthly_population }
+		add_to_temp_variable = { manpower_to_remove_k = 1 } #e.g. -1.5 means to remove 50% of the growth rate
+		multiply_temp_variable = { manpower_to_remove_k = state_population_k }
+		multiply_temp_variable = { manpower_to_remove_k = 0.0013 } #base pop growth
+		add_to_temp_variable = { PREV.manpower_to_remove_k = manpower_to_remove_k }
+	}
+	multiply_temp_variable = { manpower_to_remove_k = 1000 }
+	log = "[GetDateText]: [GetName]: removed [?manpower_to_remove_k] manpower "
+	add_manpower = manpower_to_remove_k
+}
+
+societal_development_monthly_check = {
+	add_to_variable = { poverty_counter = poverty_monthly_change }
+	add_to_variable = { poverty_counter = modifier@poverty_monthly_rate }
+	add_to_variable = { academic_base_counter = academic_base_monthly_change }
+	add_to_variable = { academic_base_counter = modifier@academic_base_monthly_rate }
+	add_to_variable = { agriculture_counter = agriculture_monthly_change }
+	add_to_variable = { agriculture_counter = modifier@agriculture_monthly_rate }
+	add_to_variable = { army_professionalism_counter = army_professionalism_monthly_change }
+	add_to_variable = { army_professionalism_counter = modifier@army_professionalism_monthly_rate }
+	add_to_variable = { research_facilities_counter = research_facilities_monthly_change }
+	add_to_variable = { research_facilities_counter = modifier@research_facilities_monthly_rate }
+	add_to_variable = { nuclear_stockpile_counter = nuclear_stockpile_monthly_change }
+	add_to_variable = { nuclear_stockpile_counter = modifier@nuclear_stockpile_monthly_rate }
+	add_to_variable = { industrial_expertise_counter = industrial_expertise_monthly_change }
+	add_to_variable = { industrial_expertise_counter = modifier@industrial_expertise_monthly_rate }
+	add_to_variable = { industrial_equipment_counter = industrial_equipment_monthly_change }
+	add_to_variable = { industrial_equipment_counter = modifier@industrial_equipment_monthly_rate }
+
+	if = {
+		limit = { check_variable = { poverty_counter > 239 } }
+		country_event = societal_development.1102
+		add_to_variable = { poverty_counter = -240 }
+		multiply_variable = { poverty_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { poverty_counter < -239 } }
+		country_event = societal_development.1103
+		add_to_variable = { poverty_counter = 240 }
+		multiply_variable = { poverty_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { academic_base_counter > 239 } }
+		country_event = societal_development.1104
+		add_to_variable = { academic_base_counter = -240 }
+		multiply_variable = { academic_base_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { academic_base_counter < -239 } }
+		country_event = societal_development.1105
+		add_to_variable = { academic_base_counter = 240 }
+		multiply_variable = { academic_base_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { research_facilities_counter > 239 } }
+		country_event = societal_development.1106
+		add_to_variable = { research_facilities_counter = -240 }
+		multiply_variable = { research_facilities_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { research_facilities_counter < -239 } }
+		country_event = societal_development.1107
+		add_to_variable = { research_facilities_counter = 240 }
+		multiply_variable = { research_facilities_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { nuclear_stockpile_counter > 239 } }
+		country_event = societal_development.1108
+		add_to_variable = { nuclear_stockpile_counter = -240 }
+		multiply_variable = { nuclear_stockpile_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { nuclear_stockpile_counter < -239 } }
+		country_event = societal_development.1109
+		add_to_variable = { nuclear_stockpile_counter = 240 }
+		multiply_variable = { nuclear_stockpile_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { industrial_expertise_counter > 239 } }
+		country_event = societal_development.1110
+		add_to_variable = { industrial_expertise_counter = -240 }
+		multiply_variable = { industrial_expertise_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { industrial_expertise_counter < -239 } }
+		country_event = societal_development.1111
+		add_to_variable = { industrial_expertise_counter = 240 }
+		multiply_variable = { industrial_expertise_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { industrial_equipment_counter > 239 } }
+		country_event = societal_development.1112
+		add_to_variable = { industrial_equipment_counter = -240 }
+		multiply_variable = { industrial_equipment_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { industrial_equipment_counter < -239 } }
+		country_event = societal_development.1113
+		add_to_variable = { industrial_equipment_counter = 240 }
+		multiply_variable = { industrial_equipment_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { agriculture_counter > 239 } }
+		country_event = societal_development.1114
+		add_to_variable = { agriculture_counter = -240 }
+		multiply_variable = { agriculture_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { agriculture_counter < -239 } }
+		country_event = societal_development.1115
+		add_to_variable = { agriculture_counter = 240 }
+		multiply_variable = { agriculture_monthly_change = 0.25 }
+	}
+
+	if = {
+		limit = { check_variable = { army_professionalism_counter > 239 } }
+		country_event = societal_development.1116
+		add_to_variable = { army_professionalism_counter = -240 }
+		multiply_variable = { army_professionalism_monthly_change = 0.25 }
+	}
+	else_if = {
+		limit = { check_variable = { army_professionalism_counter < -239 } }
+		country_event = societal_development.1117
+		add_to_variable = { army_professionalism_counter = 240 }
+		multiply_variable = { army_professionalism_monthly_change = 0.25 }
+	}
+}
+
+first_every_year_script = {
+	log = "[GetDateText]: [Root.GetName]: first_every_year_script"
+	every_country = {
+		limit = {
+			econ_can_use_economy_system = yes
+		}
+		save_event_target_as = my_country
+		#log = "[GetDateText]: [This.GetName]: running civ growth effect"
+		set_temp_variable = { civs_to_build = 0 }
+		add_to_variable = { civ_buildup = GDP_growth }
+		set_temp_variable = { civ_proportion = 1 }
+		set_temp_variable = { num_civs = num_of_civilian_factories }
+		add_to_temp_variable = { num_civs = 1 }
+		divide_temp_variable = { civ_proportion = num_civs }
+		#log = "[GetDateText]: [This.GetName]: civ_buildup = [?civ_buildup]; civ_proportion = [?civ_proportion];"
+		resize_array = {
+			array = while_array
+			size = 100
+		}
+		for_each_loop = {
+			array = while_array
+			if = {
+				limit = {
+					check_variable = { civ_buildup > civ_proportion }
+				}
+				subtract_from_variable = { civ_buildup = civ_proportion }
+				add_to_temp_variable = { civs_to_build = 1 }
+				else = {
+					set_temp_variable = { break = 0 }
+				}
+			}
+		}
+		clear_array = while_array
+		#log = "[GetDateText]: [This.GetName]: civ_buildup = [?civ_buildup]; civ_proportion = [?civ_proportion];"
+		#log = "[GetDateText]: [This.GetName]: civs_to_build = [?civs_to_build];"
+		for_each_scope_loop = {
+			array = owned_controlled_states
+
+			set_temp_variable = { civ_weight = industrial_complex_level }
+			divide_temp_variable = { civ_weight = event_target:my_country.num_civs }
+			set_temp_variable = { civ_chance = random }
+			divide_temp_variable = { civ_chance = 2 }
+			clamp_temp_variable = {
+				var = civ_chance
+				min = 0
+				max = 0.5
+			}
+			if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = megalopolis }
+				}
+				multiply_temp_variable = { civ_weight = 5 }
+			}
+			else_if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = metropolis }
+				}
+				multiply_temp_variable = { civ_weight = 4 }
+			}
+			else_if = {
+				limit = {
+					var:owned_controlled_states^v = { has_state_category = large_city }
+				}
+				multiply_temp_variable = { civ_weight = 3 }
+				else = {
+					multiply_temp_variable = { civ_weight = 2 }
+				}
+			}
+			#log = "[GetDateText]: [This.Owner.GetName]: [This.GetName]: civ_chance = [?civ_chance]; civ_weight = [?civ_weight]"
+			if = {
+				limit = {
+					check_variable = { event_target:my_country.civs_to_build > 0 }
+					var:owned_controlled_states^v = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+					check_variable = { civ_chance < civ_weight }
+				}
+				#log = "[GetDateText]: [This.Owner.GetName]: all criteria met."
+				var:owned_controlled_states^v = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					subtract_from_temp_variable = { event_target:my_country.civs_to_build = 1 }
+					log = "[GetDateText]: [This.Owner.GetName]: Civilian Factory Built in [This.GetName]"
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { PREV.civs_to_build < 1 }
+				}
+				#log = "[GetDateText]: [This.Owner.GetName]: No Civilian Factory Built in [This.GetName]"
+				set_temp_variable = { break = 0 }
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { civs_to_build > 0 }
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = civs_to_build
+				add_building_construction = {
+					type = industrial_complex
+					level = civs_to_build
+					instant_build = yes
+				}
+				log = "[GetDateText]: [This.Owner.GetName]: Backup Civilian Factories Built in [This.GetName]"
+				set_temp_variable = { civs_to_build = 0 }
+			}
+		}
+	}
+	GER = {
+		if = {
+			limit = {
+				has_global_flag = german_civil_war_speervic
+				NOT = {has_global_flag = SGR_natsoc_collapse}
+			}
+			check_speer_alignment = yes
+			check_speer_alignment_value = yes
+		}
+	}
+}

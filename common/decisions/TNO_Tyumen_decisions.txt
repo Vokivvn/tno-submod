@@ -1,0 +1,440 @@
+ISH_five_year_plan_category = {
+
+	ISH_fyp_the_first_five_year_plan_mission = {
+		allowed = {
+			always = no
+		}
+
+		icon = generic_mission
+
+		available = {
+			original_tag = ISH
+			NOT = {
+				ISH = {
+					has_country_flag = ISH_fyp_ongoing
+				}
+			}
+		}
+
+		visible = {
+			original_tag = ISH
+			ISH = {
+				has_country_flag = ISH_fyp_ongoing
+			}
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+		is_good = no
+		fire_only_once = yes
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove ISH_fyp_the_first_five_year_plan_mission"
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_the_first_five_year_plan_mission"
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout ISH_fyp_the_first_five_year_plan_mission"
+			clr_country_flag = ISH_fyp_ongoing
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	ISH_fyp_expand_heavy_armaments_industry = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 75
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_expand_heavy_armaments_industry"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_tt
+			add_to_variable = { ISHAgriculturalStrain = 40 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_expand_civilian_industry = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 60
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_expand_civilian_industry"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_low_tt
+			add_to_variable = { ISHAgriculturalStrain = 25 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ISH_fyp_expand_civil_defense_infrastructure = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 50
+		cost = 25
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_expand_civil_defense_infrastructure"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_low_tt
+			add_to_variable = { ISHAgriculturalStrain = 25 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.15
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure < 10
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure < 10
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_resettle_rural_population = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 75
+		cost = 35
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_resettle_rural_population"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_high_tt
+			add_to_variable = { ISHAgriculturalStrain = 55 }
+		}
+		modifier = {
+			consumer_goods_factor = -0.1
+			production_speed_buildings_factor = 0.25
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = rural
+						has_state_category = town
+						has_state_category = pastoral
+					}
+				}
+				add_manpower = -5500
+			}
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_manpower = 5500
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_develop_urban_centers = {
+		allowed = {
+			tag = ISH
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_develop_urban_centers"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_tt
+			add_to_variable = { ISHAgriculturalStrain = 40 }
+		}
+		days_remove = 65
+		cost = 35
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+						has_state_category = large_city
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_encourage_agricultural_mechanization = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 75
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_encourage_agricultural_mechanization"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_low_tt
+			add_to_variable = { ISHAgriculturalStrain = 25 }
+		}
+		remove_effect = {
+			custom_effect_tooltip = ISH_decrease_agricultural_strain_tt
+			add_to_variable = { ISHAgriculturalStrain = -10 }
+			add_to_variable = { ISHAgriculturalStrainTicker = 3 }
+		}
+		modifier = {
+			consumer_goods_factor = 0.15
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+	ISH_fyp_expand_resource_exploitation = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 50
+		cost = 50
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_expand_resource_exploitation"
+			custom_effect_tooltip = ISH_increase_agricultural_strain_tt
+			add_to_variable = { ISHAgriculturalStrain = 40 }
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			random_owned_controlled_state = {
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.1
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_invest_in_r_and_d = {
+		allowed = {
+			tag = ISH
+		}
+		days_remove = 50
+		cost = 35
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_invest_in_r_and_d"
+		}
+		remove_effect = {
+			random_list = {
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = industry
+					}
+				}
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = construction_tech
+					}
+				}
+				33 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = electronics
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	ISH_fyp_the_third_five_year_plan_mission = {
+		allowed = {
+			always = no
+		}
+
+		icon = generic_mission
+
+		available = {
+			original_tag = ISH
+			NOT = {
+				ISH = {
+					has_country_flag = ISH_3rd_fyp_ongoing
+				}
+			}
+		}
+
+		visible = {
+			original_tag = ISH
+			ISH = {
+				has_country_flag = ISH_3rd_fyp_ongoing
+			}
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+		is_good = no
+		fire_only_once = yes
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove ISH_fyp_the_third_five_year_plan_mission"
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_the_third_five_year_plan_mission"
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout ISH_fyp_the_third_five_year_plan_mission"
+			clr_country_flag = ISH_3rd_fyp_ongoing
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	ISH_fyp_another_five_year_plan_mission = {
+		allowed = {
+			always = no
+		}
+
+		icon = generic_mission
+
+		available = {
+			original_tag = ISH
+			NOT = {
+				ISH = {
+					has_country_flag = ISH_another_fyp_ongoing
+				}
+			}
+		}
+
+		visible = {
+			original_tag = ISH
+			ISH = {
+				has_country_flag = ISH_another_fyp_ongoing
+			}
+		}
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+		is_good = no
+		fire_only_once = yes
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove ISH_fyp_another_five_year_plan_mission"
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ISH_fyp_another_five_year_plan_mission"
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout ISH_fyp_another_five_year_plan_mission"
+			clr_country_flag = ISH_another_fyp_ongoing
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}

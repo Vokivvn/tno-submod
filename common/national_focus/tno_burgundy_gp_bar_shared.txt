@@ -1,0 +1,626 @@
+﻿#Globalplan Bär
+
+shared_focus = {
+	id = BRG_globalplan_bar
+	icon = GFX_BRG_Globalplan_Bar
+	cost = 2
+	x = 21
+	y = 10
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+
+		}
+	}
+	offset = {
+		x = 0
+		y = 8
+		trigger = {
+			has_country_flag = BRG_infrastructure_phase_2
+		}
+	}
+	offset = {
+		x = 10
+		y = 0
+		trigger = {
+			has_country_flag = view_Kondor_actions
+		}
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_globalplan_bar "
+		if = {
+			limit = { NOT = { country_exists = WSR } }
+			custom_effect_tooltip = BRG_Bar_opening_tt
+			country_event = { id = BRG.5000 days = 2 }
+		}
+
+		if = {
+			limit = { country_exists = WSR }
+			custom_effect_tooltip = BRG_Bar_Two_Opening_tt
+			country_event = { id = BRG.5013 days = 2 }
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_Keep_Them_Divided
+	icon = GFX_BRG_Begin_Phase_2
+	cost = 2
+	prerequisite = { focus = BRG_globalplan_bar }
+		allow_branch = {
+			AND = {
+			check_variable = {BRG_GP_Bar_Status_Var = 2}
+			has_country_flag = view_Bar_actions
+			NOT = { country_exists = WSR }
+			}
+		}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_Keep_Them_Divided "
+		custom_effect_tooltip = BRG_Kicking_Rotten_Structure_tt
+		set_country_flag = BRG_rotten_structure_flag
+	}
+}
+
+shared_focus = {
+	id = BRG_Northern_Light_Show
+	icon = GFX_NIK_government_check
+	relative_position_id = BRG_Keep_Them_Divided
+	cost = 2
+	prerequisite = { focus = BRG_Keep_Them_Divided }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_Northern_Light_Show "
+		custom_effect_tooltip = BRG_Fucking_With_Komi_tt
+		set_country_flag = BRG_democracy_fuckwit_flag
+		country_event = { id = BRG.5005 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = BRG_The_Tsar
+	icon = GFX_BRG_exploit_corruption
+	cost = 2
+	prerequisite = { focus = BRG_globalplan_bar }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+		NOT = { country_exists = WSR }
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_The_Tsar "
+		custom_effect_tooltip = BRG_The_Tsar_tt
+		set_country_flag = BRG_helping_vyatka_decision_flag
+		hidden_effect = {
+			country_event = { id = BRG.5003 days = 2}
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_The_Freikorp
+	icon = GFX_BRG_Focus_Special_Forces
+	cost = 2
+	prerequisite = { focus = BRG_The_Tsar }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Tsar
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_The_Freikorp "
+		custom_effect_tooltip = BRG_The_Freikorp_tt
+		set_country_flag = BRG_freikorps_flag
+		country_event = { id = BRG.5004 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = BRG_Infiltrate_The_Okhrana
+	icon = GFX_BRG_Expand_Concealment_Operations
+	cost = 3
+	prerequisite = { focus = BRG_The_Freikorp }
+	prerequisite = { focus = BRG_Northern_Light_Show }
+	prerequisite = { focus = BRG_The_Samaran_Question }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Freikorp
+	 x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_Infiltrate_The_Okhrana "
+		custom_effect_tooltip = BRG_infiltrate_Security_Group_Vyatka
+		set_country_flag = BRG_fucking_Ohkarana
+	}
+}
+
+shared_focus = {
+	id = BRG_The_Brotherhood
+	icon = GFX_PRM_Guiding_The_Untermensch
+	cost = 2
+	prerequisite = {
+		focus = BRG_globalplan_bar
+	}
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+		NOT = { country_exists = WSR }
+		}
+	}
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_The_Brotherhood "
+		custom_effect_tooltip = BRG_Bar_Fucking_Brotherhood_tt
+		set_country_flag = BRG_fucking_Quote_brotherhood_unqoute_flag
+	}
+
+}
+
+shared_focus = {
+	id = BRG_The_Samaran_Question
+	icon = GFX_generic_samara
+	cost = 2
+	prerequisite = { focus = BRG_The_Brotherhood }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Brotherhood
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_The_Samaran_Question "
+		custom_effect_tooltip = BRG_Bar_Messing_Samara_tt
+		set_country_flag = BRG_fucking_Samara_flag
+	}
+}
+
+shared_focus = {
+	id = BRG_Wo_alle_strasen_enden
+	icon = GFX_Wo_Alle_Straben_Enden
+	cost = 3
+	prerequisite = { focus = BRG_Infiltrate_The_Okhrana }
+	prerequisite = { focus = BRG_The_Samaran_Question }
+	prerequisite = { focus = BRG_Northern_Light_Show }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Infiltrate_The_Okhrana
+	x = 0
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Wo_alle_strasen_enden "
+	custom_effect_tooltip = BRG_Bar_End_of_the_line
+	country_event = { id = BRG.5011 days = 2 }
+		hidden_effect = {
+			KIR = {
+				add_equipment_to_stockpile = { type = infantry_equipment amount = 250 }
+				add_equipment_to_stockpile = { type = support_equipment amount = 20 }
+				add_stability = 0.02
+				add_war_support = 0.02
+				country_event = { id = BRG.5012 days = 3 }
+			}
+		}
+	}
+}
+
+
+
+
+##############################################################################
+#########
+######### PHASE 2
+#########
+##############################################################################
+
+
+shared_focus = {
+	id = BRG_Unglueing_Russia
+	icon = GFX_Ungluing_the_Disaster
+	cost = 3
+
+	prerequisite = { focus = BRG_globalplan_bar }
+
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+		country_exists = WSR
+		NOT = { country_exists = RUS }
+		}
+	}
+
+	offset = {
+		x = -3
+		y = 0
+		trigger = {
+			country_exists = KIR
+		}
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = 0
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Bar_Ungluing_Russia_tt
+		set_country_flag = BRG_Bar_Ungluing_Russia_Flag
+	}
+}
+
+
+
+shared_focus = {
+	id = BRG_Thawing_Wastes
+	icon = GFX_Thawing_Wastes
+	cost = 4
+
+	prerequisite = { focus = BRG_Unglueing_Russia }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Unglueing_Russia
+	x = 2
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_fucking_with_sib
+		set_country_flag = BRG_fucking_with_sibs_flag
+	}
+}
+
+
+shared_focus = {
+	id = BRG_throwing_off_the_plan
+	icon = GFX_Throwing_off_the_Plan
+	cost = 4
+
+	prerequisite = { focus = BRG_Thawing_Wastes }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Thawing_Wastes
+	x = 0
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Throwing_off_plan_tt
+		set_country_flag = BRG_Bar_Fucking_Sib_Plan_Flag
+		country_event = { id = BRG.5014 days = 3 }
+	}
+}
+
+
+shared_focus = {
+	id = BRG_The_Reassembled_Disaster
+	icon = GFX_Topling_the_Giant
+	cost = 4
+
+	prerequisite = { focus = BRG_Unglueing_Russia }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Unglueing_Russia
+	x = -2
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Bar_Two_West_Russia_Shithole
+		set_country_flag = BRG_fucking_with_west_russia_flag
+	}
+}
+
+shared_focus = {
+	id = BRG_Strenghen_Their_Resolve ### U4
+	icon = GFX_Strenghen_Their_Resolve
+	cost = 4
+
+	prerequisite = { focus = BRG_The_Reassembled_Disaster }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Reassembled_Disaster
+	x = 0
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_BAR_Fucking_With_race_4_urals
+		set_country_flag = BRG_Bar_Fucking_race_for_urals
+		country_event = { id = BRG.5015 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = BRG_enflame_their_tempers
+	icon = GFX_Enflame_Their_Tempers
+	cost = 4
+
+	prerequisite = { focus = BRG_Strenghen_Their_Resolve }
+	prerequisite = { focus = BRG_throwing_off_the_plan }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Strenghen_Their_Resolve
+	x = 2
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Bar_Fucking_Diplo_Uni_Shit
+		set_country_flag = BRG_Bar_Tension_Increasing_Flag
+	}
+}
+
+
+shared_focus = {
+	id = BRG_A_Prospurous_Bet ### Continue support for Vyatka
+	icon = GFX_BRG_Begin_Phase_2
+	cost = 4
+
+	prerequisite = { focus = BRG_globalplan_bar }
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+		country_exists = KIR
+		country_exists = WSR
+		NOT = { country_exists = RUS }
+		}
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = 3
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Bar_TWo_More_KIR_Support
+		set_country_flag = BRG_Bar_Two_More_KIR_Support_flag
+		country_event = { id = BRG.5018 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = BRG_Stoke_Their_Anger
+	icon = GFX_Stoke_Their_Anger
+	cost = 4
+
+	prerequisite = { focus = BRG_A_Prospurous_Bet }
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_A_Prospurous_Bet
+	x = -1
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_BAR_Two_SToking_KIR_Anger
+		set_country_flag = BRG_Bar_Two_More_KIR_Support_Guns_flag
+	}
+}
+
+shared_focus = {
+	id = BRG_Underground_Shipments
+	icon = GFX_MAG_The_Best_Guns_Money_Can_Buy
+	cost = 4
+
+	prerequisite = { focus = BRG_A_Prospurous_Bet }
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_A_Prospurous_Bet
+	x = 1
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_BAR_TWO_KIR_Economics_Shit
+		set_country_flag = BRG_Bar_Two_More_KIR_Support_Econ_flag
+	}
+}
+
+
+
+##############################################################################
+#########
+######### PHASE 3
+#########
+##############################################################################
+
+
+shared_focus = {
+	id = BRG_The_Coming_Inferno
+	icon = GFX_Enflame_Their_Tempers
+	cost = 2
+
+	prerequisite = { focus = BRG_globalplan_bar }
+
+	allow_branch = {
+		AND = {
+		check_variable = {BRG_GP_Bar_Status_Var = 2}
+		has_country_flag = view_Bar_actions
+		country_exists = RUS
+		}
+	}
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_globalplan_bar
+	x = 0
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Bar_Three_Coming_Inferno_tt
+		RUS = { add_stability = 0.05 add_political_power = 100 }
+		country_event = { id = BRG.5100 days = 3 }
+	}
+}
+
+
+shared_focus = {
+	id = BRG_Lay_Down_The_Gunpowder
+	icon = GFX_UPO_rally_the_russians
+	cost = 2
+
+	prerequisite = { focus = BRG_The_Coming_Inferno }
+
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Coming_Inferno
+	x = -1
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+	RUS = { add_war_support = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = BRG_Pour_On_The_Gas
+	icon = GFX_Topling_the_Giant
+	cost = 3
+
+	prerequisite = { focus = BRG_The_Coming_Inferno }
+
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_The_Coming_Inferno
+	x = 1
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		send_equipment = {
+    	equipment = infantry_equipment
+    	amount = 750
+    	target = RUS
+		}
+
+		send_equipment = {
+			equipment = support_equipment
+			amount = 150
+			target = RUS
+		}
+	}
+}
+
+shared_focus = {
+	id = BRG_Light_The_Fuse
+	icon = GFX_BRG_Begin_Phase_2
+	cost = 3
+
+	prerequisite = { focus = BRG_Lay_Down_The_Gunpowder }
+	prerequisite = { focus = BRG_Pour_On_The_Gas }
+
+
+	available = {
+		NOT = {
+			has_country_flag = BRG_state_of_crisis_flag
+		}
+	}
+	relative_position_id = BRG_Lay_Down_The_Gunpowder
+	x = 1
+	y = 1
+
+	completion_reward = {
+	log = "[GetDateText]: [Root.GetName]: focus BRG_Unglueing_Russia"
+		custom_effect_tooltip = BRG_Begining_Of_End_Bar
+		country_event = { id = BRG.5157 days = 3 }
+	}
+}

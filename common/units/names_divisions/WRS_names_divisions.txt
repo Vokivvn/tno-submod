@@ -1,0 +1,251 @@
+﻿# Division template historical names system. Is a new method of naming the divisions based on the names-group assigned to it's template.
+# If we run out of all historical names, the names will be assigned in the old way.
+#
+# Each group has a made up tag. Use it if you want to append more, or replace existing names with the extra txt files (modding).
+#
+# for_countries - lists all countries that can use it. If empty, or entire tag is missing, all countries in the world can use it.
+#
+# can_use - is a trigger that locks/unlocks the group under specific circumstances. The trigger is in a country scope.
+#
+# division_types - is a list of tokens to corresponding unit types. A player can in fact use any group of names for a div.template
+#                  however this tag is a helper for an automated choice (for AI, or if the group must switch on it's own, because
+#                  for example the current one is no longer available due to the can_use trigger saying so).
+#                  In automated choice, the division template must have at least 1 of the following types for it to be chosen.
+#
+# fallback_name - Is going to be used if we run out of the scripted historical names. If you want to use the old division naming
+#                 mechanics to be used for fallbacks, then just skip this option.
+#
+# unordered - It's a list of historical division names that did not have a number. Regardless if such names happened in history or not
+#             this option is available here mainly for a mods.
+#
+# ordered - Is a list of all historical names. 
+#           Numbers must start from 1 and up. 
+#           Numbers can't repeat in one scope.
+#           If you script the name for this group, at the same number (for example in a mod in another file), the name will be override.
+#           All arguments between the brackets must be separated by spaces. Each argument is wrapped in "quotas".
+#           1st argument = The name. It must contain either: 
+#                          %d (for decimal number placement)
+#                          %s (for string number placement - ROMAN numbers like XIV).
+#           2nd argument is optional = A localizable text describing this historical division. The text will be visible in the tooltip
+#                                      where you choose the historical division name.
+#           3rd argument is optional = An URL preferably pointing to the WIKI. It's a future feature that is not currently working in
+#                                      the current game version.
+WRS_Infantry = {
+	name = "Strelkovaya Diviziya"
+
+	for_countries = { WRS }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { WRS_Motorized }
+
+	fallback_name = "%dya Strelkovaya Diviziya"
+
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "%dya Strelkovaya Diviziya 'Arkhangelskiy Prolet.'" }
+		18 = { "%dya Strelkovaya Diviziya 'Revolyutsiya'" }
+		22 = { "%dya Strelkovaya Diviziya 'Marshal Voroshilov'" }
+		5 = { "%dya Strelkovaya Diviziya 'Lenin'" }
+		2 = { "%dya Strelkovaya Diviziya 'Tukhachevsky" }
+		4 = { "%dya Strelkovaya Diviziya 'Zhukov'" }
+		8 = { "%dya Strelkovaya Diviziya" }
+		9 = { "%dya Strelkovaya Diviziya" }
+		16 = { "%dya Strelkovaya Diviziya" }
+		26 = { "%dya Strelkovaya Diviziya" }
+		104 = { "%dya Strelkovaya Diviziya" }
+		24 = { "%dya Strelkovaya Diviziya" }
+		23 = { "%dya Strelkovaya Diviziya" }
+		17 = { "%dya Strelkovaya Diviziya" }
+		88 = { "%dya Strelkovaya Diviziya 'Narodnaya Volya'" }
+		6 = { "%dya Strelkovaya Diviziya" }
+		42 = { "%dya Strelkovaya Diviziya 'Plesetsk Prolet.'" }
+		45 = { "%dya Strelkovaya Diviziya 'Ukhta Prolet.'" }
+		50 = { "%dya Strelkovaya Diviziya" }
+		11 = { "%dya Strelkovaya Diviziya" }
+		78 = { "%dya Strelkovaya Diviziya" }
+		229 = { "%dya Strelkovaya Diviziya" }
+		230 = { "%dya Strelkovaya Diviziya" }
+		93 = { "%dya Strelkovaya Diviziya" }
+		25 = { "%dya Strelkovaya Diviziya" }
+		71 = { "%dya Strelkovaya Diviziya" }
+		73 = { "%dya Strelkovaya Diviziya" }
+		75 = { "%dya Strelkovaya Diviziya" }
+		100 = { "%dya Strelkovaya Diviziya" }
+		101 = { "%dya Strelkovaya Diviziya" }
+		3 = { "%dya Strelkovaya Diviziya" }
+		51 = { "%dya Strelkovaya Diviziya" }
+		52 = { "%dya Strelkovaya Diviziya" }
+		134 = { "%dya Strelkovaya Diviziya" }
+		62 = { "%dya Strelkovaya Diviziya 'Moskva'" }
+		102 = { "%dya Strelkovaya Diviziya" }
+		47 = { "%dya Strelkovaya Diviziya" }
+		118 = { "%dya Strelkovaya Diviziya" }
+		533 = { "%dya Strelkovaya Diviziya" }
+		14 = { "%dya Strelkovaya Diviziya" }
+	}
+}
+
+WRS_Guards = {
+	name = "Gvardiya Strelkovaya Diviziya"
+
+	for_countries = { WRS }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" "elite_infantry" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { WRS_Motorized }
+
+	fallback_name = "%dya Gvardiya Strelkovaya Diviziya"
+
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "%dya Gvardiya Strelkovaya Diviziya" }
+	}
+}
+
+WRS_Motorized = {
+	name = "Motostrelkovaya Diviziya"
+
+	for_countries = { WRS }
+
+	can_use = { always = yes }
+
+	division_types = { "motorized" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { WRS_Infantry }
+
+	fallback_name = "%dya Motostrelkovaya Diviziya"
+
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "%dya Motostrelkovaya Diviziya 'Arkhangelskiy Prolet.'" }
+		18 = { "%dya Motostrelkovaya Diviziya 'Revolyutsiya'" }
+		22 = { "%dya Motostrelkovaya Diviziya 'Marshal Voroshilov'" }
+		5 = { "%dya Motostrelkovaya Diviziya 'Lenin'" }
+		2 = { "%dya Motostrelkovaya Diviziya 'Tukhachevsky" }
+		4 = { "%dya Motostrelkovaya Diviziya 'Zhukov'" }
+		8 = { "%dya Motostrelkovaya Diviziya" }
+		9 = { "%dya Motostrelkovaya Diviziya" }
+		16 = { "%dya Motostrelkovaya Diviziya" }
+		26 = { "%dya Motostrelkovaya Diviziya" }
+		104 = { "%dya Motostrelkovaya Diviziya" }
+		24 = { "%dya Motostrelkovaya Diviziya" }
+		23 = { "%dya Motostrelkovaya Diviziya" }
+		17 = { "%dya Motostrelkovaya Diviziya" }
+		88 = { "%dya Motostrelkovaya Diviziya 'Narodnaya Volya'" }
+		6 = { "%dya Motostrelkovaya Diviziya" }
+		42 = { "%dya Motostrelkovaya Diviziya 'Plesetsk Prolet.'" }
+		45 = { "%dya Motostrelkovaya Diviziya 'Ukhta Prolet.'" }
+		50 = { "%dya Motostrelkovaya Diviziya" }
+		11 = { "%dya Motostrelkovaya Diviziya" }
+		78 = { "%dya Motostrelkovaya Diviziya" }
+		229 = { "%dya Motostrelkovaya Diviziya" }
+		230 = { "%dya Motostrelkovaya Diviziya" }
+		93 = { "%dya Motostrelkovaya Diviziya" }
+		25 = { "%dya Motostrelkovaya Diviziya" }
+		71 = { "%dya Motostrelkovaya Diviziya" }
+		73 = { "%dya Motostrelkovaya Diviziya" }
+		75 = { "%dya Motostrelkovaya Diviziya" }
+		100 = { "%dya Motostrelkovaya Diviziya" }
+		101 = { "%dya Motostrelkovaya Diviziya" }
+		3 = { "%dya Motostrelkovaya Diviziya" }
+		51 = { "%dya Motostrelkovaya Diviziya" }
+		52 = { "%dya Motostrelkovaya Diviziya" }
+		134 = { "%dya Motostrelkovaya Diviziya" }
+		62 = { "%dya Motostrelkovaya Diviziya 'Moskva'" }
+		102 = { "%dya Motostrelkovaya Diviziya" }
+		47 = { "%dya Motostrelkovaya Diviziya" }
+		118 = { "%dya Motostrelkovaya Diviziya" }
+		533 = { "%dya Motostrelkovaya Diviziya" }
+		14 = { "%dya Motostrelkovaya Diviziya" }
+	}
+}
+
+WRS_ANB = {
+	name = "Antifashistskaya Narodnaya Brigada"
+
+	for_countries = { WRS }
+
+	can_use = { always = yes }
+
+	division_types = { "light_infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d. Antifashistskaya Narodnaya Brigada"
+
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "Antifashistskaya Narodnaya Brigada 'Archangelsk'" }
+		2 = { "Antifashistskaya Narodnaya Brigada 'Mezen'" }
+		3 = { "Antifashistskaya Narodnaya Brigada 'Severodinsk'" }
+		4 = { "Antifashistskaya Narodnaya Brigada 'Usinsk'" }
+		5 = { "Antifashistskaya Narodnaya Brigada 'Plesetsk'" }
+		6 = { "Antifashistskaya Narodnaya Brigada 'Ukhta'" }
+		7 = { "Antifashistskaya Narodnaya Brigada 'Vendega'" }
+		8 = { "Antifashistskaya Narodnaya Brigada 'Snopa'" }
+		9 = { "Antifashistskaya Narodnaya Brigada 'Indiga'" }
+		10 = { "Antifashistskaya Narodnaya Brigada 'Bugrino'" }
+		11 = { "Antifashistskaya Narodnaya Brigada 'Velsk'" }
+		12 = { "Antifashistskaya Narodnaya Brigada 'Bereznik'" }
+		13 = { "Antifashistskaya Narodnaya Brigada 'Archangelsk II'" }
+		14 = { "Antifashistskaya Narodnaya Brigada 'Usinsk II'" }
+		15 = { "Antifashistskaya Narodnaya Brigada 'Karpogory'" }
+		16 = { "Antifashistskaya Narodnaya Brigada 'Pinega'" }
+		17 = { "Antifashistskaya Narodnaya Brigada 'Severodinsk II'" }
+		18 = { "Antifashistskaya Narodnaya Brigada 'Samoded'" }
+		19 = { "Antifashistskaya Narodnaya Brigada 'Yarega'" }
+		20 = { "Antifashistskaya Narodnaya Brigada 'Shoyna'" }
+		21 = { "Antifashistskaya Narodnaya Brigada 'Paluga'" }
+		22 = { "Antifashistskaya Narodnaya Brigada 'Intsy'" }
+		23 = { "Antifashistskaya Narodnaya Brigada 'Mezen II'" }
+		24 = { "Antifashistskaya Narodnaya Brigada 'Archangelsk III'" }
+		25 = { "Antifashistskaya Narodnaya Brigada 'Archangelsk IV'" }
+		26 = { "Antifashistskaya Narodnaya Brigada 'Plesetsk II'" }
+		27 = { "Antifashistskaya Narodnaya Brigada 'Ukhta II'" }
+		28 = { "Antifashistskaya Narodnaya Brigada 'Novodvinsk'" }
+		29 = { "Antifashistskaya Narodnaya Brigada 'Kotkino'" }
+		30 = { "Antifashistskaya Narodnaya Brigada 'Kizema'" }
+		31 = { "Antifashistskaya Narodnaya Brigada 'Sogra'" }
+		32 = { "Antifashistskaya Narodnaya Brigada 'Severodinsk III'" }
+		33 = { "Antifashistskaya Narodnaya Brigada 'Karpogory II'" }
+		34 = { "Antifashistskaya Narodnaya Brigada 'Usinsk III'" }
+		35 = { "Antifashistskaya Narodnaya Brigada 'Siya'" }
+		36 = { "Antifashistskaya Narodnaya Brigada 'Okulovsky'" }
+		37 = { "Antifashistskaya Narodnaya Brigada 'Lampozhnya'" }
+		38 = { "Antifashistskaya Narodnaya Brigada 'Pechora'" }
+		39 = { "Antifashistskaya Narodnaya Brigada 'Archangelsk V'" }
+		40 = { "Antifashistskaya Narodnaya Brigada 'Indiga II'" }
+		41 = { "Antifashistskaya Narodnaya Brigada 'Usogorsk'" }
+		42 = { "Antifashistskaya Narodnaya Brigada 'Yemetsk'" }
+		43 = { "Antifashistskaya Narodnaya Brigada 'Koynas'" }
+		44 = { "Antifashistskaya Narodnaya Brigada 'Plesetsk III'" }
+		45 = { "Antifashistskaya Narodnaya Brigada 'Ukhta III'" }
+		46 = { "Antifashistskaya Narodnaya Brigada 'Mezen III'" }
+		47 = { "Antifashistskaya Narodnaya Brigada 'Shenkursk'" }
+		48 = { "Antifashistskaya Narodnaya Brigada 'Kiya'" }
+		49 = { "Antifashistskaya Narodnaya Brigada 'Oma'" }
+		50 = { "Antifashistskaya Narodnaya Brigada 'Pomor'ye'" }
+		51 = { "Antifashistskaya Narodnaya Brigada 'Kholmogory'" }
+		52 = { "Antifashistskaya Narodnaya Brigada 'Verkola'" }
+		53 = { "Antifashistskaya Narodnaya Brigada 'Brin-Navolok'" }
+		54 = { "Antifashistskaya Narodnaya Brigada 'Vizhas'" }
+		55 = { "Antifashistskaya Narodnaya Brigada 'Proletariat'" }
+	}
+}

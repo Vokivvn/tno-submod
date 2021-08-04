@@ -1,0 +1,168 @@
+﻿add_namespace = us_elections
+add_namespace = USASJ
+
+country_event = {
+	id = us_elections.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event us_elections.1"}
+	hidden = yes
+	is_triggered_only = yes
+	option = {
+		US_elections_calculate_country_vars = yes
+	}
+}
+
+country_event = { #nomination
+	id = USASJ.1
+	title = USASJ.1.t
+	desc = USASJ.1.desc
+	picture = GFX_report_event_usa_supreme_court
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USASJ.1"
+	}
+	is_triggered_only = yes
+	option = { #liberal
+		name = USASJ.1.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = USASC_liberal_nomination_tt
+		hidden_effect = {
+			nominate_liberal = yes
+			random_list = {
+				25 = { country_event = { id = USASJ.2 days = 100 random = 8640 }}
+				35 = { country_event = { id = USASJ.2 days = 700 random = 8640 }}
+				25 = { country_event = { id = USASJ.2 days = 1000 random = 8640 }}
+				15 = { country_event = { id = USASJ.2 days = 1825 random = 42720 }}
+			}
+		}	
+		recalculate_supreme_court = yes
+		hidden_effect = {
+			USA_supreme_court_consequences_lib = yes
+		}
+	}
+	option = { #conservative
+		name = USASJ.1.b
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = USASC_conservative_nomination_tt
+		hidden_effect = {
+			nominate_conservative = yes
+			random_list = {
+				25 = { country_event = { id = USASJ.2 days = 100 random = 8640 }}
+				35 = { country_event = { id = USASJ.2 days = 700 random = 8640 }}
+				25 = { country_event = { id = USASJ.2 days = 1000 random = 8640 }}
+				15 = { country_event = { id = USASJ.2 days = 1825 random = 42720 }}
+			}
+		}	
+		recalculate_supreme_court = yes
+		hidden_effect = {
+			USA_supreme_court_consequences_con = yes
+		}
+	}
+}
+
+country_event = { #prep
+	id = USASJ.2
+	hidden = yes
+	title = USASJ.2.t
+	desc = USASJ.2.desc
+	#picture = GFX_report_event_usa_supreme_court
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USASJ.2"
+	}
+	is_triggered_only = yes
+	option = { #
+		name = USASJ.2.a
+		ai_chance = { factor = 1 }
+		if = {
+			limit = { USA_has_very_liberal_supreme_court = yes }
+			set_variable = { US_supreme_court_prev = 1}
+		}
+		else_if = {
+			limit = { USA_has_liberal_supreme_court = yes }
+			set_variable = { US_supreme_court_prev = 2}
+		}
+		else_if = {
+			limit = { USA_has_conservative_supreme_court = yes }
+			set_variable = { US_supreme_court_prev = 3}
+		}
+		else_if = {
+			limit = { USA_has_very_conservative_supreme_court = yes }
+			set_variable = { US_supreme_court_prev = 4}
+		}
+		USA_SJ_death = yes
+		country_event = {id = USASJ.3 days = 1 }
+		recalculate_supreme_court = yes
+	}
+}
+country_event = { #death
+	id = USASJ.3
+	title = USASJ.3.t
+	desc = USASJ.3.desc
+	picture = GFX_report_event_usa_supreme_court
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USASJ.3"
+	}
+	is_triggered_only = yes
+	option = { #liberal
+		name = USASJ.3.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			#special cases under here
+			if = {
+				limit = {
+					date > 1965.2.2
+					USA_has_civil_rights = yes
+					check_variable = { bill_id < 1 }
+					OR = {
+						has_government = social_liberal
+						has_government = social_democrat
+					}
+					NOT = { has_country_flag = USASJ_Thurgood_fuss}
+				}
+				set_country_flag = USASJ_Thurgood_fuss
+				country_event = { id = USASJ.5 days = 5}
+			}
+			#if no special cases apply, do the default dance
+			else = { country_event = {id = USASJ.1 days = 30 } }
+		}	
+	}
+}
+country_event = { #REPORT DEBUG
+	id = USASJ.4
+	title = USASJ.4.t
+	desc = USASJ.4.desc
+	#picture = GFX_report_event_usa_supreme_court
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USASJ.4"
+		recalculate_supreme_court = yes
+	}
+	is_triggered_only = yes
+	option = {
+		name = USASJ.4.a
+
+	}
+}
+###########################################################
+country_event = { #Thurgood Marshall chain
+	id = USASJ.5
+	title = USASJ.5.t
+	desc = USASJ.5.desc
+	picture = GFX_report_event_usa_supreme_court
+	
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event USASJ.5"
+		recalculate_supreme_court = yes
+	}
+	is_triggered_only = yes
+	option = { #nominate thurgood marshall
+		name = USASJ.5.a
+		#THE SENATE SHALL DECIDE YOUR FATE THURGOOD#
+		custom_effect_tooltip = USA_Let_Thurgood
+		hidden_effect = {
+		USA_Let_Thurgood_In_Setup = yes
+		country_event = { id = USA_sen_bill.105 days = 15 }
+		}
+		
+	}
+	#option about electing a conservative????
+}
+#go wild doc!

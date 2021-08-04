@@ -1,0 +1,380 @@
+#### American response to Iran###
+
+add_namespace = USA_IR
+
+### Reloads tree with Iran Response ###
+country_event = {
+	id = USA_IR.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_IR.1" }
+	title = USA_IR.1.t
+	desc = USA_IR.1.d
+	picture = GFX_report_event_usa_supreme_court
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "USA_IR.1.a"
+		set_country_flag = USA_IR_CW_ACTIVE
+		USA_reload_presidential_tree = yes
+	}
+}
+### Congress authorises the President to send aid to the Coalition in Iran. Iran gets $100 Million In Aid ###
+country_event = {
+	id = USA_IR.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event USA_IR.2" }
+	title = USA_IR.2.t
+	desc = USA_IR.2.d
+	picture = GFX_report_event_us_congress2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "USA_IR.2.a"
+		add_war_support	= 0.02
+		add_political_power	= 25
+		subtract_from_variable = {
+			var = money_reserves
+			value = 100 
+		}
+		IRL = {
+			add_to_variable = { money_reserves = 100 }
+		}
+	}
+}
+
+
+### Grand Strategy of Iran War
+country_event = {
+	id = USA_IR.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event USA_IR.3" }
+	title = USA_IR.3.t
+	desc = USA_IR.3.d
+	picture = GFX_report_event_us_pentagon
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "USA_IR.3.a"
+		set_country_flag = USA_IRCW_EQUIPMENT
+	}
+	option = {
+		name = "USA_IR.3.b"
+		set_country_flag = USA_IRCW_SOLDIERS
+	}
+}
+
+###Chose Between Long Term Or Short Term Army Buff###
+
+country_event = {
+	id = USA_IR.4
+	immediate = { log  = "[GetDateText]: [Root.GetName]: event USA_IR.4" }
+	title = USA_IR.4.t
+	desc = USA_IR.4.d
+	picture = GFX_report_event_us_congress2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "USA_IR.4.a"
+		add_timed_idea = { idea = USA_IRCW_swift_warfare days = 240 }
+	}
+	option = {
+		name = "USA_IR.4.b"
+		add_ideas = USA_IRCW_protracted_warfare 
+	}
+
+}
+
+country_event = {
+	id = USA_IR.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event USA_IR.5" }
+	title = USA_IR.5.t
+	desc = USA_IR.5.d
+	picture = GFX_report_event_us_washington_obelisk
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = USA_IR.5.a
+		add_war_support = 0.03
+		add_political_power = 50
+		IRL = { add_war_support = 0.05 }
+	}
+
+}
+
+# IRL Loses
+
+country_event = {
+	id = USA_IR.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_INS.06" }
+ 	title = USA_IR.6.t
+ 	desc = USA_IR.6.d
+	picture = GFX_report_event_us_flag
+
+	fire_only_once = yes
+	mean_time_to_happen = { days = 1 }
+
+ 	trigger = {
+ 		has_country_flag = USA_IR_CW_ACTIVE
+		OR = {
+			NOT = { country_exists = IRL }
+			IRL = { has_capitulated = yes }
+		}
+		USA = { has_completed_focus = USA_iranian_aid_bill }
+ 	}
+	
+ 	option = {
+ 		name = USA_IR.6.a
+		clr_country_flag = USA_IR_CW_ACTIVE
+		clr_country_flag = USA_IRCW_EQUIPMENT
+		clr_country_flag = USA_IRCW_SOLDIERS
+		clr_country_flag = USA_IRCW_sending_help_to_da_iran
+		clr_country_flag = USA_IRCW_sending_da_advisors
+		clr_country_flag = USA_IRCW_arming_IRL
+		clr_country_flag = USA_IRCW_sending_loans
+		clr_country_flag = USA_IRCW_escalate_volunteers
+		clr_country_flag = USA_IRCW_escalate_equipment_shipments
+		clr_country_flag = USA_IRCW_new_contracts 
+		clr_country_flag = USA_IRCW_faster_equipment_shipments
+ 		add_stability = -0.03
+ 		add_political_power = -100		
+		custom_effect_tooltip = USA_subtract_OFN_unity
+		subtract_from_variable = { OFN_unity = 3 }
+		custom_effect_tooltip = USA_subtract_societal_unity_small
+		add_to_variable = { USA_unity = -0.5 }
+		#President is RD
+		if = {
+			limit = {
+				OR = {
+					has_government = social_conservative 
+					has_government = social_liberal 
+				}
+			}
+	 		add_popularity = {
+	 			ideology = social_liberal
+	 			popularity = -0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = social_conservative
+	 			popularity = -0.01
+	 		}
+	 		add_popularity = {
+	 			ideology = social_democrat
+	 			popularity = 0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = authoritarian_democrat
+	 			popularity = 0.01
+	 		}
+	 		custom_effect_tooltip = USA_NPP_popularity_grows
+	 		hidden_effect = {
+	 			every_owned_state = {
+	 				limit = { can_have_elections_in_state = yes }
+					add_to_variable = { NPP_popularity = 0.05 }
+					subtract_from_variable = { RD_popularity = 0.05 }
+					US_underdog_RD_2_2 = yes
+				}
+			}			
+		}
+			
+		#President is NPP
+		if = {
+			limit = {
+				OR = {
+					has_government = authoritarian_democrat 
+					has_government = social_democrat  
+					has_government = socialist 
+					has_government = fascism 
+				}
+			}
+ 		add_popularity = {
+	 			ideology = social_democrat
+	 			popularity = -0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = authoritarian_democrat
+	 			popularity = -0.01
+	 		}
+	 		add_popularity = {
+	 			ideology = social_liberal
+	 			popularity = 0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = social_conservative
+	 			popularity = 0.01
+	 		}
+	 		custom_effect_tooltip = USA_add_RD_popularity_med
+	 		hidden_effect = {
+	 			every_owned_state = {
+	 				limit = { can_have_elections_in_state = yes }
+	 				set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+	 			}
+	 		}			
+		}
+		remove_ideas = {
+			USA_IRCW_military_advisors_sent_to_iran
+			USA_IRCW_increased_war_effort
+			USA_IRCW_kick_the_factories_into_action
+			USA_IRCW_secure_suppply_lines
+			advisor_level_1
+			advisor_level_2
+		}
+		clr_country_flag = USA_IR_CW_ACTIVE
+		clr_country_flag = USA_IRCW_volunteers_sent
+		clr_country_flag = USA_IRCW_volunteers_increased
+		clr_country_flag = USA_IRCW_arming_IRL
+		clr_country_flag = USA_IRCW_sending_loans
+		clr_country_flag = USA_IRCW_EQUIPMENT
+		clr_country_flag = USA_IRCW_SOLDIERS
+		clr_country_flag = USA_IRCW_new_contracts
+		clr_country_flag = USA_IRCW_faster_equipment_shipments
+		TNO_improve_army_professionalism_low = no
+		USA_reload_presidential_tree = yes
+ 	}
+}
+
+#IRL wins
+country_event = {
+	id = USA_IR.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event USA_IR.07" }
+ 	title = USA_IR.7.t
+ 	desc = USA_IR.7.d
+	picture = GFX_report_event_us_congress2
+
+	fire_only_once = yes
+	mean_time_to_happen = { days = 1 }
+
+ 	trigger = {
+ 		has_country_flag = USA_IR_CW_ACTIVE
+		IRL = { has_war = no }
+		country_exists = IRL 
+		has_global_flag = TNO_IRA_collapsed_coalition
+		USA = { has_completed_focus = USA_iranian_aid_bill }
+ 	}
+	
+ 	option = {
+ 		name = USA_IR.7.a
+ 		add_stability = 0.03
+		add_political_power = 100
+		add_to_faction = IRL	
+		custom_effect_tooltip = USA_add_OFN_unity
+		add_to_variable = { OFN_unity = 1 }
+		custom_effect_tooltip = USA_add_societal_unity_small
+		add_to_variable = { USA_unity = 0.5 }
+		#President is NPP
+		if = {
+			limit = {
+				OR = {
+					has_government = authoritarian_democrat 
+					has_government = social_democrat  
+					has_government = socialist 
+					has_government = fascism 
+				}
+			}
+	 		add_popularity = {
+	 			ideology = social_liberal
+	 			popularity = -0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = social_conservative
+	 			popularity = -0.01
+	 		}
+	 		add_popularity = {
+	 			ideology = social_democrat
+	 			popularity = 0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = authoritarian_democrat
+	 			popularity = 0.01
+	 		}
+	 		custom_effect_tooltip = USA_NPP_popularity_grows
+	 		hidden_effect = {
+	 			every_owned_state = {
+	 				limit = { can_have_elections_in_state = yes }
+	 				set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+				}
+			}			
+		}
+			
+		#President is RD
+		if = {
+			limit = {
+				OR = {
+					has_government = social_conservative 
+					has_government = social_liberal 
+				}
+			}
+ 			add_popularity = {
+	 			ideology = social_democrat
+	 			popularity = -0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = authoritarian_democrat
+	 			popularity = -0.01
+	 		}
+	 		add_popularity = {
+	 			ideology = social_liberal
+	 			popularity = 0.015
+	 		}
+	 		add_popularity = {
+	 			ideology = social_conservative
+	 			popularity = 0.01
+	 		}
+	 		custom_effect_tooltip = USA_add_RD_popularity_med
+	 		hidden_effect = {
+	 			every_owned_state = {
+	 				limit = { can_have_elections_in_state = yes }
+	 				set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+	 			}
+	 		}			
+		}
+		IRL = {
+			remove_ideas = {
+				IRL_USA_american_military_advisors
+				IRL_USA_cia_advisors
+				IRL_american_loans
+			}
+			TNO_improve_army_professionalism_low = no
+			clr_country_flag = IRL_american_loans_for_us
+			clr_country_flag = IRL_more_american_sales
+			hidden_effect = {
+				remove_faction_status = yes
+				add_ideas = OFN_Independent_Member
+			}
+		}
+		remove_ideas = {
+			USA_IRCW_military_advisors_sent_to_iran
+			USA_IRCW_increased_war_effort
+			USA_IRCW_kick_the_factories_into_action
+			USA_IRCW_secure_suppply_lines
+			advisor_level_1
+			advisor_level_2
+			advisor_level_3
+		}
+		clr_country_flag = USA_IR_CW_ACTIVE
+		clr_country_flag = USA_IRCW_volunteers_sent
+		clr_country_flag = USA_IRCW_volunteers_increased
+		clr_country_flag = USA_IRCW_arming_IRL
+		clr_country_flag = USA_IRCW_sending_loans
+		clr_country_flag = USA_IRCW_EQUIPMENT
+		clr_country_flag = USA_IRCW_SOLDIERS
+		clr_country_flag = USA_IRCW_new_contracts
+		clr_country_flag = USA_IRCW_faster_equipment_shipments
+		USA_reload_presidential_tree = yes
+ 	}
+}

@@ -1,0 +1,5982 @@
+##################################################################################################################################
+##################################################################################################################################
+##	    ____         ________            _   __                        ____  ____   ________            ______               	##
+##	   /  _/___     /_  __/ /_  ___     / | / /___ _____ ___  ___     / __ \/ __/  /_  __/ /_  ___     /_  __/________ ______	##
+##	   / // __ \     / / / __ \/ _ \   /  |/ / __ `/ __ `__ \/ _ \   / / / / /_     / / / __ \/ _ \     / / / ___/ __ `/ ___/	##
+##	 _/ // / / /    / / / / / /  __/  / /|  / /_/ / / / / / /  __/  / /_/ / __/    / / / / / /  __/    / / (__  ) /_/ / /    	##
+##	/___/_/ /_/    /_/ /_/ /_/\___/  /_/ |_/\__,_/_/ /_/ /_/\___/   \____/_/      /_/ /_/ /_/\___/    /_/ /____/\__,_/_/		##
+##																																##
+##################################################################################################################################
+##################################################################################################################################
+
+#####################
+### Starting Tree ###
+#####################
+shared_focus = {
+	id = KIR_return_of_the_tsar
+	icon = GFX_SAM_The_False_Czar
+	cost = 2.00
+	ai_will_do = {
+		factor = 1
+	}
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_return_of_the_tsar"
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = KIR_an_economic_graveyard
+	icon = GFX_MAG_Desperate_Times
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_return_of_the_tsar
+	}
+	x = -4
+	y = 1
+	relative_position_id = KIR_return_of_the_tsar
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_an_economic_graveyard"
+		country_event = { id = KIR.11 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_vyatka_distillery
+	icon = GFX_goal_KIR_The_Vyatka_Distillery
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_an_economic_graveyard
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_an_economic_graveyard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_vyatka_distillery"
+		custom_effect_tooltip = KIR_increase_popular_support_low_tt
+		KIR_increase_popular_support_low = yes
+		add_ideas = KIR_kirov_vodka
+		hidden_effect = {
+			country_event = { id = KIR.10 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_alternative_uses
+	icon = GFX_USA_Medicare__Medicaid
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_vyatka_distillery
+	}
+	mutually_exclusive = {
+		focus = KIR_the_imperial_potato_act
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_the_vyatka_distillery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_alternative_uses"
+		TNO_improve_research_facilities_med = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = hospital_tech
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = support_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_potato_act
+	icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_vyatka_distillery
+	}
+	mutually_exclusive = {
+		focus = KIR_alternative_uses
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_vyatka_distillery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_potato_act"
+		TNO_improve_agriculture_med = yes
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_find_new_markets
+	icon = GFX_ITA_European_Markets
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_alternative_uses
+		focus = KIR_the_imperial_potato_act
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_alternative_uses
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_find_new_markets"
+		custom_effect_tooltip = KIR_find_new_markets_tt
+		hidden_effect = {
+			BRT = {
+				country_event = { id = KIR.20 days = 7 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_rolling_on_the_river
+	icon = GFX_RAJ_The_Might_of_Indias_Rivers
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_find_new_markets
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_find_new_markets
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_rolling_on_the_river"
+		KIR_increase_economic_strength_low = yes
+		add_political_power = 35
+		hidden_effect = {
+			country_event = { id = KIR.13 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_kostroma_pipeline
+	icon = GFX_goal_COG_icon_honor_our_contracts
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_find_new_markets
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_find_new_markets
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_kostroma_pipeline"
+		add_political_power = 50
+		add_offsite_building = {
+			type = arms_factory
+			level = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_a_new_hub_of_trade
+	icon = GFX_goal_COG_icon_the_global_market
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_rolling_on_the_river
+	}
+	prerequisite = {
+		focus = KIR_the_kostroma_pipeline
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_rolling_on_the_river
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_new_hub_of_trade"
+		KIR_increase_economic_strength_med = yes
+		TNO_improve_poverty_low = yes
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_imperial_austerity
+	icon = GFX_MAG_Radical_Techniques
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_an_economic_graveyard
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_an_economic_graveyard
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_imperial_austerity"
+		country_event = { id = KIR.12 }
+	}
+}
+
+shared_focus = {
+	id = KIR_moderate_austerity_programs
+	icon = GFX_URL_A_Paying_Job
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_moderate_austerity
+		}
+	}
+	prerequisite = {
+		focus = KIR_imperial_austerity
+	}
+	mutually_exclusive = {
+		focus = KIR_more_extreme_measures
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_imperial_austerity
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_moderate_austerity_programs"
+		KIR_increase_economic_strength_low = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_public_works_projects
+	icon = GFX_TNO_generic_railway_work
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_moderate_austerity_programs
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_moderate_austerity_programs
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_public_works_projects"
+		TNO_improve_industrial_expertise_med = yes
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_imperial_bank_of_russia
+	icon = GFX_ORE_common_finance
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_public_works_projects
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_public_works_projects
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_imperial_bank_of_russia"
+		KIR_increase_economic_strength_low = yes
+		KIR_increase_popular_support_med = yes
+		400 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			clr_country_flag = KIR_moderate_austerity
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_more_extreme_measures
+	icon = GFX_DSR_burn_it_down
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_extreme_austerity
+		}
+	}
+	prerequisite = {
+		focus = KIR_imperial_austerity
+	}
+	mutually_exclusive = {
+		focus = KIR_moderate_austerity_programs
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_imperial_austerity
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_more_extreme_measures"
+		KIR_increase_economic_strength_med = yes
+		KIR_decrease_popular_support_med = yes
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = KIR_divert_funds_to_the_military
+	icon = GFX_GER_SGR_houses_to_factories
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_more_extreme_measures
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_more_extreme_measures
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_divert_funds_to_the_military"
+		TNO_improve_industrial_equipment_med = yes
+		KIR_decrease_popular_support_med = yes
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_tax_the_commoners
+	icon = GFX_URL_the_refugees
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_divert_funds_to_the_military
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_divert_funds_to_the_military
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_tax_the_commoners"
+		KIR_decrease_popular_support_med = yes
+		KIR_increase_economic_strength_med = yes
+		hidden_effect = {
+			clr_country_flag = KIR_extreme_austerity
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_start_of_the_recovery
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_imperial_bank_of_russia
+		focus = KIR_tax_the_commoners
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_imperial_bank_of_russia
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_start_of_the_recovery"
+		TNO_improve_poverty_med = yes
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_legacy_of_the_tsardom
+	icon = GFX_goal_KIR_Legacy_of_the_Tsardom
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_return_of_the_tsar
+	}
+	x = 4
+	y = 1
+	relative_position_id = KIR_return_of_the_tsar
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_legacy_of_the_tsardom"
+		add_political_power = 35
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KIR_a_tangled_web
+	icon = GFX_goal_KIR_A_Tangled_Web
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_legacy_of_the_tsardom
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_legacy_of_the_tsardom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_tangled_web"
+		country_event = { id = KIR.18 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_great_game
+	icon = GFX_KIR_The_House_Always_Wins
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_a_tangled_web
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_a_tangled_web
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_great_game"
+		country_event = { id = KIR.19 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_fifty_shades_of_monarchism
+	icon = GFX_goal_KIR_Many_Shades_of_Monarchism
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_a_tangled_web
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_a_tangled_web
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_fifty_shades_of_monarchism"
+		add_popularity = { ideology = social_liberal popularity = 0.075 }
+		add_popularity = { ideology = social_conservative popularity = 0.075 }
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.075	}
+		add_popularity = { ideology = despotism	popularity = 0.025 }
+		add_popularity = { ideology = fascism popularity = 0.05	}
+	}
+}
+
+shared_focus = {
+	id = KIR_utilize_the_okhrana
+	icon = GFX_MAG_Acquire_Advisors
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_fifty_shades_of_monarchism
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_fifty_shades_of_monarchism
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_utilize_the_okhrana"
+		add_ideas = KIR_modern_age_okhrana
+		country_event = { id = KIR.60 days = 1 }
+		if = {
+			limit = { has_dlc = "La Resistance" }
+			create_intelligence_agency = {
+				name = "Okhrana"
+				icon = "GFX_intelligence_agency_logo_kir"
+			}
+		}
+		hidden_effect = {
+			country_event = { id = KIR.23 days = 10 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_form_the_imperial_council
+	icon = GFX_goal_KIR_Imperial_Council
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_great_game
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_great_game
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_form_the_imperial_council"
+		add_political_power = 25
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KIR_the_peoples_tsar
+	icon = GFX_KIR_The_Peoples_Tsar
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_form_the_imperial_council
+	}
+	prerequisite = {
+		focus = KIR_utilize_the_okhrana
+	}
+	mutually_exclusive = {
+		focus = KIR_imperial_detachment
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_form_the_imperial_council
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_peoples_tsar"
+		add_timed_idea = { idea = KIR_the_peoples_tsar_idea days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_imperial_detachment
+	icon = GFX_IRQ_Someone_Else
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_form_the_imperial_council
+	}
+	prerequisite = {
+		focus = KIR_utilize_the_okhrana
+	}
+	mutually_exclusive = {
+		focus = KIR_the_peoples_tsar
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_form_the_imperial_council
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_imperial_detachment"
+		add_timed_idea = { idea = KIR_imperial_detachment_idea days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_cultured_court
+	icon = GFX_goal_KIR_Cultured_Court
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_imperial_detachment
+		focus = KIR_the_peoples_tsar
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_imperial_detachment
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_cultured_court"
+		add_political_power = 50
+		add_stability = 0.075
+	}
+}
+
+shared_focus = {
+	id = KIR_the_tsars_speech
+	icon = GFX_KIR_The_Tsars_Speech
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_legacy_of_the_tsardom
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_legacy_of_the_tsardom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_tsars_speech"
+		country_event = { id = KIR.7 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_bishop_of_vyatka
+	icon = GFX_KIR_The_Bishop_of_Kirov
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_tsars_speech
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_the_tsars_speech
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_bishop_of_vyatka"
+		country_event = { id = KIR.17 }
+	}
+}
+
+shared_focus = {
+	id = KIR_emigre_support
+	icon = GFX_MAG_Old_Money
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_tsars_speech
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_tsars_speech
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_emigre_support"
+		KIR_increase_popular_support_low = yes
+		add_political_power = 35
+	}
+}
+
+shared_focus = {
+	id = KIR_mother_russia_bleeds
+	icon = GFX_ARC_russian_flag_and_soldier
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_bishop_of_vyatka
+	}
+	prerequisite = {
+		focus = KIR_emigre_support
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_bishop_of_vyatka
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_mother_russia_bleeds"
+		add_war_support = 0.075
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1250
+			producer = KIR
+		}
+		country_event = { id = KIR.16 }
+	}
+}
+
+shared_focus = {
+	id = KIR_seize_illegal_convoys
+	icon = GFX_MAG_Back_of_the_Truck
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_mother_russia_bleeds
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_mother_russia_bleeds
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_seize_illegal_convoys"
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 350
+			producer = KIR
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 450
+			producer = KIR
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 450
+			producer = KIR
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 450
+			producer = KIR
+		}
+		hidden_effect = {
+			country_event = { id = KIR.28 days = 21 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_white_army_traditions
+	icon = GFX_MAG_White_Army_Tactics
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_mother_russia_bleeds
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_mother_russia_bleeds
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_white_army_traditions"
+		army_experience = 15
+		add_ideas = KIR_white_army_traditions_idea
+	}
+}
+
+shared_focus = {
+	id = KIR_our_pride_untarnished
+	icon = GFX_TNO_generic_military_contacts
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_seize_illegal_convoys
+	}
+	prerequisite = {
+		focus = KIR_white_army_traditions
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_seize_illegal_convoys
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_our_pride_untarnished"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_the_eagle_flies_once_more
+	icon = GFX_KIR_All_Roads_Lead_to_Romanov
+	cost = 3.33
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_a_new_hub_of_trade
+	}
+	prerequisite = {
+		focus = KIR_start_of_the_recovery
+	}
+	prerequisite = {
+		focus = KIR_a_cultured_court
+	}
+	prerequisite = {
+		focus = KIR_our_pride_untarnished
+	}
+	x = 6
+	y = 1
+	relative_position_id = KIR_a_new_hub_of_trade
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_eagle_flies_once_more"
+		add_war_support = 0.075
+		hidden_effect = {
+			country_event = { id = KIR.26 days = 3 }
+		}
+	}
+}
+
+#########################
+### Post-Bombing Tree ###
+#########################
+shared_focus = {
+	id = KIR_climb_from_the_pit
+	icon = GFX_AKT_Gravestone
+	cost = 2.00
+	ai_will_do = {
+		factor = 1
+	}
+	x = 5
+	y = 0
+	available = {
+		NOT = {
+			has_idea = RUS_terror_bombing
+		}
+	}
+	bypass = {
+		NOT = {
+			has_idea = RUS_terror_bombing
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_climb_from_the_pit"
+		custom_effect_tooltip = KIR_climb_from_the_pit_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_call_the_council
+	icon = GFX_ORE_institute_common_judicial_guidelines
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_climb_from_the_pit
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_call_the_council"
+		add_political_power = 35
+		country_event = { id = KIR.71 hours = 12 }
+	}
+}
+
+shared_focus = {
+	id = KIR_put_an_end_to_the_assassinations
+	icon = GFX_goal_ARC_Streamlining_the_congress
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_call_the_council
+	}
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_put_an_end_to_the_assassinations"
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = KIR_reign_in_the_officers
+	icon = GFX_Generic_Army_Officers
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_put_an_end_to_the_assassinations
+	}
+	x = 1
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reign_in_the_officers"
+		add_political_power = -75
+		remove_ideas = KIR_officer_infighting
+		add_timed_idea = { idea = KIR_officers_reigned_in days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_tsars_authority
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_call_the_council
+	}
+	x = 3
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_tsars_authority"
+		add_stability = 0.075
+		add_popularity = { ideology = despotism	popularity = 0.015 }
+		country_event = { id = KIR.73 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_meet_with_the_leaders
+	icon = GFX_BRT_The_Breton_Standard
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_tsars_authority
+	}
+	x = 3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_meet_with_the_leaders"
+		country_event = { id = KIR.25 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_an_uneasy_peace
+	icon = GFX_BAS_It_was_an_honor
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_meet_with_the_leaders
+	}
+	prerequisite = {
+		focus = KIR_reign_in_the_officers
+	}
+	x = 3
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_an_uneasy_peace"
+		add_stability = 0.1
+		add_political_power = 35
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_russian_army
+	icon = GFX_goal_KIR_The_Imperial_Russian_Army
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_climb_from_the_pit
+	}
+	x = 7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_russian_army"
+		add_political_power = 25
+		army_experience = 15
+	}
+}
+
+shared_focus = {
+	id = KIR_defence_plan_kutuzov
+	icon = GFX_BAS_fortification_production_charter
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_russian_army
+	}
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_defence_plan_kutuzov"
+		custom_effect_tooltip = KIR_defence_plan_kutuzov_tt
+		set_country_flag = KIR_western_reclamation
+		hidden_effect = {
+			country_event = { id = KIR.64 days = 7 random = 24 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_vyatka_general_staff_academy
+	icon = GFX_goal_KIR_The_Vyatka_General_Staff_Academy
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_defence_plan_kutuzov
+	}
+	x = 7
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_vyatka_general_staff_academy"
+		add_ideas = KIR_general_staff_academy
+	}
+}
+
+shared_focus = {
+	id = KIR_lessons_from_the_past
+	icon = GFX_MAG_Fix_Bayonets
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_russian_army
+	}
+	mutually_exclusive = {
+		focus = KIR_a_new_age_of_war
+	}
+	x = 9
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_lessons_from_the_past"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_strength_in_numbers
+	icon = GFX_Quantity_Recruitment
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_lessons_from_the_past
+	}
+	x = 9
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_strength_in_numbers"
+		add_timed_idea = { idea = KIR_strength_in_numbers_idea days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_new_age_of_war
+	icon = GFX_BAS_Let_them_Come
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_russian_army
+	}
+	mutually_exclusive = {
+		focus = KIR_lessons_from_the_past
+	}
+	x = 11
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_new_age_of_war"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = IFV
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_imperial_commandos
+	icon = GFX_goal_KIR_Form_The_Imperial_Airborne_Divison
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_a_new_age_of_war
+	}
+	x = 11
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_imperial_commandos"
+		custom_effect_tooltip = KIR_create_unit_airborne_tt
+		country_event = { id = KIR.63 }
+		hidden_effect = {
+			set_country_flag = KIR_paratroopers_formed
+			division_template = {
+				name = "Diversionno-Desantnyy Otryad"
+				priority = 2
+				division_names_group = KIR_Commandos
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }
+					mountaineers = { x = 1 y = 0	}
+					mountaineers = {	x = 1 y = 1	}
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+					logistics_company = { x = 0 y = 1 }
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 400 }
+				create_unit = {
+					division = "division_template = \"Diversionno-Desantnyy Otryad\" start_experience_factor = 0.6 start_equipment_factor = 0.75"
+					owner = KIR
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_russias_finest
+	icon = GFX_BAS_Hostile_Weather_Conditioning
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_imperial_commandos
+		focus = KIR_strength_in_numbers
+	}
+	prerequisite = {
+		focus = KIR_the_vyatka_general_staff_academy
+	}
+	x = 7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_russias_finest"
+		add_war_support = 0.15
+		add_political_power = -50
+		tno_improve_army_professionalism = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_begin_the_reclamation
+	icon = GFX_generic_russian_eagle
+	cost = 1.45
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_russias_finest
+	}
+	prerequisite = {
+		focus = KIR_an_uneasy_peace
+	}
+	x = 5
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_begin_the_reclamation"
+		custom_effect_tooltip = KIR_begin_the_reclamation_tt
+		hidden_effect = {
+			load_focus_tree = { tree = KIR_expansion_tree keep_completed = no }
+		}
+	}
+}
+
+##################################
+### West Russia Expansion Tree ###
+##################################
+shared_focus = {
+	id = KIR_the_empire_strikes_back
+	icon = GFX_goal_KIR_Begin_The_Reclamation
+	cost = 1.00
+	ai_will_do = {
+		factor = 1
+	}
+	x = 6
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_empire_strikes_back"
+		add_political_power = 35
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KIR_let_the_thunder_of_victory_rumble
+	icon = GFX_ARC_commitment_to_war
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_empire_strikes_back
+	}
+	x = 6
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_let_the_thunder_of_victory_rumble"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_prodigal_son
+	icon = GFX_goal_KIR_Invade_Berezniki
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_let_the_thunder_of_victory_rumble
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	x = 6
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_prodigal_son"
+		country_event = { id = vyatkaexp.17 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_meeting_in_yurla
+	icon = GFX_UPO_a_temporary_pact
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_kazembek_diplo
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_prodigal_son
+	}
+	mutually_exclusive = {
+		focus = KIR_suffer_not_the_traitor
+	}
+	available = {
+		has_war = no
+	}
+	x = 4
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_meeting_in_yurla"
+		MAR = {
+			country_event = { id = vyatkaexp.1 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_integrate_their_troops
+	icon = GFX_ITA_Veterans_of_the_World_War
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_kazembek_diplo
+		}
+	}
+	prerequisite = {
+		focus = KIR_a_meeting_in_yurla
+	}
+	x = 3
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_integrate_their_troops"
+		army_experience = 10
+		add_war_support = 0.075
+		MAR = {
+			every_unit_leader = {
+				set_nationality = KIR
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_concessions_to_the_mladorossi
+	icon = GFX_goal_KIR_Concessions_to_the_Mladorossi
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_kazembek_diplo
+		}
+	}
+	prerequisite = {
+		focus = KIR_a_meeting_in_yurla
+	}
+	x = 5
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_concessions_to_the_mladorossi"
+		add_political_power = -100
+		add_ideas = tno_trade_unions_nonsocialist_allowed
+		hidden_effect = {
+			country_event = { id = vyatkaexp.14 days = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_berezniki_governorate
+	icon = GFX_generic_berezniki
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_integrate_their_troops
+	}
+	prerequisite = {
+		focus = KIR_concessions_to_the_mladorossi
+	}
+	x = 4
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_berezniki_governorate"
+		annex_country = {
+			target = MAR
+			transfer_troops = yes
+		}
+		hidden_effect = {
+			set_country_flag = KIR_berezniki_peace
+			clr_country_flag = KIR_kazembek_diplo
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_suffer_not_the_traitor
+	icon = GFX_SPS_Gallows
+	cost = 3.00
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		MAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+		hidden_trigger = {
+			has_country_flag = KIR_punish_the_traitor
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_prodigal_son
+	}
+	mutually_exclusive = {
+		focus = KIR_a_meeting_in_yurla
+	}
+	x = 8
+	y = 3
+	will_lead_to_war_with = MAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_suffer_not_the_traitor"
+		declare_war_on = {
+			target = MAR
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_take_their_weapons
+	icon = GFX_TNO_generic_forbid_guns
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+			owner = {
+				NOT = {
+					tag = KIR
+					tag = MAR
+				}
+			}
+		}
+	}
+	prerequisite = {
+		focus = KIR_suffer_not_the_traitor
+	}
+	x = 7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_take_their_weapons"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1250
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 300
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 300
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 300
+			producer = MAR
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_trial_of_kazembek
+	icon = GFX_goal_KIR_The_Trial_of_Kazembek
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = MAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_suffer_not_the_traitor
+	}
+	x = 9
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_trial_of_kazembek"
+		country_event = { id = vyatkaexp.4 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_order_restored
+	icon = GFX_ORE_call_the_council_to_order
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 398
+	}
+	bypass = {
+		398 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = MAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_take_their_weapons
+	}
+	prerequisite = {
+		focus = KIR_the_trial_of_kazembek
+	}
+	x = 8
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_order_restored"
+		add_stability = 0.1
+		hidden_effect = {
+			set_country_flag = KIR_berezniki_conquered
+			clr_country_flag = KIR_punish_the_traitor
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_speak_with_the_grandmaster
+	icon = GFX_GAY_The_Grandmasters_Decree
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_the_berezniki_governorate
+		focus = KIR_order_restored
+	}
+	x = 6
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_speak_with_the_grandmaster"
+		custom_effect_tooltip = KIR_speak_with_the_grandmaster_tt
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = KIR_berezniki_conquered
+						MAR = {
+							exists = no
+						}
+					}
+				}
+				country_event = { id = vyatkaexp.5 days = 1 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = KIR_berezniki_peace
+				}
+				country_event = { id = vyatkaexp.7 days = 1 }
+			}
+			else = {
+				country_event = { id = vyatkaexp.5 days = 1 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_dragonslayer
+	icon = GFX_goal_KIR_Invade_Gayny
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+		hidden_trigger = {
+			has_country_flag = KIR_gayny_war
+		}
+	}
+	prerequisite = {
+		focus = KIR_speak_with_the_grandmaster
+	}
+	mutually_exclusive = {
+		focus = KIR_a_challenge_for_the_worthy
+	}
+	x = 8
+	y = 7
+	will_lead_to_war_with = GAY
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_dragonslayer"
+		declare_war_on = {
+			target = GAY
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_disband_the_order
+	icon = GFX_goal_KIR_Disband_the_Order
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+	}
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = GAY
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_dragonslayer
+	}
+	x = 8
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_disband_the_order"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = GAY
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = GAY
+		}
+		hidden_effect = {
+			country_event = { id = vyatkaexp.6 days = 14 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_outpost_gayny
+	icon = GFX_RAJ_mutual_wiretapping
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+	}
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = GAY
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_dragonslayer
+	}
+	x = 10
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_outpost_gayny"
+		866 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_incorporate_church_lands
+	icon = GFX_GAY_Shield_Of_The_Faithful
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+	}
+	available = {
+		owns_state = 866
+	}
+	bypass = {
+		866 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = GAY
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_disband_the_order
+	}
+	prerequisite = {
+		focus = KIR_outpost_gayny
+	}
+	x = 8
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_incorporate_church_lands"
+		add_political_power = 50
+		hidden_effect = {
+			clr_country_flag = KIR_gayny_war
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_a_challenge_for_the_worthy
+	icon = GFX_GAY_Spirit_Of_Saint_George
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+		hidden_trigger = {
+			has_country_flag = KIR_gayny_challenge
+		}
+	}
+	prerequisite = {
+		focus = KIR_speak_with_the_grandmaster
+	}
+	mutually_exclusive = {
+		focus = KIR_operation_dragonslayer
+	}
+	x = 4
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_challenge_for_the_worthy"
+		custom_effect_tooltip = KIR_a_challenge_for_the_worthy_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_privileges_for_the_church
+	icon = GFX_GAY_Shepherd_The_Flock
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_gayny_puppet
+		}
+	}
+	prerequisite = {
+		focus = KIR_a_challenge_for_the_worthy
+	}
+	x = 4
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_privileges_for_the_church"
+		add_political_power = -100
+		add_stability = 0.1
+		add_war_support = 0.1
+		hidden_effect = {
+			KIR = {
+				set_country_flag = KIR_church_privileges
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_warriors_of_christ
+	icon = GFX_GAY_Blessed_Are_The_Peacekeepers
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = KIR_gayny_puppet
+		}
+	}
+	prerequisite = {
+		focus = KIR_a_challenge_for_the_worthy
+	}
+	x = 2
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_warriors_of_christ"
+		GAY = {
+			every_unit_leader = {
+				limit = {
+					OR = {
+						has_id = 3301
+						has_id = 3302
+						has_id = 3303
+					}
+				}
+				set_nationality = KIR
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_for_god_and_emperor
+	icon = GFX_goal_KIR_For_God_and_Emperor
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		GAY = {
+			exists = no
+		}
+	}
+	prerequisite = {
+		focus = KIR_the_warriors_of_christ
+	}
+	prerequisite = {
+		focus = KIR_privileges_for_the_church
+	}
+	x = 4
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_for_god_and_emperor"
+		annex_country = {
+			target = GAY
+			transfer_troops = yes
+		}
+		add_state_core = 866
+		hidden_effect = {
+			clr_country_flag = KIR_gayny_puppet
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_in_the_shadow_of_the_crooked_cross
+	icon = GFX_goal_KIR_Invade_Aryan_Brotherhood
+	cost = 3.00
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		PRM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_a_challenge_for_the_worthy
+		focus = KIR_operation_dragonslayer
+	}
+	x = 6
+	y = 8
+	will_lead_to_war_with = PRM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_in_the_shadow_of_the_crooked_cross"
+		declare_war_on = {
+			target = PRM
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_erase_their_legacy
+	icon = GFX_generic_smash_nazi_symbols
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_in_the_shadow_of_the_crooked_cross
+	}
+	available = {
+		owns_state = 753
+	}
+	bypass = {
+		753 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = PRM
+
+				}
+
+			}
+
+		}
+	}
+	x = 6
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_erase_their_legacy"
+		add_political_power = 50
+		country_event = {
+			id = vyatkaexp.9
+			days = 2
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = KIR_gayny_challenge
+					country_exists = GAY
+				}
+				country_event = { id = vyatkaexp.8 days = 1 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_grozny
+	icon = GFX_goal_KIR_Invade_Tatarstan_Bashkiria
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		TAR = {
+			exists = no
+		}
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_for_god_and_emperor
+		focus = KIR_incorporate_church_lands
+	}
+	prerequisite = {
+		focus = KIR_erase_their_legacy
+	}
+	x = 6
+	y = 10
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_grozny"
+		BKR = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+		TAR = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = KIR_berezniki_conquered
+				}
+				clr_country_flag = KIR_berezniki_conquered
+			}
+			else_if = {
+				limit = {
+					has_country_flag = KIR_berezniki_peace
+				}
+				clr_country_flag = KIR_berezniki_peace
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_eyes_on_tatarstan
+	icon = GFX_generic_tatarstan_war
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		TAR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_operation_grozny
+	}
+	x = 5
+	y = 11
+	will_lead_to_war_with = TAR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_eyes_on_tatarstan"
+		declare_war_on = {
+			target = TAR
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_tatar_rights
+	icon = GFX_generic_change_law_minorities
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 249
+	}
+	bypass = {
+		249 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = TAR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_eyes_on_tatarstan
+	}
+	x = 5
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_tatar_rights"
+		country_event = { id = vyatkaexp.10 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_strike_at_the_islamists
+	icon = GFX_generic_bashkir_war
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		BKR = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_operation_grozny
+	}
+	x = 7
+	y = 11
+	will_lead_to_war_with = BKR
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_strike_at_the_islamists"
+		declare_war_on = {
+			target = BKR
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_question_of_religious_freedom
+	icon = GFX_generic_change_law_religion
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 651
+	}
+	bypass = {
+		651 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = BKR
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_strike_at_the_islamists
+	}
+	x = 7
+	y = 12
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_question_of_religious_freedom"
+		country_event = { id = vyatkaexp.11 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_southern_governorates
+	icon = GFX_goal_KIR_The_Southern_Governorates
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_tatar_rights
+	}
+	prerequisite = {
+		focus = KIR_question_of_religious_freedom
+	}
+	x = 6
+	y = 13
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_southern_governorates"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_patchwork
+	icon = GFX_goal_KIR_Invade_Komi
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		NIK = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_the_southern_governorates
+	}
+	x = 6
+	y = 14
+	will_lead_to_war_with = NIK
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_patchwork"
+		declare_war_on = {
+			target = NIK
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_disarm_the_paramilitaries
+	icon = GFX_NIK_ban_paramils
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = NIK
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_patchwork
+	}
+	mutually_exclusive = {
+		focus = KIR_return_to_the_fold
+	}
+	x = 5
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_disarm_the_paramilitaries"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = NIK
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+			producer = NIK
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_return_to_the_fold
+	icon = GFX_NIK_peace
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = NIK
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_patchwork
+	}
+	mutually_exclusive = {
+		focus = KIR_disarm_the_paramilitaries
+	}
+	x = 7
+	y = 15
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_return_to_the_fold"
+		add_stability = 0.075
+		add_war_support = 0.075
+		hidden_effect = {
+			country_event = { id = vyatkaexp.12	days = 35 random = 720 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_tear_down_their_institutions
+	icon = GFX_generic_suspend_constitution
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 397
+	}
+	bypass = {
+		397 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = NIK
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_disarm_the_paramilitaries
+		focus = KIR_return_to_the_fold
+	}
+	x = 6
+	y = 16
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_tear_down_their_institutions"
+		add_political_power = 50
+		add_stability = 0.03
+	}
+}
+
+shared_focus = {
+	id = KIR_fortify_our_position
+	icon = GFX_goal_COG_icon_fortify_the_border
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_tear_down_their_institutions
+	}
+	x = 6
+	y = 17
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_fortify_our_position"
+		add_timed_idea = { idea = KIR_fortified_position days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_false_neutrality
+	icon = GFX_goal_KIR_Invade_Vologda
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_fortify_our_position
+	}
+	bypass = {
+		VOL = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	x = 3
+	y = 18
+	will_lead_to_war_with = VOL
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_false_neutrality"
+		declare_war_on = {
+			target = VOL
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_control_the_trade_routes
+	icon = GFX_URL_Caravan_Experience
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		351 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = VOL
+
+				}
+
+			}
+
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = KIR_operation_false_neutrality
+	}
+	x = 3
+	y = 19
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_control_the_trade_routes"
+		351 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		856 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		861 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_crown_charters
+	icon = GFX_ORE_establish_the_planning_commission
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = {
+		351 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = VOL
+
+				}
+
+			}
+
+		}
+	}
+	available = {
+		owns_state = 351
+	}
+	prerequisite = {
+		focus = KIR_control_the_trade_routes
+	}
+	x = 3
+	y = 20
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_crown_charters"
+		add_political_power = -100
+		tno_trade_laws_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_nemesis
+	icon = GFX_goal_KIR_Invade_Samara
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		SAM = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_fortify_our_position
+	}
+	x = 6
+	y = 18
+	will_lead_to_war_with = SAM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_nemesis"
+		declare_war_on = {
+			target = SAM
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_royal_pardons
+	icon = GFX_generic_monarchist_constitution
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 850
+	}
+	bypass = {
+		850 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = SAM
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_nemesis
+	}
+	x = 5
+	y = 19
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_royal_pardons"
+		country_event = { id = vyatkaexp.13 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_industry_of_samara
+	icon = GFX_JAP_Standardizing_Heavy_Industry
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 850
+	}
+	bypass = {
+		850 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = SAM
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_nemesis
+	}
+	x = 7
+	y = 19
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_industry_of_samara"
+		850 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_search_the_archives
+	icon = GFX_JAP_Site_Searched
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 850
+	}
+	bypass = {
+		850 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = SAM
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_royal_pardons
+	}
+	prerequisite = {
+		focus = KIR_the_industry_of_samara
+	}
+	x = 6
+	y = 20
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_search_the_archives"
+		add_timed_idea = { idea = KIR_archives_of_samara days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_scarlet_citadel
+	icon = GFX_goal_KIR_Invade_Gorky
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		CHU = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_fortify_our_position
+	}
+	x = 9
+	y = 18
+	will_lead_to_war_with = CHU
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_scarlet_citadel"
+		declare_war_on = {
+			target = CHU
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_seize_the_factories
+	icon = GFX_ORE_no_more_closed_factories
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = CHU
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_scarlet_citadel
+	}
+	x = 9
+	y = 19
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_seize_the_factories"
+		252 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_imperial_tank_brigades
+	icon = GFX_goal_KIR_Imperial_Tank_Brigades
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 252
+	}
+	bypass = {
+		252 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = CHU
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_seize_the_factories
+	}
+	x = 9
+	y = 20
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_imperial_tank_brigades"
+		add_equipment_to_stockpile = {
+			type = IFV_equipment
+			amount = 150
+			producer = CHU
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment
+			amount = 100
+			producer = CHU
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_send_in_the_bridgeburners
+	icon = GFX_goal_KIR_Send_in_the_Bridgeburners
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_crown_charters
+	}
+	prerequisite = {
+		focus = KIR_imperial_tank_brigades
+	}
+	prerequisite = {
+		focus = KIR_search_the_archives
+	}
+	x = 5
+	y = 21
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_send_in_the_bridgeburners"
+		add_timed_idea = { idea = KIR_the_bridgeburners days = 230 }
+	}
+}
+
+shared_focus = {
+	id = KIR_consolidate_control
+	icon = GFX_URL_study_logistics
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_crown_charters
+	}
+	prerequisite = {
+		focus = KIR_imperial_tank_brigades
+	}
+	prerequisite = {
+		focus = KIR_search_the_archives
+	}
+	x = 8
+	y = 21
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_consolidate_control"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_operation_red_october_nevermore
+	icon = GFX_goal_KIR_Invade_WRRF
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	bypass = {
+		WRS = {
+			exists = no
+		}
+	}
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = KIR_send_in_the_bridgeburners
+	}
+	prerequisite = {
+		focus = KIR_consolidate_control
+	}
+	x = 6
+	y = 22
+	will_lead_to_war_with = WRS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_red_october_nevermore"
+		declare_war_on = {
+			target = WRS
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_justice_for_the_lost
+	icon = GFX_generic_smash_communists
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = WRS
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_red_october_nevermore
+	}
+	x = 5
+	y = 23
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_justice_for_the_lost"
+		country_event = { id = vyatkaexp.15 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_hearts_and_minds
+	icon = GFX_generic_crowd_cheering
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		owns_state = 214
+	}
+	bypass = {
+		214 = {
+
+			owner = {
+
+				NOT = {
+
+					tag = KIR
+
+					tag = WRS
+
+				}
+
+			}
+
+		}
+	}
+	prerequisite = {
+		focus = KIR_operation_red_october_nevermore
+	}
+	x = 7
+	y = 23
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_hearts_and_minds"
+		add_political_power = -35
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = KIR_a_visit_from_the_emperor
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_justice_for_the_lost
+	}
+	prerequisite = {
+		focus = KIR_hearts_and_minds
+	}
+	x = 4
+	y = 24
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_visit_from_the_emperor"
+		country_event = { id = vyatkaexp.16 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_examine_our_tactics
+	icon = GFX_URL_Study_History
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_justice_for_the_lost
+	}
+	prerequisite = {
+		focus = KIR_hearts_and_minds
+	}
+	x = 6
+	y = 24
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_examine_our_tactics"
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_recruitment_campaign
+	icon = GFX_General_Recruitment
+	cost = 3.00
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_justice_for_the_lost
+	}
+	prerequisite = {
+		focus = KIR_hearts_and_minds
+	}
+	x = 8
+	y = 24
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_recruitment_campaign"
+		add_manpower = 3500
+		country_event = { id = KIR.72 hours = 12 }
+		hidden_effect = {
+			country_event = { id = vyatkaexp.18 days = 27 }
+		}
+	}
+}
+
+#shared_focus = {
+#	id = KIR_operation_northern_lights
+#	icon = GFX_finnish_benefactors
+#	cost = 3.00
+#	available_if_capitulated = no
+#	ai_will_do = {
+#		factor = 10
+#		modifier = {
+#			has_offensive_war = yes
+#			factor = 0
+#		}
+#	}
+#	available = {
+#		has_war = no
+#		has_country_flag = RUS_regional_stage
+#	}
+#	prerequisite = {
+#		focus = KIR_a_visit_from_the_emperor
+#	}
+#	prerequisite = {
+#		focus = KIR_examine_our_tactics
+#	}
+#	prerequisite = {
+#		focus = KIR_recruitment_campaign
+#	}
+#	x = 6
+#	y = 25
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: Focus KIR_operation_northern_lights"
+#		FIN = {
+#			country_event = { id = russiadiplo.37 days = 1 }
+#		}
+#	}
+#}
+
+shared_focus = {
+	id = KIR_our_sovereignty_ensured
+	icon = GFX_goal_KIR_Our_Sovereignty_Ensured
+	cost = 3.00
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			has_offensive_war = yes
+			factor = 0
+		}
+	}
+	available = {
+		has_war = no
+		has_country_flag = RUS_regional_stage
+	}
+	prerequisite = {
+		focus = KIR_a_visit_from_the_emperor
+	}
+	prerequisite = {
+		focus = KIR_examine_our_tactics
+	}
+	prerequisite = {
+		focus = KIR_recruitment_campaign
+	}
+	x = 6
+	y = 25
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_our_sovereignty_ensured"
+		add_political_power = 75
+		country_event = { id = KIR.59 days = 1 }
+		clr_country_flag = KIR_western_reclamation
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+#############################
+### Vyatka regional trees ###
+#############################
+
+### Regional political tree ###
+shared_focus = {
+	id = KIR_the_sovereignty
+	icon = GFX_goal_KIR_Our_Sovereignty_Ensured
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_sovereignty"
+		add_stability = 0.1
+		add_political_power = 75
+		RUS_decrease_administrative_strain = yes
+		country_event = { id = KIR.24 }
+		hidden_effect = {
+			country_event = { id = vyatkareg.23 days = 36 random = 72 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_congress_of_vologda
+	icon = GFX_goal_KIR_Imperial_Council
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_sovereignty
+	}
+	x = -3
+	y = 1
+	relative_position_id = KIR_the_sovereignty
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_congress_of_vologda"
+		set_country_flag = KIR_congress_vologda
+		KIR_elections_setup = yes
+		country_event = { id = vyatkareg.28 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_bright_hour_knocks
+	icon = GFX_KIR_The_Solidarist_Revolution
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_congress_of_vologda
+	}
+	mutually_exclusive = {
+		focus = KIR_victory_for_the_kadets
+		focus = KIR_the_old_ways_triumphant
+	}
+	available = {
+		has_country_flag = KIR_solidarists_win
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_the_congress_of_vologda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_bright_hour_knocks"
+		set_politics = {
+			ruling_party = authoritarian_democrat
+		}
+		add_ideas = {
+			KIR_Aleksandr_Solzhenitsyn_hog
+			KIR_Arkady_Stolypin_for
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_idea = KIR_Boris_Smyslovsky_sec
+				}
+			}
+			add_ideas = KIR_Boris_Smyslovsky_sec
+		}
+		country_event = { id = vyatkareg.31 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_for_the_good_of_the_cause
+	icon = GFX_VIN_Depoliticize_Politics
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_bright_hour_knocks
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_bright_hour_knocks
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_for_the_good_of_the_cause"
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_temporary_dictatorship
+	icon = GFX_generic_authoritarian_constitution
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_for_the_good_of_the_cause
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_for_the_good_of_the_cause
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_temporary_dictatorship"
+		RUS_decrease_administrative_strain = yes
+		country_event = { id = vyatkareg.26 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_old_ways_triumphant
+	icon = GFX_goal_KIR_Many_Shades_of_Monarchism
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_congress_of_vologda
+	}
+	mutually_exclusive = {
+		focus = KIR_victory_for_the_kadets
+		focus = KIR_the_bright_hour_knocks
+	}
+	available = {
+		has_country_flag = KIR_unionists_win
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_congress_of_vologda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_old_ways_triumphant"
+		set_politics = {
+			ruling_party = social_conservative
+		}
+		add_ideas = KIR_Vasily_Shulgin_hog
+		add_ideas = KIR_Sergey_Obolensky_for
+		add_ideas = KIR_Boris_Izhboldin_eco
+		country_event = { id = vyatkareg.25 }
+		if = {
+			limit = {
+				has_idea = KIR_Boris_Smyslovsky_sec
+			}
+			custom_effect_tooltip = KIR_smyslovsky_minister_tt
+		}
+		else = {
+			add_ideas = KIR_Vladimir_Kharzhevsky_sec
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_ensure_stability
+	icon = GFX_goal_KIR_For_God_and_Emperor
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_old_ways_triumphant
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_old_ways_triumphant
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_ensure_stability"
+		add_popularity = { ideology = social_conservative popularity = 0.05 }
+		add_stability = 0.035
+	}
+}
+
+shared_focus = {
+	id = KIR_the_status_quo_secured
+	icon = GFX_generic_conservative_constitution
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_ensure_stability
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_ensure_stability
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_status_quo_secured"
+		RUS_decrease_administrative_strain = yes
+		RUS_increase_rural_conservative_pop = yes
+		country_event = { id = vyatkareg.32 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_victory_for_the_kadets
+	icon = GFX_KIR_Victory_for_the_Kadets
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_congress_of_vologda
+	}
+	mutually_exclusive = {
+		focus = KIR_the_old_ways_triumphant
+		focus = KIR_the_bright_hour_knocks
+	}
+	available = {
+		has_country_flag = KIR_kadets_win
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_the_congress_of_vologda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_victory_for_the_kadets"
+		set_politics = {
+			ruling_party = social_liberal
+		}
+		add_ideas = KIR_Roman_Gul_hog
+		add_ideas = KIR_Boris_Pryanishnikov_for
+		add_ideas = KIR_Igor_Birman_eco
+		country_event = { id = vyatkareg.30 days = 1 }
+		if = {
+			limit = {
+				has_idea = KIR_Boris_Smyslovsky_sec
+			}
+			custom_effect_tooltip = KIR_smyslovsky_minister_tt
+		}
+		else = {
+			add_ideas = KIR_Nikolay_Rumyantsev_sec
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_begin_the_reforms
+	icon = GFX_generic_change_law_enforcement
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_victory_for_the_kadets
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_victory_for_the_kadets
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_begin_the_reforms"
+		add_popularity = { ideology = social_liberal popularity = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = KIR_an_empire_of_equals
+	icon = GFX_generic_liberal_constitution
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_begin_the_reforms
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_begin_the_reforms
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_an_empire_of_equals"
+		RUS_decrease_administrative_strain = yes
+		RUS_increase_ruling_party_minority_pop = yes
+		country_event = { id = vyatkareg.33 days = 1 }
+		hidden_effect = {
+			RUS_increase_rural_conservative_pop = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_constitution
+	icon = GFX_generic_monarchist_constitution
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_a_temporary_dictatorship
+		focus = KIR_the_status_quo_secured
+		focus = KIR_an_empire_of_equals
+	}
+	x = 0
+	y = 4
+	relative_position_id = KIR_the_congress_of_vologda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_constitution"
+		custom_effect_tooltip = KIR_the_imperial_constitution_tt
+		RUS_decrease_administrative_strain = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = KIR_solidarists_win
+				}
+				add_ideas = KIR_solidarist_constitution
+			}
+			else_if = {
+				limit = {
+					has_country_flag = KIR_unionists_win
+				}
+				add_ideas = KIR_unionist_constitution
+			}
+			else_if = {
+				limit = {
+					has_country_flag = KIR_kadets_win
+				}
+				add_ideas = KIR_kadet_constitution
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_securing_the_realm
+	icon = GFX_GER_convene_the_parties
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_sovereignty
+	}
+	x = 3
+	y = 1
+	relative_position_id = KIR_the_sovereignty
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRY_of_equality"
+		RUS_decrease_administrative_strain = yes
+		add_political_power = 75
+		country_event = { id = vyatkareg.29 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_carte_blanche_for_smyslovsky
+	icon = GFX_Generic_Espionage
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_securing_the_realm
+	}
+	mutually_exclusive = {
+		focus = KIR_reign_in_the_okhrana
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_securing_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_carte_blanche_for_smyslovsky"
+		add_ideas = KIR_Boris_Smyslovsky_sec
+		add_popularity = { ideology = social_conservative popularity = 0.05 }
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.1 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_auth_pop = 0.1 }
+			}
+			every_owned_state = {
+				add_to_variable = { RUS_state_conservative_pop = 0.05 }
+			}
+			every_owned_state = {
+				add_to_variable = { RUS_state_liberal_pop = -0.05 }
+			}
+		}
+		swap_ideas = {
+			remove_idea = tno_security_police
+			add_idea = tno_security_security_service
+		}
+		country_event = { id = vyatkareg.6 }
+	}
+}
+
+shared_focus = {
+	id = KIR_reign_in_the_okhrana
+	icon = GFX_KIR_reign_in_the_okhrana
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_securing_the_realm
+	}
+	mutually_exclusive = {
+		focus = KIR_carte_blanche_for_smyslovsky
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_securing_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reign_in_the_okhrana"
+		add_popularity = { ideology = social_liberal popularity = 0.08 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_liberal_pop = 0.035 }
+			}
+		}
+		swap_ideas = {
+			remove_idea = KIR_modern_age_okhrana
+			add_idea = KIR_modern_age_okhrana_2
+		}
+		country_event = { id = vyatkareg.7 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_partisan_problem
+	icon = GFX_GER_A_War_of_Attrition
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_carte_blanche_for_smyslovsky
+		focus = KIR_reign_in_the_okhrana
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_securing_the_realm
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_partisan_problem"
+		country_event = { id = vyatkareg.8 }
+	}
+}
+
+shared_focus = {
+	id = KIR_root_them_out
+	icon = GFX_UPO_cut_the_lines
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_partisan_problem
+	}
+	mutually_exclusive = {
+		focus = KIR_offers_of_amnesty
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_partisan_problem
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_root_them_out"
+		add_popularity = { ideology = social_conservative popularity = 0.025 }
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.055 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_auth_pop = 0.055 }
+			}
+			every_owned_state = {
+				add_to_variable = { RUS_state_conservative_pop = 0.025 }
+			}
+		}
+		add_manpower = -300
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = KIR_offers_of_amnesty
+	icon = GFX_UPO_a_temporary_pact
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_partisan_problem
+	}
+	mutually_exclusive = {
+		focus = KIR_root_them_out
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_the_partisan_problem
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_offers_of_amnesty"
+		add_popularity = { ideology = social_liberal popularity = 0.08 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_liberal_pop = 0.035 }
+			}
+		}
+		add_political_power = 25
+		country_event = { id = vyatkareg.24 hours = 12 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_emperors_peace
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_root_them_out
+		focus = KIR_offers_of_amnesty
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_the_partisan_problem
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_emperors_peace"
+		add_stability = 0.05
+		add_political_power = 75
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_an_empire_reborn
+	icon = GFX_goal_KIR_Legacy_of_the_Tsardom
+	cost = 3.6
+	ai_will_do = {
+		factor = 80
+	}
+	prerequisite = {
+		focus = KIR_the_emperors_peace
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_constitution
+	}
+	x = 0
+	y = 6
+	relative_position_id = KIR_the_sovereignty
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_an_empire_reborn"
+		country_event = { id = vyatkareg.9 }
+		custom_effect_tooltip = RUS_unlock_race_to_urals_tt
+		set_country_flag = RUS_REGIONAL_POLITICAL_TREE_DONE
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+### Regional economy tree ###
+shared_focus = {
+	id = KIR_the_imperial_recovery_committee
+	icon = GFX_VOL_Tax_Debate
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	x = 23
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_recovery_committee"
+		country_event = { id = vyatkareg.10 }
+	}
+}
+
+shared_focus = {
+	id = KIR_economic_recovery
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_recovery_committee
+	}
+	x = -4
+	y = 1
+	relative_position_id = KIR_the_imperial_recovery_committee
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_economic_recovery"
+		add_to_variable = {
+			var = GDP_growth
+			value = 0.005
+		}
+		custom_effect_tooltip = KIR_economic_recovery_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_invite_foreign_capital
+	icon = GFX_TNO_Generic_Foreign_Investment
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_economic_recovery
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_economic_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_invite_foreign_capital"
+		TNO_improve_industrial_equipment_med = yes
+		country_event = { id = vyatkareg.36 days = 1 }
+		custom_effect_tooltip = KIR_invite_foreign_capital_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_the_witte_currency_reform
+	icon = GFX_SAH_regulate_the_ruble
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_economic_recovery
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_economic_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_witte_currency_reform"
+		add_to_variable = {
+			var = interest_rates
+			value = -0.01
+		}
+		hidden_effect = {#Making Money
+			country_event = { id = vyatkareg.27 days = 3 }
+		}
+		custom_effect_tooltip = KIR_the_witte_currency_reform_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_reorganize_the_ministry_of_finance
+	icon = GFX_ORE_common_finance
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_witte_currency_reform
+	}
+	prerequisite = {
+		focus = KIR_invite_foreign_capital
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_economic_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reorganize_the_ministry_of_finance"
+		swap_ideas = {
+			remove_idea = tno_tax_rate_low_taxation
+			add_idea = TNO_tax_rate_medium_taxation
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_principles_of_solidarism
+	icon = GFX_generic_change_law_labor
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reorganize_the_ministry_of_finance
+	}
+	mutually_exclusive = {
+		focus = KIR_continue_the_austerity_programs
+		focus = KIR_economic_liberalisation
+	}
+	available = {
+		has_country_flag = KIR_solidarists_win
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_reorganize_the_ministry_of_finance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_principles_of_solidarism"
+		add_ideas = KIR_solidarist_economy
+	}
+}
+
+shared_focus = {
+	id = KIR_continue_the_austerity_programs
+	icon = GFX_TNO_Generic_Fiscal_Austerity
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reorganize_the_ministry_of_finance
+	}
+	mutually_exclusive = {
+		focus = KIR_the_principles_of_solidarism
+		focus = KIR_economic_liberalisation
+	}
+	available = {
+		has_country_flag = KIR_unionists_win
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_reorganize_the_ministry_of_finance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_continue_the_austerity_programs"
+		add_ideas = KIR_unionist_economy
+	}
+}
+
+shared_focus = {
+	id = KIR_economic_liberalisation
+	icon = GFX_generic_change_law_trade
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reorganize_the_ministry_of_finance
+	}
+	mutually_exclusive = {
+		focus = KIR_the_principles_of_solidarism
+		focus = KIR_continue_the_austerity_programs
+	}
+	available = {
+		has_country_flag = KIR_kadets_win
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_reorganize_the_ministry_of_finance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_economic_liberalisation"
+		add_ideas = KIR_kadet_economy
+	}
+}
+
+shared_focus = {
+	id = KIR_the_miracle_on_the_vyatka
+	icon = GFX_GER_Let_The_Money_Flow
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_principles_of_solidarism
+		focus = KIR_continue_the_austerity_programs
+		focus = KIR_economic_liberalisation
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_reorganize_the_ministry_of_finance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_miracle_on_the_vyatka"
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = KIR_the_miracle_on_the_vyatka_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_academic_recovery
+	icon = GFX_GER_Academic_Investment
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_recovery_committee
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_imperial_recovery_committee
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_academic_recovery"
+		add_ideas = {
+			tno_education_public_education
+		}
+		TNO_improve_academic_base_med = yes
+		country_event = { id = vyatkareg.34 days = 1 }
+		custom_effect_tooltip = KIR_academic_recovery_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_reopen_the_universities
+	icon = GFX_generic_change_law_education
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_academic_recovery
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_academic_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reopen_the_universities"
+		add_ideas = KIR_reopened_universities
+	}
+}
+
+shared_focus = {
+	id = KIR_the_kazan_science_academy
+	icon = GFX_TNO_Generic_Science
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reopen_the_universities
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_reopen_the_universities
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_kazan_science_academy"
+		add_research_slot = 1
+		country_event = { id = vyatkareg.35 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_industrial_recovery
+	icon = GFX_generic_diplomacy_industrial
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_recovery_committee
+	}
+	x = 4
+	y = 1
+	relative_position_id = KIR_the_imperial_recovery_committee
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_industrial_recovery"
+		TNO_improve_industrial_expertise_med = yes
+		custom_effect_tooltip = KIR_industrial_recovery_tt
+	}
+}
+
+shared_focus = {
+	id = KIR_connecting_our_realm
+	icon = GFX_TNO_generic_railway_work
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_industrial_recovery
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_industrial_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_connecting_our_realm"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_rebuilding_the_civilian_sector
+	icon = GFX_ORE_no_more_closed_factories
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_industrial_recovery
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_industrial_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_rebuilding_the_civilian_sector"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_invest_in_russian_business
+	icon = GFX_UPO_Friends_in_Russia
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_connecting_our_realm
+	}
+	prerequisite = {
+		focus = KIR_rebuilding_the_civilian_sector
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_industrial_recovery
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_invest_in_russian_business"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+### Regional armed forces tree ###
+shared_focus = {
+	id = KIR_reevaluate_the_armed_forces
+	icon = GFX_generic_russian_eagle
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	x = 34
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reevaluate_the_armed_forces"
+		country_event = { id = vyatkareg.11 }
+	}
+}
+
+shared_focus = {
+	id = KIR_learning_from_the_western_reclamation
+	icon = GFX_goal_KIR_Begin_The_Reclamation
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reevaluate_the_armed_forces
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_reevaluate_the_armed_forces
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_learning_from_the_western_reclamation"
+		army_experience = 30
+	}
+}
+
+shared_focus = {
+	id = KIR_sticking_to_our_guns
+	icon = GFX_Generic_Army_Officers
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_learning_from_the_western_reclamation
+	}
+	mutually_exclusive = {
+		focus = KIR_new_schools_of_thought
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_sticking_to_our_guns"
+		add_ideas = KIR_strength_in_numbers_idea
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_new_schools_of_thought
+	icon = GFX_BAS_Let_them_Come
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_learning_from_the_western_reclamation
+	}
+	mutually_exclusive = {
+		focus = KIR_sticking_to_our_guns
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_new_schools_of_thought"
+		add_ideas = KIR_imperial_special_forces
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = air_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_celebrate_the_heroes
+	icon = GFX_CZE_Soldier_Saluting_Rubble
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_learning_from_the_western_reclamation
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_celebrate_the_heroes"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_navy
+	icon = GFX_KIR_imperial_navy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_sticking_to_our_guns
+		focus = KIR_new_schools_of_thought
+	}
+	prerequisite = {
+		focus = KIR_celebrate_the_heroes
+	}
+	x = -1
+	y = 2
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_navy"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = naval_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_air_service
+	icon = GFX_COG_mass_air_training_program
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_navy
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_imperial_navy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_air_service"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = air_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_modern_training_methods
+	icon = GFX_URL_experimental_training_methods
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_sticking_to_our_guns
+		focus = KIR_new_schools_of_thought
+	}
+	prerequisite = {
+		focus = KIR_celebrate_the_heroes
+	}
+	x = 1
+	y = 2
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_modern_training_methods"
+		add_ideas = {
+			tno_training_combat_schooling
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_expand_the_special_forces
+	icon = GFX_BAS_Hostile_Weather_Conditioning
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_modern_training_methods
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_modern_training_methods
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_expand_the_special_forces"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = marine_tech
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = mountaineers_tech
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = para_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_invest_in_izhmekh
+	icon = GFX_generic_advanced_weapons
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_air_service
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_the_imperial_air_service
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_invest_in_izhmekh"
+		399 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_a_new_generation_of_officers
+	icon = GFX_goal_KIR_The_Vyatka_General_Staff_Academy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_expand_the_special_forces
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_air_service
+	}
+	x = 0
+	y = 4
+	relative_position_id = KIR_learning_from_the_western_reclamation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_new_generation_of_officers"
+		swap_ideas = {
+			remove_idea = KIR_general_staff_academy
+			add_idea = KIR_general_staff_academy2
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_updating_our_designs
+	icon = GFX_goal_KIR_Imperial_Tank_Brigades
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_expand_the_special_forces
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_air_service
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_expand_the_special_forces
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_updating_our_designs"
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 2
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = MBT
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_army_marches_on
+	icon = GFX_GGR_March_On_Copenhagen
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_invest_in_izhmekh
+	}
+	prerequisite = {
+		focus = KIR_a_new_generation_of_officers
+	}
+	prerequisite = {
+		focus = KIR_updating_our_designs
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_a_new_generation_of_officers
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_army_marches_on"
+		swap_ideas = {
+			remove_idea = KIR_white_army_traditions_idea
+			add_idea = KIR_white_army_traditions_idea2
+		}
+	}
+}
+
+### Regional foreign diplomacy tree ###
+shared_focus = {
+	id = KIR_reestablishing_contacts
+	icon = GFX_generic_diplomacy_political
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		has_completed_focus = KIR_an_empire_reborn
+	}
+	x = 42
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reestablishing_contacts"
+		country_event = { id = vyatkareg.12 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_imperial_diplomatic_corps
+	icon = GFX_TNO_generic_international_diplomacy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_reestablishing_contacts
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_reestablishing_contacts
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_imperial_diplomatic_corps"
+		country_event = { id = vyatkareg.13 }
+		add_political_power = 75
+		add_dynamic_modifier = {
+			modifier = KIR_foreign_trade
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_trade_with_the_ofn
+	icon = GFX_USA_open_up_trade
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_diplomatic_corps
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_the_imperial_diplomatic_corps
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_trade_with_the_ofn"
+		country_event = { id = vyatkareg.14 }
+	}
+}
+
+shared_focus = {
+	id = KIR_an_embassy_in_washington
+	icon = GFX_GER_SGR_our_allies_abroad
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_trade_with_the_ofn
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_trade_with_the_ofn
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_an_embassy_in_washington"
+		USA = {
+			country_event = { id = vyatkareg.15 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_european_overtures
+	icon = GFX_ITA_European_Markets
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_the_imperial_diplomatic_corps
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_the_imperial_diplomatic_corps
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_european_overtures"
+		country_event = { id = vyatkareg.18 }
+	}
+}
+
+shared_focus = {
+	id = KIR_swedish_royal_ties
+	icon = GFX_GER_Towards_Sweden
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_european_overtures
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_european_overtures
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_swedish_royal_ties"
+		country_event = { id = vyatkareg.19 }
+	}
+}
+
+shared_focus = {
+	id = KIR_roman_holiday
+	icon = GFX_TNO_generic_italy
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_european_overtures
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_european_overtures
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_roman_holiday"
+		country_event = { id = vyatkareg.20 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_trip_to_madrid
+	icon = GFX_TNO_generic_iberia
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_european_overtures
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_european_overtures
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_trip_to_madrid"
+		country_event = { id = vyatkareg.21 }
+	}
+}
+
+shared_focus = {
+	id = KIR_our_place_in_the_world
+	icon = GFX_TNO_generic_world
+	cost = 3.6
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = KIR_an_embassy_in_washington
+	}
+	prerequisite = {
+		focus = KIR_swedish_royal_ties
+	}
+	prerequisite = {
+		focus = KIR_roman_holiday
+	}
+	prerequisite = {
+		focus = KIR_a_trip_to_madrid
+	}
+	x = 0
+	y = 3
+	relative_position_id = KIR_the_imperial_diplomatic_corps
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_our_place_in_the_world"
+		country_event = { id = vyatkareg.22 }
+	}
+}
+
+##################################
+### Vyatka superregional trees ###
+##################################
+
+### Solidarist tree ###
+shared_focus = {
+	id = KIR_the_solidarist_revolution
+	icon = GFX_KIR_The_Solidarist_Revolution
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	x = 5
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_solidarist_revolution"
+		country_event = { id = vyatkasuper.1 hours = 12 }
+	}
+}
+
+shared_focus = {
+	id = KIR_zemskaya_democracy
+	icon = GFX_generic_change_law_enforcement
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_solidarist_revolution
+	}
+	x = -4
+	y = 1
+	relative_position_id = KIR_the_solidarist_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_zemskaya_democracy"
+		add_political_power = -25
+		add_ideas = tno_trade_unions_state_controlled
+	}
+}
+
+shared_focus = {
+	id = KIR_lessons_from_stolypin
+	icon = GFX_generic_elections_rigged
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_zemskaya_democracy
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_zemskaya_democracy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_lessons_from_stolypin"
+		add_ideas = tno_political_parties_controlled_opposition
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.035	}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_political_integration_of_the_military
+	icon = GFX_generic_victory_parade
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_lessons_from_stolypin
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_lessons_from_stolypin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_political_integration_of_the_military"
+		add_political_power = -15
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_the_principles_of_dirigisme
+	icon = GFX_TOB_Temporary_Fully_Controlled_Economy
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_lessons_from_stolypin
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_lessons_from_stolypin
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_principles_of_dirigisme"
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_guiding_strata
+	icon = GFX_GER_convene_the_parties
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_political_integration_of_the_military
+	}
+	prerequisite = {
+		focus = KIR_the_principles_of_dirigisme
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_political_integration_of_the_military
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_guiding_strata"
+		add_political_power = -25
+		add_stability = 0.05
+		add_ideas = tno_vote_franchise_elite_voting
+	}
+}
+
+shared_focus = {
+	id = KIR_the_spiritual_restoration
+	icon = GFX_GAY_Shepherd_The_Flock
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_solidarist_revolution
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_solidarist_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_spiritual_restoration"
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = { id = vyatkasuper.18 days = 21 } #Letter from Skossyrev
+			country_event = { id = vyatkasuper.19 days = 42 } #Boris got Caught!
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_russian_question
+	icon = GFX_generic_russian_eagle
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_spiritual_restoration
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_the_spiritual_restoration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_russian_question"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_the_moral_purification
+	icon = GFX_generic_smash_communists
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_spiritual_restoration
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_spiritual_restoration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_moral_purification"
+		add_timed_idea = { idea = KIR_decommunization days = 365 }
+		hidden_effect = {
+			country_event = { id = vyatkasuper.3 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_reinvigorated_sobornost
+	icon = GFX_generic_labor
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_russian_question
+	}
+	prerequisite = {
+		focus = KIR_the_moral_purification
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_russian_question
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_reinvigorated_sobornost"
+		TNO_improve_poverty_low = yes
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_our_august_leader
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_reinvigorated_sobornost
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_reinvigorated_sobornost
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_our_august_leader"
+		add_popularity = { ideology = authoritarian_democrat popularity = 0.05 }
+		hidden_effect = {
+			country_event = { id = vyatkasuper.2 days = 12 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_reconquest_of_the_urals
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_solidarist_revolution
+	}
+	x = 4
+	y = 1
+	relative_position_id = KIR_the_solidarist_revolution
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reconquest_of_the_urals"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_optimal_assistance
+	icon = GFX_MCW_Compensation_For_Russians
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_reconquest_of_the_urals
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_reconquest_of_the_urals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_optimal_assistance"
+		add_timed_idea = { idea = KIR_ural_reconstruction_program days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_political_investigation_campaign
+	icon = GFX_Generic_Espionage
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_reconquest_of_the_urals
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_reconquest_of_the_urals
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_political_investigation_campaign"
+		tno_security_improve = yes
+		if = {
+			limit = {
+				has_idea = KIR_modern_age_okhrana_2
+			}
+			remove_ideas = KIR_modern_age_okhrana_2
+		}
+		else_if = {
+			limit = {
+				has_idea = KIR_modern_age_okhrana_3
+			}
+			remove_ideas = KIR_modern_age_okhrana_3
+		}
+		hidden_effect = {
+			country_event = { id = vyatkasuper.4 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_groundwork_for_the_new_russia
+	icon = GFX_UPO_Friends_in_Russia
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_optimal_assistance
+	}
+	prerequisite = {
+		focus = KIR_political_investigation_campaign
+	}
+	x = 1
+	y = 2
+	relative_position_id = KIR_optimal_assistance
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_groundwork_for_the_new_russia"
+		RUS_integration_cost_days_decrease = yes
+		add_popularity = { 	ideology = authoritarian_democrat popularity = 0.035 }
+		add_stability = 0.1
+	}
+}
+
+shared_focus = {
+	id = KIR_rebuilding_russia
+	icon = GFX_Focus_Russia_Orthographic
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_guiding_strata
+	}
+	prerequisite = {
+		focus = KIR_our_august_leader
+	}
+	prerequisite = {
+		focus = KIR_groundwork_for_the_new_russia
+	}
+	x = 4
+	y = 1
+	relative_position_id = KIR_the_guiding_strata
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_rebuilding_russia"
+		add_political_power = 75
+		country_event = { id = vyatkasuper.5 }
+	}
+}
+
+### Shulgin tree ###
+shared_focus = {
+	id = KIR_the_empire_never_died
+	icon = GFX_goal_KIR_Legacy_of_the_Tsardom
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	x = 5
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_empire_never_died"
+		country_event = { id = vyatkasuper.6 }
+		add_political_power = 35
+		hidden_effect = {
+			country_event = { id = vyatkasuper.18 days = 21 } #Letter from Skossyrev
+			country_event = { id = vyatkasuper.19 days = 42 } #Boris got Caught!
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_but_the_spirit_shriveled
+	icon = GFX_GAY_Shepherd_The_Flock
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_empire_never_died
+	}
+	x = -4
+	y = 1
+	relative_position_id = KIR_the_empire_never_died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_but_the_spirit_shriveled"
+		add_timed_idea = { idea = KIR_revitalizing_the_russian_spirit days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_please_the_moderates
+	icon = GFX_Generic_Constitution
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_but_the_spirit_shriveled
+	}
+	mutually_exclusive = {
+		focus = KIR_revisionist_propaganda
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_but_the_spirit_shriveled
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_please_the_moderates"
+		add_popularity = { ideology = social_conservative popularity = -0.035 }
+		RUS_increase_urban_liberal_pop = yes
+		add_political_power = -15
+		add_stability = 0.15
+	}
+}
+
+shared_focus = {
+	id = KIR_accept_limited_reforms
+	icon = GFX_goal_KIR_Imperial_Council
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_please_the_moderates
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_please_the_moderates
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_accept_limited_reforms"
+		add_ideas = tno_press_rights_free_press
+		add_ideas = tno_public_meetings_allowed
+	}
+}
+
+shared_focus = {
+	id = KIR_trivial_pursuits_of_an_outdated_system
+	icon = GFX_goal_KIR_Cultured_Court
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_please_the_moderates
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_please_the_moderates
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_trivial_pursuits_of_an_outdated_system"
+		add_popularity = { ideology = despotism popularity = -0.075 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_auth_pop = -0.05 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_revisionist_propaganda
+	icon = GFX_TNO_generic_radio_tower
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_but_the_spirit_shriveled
+	}
+	mutually_exclusive = {
+		focus = KIR_please_the_moderates
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_but_the_spirit_shriveled
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_revisionist_propaganda"
+		add_popularity = { ideology = social_conservative popularity = 0.05 }
+		RUS_increase_rural_conservative_pop = yes
+		hidden_effect = {
+			RUS_increase_urban_liberal_pop = yes
+		}
+		add_stability = -0.075
+	}
+}
+
+shared_focus = {
+	id = KIR_work_with_the_emperor
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_revisionist_propaganda
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_revisionist_propaganda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_work_with_the_emperor"
+		add_stability = -0.1
+		add_political_power = 75
+	}
+}
+
+shared_focus = {
+	id = KIR_reshuffle_the_ministries
+	icon = GFX_CAU_purge_the_bureaucrats
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_work_with_the_emperor
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_work_with_the_emperor
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reshuffle_the_ministries"
+		add_popularity = { ideology = social_liberal popularity = -0.05 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_liberal_pop = -0.05 }
+			}
+		}
+		country_event = { id = vyatkasuper.7 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_will_to_live
+	icon = GFX_goal_KIR_For_God_and_Emperor
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_trivial_pursuits_of_an_outdated_system
+		focus = KIR_work_with_the_emperor
+	}
+	x = 1
+	y = 2
+	relative_position_id = KIR_trivial_pursuits_of_an_outdated_system
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_will_to_live"
+		add_ideas = tno_vote_franchise_registered_voting
+	}
+}
+
+shared_focus = {
+	id = KIR_a_sovereigns_authority
+	icon = GFX_goal_KIR_Many_Shades_of_Monarchism
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_empire_never_died
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_empire_never_died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_sovereigns_authority"
+		add_popularity = { ideology = social_conservative popularity = 0.075 }
+		hidden_effect = {
+			every_owned_state = {
+				add_to_variable = { RUS_state_conservative_pop = 0.025 }
+			}
+		}
+		country_event = { id = vyatkasuper.8 }
+	}
+}
+
+shared_focus = {
+	id = KIR_a_just_cause
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_a_sovereigns_authority
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_a_sovereigns_authority
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_just_cause"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_a_rightful_intention
+	icon = GFX_generic_change_law_property
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_a_just_cause
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_a_just_cause
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_a_rightful_intention"
+		add_stability = 0.035
+		RUS_integration_cost_days_decrease = yes
+		country_event = { id = vyatkasuper.9 }
+	}
+}
+
+shared_focus = {
+	id = KIR_the_will_to_power
+	icon = GFX_OMO_Bring_The_Sword
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_a_rightful_intention
+	}
+	x = 0
+	y = 2
+	relative_position_id = KIR_a_rightful_intention
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_will_to_power"
+		add_war_support = 0.075
+	}
+}
+
+shared_focus = {
+	id = KIR_izhevsk_model_industry
+	icon = GFX_Generic_Industry
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_empire_never_died
+	}
+	x = 4
+	y = 1
+	relative_position_id = KIR_the_empire_never_died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_izhevsk_model_industry"
+		399 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_hire_the_udmurt
+	icon = GFX_generic_change_law_labor
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_izhevsk_model_industry
+	}
+	mutually_exclusive = {
+		focus = KIR_settler_incentives
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_izhevsk_model_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_hire_the_udmurt"
+		add_popularity = { ideology = social_conservative popularity = -0.1 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					check_variable = { nationality = 151 }
+				}
+				add_to_variable = { RUS_state_conservative_pop = -0.035 }
+				add_to_variable = { RUS_state_auth_pop = 0.05 }
+			}
+		}
+		RUS_increase_ruling_party_minority_pop = yes
+
+		add_political_power = -75
+		add_ideas = tno_refugees_give_me_your_poor
+	}
+}
+
+shared_focus = {
+	id = KIR_ufa_arms_plant
+	icon = GFX_Arms_factory_green
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_hire_the_udmurt
+		focus = KIR_settler_incentives
+	}
+	mutually_exclusive = {
+		focus = KIR_the_tsars_golden_purse
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_hire_the_udmurt
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_ufa_arms_plant"
+		651 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_redraw_municipal_borders
+	icon = GFX_generic_writing
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_ufa_arms_plant
+	}
+	mutually_exclusive = {
+		focus = KIR_work_programs_for_little_russians
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_ufa_arms_plant
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_redraw_municipal_borders"
+		add_political_power = 25
+		651 = {
+			add_manpower = 15000
+		}
+		hidden_effect = {
+			country_event = { id = vyatkasuper.10 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_work_programs_for_little_russians
+	icon = GFX_generic_change_law_immigration
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_ufa_arms_plant
+	}
+	mutually_exclusive = {
+		focus = KIR_redraw_municipal_borders
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_ufa_arms_plant
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_work_programs_for_little_russians"
+		add_political_power = -50
+		add_popularity = { ideology = social_conservative popularity = -0.035 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					check_variable = { nationality = 151 }
+				}
+				add_to_variable = { RUS_state_conservative_pop = -0.015 }
+				add_to_variable = { RUS_state_auth_pop = 0.035 }
+			}
+		}
+		RUS_increase_ruling_party_minority_pop = yes
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_settler_incentives
+	icon = GFX_VIN_Encourage_Immigration
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_izhevsk_model_industry
+	}
+	mutually_exclusive = {
+		focus = KIR_hire_the_udmurt
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_izhevsk_model_industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_settler_incentives"
+		add_stability = -0.05
+		TNO_improve_academic_base_low = yes
+		RUS_decrease_ruling_party_minority_pop = yes
+		399 = {
+			add_manpower = 10000
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_the_tsars_golden_purse
+	icon = GFX_TNO_generic_gold_coins
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_hire_the_udmurt
+		focus = KIR_settler_incentives
+	}
+	mutually_exclusive = {
+		focus = KIR_ufa_arms_plant
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_settler_incentives
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_tsars_golden_purse"
+		add_stability = 0.035
+		add_timed_idea = { idea = KIR_tsars_golden_purse_idea days = 365 }
+	}
+}
+
+shared_focus = {
+	id = KIR_shovels_and_pickaxes
+	icon = GFX_machine_green
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_tsars_golden_purse
+	}
+	mutually_exclusive = {
+		focus = KIR_roofs_and_food
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_the_tsars_golden_purse
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_shovels_and_pickaxes"
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_med = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_roofs_and_food
+	icon = GFX_VIN_Middle_Class
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_tsars_golden_purse
+	}
+	mutually_exclusive = {
+		focus = KIR_shovels_and_pickaxes
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_the_tsars_golden_purse
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_roofs_and_food"
+		TNO_improve_agriculture_high = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_the_will_to_prosper
+	icon = GFX_MAG_made_in_russia
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_redraw_municipal_borders
+		focus = KIR_work_programs_for_little_russians
+		focus = KIR_shovels_and_pickaxes
+		focus = KIR_roofs_and_food
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_work_programs_for_little_russians
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_will_to_prosper"
+		TNO_improve_poverty_med = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_undoing_the_great_mutilation
+	icon = GFX_generic_russian_eagle
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_will_to_live
+	}
+	prerequisite = {
+		focus = KIR_the_will_to_power
+	}
+	prerequisite = {
+		focus = KIR_the_will_to_prosper
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_will_to_power
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_undoing_the_great_mutilation"
+		add_war_support = 0.075
+		country_event = { id = vyatkasuper.9 }
+	}
+}
+
+### Kadet tree ###
+shared_focus = {
+	id = KIR_for_the_benefit_of_the_motherland
+	icon = GFX_KIR_Victory_for_the_Kadets
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	x = 7
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_for_the_benefit_of_the_motherland"
+		country_event = { id = vyatkasuper.12 hours = 12 }
+		add_popularity = { ideology = social_liberal popularity = 0.075 }
+		hidden_effect = {
+			every_owned_state = {
+				RUS_add_ruling_party_temp_pop_medium = yes
+			}
+			country_event = { id = vyatkasuper.18 days = 21 } #Letter from Skossyrev
+			country_event = { id = vyatkasuper.19 days = 42 } #Boris got Caught!
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_do_not_forget_the_poor_man
+	icon = GFX_generic_change_law_welfare
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_for_the_benefit_of_the_motherland
+	}
+	x = -3
+	y = 1
+	relative_position_id = KIR_for_the_benefit_of_the_motherland
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_do_not_forget_the_poor_man"
+		TNO_improve_poverty_med = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_nor_abandon_the_disenfranchised
+	icon = GFX_generic_change_law_minorities
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_do_not_forget_the_poor_man
+	}
+	x = -2
+	y = 1
+	relative_position_id = KIR_do_not_forget_the_poor_man
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_nor_abandon_the_disenfranchised"
+		tno_minorities_improve = yes
+		add_stability = 0.05
+		hidden_effect = {
+			country_event = { id = vyatkasuper.14 days = 12 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_nor_lay_down_the_sword
+	icon = GFX_new_model_army_goal
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_nor_abandon_the_disenfranchised
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_nor_abandon_the_disenfranchised
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_nor_lay_down_the_sword"
+		TNO_improve_army_professionalism_med = yes
+		hidden_effect = {
+			country_event = { id = vyatkasuper.13 days = 7 }
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_who_will_build_the_empire
+	icon = GFX_generic_labor
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_do_not_forget_the_poor_man
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_do_not_forget_the_poor_man
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_who_will_build_the_empire"
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_and_rebuild_the_spoiled_land
+	icon = GFX_RAJ_Accelerate_Agricultural_Mechanization
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_who_will_build_the_empire
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_who_will_build_the_empire
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_and_rebuild_the_spoiled_land"
+		TNO_improve_agriculture_high = yes
+		swap_ideas = {
+			remove_idea = KIR_kadet_economy
+			add_idea = KIR_kadet_economy_2
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_who_will_defend_the_empire
+	icon = GFX_goal_KIR_The_Imperial_Russian_Army
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_do_not_forget_the_poor_man
+	}
+	x = 2
+	y = 1
+	relative_position_id = KIR_do_not_forget_the_poor_man
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_who_will_defend_the_empire"
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_and_bring_ruin_to_the_enemy
+	icon = GFX_URL_fight_like_demons
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_who_will_defend_the_empire
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_who_will_defend_the_empire
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_and_bring_ruin_to_the_enemy"
+		swap_ideas = {
+			remove_idea = KIR_white_army_traditions_idea2
+			add_idea = KIR_white_army_traditions_idea_kadet
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_for_the_eternal_russian_tsar
+	icon = GFX_goal_KIR_Legacy_of_the_Tsardom
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_nor_lay_down_the_sword
+	}
+	prerequisite = {
+		focus = KIR_and_rebuild_the_spoiled_land
+	}
+	prerequisite = {
+		focus = KIR_and_bring_ruin_to_the_enemy
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_and_rebuild_the_spoiled_land
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_for_the_eternal_russian_tsar"
+		add_stability = 0.05
+		RUS_integration_cost_days_decrease = yes
+		swap_ideas = {
+			remove_idea = KIR_kadet_economy_2
+			add_idea = KIR_kadet_economy_3
+		}
+	}
+}
+
+shared_focus = {
+	id = KIR_reassure_the_emperor
+	icon = GFX_goal_KIR_The_Tsars_Authority
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_for_the_benefit_of_the_motherland
+	}
+	x = 3
+	y = 1
+	relative_position_id = KIR_for_the_benefit_of_the_motherland
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_reassure_the_emperor"
+		add_political_power = 75
+		add_popularity = { ideology = social_liberal popularity = 0.05 }
+		RUS_increase_urban_liberal_pop = yes
+		country_event = { id = vyatkasuper.20 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = KIR_roll_back_on_the_okhrana
+	icon = GFX_KIR_reign_in_the_okhrana
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_reassure_the_emperor
+	}
+	x = -1
+	y = 1
+	relative_position_id = KIR_reassure_the_emperor
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_roll_back_on_the_okhrana"
+		if = {
+			limit = { has_idea = KIR_modern_age_okhrana }
+			swap_ideas = {
+				remove_idea = KIR_modern_age_okhrana
+				add_idea = KIR_modern_age_okhrana_kadet
+			}
+		}
+		else_if = {
+			limit = { has_idea = KIR_modern_age_okhrana_2 }
+			swap_ideas = {
+				remove_idea = KIR_modern_age_okhrana_3
+				add_idea = KIR_modern_age_okhrana_kadet
+			}
+		}
+		else_if = {
+			limit = { has_idea = KIR_modern_age_okhrana_3 }
+			swap_ideas = {
+				remove_idea = KIR_modern_age_okhrana_3
+				add_idea = KIR_modern_age_okhrana_kadet
+			}
+		}
+		#tno_security_worsen = yes
+		country_event = { id = vyatkasuper.16 }
+	}
+}
+
+shared_focus = {
+	id = KIR_guarantee_personal_freedoms
+	icon = GFX_generic_change_law_enforcement
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_roll_back_on_the_okhrana
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_roll_back_on_the_okhrana
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_guarantee_personal_freedoms"
+		tno_public_meetings_improve = yes
+		add_political_power = -25
+	}
+}
+
+shared_focus = {
+	id = KIR_the_ural_drive
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_reassure_the_emperor
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_reassure_the_emperor
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_ural_drive"
+		RUS_integration_cost_days_decrease = yes
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		add_ideas = KIR_ural_drive_program
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_trans_russian_railroads
+	icon = GFX_TNO_generic_railway_work
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_the_ural_drive
+	}
+	x = 0
+	y = 1
+	relative_position_id = KIR_the_ural_drive
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_trans_russian_railroads"
+		random_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		swap_ideas = {
+			remove_idea = KIR_ural_drive_program
+			add_idea = KIR_ural_drive_program_2
+		}
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = KIR_the_rights_of_loyal_subjects
+	icon = GFX_MCW_Compensation_For_Russians
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_guarantee_personal_freedoms
+	}
+	prerequisite = {
+		focus = KIR_trans_russian_railroads
+	}
+	x = 1
+	y = 1
+	relative_position_id = KIR_guarantee_personal_freedoms
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_rights_of_loyal_subjects"
+		tno_press_rights_improve = yes
+		add_political_power = -25
+	}
+}
+
+shared_focus = {
+	id = KIR_the_emperor_and_his_people
+	icon = GFX_generic_crowd_cheering
+	cost = 2.3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = KIR_for_the_eternal_russian_tsar
+	}
+	prerequisite = {
+		focus = KIR_the_rights_of_loyal_subjects
+	}
+	x = 3
+	y = 1
+	relative_position_id = KIR_for_the_eternal_russian_tsar
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus KIR_the_emperor_and_his_people"
+		add_political_power = 125
+		country_event = { id = vyatkasuper.17 }
+	}
+}

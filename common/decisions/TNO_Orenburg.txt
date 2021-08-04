@@ -1,0 +1,380 @@
+ita_general_improvement = {
+	ORE_infrastructure = {
+		cost = 50
+		days_re_enable = 45
+		available = {
+			NOT = {
+				any_owned_state = {
+					infrastructure > 9
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ORE_infrastructure"
+			add_to_variable = {
+				var = ORECentralizedPower
+				value = 1
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							infrastructure > 9
+						}
+					}
+				}
+				random_owned_state = {
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			}
+			custom_effect_tooltip = ORE_centralize_some
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ORE_factory = {
+		cost = 100
+		days_re_enable = 75
+		available = {
+			NOT = {
+				any_owned_state = {
+					arms_factory > 9
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ORE_factory"
+			add_to_variable = {
+				var = ORECentralizedPower
+				value = 2
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							arms_factory > 9
+						}
+					}
+				}
+				random_owned_state = {
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			custom_effect_tooltip = ORE_centralize_med
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+ORE_category_political_situation = {
+	ore_push_reformist_party_to_burba = {
+		cost = 60
+		visible = {
+			NOT = {
+				OR = {
+					has_country_flag = OREBurbaArrested
+					has_global_flag = OREChoseMalenkov
+					has_global_flag = OREChoseBurba
+					has_global_flag = OREChoseNobody
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_push_reformist_party_to_burba"
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.05
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_push_reformist_party_to_malenkov = {
+		cost = 60
+		visible = {
+			NOT = {
+				OR = {
+					has_global_flag = OREChoseMalenkov
+					has_global_flag = OREChoseBurba
+					has_global_flag = OREChoseNobody
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_push_reformist_party_to_malenkov"
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			add_to_variable = {
+				ORECentralizedPower = 1
+			}
+			custom_effect_tooltip = ORE_centralize
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_centralize_communal_militias = {
+		cost = 50
+		days_re_enable = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_centralize_communal_militias"
+			add_to_variable = {
+				var = ORECentralizedPower
+				value = 1
+			}
+			add_timed_idea = {
+				idea = ORE_put_militias_down
+				days = 45
+			}
+			custom_effect_tooltip = ORE_centralize_med
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_resettle_refugees = {
+		cost = 75
+		days_re_enable = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_resettle_refugees"
+
+			add_to_variable = {
+				var = ORECentralizedPower
+				value = 1
+			}
+			add_manpower = 1000
+			add_stability = -0.05
+			custom_effect_tooltip = ORE_centralize_some
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+
+ORE_category_centralization_gamble = {
+	ore_recruit_orenburgians = {
+		cost = 100
+		days_re_enable = 125
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_recruit_orenburgians"
+			tno_conscription_worsen = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_push_the_council_to_recruit_orenburgians = {
+		cost = 0
+		days_re_enable = 125
+		visible = {
+			NOT = {
+				OR = {
+					has_government = authoritarian_democrat
+					has_government = communist
+				}
+			}
+		}
+		available = {
+			check_variable = {
+				var = ORECentralizedPower
+				value = 2
+				compare = greater_than_or_equals
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_push_the_council_to_recruit_orenburgians"
+			add_to_variable = { ORECentralizedPower = -2 }
+			tno_conscription_worsen = yes
+			custom_effect_tooltip = ORE_decentralize_med
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ore_mobilize_the_country = {
+		cost = 100
+		days_re_enable = 125
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_recruit_orenburgians"
+			tno_economic_focus_improve = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_push_the_council_to_mobilize_the_country = {
+		cost = 0
+		days_re_enable = 125
+		visible = {
+			NOT = {
+				OR = {
+					has_government = authoritarian_democrat
+					has_government = communist
+				}
+			}
+		}
+		available = {
+			check_variable = {
+				var = ORECentralizedPower
+				value = 2
+				compare = greater_than_or_equals
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_push_the_council_to_recruit_orenburgians"
+			add_to_variable = { ORECentralizedPower = -2 }
+			tno_economic_focus_improve = yes
+			custom_effect_tooltip = ORE_decentralize_med
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ore_assemble_more_men = {
+		cost = 200
+		days_re_enable = 125
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_recruit_orenburgians"
+			ORE = {
+				652 = {
+					create_unit = {
+						division = "name = \"Orenburgskiye Novobrantsy\" division_template = \"Podrazdeleniye Opolcheniya\" start_experience_factor = 0.5"
+						prioritize_location = 12128
+						owner = PREV
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ore_push_the_council_to_assemble_more_men = {
+		cost = 50
+		days_re_enable = 125
+		visible = {
+			NOT = {
+				OR = {
+					has_government = authoritarian_democrat
+					has_government = communist
+				}
+			}
+		}
+		available = {
+			check_variable = {
+				var = ORECentralizedPower
+				value = 3
+				compare = greater_than_or_equals
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ore_push_the_council_to_recruit_orenburgians"
+			add_to_variable = { ORECentralizedPower = -3 }
+			ORE = {
+				652 = {
+					create_unit = {
+						division = "name = \"Novobrantsy Orenburgskogo Soveta\" division_template = \"Podrazdeleniye Opolcheniya\" start_experience_factor = 0.5"
+						prioritize_location = 12128
+						owner = PREV
+					}
+				}
+			}
+			custom_effect_tooltip = ORE_decentralize_med
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+ORE_category_battle_of_the_urals = {
+	ORE_save_the_people = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			ORS = {
+				has_government = socialist
+			}
+			NOT = {
+				has_country_flag = OrenburgDead
+			}
+		}
+
+		visible = {
+			ORS = {
+				has_government = socialist
+			}
+			NOT = {
+				has_country_flag = OrenburgDead
+			}
+		}
+		fire_only_once = yes
+
+		custom_cost_trigger = { always = yes } #no cost
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 15
+
+		war_with_on_remove = ORS
+
+		remove_effect = {
+			declare_war_on = {
+				target = ORS
+				type = annex_everything
+			}
+		}
+	}
+
+	ORE_gather_arms_for_the_NKVD_conflict = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			BAS = {
+				exists = yes
+			}
+			has_global_flag = BAS_NKVD_coup
+		}
+
+		visible = {
+			BAS = {
+				exists = yes
+			}
+			has_global_flag = BAS_NKVD_coup
+		}
+		fire_only_once = yes
+		cost = 35
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 15
+
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = ORE
+			}
+		}
+	}
+}

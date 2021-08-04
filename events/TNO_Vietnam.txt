@@ -1,0 +1,36 @@
+add_namespace = VIN
+
+country_event = { #Dummy event for setting up  skeleton content
+	id = VIN.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event VIN.0"}
+ 	title = VIN.0.t
+ 	desc = VIN.0.d
+ 	picture = GFX_report_event_generic_military_parade
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+
+ 	option = {
+		name = VIN.0.a
+		trigger = { if = { has_country_flag = VIN_Ho_Chi_Minh_Dies } }
+        hidden_effect = {
+			every_country = { news_event = { id = WORLD.16507 days = 1400 } }
+			random_list = {
+				90 = { every_country = { news_event = { id = WORLD.16501 days = 2446 } } }
+				10 = { every_country = { news_event = { id = WORLD.16504 days = 2446 } } }
+			}
+		}
+	}
+
+	option = {
+		name = VIN.0.b
+		trigger = { if  = { has_country_flag = VIN_Ho_Chi_Minh_Lives } }
+		hidden_effect = {
+			every_country = {
+				news_event = { id = WORLD.16501 days = 1699 }
+				news_event = { id = WORLD.16502 days = 1729 }
+				news_event = { id = WORLD.16506 days = 2801 }
+			}
+		}
+	}
+}

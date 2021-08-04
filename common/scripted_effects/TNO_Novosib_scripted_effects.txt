@@ -1,0 +1,1619 @@
+### Megacorps ###
+
+#needs of PAV_clicked_state argument
+PAV_Open_State_UI = {
+	log = "[GetDateText]: [Root.GetName]: PAV_Open_State_UI Executing; [?PAV_clicked_state.GetName]"
+	if = {
+		limit = {
+			check_variable = { PAV_target_country = PAV_clicked_state }
+		}
+		clear_variable = PAV_target_country
+	}
+	else = {
+		set_variable = { PAV_target_country = PAV_clicked_state }
+		PAV_calculate_costs = yes
+		log = "[GetDateText]: [Root.GetName]: PAV_target_country is [?PAV_target_country.GetName]"
+	}
+	clear_variable = PAV_clicked_state
+}
+
+PAV_Increase_Takeover_Progress = {
+	var:PAV_target_country = {
+		add_to_variable = { PAV_Takeover_Progress = PAV.PAV_Takeover_Power }
+		# < 153 Unitary X
+		# > 153 Federal X
+		# > 123 Collectivist Y
+		# < 123 Corporatist Y
+
+		add_to_variable = { PAV_Takeover_Progress = PAV.PAV_Ideological_Similarity }
+		clamp_variable = { var = PAV_Takeover_Progress min = 0 max = 100 }
+
+		log = "[GetDateText]: [This.GetName]: PAV_Takeover_Progress is [?PAV_Takeover_Progress]"
+
+		#########MEGA CORPS EFFECTS##############
+
+		#####FENIKS - GOOD WITH AUTHDEMS AND DESPOTS
+
+		if = {
+			limit = {
+				OR = {
+					has_government = despotism
+					has_government = authoritarian_democrat
+					#less governments but i mean cmon like everyone is these two ideologies
+				}
+				check_variable = { PAV.PAV_megacorp1_loyalty > 49 }
+			}
+			add_to_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_government = despotism
+					has_government = authoritarian_democrat
+				}
+				check_variable = { PAV.PAV_megacorp1_loyalty < 49 }
+			}
+			subtract_from_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		###SIBIR - FEDERALISTS - GOOD WITH LIBTARDS
+
+		if = {
+			limit = {
+				OR = {
+					has_government = social_conservative
+					has_government = social_liberal
+					has_government = social_democrat #yes its used twice so what?
+				}
+				check_variable = { PAV.PAV_megacorp2_loyalty > 49 }
+			}
+			add_to_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_government = social_conservative
+					has_government = social_liberal
+					has_government = social_democrat #yes its used twice so what?
+				}
+
+				check_variable = { PAV.PAV_megacorp2_loyalty < 49 }
+			}
+			subtract_from_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		#########TITAN - FASCIST SUPPORT
+		if = {
+			limit = {
+				OR = {
+					has_government = fascism
+					has_government = national_socialism
+					has_government = ultranational_socialism
+					has_government = burgundian_system
+				}
+				check_variable = { PAV.PAV_megacorp3_loyalty > 49 }
+			}
+			add_to_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_government = fascism
+					has_government = national_socialism
+					has_government = ultranational_socialism
+					has_government = burgundian_system
+				}
+
+				check_variable = { PAV.PAV_megacorp3_loyalty < 49 }
+			}
+			subtract_from_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+		####THE PEOPLE - COLLECTIVIST HELP YOU TALK TO COMMUNISTS
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = socialist
+				}
+				check_variable = { PAV.PAV_megacorp4_loyalty > 49 }
+			}
+			add_to_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = socialist
+				}
+
+				check_variable = { PAV.PAV_megacorp4_loyalty < 49 }
+			}
+			subtract_from_variable = { PAV_Takeover_Progress = PAV.PAV_dummy_megacorp_boost }
+		}
+	}
+}
+
+PAV_calculate_costs = {
+	var:PAV_target_country = {
+		# < 153 Unitary X
+		# > 153 Federal X
+		# > 123 Collectivist Y
+		# < 123 Corporatist Y
+		PAV = { set_variable = { PAV_dummy_megacorp_boost = 0 } }
+		#PAV.PAV_corp_collect_y
+		#PAV.PAV_unitary_federal_x
+		if = {
+			limit = { has_government = communist }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 220 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 100 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp4_power }
+
+				if = { limit = { check_variable = { PAV_megacorp4_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+
+		}
+
+		if = {
+			limit = { has_government = socialist }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 220 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 230 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp4_power }
+				if = { limit = { check_variable = { PAV_megacorp4_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+
+		}
+
+		if = {
+			limit = { has_government = social_democrat }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 150 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 180 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp2_power }
+				if = { limit = { check_variable = { PAV_megacorp2_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+		}
+
+		if = {
+			limit = { has_government = social_liberal }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 105 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 170 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp2_power }
+				if = { limit = { check_variable = { PAV_megacorp2_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+
+		}
+
+		if = {
+			limit = { has_government = social_conservative }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 90 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 190 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp2_power }
+				if = { limit = { check_variable = { PAV_megacorp2_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = { has_government = authoritarian_democrat }
+
+			set_variable = { PAV.PAV_ideal_ideological_Y = 123 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 110 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp1_power }
+				if = { limit = { check_variable = { PAV_megacorp1_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = { has_government = despotism }
+			set_variable = { PAV.PAV_ideal_ideological_Y = 122 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 40 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp1_power }
+				if = { limit = { check_variable = { PAV_megacorp1_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = {  #Lol I forgot to put in natsoc just gonna merge them with fascist
+				OR = {
+					has_government = fascism
+					has_government = national_socialism
+				}
+			}
+			set_variable = { PAV.PAV_ideal_ideological_Y = 40 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 30 }
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp3_power }
+				if = { limit = { check_variable = { PAV_megacorp3_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = { has_government = ultranational_socialism }
+			set_variable = { PAV.PAV_ideal_ideological_Y = 140 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 30 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp3_power }
+				if = { limit = { check_variable = { PAV_megacorp3_loyalty < 49 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = { has_government = burgundian_system }
+			set_variable = { PAV.PAV_ideal_ideological_Y = 90 }
+			set_variable = { PAV.PAV_ideal_ideological_X = 30 }
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y > 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+				multiply_variable = { PAV.PAV_ideal_ideological_X = -1 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_corp_collect_y < 123 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_corp_collect_y }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_Y = 0.05 }
+			}
+
+			if = {
+				limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+
+				subtract_from_variable = { PAV.PAV_ideal_ideological_X = PAV.PAV_unitary_federal_x }
+
+				multiply_variable = { PAV.PAV_ideal_ideological_X = 0.05 }
+			}
+			PAV = {
+				set_variable = { PAV_dummy_megacorp_boost = PAV_megacorp3_power }
+				if = { limit = { check_variable = { PAV_megacorp3_loyalty < 50 } }
+					multiply_variable = { PAV_dummy_megacorp_boost = -1 }
+				}
+			}
+			add_to_variable = { PAV.PAV_ideal_ideological_Y = PAV.PAV_ideal_ideological_X }
+			set_variable = {PAV.PAV_Ideological_Similarity = PAV.PAV_ideal_ideological_Y }
+		}
+
+		if = {
+			limit = {
+				OR = {
+					check_variable = { PAV.PAV_unitary_federal_x = 153 }
+					check_variable = { PAV.PAV_corp_collect_y = 123 }
+				}
+			}
+			set_variable = {PAV.PAV_Ideological_Similarity = 0 }
+		}
+		PAV = { divide_variable = { PAV_dummy_megacorp_boost = 10 } }
+		clamp_variable = { var = PAV_Takeover_Progress min = 0 max = 100 }
+
+
+		#########MEGA CORPS EFFECTS##############
+
+		#####FENIKS - GOOD WITH AUTHDEMS AND DESPOTS
+
+		#########TITAN - FASCIST SUPPORT
+
+		####THE PEOPLE - COLLECTIVIST HELP YOU TALK TO COMMUNISTS
+
+		log = "[GetDateText]: [This.GetName]: Updated PAV_Takeover_Progress is [?PAV_Takeover_Progress]"
+		set_variable = { PAV.PAV_Dummy_Id_Sim = PAV.PAV_Ideological_Similarity }
+
+	}
+}
+
+PAV_monthly_pulse = {
+	PAV = { set_variable = { PAV_Takeover_Decay = 2 } }
+	
+	every_country = {
+		limit = {check_variable = { PAV_Takeover_Progress > 0 } }
+		subtract_from_variable = { PAV_Takeover_Progress = PAV.PAV_Takeover_Decay }
+		clamp_variable = { var = PAV_Takeover_Progress min = 0 max = 100 }
+	}
+	subtract_from_variable = { PAV_megacorp1_loyalty = 0.5 }
+	subtract_from_variable = { PAV_megacorp1_power = 0.5 }
+
+	subtract_from_variable = { PAV_megacorp2_loyalty = 0.5 }
+	subtract_from_variable = { PAV_megacorp1_power = 0.5 }
+
+	subtract_from_variable = { PAV_megacorp3_loyalty = 0.5 }
+	subtract_from_variable = { PAV_megacorp3_power = 0.5 }
+
+	subtract_from_variable = { PAV_megacorp4_loyalty = 0.5 }
+	subtract_from_variable = { PAV_megacorp4_power = 0.5 }
+
+	PAV_poli_drift = yes
+	PAV_clamp_pol_compass = yes
+}
+
+PAV_poli_drift = {
+	set_variable = { PAV_federal_drift = PAV.PAV_megacorp2_power }
+	set_variable = { PAV_unit_drift = PAV.PAV_megacorp1_power }
+	set_variable = { PAV_corp_drift = PAV.PAV_megacorp3_power }
+	set_variable = { PAV_coll_drift = PAV.PAV_megacorp4_power}
+
+	divide_variable = { PAV_unit_drift = 5 }
+	divide_variable = { PAV_corp_drift = 5 }
+	divide_variable = { PAV_federal_drift = 5 }
+	divide_variable = { PAV_coll_drift = 5 }
+
+	#military
+	subtract_from_variable = { PAV.PAV_unitary_federal_x = PAV_unit_drift }
+	#agri
+	add_to_variable = { PAV.PAV_unitary_federal_x = PAV_federal_drift }
+	#tech
+	subtract_from_variable = { PAV.PAV_corp_collect_y = PAV_corp_drift}
+	#people
+	add_to_variable = { PAV.PAV_corp_collect_y = PAV_coll_drift }
+}
+
+PAV_clamp_pol_compass = {
+	clamp_variable = { var = PAV.PAV_unitary_federal_x min = 8 max = 296 }
+	clamp_variable = { var = PAV.PAV_corp_collect_y min = 8 max = 247 }
+
+	clamp_variable = { var = PAV_megacorp1_loyalty min = 0 max = 100 }
+	clamp_variable = { var = PAV_megacorp2_loyalty min = 0 max = 100 }
+	clamp_variable = { var = PAV_megacorp3_loyalty min = 0 max = 100 }
+	clamp_variable = { var = PAV_megacorp4_loyalty min = 0 max = 100 }
+
+	clamp_variable = { var = PAV.PAV_megacorp1_power min = 0 max = 100 }
+	clamp_variable = { var = PAV.PAV_megacorp2_power min = 0 max = 100 }
+	clamp_variable = { var = PAV.PAV_megacorp3_power min = 0 max = 100 }
+	clamp_variable = { var = PAV.PAV_megacorp4_power min = 0 max = 100 }
+
+	PAV_update_megacorp_modifiers = yes
+}
+
+PAV_update_megacorp_modifiers = {
+	### Feniks Modifiers
+
+	set_variable = { PAV_MC1_army_org_factor = PAV_megacorp1_power }
+	set_variable = { PAV_MC1_army_attack_factor = PAV_megacorp1_power }
+	set_variable = { PAV_MC1_army_professionalism_monthly_rate = PAV_megacorp1_power }
+
+	set_temp_variable = { PAV_Feniks_Bonus = PAV_megacorp1_loyalty }
+	add_to_temp_variable = { PAV_Feniks_Bonus = -50 }
+	divide_temp_variable = { PAV_Feniks_Bonus = 100 }
+
+	multiply_variable = { PAV_MC1_army_org_factor = PAV_Feniks_Bonus }
+	multiply_variable = { PAV_MC1_army_attack_factor = PAV_Feniks_Bonus }
+	multiply_variable = { PAV_MC1_army_professionalism_monthly_rate = PAV_Feniks_Bonus }
+
+	divide_variable = { PAV_MC1_army_org_factor = 200 }
+	divide_variable = { PAV_MC1_army_attack_factor = 200 }
+	divide_variable = { PAV_MC1_army_professionalism_monthly_rate = 50 }
+
+	### Sibir Modifier
+
+	set_variable = { PAV_MC2_consumer_goods_factor = PAV_megacorp2_power }
+	set_variable = { PAV_MC2_production_speed_buildings_factor = PAV_megacorp2_power }
+	set_variable = { PAV_MC2_production_factory_max_efficiency_factor = PAV_megacorp2_power }
+
+	set_temp_variable = { PAV_Sibir_Bonus = PAV_megacorp2_loyalty }
+	add_to_temp_variable = { PAV_Sibir_Bonus = -50 }
+	divide_temp_variable = { PAV_Sibir_Bonus = 100 }
+
+	multiply_variable = { PAV_MC2_consumer_goods_factor = PAV_Sibir_Bonus }
+	multiply_variable = { PAV_MC2_production_speed_buildings_factor = PAV_Sibir_Bonus }
+	multiply_variable = { PAV_MC2_production_factory_max_efficiency_factor = PAV_Sibir_Bonus }
+
+	divide_variable = { PAV_MC2_production_speed_buildings_factor = 200 }
+	divide_variable = { PAV_MC2_production_factory_max_efficiency_factor = 200 }
+	divide_variable = { PAV_MC2_consumer_goods_factor = -200 }
+
+	### Titan Modifiers
+
+	set_variable = { PAV_MC3_research_speed_factor = PAV_megacorp3_power }
+	set_variable = { PAV_MC3_academic_base_monthly_rate = PAV_megacorp3_power }
+	set_variable = { PAV_MC3_research_facilities_monthly_rate = PAV_megacorp3_power }
+
+	set_temp_variable = { PAV_Titan_Bonus = PAV_megacorp3_loyalty }
+	add_to_temp_variable = { PAV_Titan_Bonus = -50 }
+	divide_temp_variable = { PAV_Titan_Bonus = 100 }
+
+	multiply_variable = { PAV_MC3_research_speed_factor = PAV_Titan_Bonus }
+	multiply_variable = { PAV_MC3_academic_base_monthly_rate = PAV_Titan_Bonus }
+	multiply_variable = { PAV_MC3_research_facilities_monthly_rate = PAV_Titan_Bonus }
+
+	divide_variable = { PAV_MC3_research_speed_factor = 200 }
+	divide_variable = { PAV_MC3_academic_base_monthly_rate = 50 }
+	divide_variable = { PAV_MC3_research_facilities_monthly_rate = 50 }
+
+	### People Modifiers
+
+	set_variable = { PAV_MC4_political_power_gain = PAV_megacorp4_power }
+	set_variable = { PAV_MC4_poverty_monthly_rate = PAV_megacorp4_power }
+
+	set_temp_variable = { PAV_People_Bonus = PAV_megacorp4_loyalty }
+	add_to_temp_variable = { PAV_People_Bonus = -50 }
+	divide_temp_variable = { PAV_People_Bonus = 100 }
+
+	multiply_variable = { PAV_MC4_political_power_gain = PAV_People_Bonus }
+	multiply_variable = { PAV_MC4_poverty_monthly_rate = PAV_People_Bonus }
+
+	divide_variable = { PAV_MC4_political_power_gain = 200 }
+	divide_variable = { PAV_MC4_poverty_monthly_rate = 50 }
+
+	force_update_dynamic_modifier = yes
+}
+### Narodnik Investigation ###
+PAV_increase_investigation_progress = {
+	custom_effect_tooltip = PAV_narodnik_investigation_progress_tt
+	add_to_variable = { PAV_investigation_progress = 25 }
+	clamp_variable = { var = PAV_investigation_progress min = 0 max = 100 }
+}
+
+PAV_reduce_narodnik_strength = {
+	if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators
+		}
+		swap_ideas = {
+			remove_idea = PAV_Socialist_Agitators
+			add_idea = PAV_Socialist_Agitators_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_2
+		}
+		swap_ideas = {
+			remove_idea = PAV_Socialist_Agitators_2
+			add_idea = PAV_Socialist_Agitators_3
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_3
+		}
+		swap_ideas = {
+			remove_idea = PAV_Socialist_Agitators_3
+			add_idea = PAV_Socialist_Agitators_4
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_4
+		}
+		swap_ideas = {
+			remove_idea = PAV_Socialist_Agitators_4
+			add_idea = PAV_Socialist_Agitators_5
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_5
+		}
+		remove_ideas = PAV_Socialist_Agitators_5
+	}
+}
+
+PAV_remove_narodnik_natspirit = {
+	if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators
+		}
+		remove_ideas = PAV_Socialist_Agitators
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_2
+		}
+		remove_ideas = PAV_Socialist_Agitators_2
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_3
+		}
+		remove_ideas = PAV_Socialist_Agitators_3
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_4
+		}
+		remove_ideas = PAV_Socialist_Agitators_4
+	}
+	else_if = {
+		limit = {
+			has_idea = PAV_Socialist_Agitators_5
+		}
+		remove_ideas = PAV_Socialist_Agitators_5
+	}
+}
+
+
+###THUNDER THESE SCRIPTED EFFECTS HERE### https://www.youtube.com/watch?v=wFNr9FnpZBk
+
+#Some notes for posterity
+#
+#PAV.PAV_Takeover_Power changing this variable anywhere will change the BASE takeover power, no scripted effect but you might wanna do this as a bonus in a tree or something
+#
+#idk lol
+
+###Poli Compass Changes###
+
+#Corporatism#
+
+PAV_Add_Corporatism_Low = {
+	custom_effect_tooltip = PAV_Add_Corporatism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Corporatism_Mid = {
+	custom_effect_tooltip = PAV_Add_Corporatism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Corporatism_High = {
+	custom_effect_tooltip = PAV_Add_Corporatism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Lower_Corporatism_Low = {
+	custom_effect_tooltip = PAV_Lower_Corporatism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Corporatism_Mid = {
+	custom_effect_tooltip = PAV_Lower_Corporatism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Corporatism_High = {
+	custom_effect_tooltip = PAV_Lower_Corporatism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Collectivism#
+PAV_Add_Collectivism_Low = {
+	custom_effect_tooltip = PAV_Add_Collectivism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Collectivism_Mid = {
+	custom_effect_tooltip = PAV_Add_Collectivism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Collectivism_High = {
+	custom_effect_tooltip = PAV_Add_Collectivism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = 15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Lower_Collectivism_Low = {
+	custom_effect_tooltip = PAV_Lower_Collectivism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Collectivism_Mid = {
+	custom_effect_tooltip = PAV_Lower_Collectivism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Collectivism_High = {
+	custom_effect_tooltip = PAV_Lower_Collectivism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_corp_collect_y = -15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Federalism#
+PAV_Add_Federalism_Low = {
+	custom_effect_tooltip = PAV_Add_Federalism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = 5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Federalism_Mid = {
+	custom_effect_tooltip = PAV_Add_Federalism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = 10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Federalism_High = {
+	custom_effect_tooltip = PAV_Add_Federalism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = 15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Lower_Federalism_Low = {
+	custom_effect_tooltip = PAV_Lower_Federalism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = -5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Federalism_Mid = {
+	custom_effect_tooltip = PAV_Lower_Federalism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = -10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Federalism_High = {
+	custom_effect_tooltip = PAV_Lower_Federalism_High_tt
+	PAV = { add_to_variable = { PAV.PAV_unitary_federal_x = -15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Unitarianism#
+PAV_Add_Unitarianism_Low = {
+	custom_effect_tooltip = PAV_Add_Unitarianism_Low_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = -5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Unitarianism_Mid = {
+	custom_effect_tooltip = PAV_Add_Unitarianism_Mid_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = -10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Add_Unitarianism_High = {
+	custom_effect_tooltip = PAV_Add_Unitarianism_High_tt
+	PAV = { add_to_variable = {	PAV.PAV_unitary_federal_x = -15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Lower_Unitarianism_Low = {
+	custom_effect_tooltip = PAV_Lower_Unitarianism_Low_tt
+	PAV = { add_to_variable = { PAV.PAV_unitary_federal_x = 5 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Unitarianism_Mid = {
+	custom_effect_tooltip = PAV_Lower_Unitarianism_Mid_tt
+	PAV = { add_to_variable = { PAV.PAV_unitary_federal_x = 10 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Lower_Unitarianism_High = {
+	custom_effect_tooltip = PAV_Lower_Unitarianism_High_tt
+	PAV = { add_to_variable = { PAV.PAV_unitary_federal_x = 15 } }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+### Power Changes ###
+
+#Feniks
+PAV_Feniks_ADD_Feniks_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Power_Low_tt
+	add_to_variable = { PAV.PAV_megacorp1_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Feniks_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Power_Med_tt
+	add_to_variable = { PAV.PAV_megacorp1_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Feniks_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Power_High_tt
+	add_to_variable = { PAV.PAV_megacorp1_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Feniks_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Power_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Feniks_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Power_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Feniks_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Power_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Sibir
+PAV_Feniks_ADD_Sibir_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Power_Low_tt
+	add_to_variable = { PAV.PAV_megacorp2_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Sibir_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Power_Med_tt
+	add_to_variable = { PAV.PAV_megacorp2_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Sibir_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Power_High_tt
+	add_to_variable = { PAV.PAV_megacorp2_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Sibir_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Power_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Sibir_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Power_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Sibir_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Power_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Titan
+PAV_Feniks_ADD_Titan_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Power_Low_tt
+	add_to_variable = { PAV.PAV_megacorp3_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Titan_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Power_Med_tt
+	add_to_variable = { PAV.PAV_megacorp3_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Titan_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Power_High_tt
+	add_to_variable = { PAV.PAV_megacorp3_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Titan_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Power_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Titan_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Power_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Titan_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Power_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#The People
+PAV_Feniks_ADD_People_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Power_Low_tt
+	add_to_variable = { PAV.PAV_megacorp4_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_People_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Power_Med_tt
+	add_to_variable = { PAV.PAV_megacorp4_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_People_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Power_High_tt
+	add_to_variable = { PAV.PAV_megacorp4_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_People_Power_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Power_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_power = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_People_Power_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Power_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_power = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_People_Power_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Power_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_power = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+###################
+# Loyalty Changes #
+###################
+
+#Feniks
+PAV_Feniks_ADD_Feniks_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Loyalty_Low_tt
+	add_to_variable = { PAV.PAV_megacorp1_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Feniks_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Loyalty_Med_tt
+	add_to_variable = { PAV.PAV_megacorp1_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Feniks_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Feniks_Loyalty_High_tt
+	add_to_variable = { PAV.PAV_megacorp1_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Feniks_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Loyalty_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Feniks_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Loyalty_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Feniks_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Feniks_Loyalty_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp1_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Sibir
+PAV_Feniks_ADD_Sibir_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Loyalty_Low_tt
+	add_to_variable = { PAV.PAV_megacorp2_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Sibir_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Loyalty_Med_tt
+	add_to_variable = { PAV.PAV_megacorp2_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Sibir_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Sibir_Loyalty_High_tt
+	add_to_variable = { PAV.PAV_megacorp2_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Sibir_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Loyalty_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Sibir_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Loyalty_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Sibir_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Sibir_Loyalty_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp2_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#Titan
+PAV_Feniks_ADD_Titan_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Loyalty_Low_tt
+	add_to_variable = { PAV.PAV_megacorp3_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Titan_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Loyalty_Med_tt
+	add_to_variable = { PAV.PAV_megacorp3_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_Titan_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_Titan_Loyalty_High_tt
+	add_to_variable = { PAV.PAV_megacorp3_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_Titan_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Loyalty_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Titan_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Loyalty_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_Titan_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_Titan_Loyalty_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp3_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+#The People
+PAV_Feniks_ADD_People_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Loyalty_Low_tt
+	add_to_variable = { PAV.PAV_megacorp4_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_People_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Loyalty_Med_tt
+	add_to_variable = { PAV.PAV_megacorp4_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_ADD_People_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_ADD_People_Loyalty_High_tt
+	add_to_variable = { PAV.PAV_megacorp4_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+#
+PAV_Feniks_SUBTRACT_People_Loyalty_Low = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Loyalty_Low_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_loyalty = 5 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_People_Loyalty_Med = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Loyalty_Med_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_loyalty = 10 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_Feniks_SUBTRACT_People_Loyalty_High = {
+	custom_effect_tooltip = PAV_Feniks_SUBTRACT_People_Loyalty_High_tt
+	subtract_from_variable = { PAV.PAV_megacorp4_loyalty = 15 }
+	PAV = { PAV_clamp_pol_compass = yes }
+}
+
+PAV_FP_scripted_effect = {
+	if = {
+		limit = { check_variable = { PAV_OFN_Influence > PAV_Sphere_Influence } }
+		add_to_variable = { PAV_Sphere_Influence = PAV_equalizer_effect }
+		if = {
+			limit = { check_variable = { PAV_Sphere_Influence > PAV_OFN_Influence } }
+			set_temp_variable = { PAV_Sphere_Influence_temp = PAV_Sphere_Influence }
+			set_temp_variable = { PAV_OFN_Influence_temp = PAV_OFN_Influence }
+			subtract_from_temp_variable = { PAV_Sphere_Influence_temp = PAV_OFN_Influence_temp }
+			subtract_from_variable = { PAV_OFN_Influence = PAV_Sphere_Influence_temp }
+		}
+	}
+	if = {
+		limit = { check_variable = { PAV_OFN_Influence < PAV_Sphere_Influence } }
+		add_to_variable = { PAV_OFN_Influence = PAV_equalizer_effect }
+		if = {
+			limit = { check_variable = { PAV_Sphere_Influence < PAV_OFN_Influence } }
+			set_temp_variable = { PAV_Sphere_Influence_temp = PAV_Sphere_Influence }
+			set_temp_variable = { PAV_OFN_Influence_temp = PAV_OFN_Influence }
+			subtract_from_temp_variable = { PAV_OFN_Influence_temp = PAV_Sphere_Influence_temp }
+			subtract_from_variable = { PAV_Sphere_Influence = PAV_OFN_Influence_temp }
+		}
+	}
+ 
+}
+
+### Diplomacy Tree ###
+#Japan/Sphere
+PAV_JAP_gain_low_influence = {
+	custom_effect_tooltip = PAV_JAP_gain_low_influence_tt
+	add_to_variable = { PAV_Sphere_Influence = 5 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+
+PAV_JAP_gain_mid_influence = {
+	custom_effect_tooltip = PAV_JAP_gain_mid_influence_tt
+	add_to_variable = { PAV_Sphere_Influence = 10 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+
+PAV_JAP_gain_high_influence = {
+	custom_effect_tooltip = PAV_JAP_gain_high_influence_tt
+	add_to_variable = { PAV_Sphere_Influence = 15 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+#
+PAV_JAP_lose_low_influence = {
+	custom_effect_tooltip = PAV_JAP_lose_low_influence_tt
+	subtract_from_variable = { PAV_Sphere_Influence = 5 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+
+PAV_JAP_lose_mid_influence = {
+	custom_effect_tooltip = PAV_JAP_lose_mid_influence_tt
+	subtract_from_variable = { PAV_Sphere_Influence = 10 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+
+PAV_JAP_lose_high_influence = {
+	custom_effect_tooltip = PAV_JAP_lose_high_influence_tt
+	subtract_from_variable = { PAV_Sphere_Influence = 15 }
+	clamp_variable = { var = PAV_Sphere_Influence min = 0 max = 100 }
+}
+
+#OFN
+PAV_USA_gain_low_influence = {
+	custom_effect_tooltip = PAV_USA_gain_low_influence_tt
+	add_to_variable = { PAV_OFN_Influence = 5 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+
+PAV_USA_gain_mid_influence = {
+	custom_effect_tooltip = PAV_USA_gain_mid_influence_tt
+	add_to_variable = { PAV_OFN_Influence = 10 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+
+PAV_USA_gain_high_influence = {
+	custom_effect_tooltip = PAV_USA_gain_high_influence_tt
+	add_to_variable = { PAV_OFN_Influence = 15 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+#
+PAV_USA_lose_low_influence = {
+	custom_effect_tooltip = PAV_USA_lose_low_influence_tt
+	subtract_from_variable = { PAV_OFN_Influence = 5 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+
+PAV_USA_lose_mid_influence = {
+	custom_effect_tooltip = PAV_USA_lose_mid_influence_tt
+	subtract_from_variable = { PAV_OFN_Influence = 10 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+
+PAV_USA_lose_high_influence = {
+	custom_effect_tooltip = PAV_USA_lose_high_influence_tt
+	subtract_from_variable = { PAV_OFN_Influence = 15 }
+	clamp_variable = { var = PAV_OFN_Influence min = 0 max = 100 }
+}
+
+### Election Season ###
+
+PAV_elections_setup = {
+	set_country_flag = PAV_elections_season
+	if = {
+		limit = { check_variable = { PAV.PAV_unitary_federal_x > 153 } }
+		set_variable = { PAV_pokryshkin_support = 40 }
+	}
+	else_if = {
+		limit = { check_variable = { PAV.PAV_unitary_federal_x < 153 } }
+		set_variable = { PAV_pokryshkin_support = 60 }
+	}
+	else = {
+		set_variable = { PAV_pokryshkin_support = 50 }
+	}
+	PAV_clamp_elections_var = yes
+}
+
+PAV_shukshin_wins = {
+	set_politics = {
+		ruling_party = social_conservative
+	}
+	add_popularity = { ideology = social_conservative popularity = 0.1 }
+	add_ideas = PAV_Alexander_Pokryshkin_hog
+	add_ideas = PAV_Vladimir_Sobolev_for
+	add_ideas = PAV_Mikhail_Kerchenko_eco
+	add_ideas = PAV_Amet_khan_Sultan_sec
+	set_country_flag = PAV_shukshin_in_charge
+	set_country_flag = PAV_elections_sorted_flag
+	load_focus_tree = { tree = PAV_novosibirsk_superregional_shukshin keep_completed = yes }
+	clr_country_flag = PAV_elections_season
+	clr_country_flag = PAV_shukshin_campaigning
+}
+
+PAV_pokryshkin_wins = {
+	add_popularity = { ideology = authoritarian_democrat popularity = 0.1 }
+	add_ideas = PAV_Mikhail_Devyatayev_hog
+	set_country_flag = PAV_pokryshkin_in_charge
+	set_country_flag = PAV_elections_sorted_flag
+	load_focus_tree = { tree = PAV_novosibirsk_superregional_pokryshkin keep_completed = yes }
+	clr_country_flag = PAV_elections_season
+	clr_country_flag = PAV_pokryshkin_campaigning
+}
+
+#Pokryshkin
+PAV_raise_pokryshkin_support_low = {
+	custom_effect_tooltip = PAV_raise_pokryshkin_support_low_tt
+	add_to_variable = { PAV_pokryshkin_support = 5 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_raise_pokryshkin_support_mid = {
+	custom_effect_tooltip = PAV_raise_pokryshkin_support_mid_tt
+	add_to_variable = { PAV_pokryshkin_support = 10 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_raise_pokryshkin_support_high = {
+	custom_effect_tooltip = PAV_raise_pokryshkin_support_high_tt
+	add_to_variable = { PAV_pokryshkin_support = 15 }
+	PAV_clamp_elections_var = yes
+}
+#
+PAV_lower_pokryshkin_support_low = {
+	custom_effect_tooltip = PAV_lower_pokryshkin_support_low_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 5 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_lower_pokryshkin_support_mid = {
+	custom_effect_tooltip = PAV_lower_pokryshkin_support_mid_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 10 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_lower_pokryshkin_support_high = {
+	custom_effect_tooltip = PAV_lower_pokryshkin_support_high_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 15 }
+	PAV_clamp_elections_var = yes
+}
+
+#Shukshin
+PAV_raise_shukshin_support_low = {
+	custom_effect_tooltip = PAV_raise_shukshin_support_low_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 5 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_raise_shukshin_support_mid = {
+	custom_effect_tooltip = PAV_raise_shukshin_support_mid_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 10 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_raise_shukshin_support_high = {
+	custom_effect_tooltip = PAV_raise_shukshin_support_high_tt
+	subtract_from_variable = { PAV_pokryshkin_support = 15 }
+	PAV_clamp_elections_var = yes
+}
+#
+PAV_lower_shukshin_support_low = {
+	custom_effect_tooltip = PAV_lower_shukshin_support_low_tt
+	add_to_variable = { PAV_pokryshkin_support = 5 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_lower_shukshin_support_mid = {
+	custom_effect_tooltip = PAV_lower_shukshin_support_mid_tt
+	add_to_variable = { PAV_pokryshkin_support = 10 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_lower_shukshin_support_high = {
+	custom_effect_tooltip = PAV_lower_shukshin_support_high_tt
+	add_to_variable = { PAV_pokryshkin_support = 15 }
+	PAV_clamp_elections_var = yes
+}
+
+PAV_clamp_elections_var = {
+	round_variable = PAV_pokryshkin_support
+	clamp_variable = { var = PAV_pokryshkin_support min = 0 max = 100 }
+
+	set_variable = { PAV_shukshin_support = 100 } #only for display
+	subtract_from_variable = { PAV_shukshin_support = PAV_pokryshkin_support }
+
+	set_variable = { PAV_pokryshkin_x_axis = 4.44 } #(481-37)/100
+	multiply_variable = { PAV_pokryshkin_x_axis = PAV_pokryshkin_support }
+	round_variable = PAV_pokryshkin_x_axis
+	add_to_variable = { PAV_pokryshkin_x_axis = 37 }
+}
+
+#########################################
+
+### Debug ###
+PAV_russia_debug = {
+	for_each_scope_loop = {
+		array = global.russian_warlords
+		random_list = {
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 20 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 30 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 40 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 50 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 60 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 70 }
+			}
+			10 = {
+				set_variable = { PAV_Takeover_Progress = 80 }
+			}
+		}
+		log = "[GetDateText]: [This.GetName]: PAV_Takeover_Progress is [?This.PAV_Takeover_Progress]"
+	}
+}

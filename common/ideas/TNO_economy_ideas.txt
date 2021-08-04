@@ -1,0 +1,311 @@
+ideas = {
+	country = {
+		### Military Expenditures Modifiers ###
+		military_budget_boost = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea military_budget_boost" }
+			picture = Economy_Military_Budget_Boost
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				military_expenditures_factor = 0.15
+				conscription_factor = 0.125
+				army_org_factor = 0.1
+				defence = 0.1
+				offence = 0.1
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
+				training_time_army_factor = -0.2
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		military_budget_cuts = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea military_budget_cuts" }
+			picture = Economy_Military_Austerity
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				military_expenditures_factor = -0.15
+				conscription_factor = -0.25
+				army_org_factor = -0.20
+				defence = -0.20
+				offence = -0.20
+				industrial_capacity_factory = -0.15
+				industrial_capacity_dockyard = -0.15
+				training_time_army_factor = 0.2
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		military_budget_cuts_heavy = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea military_budget_cuts_heavy" }
+			picture = Economy_Military_Austerity_Heavy
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				military_expenditures_factor = -0.3
+				conscription_factor = -0.35
+				army_org_factor = -0.30
+				defence = -0.30
+				offence = -0.30
+				industrial_capacity_factory = -0.35
+				industrial_capacity_dockyard = -0.35
+				training_time_army_factor = 1.0
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		bankrupt_military = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bankrupt_military" }
+			picture = Economy_Military_Bankrupt
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				military_expenditures_factor = -0.6
+				conscription_factor = -0.75
+				army_org_factor = -0.60
+				defence = -0.60
+				offence = -0.60
+				industrial_capacity_factory = -0.80
+				industrial_capacity_dockyard = -0.80
+				training_time_army_factor = 3.0
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		### Civilian Expenditures Modifiers ###
+		civilian_budget_boost = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea civilian_budget_boost" }
+			picture = Economy_Civilian_Budget_Boost
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				civilian_expenditures_factor = 0.15
+				stability_factor = 0.05
+				war_support_factor = 0.05
+				political_power_gain = 0.10
+				consumer_goods_factor = -0.05
+				production_speed_buildings_factor = 0.10
+				local_resources_factor = 0.075
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		civilian_budget_cuts = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea civilian_budget_cuts" }
+			picture = Economy_Civilian_Austerity
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				civilian_expenditures_factor = -0.15
+				stability_factor = -0.10
+				war_support_factor = -0.10
+				political_power_gain = -0.15
+				consumer_goods_factor = 0.075
+				production_speed_buildings_factor = -0.20
+				local_resources_factor = -0.1
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		civilian_budget_cuts_heavy = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea civilian_budget_cuts_heavy" }
+			picture = Economy_Civilian_Austerity_Heavy
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				civilian_expenditures_factor = -0.3
+				stability_factor = -0.20
+				war_support_factor = -0.20
+				political_power_gain = -0.30
+				consumer_goods_factor = 0.15
+				production_speed_buildings_factor = -0.40
+				local_resources_factor = -0.2
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+
+		bankrupt_civilian = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bankrupt_civilian" }
+			picture = Economy_Civilian_Bankrupt
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				civilian_expenditures_factor = -0.6
+				stability_factor = -0.45
+				war_support_factor = -0.35
+				political_power_gain = -0.5
+				consumer_goods_factor = 0.50
+				production_speed_buildings_factor = -1.0
+				local_resources_factor = -0.35
+			}
+			cancel_if_invalid = no
+			ai_will_do = { }
+		}
+	}
+
+	tno_construction_laws = {
+		law = yes
+
+		construction_level_not_applicable = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_not_applicable" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { econ_can_use_economy_system = yes }
+			removal_cost = -1
+			modifier = { }
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_0 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_0" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.80
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_1 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_1" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.72
+				construction_costs_modifier = 0.01
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_2 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_2" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.64
+				construction_costs_modifier = 0.02
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_3 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_3" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.56
+				construction_costs_modifier = 0.03
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_4 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_4" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.48
+				construction_costs_modifier = 0.04
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_5 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_5" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.40
+				construction_costs_modifier = 0.05
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_6 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_6" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.32
+				construction_costs_modifier = 0.06
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_7 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_7" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.24
+				construction_costs_modifier = 0.07
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_8 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_8" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.16
+				construction_costs_modifier = 0.08
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+		construction_level_9 = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_level_9" }
+			available = { always = no } #TODO CHANGEME
+			cancel = { NOT = { econ_can_use_economy_system = yes } }
+			removal_cost = -1
+			modifier = {
+				consumer_goods_factor = 0.08
+				construction_costs_modifier = 0.09
+			}
+			cancel_if_invalid = no
+			ledger = civilian
+			ai_will_do = { } #TODO CHANGEME
+		}
+	}
+
+	hidden_ideas = {  # Dummy idea to set up multiplicative modifiers, because they normally start at zero but I need them to start at one (thanks PDX)
+		economy_multiplicative_modifiers_base = {
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				civilian_expenditures_factor = 1
+				military_expenditures_factor = 1
+				annual_gdp_growth_factor = 1
+				personnel_cost_modifier = 1
+			}
+			cancel_if_invalid = no
+		}
+	}
+}

@@ -1,0 +1,334 @@
+CHI_YUN_NPA_threat = {
+	enable = {
+		tag = CHI
+		country_exists = YUN
+		OR = {
+			has_country_flag = CHI_Western_Insurrection_Warmup
+			has_global_flag = CHI_Western_Insurrection_Crisis
+			has_country_flag = CHI_Prison_Riots_Dud_Normal
+			has_country_flag = CHI_Prison_Riots_Dud_Intervention
+		}
+	}
+
+	abort = {
+		OR = {
+			NOT = {
+				country_exists = YUN
+			}
+			NOT = {
+				OR = {
+					has_country_flag = CHI_Western_Insurrection_Warmup
+					has_global_flag = CHI_Western_Insurrection_Crisis
+					has_country_flag = CHI_Prison_Riots_Dud_Normal
+					has_country_flag = CHI_Prison_Riots_Dud_Intervention
+				}
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = YUN
+		value = 1000
+	}
+}
+
+YUN_NPA_CHI_annex = {
+	enable = {
+		tag = YUN
+		country_exists = CHI
+		has_country_flag = YUN_long_yun_crusade
+	}
+
+	abort = {
+		OR = {
+			NOT = {
+				country_exists = CHI
+			}
+			NOT = {
+				has_country_flag = YUN_long_yun_crusade
+			}
+			has_country_flag = YUN_NPA_China_Defeated
+		}
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = CHI
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = BUR
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = VIN
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = LAO
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SIA
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SIC
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = GXC
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = GNG
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = JAP
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = HUI
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SHX
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MEN
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAN
+		value = -1000
+	}
+}
+
+YUN_NPA_GAW_strat = {
+	enable = {
+		tag = YUN
+		has_country_flag = YUN_NPA_China_Defeated
+		has_war = yes
+	}
+
+	abort = {
+		has_war = no
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = BUR
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = VIN
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = LAO
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SIA
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SIC
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = GXC
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = GNG
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = JAP
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = HUI
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SHX
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MEN
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAN
+		value = 1000
+	}
+}
+
+SPHERE_ignore_MON = {
+	enable = {
+		OR = {
+			tag = JAP
+			is_in_faction_with = JAP
+		}
+		NOT = { has_war_with = MON }
+		MON = { has_war_with = MEN }
+	}
+
+	abort = {
+		MON = {
+			NOT = { has_war_with = MEN }
+		}
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MON
+		value = -1000
+	}
+
+	ai_strategy = {
+		type = ignore
+		id = MON
+		value = 1000
+	}
+}
+
+MEN_SVO_invade = {
+	enable = {
+		tag = MEN
+		has_war_with = SVO
+	}
+
+	abort = {
+		NOT = { has_war_with = SVO }
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SVO
+		value = 1000
+	}
+}
+
+SVO_MEN_invade = {
+	enable = {
+		tag = SVO
+		has_war_with = MEN
+	}
+
+	abort = {
+		NOT = { has_war_with = MEN }
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MEN
+		value = 1000
+	}
+}
+
+SPHERE_ignore_SVO = {
+	enable = {
+		OR = {
+			tag = JAP
+			is_in_faction_with = JAP
+		}
+		NOT = { has_war_with = SVO }
+		SVO = { has_war_with = MEN }
+	}
+
+	abort = {
+		OR = {
+			SVO = {
+				NOT = { has_war_with = MEN }
+			}
+			AND = {
+				tag = JAP
+				has_country_flag = JAP_entered_SVO_MEN_war
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = SVO
+		value = -1000
+	}
+	ai_strategy = {
+		type = protect
+		id = "SVO"
+		value = 1000
+	}
+}
+
+JAP_INS_help = {
+	enable = {
+		original_tag = JAP
+		FRI = {	has_war_with = INS } #indonesian civil war
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = INS #indonesia
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = FRI
+		value = 200
+	}
+}

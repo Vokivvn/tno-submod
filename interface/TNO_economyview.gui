@@ -1,0 +1,594 @@
+guiTypes = {
+
+	extendedScrollbarType = {
+		name = "TNO_economy_scrollbar"
+		position = { x =-12 y = 0 }
+		size = { width = 18 height = 18 }
+		startValue = 0
+		orientation = upper_right
+		origo = upper_right
+		smooth_scrolling = 0.25
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_scrollbar_vertical_bg"
+		}
+
+		slider = {
+			name = "Slider"
+			quadTextureSprite = "yearslider_slider2"
+			position = { x = -2 y = -2 }
+		}
+
+		track = {
+			name = "Track"
+			quadTextureSprite = "GFX_blank"
+			position = { x = 3 y = 0 }
+			alwaystransparent = yes
+		}
+
+		decreaseButton = {
+			name = "Decrease"
+			quadTextureSprite = "GFX_scroll_up"
+			position = { x = 2 y = 4 }
+			scale = 0.9
+		}
+
+		increaseButton = {
+			name = "Increase"
+			quadTextureSprite = "GFX_scroll_down"
+			position = { x=-16 y = -18}
+			scale = 0.9
+		}
+	}
+
+	containerWindowType = {
+		name = "topbar_economy"
+		position = { x=124 y=38 }
+		size = { width=100%% height=100%% }
+
+		buttonType = {
+			name = "economy_button"
+			position = { x = 279 y = -2 }
+			quadTextureSprite ="GFX_economy_button"
+			Orientation = "UPPER_LEFT"
+			shortcut = "shift+e"
+			clicksound = click_close
+			oversound = ui_menu_over
+
+			pdx_tooltip = "topbar_economy_button_tt"
+		}
+
+		iconType = {
+			name ="economy_topbar_GDP_bg"
+			spriteType = "GFX_generic_box_96"
+			position = { x=699 y=-33 }
+			Orientation = "UPPER_LEFT"
+		}
+
+		iconType = {
+			name ="economy_GDP_topbar_icon"
+			spriteType = "GFX_green_dollar_sign"
+			position = { x= 699 y = -30 }
+			Orientation = "UPPER_LEFT"
+			pdx_tooltip = "economy_topbar_GDP_short_tt"
+			pdx_tooltip_delayed = "economy_topbar_GDP_long_tt"
+		}
+
+		instantTextboxType = {
+			name = "economy_topbar_GDP"
+			position = { x = 713 y = -28 }
+			textureFile = ""
+			font = "aldrich_18_outline"
+			borderSize = {x = 0 y = 0}
+			text = "economy_topbar_GDP_text"
+
+			maxWidth = 80
+			maxHeight = 20
+			format = center
+
+			pdx_tooltip = "economy_topbar_GDP_short_tt"
+			pdx_tooltip_delayed = "economy_topbar_GDP_long_tt"
+		}
+
+		iconType ={
+			name ="economy_topbar_debt_bg"
+			spriteType = "GFX_generic_box_96"
+			position = { x=798 y=-33 }
+			Orientation = "UPPER_LEFT"
+		}
+
+		iconType = {
+			name ="economy_debt_topbar_icon"
+			spriteType = "GFX_red_dollar_sign"
+			position = { x = 798 y = -30 }
+			Orientation = "UPPER_LEFT"
+			pdx_tooltip = "economy_topbar_debt_short_tt"
+			pdx_tooltip_delayed = "economy_topbar_debt_long_tt"
+		}
+
+		instantTextboxType = {
+			name = "economy_topbar_debt"
+			position = { x = 812 y = -28 }
+			textureFile = ""
+			font = "aldrich_18_outline"
+			borderSize = {x = 0 y = 0}
+			text = "economy_topbar_debt_text"
+
+			maxWidth = 80
+			maxHeight = 20
+			format = center
+
+			pdx_tooltip = "economy_topbar_debt_short_tt"
+			pdx_tooltip_delayed = "economy_topbar_debt_long_tt"
+		}
+		
+		# Putting this in the economy window because I am lazy
+		iconType = {
+			name = "intel_button_dummy"
+			spriteType = "GFX_topbar_intelligence_grey"
+			position = { x = 515 y = -2 }
+			#alwaystransparent = yes
+			pdx_tooltip = "TOPBAR_INTELLIGENCE_DESC_NO_LAR"
+		}
+	}
+
+	containerWindowType = {
+		name = "economy_view"
+		position = { x = -500 y = 111 }
+		show_position = { x = 0 y = 111 }
+		show_animation_type = decelerated
+		hide_animation_type = accelerated
+		animation_time = 300
+		size = { width = 600 height = 89% }
+		clipping = no
+		
+		#hide_sound = menu_close_window
+		show_sound = menu_open_window
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_tiled_bg"
+		}
+
+		iconType = {
+			name ="economy_header_bg"
+			spriteType = "GFX_header_wide_bg"
+			position = { x = -34 y = -29 }
+			Orientation = "UPPER_LEFT"
+		}
+
+		instantTextboxType = {
+			name = "economy_view_title"
+			position = { x = 45 y = -28 }
+			textureFile = ""
+			font = "Bomb_36"
+			text = "economy_view_title"
+			maxWidth = 600
+			maxHeight = 20
+			format = left
+		}
+
+		buttonType = {
+			name = "economy_close_button"
+			position = { x = 566 y = -25 }
+			quadTextureSprite ="GFX_closebutton_small"
+			buttonFont = "Main_14_black"
+			shortcut = "ESCAPE"
+			clicksound = click_close
+		}
+		
+		containerWindowType = {
+			name = "economy_view_data_scrollbar"
+			position = { x = 0 y = 0 }
+			size = { width = 600 height = 100% }
+			margin = {top = 16 bottom = 14}
+			verticalScrollbar = "TNO_economy_scrollbar"
+			clipping = yes
+			
+			background = {
+				name = "economy_scrollbar_background"
+				quadTextureSprite = "GFX_tiled_window_transparent"
+			}
+			
+			containerWindowType = {
+				name = "economy_view_data"
+				position = { x = 25 y = 25 }
+				size = { width = 552 height = 900 }
+
+				background = {
+					name = "economy_background"
+					quadTextureSprite ="GFX_tiled_window_transparent"
+				}
+
+				instantTextboxType = {
+					name = "GDP_header_text"
+					position = { x = 0 y = 265 }
+					textureFile = ""
+					font = "aldrich_36_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_view_GDP"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "gdp_value_text"
+					font = "aldrich_32_outline"
+					position = { x = 0 y = 295 }
+					borderSize = {x = 0 y = 0}
+					text = "gdp_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "gdp_value_tooltip"
+				}
+
+				instantTextboxType = {
+					name = "gdp_growth_value_text"
+					position = { x = 0 y = 320 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "gdp_growth_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "debt_header_text"
+					position = { x = 0 y = 355 }
+					textureFile = ""
+					font = "aldrich_36_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_view_debt"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "national_debt_value_text"
+					position = { x = 0 y = 385 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "national_debt_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "national_debt_value_short_tt"
+					pdx_tooltip_delayed = "national_debt_value_tt"
+				}
+
+				instantTextboxType = {
+					name = "national_debt_interest_value_text"
+					position = { x = 0 y = 410 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "national_debt_interest_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "expenditures_header_text"
+					position = { x = 0 y = 445 }
+					textureFile = ""
+					font = "aldrich_36_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_view_expenditures"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "civilian_expenditures_value_text"
+					position = { x = 0 y = 475 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "civilian_expenditures_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "civilian_expenditures_value_short_tt"
+					pdx_tooltip_delayed = "civilian_expenditures_value_tt"
+				}
+
+				instantTextboxType = {
+					name = "military_expenditures_value_text"
+					position = { x = 0 y = 500 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "military_expenditures_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "military_expenditures_value_short_tt"
+					pdx_tooltip_delayed = "military_expenditures_value_tt"
+				}
+
+				instantTextboxType = {
+					name = "construction_expenditures_value_text"
+					position = { x = 0 y = 525 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "construction_expenditures_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "construction_expenditures_value_short_tt"
+					pdx_tooltip_delayed = "construction_expenditures_value_tt"
+				}
+
+				instantTextboxType = {
+					name = "misc_costs_value_text"
+					position = { x = 0 y = 550 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "misc_costs_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "total_expenditures_line_break"
+					position = { x = 0 y = 570 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_line_break"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "total_expenditures_value_text"
+					position = { x = 0 y = 590 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "total_expenditures_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "deficit_reserves_text"
+					position = { x = 0 y = 620 }
+					textureFile = ""
+					font = "aldrich_36_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_view_deficit_reserves"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+				instantTextboxType = {
+					name = "deficit_value_text"
+					position = { x = 0 y = 655 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "deficit_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "deficit_value_short_tt"
+				}
+
+				instantTextboxType = {
+					name = "money_reserves_value_text"
+					position = { x = 0 y = 680 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "money_reserves_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "income_text"
+					position = { x = 0 y = 715 }
+					textureFile = ""
+					font = "aldrich_36_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_view_income"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "income_rate_value_text"
+					position = { x = 0 y = 745 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "income_rate_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+
+					pdx_tooltip = "income_rate_value_tt"
+					pdx_tooltip_delayed = "income_rate_value_tt_delayed"
+				}
+
+				instantTextboxType = {
+					name = "misc_income_value_text"
+					position = { x = 0 y = 770 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "misc_income_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "budget_line_break"
+					position = { x = 0 y = 790 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "economy_line_break"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				instantTextboxType = {
+					name = "annual_budget_value_text"
+					position = { x = 0 y = 810 }
+					textureFile = ""
+					font = "aldrich_32_outline"
+					borderSize = {x = 0 y = 0}
+					text = "annual_budget_value"
+					maxWidth = 552
+					maxHeight = 20
+					format = center
+				}
+
+				###ALL BUTTONS BELOW HERE###
+
+				instantTextboxType = {
+					name = "military_buttons_text"
+					position = { x = -32 y = 18 }
+					textureFile = ""
+					font = "aldrich_30_outline"
+					borderSize = {x = 0 y = 0}
+					text = "military_buttons_value"
+					maxWidth = 320
+					maxHeight = 20
+					format = center
+				}
+
+				buttonType = {
+					name ="increase_military_budget"
+					spriteType = "GFX_military_save_button"
+					position = { x= 5 y = 55 }
+					pdx_tooltip = "increase_military_budget_tt"
+					pdx_tooltip_delayed = "increase_military_budget_tt_delayed"
+				}
+
+				buttonType = {
+					name ="decrease_military_budget"
+					spriteType = "GFX_military_spend_button"
+					position = { x = 140 y = 55 }
+
+					pdx_tooltip = "decrease_military_budget_tt"
+					pdx_tooltip_delayed = "decrease_military_budget_tt_delayed"
+				}
+
+				instantTextboxType = {
+					name = "civilian_buttons_text"
+					position = { x = 291 y = 18 }
+					textureFile = ""
+					font = "aldrich_30_outline"
+					borderSize = {x = 0 y = 0}
+					text = "civilian_buttons_value"
+					maxWidth = 272
+					maxHeight = 20
+					format = center
+				}
+
+				buttonType = {
+					name ="increase_civilian_budget"
+					spriteType = "GFX_civilian_spend_button"
+					position = { x = 305 y = 55 }
+
+					pdx_tooltip = "increase_civilian_budget_tt"
+					pdx_tooltip_delayed = "increase_civilian_budget_tt_delayed"
+				}
+
+				buttonType = {
+					name ="decrease_civilian_budget"
+					spriteType = "GFX_civilian_save_button"
+					position = { x = 440 y = 55 }
+
+					pdx_tooltip = "decrease_civilian_budget_tt"
+					pdx_tooltip_delayed = "decrease_civilian_budget_tt_delayed"
+				}
+
+				instantTextboxType = {
+					name = "reserves_buttons_text"
+					position = { x = -32 y = 138 }
+					textureFile = ""
+					font = "aldrich_30_outline"
+					borderSize = {x = 0 y = 0}
+					text = "reserves_buttons_value"
+					maxWidth = 320
+					maxHeight = 20
+					format = center
+				}
+				#whether or not to use money reserves for paying debt
+				buttonType = {
+					name ="dump_liquid_reserves"
+					spriteType = "GFX_liquid_spend_button"
+					position = { x = 140 y = 175 }
+
+					pdx_tooltip = "dump_liquid_reserves_tt"
+					pdx_tooltip_delayed = "dump_liquid_reserves_tt_delayed"
+				}
+
+				buttonType = {
+					name ="invest_liquid_reserves"
+					spriteType = "GFX_liquid_save_button"
+					position = { x = 5 y = 175 }
+
+					pdx_tooltip = "invest_liquid_reserves_tt"
+					pdx_tooltip_delayed = "invest_liquid_reserves_tt_delayed"
+				}
+
+				instantTextboxType = {
+					name = "construction_buttons_text"
+					position = { x = 291 y = 138 }
+					textureFile = ""
+					font = "aldrich_30_outline"
+					borderSize = {x = 0 y = 0}
+					text = "construction_buttons_value"
+					maxWidth = 272
+					maxHeight = 20
+					format = center
+				}
+
+				buttonType = {
+					name ="increase_construction_budget"
+					spriteType = "GFX_construction_spend_button"
+					position = { x = 305 y = 175 }
+					pdx_tooltip = "increase_construction_budget_tt"
+					pdx_tooltip_delayed = "increase_construction_budget_tt_delayed"
+				}
+
+				buttonType = {
+					name ="decrease_construction_budget"
+					spriteType = "GFX_construction_save_button"
+					position = { x = 440 y = 175 }
+					pdx_tooltip = "decrease_construction_budget_tt"
+					pdx_tooltip_delayed = "decrease_construction_budget_tt_delayed"
+				}
+			}
+		}
+	}
+}

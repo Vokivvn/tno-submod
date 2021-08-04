@@ -1,0 +1,2327 @@
+add_namespace = SVO
+add_namespace = SVO_MONGOL
+
+country_event = { #War Tree
+	id = SVO.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.0"}
+	title = SVO.0.t
+	desc = SVO.0.desc
+	picture = GFX_report_event_russia_burning_village
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.0.a
+		ai_chance = { factor = 1 }
+		set_country_flag = SVO_war_tree
+		load_focus_tree = { tree = SVO_war_tree keep_completed = yes }
+		hidden_effect = {
+			country_event = { id = SVO.86 days = 5 }
+			SVO_Get_war_date = yes
+		}
+	}
+}
+
+country_event = { #Western Conflict
+	id = SVO.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.1"}
+	title = SVO.1.t
+	desc = SVO.1.desc
+	picture = GFX_report_event_russia_kazakh_riders_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Send Guns
+		name = SVO.1.a
+		ai_chance = { factor = 1 }
+		MON = {
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 500
+				producer = SVO
+			}
+		}
+		hidden_effect = {
+			set_country_flag = SVO_send_guns_to_MON
+			country_event = { id = SVO.28 days = 30 random = 240 }
+		}
+	}
+
+	option = { #Send Man
+		name = SVO.1.b
+		ai_chance = { factor = 1 }
+		MON = { add_manpower = 500 }
+		hidden_effect = {
+			set_country_flag = SVO_send_men_to_MON
+			country_event = { id = SVO.28 days = 30 random = 240 }
+		}
+	}
+	option = { #ignore
+		name = SVO.1.c
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = {#Japan enters the MEN-SVO war
+	id = SVO.2
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO.2"
+		set_temp_variable = { SVO_war_date_temp = global.date }
+		add_to_temp_variable = { SVO_war_date_temp = 0.336 } # 336 hrs / 14 days
+		if = {
+			limit = {
+				check_variable = { SVO_war_date_temp < SVO_war_date }
+			}
+			set_variable = { SVO_war_date = SVO_war_date_temp }
+		}
+	}
+	title = SVO.2.t
+	desc = SVO.2.desc
+	picture = GFX_report_event_russia_burning_village
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SVO.2.a
+		custom_effect_tooltip = SVO_JAP_ceasefire
+		add_war_support = 0.05
+
+	}
+}
+
+country_event = { #Expansion Intro event
+	id = SVO.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.3"}
+	title = SVO.3.t
+	desc = SVO.3.desc
+	picture = GFX_report_event_russia_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.3.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Intro event
+	id = SVO.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.4"}
+	title = SVO.4.t
+	desc = SVO.4.desc
+	picture = GFX_report_event_russia_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.4.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Ceasefire, for MEN
+	id = SVO.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.8"}
+	title = SVO.8.t
+	desc = SVO.8.desc
+	picture = GFX_report_event_russia_tanks
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.8.a
+		ai_chance = { factor = 1 }
+		set_global_flag = SVO_MEN_peace_deal
+		hidden_effect = {
+			add_named_threat = {
+				threat = -5
+				name = threat.27.t
+			}
+			TNO_World_Tension_subtract_5 = yes
+			every_country  = {
+				news_event = {
+					id = WORLD.1154
+				}
+			}
+		}
+		SVO = {
+			country_event = {
+				id = SVO.9
+				hours = 1
+			}
+			save_global_event_target_as = winning_country
+			white_peace = MEN
+			white_peace = MAN
+			white_peace = JAP
+			white_peace = CHI
+		}
+		MEN = { save_global_event_target_as = losing_country }
+		set_global_flag = war_won
+		set_global_flag = show_peace_popup_alert
+	}
+}
+
+country_event = { #Victory
+	id = SVO.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.9" }
+	title = SVO.9.t
+	desc = SVO.9.desc
+	picture = GFX_report_event_russia_soldier_weapon_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.9.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.37
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = { #surrender, for MEN
+	id = SVO.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.10"}
+	title = SVO.10.t
+	desc = SVO.10.desc
+	picture = GFX_report_event_russia_burning_village
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.10.a
+		ai_chance = { factor = 1 }
+		transfer_state = 814
+		add_state_core = 814
+		SVO = {
+			remove_state_core = 814
+			white_peace = MEN
+			white_peace = MAN
+			white_peace = JAP
+			white_peace = CHI
+			save_global_event_target_as = losing_country
+		}
+		MEN = {
+			save_global_event_target_as = winning_country
+		}
+		hidden_effect = {
+			MEN = {
+				add_named_threat = {
+					threat = -5
+					name = threat.27.t
+				}
+				TNO_World_Tension_subtract_5 = yes
+			}
+		}
+		set_global_flag = war_won
+		set_global_flag = show_peace_popup_alert
+	}
+}
+
+country_event = { #Defeat
+	id = SVO.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.11" }
+	title = SVO.11.t
+	desc = SVO.11.desc
+
+	picture = GFX_report_event_russia_soldier_weapon_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.11.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.41
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = { #Give More Rights
+	id = SVO.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.14"}
+	title = SVO.15.t
+	desc = SVO.15.desc
+	picture = GFX_report_event_russia_trade_caravan
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.15.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+#SVO.16 is already used 
+
+country_event = { #Peace at least
+	id = SVO.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.17"}
+	title = SVO.17.t
+	desc = SVO.17.desc
+	picture = GFX_report_event_russia_sack_of_tashkent
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.17.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Unbalanced Army
+	id = SVO.18
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO.18"
+	}
+	title = SVO.18.t
+	desc = SVO.18.desc
+	picture = GFX_report_event_russia_court
+
+	is_triggered_only = yes
+
+	option = { #
+		name = SVO.18.a
+		ai_chance = { factor = 1 }
+		
+	}
+	option = { #
+		name = SVO.18.b
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Oyrotia Ultimatum
+	id = SVO.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.19"}
+	title = SVO.19.t
+	desc = SVO.19.desc
+	picture = GFX_report_event_russia_orenburg2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Accept
+		name = SVO.19.a
+		ai_chance = { factor = 1 }
+		SVO = {
+			country_event = {
+				id = SVO.20
+				days = 1
+			}
+		}
+	}
+	option = { #Refuse
+		name = SVO.19.a
+		ai_chance = { factor = 1 }
+		SVO = {
+			country_event = {
+				id = SVO.21
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Oyrotia Accepted
+	id = SVO.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.20"}
+	title = SVO.20.t
+	desc = SVO.20.desc
+	picture = GFX_report_event_russian_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.20.a
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = ALT
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = { #Oyrotia Refused, War
+	id = SVO.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.21"}
+	title = SVO.21.t
+	desc = SVO.21.desc
+	picture = GFX_report_event_russia_court
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.21.a
+		ai_chance = { factor = 1 }
+		set_country_flag = ALT_refused
+		complete_national_focus = SVO_March_to_Oyrotia
+		declare_war_on = {
+			target = ALT
+			type = annex_everything
+		}
+	}
+}
+
+country_event = { #Decide Our Future
+	id = SVO.22
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO.22"
+	}
+	title = SVO.22.t
+	desc = SVO.22.desc
+	picture = GFX_report_event_russia_special_forces
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.22.a
+		trigger = {
+			OR = {
+				is_ai = yes
+				check_variable = { SVO_MON_divide > 0 }
+				check_variable = { SVO_MON_divide = 0 }
+			}
+		}
+		clear_variable = SVO_MON_divide
+	}
+
+	option = { #
+		name = SVO.22.b
+		custom_effect_tooltip = SVO.22.b.tt
+		trigger = {
+			is_ai = no
+			OR = {
+				check_variable = { SVO_MON_divide < 0 }
+				check_variable = { SVO_MON_divide = 0 }
+			}
+		}
+		custom_effect_tooltip = SVO.22.b_tt
+		create_country_leader = {
+			name = "Jamiyangiin Lkhagvasuren"
+			desc = "POLITICS_JAMIYANGIIN_LKHAGVASUREN_DESC"
+			picture = "Portrait_Svobodnyy_Organ_Jamiyangiin_Lkhagvasuren.dds"
+			expire = "1999.1.1"
+			ideology = communist_subtype
+		}
+		hidden_effect = {
+			load_focus_tree = { tree = SVO_blank_tree keep_completed = yes }
+		}
+		set_country_flag = SVO_MON
+		clr_country_flag = SVO_red_army_decision
+		clear_variable = SVO_MON_divide
+	}
+}
+
+country_event = { #Full Modernized Army
+	id = SVO.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.23"}
+	title = SVO.23.t
+	desc = SVO.23.desc
+	picture = GFX_report_event_russia_war_planning
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.23.a
+		ai_chance = { factor = 1 }
+		clr_country_flag = SVO_red_army_decision
+	}
+}
+
+country_event = { #Organ gaming
+	id = SVO.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.24"}
+	title = SVO.24.t
+	desc = SVO.24.desc
+	picture = GFX_report_event_russia_tank_crew
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.24.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Infiltrate novosibirsk army
+	id = SVO.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.25"}
+	title = SVO.25.t
+	desc = SVO.25.desc
+	picture = GFX_report_event_russia_city_ulan_ude_buryatia
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.25.a
+		ai_chance = { factor = 1 }
+		every_army_leader = {
+			add_temporary_buff_to_units = {
+				combat_offense = -0.05
+				combat_defense = -0.05
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = { #Infiltrate novosibirsk supply lines
+	id = SVO.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.26"}
+	title = SVO.26.t
+	desc = SVO.26.desc
+	picture = GFX_report_event_russia_tribunal
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.26.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #doing stuff in Tomsk
+	id = SVO.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.27"}
+	title = SVO.27.t
+	desc = SVO.27.desc
+	picture = GFX_report_event_russian_crowd
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.27.a
+		ai_chance = { factor = 1 }
+		add_war_support = -0.10
+		hidden_effect = {
+			country_event = { id = SVO.16 days = 5 }
+		}
+	}
+}
+
+country_event = { #
+	id = SVO.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.16"}
+	title = SVO.16.t
+	desc = SVO.16.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.16.a
+	}
+}
+
+
+country_event = { #hidden event to trigger an event chain
+	id = SVO.28
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO.28"
+		if = {
+			limit = {
+				has_country_flag = SVO_send_guns_to_MON
+			}
+			random_list = {
+				50 = { #good
+					country_event = {
+						id = SVO.29
+						days = 30
+						random = 240
+					}
+					modifier = {
+						factor = 2
+						MON = {
+							surrender_progress < 0.1
+						}
+					}
+				}
+				50 = { #bad
+					country_event = {
+						id = SVO.30
+						days = 30
+						random = 240
+					}
+					modifier = {
+						factor = 2
+						MON = {
+							surrender_progress > 0.3
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SVO_send_men_to_MON
+			}
+			random_list = {
+				50 = { #good
+					country_event = {
+						id = SVO.31
+						days = 30
+						random = 240
+					}
+					modifier = {
+						factor = 2
+						MON = {
+							surrender_progress < 0.1
+						}
+					}
+				}
+				50 = { #bad
+					country_event = {
+						id = SVO.32
+						days = 30
+						random = 240
+					}
+					modifier = {
+						factor = 2
+						MON = {
+							surrender_progress > 0.3
+						}
+					}
+				}
+			}
+		}
+	}
+
+	trigger = {
+		MON = { has_war_with = MEN }
+	}
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+}
+
+country_event = { #good guns
+	id = SVO.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.29"}
+	title = SVO.29.t
+	desc = SVO.29.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.29.a
+		ai_chance = { factor = 1 }
+		country_event = {
+			id = SVO.34
+			days = 30
+			random = 240
+		}
+	}
+	option = { #
+		name = SVO.29.b
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #bad guns
+	id = SVO.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.30"}
+	title = SVO.30.t
+	desc = SVO.30.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.30.a
+		ai_chance = { factor = 1 }
+		country_event = {
+			id = SVO.33
+			days = 30
+			random = 240
+		}
+	}
+	option = { #
+		name = SVO.30.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.35
+				days = 15
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #good men
+	id = SVO.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.31"}
+	title = SVO.31.t
+	desc = SVO.31.desc
+	picture = GFX_report_event_russia_dacha
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.31.a
+		ai_chance = { factor = 1 }
+		country_event = {
+			id = SVO.33
+			days = 30
+			random = 240
+		}
+	}
+	option = { #
+		name = SVO.31.b
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #bad men
+	id = SVO.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.32"}
+	title = SVO.32.t
+	desc = SVO.32.desc
+	picture = GFX_report_event_russia_nkvd_officer
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.32.a
+		ai_chance = { factor = 1 }
+		country_event = {
+			id = SVO.34
+			days = 30
+			random = 240
+		}
+	}
+	option = { #
+		name = SVO.29.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.35
+				days = 15
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #doctrine review #1
+	id = SVO.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.33"}
+	title = SVO.33.t
+	desc = SVO.33.desc
+	picture = GFX_report_event_russian_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.33.a
+		ai_chance = { factor = 1 }
+		add_tech_bonus = {
+			bonus = 0.20
+			uses = 1
+			category = cat_combined_operations
+		}
+	}
+	option = { #
+		name = SVO.33.b
+		ai_chance = { factor = 1 }
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = cat_strategic_theorem
+		}
+	}
+}
+
+country_event = { #doctrine review #2
+	id = SVO.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.34"}
+	title = SVO.34.t
+	desc = SVO.34.desc
+	picture = GFX_report_event_russia_trade_caravan
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.34.a
+		ai_chance = { factor = 1 }
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = cat_combined_operations
+		}
+	}
+	option = { #
+		name = SVO.34.b
+		ai_chance = { factor = 1 }
+		add_tech_bonus = {
+			bonus = 0.20
+			uses = 1
+			category = cat_maneuver_warfare
+		}
+	}
+}
+
+country_event = { #army failure
+	id = SVO.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.35"}
+	title = SVO.35.t
+	desc = SVO.35.desc
+	picture = GFX_report_event_russia_forest_battle
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.35.a
+		ai_chance = { factor = 1 }
+		army_experience = -20
+	}
+}
+
+country_event = { #end of MCW
+	id = SVO.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.36"}
+	title = SVO.36.t
+	desc = SVO.36.desc
+	picture = GFX_report_event_russian_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.36.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #mongolian support
+	id = SVO.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.37"}
+	title = SVO.37.t
+	desc = SVO.37.desc
+	picture = GFX_report_event_russia_food_line
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.37.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.38
+				days = 10
+				random = 120
+			}
+		}
+	}
+	option = { #
+		name = SVO.37.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.39
+				days = 10
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #russians doing shit
+	id = SVO.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.38"}
+	title = SVO.38.t
+	desc = SVO.38.desc
+	picture = GFX_report_event_russia_food_line
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.38.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.46
+				days = 20
+				random = 120
+			}
+		}
+	}
+	option = { #
+		name = SVO.38.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_country_flag = SVO_38
+			country_event = {
+				id = SVO.40
+				days = 25
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #mongolians doing shit
+	id = SVO.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.39"}
+	title = SVO.39.t
+	desc = SVO.39.desc
+	picture = GFX_report_event_russia_soldiers_bombed_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.39.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.46
+				days = 20
+				random = 120
+			}
+		}
+	}
+	option = { #
+		name = SVO.39.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_country_flag = SVO_39
+			country_event = {
+				id = SVO.40
+				days = 25
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #army crackdown
+	id = SVO.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.40"}
+	title = SVO.40.t
+	desc = SVO.40.desc
+	picture = GFX_report_event_russian_refugees
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.40.a
+		ai_chance = { factor = 1 }
+		SIB_increase_worker_tension_med = yes
+		if = {
+			limit = {
+				has_country_flag = SVO_38
+			}
+			add_to_variable = {
+				SVO_MON_divide = -0.50
+				tooltip = SVO_MON_faction_2_tt
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = SVO_39
+			}
+			add_to_variable = {
+				SVO_MON_divide = 0.50
+				tooltip = SVO_RUS_faction_2_tt
+			}
+		}
+		clr_country_flag = SVO_38
+		clr_country_flag = SVO_39
+	}
+}
+
+country_event = { #russian support
+	id = SVO.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.41"}
+	title = SVO.41.t
+	desc = SVO.41.desc
+	picture = GFX_report_event_russia_kazakh_rider
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.41.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.42
+				days = 15
+			}
+		}
+	}
+}
+
+country_event = { #purge the mongolian faction
+	id = SVO.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.42"}
+	title = SVO.42.t
+	desc = SVO.42.desc
+	picture = GFX_report_event_russian_commissar
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #yes
+		name = SVO.42.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			random_list = {
+				45 = {
+					country_event = {
+						id = SVO.43
+						days = 15
+					}
+				}
+				55 = {
+					country_event = {
+						id = SVO.45
+						days = 15
+					}
+				}
+			}
+		}
+	}
+
+	option = { #no
+		name = SVO.42.b
+		ai_chance = { factor = 1 }
+		add_stability = 0.05
+	}
+}
+
+country_event = { #infiltration sucess
+	id = SVO.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.43"}
+	title = SVO.43.t
+	desc = SVO.43.desc
+	picture = GFX_report_event_russian_handshake
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.43.a
+		ai_chance = { factor = 1 }
+		country_event = {
+			id = SVO.44
+			days = 20
+			random = 120
+		}
+	}
+}
+
+country_event = { #final move
+	id = SVO.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.44"}
+	title = SVO.44.t
+	desc = SVO.44.desc
+	picture = GFX_report_event_russian_commissar
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.44.a
+		ai_chance = { factor = 1 }
+		set_variable = { SVO_MON_divide = -2 }
+	}
+}
+
+country_event = { #infiltration failure
+	id = SVO.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.45"}
+	title = SVO.45.t
+	desc = SVO.45.desc
+	picture = GFX_report_event_russia_sack_of_tashkent
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.45.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.10
+		hidden_effect = {
+			country_event = {
+				id = SVO.46
+				days = 20
+				random = 120
+			}
+		}
+	}
+}
+
+country_event = { #agreement
+	id = SVO.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.46"}
+	title = SVO.46.t
+	desc = SVO.46.desc
+	picture = GFX_report_event_russia_kazakh_uranium_mine
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.46.a
+		country_event = { id = SVO.47 days = 5 }
+	}
+	option = { #
+		name = SVO.46.b
+		ai_chance = { factor = 1 }
+		add_stability = -0.10
+	}
+}
+
+country_event = { #agreement
+	id = SVO.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO.47"}
+	title = SVO.47.t
+	desc = SVO.47.desc
+	picture = GFX_report_event_russia_vyatka
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.47.a
+		add_to_variable = { SVO_MON_divide = 1 }
+	}
+	option = { #
+		name = SVO.47.b
+		add_to_variable = { SVO_MON_divide = -1 }
+	}
+}
+
+country_event = { #eliminate anarchists elements
+	id = SVO.52
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.52" }
+	title = SVO.52.t
+	desc = SVO.52.desc
+	picture = GFX_report_event_russian_sailors
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.52.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Ruriks madness
+	id = SVO.53
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.53" }
+	title = SVO.53.t
+	desc = SVO.53.desc
+	picture = GFX_report_event_russia_airborne_troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.53.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #Royal Family Fate
+	id = SVO.54
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.54" }
+	title = SVO.54.t
+	desc = SVO.54.desc
+	picture = GFX_report_event_russian_refugees
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.54.a
+		ai_chance = { factor = 1 }
+		add_political_power = 25
+		country_event = {
+			id = SVO.54
+			days = 5
+		}
+	}
+	option = { #
+		name = SVO.54.b
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #execution
+	id = SVO.55
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.55" }
+	title = SVO.55.t
+	desc = SVO.55.desc
+	picture = GFX_report_event_russia_special_forces
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.55.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+country_event = { #destroy krasnoyarsk remnants #1
+	id = SVO.57
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.57" }
+	title = SVO.57.t
+	desc = SVO.57.desc
+	picture = GFX_report_event_russian_crowd
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.57.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.58
+				days = 15
+				random = 120
+			}
+		}
+	}
+	option = { #
+		name = SVO.57.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {
+				id = SVO.59
+				days = 40
+				random = 240
+			}
+		}
+	}
+}
+
+country_event = { #destroy krasnoyarsk remnants #2
+	id = SVO.58
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.58" }
+	title = SVO.58.t
+	desc = SVO.58.desc
+	picture = GFX_report_event_russia_famine
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.58.a
+		ai_chance = { factor = 1 }
+		add_state_core = 757
+	}
+}
+
+country_event = { #destroy krasnoyarsk remnants #3
+	id = SVO.59
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.59" }
+	title = SVO.59.t
+	desc = SVO.59.desc
+	picture = GFX_report_event_russia_city_ulan_ude_buryatia
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.59.a
+		ai_chance = { factor = 1 }
+		add_state_core = 757
+	}
+}
+
+country_event = { #united central siberia
+	id = SVO.61
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.61" }
+	title = SVO.61.t
+	desc = SVO.61.desc
+	picture = GFX_report_event_russia_soldiers
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.61.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+#REGIONAL EVENTS
+
+country_event = { #new capital
+	id = SVO.62
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.62" }
+	title = SVO.62.t
+	desc = SVO.62.desc
+	picture = GFX_report_event_russia_soldiers_relaxing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Novosibirsk
+		name = SVO.62.a
+		ai_chance = { factor = 1 }
+		set_capital = 570
+	}
+	option = { #Krasnoyarsk
+		name = SVO.62.b
+		ai_chance = { factor = 1 }
+		set_capital = 757
+	}
+	option = { #Kemerovo
+		name = SVO.62.c
+		ai_chance = { factor = 1 }
+		set_capital = 569
+	}
+}
+
+country_event = { #Vasilevsky Speech
+	id = SVO.66
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.66" }
+	title = SVO.66.t
+	desc = SVO.66.desc
+	picture = GFX_report_event_russian_refugees
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.66.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The new Goverment Commision
+	id = SVO.67
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.67" }
+	title = SVO.67.t
+	desc = SVO.67.desc
+	picture = GFX_report_event_russia_war_planning
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.67.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Military won the Conference
+	id = SVO.68
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.68" }
+	title = SVO.68.t
+	desc = SVO.68.desc
+	picture = GFX_report_event_russia_frogmen
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.68.a
+		ai_chance = { factor = 1 }
+		add_ideas = SVO_Mil_Gov
+		set_country_flag = SVO_military
+		country_event = { id = SVO.66 days = 15 }
+		hidden_effect = {
+			country_event = { id = SVO.101 days = 50 random_days = 10 }
+		}
+	}
+}
+
+country_event = { #The Civilians won the Conference
+	id = SVO.69
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.69" }
+	title = SVO.69.t
+	desc = SVO.69.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.69.a
+		ai_chance = { factor = 1 }
+		add_ideas = SVO_Civ_Gov
+		set_country_flag = SVO_civilian
+		country_event = { id = SVO.67 days = 15 }
+		hidden_effect = {
+			country_event = { id = SVO.98 days = 50 random_days = 10 }
+		}
+	}
+}
+
+country_event = { #PRC Deadlock - No one can decide on anything
+	id = SVO.70
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.70" }
+	title = SVO.70.t
+	desc = SVO.70.desc
+	picture = GFX_report_event_russia_advertisements
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #military brawls citizenry
+		name = SVO.70.a
+		ai_chance = { factor = 1 }
+		trigger = { has_completed_focus = SVO_A_Way_Of_Hope }
+		country_event = { id = SVO.71 hours = 1 }
+	}
+	option = { #citizenry continues debate
+		name = SVO.70.b
+		ai_chance = { factor = 1 }
+		trigger = { has_completed_focus = SVO_Defenders_Of_The_Union }
+		country_event = { id = SVO.75 hours = 1 }
+	}
+}
+
+country_event = { #PRC Deadlock - Military shoots a bunch of citizens
+	id = SVO.71
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.71" }
+	title = SVO.71.t
+	desc = SVO.71.desc
+	picture = GFX_report_event_russia_nkvd_officer
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #this is our shot
+		name = SVO.71.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+		if = {
+			limit = { check_variable = { SVO_Civilian_Power < 20 } }
+			country_event = { id = SVO.72 hours = 1 }
+		}
+		else = { country_event = { id = SVO.73 hours = 1 } }
+		}
+	}
+	option = { #fuck it, retreat
+		name = SVO.71.b
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.82 days = 4 }
+	}
+}
+
+country_event = { #PRC Deadlock - the citizenry is removed as a threat entirely, this is a coup
+	id = SVO.72
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.71" }
+	title = SVO.72.t
+	desc = SVO.72.desc
+	picture = GFX_report_event_russia_soldiers_relaxing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #based
+		name = SVO.72.a
+		ai_chance = { factor = 1 }
+		SVO_military_coup = yes
+	}
+}
+
+country_event = { #PRC Deadlock - the citizenry fights back at a reasonable effort
+	id = SVO.73
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.73" }
+	title = SVO.73.t
+	desc = SVO.73.desc
+	picture = GFX_report_event_russia_airborne_troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #ONE LAST PUSH
+		name = SVO.73.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+		if = {
+			limit = { check_variable = { SVO_Civilian_Power < 30 } }
+			country_event = { id = SVO.72 hours = 1 }
+		}
+		else = { country_event = { id = SVO.74 hours = 1 } }
+		}
+	}
+	
+	option = { #we need to retreat
+		name = SVO.73.b
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.82 days = 4 }
+	}
+}
+
+country_event = { #PRC Deadlock - citizen counter coup wtf
+	id = SVO.74
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.74" }
+	title = SVO.74.t
+	desc = SVO.74.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #damn
+		name = SVO.74.a
+		ai_chance = { factor = 1 }
+		SVO_citizen_coup = yes
+	}
+}
+
+country_event = { #PRC Deadlock - citizenry continues debating army gets impatient
+	id = SVO.75
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.75" }
+	title = SVO.75.t
+	desc = SVO.75.desc
+	picture = GFX_report_event_russia_special_forces
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #wait and see what they do
+		name = SVO.75.a
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.76 hours = 2 }
+	}
+	
+	option = { #force them to back down with threats
+		name = SVO.75.b
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.81 hours = 1 }
+	}
+}
+
+country_event = { #PRC Deadlock - army starts shooting wtffff
+	id = SVO.76
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.76" }
+	title = SVO.76.t
+	desc = SVO.76.desc
+	picture = GFX_report_event_russia_tribunal
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #charge them into a surrender
+		name = SVO.76.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+		if = { 
+			limit = { check_variable = { SVO_Army_Power < 20 } }
+			country_event = { id = SVO.78 hours = 1 }
+		}
+		else = { country_event = { id = SVO.79 hours = 1 } }
+		}
+	}
+	
+	option = { #hide and wait
+		name = SVO.76.b
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.77 hours = 1 }
+	}
+}
+
+country_event = { #PRC Deadlock - now we charge
+	id = SVO.77
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.77" }
+	title = SVO.77.t
+	desc = SVO.77.desc
+	picture = GFX_report_event_russia_city_ulan_ude_buryatia
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #force them to surrender
+		name = SVO.77.a
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.78 hours = 1 }
+	}
+}
+
+country_event = { #PRC Deadlock - citizen counter-coup based
+	id = SVO.78
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.78" }
+	title = SVO.78.t
+	desc = SVO.78.desc
+	picture = GFX_report_event_russia_orenburg2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #force them to surrender
+		name = SVO.78.a
+		ai_chance = { factor = 1 }
+		SVO_citizen_coup = yes
+	}
+}
+
+country_event = { #PRC Deadlock - we're getting eaten alive
+	id = SVO.79
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.19" }
+	title = SVO.79.t
+	desc = SVO.79.desc
+	picture = GFX_report_event_russian_labor
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #surrender
+		name = SVO.79.a
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.80 hours = 1 }
+	}
+	
+	option = { #charge through
+		name = SVO.79.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+		if = { 
+			limit = { check_variable = { SVO_Army_Power < 30 } }
+			country_event = { id = SVO.78 hours = 1 }
+		}
+		else = {country_event = { id = SVO.80 hours = 1 } }
+		}
+	}
+}
+
+country_event = { #PRC Deadlock - military does coup
+	id = SVO.80
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.80" }
+	title = SVO.80.t
+	desc = SVO.80.desc
+	picture = GFX_report_event_russian_handshake
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #FUCk
+		name = SVO.80.a
+		ai_chance = { factor = 1 }
+		SVO_military_coup = yes
+	}
+}
+
+country_event = { #PRC Deadlock - Intimidation tactic works
+	id = SVO.81
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.81" }
+	title = SVO.81.t
+	desc = SVO.81.desc
+	picture = GFX_report_event_russian_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #based, now we can co-exist
+		name = SVO.81.a
+		ai_chance = { factor = 1 }
+		set_country_flag = SVO_civilian
+	}
+}
+
+country_event = { #PRC Deadlock - retreat
+	id = SVO.82
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.82" }
+	title = SVO.82.t
+	desc = SVO.82.desc
+	picture = GFX_report_event_russian_commissar
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #based, now we can co-exist
+		name = SVO.82.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Krasnoyarsk Conference planned
+	id = SVO.83
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.83" }
+	title = SVO.83.t
+	desc = SVO.83.desc
+	picture = GFX_report_event_russia_novotroitsk
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #hmm now we should pick a side
+		name = SVO.83.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Traitors on Trial
+	id = SVO.84
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.84" }
+	title = SVO.84.t
+	desc = SVO.84.desc
+	picture = GFX_report_event_russia_vorkutlag
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #kill em
+		name = SVO.84.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = SVO_raise_civilian_effect_loyalty_tt_big
+		add_to_variable = { SVO_Civilian_Loyalty = 30 }
+		custom_effect_tooltip = SVO_lower_military_effect_loyalty_tt
+		add_to_variable = { SVO_Army_Loyalty = -10 }
+	}
+	
+	option = { #imprison
+		name = SVO.83.b
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = SVO_raise_civilian_effect_loyalty_tt
+		add_to_variable = { SVO_Civilian_Loyalty = 15 }
+		
+	}
+	
+	option = { #fine them
+		name = SVO.83.c
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = SVO_lower_civilian_effect_loyalty_tt
+		add_to_variable = { SVO_Civilian_Loyalty = -5 }
+		
+	}
+}
+
+country_event = { #The Rebels Situation
+	id = SVO.85
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.85" }
+	title = SVO.85.t
+	desc = SVO.85.desc
+	picture = GFX_report_event_russian_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO.85.a
+		
+	}
+}
+
+country_event = { #Office being Replaced
+	id = SVO.86
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.86" }
+	title = SVO.86.t
+	desc = SVO.86.desc
+	picture = GFX_report_event_russia_dacha
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.86.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Siberian Border
+	id = SVO.87
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.87" }
+	title = SVO.87.t
+	desc = SVO.87.desc
+	picture = GFX_report_event_russia_sack_of_tashkent
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.87.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #The Siberian Trains
+	id = SVO.88
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.88" }
+	title = SVO.88.t
+	desc = SVO.88.desc
+	picture = GFX_report_event_russian_irregulars
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.88.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #A New Union
+	id = SVO.89
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.89" }
+	title = SVO.89.t
+	desc = SVO.89.desc
+	picture = GFX_report_event_russia_novotroitsk_cemetary
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.89.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Budget for Economy
+	id = SVO.90
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.90" }
+	title = SVO.90.t
+	desc = SVO.90.desc
+	picture = GFX_report_event_russia_tank_crew
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.90.a
+		ai_chance = { factor = 1 }
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = { #
+		name = SVO.90.b
+		ai_chance = { factor = 1 }
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory 
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = { #USA Embassy
+	id = SVO.91
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.91" }
+	title = SVO.91.t
+	desc = SVO.91.desc
+	picture = GFX_report_event_russia_female_soldiers_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.91.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Foreign Weapons Event
+	id = SVO.92
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.92" }
+	title = SVO.92.t
+	desc = SVO.92.desc
+	picture = GFX_report_event_russia_partisan
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.92.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #the New Universities
+	id = SVO.93
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.93" }
+	title = SVO.93.t
+	desc = SVO.93.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.93.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = SVO.94 days = 15 random_days = 10 }
+		}
+	}
+	option = { #
+		name = SVO.93.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = SVO.95 days = 15 random_days = 10 }
+		}
+	}
+}
+
+country_event = { #the New Universities - Integrated
+	id = SVO.94
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.94" }
+	title = SVO.94.t
+	desc = SVO.94.desc
+	picture = GFX_report_event_russia_soldier_weapon_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.94.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #the New Universities - Purge
+	id = SVO.95
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.95" }
+	title = SVO.95.t
+	desc = SVO.95.desc
+	picture = GFX_report_event_russia_red_army_march
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.95.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Soviet Navy
+	id = SVO.96
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.96" }
+	title = SVO.96.t
+	desc = SVO.96.desc
+	picture = GFX_report_event_russia_vyatka
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.96.a
+		ai_chance = { factor = 1 }
+		country_event = { id = SVO.97 days = 180 random = 30 }
+	}
+}
+
+country_event = { #The First Ship
+	id = SVO.97
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.97" }
+	title = SVO.97.t
+	desc = SVO.97.desc
+	picture = GFX_report_event_russia_orenburg
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.97.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Army's Elections Fate
+	id = SVO.98
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.98" }
+	title = SVO.98.t
+	desc = SVO.98.desc
+	picture = GFX_report_event_russia_soldiers_relaxing
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.98.a
+		ai_chance = { factor = 1 }
+		remove_ideas = SVO_democratic_military
+		hidden_effect = {
+			country_event = { id = SVO.99 days = 180 random = 30 }
+		}
+	}
+	option = { #
+		name = SVO.98.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = SVO.100 days = 180 random = 30 }
+		}
+	}
+}
+
+country_event = { #Army's Elections Fate - Abolish
+	id = SVO.99
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.99" }
+	title = SVO.99.t
+	desc = SVO.99.desc
+	picture = GFX_report_event_russia_advertisements
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.99.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Army's Elections Fate - Maintain
+	id = SVO.100
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.100" }
+	title = SVO.100.t
+	desc = SVO.100.desc
+	picture = GFX_report_event_russia_airborne_troops
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.100.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Military ask for more Influence
+	id = SVO.101
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.101" }
+	title = SVO.101.t
+	desc = SVO.101.desc
+	picture = GFX_report_event_russia_vyatka
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.101.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = SVO.102 days = 180 random = 30 }
+		}
+	}
+	option = { #
+		name = SVO.101.b
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = { id = SVO.103 days = 180 random = 30 }
+		}
+	}
+}
+
+country_event = { #Corruption in the Goverment
+	id = SVO.102
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.102" }
+	title = SVO.102.t
+	desc = SVO.102.desc
+	picture = GFX_report_event_russia_devastated_village
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.102.a
+		ai_chance = { factor = 1 }
+		add_political_power = 20
+	}
+}
+
+country_event = { #Army Incident
+	id = SVO.103
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO.103" }
+	title = SVO.103.t
+	desc = SVO.103.desc
+	picture = GFX_report_event_russian_handshake
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = SVO.103.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.10
+	}
+}
+
+add_namespace = SVO_flavor
+
+country_event = { #Distant Days
+	id = SVO_flavor.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO_flavor.1"}
+	title = SVO_flavor.1.t
+	desc = SVO_flavor.1.desc
+	picture = GFX_report_event_russia_orenburg
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO_flavor.1.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #In Old Ossetia
+	id = SVO_flavor.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO_flavor.2"}
+	title = SVO_flavor.2.t
+	desc = SVO_flavor.2.desc
+	picture = GFX_report_event_vodka
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO_flavor.2.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Echoes of Khalkhin Gol
+	id = SVO_flavor.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO_flavor.3"}
+	title = SVO_flavor.3.t
+	desc = SVO_flavor.3.desc
+	picture = GFX_report_event_russia_kazakh_riders_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO_flavor.3.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #Path of Peace
+	id = SVO_flavor.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO_flavor.4"}
+	title = SVO_flavor.4.t
+	desc = SVO_flavor.4.desc
+	picture = GFX_report_event_iberia_home_office_desk
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO_flavor.4.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #For Glory Once More
+	id = SVO_flavor.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SVO_flavor.5"}
+	title = SVO_flavor.5.t
+	desc = SVO_flavor.5.desc
+	picture = GFX_report_event_russia_food_line
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #
+		name = SVO_flavor.5.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+add_namespace = SVO_debug
+
+
+country_event = { #
+	id = SVO_debug.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event SVO_debug.1" }
+	title = SVO_debug.1
+	desc = SVO_debug.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "national debug"
+		unite_russia = yes
+		every_owned_state = {
+			limit = {
+				NOT = { state = 814 }
+			}
+			SVO = { add_state_core = PREV }
+		}
+		every_other_country = {
+			limit = {
+				is_central_asian_nation = yes
+			}
+			ROOT = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		transfer_state = 216
+		transfer_state = 213
+		transfer_state = 215
+		transfer_state = 147
+		transfer_state = 1359
+		transfer_state = 722
+		transfer_state = 137
+		transfer_state = 783
+		transfer_state = 230
+		transfer_state = 192
+		transfer_state = 198
+		218 = {
+			set_demilitarized_zone = no
+		}
+		228 = {
+			set_demilitarized_zone = no
+		}
+		annex_country = {
+			target = MCW
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = OST
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = UKR
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = CAU
+			transfer_troops = yes
+		}
+	}
+
+	option = { #
+		name = "regional debug"
+		load_focus_tree = { tree = SVO_regional_tree keep_completed = yes }
+		clear_variable = SVO_MON_divide
+	}
+	option = { #
+		name = "update dynamic modifier vars"
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+country_event = {
+	id = SVO_debug.2
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO_debug.2"
+		set_variable = { SVO_Exclusive_1_2_Frame = 1 }
+	}
+	hidden = yes
+	is_triggered_only = yes
+
+	option = { #
+		name = SVO_debug.2.a
+	}
+}
+
+country_event = {
+	id = SVO_debug.3
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO_debug.3"
+		set_variable = { SVO_Exclusive_3_4_Frame = 1 }
+	}
+	hidden = yes
+	is_triggered_only = yes
+
+	option = { #
+		name = SVO_debug.3.a
+	}
+}
+
+country_event = {
+	id = SVO_debug.4
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO_debug.4"
+		set_variable = { SVO_Exclusive_5_6_Frame = 1 }
+	}
+	hidden = yes
+	is_triggered_only = yes
+
+	option = { #
+		name = SVO_debug.4.a
+	}
+}
+
+country_event = {
+	id = SVO_debug.5
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event SVO_debug.5"
+		set_variable = { SVO_Exclusive_7_8_Frame = 1 }
+	}
+	hidden = yes
+	is_triggered_only = yes
+
+	option = { #
+		name = SVO_debug.5.a
+	}
+}

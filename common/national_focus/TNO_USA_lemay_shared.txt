@@ -1,0 +1,991 @@
+shared_focus = {
+	id = USA_a_bite_off_the_big_cigar
+	icon = GFX_USA_Bite_Off_The_Big_Cigar
+	cost = 4
+	x = 11
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_a_bite_off_the_big_cigar"
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = USA_one_hell_of_a_situation
+	icon = GFX_focus_usa_america_is_on_fire
+	cost = 4
+	x = 0
+	y = 1
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_a_bite_off_the_big_cigar
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_one_hell_of_a_situation"
+		country_event = {	id = lemay.1 days = 4}
+	}
+}
+
+shared_focus = { #NPP FR
+	id = USA_hardest_of_lines
+	icon = GFX_USA_Stacking_The_Bench
+	cost = 4
+	x = -3
+	y = 2
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_one_hell_of_a_situation
+	}
+	mutually_exclusive = {
+		focus = USA_moderate_roots
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_hardest_of_lines"
+		USA_LEMAY_LEGACY_OF_WALLACE_SEGREGATION = yes
+	}
+}
+
+shared_focus = {
+	id = USA_wrangle_the_NPP
+	icon = GFX_USA_secure_party_npp
+	cost = 4
+	x = -4
+	y = 3
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_hardest_of_lines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_wrangle_the_NPP"
+		custom_effect_tooltip = LEMAY_Meeting_Harrington
+		country_event = {	id = lemay.2 days = 2}
+	}
+}
+
+shared_focus = {
+	id = USA_promise_what_they_want
+	icon = GFX_USA_Promise_What_They_Want
+	cost = 4
+	x = -4
+	y = 4
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_wrangle_the_NPP
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_promise_what_they_want"
+		add_stability = 0.05
+		custom_effect_tooltip = USA_add_NPP_unity
+		add_stability = 0.05
+		add_to_variable = { USA_NPP_unity = 1 }
+	}
+}
+
+shared_focus = {
+	id = USA_allies_across_the_aisle
+	icon = GFX_USA_Across_the_Aisle
+	cost = 4
+	x = -2
+	y = 3
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_hardest_of_lines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_allies_across_the_aisle"
+		country_event = {	id = lemay.3 days = 2}
+		custom_effect_tooltip = LEMAY_Meeting_Scoop
+	}
+}
+
+shared_focus = {
+	id = USA_revanchist_rhetoric
+	icon = GFX_Generic_America_Defeat_Japan
+	cost = 4
+	x = -2
+	y = 4
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_allies_across_the_aisle
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_revanchist_rhetoric"
+		add_war_support = 0.05
+		USA_LEMAY_LEGACY_OF_WALLACE_SEGREGATION = yes
+		hidden_effect = {
+		every_owned_state = {
+			limit = { can_have_elections_in_state = yes}
+			subtract_from_variable = { NPP_Y_bonus_popularity = 0.02}
+			subtract_from_variable = { NPP_L_bonus_popularity = 0.02}
+			if = {
+				limit = { check_variable = { NPP_Y_bonus_popularity < 0}}
+				set_variable = { NPP_Y_bonus_popularity = 0.001}
+			}
+			if = {
+				limit = { check_variable = { NPP_L_bonus_popularity < 0}}
+				set_variable = { NPP_L_bonus_popularity = 0.001}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_like_wallace_never_left
+	icon = GFX_USA_the_wallace_presidency
+	cost = 4
+	x = -3
+	y = 5
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_promise_what_they_want
+	}
+	prerequisite = {
+		focus = USA_revanchist_rhetoric
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_like_wallace_never_left"
+		country_event = {
+			id = lemay.4
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_select_integration
+	icon = GFX_USA_Select_Integration
+	cost = 4
+	x = -3
+	y = 6
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_like_wallace_never_left
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_select_integration"
+		country_event = {
+			id = lemay.5
+		}
+		subtract_from_variable = { USA_NPP_unity = 1.1 }
+	}
+}
+
+shared_focus = {
+	id = USA_exempt_private_schools
+	icon = GFX_generic_change_law_education
+	cost = 4
+	x = -5
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_select_integration
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_exempt_private_schools"
+		custom_effect_tooltip = econ_misc_income_add_1_percent
+		add_to_variable = { misc_income = 0.01 }
+		subtract_from_variable = { lemay_integration = 1 }
+		subtract_from_variable = { USA_NPP_unity = 0.1 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes}
+				add_to_variable = { RD_D_bonus_popularity = 0.01}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_yearly_integration_quotas
+	icon = GFX_USA_Primary_Education_Act
+	cost = 4
+	x = -3
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_select_integration
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_yearly_integration_quotas"
+		country_event = {
+			id = lemay.6
+		}
+		subtract_from_variable = { USA_NPP_unity = 0.1 }
+		hidden_effect = {
+			country_event = {
+				id = lemay.7
+				days = 365
+			}
+			country_event = {
+				id = lemay.7
+				days = 730
+			}
+			country_event = {
+				id = lemay.7
+				days = 1095
+			}
+			country_event = {
+				id = lemay.7
+				days = 1460
+			}
+			country_event = {
+				id = lemay.7
+				days = 1825
+			}
+			country_event = {
+				id = lemay.7
+				days = 2190
+			}
+			country_event = {
+				id = lemay.7
+				days = 2555
+			}
+			country_event = {
+				id = lemay.7
+				days = 2920
+			}
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes}
+				add_to_variable = { RD_D_bonus_popularity = 0.01}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_service_for_service
+	icon = GFX_GER_SGR_feed_the_soldiers
+	cost = 4
+	x = -1
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_select_integration
+	}
+	select_effect = { USA_LEM_SERVICE_FOR_SERVICE_Bill_setup = yes }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_service_for_service"
+		hidden_effect = {
+		country_event = {
+		id = USA_sen_bill.214
+		days = 1
+		}
+		}
+		custom_effect_tooltip = LEMAY_starts_a_bill
+		add_to_variable = { USA_NPP_unity = 1 }
+	}
+}
+
+shared_focus = {
+	id = USA_right_to_denial
+	icon = GFX_USA_Redrawn_Maps
+	cost = 4
+	x = -5
+	y = 8
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_exempt_private_schools
+	}
+	prerequisite = {
+		focus = USA_yearly_integration_quotas
+	}
+	prerequisite = {
+		focus = USA_service_for_service
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_right_to_denial"
+		custom_effect_tooltip = USA_subtract_NPP_popularity_north
+		custom_effect_tooltip = USA_subtract_NPP_unity
+		TNO_worsen_poverty_low = yes
+		custom_effect_tooltip = USA_add_NPP_popularity_south
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							check_variable = { nationality = 83}
+							check_variable = { nationality = 84}
+						}
+					}
+				}
+				subtract_from_variable = { NPP_popularity = 0.05}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.05}
+				add_to_variable = { RD_popularity = 0.05 }
+				add_to_variable = { RD_R_bonus_popularity = 0.05}
+				US_underdog_RD_2_2 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83}
+							check_variable = { nationality = 84}
+						}
+				}
+				subtract_from_variable = { RD_popularity = 0.2}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+		add_popularity = {
+				ideology = social_liberal
+				popularity = 0.015
+			}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.01
+		}
+		subtract_from_variable = { USA_NPP_unity = 1.3 }
+	}
+}
+
+shared_focus = {
+	id = USA_all_together
+	icon = GFX_USA_The_Party_Above_All
+	cost = 4
+	x = -3
+	y = 8
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_exempt_private_schools
+	}
+	prerequisite = {
+		focus = USA_yearly_integration_quotas
+	}
+	prerequisite = {
+		focus = USA_service_for_service
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_all_together"
+		add_stability = -0.03
+		add_political_power = 50
+		USA_LEMAY_LEGACY_OF_WALLACE_SEGREGATION = yes
+		subtract_from_variable = { USA_NPP_unity = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = USA_protect_our_troops
+	icon = GFX_USA_Retake_Our_Land
+	cost = 4
+	x = -1
+	y = 8
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_exempt_private_schools
+	}
+	prerequisite = {
+		focus = USA_yearly_integration_quotas
+	}
+	prerequisite = {
+		focus = USA_service_for_service
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_protect_our_troops"
+		army_experience = -5
+		add_stability = 0.03
+		custom_effect_tooltip = USA_NPP_FR_popularity_grows_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { NPP_popularity = 0.025}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.03}
+				US_underdog_NPP_2_2 = yes
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_separate_but_equal
+	icon = GFX_USA_Bend_to_the_Segregationists
+	cost = 4
+	x = -4
+	y = 9
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_right_to_denial
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_separate_but_equal"
+		custom_effect_tooltip = USA_subtract_NPP_popularity_north
+		TNO_worsen_academic_base_low = yes
+		custom_effect_tooltip = USA_subtract_NPP_unity
+		custom_effect_tooltip = USA_add_NPP_popularity_south
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							check_variable = { nationality = 83}
+							check_variable = { nationality = 84}
+						}
+					}
+				}
+				subtract_from_variable = { NPP_popularity = 0.05}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.05}
+				add_to_variable = { RD_popularity = 0.05 }
+				add_to_variable = { RD_R_bonus_popularity = 0.05}
+				US_underdog_RD_2_2 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83}
+							check_variable = { nationality = 84}
+						}
+				}
+				subtract_from_variable = { RD_popularity = 0.2}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.05}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+		add_popularity = {
+				ideology = social_liberal
+				popularity = 0.015
+			}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = 0.01
+		}
+		subtract_from_variable = { USA_NPP_unity = 1.3 }
+	}
+}
+
+shared_focus = {
+	id = USA_air_power_above_all
+	icon = GFX_USA_State_Of_The_Art_Technology
+	cost = 4
+	x = -2
+	y = 9
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_protect_our_troops
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_air_power_above_all"
+		air_experience = 15
+		subtract_from_variable = { USA_NPP_unity = 0.1 }
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = interceptor
+		}
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 1
+			category = anti_air_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_personal_problems
+	icon = GFX_PAV_Sunrise_Democracy_Sunset_Dictatorship
+	cost = 4
+	x = -3
+	y = 10
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_separate_but_equal
+	}
+	prerequisite = {
+		focus = USA_all_together
+	}
+	prerequisite = {
+		focus = USA_air_power_above_all
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_personal_problems"
+		country_event = {	id = lemay.8 days = 3}
+		subtract_from_variable = { USA_NPP_unity = 1.1 }
+		custom_effect_tooltip = LEMAY_Quiet_down
+		clr_country_flag = USA_in_crisis
+	}
+}
+
+## other branch
+
+shared_focus = {
+	id = USA_moderate_roots
+	icon = GFX_USA_Forwards_Together
+	cost = 4
+	x = 3
+	y = 2
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_one_hell_of_a_situation
+	}
+	mutually_exclusive = {
+		focus = USA_hardest_of_lines
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_moderate_roots"
+		USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+	}
+
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 10000
+				has_country_flag = BRG_Puma_LeMay_Moderate
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_denounce_wallacism
+	icon = GFX_USA_Denounce_Wallacism
+	cost = 4
+	x = 2
+	y = 3
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_moderate_roots
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_denounce_wallacism"
+		country_event = {	id = lemay.9 days = 2 }
+		custom_effect_tooltip = LEMAY_Meeting_MCS
+		hidden_effect = {
+			367 = {
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.2}
+				subtract_from_variable = { RD_popularity = 0.2}
+				US_underdog_NPP_5_5 = yes
+			}
+			370 = {
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.2}
+				subtract_from_variable = { RD_popularity = 0.2}
+				US_underdog_NPP_5_5 = yes
+			}
+			364 = {
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.2}
+				subtract_from_variable = { RD_popularity = 0.2}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_alienate_the_FR_NPP
+	icon = GFX_USA_allienate_the_fr_npp
+	cost = 4
+	x = 2
+	y = 4
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_denounce_wallacism
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_alienate_the_FR_NPP"
+		USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+		custom_effect_tooltip = LEMAY_Attract_the_North
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.1 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.1}
+				add_to_variable = { NPP_C_bonus_popularity = 0.05}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1}
+				subtract_from_variable = { RD_popularity = 0.1}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_appeal_to_the_hard_republicans
+	icon = GFX_USA_Empower_the_Republicans
+	cost = 4
+	x = 4
+	y = 3
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_moderate_roots
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_appeal_to_the_hard_republicans"
+		country_event = { id = lemay.10 days = 3 }
+		custom_effect_tooltip = LEMAY_Meeting_Scoop
+	}
+}
+
+shared_focus = {
+	id = USA_southern_hospitality
+	icon = GFX_USA_Southern_Hospitality
+	cost = 4
+	x = 4
+	y = 4
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_appeal_to_the_hard_republicans
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_southern_hospitality"
+		custom_effect_tooltip = LEMAY_Southern_Hosp
+		custom_effect_tooltip = USA_add_NPP_unity
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1}
+				add_to_variable = { NPP_popularity = 0.05}
+				subtract_from_variable = { RD_popularity = 0.05 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_perfectly_balanced
+	icon = GFX_USA_For_the_Good_of_America
+	cost = 4
+	x = 3
+	y = 5
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_alienate_the_FR_NPP
+	}
+	prerequisite = {
+		focus = USA_southern_hospitality
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_perfectly_balanced"
+		add_stability = 0.05
+		add_to_variable = { USA_NPP_unity = 1 }
+		custom_effect_tooltip = USA_add_NPP_unity
+	}
+}
+
+shared_focus = {
+	id = USA_military_model_to_integration
+	icon = GFX_USA_Community_Action
+	cost = 4
+	x = 1
+	y = 6
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_perfectly_balanced
+	}
+	available = {
+	has_completed_focus = USA_expand_the_GI_bill
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_military_model_to_integration"
+		if = {
+			limit = {
+				has_country_flag = LeMayFailed
+			}
+			custom_effect_tooltip = LEMAY_failed_bill
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					has_country_flag = LeMayFailed
+				}
+			}
+			USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+			army_experience = 25
+			add_stability = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_tax_breaks_for_business
+	icon = GFX_MAG_Old_Money
+	cost = 4
+	x = 1
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_military_model_to_integration
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_tax_breaks_for_business"
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+		custom_effect_tooltip = econ_misc_expenses_add_small_increase
+		add_to_variable = { misc_income = 10 }
+		hidden_effect = {
+		every_owned_state = {
+			limit = { can_have_elections_in_state = yes }
+			if = {
+				limit = { check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity}
+					}
+				add_to_variable = { RD_D_bonus_popularity = 0.05}
+			}
+			else = { add_to_variable = { RD_R_bonus_popularity = 0.05}}
+		} }
+	}
+}
+
+shared_focus = {
+	id = USA_expand_the_GI_bill
+	icon = GFX_Generic_America_Return_Troops
+	cost = 4
+	x = 3
+	y = 6
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_perfectly_balanced
+	}
+	select_effect = {
+	USA_LEM_GI_Bill_setup = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_expand_the_GI_bill"
+		hidden_effect = {
+		country_event = {
+		id = USA_sen_bill.213
+		days = 1
+		}
+		}
+		custom_effect_tooltip = LEMAY_starts_a_bill
+		hidden_effect = {
+		every_owned_state = {
+			limit = { can_have_elections_in_state = yes }
+			add_to_variable = { NPP_C_bonus_popularity = 0.01}
+			if = {
+				limit = { check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity}}
+				add_to_variable = { RD_D_bonus_popularity = 0.05}
+			}
+			else = { add_to_variable = { RD_R_bonus_popularity = 0.05}}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_university_tax_breaks
+	icon = GFX_USA_Funding_Our_Colleges
+	cost = 4
+	x = 3
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_expand_the_GI_bill
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_university_tax_breaks"
+		custom_effect_tooltip = econ_misc_expenses_add_small_increase
+		add_to_variable = { misc_income = 10 }
+		TNO_improve_academic_base_low = yes
+		hidden_effect = {
+		every_owned_state = {
+			limit = {
+				can_have_elections_in_state = yes
+				check_variable = { nationality = 82}
+			}
+			add_to_variable = { RD_R_bonus_popularity = 0.02}
+		} }
+	}
+}
+
+shared_focus = {
+	id = USA_pull_back_economic_intervention
+	icon = GFX_USA_GLD_Out-of-Depression
+	cost = 4
+	x = 2
+	y = 8
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_tax_breaks_for_business
+	}
+	prerequisite = {
+		focus = USA_university_tax_breaks
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_pull_back_economic_intervention"
+		custom_effect_tooltip = econ_misc_income_add_2_percent
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+		add_to_variable = { misc_costs = -0.02 }
+		add_to_variable = { gdp_growth = 0.01 }
+	}
+}
+
+shared_focus = {
+	id = USA_militarized_schools
+	icon = GFX_USA_Secondary_Education_Act
+	cost = 4
+	x = 5
+	y = 6
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_perfectly_balanced
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_militarized_schools"
+		add_manpower = 500
+		TNO_improve_army_professionalism_low = yes
+		add_tech_bonus = {
+			bonus = 0.4
+			uses = 2
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_the_american_nationalist
+	icon = GFX_USA_Only_American_Future
+	cost = 4
+	x = 5
+	y = 7
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_militarized_schools
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_the_american_nationalist"
+		add_war_support = 0.05
+		custom_effect_tooltip = USA_add_NPP_popularity_north
+		hidden_effect = {
+		every_owned_state = {
+			limit = {
+				can_have_elections_in_state = yes
+				OR = {
+					check_variable = { nationality = 82 } #Yankee
+					check_variable = { nationality = 85 } #Steel Belt
+					check_variable = { nationality = 88 } #Pacific
+				}
+			}
+			add_to_variable = { NPP_popularity = 0.1 }
+			add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+			subtract_from_variable = { RD_popularity = 0.1 }
+			subtract_from_variable = { RD_D_bonus_popularity = 0.1 }
+			US_underdog_NPP_5_5 = yes
+			}
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+						}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+				}
+		}
+
+	}
+}
+
+shared_focus = {
+	id = USA_military_pipeline
+	icon = GFX_CHI_Improving_Factory_Efficiency
+	cost = 4
+	x = 5
+	y = 8
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_the_american_nationalist
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_military_pipeline"
+		add_manpower = 200
+		custom_effect_tooltip = LEMAY_build_factories
+		hidden_effect = {
+		every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+						}
+				}
+				add_to_variable = { NPP_popularity = 0.1 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				subtract_from_variable = { RD_popularity = 0.1 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.1 }
+				US_underdog_NPP_5_5 = yes
+				}
+		}
+		367 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+	}
+		370 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+	}
+	}
+}
+
+shared_focus = {
+	id = USA_liberty_and_justice_for_all
+	icon = GFX_USA_Civil_Rights_Act_Deluxe
+	cost = 4
+	x = 3
+	y = 9
+	relative_position_id = USA_a_bite_off_the_big_cigar
+	prerequisite = {
+		focus = USA_pull_back_economic_intervention
+	}
+	prerequisite = {
+		focus = USA_military_pipeline
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_liberty_and_justice_for_all"
+		country_event = {	id = lemay.11 days = 2 }
+		USA_LEMAY_LEGACY_OF_WALLACE_INTEGRATION = yes
+		USA_increase_civil_rights = yes
+		clr_country_flag = USA_in_crisis
+	}
+}

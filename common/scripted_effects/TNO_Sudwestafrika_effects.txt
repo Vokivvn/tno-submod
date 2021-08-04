@@ -1,0 +1,1827 @@
+######################################### NATIVE UNREST/ECONOMY SCRIPTED EFFECT
+
+ANG_monthly_pulse_effect = {
+	if = { 
+		limit = { has_country_leader = { name = "Wolfgang Schenck" } }
+		if = {
+			limit = { has_global_flag = south_african_war
+				NOT = { has_global_flag = south_african_war_ceasefires_enabled }
+			}
+			USA_SAF_WAR_Insurgency_war_crime_event_chooser = yes
+		}
+
+		if = {
+			limit = { has_country_flag = Ang_Good }
+			ANG_Sus_Clamp_Check = yes
+			ANG_Other_RK_Sus_Check_Calculations = yes
+		}
+
+		if = {
+			limit = {
+				AND = {
+					check_variable = { ANG_Muller_Sus > 39 }
+					check_variable = { ANG_Huttig_Sus > 39}
+				}
+			}
+			country_event = { id = ANG.208 days = 1 }
+		}
+
+		if = {
+			limit = { has_country_flag = ANG_Bad_Boy_Path_Activated }
+			add_to_variable = { ANG_Native_Unrest = 3 }
+			ANG_Native_Militancy_Calculator = yes
+		}
+
+		if = {
+			limit = { NOT = { has_global_flag = german_civil_war } }
+			add_to_variable = { ANG_German_Displeasure = 3 }
+			ANG_German_Sus_effect = yes
+		}
+
+		if = {
+			limit = { NOT = { has_global_flag = german_civil_war } check_variable = { ANG_Liquid_Cash > ANG_Cash_Monthly_Checker } }
+			ANG_Monthly_German_Collection_Calculations = yes
+		}
+
+		if = {
+			limit = {
+				NOT = { has_global_flag = german_civil_war }
+				OR = {
+					check_variable = { ANG_Cash_Monthly_Checker  = ANG_Liquid_Cash }
+					check_variable = { ANG_Cash_Monthly_Checker < ANG_Liquid_Cash }
+				}
+			}
+			add_to_variable = { ANG_German_Displeasure = 3 }
+			set_variable = { ANG_Liquid_Cash = ANG_Cash_Monthly_Checker }
+		}
+	}
+}
+
+ANG_Monthly_German_Collection_Calculations = {
+
+	set_variable = { ANG_Additional_Payment_Since_Growth = 0 } #Sets the variable
+
+	set_variable = { ANG_Additional_Payment_Since_Growth = ANG_Liquid_Cash } #Sets the variable to the new amount of liquid cash
+
+	subtract_from_variable = { ANG_Additional_Payment_Since_Growth = ANG_Cash_Monthly_Checker } #Gets the change since the last month
+
+	multiply_variable = { ANG_Additional_Payment_Since_Growth =  0.2 } #Multiplies it by 10%
+
+	add_to_variable = { ANG_German_Collection = ANG_Additional_Payment_Since_Growth } #Adds it to the monthly collection
+
+	set_variable = { ANG_Additional_Payment_Since_Growth = 0 } #Sets it back to 0 to ensure no fuckery
+
+	set_variable = { ANG_Cash_Monthly_Checker = ANG_Liquid_Cash } #Ensures it doesn't run again after you've increased it
+}
+
+
+USA_SAF_WAR_Insurgency_war_crime_event_chooser = {
+
+	random_list = {
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_1
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_1
+			}
+			SAF = { country_event = { id = USA.saf.effects.4 days = 70 } }
+			USA = { country_event = { id = USA.saf.effects.4 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_2
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_2
+			}
+			SAF = { country_event = { id = USA.saf.effects.6 days = 70 } }
+			USA = { country_event = { id = USA.saf.effects.6 days = 70 } }
+		}
+
+		4 = {
+			set_country_flag = SAW_WAR_CRIME_3
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_3
+			}
+			SAF = { country_event = { id = USA.saf.effects.7 days = 70 } }
+			USA = { country_event = { id = USA.saf.effects.7 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_4
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_4
+			}
+			SAF = { country_event = { id = USA.saf.effects.8 days = 70 } }
+			USA = { country_event = { id = USA.saf.effects.8 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_5
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_5
+			}
+			SAF = { country_event = { id = USA.saf.effects.9 days = 70 } }
+			USA = { country_event = { id = USA.saf.effects.9 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_6
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_6
+			}
+			MZB = { country_event = { id = ANG.228 days = 70 } }
+			ANG = { country_event = { id = ANG.228 days = 70 } }
+			COG = { country_event = { id = ANG.228 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_7
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_7
+			}
+			MZB = { country_event = { id = ANG.229 days = 70 } }
+			ANG = { country_event = { id = ANG.229 days = 70 } }
+			COG = { country_event = { id = ANG.229 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_8
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_8
+			}
+			MZB = { country_event = { id = ANG.230 days = 70 } }
+			ANG = { country_event = { id = ANG.230 days = 70 } }
+			COG = { country_event = { id = ANG.230 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_9
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_9
+			}
+			MZB = { country_event = { id = ANG.231 days = 70 } }
+			ANG = { country_event = { id = ANG.231 days = 70 } }
+			COG = { country_event = { id = ANG.231 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_10
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_10
+			}
+			SAF = { country_event = { id = ANG.232 days = 70 } }
+			USA = { country_event = { id = ANG.232 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_11
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_11
+			}
+			SAF = { country_event = { id = ANG.233 days = 70 } }
+			USA = { country_event = { id = ANG.233 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_12
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_12
+			}
+			MZB = { country_event = { id = ANG.234 days = 70 } }
+			ANG = { country_event = { id = ANG.234 days = 70 } }
+			COG = { country_event = { id = ANG.234 days = 70 } }
+		}
+
+		8 = {
+			set_country_flag = SAW_WAR_CRIME_13
+			modifier = {
+				factor = 0
+				has_country_flag = SAW_WAR_CRIME_13
+			}
+			SAF = { country_event = { id = ANG.235 days = 70 } }
+			USA = { country_event = { id = ANG.235 days = 70 } }
+		}
+	}
+}
+
+
+ANG_Other_RK_Sus_Check_Calculations = {
+
+	################# MUELLER
+
+
+	if = { ########## Level One
+
+		limit = {
+			OR = {
+				check_variable = { ANG_Muller_Sus < 10 }
+				check_variable = { ANG_Muller_Sus = 10 }
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Muller_sus_idea_1
+			remove_ideas = ANG_Muller_sus_idea_2
+			remove_ideas = ANG_Muller_sus_idea_3
+			remove_ideas = ANG_Muller_sus_idea_4
+			#remove_ideas = ANG_Muller_sus_idea_5
+		}
+	}
+
+	if = { ########## Level Two
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Muller_Sus > 10 }
+					check_variable = { ANG_Muller_Sus < 20 }
+				}
+				AND = {
+					check_variable = { ANG_Muller_Sus > 10 }
+					check_variable = { ANG_Muller_Sus = 20 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Muller_sus_idea_2
+			remove_ideas = ANG_Muller_sus_idea_1
+			remove_ideas = ANG_Muller_sus_idea_3
+			remove_ideas = ANG_Muller_sus_idea_4
+			#remove_ideas = ANG_Muller_sus_idea_5
+		}
+	}
+
+	if = { ########## Level Three
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Muller_Sus > 20 }
+					check_variable = { ANG_Muller_Sus < 30 }
+				}
+				AND = {
+					check_variable = { ANG_Muller_Sus > 20 }
+					check_variable = { ANG_Muller_Sus = 30 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Muller_sus_idea_3
+			remove_ideas = ANG_Muller_sus_idea_1
+			remove_ideas = ANG_Muller_sus_idea_2
+			remove_ideas = ANG_Muller_sus_idea_4
+			#remove_ideas = ANG_Muller_sus_idea_5
+		}
+	}
+
+	if = { ########## Level Four
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Muller_Sus > 30 }
+					check_variable = { ANG_Muller_Sus < 40 }
+				}
+				AND = {
+					check_variable = { ANG_Muller_Sus > 30 }
+					check_variable = { ANG_Muller_Sus = 40 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Muller_sus_idea_4
+			remove_ideas = ANG_Muller_sus_idea_1
+			remove_ideas = ANG_Muller_sus_idea_2
+			remove_ideas = ANG_Muller_sus_idea_3
+			#remove_ideas = ANG_Muller_sus_idea_5
+		}
+	}
+
+	################ HUTTIG
+
+	if = { ########## Level One
+
+		limit = {
+			OR = {
+				check_variable = { ANG_Huttig_Sus < 10 }
+				check_variable = { ANG_Huttig_Sus = 10 }
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Huttig_Sus_idea_1
+			remove_ideas = ANG_Huttig_Sus_idea_2
+			remove_ideas = ANG_Huttig_Sus_idea_3
+			remove_ideas = ANG_Huttig_Sus_idea_4
+			#remove_ideas = ANG_Huttig_Sus_idea_5
+
+		}
+	}
+
+	if = { ########## Level Two
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 10 }
+					check_variable = { ANG_Huttig_Sus < 20 }
+				}
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 10 }
+					check_variable = { ANG_Huttig_Sus = 20 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Huttig_Sus_idea_2
+			remove_ideas = ANG_Huttig_Sus_idea_1
+			remove_ideas = ANG_Huttig_Sus_idea_3
+			remove_ideas = ANG_Huttig_Sus_idea_4
+			#remove_ideas = ANG_Huttig_Sus_idea_5
+		}
+	}
+
+	if = { ########## Level Three
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 20 }
+					check_variable = { ANG_Huttig_Sus < 30 }
+				}
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 20 }
+					check_variable = { ANG_Huttig_Sus = 30 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Huttig_Sus_idea_3
+			remove_ideas = ANG_Huttig_Sus_idea_1
+			remove_ideas = ANG_Huttig_Sus_idea_2
+			remove_ideas = ANG_Huttig_Sus_idea_4
+			#remove_ideas = ANG_Huttig_Sus_idea_5
+		}
+	}
+
+	if = { ########## Level Four
+
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 30 }
+					check_variable = { ANG_Huttig_Sus < 40 }
+				}
+				AND = {
+					check_variable = { ANG_Huttig_Sus > 30 }
+					check_variable = { ANG_Huttig_Sus = 40 }
+				}
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = ANG_Huttig_Sus_idea_4
+			remove_ideas = ANG_Huttig_Sus_idea_1
+			remove_ideas = ANG_Huttig_Sus_idea_2
+			remove_ideas = ANG_Huttig_Sus_idea_3
+			#remove_ideas = ANG_Huttig_Sus_idea_5
+		}
+	}
+}
+
+ANG_Sus_Clamp_Check = {
+	clamp_variable = {
+		var = ANG_Muller_Sus
+		max = 40
+		min = 0
+	}
+	clamp_variable = {
+		var = ANG_Huttig_Sus
+		max = 40
+		min = 0
+	}
+}
+
+ANG_German_Sus_effect = {
+
+		if = { ########## Level One
+
+			limit = {
+				OR = {
+					check_variable = { ANG_German_Displeasure < 20 }
+					check_variable = { ANG_German_Displeasure = 20 }
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_German_Sus_idea_1
+				remove_ideas = ANG_German_Sus_idea_2
+				remove_ideas = ANG_German_Sus_idea_3
+				remove_ideas = ANG_German_Sus_idea_4
+				remove_ideas = ANG_German_Sus_idea_5
+
+			}
+		}
+
+		if = { ########## Level Two
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_German_Displeasure > 20}
+						check_variable = { ANG_German_Displeasure < 40 }
+					}
+					AND = {
+						check_variable = { ANG_German_Displeasure > 20}
+						check_variable = { ANG_German_Displeasure = 40 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_German_Sus_idea_2
+				remove_ideas = ANG_German_Sus_idea_1
+				remove_ideas = ANG_German_Sus_idea_3
+				remove_ideas = ANG_German_Sus_idea_4
+				remove_ideas = ANG_German_Sus_idea_5
+			}
+		}
+
+
+
+		if = { ########## Level Three
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_German_Displeasure > 40 }
+						check_variable = { ANG_German_Displeasure < 60 }
+					}
+					AND = {
+						check_variable = { ANG_German_Displeasure > 40 }
+						check_variable = { ANG_German_Displeasure = 60 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_German_Sus_idea_3
+				remove_ideas = ANG_German_Sus_idea_1
+				remove_ideas = ANG_German_Sus_idea_2
+				remove_ideas = ANG_German_Sus_idea_4
+				remove_ideas = ANG_German_Sus_idea_5
+			}
+		}
+
+
+		if = { ########## Level Four
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_German_Displeasure > 60 }
+						check_variable = { ANG_German_Displeasure < 80 }
+					}
+					AND = {
+						check_variable = { ANG_German_Displeasure > 60 }
+						check_variable = { ANG_German_Displeasure = 80 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_German_Sus_idea_4
+				remove_ideas = ANG_German_Sus_idea_1
+				remove_ideas = ANG_German_Sus_idea_2
+				remove_ideas = ANG_German_Sus_idea_3
+				remove_ideas = ANG_German_Sus_idea_5
+			}
+		}
+
+
+		if = { ########## Level Five
+
+			limit = {
+				AND = {
+					check_variable = { ANG_German_Displeasure > 80 }
+					check_variable = { ANG_German_Displeasure < 10000 }
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_German_Sus_idea_5
+				remove_ideas = ANG_German_Sus_idea_1
+				remove_ideas = ANG_German_Sus_idea_2
+				remove_ideas = ANG_German_Sus_idea_3
+				remove_ideas = ANG_German_Sus_idea_4
+			}
+		}
+
+}
+
+
+
+ANG_Native_Militancy_Calculator = {
+
+
+		set_variable = { ANG_Monthly_Terror_Addititve = ANG_Native_Unrest }
+
+		divide_variable = { ANG_Monthly_Terror_Addititve = 4 }
+
+		add_to_variable = { ANG_Native_Militancy = ANG_Monthly_Terror_Addititve }
+
+		if = {
+			limit = { has_country_flag = ANG_Reprisal_attacks_activated NOT = { has_country_flag = ANG_reprisal_attacks_event_fired } }
+
+			random_list = {
+				40 = {
+					country_event = { id = ANG.22 days = 1}
+				}
+				60 = {
+				}
+			}
+		}
+
+		if = { ########## Level One
+
+			limit = {
+				OR = {
+					check_variable = { ANG_Native_Militancy < 20 }
+					check_variable = { ANG_Native_Militancy = 20 }
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_Native_Militancy_1
+				remove_ideas = ANG_Native_Militancy_2
+				remove_ideas = ANG_Native_Militancy_3
+				remove_ideas = ANG_Native_Militancy_4
+				remove_ideas = ANG_Native_Militancy_5
+
+				######### Terror Events
+
+				random_list = {
+
+					15 = { country_event = { id = ANG_Terror.1 days = 3} }
+
+					15 = { country_event = { id = ANG_Terror.2 days = 3} }
+
+					15 = { country_event = { id = ANG_Terror.3 days = 3} }
+
+					55 = { }
+
+				}
+
+			}
+		}
+
+		if = { ########## Level Two
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_Native_Militancy > 20}
+						check_variable = { ANG_Native_Militancy < 40 }
+					}
+					AND = {
+						check_variable = { ANG_Native_Militancy > 20}
+						check_variable = { ANG_Native_Militancy = 40 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_Native_Militancy_2
+				remove_ideas = ANG_Native_Militancy_1
+				remove_ideas = ANG_Native_Militancy_3
+				remove_ideas = ANG_Native_Militancy_4
+				remove_ideas = ANG_Native_Militancy_5
+
+				######### Terror Events
+
+				random_list = {
+
+					20 = { country_event = { id = ANG_Terror.1 days = 3} }
+
+					20 = { country_event = { id = ANG_Terror.2 days = 3} }
+
+					20 = { country_event = { id = ANG_Terror.3 days = 3} }
+
+					40 = { }
+
+				}
+			}
+		}
+
+		if = { ########## Level Three
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_Native_Militancy > 40 }
+						check_variable = { ANG_Native_Militancy < 60 }
+					}
+					AND = {
+						check_variable = { ANG_Native_Militancy > 40 }
+						check_variable = { ANG_Native_Militancy = 60 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_Native_Militancy_3
+				remove_ideas = ANG_Native_Militancy_1
+				remove_ideas = ANG_Native_Militancy_2
+				remove_ideas = ANG_Native_Militancy_4
+				remove_ideas = ANG_Native_Militancy_5
+
+				######### Terror Events
+
+				random_list = {
+
+					25 = { country_event = { id = ANG_Terror.1 days = 3} }
+
+					25 = { country_event = { id = ANG_Terror.2 days = 3} }
+
+					25 = { country_event = { id = ANG_Terror.3 days = 3} }
+
+					25 = { }
+
+				}
+			}
+		}
+
+		if = { ########## Level Four
+
+			limit = {
+				OR = {
+					AND = {
+						check_variable = { ANG_Native_Militancy > 60 }
+						check_variable = { ANG_Native_Militancy < 80 }
+					}
+					AND = {
+						check_variable = { ANG_Native_Militancy > 60 }
+						check_variable = { ANG_Native_Militancy = 80 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_Native_Militancy_4
+				remove_ideas = ANG_Native_Militancy_1
+				remove_ideas = ANG_Native_Militancy_2
+				remove_ideas = ANG_Native_Militancy_3
+				remove_ideas = ANG_Native_Militancy_5
+
+				######### Terror Events
+
+				random_list = {
+
+					30 = { country_event = { id = ANG_Terror.4 days = 3} }
+
+					30 = { country_event = { id = ANG_Terror.5 days = 3} }
+
+					30 = { country_event = { id = ANG_Terror.6 days = 3} }
+
+					10 = { }
+
+				}
+			}
+		}
+
+		if = { ########## Level Five
+
+			limit = {
+				AND = {
+					check_variable = { ANG_Native_Militancy > 80 }
+					check_variable = { ANG_Native_Militancy < 10000 }
+				}
+			}
+
+			hidden_effect = {
+				add_ideas = ANG_Native_Militancy_5
+				remove_ideas = ANG_Native_Militancy_1
+				remove_ideas = ANG_Native_Militancy_2
+				remove_ideas = ANG_Native_Militancy_3
+				remove_ideas = ANG_Native_Militancy_4
+
+				######### Terror Events
+
+				random_list = {
+
+					35 = { country_event = { id = ANG_Terror.7 days = 3} }
+
+					35 = { country_event = { id = ANG_Terror.8 days = 3} }
+
+					20 = { country_event = { id = ANG_Terror.9 days = 3} }
+
+					10 = { }
+
+				}
+			}
+		}
+	
+
+}
+
+########################################## DECREASE/INCREASE UNREST EFFECTS
+
+ANG_decrease_unrest_20 = {
+	subtract_from_variable = {
+		var = ANG_Native_Militancy
+		value = 20
+	}
+
+}
+
+ANG_decrease_unrest_15 = {
+	subtract_from_variable = {
+		var = ANG_Native_Militancy
+		value = 15
+	}
+
+}
+
+ANG_decrease_unrest_10 = {
+	subtract_from_variable = {
+		var = ANG_Native_Militancy
+		value = 10
+	}
+
+}
+
+ANG_decrease_unrest_5 = {
+	subtract_from_variable = {
+		var = ANG_Native_Militancy
+		value = 5
+	}
+}
+
+ANG_increase_unrest_5 = {
+	add_to_variable = {
+		var = ANG_Native_Militancy
+		value = 5
+	}
+}
+
+ANG_increase_unrest_10 = {
+	add_to_variable = {
+		var = ANG_Native_Militancy
+		value = 10
+	}
+}
+
+ANG_increase_unrest_15 = {
+	add_to_variable = {
+		var = ANG_Native_Militancy
+		value = 15
+	}
+}
+
+ANG_increase_unrest_20 = {
+	add_to_variable = {
+		var = ANG_Native_Militancy
+		value = 20
+	}
+}
+
+################################### END OF USEFUL SCRIPTED UNREST SHIT
+
+one_random_arms_factory = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+		}
+	}
+}
+two_random_arms_factory = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+		}
+	}
+}
+three_random_arms_factory = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+		}
+	}
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+		}
+	}
+}
+four_random_arms_factory = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+		}
+	}
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = arms_factory
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = arms_factory
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+		}
+	}
+}
+one_random_industrial_complex = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = industrial_complex
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 1
+		add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+		}
+	}
+}
+two_random_industrial_complex = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = industrial_complex
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+		}
+	}
+}
+three_random_industrial_complex = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = industrial_complex
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 3
+		add_building_construction = {
+			type = industrial_complex
+			level = 3
+			instant_build = yes
+		}
+	}
+}
+four_random_industrial_complex = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = industrial_complex
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+		}
+	}
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = industrial_complex
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+		}
+	}
+}
+one_random_infrastructure = {
+	random_owned_controlled_state = {
+		limit = {
+			free_building_slots = {
+				building = infrastructure
+				size > 0
+				include_locked = yes
+			}
+			OR = {
+				is_in_home_area = yes
+				NOT = {
+					owner = {
+						any_owned_state = {
+							free_building_slots = {
+								building = infrastructure
+								size > 0
+								include_locked = yes
+							}
+							is_in_home_area = yes
+						}
+					}
+				}
+			}
+		}
+		add_building_construction = {
+			type = infrastructure
+			level = 2
+			instant_build = yes
+		}
+	}
+}
+one_random_dockyard = {
+	if = {
+		limit = {
+			NOT = {
+				any_owned_state = {
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+			}
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_coastal = yes
+				free_building_slots = {
+					building = dockyard
+					size > 2
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = naval_effort_built }
+			any_owned_state = {
+				dockyard > 0
+				free_building_slots = {
+					building = dockyard
+					size > 1
+					include_locked = yes
+				}
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				dockyard > 0
+				free_building_slots = {
+					building = dockyard
+					size > 1
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = naval_effort_built }
+			NOT = {
+				any_owned_state = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+				}
+			}
+		}
+		random_state = {
+			limit = {
+				controller = { tag = ROOT }
+				free_building_slots = {
+					building = dockyard
+					size > 1
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+two_random_dockyards = {
+	if = {
+		limit = {
+			NOT = {
+				any_owned_state = {
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+			}
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_coastal = yes
+				free_building_slots = {
+					building = dockyard
+					size > 2
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+		set_country_flag = naval_effort_built
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = naval_effort_built }
+			any_owned_state = {
+				dockyard > 0
+				free_building_slots = {
+					building = dockyard
+					size > 2
+					include_locked = yes
+				}
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				dockyard > 0
+				free_building_slots = {
+					building = dockyard
+					size > 2
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+		set_country_flag = naval_effort_built
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = naval_effort_built }
+			NOT = {
+				any_owned_state = {
+					free_building_slots = {
+						building = dockyard
+						size > 2
+						include_locked = yes
+					}
+				}
+			}
+		}
+		random_state = {
+			limit = {
+				controller = { tag = ROOT }
+				free_building_slots = {
+					building = dockyard
+					size > 2
+					include_locked = yes
+				}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+ANG_handle_shit = {
+	leave_faction = yes
+	SAF = {
+		declare_war_on = {
+			target = ANG
+			type = annex_everything
+		}
+	}
+	COG = {
+		declare_war_on = {
+			target = ANG
+			type = annex_everything
+		}
+	}
+	MZB  = {
+		declare_war_on = {
+			target = ANG
+			type = annex_everything
+		}
+
+	}
+	add_ideas = ANG_German_Resistance
+	drop_cosmetic_tag = yes
+	tno_education_improve = yes
+	tno_penal_system_improve = yes
+	tno_minorities_improve = yes
+	tno_minimum_wage_improve = yes
+	tno_conscription_worsen = yes
+	tno_women_improve = yes
+	tno_training_worsen = yes
+	tno_racial_integration_improve = yes
+	tno_immigration_improve = yes
+	tno_slavery_worsen = yes
+	tno_slavery_worsen = yes
+	tno_public_meetings_improve = yes
+	tno_press_rights_improve = yes
+	remove_ideas = {
+		ANG_Afrikaner_Airstrip
+		ANG_Incoherent_Bookkeeping
+		ANG_Away_In_The_Clouds
+		ANG_Wolfgang_Schenck_dep
+		ANG_Hellmut_von_Leipzig_mil
+		ANG_Gerhard_Homuth_for
+		ANG_Otto_Herrigel_eco
+	}
+	delete_unit_template_and_units = {
+		division_template = "Schutztruppe"
+	}
+	delete_unit_template_and_units = {
+		division_template = "Ursprunglich Patroullieren"
+	}
+	delete_unit_template_and_units = {
+		division_template = "Waffen-SS"
+	}
+	delete_unit_template_and_units = {
+		division_template = "Fallschirmjäger"
+	}
+	if = {
+		Limit = {
+			has_country_flag = ANG_Ground_low
+		}
+		set_war_support = 0.2
+		set_stability = 0.2
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_Ground_med
+		}
+		set_war_support = 0.4
+		set_stability = 0.4
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_Ground_high
+		}
+		set_war_support = 0.6
+		set_stability = 0.6
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_buildup_low
+		}
+		two_random_arms_factory = yes
+		one_random_industrial_complex = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_buildup_med
+		}
+		three_random_arms_factory = yes
+		two_random_industrial_complex = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_buildup_high
+		}
+		four_random_arms_factory = yes
+		three_random_industrial_complex = yes
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_utilities_low
+		}
+		tno_improve_industrial_equipment = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_utilities_med
+		}
+		tno_improve_industrial_equipment = yes
+		tno_improve_industrial_expertise = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_utilities_high
+		}
+		tno_improve_industrial_equipment = yes
+		tno_improve_industrial_equipment = yes
+		tno_improve_industrial_expertise = yes
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_fight_low
+		}
+		load_oob = "ANG_Free"
+		add_ideas = ANG_Sudwest_Training_Shit
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_fight_med
+		}
+		load_oob = "ANG_Free_mid"
+		add_ideas = ANG_Sudwest_Training_med
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_fight_high
+		}
+		load_oob = "ANG_Free_high"
+		add_ideas = ANG_Sudwest_Training_high
+		tno_improve_army_professionalism = yes
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_guard_low
+		}
+		set_equipment_fraction = 0.4
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_guard_med
+		}
+		set_equipment_fraction = 0.6
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_guard_high
+		}
+		set_equipment_fraction = 0.8
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_clear_out_low
+		}
+		one_random_arms_factory = yes
+		one_random_industrial_complex = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_clear_out_med
+		}
+		two_random_arms_factory = yes
+		one_random_industrial_complex = yes
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_clear_out_high
+		}
+		three_random_arms_factory = yes
+		two_random_industrial_complex = yes
+		load_oob = "ANG_extra_militias"
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_despot
+		}
+		set_politics = {
+			ruling_party = despotism
+			last_election = "1960.11.11"
+			election_frequency = 36
+			elections_allowed = no
+		}
+
+		set_popularities = {
+			communist = 0
+			ultranational_socialism = 0
+			socialist = 0
+			social_democrat = 0
+			social_liberal = 0
+			market_liberal = 0
+			social_conservative = 30
+			authoritarian_democrat = 25
+			despotism = 30
+			fascism = 5
+			national_socialism = 10
+			burgundian_system = 0
+		}
+		create_country_leader = {
+			name = "Jonas Savimbi"
+			desc = "POLITICS_JONAS_SAVIMBI_DESC"
+			#			picture = "Portrait_Iberia_Luis_Carrero_Blanco.dds"
+			expire = "1975.10.20"
+			ideology = despotism_subtype
+			traits = {
+				#
+			}
+		}
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_authdem
+		}
+
+		add_ideas = ANG_constitution
+		tno_political_parties_improve = yes
+		tno_vote_franchise_improve = yes
+		tno_vote_franchise_improve = yes
+		set_politics = {
+			ruling_party = authoritarian_democrat
+			last_election = "1960.11.11"
+			election_frequency = 36
+			elections_allowed = no
+		}
+
+		set_popularities = {
+			communist = 0
+			ultranational_socialism = 0
+			socialist = 0
+			social_democrat = 0
+			social_liberal = 0
+			market_liberal = 0
+			social_conservative = 30
+			authoritarian_democrat = 55
+			despotism = 0
+			fascism = 5
+			national_socialism = 10
+			burgundian_system = 0
+		}
+		create_country_leader = {
+			name = "Jonas Savimbi"
+			desc = "POLITICS_JONAS_SAVIMBI_DESC"
+			#			picture = "Portrait_Iberia_Luis_Carrero_Blanco.dds"
+			expire = "1975.10.20"
+			ideology = authoritarian_democrat_subtype
+			traits = {
+				#
+			}
+		}
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_Treaty
+		}
+		add_manpower = 10000
+		add_ideas = ANG_Guerillas_Rescued
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_free_low
+		}
+		add_ideas = ANG_few_prisoners_freed
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_free_med
+		}
+		add_ideas = ANG_med_prisoners_freed
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_free_high
+		}
+		add_ideas = ANG_high_prisoners_freed
+	}
+
+	if = {
+		Limit = {
+			has_country_flag = ANG_papers_low
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 1000
+			producer = GER
+		}
+		add_manpower = 2000
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_papers_med
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 2000
+			producer = GER
+		}
+		add_manpower = 4000
+	}
+	else_if = {
+		Limit = {
+			has_country_flag = ANG_papers_high
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 4000
+			producer = GER
+		}
+		add_manpower = 8000
+	}
+
+}
+
+afrika_resources_from_germany_depleted = {
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = steel_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = steel_bought
+		}
+		add_resource = {
+			type = steel
+			amount = resources_to_remove
+		}
+	}
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = aluminium_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = aluminium_bought
+		}
+		multiply_temp_variable = {
+			var = resources_to_remove
+			value = -1
+		}
+		add_resource = {
+			type = aluminium
+			amount = resources_to_remove
+		}
+	}
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = rubber_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = rubber_bought
+		}
+		multiply_temp_variable = {
+			var = resources_to_remove
+			value = -1
+		}
+		add_resource = {
+			type = rubber
+			amount = resources_to_remove
+		}
+	}
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = oil_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = oil_bought
+		}
+		multiply_temp_variable = {
+			var = resources_to_remove
+			value = -1
+		}
+		add_resource = {
+			type = oil
+			amount = resources_to_remove
+		}
+	}
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = chromium_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = chromium_bought
+		}
+		multiply_temp_variable = {
+			var = resources_to_remove
+			value = -1
+		}
+		add_resource = {
+			type = chromium
+			amount = resources_to_remove
+		}
+	}
+	IF = {
+		LIMIT = {
+			check_variable = {
+				var = tungsten_bought
+				value = 0
+				compare = greater_than
+			}
+		}
+		set_temp_variable = {
+			var = resources_to_remove
+			value = tungsten_bought
+		}
+		multiply_temp_variable = {
+			var = resources_to_remove
+			value = -1
+		}
+		add_resource = {
+			type = tungsten
+			amount = resources_to_remove
+		}
+	}
+}

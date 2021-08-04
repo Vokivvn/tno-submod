@@ -1,0 +1,573 @@
+﻿add_namespace = UDM
+
+country_event = { #Intro event
+	id = UDM.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.1"}
+	title = UDM.1.t
+	desc = UDM.1.desc
+	picture = GFX_report_event_russia_zlatoust_dragunov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.1.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Zlatoust Army Exercises
+	id = UDM.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.2"}
+	title = UDM.2.t
+	desc = UDM.2.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.2.a
+		ai_chance = { factor = 1 }
+		add_war_support = -0.05
+	}
+}
+
+country_event = { #Yugra Connection
+	id = UDM.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.3"}
+	title = UDM.3.t
+	desc = UDM.3.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.3.a
+		ai_chance = { factor = 1 }
+		UDM = {
+			country_event = {
+				id = UDM.4
+				days = 1
+			}
+		}
+		add_opinion_modifier = {
+			target = UDM
+			modifier = UDM_the_yugra_connection_mod
+		}
+	}
+}
+
+country_event = { #Yugra is pleased
+	id = UDM.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.4"}
+	title = UDM.4.t
+	desc = UDM.4.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.4.a
+		ai_chance = { factor = 1 }
+		set_country_flag = UDM_CAN_INVEST_IN_YUGRA
+		custom_effect_tooltip = UDM_CAN_INVEST_IN_YUGRA_tt
+		add_opinion_modifier = {
+			target = KOM
+			modifier = UDM_the_yugra_connection_mod
+		}
+	}
+}
+
+country_Event = { #Immigration
+	id = UDM.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.5"}
+	title = UDM.5.t
+	desc = UDM.5.desc
+	picture = GFX_report_event_crate_of_guns
+	is_triggered_only = yes
+	
+	option = { #
+		name = UDM.5.a
+		add_stability = 0.035
+		add_manpower = 7255
+	}
+}
+
+country_event = { #The Siberian Mediator
+	id = UDM.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.6"}
+	title = UDM.6.t
+	desc = UDM.6.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.6.a
+		ai_chance = { factor = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { #The Bullish Charge
+	id = UDM.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.7"}
+	title = UDM.7.t
+	desc = UDM.7.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.7.a
+		ai_chance = { factor = 1 }
+		army_experience = 15
+	}
+}
+
+country_event = { #Yugran Defense
+	id = UDM.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.8"}
+	title = UDM.8.t
+	desc = UDM.8.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.8.a
+		ai_chance = { factor = 100 }
+		UDM = {
+			country_event = {
+				id = UDM.10
+				days = 1
+			}
+		}
+	}
+	option = { #
+		name = UDM.8.b
+		ai_chance = { factor = 20 }
+		UDM = {
+			country_event = {
+				id = UDM.9
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Yugra says no
+	id = UDM.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.9"}
+	title = UDM.9.t
+	desc = UDM.9.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.9.a
+		ai_chance = { factor = 1 }
+		add_political_power = -10
+	}
+}
+
+country_event = { #Yugra says yes
+	id = UDM.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.10"}
+	title = UDM.10.t
+	desc = UDM.10.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.10.a
+		ai_chance = { factor = 1 }
+		diplomatic_relation = {
+			country = KOM
+			relation = military_access
+			active = yes
+		}
+		845 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 10720
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 4846
+			}
+		}
+		756 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = 13348
+			}
+		}
+	}
+}
+
+country_event = { #Zlatoust Sends Volunteers
+	id = UDM.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.11"}
+	title = UDM.11.t
+	desc = UDM.11.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.11.a
+		ai_chance = { factor = 1 }
+		add_manpower = 250
+		custom_effect_tooltip = ZLATOUST_SENDS_VOLUNTEERS_tt
+	}
+}
+
+country_event = { #Zlatoust Sends Arms
+	id = UDM.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.12"}
+	title = UDM.12.t
+	desc = UDM.12.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.12.a
+		ai_chance = { factor = 1 }
+		UDM = {
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 250
+				target = ROOT
+			}
+		}
+	}
+}
+
+country_event = { #Zlatoust Sends Advisors
+	id = UDM.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.13"}
+	title = UDM.13.t
+	desc = UDM.13.desc
+	picture = GFX_report_event_russian_military
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.13.a
+		ai_chance = { factor = 1 }
+		add_timed_idea = { idea = UDM_zlatoust_advisors days = 180 }
+	}
+}
+
+country_event = { #Yugran Guarantee
+	id = UDM.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.14"}
+	title = UDM.14.t
+	desc = UDM.14.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.14.a
+		ai_chance = { factor = 1 }
+		UDM = {
+			country_event = {
+				id = UDM.15
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #
+	id = UDM.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.15"}
+	title = UDM.15.t
+	desc = UDM.15.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.15.a
+		ai_chance = { factor = 1 }
+		KOM = {
+			diplomatic_relation = {
+				country = UDM
+				relation = guarantee
+				active = yes
+			}
+		}
+	}
+}
+
+country_event = { #Serene Republic time!
+	id = UDM.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.16"}
+	title = UDM.16.t
+	desc = UDM.16.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.16.a
+		ai_chance = { factor = 1 }
+		transfer_state = 572
+		transfer_state = 581
+		transfer_state = 653
+		transfer_state = 754
+		transfer_state = 756
+		transfer_state = 845
+		set_cosmetic_tag = UDM_SERENE_REPUBLIC
+		UDM = {
+			set_autonomy = {
+				target = KOM
+				autonomy_state = autonomy_client_state
+			}
+			set_autonomy = {
+				target = TOB
+				autonomy_state = autonomy_client_state
+			}
+			set_autonomy = {
+				target = ISH
+				autonomy_state = autonomy_client_state
+			}
+			set_autonomy = {
+				target = OMS
+				autonomy_state = autonomy_client_state
+			}
+			create_faction = "Siberian Mutual Assistance Compact"
+		}
+		WSB_add_collapse_administration = yes
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = WORLD.1152
+				}
+			}
+		}
+	}
+}
+
+country_event = { #A Simple Tinkerer
+	id = UDM.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.17"}
+	title = UDM.17.t
+	desc = UDM.17.desc
+	picture = GFX_report_event_kalashnikov
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.17.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #The Aviators over the Republic
+	id = UDM.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event UDM.18"}
+	title = UDM.18.t
+	desc = UDM.18.desc
+	picture = GFX_report_event_generic_bombers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = UDM.18.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+
+#####################
+#   Zlatoust Sales  #
+#####################
+
+add_namespace = zlatoust_sales
+
+country_Event = { #Military access
+	id = zlatoust_sales.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.1"}
+	title = zlatoust_sales.1.t
+	desc = zlatoust_sales.1.desc
+	picture = GFX_report_event_generic_money
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.1.a
+		ai_chance = {
+			factor = 100
+		}
+		FROM = {
+			country_event = {
+				id = zlatoust_sales.2
+				days = 1
+			}
+		}
+	}
+	option = { #
+		name = zlatoust_sales.1.b
+		ai_chance = {
+			factor = 20
+		}
+		FROM = {
+			country_event = {
+				id = zlatoust_sales.3
+				days = 1
+			}
+		}
+	}
+}
+
+country_Event = { #Zlatoust says yes
+	id = zlatoust_sales.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.2"}
+	title = zlatoust_sales.2.t
+	desc = zlatoust_sales.2.desc
+	picture = GFX_report_event_generic_money
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.2.a
+		diplomatic_relation = {
+			country = UDM
+			relation = military_access
+			active = yes
+		}
+		UDM = {
+			custom_effect_tooltip = gain_loot_2
+			add_to_variable = { loot_amount = 2 }
+		}
+		add_timed_idea = {
+			idea = UDM_black_market_payments
+			days = 50
+		}
+		set_country_flag = UDM_GRANTED_MILITARY_ACCESS
+	}
+}
+
+country_Event = { #Zlatoust says no
+	id = zlatoust_sales.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.3"}
+	title = zlatoust_sales.3.t
+	desc = zlatoust_sales.3.desc
+	picture = GFX_report_event_iberia_AAS_raid
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.3.a
+		add_political_power = -5
+	}
+}
+
+country_Event = { #Black Market relations continue
+	id = zlatoust_sales.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.4"}
+	title = zlatoust_sales.4.t
+	desc = zlatoust_sales.4.desc
+	picture = GFX_report_event_crate_of_guns
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.4.a
+		clr_country_flag = udm_black_market_deal_failed
+	}
+}
+
+country_Event = { #Black Market order failed Zlatoust
+	id = zlatoust_sales.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.5"}
+	title = zlatoust_sales.5.t
+	desc = zlatoust_sales.5.desc
+	picture = GFX_report_event_brittany_black_market
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.5.a
+	}
+}
+
+country_Event = { #Black Market order failed Customer
+	id = zlatoust_sales.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.6"}
+	title = zlatoust_sales.6.t
+	desc = zlatoust_sales.6.desc
+	picture = GFX_report_event_brittany_black_market
+	is_triggered_only = yes
+	
+	option = { #
+		name = zlatoust_sales.6.a
+		hidden_effect = {
+			UDM = {
+				country_event = {
+					id = zlatoust_sales.5
+				}
+			}
+		}
+	}
+}
+
+country_event = { #event informing buyer that their order has arrived (warlord)
+	id = zlatoust_sales.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.7"}
+	title = zlatoust_sales.7.t
+	desc = zlatoust_sales.7.desc
+	picture = GFX_report_event_crate_of_guns
+	
+	is_triggered_only = yes
+	
+	option = { # 
+		name = zlatoust_sales.7.a
+	}
+}
+
+country_event = { #phantom event to help with zlatoust_sales.3
+	id = zlatoust_sales.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event zlatoust_sales.8"}
+	title = zlatoust_sales.8.t
+	desc = zlatoust_sales.8.desc
+	picture = GFX_report_event_generic_revolver
+	
+	is_triggered_only = yes
+	
+	hidden = yes
+	
+	option = { # 
+		name = zlatoust_sales.8.a
+		UDM = {
+			country_event = {
+				id = zlatoust_sales.3
+			}
+		}
+	}
+}

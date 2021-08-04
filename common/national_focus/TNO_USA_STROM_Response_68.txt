@@ -1,0 +1,594 @@
+shared_focus = {
+	id = USA_Strom_68_the_greatest_disaster
+	icon = GFX_focus_usa_america_is_on_fire
+	cost = 1.00
+	x = 0
+	y = 0
+	allow_branch = {
+		OR = {
+			has_country_flag = USA_test_response_tree
+			has_country_flag = USA_THURMOND_FR_NPP_Past
+		}
+		NOT = {
+			has_country_flag = USA_finished_response
+		}
+	}
+	offset = {
+		x = 7
+		y = 0
+		trigger = { has_government = social_conservative }
+	}
+	offset = {
+		x = 0
+		y = 0
+		trigger = { has_government = social_liberal }
+	}
+	offset = {
+		x = 6
+		y = 1
+		trigger = { has_government = authoritarian_democrat }
+	}
+	offset = {
+		x = 4
+		y = 0
+		trigger = { has_government = social_democrat }
+	}
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_thegreatestdisaster"
+		custom_effect_tooltip = USA_add_societal_unity
+		country_event = { id = STROM.response.1 }
+		add_political_power = 30
+		add_to_variable = { USA_unity = 1 }
+		set_variable = { USA_strom_cra_strength = 1 }
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_courts
+	icon = GFX_USA_duty_to_country
+	cost = 1.00
+	x = 0
+	y = 1
+	relative_position_id = USA_Strom_68_the_greatest_disaster
+	prerequisite = { focus = USA_Strom_68_the_greatest_disaster }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_bill_in_consideration
+			NOT = {
+				has_country_flag = USA_discussing_bill #No Bill is currently being discussed
+			}
+		}
+	}
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_courts"
+		custom_effect_tooltip = USA_strom_introduce_anti_gerrymandering
+		hidden_effect = { country_event = { id = STROM.response.2 } }
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_solidify_the_line_of_succession
+	icon = GFX_USA_Tape_Together_the_Seams
+	cost = 1.00
+	x = -2
+	y = 1
+	relative_position_id = USA_Strom_68_the_courts
+	prerequisite = { focus = USA_Strom_68_the_courts }
+	available = { has_political_power > 99 }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_solidify_the_line_of_succession"
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_add_RD_popularity_low_north
+		}
+		else = { custom_effect_tooltip = USA_add_NPP_popularity_low_north }
+		add_stability = 0.04
+		add_political_power = -100
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = {
+					limit = { USA = { USA_RD_ruling_party = yes } }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					if = {
+						limit = { USA = { has_government = social_liberal } }
+						add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					}
+					else = { add_to_variable = { RD_D_bonus_popularity = popularity_bonus } }
+				}
+				else = {
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					if = {
+						limit = { USA = { has_government = authoritarian_democrat } }
+						add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					}
+					else_if = {
+						limit = { USA = { has_government = social_democrat } }
+						add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+					else = { add_to_variable = { NPP_L_bonus_popularity = popularity_bonus } }
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_abominable_maps
+	icon = GFX_USA_Redrawn_Maps
+	cost = 1.00
+	x = 0
+	y = 1
+	relative_position_id = USA_Strom_68_the_courts
+	prerequisite = { focus = USA_Strom_68_the_courts }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_bill_in_consideration
+			NOT = {
+				has_country_flag = USA_discussing_bill #No Bill is currently being discussed
+			}
+		}
+	}
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_abominable_maps"
+		custom_effect_tooltip = USA_strom_introduce_anti_gerrymandering
+		hidden_effect = {
+			strom_response_degerrymandering = yes
+			country_event = { id = STROM.response.6 days = 21 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_chimera_in_the_room
+	icon = GFX_USA_Forging_a_Better_Party
+	cost = 1.00
+	x = 2
+	y = 1
+	relative_position_id = USA_Strom_68_the_courts
+	prerequisite = { focus = USA_Strom_68_the_courts }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_chimera_in_the_room"
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			country_event = { id = STROM.response.4 }
+		}
+		else = { country_event = { id = STROM.response.5 } }
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_defining_normal
+	icon = GFX_USA_The_Great_Divide
+	cost = 1.00
+	x = 0
+	y = 2
+	relative_position_id = USA_Strom_68_the_courts
+	prerequisite = { 
+		focus = USA_Strom_68_the_chimera_in_the_room 
+		focus = USA_Strom_68_the_abominable_maps 
+		focus = USA_Strom_68_solidify_the_line_of_succession 
+	}
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_defining_normal"
+		country_event = { id = STROM.response.9 }
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_let_it_go
+	icon = GFX_USA_Get_Our_Hands_Dirty2
+	cost = 1.00
+	x = -2
+	y = 1
+	relative_position_id = USA_Strom_68_defining_normal
+	prerequisite = { focus = USA_Strom_68_defining_normal }
+	mutually_exclusive = { focus = USA_Strom_68_the_corrupt_bargain }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_let_it_go"
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_add_RD_popularity_low_south
+			custom_effect_tooltip = USA_subtract_RD_popularity_low_north
+		}
+		else = { 
+			custom_effect_tooltip = USA_add_NPP_popularity_low_south
+			custom_effect_tooltip = USA_subtract_NPP_popularity_low_north
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #Please the South
+					limit = {
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African America
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						add_to_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+				else = { #Anger the North
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						subtract_from_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						subtract_from_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { has_country_flag = USA_pardoned_nixon }
+			custom_effect_tooltip = USA_strom_response_against_nixon_precedent
+			custom_effect_tooltip = USA_subtract_societal_unity_small
+			subtract_from_variable = { USA_unity = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_corrupt_bargain
+	icon = GFX_USA_Investigate_NPP_Corruption
+	cost = 1.00
+	x = 2
+	y = 1
+	relative_position_id = USA_Strom_68_defining_normal
+	prerequisite = { focus = USA_Strom_68_defining_normal }
+	mutually_exclusive = { focus = USA_Strom_68_let_it_go }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_corrupt_bargain"
+		country_event = { id = STROM.response.16 }
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_subtract_RD_popularity_south
+			custom_effect_tooltip = USA_add_RD_popularity_low_north
+		}
+		else = { 
+			custom_effect_tooltip = USA_subtract_NPP_popularity_south
+			custom_effect_tooltip = USA_add_NPP_popularity_low_north
+		}
+		if = {
+			limit = { has_country_flag = USA_pardoned_nixon }
+			custom_effect_tooltip = USA_strom_response_against_nixon_precedent
+			custom_effect_tooltip = USA_subtract_societal_unity_small
+			subtract_from_variable = { USA_unity = 1 }
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #Please the North
+					limit = {
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						add_to_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+				else = { #Anger the South
+					if = { #Dixie states heavily invested in this
+						limit = { check_variable = { nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.03 } 
+					}
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						subtract_from_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						subtract_from_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_strike_a_balance
+	icon = GFX_USA_The_Party_Above_All
+	cost = 1.00
+	x = -2
+	y = 2
+	relative_position_id = USA_Strom_68_defining_normal
+	available = {
+		OR = {
+			has_government = social_conservative
+			has_government = authoritarian_democrat
+		}
+	}
+	prerequisite = { 
+		focus = USA_Strom_68_let_it_go
+		focus = USA_Strom_68_the_corrupt_bargain
+	}
+	mutually_exclusive = { focus = USA_Strom_68_the_dream_lives_on }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_strike_a_balance"
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_add_RD_popularity_low_south
+		}
+		else = { custom_effect_tooltip = USA_add_NPP_popularity_low_south }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African America
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = {
+					limit = { USA = { USA_RD_ruling_party = yes } }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+				}
+				else = {
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_dream_lives_on
+	icon = GFX_USA_They_have_a_dream
+	cost = 1.00
+	x = 2
+	y = 2
+	relative_position_id = USA_Strom_68_defining_normal
+	prerequisite = { 
+		focus = USA_Strom_68_let_it_go
+		focus = USA_Strom_68_the_corrupt_bargain
+	}
+	mutually_exclusive = { focus = USA_Strom_68_strike_a_balance }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_dream_lives_on"
+		custom_effect_tooltip = USA_strom_response_strengthen_cra
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_add_RD_popularity_low_south
+			custom_effect_tooltip = USA_subtract_RD_popularity_low_north
+		}
+		else = { 
+			custom_effect_tooltip = USA_add_NPP_popularity_low_south
+			custom_effect_tooltip = USA_subtract_NPP_popularity_low_north
+		}
+		hidden_effect = {
+			add_to_variable = { USA_strom_cra_strength = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #Please the North
+					limit = {
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						add_to_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						add_to_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { add_to_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+				else = { #Anger the South
+					if = {
+						limit = { USA = { USA_RD_ruling_party = yes } }
+						subtract_from_variable = { RD_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = social_conservative } }
+							subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { RD_R_bonus_popularity = popularity_bonus } }
+					}
+					else = {
+						subtract_from_variable = { NPP_popularity = popularity_bonus }
+						if = { 
+							limit = { USA = { has_government = authoritarian_democrat } }
+							subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+						}
+						else = { subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus } }
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_finalize_the_language
+	icon = GFX_Generic_Bill_of_Rights
+	cost = 1.00
+	x = 0
+	y = 3
+	relative_position_id = USA_Strom_68_defining_normal
+	offset = {
+		x = 2
+		y = 0
+		trigger = { has_government = social_conservative }
+	}
+	prerequisite = { 
+		focus = USA_Strom_68_strike_a_balance
+		focus = USA_Strom_68_the_dream_lives_on
+	}
+	mutually_exclusive = { focus = USA_Strom_68_our_work_is_done }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_dream_lives_on"
+		add_political_power = 45
+		if = {
+			limit = { USA_RD_ruling_party = yes }
+			custom_effect_tooltip = USA_add_RD_unity
+			add_to_variable = { USA_RD_Unity = 1 }
+		}
+		else = {
+			custom_effect_tooltip = USA_add_NPP_unity
+			add_to_variable = { USA_NPP_Unity = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_the_new_cra
+	icon = GFX_USA_Voting_Rights_Act
+	cost = 1.00
+	x = 0
+	y = 1
+	relative_position_id = USA_Strom_68_finalize_the_language
+	prerequisite = { focus = USA_Strom_68_finalize_the_language }
+	ai_will_do = { factor = 1000 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_the_new_cra"
+		custom_effect_tooltip = USA_strom_68_cra_legislation
+		set_country_flag = USA_finished_response
+		hidden_effect = { strom_response_cra = yes }
+		hidden_effect = { country_event = { id = STROM.response.101 days = 21 } }
+	}
+}
+
+shared_focus = {
+	id = USA_Strom_68_our_work_is_done
+	icon = GFX_USA_Bend_to_the_Segregationists
+	cost = 1.00
+	x = -4
+	y = 0
+	relative_position_id = USA_Strom_68_finalize_the_language
+	prerequisite = { focus = USA_Strom_68_strike_a_balance }
+	mutually_exclusive = { focus = USA_Strom_68_finalize_the_language }
+	ai_will_do = { factor = 1000 }
+	allow_branch = {
+		has_country_flag = USA_68_D_RD 
+		OR = { #You would think I would not need to repeat the above branch check. PDX code does not aggree however. If not present this foci pops up for Goldwater even if the rest of the tree is not present
+			has_country_flag = USA_test_response_tree
+			has_country_flag = USA_THURMOND_FR_NPP_Past
+		}
+		NOT = {
+			has_country_flag = USA_finished_response
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Strom_68_our_work_is_done"
+		custom_effect_tooltip = USA_add_RD_popularity_south
+		add_stability =  -0.05
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			country_event = { id = STROM.response.25 days = 14 }
+			subtract_from_variable = { USA_RD_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.06 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+			}
+			set_country_flag = USA_finished_response
+		}
+	}
+}

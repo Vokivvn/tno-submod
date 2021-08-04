@@ -1,0 +1,134 @@
+IRK_increase_party_influence_low = {
+	add_to_variable = { IRK_party_balance = 1 }
+	add_to_variable = { IRK_state_balance = -1 }
+	custom_effect_tooltip = IRK_increase_party_influence_low_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_increase_party_influence_med = {
+	add_to_variable = { IRK_party_balance = 3 }
+	add_to_variable = { IRK_state_balance = -3 }
+	custom_effect_tooltip = IRK_increase_party_influence_med_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_increase_party_influence_high = {
+	add_to_variable = { IRK_party_balance = 5 }
+	add_to_variable = { IRK_state_balance = -5 }
+	custom_effect_tooltip = IRK_increase_party_influence_high_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_increase_nkvd_influence_low = {
+	add_to_variable = { IRK_state_balance = 1 }
+	add_to_variable = { IRK_party_balance = -1 }
+	custom_effect_tooltip = IRK_increase_nkvd_influence_low_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_increase_nkvd_influence_med = {
+	add_to_variable = { IRK_state_balance = 3 }
+	add_to_variable = { IRK_party_balance = -3 }
+	custom_effect_tooltip = IRK_increase_nkvd_influence_med_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_increase_nkvd_influence_high = {
+	add_to_variable = { IRK_state_balance = 5 }
+	add_to_variable = { IRK_party_balance = -5 }
+	custom_effect_tooltip = IRK_increase_nkvd_influence_high_tt
+	if = {
+		limit = {
+			has_country_flag = IRK_regional_stage
+		}
+		IRK_reload_trees = yes
+	}
+}
+IRK_weaken_securocracy = {
+	if = {
+		limit = {
+			has_idea = IRK_supreme_securocracy
+		}
+		swap_ideas = {
+			remove_idea = IRK_supreme_securocracy
+			add_idea = IRK_expanded_securocracy
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRK_expanded_securocracy
+		}
+		swap_ideas = {
+			remove_idea = IRK_expanded_securocracy
+			add_idea = IRK_yagodas_paranoia
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRK_yagodas_paranoia
+		}
+		swap_ideas = {
+			remove_idea = IRK_yagodas_paranoia
+			add_idea = IRK_weakened_securocracy
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRK_weakened_securocracy
+		}
+		remove_ideas = IRK_weakened_securocracy
+	}
+}
+IRK_strengthen_securocracy = {
+	if = {
+		limit = {
+			has_idea = IRK_weakened_securocracy
+		}
+		swap_ideas = {
+			remove_idea = IRK_weakened_securocracy
+			add_idea = IRK_yagodas_paranoia
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRK_yagodas_paranoia
+		}
+		swap_ideas = {
+			remove_idea = IRK_yagodas_paranoia
+			add_idea = IRK_expanded_securocracy
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = IRK_expanded_securocracy
+		}
+		swap_ideas = {
+			remove_idea = IRK_expanded_securocracy
+			add_idea = IRK_supreme_securocracy
+		}
+	}
+}
+
+IRK_reload_trees = {
+	mark_focus_tree_layout_dirty = yes
+}

@@ -1,0 +1,3996 @@
+########################################################################################################
+
+######################### JOHN GLENN FOCUS TREE - BY DOCOVERBUILD3 - STARTED 12/26/19
+######################### JOHN GLENN FOCUS TREE - BY DOCOVERBUILD3 AND WALKER OF CHAOS - COMPLETED 2/8/19
+
+########################################################################################################
+shared_focus = {
+	id = USA_68_Glenn_Presidency
+	icon = GFX_USA_68_Glenn
+	cost = 2
+ 	available = {
+ 		custom_trigger_tooltip = {
+ 			tooltip = USA_not_in_crisis_tooltip
+ 			NOT = {
+ 				has_country_flag = USA_in_crisis
+ 			}
+ 		}
+ 	}
+ 	cancel = {
+ 		custom_trigger_tooltip = {
+ 			tooltip = USA_in_crisis_tooltip
+ 			has_country_flag = USA_in_crisis
+ 		}
+ 	}
+
+	x = 14
+	y = 0
+
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_68_Glenn_Presidency"
+		add_popularity = {
+			popularity = 0.01
+			ideology = social_liberal
+		}
+		add_stability = 0.02
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_Glenn_Time_to_Clean_House
+	icon = GFX_Time_To_Clean_House
+	cost = 3
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_68_Glenn_Presidency
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_68_Glenn_Presidency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Time_to_Clean_House"
+		country_event = { id = glenn.1 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Appease_the_Party
+	icon = GFX_USA_Reestablish_Party
+	cost = 3.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_Glenn_Time_to_Clean_House
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_Bring_in_the_Technocrats
+	}
+	x = -1
+	y = 2
+	relative_position_id = USA_68_Glenn_Presidency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Appease_the_Party"
+		custom_effect_tooltip = GLN_Go_Party
+		custom_effect_tooltip = USA_add_RD_unity
+		add_to_variable = { USA_RD_Unity = 3 }
+		add_popularity = {
+			ideology = social_liberal
+			popularity = 0.005
+		}
+		add_popularity = {
+			ideology = social_conservative
+			popularity = 0.005
+		}
+		add_popularity = {
+			ideology = social_democrat
+			popularity = -0.005
+		}
+		add_popularity = {
+			ideology = authoritarian_democrat
+			popularity = -0.005
+		}
+	}
+}
+shared_focus = {
+	id = USA_Glenn_Bring_in_the_Technocrats
+	icon = GFX_Break_Out_The_Graphs
+	cost = 3.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Time_to_Clean_House
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_Appease_the_Party
+	}
+	x = 1
+	y = 2
+	relative_position_id = USA_68_Glenn_Presidency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Bring_in_the_Technocrats"
+		set_country_flag = GLN_All_In_On_NASA
+		custom_effect_tooltip = GLN_Go_NASA
+		custom_effect_tooltip= GLN_Funding_NASA_tooltip
+		country_event = { id = glenn.2 days = 2}
+		add_to_variable = {USA_GLN_NASA_Funding = 50 }
+
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_Glenn_Crossing_The_New_Frontier
+	icon = GFX_USA_Glenn_Crossing_The_New_Frontier
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Bring_in_the_Technocrats
+		focus = USA_Glenn_Appease_the_Party
+	}
+	x = 0
+	y = 3
+	relative_position_id = USA_68_Glenn_Presidency
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Crossing_The_New_Frontier"
+		add_stability = 0.01
+		add_political_power = 75
+		country_event = { id = glenn.3 }
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Dream_Never_Died
+	icon = GFX_USA_Glenn_The_Dream_Never_Died
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Crossing_The_New_Frontier
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Crossing_The_New_Frontier
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Dream_Never_Died"
+		custom_effect_tooltip = GLN_Unlock_Mission_Control_Tooltip
+		set_country_flag = USA_GLN_back_To_Space
+		set_country_flag = USA_GLN_Mission_Control_Orion_Avaialable
+		set_country_flag = USA_GLN_Mission_Control_Minerva_Available
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		hidden_effect = {
+			country_event = { id = glenn.29}
+		}
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_Glenn_Pathway_to_the_Sky
+	icon = GFX_USA_Glenn_Pathway_to_the_Sky
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Dream_Never_Died
+	}
+
+	x = -4
+	y = 1
+	relative_position_id = USA_Glenn_Dream_Never_Died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Pathway_to_the_Sky"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.27 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Stick_What_Worked
+	icon = GFX_Expand_on_Explorer
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Pathway_to_the_Sky
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_In_With_New
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Pathway_to_the_Sky
+	completion_reward = {
+		custom_effect_tooltip = GLLN_Expand_Explorer
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Stick_What_Worked"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Smaller_Payloads
+	icon = GFX_goal_computer_assisted_design
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Stick_What_Worked
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Stick_What_Worked
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Smaller_Payloads"
+		custom_effect_tooltip = GLN_Advanced_Algorithims_Shit
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+		add_to_variable = { USA_GLN_NASA_Lower_Missions_Rewards_Boost = 0.25 }
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_In_With_New
+	icon = GFX_Men_Over_Machines
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_Glenn_Pathway_to_the_Sky
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_Stick_What_Worked
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Pathway_to_the_Sky
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_In_With_New"
+		custom_effect_tooltip = USA_GLN_Special_Research_Improved_Heat_Shields_Unlock_Tooltup
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_Special_Research_Unlock_Heat_Shielding
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Bigger_Is_Better
+	icon = GFX_Project_Daedalus
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_In_With_New
+	}
+	x = 1
+	y = 2
+	relative_position_id = USA_Glenn_Pathway_to_the_Sky
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Bigger_Is_Better"
+		custom_effect_tooltip = GLN_Unlock_Daedulus_tooltip
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_Mission_Control_Daedulus_Avaialable
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_The_Boosters
+	icon = GFX_The_Booster_Question
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Smaller_Payloads
+		focus = USA_Bigger_Is_Better
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Bigger_Is_Better
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_The_Boosters"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.34 days = 3 }
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Solid_Fuel
+	icon = GFX_USA_Glenn_Solid_Fuel
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	mutually_exclusive = {
+		focus = USA_Glenn_Liquid_Fuel
+		}
+
+	prerequisite = {
+		focus = USA_Glenn_The_Boosters
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_The_Boosters
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Solid_Fuel"
+		custom_effect_tooltip = USA_GLN_SRB
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = -30 }
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned = -30 }
+		add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = -5 }
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = -5 }
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Liquid_Fuel
+	icon = GFX_USA_Glenn_Liquid_Fuel
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_The_Boosters
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_Solid_Fuel
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_The_Boosters
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Liquid_Fuel"
+		custom_effect_tooltip = USA_GLN_LRB
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = 45 }
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned = 45 }
+		add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 5 }
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+		add_to_variable = { USA_GLN_NASA_Manned_Missions_Rewards_Boost = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = USA_Dust_Off_Plans
+	icon = GFX_GER_New_Missile_Designs
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Liquid_Fuel
+		focus = USA_Glenn_Solid_Fuel
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Solid_Fuel
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Dust_Off_Plans"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = USA_GLN_JPL_Science_Points
+		add_to_variable = { USA_GLN_NASA_Science_Points = 30 }
+	}
+}
+
+shared_focus = {
+	id = USA_Saturn_V
+	icon = GFX_USA_Glenn_The_Saturn_V
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Dust_Off_Plans
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Dust_Off_Plans
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Dust_Off_Plans"
+		custom_effect_tooltip = USA_GLN_Special_Research_Saturn_V_Rocket_Unlock_Tooltip
+		custom_effect_tooltip = USA_GLN_JPL_Science_Points
+		custom_effect_tooltip = GLN_public_support_down_3
+
+		set_country_flag = USA_GLN_Special_Research_Unlock_Saturn_V_Rocket
+		add_to_variable = { USA_GLN_NASA_Science_Points = 20 }
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_New_NASA
+	icon = GFX_USA_Glenn_The_New_NASA
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Dream_Never_Died
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Dream_Never_Died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_New_NASA"
+		custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Medium
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { misc_income = 150 }
+		add_to_variable = { USA_GLN_NASA_Funding = 150 }
+		country_event = { id = glenn.25 days = 7 }
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Siphon_Funding
+	icon = GFX_USA_Glenn_Siphon_in_Funding
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_New_NASA
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_New_NASA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Siphon_Funding"
+		custom_effect_tooltip = GLN_Unlock_Siphoning_STuff
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_We_can_Siphon_Now
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Best_Brightest
+	icon = GFX_TNO_Generic_Science
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_New_NASA
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_New_NASA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Best_Brightest"
+		custom_effect_tooltip = GLN_Unlock_best_and_Brightest
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_best_And_Brightest
+		country_event = { id = glenn.26 days = 7 }
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Upgrade_Testing_Range
+	icon = GFX_BRG_focus_its_not_rocket_science
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Siphon_Funding
+	}
+
+	prerequisite = {
+		focus = USA_Best_Brightest
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Siphon_Funding
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Upgrade_Testing_Range"
+		custom_effect_tooltip = GLN_Upgraded_Facilities
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned = -20 }
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_UnmannedManned = -20 }
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+
+	}
+}
+
+
+shared_focus = {
+	id = USA_Money_Never_Stops
+	icon = GFX_American_Funding
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Upgrade_Testing_Range
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Upgrade_Testing_Range
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Money_Never_Stops"
+		custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Gigantic
+		custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Yearly_Gigantic
+		custom_effect_tooltip = GLN_public_support_down_9
+		add_to_variable = { USA_GLN_Public_Support = -9 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		add_to_variable = { misc_costs = 250 }
+		add_to_variable = { USA_GLN_NASA_Funding = 250 }
+		add_to_variable = { USA_GLN_NASA_Funding_Annual = 250 }
+		hidden_effect = {
+			country_event = { id = glenn.32 days = 3 }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Surviving_The_Cosmos
+	icon = GFX_USA_Glenn_Surviving_the_Cosmos
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Dream_Never_Died
+	}
+
+	x = 4
+	y = 1
+	relative_position_id = USA_Glenn_Dream_Never_Died
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Surviving_The_Cosmos"
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.30 days = 7 }
+	}
+}
+
+shared_focus = {
+	id = USA_Board_Diagnostics
+	icon = GFX_Bring_Back_The_Stim_Pills
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Surviving_The_Cosmos
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Surviving_The_Cosmos
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Board_Diagnostics"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = USA_GLN_Training_Reg_Tooltip
+		add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 4 }
+	}
+}
+
+
+shared_focus = {
+	id = USA_Rework_Capsule
+	icon = GFX_USA_Glenn_Reworking_the_Capsule
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Board_Diagnostics
+	}
+
+	mutually_exclusive = {
+		focus = USA_Rework_Suit
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Board_Diagnostics
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Rework_Capsule"
+
+		custom_effect_tooltip = USA_GLN_Reworked_Capsule_Unlock_Tooltip
+		custom_effect_tooltip = USA_GLN_JPL_Science_Points
+		custom_effect_tooltip = GLN_public_support_down_3
+
+		set_country_flag = USA_GLN_Special_Research_Unlock_New_Capsule
+		add_to_variable = { USA_GLN_NASA_Science_Points = 15 }
+
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Pinpoint_Thrusters
+	icon = GFX_USA_Glenn_Pinpoint_Thrusters
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Rework_Capsule
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Rework_Capsule
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Pinpoint_Thrusters"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = GLN_USA_Glenn_Pinpoint_Thrusters
+		add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = -3 }
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 4 }
+	}
+}
+
+shared_focus = {
+	id = USA_Human_Stress_test
+	icon = GFX_USA_Glenn_Human_Stress_Tests
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Surviving_The_Cosmos
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Surviving_The_Cosmos
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Human_Stress_test"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.31 days = 3 }
+		add_tech_bonus = {
+		bonus = 0.3
+		uses = 1
+		category = hospital_tech
+			}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Rework_Suit
+	icon = GFX_USA_Glenn_Reworking_the_Suit
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Human_Stress_test
+	}
+	mutually_exclusive = {
+		focus = USA_Rework_Capsule
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Human_Stress_test
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Rework_Suit"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = GLN_USA_Glenn_Reworked_Suits
+		add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost= 5 }
+	}
+}
+
+
+shared_focus = {
+	id = USA_Improve_Insulation
+	icon = GFX_Improved_Insulation
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Rework_Suit
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Rework_Suit
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Improve_Insulation"
+		custom_effect_tooltip = GLN_public_support_down_3
+		custom_effect_tooltip = USA_GLN_Special_Research_Space_Suit_V2_Unlock_Tooltip
+		set_country_flag = USA_GLN_Special_Research_Unlock_Space_Suit_V2
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_The_Great_Unknown
+	icon = GFX_USA_Glenn_The_Great_Unknown
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Improve_Insulation
+		focus = USA_Pinpoint_Thrusters
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Improve_Insulation
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Improve_Insulation"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.33 days = 3}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Improved_Fuel_Lines
+	icon = GFX_RAJ_India_Diplo_Italy_Oil
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_The_Great_Unknown
+	}
+
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_The_Great_Unknown
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Improve_Insulation"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = USA_GLN_Oil_Barrel_Research_Tooltip
+		set_country_flag = USA_GLN_We_Can_Research_Oil_Now
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Upgraded_Radio
+	icon = GFX_GER_new_radar
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_The_Great_Unknown
+	}
+
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_The_Great_Unknown
+	completion_reward = {
+		custom_effect_tooltip = USA_GLN_Special_Research_Software_Update_Unlock_Tooltip
+		custom_effect_tooltip = USA_GLN_JPL_Science_Points
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_Special_Research_Unlock_Software_Update
+		add_to_variable = { USA_GLN_NASA_Science_Points = 15 }
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Improve_Insulation"
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+
+
+
+
+shared_focus = {
+	id = USA_Ready_For_Anything
+	icon = GFX_USA_Glenn_Ready_for_Anything
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Improved_Fuel_Lines
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Upgraded_Radio
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Improved_Fuel_Lines
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Ready_For_Anything"
+		custom_effect_tooltip = GLN_public_support_up_10
+		add_to_variable = { USA_GLN_Public_Support = 10 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		add_ideas = USA_Glenn_Ready_for_Anything
+	}
+}
+
+
+shared_focus = {
+	id = USA_Stars_Beckon
+	icon = GFX_USA_Glenn_Stars_Beckon
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Saturn_V
+
+	}
+	prerequisite = {
+		focus = USA_Money_Never_Stops
+
+	}
+	prerequisite = {
+		focus = USA_Ready_For_Anything
+
+	}
+
+	x = 4
+	y = 1
+	relative_position_id = USA_Saturn_V
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Stars_Beckon"
+		custom_effect_tooltip = GLN_public_support_up_3
+		add_to_variable = { USA_GLN_Public_Support = 3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		country_event = { id = glenn.69 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = USA_Lessons_of_Gemini
+	icon = GFX_CHI_Import_Designs
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Stars_Beckon
+
+	}
+
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Stars_Beckon
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Lessons_of_Gemini"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = USA_GLN_Gemini
+		hidden_effect = {
+		add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+			}
+	}
+}
+
+shared_focus = {
+	id = USA_Heartbreak_Apollo
+	icon = GFX_USA_Glenn_Heartbreak_of_the_Apollo
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Stars_Beckon
+	}
+
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Stars_Beckon
+	completion_reward = {
+		custom_effect_tooltip = USA_GLN_Heartbreak_Apollo
+		custom_effect_tooltip = GLN_public_support_down_3
+		hidden_effect = {
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 5 }
+			country_event = { id = glenn.70 days = 3 }
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Heartbreak_Apollo"
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_upgrading_the_infrastructure
+	icon = GFX_RAJ_Upgrade_Current_Infrastructure
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Heartbreak_Apollo
+
+	}
+
+	prerequisite = {
+		focus = USA_Lessons_of_Gemini
+
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Lessons_of_Gemini
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_upgrading_the_infrastructure"
+		custom_effect_tooltip = USA_GLN_Space_Upgrade_Infa
+		custom_effect_tooltip = GLN_public_support_down_3
+		set_country_flag = USA_GLN_Upgarding_Infa_decisions_unlocked
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Project_Pathfinder
+	icon = GFX_USA_Glenn_Project_Viking
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Heartbreak_Apollo
+
+	}
+
+	prerequisite = {
+		focus = USA_Lessons_of_Gemini
+
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Lessons_of_Gemini
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Project_Pathfinder"
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		add_to_variable = { USA_GLN_NASA_Manned_Missions_Rewards_Boost = 0.15 }
+		custom_effect_tooltip = USA_GLN_Project_Viking
+	}
+}
+
+
+shared_focus = {
+	id = USA_Project_Mariner
+	icon = GFX_USA_Glenn_Call_on_the_Country
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Heartbreak_Apollo
+	}
+
+	prerequisite = {
+		focus = USA_Lessons_of_Gemini
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Heartbreak_Apollo
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Project_Mariner"
+		add_to_variable = { USA_GLN_Public_Support = 10 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Medium_Large
+		custom_effect_tooltip = GLN_public_support_up_10
+		add_to_variable = { USA_GLN_NASA_Funding = 150 }
+		hidden_effect = {
+			country_event = { id = glenn.73 days = 7  }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Project_Ares
+	icon = GFX_USA_Glenn_Project_Ares
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Project_Pathfinder
+
+	}
+
+	prerequisite = {
+		focus = USA_upgrading_the_infrastructure
+
+	}
+
+	prerequisite = {
+		focus = USA_Project_Mariner
+
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Project_Pathfinder
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Project_Ares"
+		custom_effect_tooltip  = USA_GLN_Project_Ares
+		custom_effect_tooltip = GLN_public_support_down_3
+		add_to_variable = { USA_GLN_Public_Support = -3 }
+		clamp_variable = {
+			var = USA_GLN_Public_Support
+			min = 0
+			max = 100
+		}
+		set_country_flag = USA_GLN_Mission_Control_Ares_Avaialable
+	}
+}
+
+
+shared_focus = {
+	id = USA_Eagle_has_Landed
+	icon = GFX_USA_Glenn_Mars_Landing
+	cost = 0.43
+	available = {
+		has_country_flag = USA_GLN_Landed_ON_Mars
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Project_Ares
+
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Project_Ares
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Eagle_has_Landed"
+		add_political_power = 200
+		add_stability = 0.1
+		add_war_support = 0.05
+		USA_decrease_depression = yes
+		custom_effect_tooltip = USA_add_OFN_unity
+		add_to_variable = { OFN_unity = 3 }
+	}
+}
+
+
+############################################################### END OF SPACE TREE
+
+
+
+############################################################### START OF ENERGY/DIPLOMACY TREE
+
+
+
+
+shared_focus = {
+	id = USA_Glenn_Power_of_the_Atom
+	icon = GFX_CHI_Science
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Crossing_The_New_Frontier
+	}
+	x = -11
+	y = 3
+	relative_position_id = USA_Glenn_Crossing_The_New_Frontier
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Power_of_the_Atom"
+		custom_effect_tooltip = GLN_public_support_path
+		custom_effect_tooltip = GLN_nuclear_path_balance
+		country_event = { id = glenn.4 days = 2 }
+		add_ideas = USA_Glenn_Nuclear_Power
+		set_variable = { GLN_nuclear_expense = 75 }
+		set_variable = { GLN_nuclear_spending = 0 }
+		GLN_increase_nuclear_spending = yes
+		set_variable = { GLN_nuclear_civilian_foci = 0 }
+		set_variable = { GLN_nuclear_military_foci = 0 }
+		hidden_effect = {
+			country_event = {
+				id = glenn.76
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_We_shall_have_it_all
+	icon = GFX_USA_Glenn_We-Shall-Have-it-All
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Power_of_the_Atom
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Power_of_the_Atom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_We_shall_have_it_all"
+		custom_effect_tooltip = GLN_unlock_ally_purchases
+		custom_effect_tooltip = GLN_enemies_nuclear_stockpile_down
+		set_country_flag = GLN_purchase_from_allies
+		country_event = { id = glenn.16 days = 3 }
+		hidden_effect = {
+			GER = {  country_event = { id = glenn.107 } }
+			JAP = {  country_event = { id = glenn.107 } }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Corner_The_Market
+	icon = GFX_GER_The_Almighty_Dollar
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_We_shall_have_it_all
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_We_shall_have_it_all
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Corner_The_Market"
+		custom_effect_tooltip = GLN_unlock_enemy_sabotage
+		hidden_effect = {
+			country_event = { id = glenn.17 days = 5}
+			hidden_effect = {
+				add_to_variable = { GLN_nuclear_military_foci = 1 }
+				set_variable = { GLN_mine_fuckery_cost = 72 }
+				set_variable = { GLN_fale_flag_cost = 54 }
+				set_variable = { GLN_supplier_fuckery = 150 }
+				if = {
+					limit = {
+						AND = {
+							check_variable = { GLN_nuclear_military_foci > 2 }
+							check_variable = { GLN_nuclear_civilian_foci < 2 }
+						}
+					}
+					country_event = { id = glenn.75 }
+				}
+			}
+			set_country_flag = USA_GLN_fuck_with_rivals
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Yeld_Must_Grow
+	icon = GFX_RAJ_Invest_In_Nuclear
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Corner_The_Market
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Corner_The_Market
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Yeld_Must_Grow"
+		country_event = { id = glenn.23 days = 3 }
+		custom_effect_tooltip = GLN_nuclear_funding
+		set_variable = { GLN_nuclear_expense = 270 }
+		GLN_increase_nuclear_spending = yes
+		hidden_effect = {
+			add_to_variable = { GLN_nuclear_military_foci = 1 }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { GLN_nuclear_military_foci > 2 }
+						check_variable = { GLN_nuclear_civilian_foci < 2 }
+					}
+				}
+				country_event = { id = glenn.75 }
+			}
+		}
+		add_to_variable = { GLN_nuclear_spending = 275 }
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_New_Delivery_System
+	icon = GFX_GER_New_Missile_Designs
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Power_of_the_Atom
+		focus = USA_Glenn_Pathway_to_the_Sky
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Power_of_the_Atom
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_New_Delivery_System"
+		custom_effect_tooltip = USA_GLN_Eros_Is_A_Go
+		set_country_flag = USA_GLN_Mission_Control_Eros_Avaialable
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Increase_Payload
+	icon = GFX_GER_stealth_bombers
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_New_Delivery_System
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_New_Delivery_System
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Increase_Payload"
+		country_event = { id = glenn.24 days = 30 }
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = jet_strat_bomber
+		}
+		add_tech_bonus = {
+			bonus = 0.4
+			uses = 1
+			category = helicopter
+		}
+		hidden_effect = {
+			add_to_variable = { GLN_nuclear_military_foci = 1 }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { GLN_nuclear_military_foci > 2 }
+						check_variable = { GLN_nuclear_civilian_foci < 2 }
+					}
+				}
+				country_event = { id = glenn.75 }
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Upgrade_the_Targeting
+	icon = GFX_goal_computer_assisted_design
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Increase_Payload
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Increase_Payload
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Upgrade_the_Targeting"
+		add_ideas = USA_Glenn_Upgraded_Rocket_Sites_1
+		hidden_effect = {
+			add_to_variable = { GLN_nuclear_military_foci = 1 }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { GLN_nuclear_military_foci > 2 }
+						check_variable = { GLN_nuclear_civilian_foci < 2 }
+					}
+				}
+				country_event = { id = glenn.75 }
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Federal_Pilot_Reactors
+	icon = GFX_generic_nuclear_power
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_New_Delivery_System
+		focus = USA_Glenn_We_shall_have_it_all
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_New_Delivery_System
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Federal_Pilot_Reactors"
+		custom_effect_tooltip = GLN_nuclear_funding
+		country_event = { id = glenn.5 days = 3 }
+		add_to_variable = { GLN_nuclear_civilian_foci = 1 }
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Pay_for_Conversation
+	icon = GFX_CHI_Modern_Construction_Equipment
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Federal_Pilot_Reactors
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Federal_Pilot_Reactors
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Pay_for_Conversation"
+		custom_effect_tooltip = GLN_nuclear_stockpile_up
+		custom_effect_tooltip = GLN_public_support_up_5
+		custom_effect_tooltip = GLN_nuclear_funding
+		360 = {
+			add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+			}
+		}
+		365 = {
+			add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+			}
+		}
+		366 = {
+			add_building_construction = {
+				type = nuclear_reactor
+				level = 1
+				instant_build = yes
+			}
+		}
+		hidden_effect = {
+			add_to_variable = { GLN_nuclear_military_foci = 1 }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { GLN_nuclear_civilian_foci > 2 }
+						check_variable = { GLN_nuclear_military_foci < 2 }
+					}
+				}
+				country_event = { id = glenn.74 }
+			}
+			add_to_variable = { USA_GLN_Public_Support = 5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			set_variable = { GLN_nuclear_expense = 300 }
+			GLN_increase_nuclear_spending = yes
+			country_event = { id = glenn.77 }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Recruit_Disney
+	icon = GFX_USA_Glenn_Recruit_Disney
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_Glenn_Federal_Pilot_Reactors
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Federal_Pilot_Reactors
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+		country_event = { id = glenn.8 days = 3 }
+		hidden_effect = {
+			add_to_variable = { GLN_nuclear_military_foci = 1 }
+			if = {
+				limit = {
+					AND = {
+						check_variable = { GLN_nuclear_civilian_foci > 2 }
+						check_variable = { GLN_nuclear_military_foci < 2 }
+					}
+				}
+				country_event = { id = glenn.74 }
+			}
+			add_to_variable = { misc_income = 20 }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_We_Control_The_Power
+	icon = GFX_USA_Glenn_We_Control_the_Power
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Recruit_Disney
+	}
+
+
+	prerequisite = {
+		focus = USA_Glenn_Pay_for_Conversation
+	}
+
+
+	prerequisite = {
+		focus = USA_Glenn_Upgrade_the_Targeting
+	}
+
+
+	prerequisite = {
+		focus = USA_Glenn_Yeld_Must_Grow
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Recruit_Disney
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_We_Control_The_Power"
+		custom_effect_tooltip = USA_add_OFN_unity
+		add_to_variable = { OFN_Unity = 1 }
+		custom_effect_tooltip = GLN_nuclear_stockpile_up
+		TNO_improve_nuclear_stockpile_high = yes #coded with a script
+		add_war_support = 0.05
+		add_stability = 0.03
+		hidden_effect = {
+			country_event = { id = glenn.80 days = 4 }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Early_Warning_Station_Reykjavic
+	icon = GFX_USA_Glenn_Early_Warning_Station_Reykjavic
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_We_Control_The_Power
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_We_Control_The_Power
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+		add_to_variable = { misc_costs = 90 }
+		add_war_support = 0.01
+		ICE = {
+			100 = {
+				set_building_level = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.40
+			uses = 1
+			category = radar_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Nuclear_Iceland
+	icon = GFX_USA_Glenn_Nuclear_Iceland
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Early_Warning_Station_Reykjavic
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Early_Warning_Station_Reykjavic
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+		set_variable = { GLN_nuclear_expense = 120 }
+		GLN_increase_nuclear_spending = yes
+		add_war_support = 0.02
+		ICE = {
+			100 = {
+				set_building_level = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Land_Down_Under
+	icon = GFX_AST_Advance_Australia_Fair
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_We_Control_The_Power
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_We_Control_The_Power
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+		country_event = { id = glenn.15 days = 3 }
+		set_variable = { GLN_nuclear_expense = 160 }
+		GLN_increase_nuclear_spending = yes
+		AST = { #Joey time
+			520 = {
+				set_building_level = {
+					type = infrastructure
+					level = 5
+					instant_build = yes
+				}
+				set_building_level = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Nuclear_Sub_Dev
+	icon = GFX_JAP_The_Hidden_Menace_submarine
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Land_Down_Under
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Land_Down_Under
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Nuclear_Sub_Dev"
+		custom_effect_tooltip = GLN_nuclear_funding
+		set_variable = { GLN_nuclear_expense = 250 }
+		GLN_increase_nuclear_spending = yes
+		add_tech_bonus = {
+			bonus = 0.3
+			uses = 1
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			bonus = 0.45
+			uses = 1
+			category = ss_tech
+		}
+		add_tech_bonus = {
+			bonus = 0.60
+			uses = 1
+			category = ssn_tech
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Speaking_Softly
+	icon = GFX_GER_SGR_arms_from_our_rivals
+	cost = 5.00
+	available = {
+		has_idea = tno_nuclear_stockpile_apocalyptic
+		GER = {
+			NOT = {
+				has_idea = tno_nuclear_stockpile_apocalyptic
+			}
+		}
+
+		JAP = {
+			NOT = {
+				has_idea = tno_nuclear_stockpile_apocalyptic
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	allow_branch = { NOT = { has_country_flag = GLN_lost_diplo_crisis } }
+
+	prerequisite = {
+		focus = USA_Nuclear_Sub_Dev
+	}
+	prerequisite = {
+		focus = USA_Nuclear_Iceland
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Nuclear_Iceland
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Speaking_Softly"
+
+		country_event = glenn.151
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_The_Sanctity_Of_The_OFN
+	icon = GFX_AST_maintain_ofn
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Speaking_Softly
+	}
+
+	x = -2
+	y = 1
+	relative_position_id = USA_Speaking_Softly
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_The_Sanctity_Of_The_OFN"
+		hidden_effect = {
+			add_to_variable = {
+				OFN_Unity = 1
+			}
+		}
+		custom_effect_tooltip = USA_add_OFN_unity
+	}
+}
+
+shared_focus = {
+	id = USA_Readying_The_Big_Stick
+	icon = GFX_SKN_The_Nuclear_Option
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Speaking_Softly
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Speaking_Softly
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Readying_The_Big_Stick"
+		add_war_support = 0.05
+		TNO_improve_nuclear_stockpile_low = yes
+	}
+}
+
+shared_focus = {
+	id = USA_Seven_Second_Detection
+	icon = GFX_USA_Glenn_Seven_Second_Detection
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Speaking_Softly
+	}
+
+	x = 2
+	y = 1
+	relative_position_id = USA_Speaking_Softly
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = radar_tech
+		}
+		331 = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_A_Fragile_Peace
+	icon = GFX_USA_Glenn_A_Fragile_Peace
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Seven_Second_Detection
+	}
+	prerequisite = {
+		focus = USA_Readying_The_Big_Stick
+	}
+	prerequisite = {
+		focus = USA_The_Sanctity_Of_The_OFN
+	}
+
+	x = 0
+	y = 2
+	relative_position_id = USA_Speaking_Softly
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Recruit_Disney"
+		USA_decrease_depression = yes
+		country_event = glenn.nuclear.1 #event chain for nuclear dissarmerment
+	}
+}
+
+################################################################################# END NUCLEAR/DIPLOMACY TREE
+
+shared_focus = {
+	id = USA_23_59
+	icon = GFX_USA_The_Great_Divide
+	cost = 2.00
+	allow_branch = { has_country_flag = GLN_lost_diplo_crisis }
+
+	prerequisite = {
+		focus = USA_Nuclear_Sub_Dev
+	}
+	prerequisite = {
+		focus = USA_Nuclear_Iceland
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Nuclear_Iceland
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_23_59"
+
+		country_event = { id = glenn.99 }
+	}
+}
+
+shared_focus = {
+	id = USA_discontinue_buildup_programs
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_23_59
+	}
+
+	x = 0
+	y = 1
+	relative_position_id = USA_23_59
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_discontinue_buildup_programs"
+		custom_effect_tooltip = GLN_discontinue_builldup
+		set_variable = { nuclear_stockpile_monthly_change = 0 }
+		country_event = { id = glenn.100 }
+	}
+}
+
+shared_focus = {
+	id = USA_bet_on_dove
+	icon = GFX_Democacy_Saved
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_discontinue_buildup_programs
+	}
+	mutually_exclusive = { focus = USA_maintain_commitments }
+
+	x = -3
+	y = 1
+	relative_position_id = USA_discontinue_buildup_programs
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_discontinue_buildup_programs"
+		custom_effect_tooltip = GLN_bet_on_dove_path
+		custom_effect_tooltip = USA_subtract_OFN_unity
+		hidden_effect = {
+			subtract_from_variable = { OFN_Unity = 1 }
+			every_owned_state = { #Steal progressive cred
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_temp_variable = { popularity_bonus = 0.02 }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_reassess_oceanian_commitments
+	icon = GFX_USA_The_Australian_Plan
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_bet_on_dove
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_bet_on_dove
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_reassess_oceanian_commitments"
+		custom_effect_tooltip = GLN_reassure_west_coast
+		custom_effect_tooltip = USA_subtract_OFN_unity
+		AST = { add_ideas = USA_Glenn_reduced_american_commitment }
+		NZL = { add_ideas = USA_Glenn_reduced_american_commitment }
+		hidden_effect = {
+			every_owned_state = { #Steal progressive cred
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 88 } #Pacific
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.07 }
+				add_to_variable = { RD_popularity = 0.07 }
+				US_underdog_RD_2_2 = yes
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+			}
+			subtract_from_variable = { OFN_Unity = 1 }
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_rebuke_jingoists
+	icon = GFX_dove_of_peace
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_bet_on_dove
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_bet_on_dove
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_rebuke_jingoists"
+		custom_effect_tooltip = GLN_rebuke_jingoists
+		hidden_effect = {
+			every_owned_state = { #Fuck you south
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.07 }
+				subtract_from_variable = { NPP_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_peaceful_party
+	icon = GFX_RAJ_World_Peace
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_rebuke_jingoists
+	}
+	prerequisite = {
+		focus = USA_reassess_oceanian_commitments
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_rebuke_jingoists
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_peaceful_party"
+		custom_effect_tooltip = GLN_public_support_up_5
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		hidden_effect = {
+			add_to_variable = { USA_GLN_Public_Support = 5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			every_owned_state = { #Steal progressive cred
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.01 }
+				subtract_from_variable = { NPP_popularity = 0.01 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_maintain_commitments
+	icon = GFX_AST_maintain_ofn
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_discontinue_buildup_programs
+	}
+	mutually_exclusive = { focus = USA_bet_on_dove }
+
+	x = 3
+	y = 1
+	relative_position_id = USA_discontinue_buildup_programs
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_maintain_commitments"
+		custom_effect_tooltip = USA_add_OFN_unity
+		custom_effect_tooltip = USA_GLN_decrease_heartland_popularity
+		custom_effect_tooltip = GLN_public_support_down_5
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 1 }
+			subtract_from_variable = { USA_GLN_Public_Support = 5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			every_owned_state = { #Steal progressive cred
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				subtract_from_variable = { RD_R_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_popularity = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.03 }
+				add_to_variable = { NPP_popularity = 0.03 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_reassure_allies
+	icon = GFX_USA_Praise_The_OFN
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_maintain_commitments
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_maintain_commitments
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_reassure_allies"
+		custom_effect_tooltip = USA_add_OFN_unity
+		custom_effect_tooltip = GLN_civilian_backlash
+		hidden_effect = {
+			add_to_variable = { OFN_Unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							state = 463 #alaska
+							state = 377 # arizona
+							state = 378 # california
+							state = 395 # illinois
+							state = 396 # indiana
+							state = 261 # ohio
+							state = 393 # michigan
+							state = 385 # Oregon
+							state = 358 # ny
+							state = 359 # nj
+							state = 357 # ct
+							state = 360 # penn
+						}
+					}
+				}
+				if = { #Exempt states with reactors
+					limit = { nuclear_reactor > 0 }
+				}
+				else = {
+					subtract_from_variable = { RD_popularity = 0.06 } #Party suffers
+					subtract_from_variable = { RD_R_bonus_popularity = 0.03 } #Booh Glenn hates the people
+					add_to_variable = { NPP_popularity = 0.03 } #Opposition benefit
+					add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_drump_up_enthusiaism
+	icon = GFX_MZB_The_Drums_Echo
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_maintain_commitments
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_maintain_commitments
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_drump_up_enthusiaism"
+		custom_effect_tooltip = GLN_military_boost
+		add_war_support = 0.03
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 463 #alaska
+						state = 377 # arizona
+						state = 378 # california
+						state = 395 # illinois
+						state = 396 # indiana
+						state = 261 # ohio
+						state = 393 # michigan
+						state = 385 # Oregon
+						state = 358 # ny
+						state = 359 # nj
+						state = 357 # ct
+						state = 360 # penn
+					}
+				}
+				add_to_variable = { RD_popularity = 0.06 } #Fancy toys
+				add_to_variable = { RD_R_bonus_popularity = 0.04 } #Glenn loves the military and we love him
+				subtract_from_variable = { NPP_popularity = 0.04 } #NPP loses appeal among soldiers
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.04 } #Why vote for Bombing Jaban when Glenn already does it???
+				add_to_variable = { NPP_Y_bonus_popularity = 0.07 } #Psyche the crazy fascists don't vote for you, they just feel emboldened
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_united_in_freedom
+	icon = GFX_USA_Retake_Our_Land
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_drump_up_enthusiaism
+	}
+	prerequisite = {
+		focus = USA_reassure_allies
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_drump_up_enthusiaism
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_united_in_freedom"
+		custom_effect_tooltip = USA_add_OFN_unity
+		add_stability = 0.02
+		hidden_effect = {
+			country_event = { id = glenn.101 days = 10 }
+		}
+	}
+}
+shared_focus = {
+	id = USA_23_55
+	icon = GFX_Our_Friends_Abroad
+	cost = 2.00
+
+	prerequisite = {
+		focus = USA_united_in_freedom
+		focus = USA_peaceful_party
+	}
+
+	x = 0
+	y = 4
+	relative_position_id = USA_discontinue_buildup_programs
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_23_55"
+		custom_effect_tooltip = GLN_end_crisis
+		clr_country_flag = USA_in_crisis
+		add_political_power = 30
+		hidden_effect = { country_event = { id = glenn.102 } }
+	}
+}
+
+
+################################################################################# END NUCLEAR/DIPLOMACY TREE
+
+shared_focus = {
+	id = USA_Glenn_Closing_Empathy_Deficit
+	icon = GFX_USA_Turn_the_People
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Crossing_The_New_Frontier
+	}
+	x = 10
+	y = 1
+	relative_position_id = USA_Glenn_Crossing_The_New_Frontier
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Closing_Empathy_Deficit"
+		custom_effect_tooltip = GLN_public_support_path
+		custom_effect_tooltip = GLN_begin_pension_bill
+		hidden_effect = {
+			country_event = { id = glenn.35 }
+			USA_gln_pension_reform_bill_setup = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_THe_Neediest
+	icon = GFX_USA_Glenn_Our_Neediest
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Closing_Empathy_Deficit
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Closing_Empathy_Deficit
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_THe_Neediest"
+		custom_effect_tooltip = GLN_neediest_tooltip
+		hidden_effect = { country_event = { id = glenn.36 } }
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_THe_Downtrodden
+	icon = GFX_USA_Glenn_Our_Downtrodden
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Closing_Empathy_Deficit
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Closing_Empathy_Deficit
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_THe_Neediest"
+		custom_effect_tooltip = GLN_downtrodden_tooltip
+		hidden_effect = {
+			country_event = {
+				id = glenn.37
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Pension_Security_Bill
+	icon = GFX_Generic_Bill_of_Rights
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_THe_Neediest
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_THe_Downtrodden
+	}
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_THe_Neediest
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Pension_Security_Bill"
+		custom_effect_tooltip = GLN_pension_act
+		hidden_effect = { #Fire the apropriate event
+			check_if_bill_passed = yes
+			if = {
+				limit = { has_country_flag = bill_passed }
+				country_event = { id = glenn.38 }
+			}
+			else = {
+				country_event = { id = glenn.39 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Beat_Big_Pharma
+	icon = GFX_USA_Glenn_Beat_Back_Big_Pharma
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Pension_Security_Bill
+	}
+
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Pension_Security_Bill
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Beat_Big_Pharma"
+		country_event = {
+			id = glenn.40
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Secure_Workplace
+	icon = GFX_USA_Bring_Back_Unions
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = USA_bill_in_consideration
+			NOT = {
+				has_country_flag = USA_discussing_bill
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Pension_Security_Bill
+	}
+
+
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Pension_Security_Bill
+	select_effect = {
+		country_event = {
+			id = glenn.56
+			days = 7
+		}
+	}
+	completion_reward = {
+		custom_effect_tooltip = USA_GLN_end_right_to_work_bill
+		custom_effect_tooltip = GLN_public_support_up_3
+		hidden_effect = {
+			USA_gln_end_right_to_work_bill_setup = yes
+			add_to_variable = { USA_GLN_Public_Support = 3 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			country_event = {
+				id = glenn.57
+				days = 61
+			}
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Secure_Workplace"
+
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Unkept_Promisse
+	icon = GFX_USA_Unkept_Promise
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = USA_bill_in_consideration
+			NOT = {
+				has_country_flag = USA_discussing_bill
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Beat_Big_Pharma
+	}
+	prerequisite = {
+		focus = USA_Glenn_Secure_Workplace
+	}
+
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Secure_Workplace
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Unkept_Promisse"
+		custom_effect_tooltip = USA_GLN_introduce_social_security
+		custom_effect_tooltip = GLN_public_support_up_3
+		custom_effect_tooltip = USA_add_RD_unity
+		add_political_power = 30
+		hidden_effect = {
+			USA_gln_social_security_bill_setup = yes
+			add_to_variable = { USA_GLN_Public_Support = 3 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			add_to_variable = { USA_RD_Unity = 1 }
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Rally_the_Republicans
+	icon = GFX_USA_Empower_the_Republicans
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	mutually_exclusive = {
+		focus = USA_Glenn_Beat_Down_the_Dems
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Unkept_Promisse
+	}
+
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Unkept_Promisse
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Rally_the_Republicans"
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = GLN_public_support_up_2
+		custom_effect_tooltip = USA_add_RD_unity
+		hidden_effect = { #Popularity boost in the northwest
+			add_to_variable = { USA_GLN_Public_Support = 2 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			add_to_variable = { USA_RD_Unity = 1 }
+			every_owned_state = { #Use this oppurtunity to strengthen your hold on your homeland
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.06 }
+				add_to_variable = { RD_R_bonus_popularity = 0.06 }
+				subtract_from_variable = { NPP_popularity = 0.06 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.06 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_Glenn_Beat_Down_the_Dems
+	icon = GFX_USA_Estrange_the_Democrats
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	mutually_exclusive = {
+		focus = USA_Glenn_Rally_the_Republicans
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Unkept_Promisse
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Unkept_Promisse
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Beat_Down_the_Dems"
+		custom_effect_tooltip = USA_increase_bill_support_RD_D
+		custom_effect_tooltip = USA_GLN_dem_midwest_boost
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			every_owned_state = { #Midwest becomes more conservative
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 85 } #Steel Belt
+				}
+				set_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				multiply_temp_variable = { popularity_bonus = 2 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+			}
+			set_variable = { USA_RD_D_bill_support_new = 0.10 } #At least he isn't fully crazy
+			subtract_from_variable = { USA_RD_Unity = 1 }
+			USA_clamp_bill_support = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Friends_Center
+	icon = GFX_USA_Against_the_NPP
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Rally_the_Republicans
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_Glenn_Rally_the_Republicans
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Friends_Center"
+		custom_effect_tooltip = USA_increase_bill_support_NPP_C
+		custom_effect_tooltip = GLN_public_support_up
+		custom_effect_tooltip = USA_subtract_NPP_unity
+		custom_effect_tooltip = USA_subtract_RD_unity
+		custom_effect_tooltip = USA_GLN_center_boost_new_england
+		hidden_effect = {
+			every_owned_state = { #NPP-C noms some of your support, whoops
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 82 } #Yankee
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = 0.04 }
+				subtract_from_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { RD_R_bonus_popularity = 0.04 }
+				US_underdog_NPP_2_2 = yes
+			}
+			subtract_from_variable = { USA_RD_Unity = 1 }
+			subtract_from_variable = { USA_NPP_unity = 1 }
+			set_variable = { USA_C_NPP_bill_support_new = 0.2 }
+			USA_clamp_bill_support = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Hammer_the_Language
+	icon = GFX_USA_Hammering_out_the_language
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Rally_the_Republicans
+		focus = USA_Glenn_Beat_Down_the_Dems
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Rally_the_Republicans
+	select_effect = {
+		country_event = {
+			id = glenn.60
+			days = 14
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Hammer_the_Language"
+		custom_effect_tooltip = USA_GLN_social_security_extensive
+		hidden_effect = {
+			country_event = {
+				id = glenn.61
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Stop_Southern
+	icon = GFX_USA_Southern_Riots
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+
+		focus = USA_Glenn_Beat_Down_the_Dems
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_Glenn_Beat_Down_the_Dems
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Stop_Southern"
+		custom_effect_tooltip = USA_increase_bill_support_RD_D
+		custom_effect_tooltip = USA_GLN_southern_loses
+		hidden_effect = {
+			every_owned_state = { #NPP-FR makes southern gains at your expense
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.04 }
+				subtract_from_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+				US_underdog_NPP_2_2 = yes
+			}
+			set_variable = { USA_RD_D_bill_support_new = 0.1 } #At least he isn't fully crazy
+			USA_clamp_bill_support = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Social_Security_Act
+	icon = GFX_USA_The_Social_Security_Act
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Friends_Center
+		focus = USA_Glenn_Stop_Southern
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Hammer_the_Language
+	}
+
+
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Hammer_the_Language
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Social_Security_Act"
+		custom_effect_tooltip = USA_GLN_social_security_vote
+		hidden_effect = {
+			country_event = { #Fire a hidden effect for checking the bill results.
+				id = glenn.62
+			}
+		}
+	}
+}
+
+
+
+shared_focus = {
+	id = USA_Glenn_Clean_Gov_Best_Gov
+	icon = GFX_USA_Glenn_Clean_Government_is_the_Best_Government
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Social_Security_Act
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Social_Security_Act
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Clean_Gov_Best_Gov"
+		country_event = {
+			id = glenn.48
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Crack_Down_On_Corruption
+	icon = GFX_cut_the_red_tape
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Clean_Gov_Best_Gov
+	}
+	x = 2
+	y = 1
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Crack_Down_On_Corruption"
+		custom_effect_tooltip = GLN_public_support_up_3
+		add_stability = 0.01
+		add_ideas = USA_GLN_anti_corruption_meassures
+		country_event = {
+			id = glenn.49
+		}
+		hidden_effect = {
+			add_to_variable = { USA_GLN_Public_Support = 3 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+
+	}
+}
+
+shared_focus = {
+	id = USA_Glenn_Empower_Senate_Ethics_Committee
+	icon = GFX_OST_Friends_in_the_Council
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Clean_Gov_Best_Gov
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Empower_Senate_Ethics_Committee"
+		country_event = {
+			id = glenn.65
+		}
+	}
+}
+
+
+shared_focus = {
+	id = USA_Glenn_Fight_Off_Big_Buisness
+	icon = GFX_USA_Fend_off_Big_Businesses
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Clean_Gov_Best_Gov
+	}
+	x = -2
+	y = 1
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Fight_Off_Big_Buisness"
+		custom_effect_tooltip = GLN_public_support_up_3
+		add_political_power = 50
+		hidden_effect = {
+			add_to_variable = { USA_GLN_Public_Support = 3 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+
+	}
+}
+
+
+shared_focus = { #NO HELP FOR NASA :(
+	id = USA_Glenn_Ban_Lobbying
+	icon = GFX_USA_Glenn_Ban_Lobbying
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	mutually_exclusive = {
+		focus = USA_Glenn_Just_Restrict_Lobbying
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Crack_Down_On_Corruption
+	}
+	prerequisite = {
+		focus = USA_Glenn_Empower_Senate_Ethics_Committee
+	}
+	x = 1
+	y = 2
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Ban_Lobbying"
+		custom_effect_tooltip = USA_GLN_ban_lobbying_tooltip
+		custom_effect_tooltip = GLN_public_support_up_5
+		custom_effect_tooltip = USA_add_RD_unity
+		custom_effect_tooltip = USA_GLN_NASA_Budget_Down_Medium
+		hidden_effect = {
+			set_country_flag = GLN_stopped_lobbying
+			add_to_variable = { USA_GLN_Public_Support = 5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			subtract_from_variable = { USA_GLN_NASA_Funding = 85 }
+			add_to_variable = { USA_RD_Unity = 1 }
+		}
+	}
+}
+
+shared_focus = { #You get some envelopes with money for nasa ;)
+	id = USA_Glenn_Just_Restrict_Lobbying
+	icon = GFX_USA_restrict_lobbying
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Fight_Off_Big_Buisness
+	}
+	mutually_exclusive = {
+		focus = USA_Glenn_Ban_Lobbying
+	}
+	prerequisite = {
+		focus = USA_Glenn_Empower_Senate_Ethics_Committee
+	}
+	x = -1
+	y = 2
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_Just_Restrict_Lobbying"
+		custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Medium
+		custom_effect_tooltip = USA_subtract_RD_unity
+		custom_effect_tooltip = USA_GLN_restrict_lobbying_tooltip
+		hidden_effect = {
+			subtract_from_variable = { USA_RD_Unity = 1 }
+			add_to_variable = { USA_GLN_NASA_Funding = 125 }
+			add_to_variable = { USA_GLN_Keating_Five = 3 }
+		}
+
+	}
+}
+
+
+shared_focus = { #Ya did it champ
+	id = USA_Glenn_A_City_On_A_Hill
+	icon = GFX_USA_Glenn_A_City_on_a_Hill
+	cost = 5.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_Glenn_Just_Restrict_Lobbying
+		focus = USA_Glenn_Ban_Lobbying
+	}
+	x = 0
+	y = 3
+	relative_position_id = USA_Glenn_Clean_Gov_Best_Gov
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_Glenn_A_City_On_A_Hill"
+		custom_effect_tooltip = GLN_public_support_up_5
+		country_event = {
+			id = glenn.50
+		}
+		hidden_effect = {
+			add_to_variable = { USA_GLN_Public_Support = 5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+	}
+}
+
+
+
+
+# The day TNO's Glenn was born is a day that I still remember in the fullest detail.
+# It was the day after New Years, where a very hungover high school junior, while throwing up over the side of a boat in Cabo
+# thought of what could be done with one of our nations most respected figures in the presidency.
+# I thought of the ways we could show moral goodness triumphing over the supreme evil that is Nazism, the prisms to project
+# the good of the world through the office of the presidency, and considering what Glenn was known for, there was only one answer:
+# Mars.
+# The Mars landing, although it has been memed to death and back, to me represents the moral triumph over fascism that the world of TNO craves.
+# It's high minded science, backed by a President who is the antithesis of Hitler, not just claiming humanities future lies in freedom, but showing the world the German menace can, and will be, beaten.
+# It was a message that took me months to impliment, hours spent on the weekends coding line after line of mission types, researchable objects, and fundraising mechanics, on top of being in a musical and school.
+# And it was time I would never trade back if I had the chance.
+# TNO as a whole has been the best thing to ever happen to me, giving me purpose and drive when none existed before, and providing me a way to stand out among my peers as I enter into the world of college admissions.
+# And the best thing in TNO for me has been Glenn.
+# It was my opportunity to have full control not only over design, but the story and message I wanted to tell, the story I felt I needed to tell, and one, for all its faults, bugs, and critiscm, I am extremely happy with.
+# So I leave this message hidden in the confines of my proudest creation, made from hours of blood sweat and tears, to leave my final imprint on a project that's meant so much.
+# Thank you to everyone who helped me on my way, through advice, humor, and friendship. Thank you to those who taught me how to code, who inspired me every step of the way to be better. And finally, thank you to Panzer, who gave me the chance to achieve my dream.
+# I know this is getting long and sappy and r/im14andthisisdeep, so I will begin to end it.
+# Let us hope the future brings the goodness and righteousness featured by that lander putting down on red sand, and thank you again to everyone who made me the person I am today.
+#
+# I love you guys,
+# DocOverbuild3, former OFN Teamlead, October 2019 - September 2020

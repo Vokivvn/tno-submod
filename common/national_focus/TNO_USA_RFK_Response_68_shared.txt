@@ -1,0 +1,1734 @@
+shared_focus = {
+	id = USA_gld_68_RFK_the_failures_of_kennedy
+	icon = GFX_USA_RFK
+	cost = 1.00
+ 	available = {
+ 		custom_trigger_tooltip = {
+ 			tooltip = USA_not_in_crisis_tooltip
+ 			NOT = {
+ 				has_country_flag = USA_in_crisis
+ 			}
+ 		}
+ 	}
+ 	cancel = {
+ 		custom_trigger_tooltip = {
+ 			tooltip = USA_in_crisis_tooltip
+ 			has_country_flag = USA_in_crisis
+ 		}
+ 	}
+ 	allow_branch = {
+		 OR = {
+			 has_country_flag = USA_test_response_tree
+			 AND = {
+				has_country_flag = USA_64_C_NPP_Past
+				NOT = { has_country_flag = USA_THURMOND_FR_NPP_Past }
+			}
+		 }
+		 NOT = {
+			has_country_flag = USA_finished_response
+		}
+ 	}
+	ai_will_do = {
+			factor = 1000
+		}
+	x = 0
+	y = 0
+	offset = {
+		x = 2
+		y = 7
+		trigger = {
+			has_government = social_conservative
+		}
+	}
+	offset = {
+		x = -5
+		y = 9
+		trigger = {
+			has_government = authoritarian_democrat
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_the_failures_of_kennedy"
+		add_political_power = 25
+		add_stability = 0.02
+		country_event = {
+			id = RFK.response.1
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_restoring_true_justice
+	icon = GFX_USA_get_in_loser_were_saving_america
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_failures_of_kennedy
+	}
+	x = -2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_failures_of_kennedy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_restoring_true_justice"
+		country_event = {
+			id = RFK.response.2
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_unshackle_the_police
+	icon = GFX_goal_policecar
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	prerequisite = {
+		focus = USA_gld_68_RFK_restoring_true_justice
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_restoring_true_justice
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_unshackle_the_police"
+		hidden_effect = {
+			tno_penal_system_clear = yes
+			add_ideas = tno_penal_system_capital_punishment
+			add_to_variable = { misc_income = 100 }
+		}
+		custom_effect_tooltip = unshackle_the_police_tt
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_kick_out_the_activists
+	icon = GFX_USA_Ban_Further_Rallies
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_restoring_true_justice
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_restoring_true_justice
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_kick_out_the_activists"
+		add_political_power = 25
+		custom_effect_tooltip = RFK_Response_Tree_Activists
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			custom_effect_tooltip = USA_add_RD_popularity_low_south
+			custom_effect_tooltip = USA_subtract_RD_popularity_low_north
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = 1 }
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Rockies
+						check_variable = { nationality = 87 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #West
+						check_variable = { nationality = 88 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Midwest
+						check_variable = { nationality = 85 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+				}
+			}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			custom_effect_tooltip = USA_add_NPP_popularity_low_south
+			custom_effect_tooltip = USA_subtract_NPP_popularity_low_north
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = 1 }
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { NPP_FR_bonus_popularit = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #Rockies
+						check_variable = { nationality = 87 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #West
+						check_variable = { nationality = 88 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #Midwest
+						check_variable = { nationality = 85 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				}
+				}
+			}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_cleanse_the_justice_department
+	icon = GFX_USA_We_fight_for_Stability
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_unshackle_the_police
+	}
+	prerequisite = {
+		focus = USA_gld_68_RFK_kick_out_the_activists
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_unshackle_the_police
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_cleanse_the_justice_department"
+		country_event = {
+			id = RFK.response.3
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_the_end_of_big_government
+	icon = GFX_IBR_Debate_Taxation
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_failures_of_kennedy
+	}
+	x = 2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_failures_of_kennedy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_the_end_of_big_government"
+		country_event = {
+			id = RFK.response.4
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_repudiate_labor
+	icon = GFX_ORE_reform_the_peoples_tribunal
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_end_of_big_government
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_end_of_big_government
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_repudiate_labor"
+		hidden_effect = {
+			tno_pensions_clear = yes
+		}
+		add_ideas = tno_pensions_trinket_pensions
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_gut_the_programs
+	icon = GFX_IEA_Cut_the_Costs
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_end_of_big_government
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_end_of_big_government
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_gut_the_programs"
+		hidden_effect = {
+			tno_pollution_clear = yes
+			tno_unemployment_clear = yes
+		}
+		add_ideas = tno_pollution_few_regulations
+		add_ideas = tno_unemployment_trinket_subsidies
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_no_more_free_lunches
+	icon = GFX_RAJ_India_Wealth_Question
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	prerequisite = {
+		focus = USA_gld_68_RFK_repudiate_labor
+	}
+	prerequisite = {
+		focus = USA_gld_68_RFK_gut_the_programs
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_repudiate_labor
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_no_more_free_lunches"
+		add_to_variable = { temporary_congress_votes = 4 }
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			custom_effect_tooltip = USA_add_RD_popularity_low_south
+			custom_effect_tooltip = USA_subtract_RD_popularity_low_north
+			hidden_effect = {
+				#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Rockies
+						check_variable = { nationality = 87 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #West
+						check_variable = { nationality = 88 }
+				}
+				set_temp_variable = { popularity_bonus = 0.02 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				US_underdog_NPP_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Midwest
+						check_variable = { nationality = 85 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+			}
+			if = {
+				limit = { has_country_flag = USA_68_FR_NPP }
+				add_popularity = {
+					ideology = authoritarian_democrat
+					popularity = 0.01
+				}
+				add_popularity = {
+					ideology = social_democrat
+					popularity = -0.01
+				}
+				custom_effect_tooltip = USA_add_NPP_popularity_low_south
+				custom_effect_tooltip = USA_subtract_NPP_popularity_low_north
+				hidden_effect = {
+					#RFK bad
+				every_owned_state = {
+					limit = { #The South
+							check_variable = { nationality = 83 }
+					}
+					set_temp_variable = { popularity_bonus = 0.07 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				every_owned_state = {
+					limit = { #African-American
+							check_variable = { nationality = 84 }
+					}
+					set_temp_variable = { popularity_bonus = 0.02 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				every_owned_state = {
+					limit = { #Southwest
+							check_variable = { nationality = 86 }
+					}
+					set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				every_owned_state = {
+					limit = { #Rockies
+							check_variable = { nationality = 87 }
+					}
+					set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				every_owned_state = {
+					limit = { #West
+							check_variable = { nationality = 88 }
+					}
+					set_temp_variable = { popularity_bonus = 0.02 }
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					}
+				#RFK good
+				every_owned_state = {
+					limit = { #the North
+							check_variable = { nationality = 82 }
+					}
+					set_temp_variable = { popularity_bonus = 0.07 }
+					add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					}
+				every_owned_state = {
+					limit = { #Midwest
+							check_variable = { nationality = 85 }
+					}
+					set_temp_variable = { popularity_bonus = 0.05 }
+					add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					}
+				}
+
+				}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_the_looming_question
+	icon = GFX_USA_Civil_Rights_Dilemma
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_cleanse_the_justice_department
+	}
+	prerequisite = {
+		focus = USA_gld_68_RFK_no_more_free_lunches
+	}
+	x = 2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_cleanse_the_justice_department
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_the_looming_question"
+		custom_effect_tooltip = USA_RFK_response_question
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_he_went_too_far
+	icon = GFX_USA_unite_segregationists
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = civil_rights_act_passed_tt
+			has_country_flag = RFK_CRA_Passed
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_looming_question
+	}
+	mutually_exclusive = {
+		focus = USA_gld_68_RFK_he_did_what_he_must
+	}
+	x = -2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_looming_question
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_he_went_too_far"
+		country_event = {
+			id = RFK.response.6
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_withdraw_federal_protections
+	icon = GFX_USA_law_is_broken
+	cost = 1.00
+	ai_will_do = {
+			factor = 1000
+		}
+	available = {
+		AND = {
+			custom_trigger_tooltip = {
+				tooltip = USA_not_in_crisis_tooltip
+				NOT = {
+					has_country_flag = USA_in_crisis
+				}
+			}
+
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_he_went_too_far
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_he_went_too_far
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_withdraw_federal_protections"
+			TNO_worsen_academic_base_low = yes #coded with a script
+		add_to_variable = { misc_income = 100 }
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = -1 }
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #Midwest
+						check_variable = { nationality = 85 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+				}
+			}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = -1 }
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #Midwest
+						check_variable = { nationality = 85 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_stop_the_enforcement
+	icon = GFX_USA_Stop_the_Enforcement
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_he_went_too_far
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_he_went_too_far
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_stop_the_enforcement"
+			TNO_worsen_academic_base_low = yes #coded with a script
+		add_to_variable = { misc_income = 100 }
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = -1 }
+
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #West
+						check_variable = { nationality = 88 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = -1 }
+
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #Southwest
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #West
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.08 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+			}
+		}
+
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_rally_the_south
+	icon = GFX_USA_Southern_Riots
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_withdraw_federal_protections
+	}
+	prerequisite = {
+		focus = USA_gld_68_RFK_stop_the_enforcement
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_withdraw_federal_protections
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_rally_the_south"
+		add_political_power = 75
+		add_stability = -0.03
+		set_temp_variable = { RFK_R_temp_votes = NPP_FR_senators}
+		round_variable = RFK_R_temp_votes
+		add_to_variable = {temporary_congress_votes = RFK_R_temp_votes}
+		round_variable = temporary_congress_votes
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.01
+			}
+			hidden_effect = {
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+			}
+			}
+		}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_the_death_of_the_civil_rights_act
+	icon = GFX_USA_Enforce_Segregation
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_rally_the_south
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_gld_68_RFK_rally_the_south
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_the_death_of_the_civil_rights_act"
+		#Needs effects to revert Civil Rights Act
+		USA_decrease_civil_rights = yes
+		add_stability = -0.06
+		custom_effect_tooltip = USA_RFK_Response_america_restored
+		hidden_effect = {
+			tno_racial_integration_clear = yes
+			add_ideas = tno_racial_integration_integrated_military
+			tno_vote_franchise_clear = yes
+			add_ideas = tno_vote_franchise_universal
+			tno_minorities_clear = yes
+			add_ideas = tno_minorities_segregation
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.015
+			}
+			hidden_effect = {
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+
+				}
+			every_owned_state = {
+				limit = { #The Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+
+				}
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.015
+			}
+			hidden_effect = {
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #The Southwest
+						check_variable = { nationality = 86 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_FR_bonus_popularity   = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity= popularity_bonus }
+				}
+			#RFK good
+			every_owned_state = {
+				limit = { #African-American
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.07 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+
+			every_owned_state = {
+				limit = { #the North
+						check_variable = { nationality = 82 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity= popularity_bonus }
+				}
+			}
+		}
+
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_he_did_what_he_must
+	icon = GFX_USA_Tackling_the_Causes
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_looming_question
+	}
+	mutually_exclusive = {
+		focus = USA_gld_68_RFK_he_went_too_far
+	}
+	x = 2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_looming_question
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_he_did_what_he_must"
+		add_stability = 0.03
+		add_political_power = -50
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.015
+			}
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = 1 }
+
+
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.015
+			}
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = 1 }
+
+			every_owned_state = {
+				limit = { #The South
+						check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.15 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			}
+			country_event = {
+				id = RFK.response.7
+			}
+		}
+
+
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_pay_lip_service
+	icon = GFX_RAJ_India_Minority_Affairs
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_he_did_what_he_must
+	}
+	x = -1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_he_did_what_he_must
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_pay_lip_service"
+		tno_racial_integration_clear = yes
+		add_ideas = tno_racial_integration_integrated_military
+		add_political_power = -25
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = 1 }
+			}
+			add_popularity = {
+				ideology = social_conservative
+				popularity = 0.015
+			}
+			add_popularity = {
+				ideology = social_democrat
+				popularity = -0.015
+			}
+			#RFK bad
+			every_owned_state = {
+				limit = { #The South
+					check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity  = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+
+			every_owned_state = {
+				limit = { #AA
+					check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity  = popularity_bonus }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = 1 }
+			}
+			every_owned_state = {
+				limit = { #The South
+					check_variable = { nationality = 83 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			every_owned_state = {
+				limit = { #AA
+					check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = USA_gld_68_RFK_calm_russell
+	icon = GFX_USA_Segregationist_Support
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_he_did_what_he_must
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_he_did_what_he_must
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_calm_russell"
+		country_event = {
+			id = RFK.response.8
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_do_it_quietly
+	icon = GFX_RAJ_India_Comprimise_Constitution
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_pay_lip_service
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_calm_russell
+	}
+	x = 1
+	y = 1
+	relative_position_id = USA_gld_68_RFK_pay_lip_service
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_do_it_quietly"
+		add_political_power = 25
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			hidden_effect = {
+				add_to_variable = { USA_RD_Unity = 1 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = 1 }
+			}
+		}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_the_civil_rights_act_secured
+	icon = GFX_USA_Civil_Rights_Act_Deluxe
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_do_it_quietly
+	}
+	x = 0
+	y = 1
+	relative_position_id = USA_gld_68_RFK_do_it_quietly
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_the_civil_rights_act_secured"
+		add_political_power = 50
+		if = {
+			limit = {
+					has_country_flag = USA_68_D_RD
+					has_idea = USA_jim_crow
+				}
+				USA_increase_civil_rights = yes
+			}
+			if = {
+				limit = { has_country_flag = USA_68_R_RD }
+				USA_increase_civil_rights = yes
+			}
+		if = {
+			limit = { has_idea = tno_minorities_segregation }
+			tno_minorities_improve = yes
+		}
+		custom_effect_tooltip = USA_RFK_response_CRA_secured
+		
+		if = {
+			limit = { has_country_flag = USA_68_D_RD }
+			every_owned_state = {
+				limit = { 
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  RD_D_bonus_popularity = popularity_bonus }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+				}
+			
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { NPP_popularity = 0.15 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.15 }
+				}
+			}
+
+		if = {
+			limit = { has_country_flag = USA_68_FR_NPP }
+			hidden_effect = {
+				add_to_variable = { USA_NPP_Unity = 1 }
+			}
+			every_owned_state = {
+				limit = { #AA
+						check_variable = { nationality = 84 }
+				}
+				set_temp_variable = { popularity_bonus = 0.05 }
+				add_to_variable = {  NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			}
+	}
+}
+shared_focus = {
+	id = USA_gld_68_RFK_back_to_business
+	icon = GFX_USA_Tape_Together_the_Seams
+	cost = 1.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+			factor = 1000
+		}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+
+	prerequisite = {
+		focus = USA_gld_68_RFK_the_death_of_the_civil_rights_act
+		focus = USA_gld_68_RFK_the_civil_rights_act_secured
+	}
+	x = 2
+	y = 1
+	relative_position_id = USA_gld_68_RFK_the_death_of_the_civil_rights_act
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_gld_68_RFK_back_to_business"
+		add_stability = 0.03
+		add_political_power = 100
+		set_country_flag = USA_finished_response
+	}
+}

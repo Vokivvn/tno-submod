@@ -1,0 +1,4228 @@
+#PRC Tree by Wendell08
+#Starting Tree
+
+shared_focus = {
+	id = SVO_The_Eastern_Conflict
+	icon = GFX_SVO_The_Eastern_Conflict
+	cost = 3.00
+	x = 5
+	y = 0
+	select_effect = {
+		hidden_effect = {
+			country_event = { #intro event
+				id = SVO.4
+				days = 1
+			}
+		}
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Eastern_Conflict"
+		country_event = {
+			id = SVO.1
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Fortify_the_Border
+	icon = GFX_YUN_Fortify_The_Border
+	cost = 3.00
+	prerequisite = {
+		focus = SVO_The_Eastern_Conflict
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_The_Eastern_Conflict
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Fortify_the_Border"
+		814 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					id = 1689
+					id = 1834
+					id = 12544
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Prepare_the_Men
+	icon = GFX_Generic_Soldiers_Red
+	cost = 3.00
+	prerequisite = {
+		focus = SVO_Fortify_the_Border
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Fortify_the_Border
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Prepare_the_Men"
+		add_stability = 0.05
+		add_manpower = 500
+	}
+}
+
+shared_focus = {
+	id = SVO_Favor_the_Mongolians
+	icon = GFX_PAV_connections_in_mongolia
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_Prepare_the_Men
+	}
+	mutually_exclusive = {
+		focus = SVO_Favor_the_Russians
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = -1
+	y = 1
+	relative_position_id = SVO_Prepare_the_Men
+	ai_will_do = {
+		factor = 0.5
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Favor_the_Mongolians"
+		add_to_variable = {
+			SVO_MON_divide = -1
+			tooltip = SVO_MON_faction_tt
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Favor_the_Russians
+	icon = GFX_Against_The_Opposition
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_Prepare_the_Men
+	}
+	mutually_exclusive = {
+		focus = SVO_Favor_the_Mongolians
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	ai_will_do = {
+		factor = 2
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_Prepare_the_Men
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Favor_the_Russians"
+		add_to_variable = {
+			SVO_MON_divide = 1
+			tooltip = SVO_RUS_faction_tt
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Recruitment_campaign
+	icon = GFX_new_model_army
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Favor_the_Mongolians
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Favor_the_Mongolians
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Recruitment_campaign"
+		add_manpower = 500
+	}
+}
+
+shared_focus = {
+	id = SVO_Legacy_of_the_Siberian_Red_Army
+	icon = GFX_IRK_Red_Siberia
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Favor_the_Russians
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Favor_the_Russians
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Legacy_of_the_Siberian_Red_Army"
+		army_experience = 25
+	}
+}
+
+shared_focus = {
+	id = SVO_Give_More_Rights
+	icon = GFX_socialism_of_the_people
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Recruitment_campaign
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = -1
+	y = 1
+	relative_position_id = SVO_Recruitment_campaign
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Give_More_Rights"
+		tno_minorities_improve = yes
+		country_event = {
+			id = SVO.15
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Military_Industry
+	icon = GFX_Industry_For_The_Defence_Of_Socialism
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Recruitment_campaign
+		focus = SVO_Legacy_of_the_Siberian_Red_Army
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_Recruitment_campaign
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Military_Industry"
+		SIB_increase_worker_tension_low = yes
+		329 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_An_Elite_Army
+	icon = GFX_Those_Who_Fight_No_Longer
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Legacy_of_the_Siberian_Red_Army
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_Legacy_of_the_Siberian_Red_Army
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_An_Elite_Army"
+		tno_training_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Mobilize_the_Economy
+	icon = GFX_TNO_generic_socialist_industry
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Military_Industry
+	}
+	prerequisite = {
+		focus = SVO_Give_More_Rights
+		focus = SVO_An_Elite_Army
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = -1
+	y = 1
+	relative_position_id = SVO_Military_Industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Mobilize_the_Economy"
+		tno_economic_focus_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Improve_Our_Weapons
+	icon = GFX_ORS_Soviet_Arms
+	cost = 4.00
+	prerequisite = {
+		focus = SVO_Military_Industry
+	}
+	prerequisite = {
+		focus = SVO_Give_More_Rights
+		focus = SVO_An_Elite_Army
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_Military_Industry
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Improve_Our_Weapons"
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 2
+			category = infantry_weapons
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Last_Preparations
+	icon = GFX_CAU_Prepare_the_Troops
+	cost = 3.00
+	prerequisite = {
+		focus = SVO_Improve_Our_Weapons
+	}
+	prerequisite = {
+		focus = SVO_Mobilize_the_Economy
+	}
+	available = {
+		has_war = no
+	}
+	bypass = {
+		has_war = yes
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_Mobilize_the_Economy
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Last_Preparations"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SVO_War_with_Menjiang
+	icon = GFX_CHI_Strike_when_the_Iron_is_hot
+	cost = 2.50
+	prerequisite = {
+		focus = SVO_Last_Preparations
+	}
+	available = {
+		country_exists = MEN
+		NOT = {
+			country_exists = MON
+			has_war_with = MEN
+		}
+		hidden_trigger = {
+			NOT = { has_global_flag = SVO_MEN_war }
+		}
+	}
+	bypass = {
+		has_war_with = MEN
+		hidden_trigger = {
+			has_global_flag = SVO_MEN_war
+		}
+	}
+	will_lead_to_war_with = MEN
+	x = 0
+	y = 1
+	relative_position_id = SVO_Last_Preparations
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_War_with_Menjiang"
+		effect_tooltip = {
+			declare_war_on = {
+				target = MEN
+				type = annex_everything
+			}
+		}
+		hidden_effect = {
+			MEN = { #because puppet fuckery
+				declare_war_on = {
+					target = SVO
+					type = annex_everything
+				}
+			}
+			set_global_flag = SVO_MEN_war
+			if = {
+				limit = {
+					NOT = { has_country_flag = SVO_war_tree }
+				}
+				set_country_flag = SVO_war_tree
+				load_focus_tree = { tree = SVO_war_tree keep_completed = yes }
+			}
+			SVO_Get_war_date = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Backline_Defense
+	icon = GFX_YUN_The_Best_Defense
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_War_with_Menjiang
+	}
+	allow_branch = {
+		has_country_flag = SVO_war_tree
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = -2
+	y = 1
+	relative_position_id = SVO_War_with_Menjiang
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Backline_Defense"
+		814 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					id = 1774
+				}
+			}
+		}
+		329 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					id = 10627
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Guns_From_the_Great_Patriotic_War
+	icon = GFX_TNO_generic_gun_production
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_War_with_Menjiang
+	}
+	allow_branch = {
+		has_country_flag = SVO_war_tree
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_War_with_Menjiang
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Guns_From_the_Great_Patriotic_War"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 800
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_War_Propaganda
+	icon = GFX_IRK_propaganda
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_War_with_Menjiang
+	}
+	allow_branch = {
+		has_country_flag = SVO_war_tree
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = 2
+	y = 1
+	relative_position_id = SVO_War_with_Menjiang
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_War_Propaganda"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SVO_Evacuate_Western_Mongolia
+	icon = GFX_UPO_Prepare_the_Evacuations
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_Backline_Defense
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Backline_Defense
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Evacuate_Western_Mongolia"
+		SIB_increase_worker_tension_high = yes
+		814 = {
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		329 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Red_Shells
+	icon = GFX_generic_preserve_communism
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_Guns_From_the_Great_Patriotic_War
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Guns_From_the_Great_Patriotic_War
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Red_Shells"
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 150
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Expand_Conscription
+	icon = GFX_TNO_generic_socialist_recruitment
+	cost = 2.00
+	prerequisite = {
+		focus = SVO_War_Propaganda
+	}
+	available = {
+		has_war = yes
+	}
+	bypass = {
+		has_war = no
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_War_Propaganda
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Expand_Conscription"
+		tno_conscription_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Last_Stand
+	icon = GFX_IRK_the_union_forever
+	cost = 0.70
+	available = {
+		has_war = yes
+	}
+	prerequisite = {
+		focus = SVO_Evacuate_Western_Mongolia
+		focus = SVO_Red_Shells
+		focus = SVO_Expand_Conscription
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Expand_Conscription
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Last_Stand"
+		add_timed_idea = {
+			idea = SVO_last_stand_idea
+			days = 20
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Offer_a_Peace_Deal
+	icon = GFX_SIB_diplo_organ
+	cost = 0.50
+	available = {
+		has_war = yes
+		NOT = { controls_state = 814 }
+	}
+	mutually_exclusive = {
+		focus = SVO_Ask_for_a_ceasefire
+	}
+	bypass = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SVO_Evacuate_Western_Mongolia
+		focus = SVO_Red_Shells
+		focus = SVO_Expand_Conscription
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Evacuate_Western_Mongolia
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Offer_a_Peace_Deal"
+		MEN = {
+			country_event = {
+				id = SVO.10
+				hours = 6
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Ask_for_a_ceasefire
+	icon = GFX_NIK_peace
+	cost = 0.50
+	available = {
+		has_war = yes
+		controls_state = 814
+		OR = {
+			MEN = {
+				surrender_progress > 0.1
+			}
+			custom_trigger_tooltip = {
+				tooltip = SVO_Ask_for_a_ceasefire_tt
+				meta_trigger = {
+					text = {
+						date > [Get_SVO_war_date]
+					}
+					Get_SVO_war_date = "[?SVO_war_date.GetDateStringNoHour]"
+				}
+			}
+		}
+	}
+	mutually_exclusive = {
+		focus = SVO_Offer_a_Peace_Deal
+	}
+	prerequisite = {
+		focus = SVO_Evacuate_Western_Mongolia
+		focus = SVO_Red_Shells
+		focus = SVO_Expand_Conscription
+	}
+	x = 0
+	y = 1
+	relative_position_id = SVO_Red_Shells
+	ai_will_do = {
+		factor = 100
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Ask_for_a_ceasefire"
+		MEN = {
+			country_event = {
+				id = SVO.8
+				hours = 6
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Peace_at_least
+	icon = GFX_generic_diplomacy_peace
+	cost = 1.50
+	available = {
+		has_war = no
+	}
+	prerequisite = {
+		focus = SVO_Offer_a_Peace_Deal
+		focus = SVO_Ask_for_a_ceasefire
+	}
+	x = -2
+	y = 1
+	relative_position_id = SVO_Last_Stand
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Peace_at_least"
+		country_event = {
+			id = SVO.17
+			days = 1
+		}
+		hidden_effect = {
+			load_focus_tree = { tree = SVO_post_war_tree keep_completed = yes }
+			complete_national_focus = SVO_Aftermath_of_the_War
+		}
+	}
+}
+
+#Pre-Conquest Tree - Military
+
+shared_focus = {
+	id = SVO_Aftermath_of_the_War
+	icon = GFX_GER_A_War_of_Attrition
+	cost = 3.00
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Aftermath_of_the_War"
+		add_manpower = 6000
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+			}
+		}
+		329 = {
+			create_unit = {
+				division = "name = \"1st Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SVO
+			}
+			create_unit = {
+				division = "name = \"2nd Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SVO
+			}
+			create_unit = {
+				division = "name = \"3rd Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SVO
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Learn_our_Mistakes
+	icon = GFX_RAJ_Question_The_Army
+	cost = 3.00
+	x = -4
+	y = 1
+	relative_position_id = SVO_Aftermath_of_the_War
+	prerequisite = {
+		focus = SVO_Aftermath_of_the_War
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Learn_our_Mistakes"
+		if = {
+			limit = {
+				owns_state = 814
+			}
+			army_experience = 10
+		}
+		else = {
+			army_experience = 30
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Mongolian_Tactics
+	icon = GFX_SVO_Mongolian_Tactics
+	cost = 3.00
+	x = -2
+	y = 1
+	relative_position_id = SVO_Learn_our_Mistakes
+	mutually_exclusive = {
+		focus = SVO_Siberian_Strategy
+	}
+	ai_will_do = {
+		factor = 0
+		modifier = {
+			add = 1
+			controls_state = 814
+		}
+	}
+	prerequisite = {
+		focus = SVO_Learn_our_Mistakes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Mongolian_Tactics"
+		add_ideas = SVO_Mongolian_Tactics_idea
+		add_to_variable = {
+			SVO_MON_divide = -2
+			tooltip = SVO_MON_faction_2_tt
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Siberian_Strategy
+	icon = GFX_SVO_Siberian_Strategy
+	cost = 3.00
+	x = 2
+	y = 1
+	relative_position_id = SVO_Learn_our_Mistakes
+	mutually_exclusive = {
+		focus = SVO_Mongolian_Tactics
+	}
+	prerequisite = {
+		focus = SVO_Learn_our_Mistakes
+	}
+	ai_will_do = {
+		factor = 2
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Siberian_Strategy"
+		add_to_variable = {
+			SVO_MON_divide = 2
+			tooltip = SVO_RUS_faction_2_tt
+		}
+		add_to_variable = {
+			SVO_RA_army_armor_speed_factor = 0.05
+			tooltip = SVO_Siberian_Strategy_tt
+		}
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_More_is_Better
+	icon = GFX_TNO_generic_socialist_recruitment
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Mongolian_Tactics
+	prerequisite = {
+		focus = SVO_Mongolian_Tactics
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_More_is_Better"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 900
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Cavalry_Divisions
+	icon = GFX_AKT_Masters_of_Man_and_Horse
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Mongolian_Tactics
+	prerequisite = {
+		focus = SVO_Mongolian_Tactics
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Cavalry_Divisions"
+		add_ideas = SVO_Cavalry_Army
+	}
+}
+
+shared_focus = {
+	id = SVO_Army_of_the_Steppes
+	icon = GFX_DER_remote_steppe
+	cost = 3.00
+	x = 0
+	y = 2
+	relative_position_id = SVO_Mongolian_Tactics
+	prerequisite = {
+		focus = SVO_More_is_Better
+	}
+	prerequisite = {
+		focus = SVO_Cavalry_Divisions
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Army_of_the_Steppes"
+		custom_effect_tooltip = SVO_Focus_on_Infantry_3
+		add_to_variable = { SVO_RA_army_infantry_attack_factor = 0.05 }
+		add_to_variable = { SVO_RA_army_infantry_defence_factor = 0.05 }
+		add_to_variable = { SVO_RA_army_armor_attack_factor = -0.10 }
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Industry_of_War
+	icon = GFX_Generic_Industry
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Siberian_Strategy
+	prerequisite = {
+		focus = SVO_Siberian_Strategy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Industry_of_War"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		add_timed_idea = {
+			idea = SVO_Industrial_Mobilization
+			days = 720
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Air_Cavalry_Divisions
+	icon = GFX_generic_helicopter_2
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Siberian_Strategy
+	prerequisite = {
+		focus = SVO_Siberian_Strategy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Air_Cavalry_Divisions"
+		add_tech_bonus = {
+			bonus = 0.30
+			uses = 1
+			category = helicopter
+		}
+		add_to_variable = {
+			SVO_RA_army_sub_unit_air_assault_attack_factor = 0.03
+			tooltip = SVO_Air_Cavalry_Divisions_tt
+		}
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Spearhead_of_the_Red_Army
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 3.00
+	x = 0
+	y = 2
+	relative_position_id = SVO_Siberian_Strategy
+	prerequisite = {
+		focus = SVO_Air_Cavalry_Divisions
+	}
+	prerequisite = {
+		focus = SVO_Industry_of_War
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Spearhead_of_the_Red_Army"
+		custom_effect_tooltip = SVO_Spearhead_of_the_Red_Army_tt
+		add_to_variable = { SVO_RA_army_armor_attack_factor = 0.07 }
+		add_to_variable = { SVO_RA_army_armor_speed_factor = 0.07 }
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Modernize_the_Army
+	icon = GFX_CAU_Militarize_The_Outskirts
+	cost = 3.00
+	x = 2
+	y = 1
+	relative_position_id = SVO_Army_of_the_Steppes
+	prerequisite = {
+		focus = SVO_Army_of_the_Steppes
+		focus = SVO_Spearhead_of_the_Red_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Modernize_the_Army"
+		custom_effect_tooltip = SVO_Modernize_the_Army_tt
+		set_country_flag = SVO_Army_Modernization_Project
+	}
+}
+
+shared_focus = {
+	id = SVO_Relax_Training_Standards
+	icon = GFX_TNO_generic_military_contacts
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Modernize_the_Army
+	mutually_exclusive = {
+		focus = SVO_Mantain_Proffesional_Army
+	}
+	prerequisite = {
+		focus = SVO_Modernize_the_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Relax_Training_Standards"
+		custom_effect_tooltip = SVO_Relax_Training_Standards_tt
+		add_to_variable = { SVO_RA_training_time_army = 0.08 }
+		add_to_variable = { SVO_RA_army_org = 0.05 }
+		add_to_variable = { SVO_RA_army_infantry_attack_factor = -0.10 }
+		add_to_variable = { SVO_RA_army_infantry_defence_factor = -0.10 }
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Mantain_Proffesional_Army
+	icon = GFX_RAJ_Reform_The_Militia
+	cost = 3.00
+	x = 1
+	y = 1
+	mutually_exclusive = {
+		focus = SVO_Relax_Training_Standards
+	}
+	relative_position_id = SVO_Modernize_the_Army
+	prerequisite = {
+		focus = SVO_Modernize_the_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Mantain_Proffesional_Army"
+		add_to_variable = {
+			SVO_RA_training_time_army = -0.10
+			tooltip = SVO_Mantain_Proffesional_Army_tt
+		}
+		tno_conscription_improve = yes
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Aggressive_Doctrine
+	icon = GFX_CHI_Strike_when_the_Iron_is_hot
+	cost = 3.00
+	x = 0
+	y = 1
+	mutually_exclusive = {
+		focus = SVO_Prioritize_Defense
+	}
+	relative_position_id = SVO_Relax_Training_Standards
+	prerequisite = {
+		focus = SVO_Relax_Training_Standards
+		focus = SVO_Mantain_Proffesional_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Aggressive_Doctrine"
+		custom_effect_tooltip = SVO_Aggressive_Doctrine_tt
+		add_to_variable = { SVO_RA_army_infantry_attack_factor = 0.10 }
+		add_to_variable = { SVO_RA_army_armor_attack_factor = 0.05 }
+		add_to_variable = { SVO_RA_army_armor_speed_factor = 0.05 }
+		add_to_variable = { SVO_RA_army_infantry_defence_factor = -0.10 }
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Prioritize_Defense
+	icon = GFX_generic_preserve_communism
+	cost = 3.00
+	x = 0
+	y = 1
+	mutually_exclusive = {
+		focus = SVO_Aggressive_Doctrine
+	}
+	relative_position_id = SVO_Mantain_Proffesional_Army
+	prerequisite = {
+		focus = SVO_Relax_Training_Standards
+		focus = SVO_Mantain_Proffesional_Army
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Prioritize_Defense"
+		custom_effect_tooltip = SVO_Prioritize_Defense_tt
+		add_to_variable = { SVO_RA_army_infantry_defence_factor = 0.10 }
+		add_to_variable = { SVO_RA_army_infantry_attack_factor = -0.10 }
+		add_to_variable = { SVO_RA_army_armor_attack_factor = -0.10 }
+		SVO_update_dynamic_modifier_values = yes
+	}
+}
+
+#Economic Tree
+
+shared_focus = {
+	id = SVO_Old_Union_Remnants
+	icon = GFX_SAH_bukharins_legacy
+	cost = 3.00
+	x = 4
+	y = 1
+	relative_position_id = SVO_Aftermath_of_the_War
+	prerequisite = {
+		focus = SVO_Aftermath_of_the_War
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Old_Union_Remnants"
+		SIB_increase_ic_low = yes
+		SIB_increase_consumer_goods_med = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Road_for_Industrialization
+	icon = GFX_GER_Forward_Looking_Industry
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Old_Union_Remnants
+	prerequisite = {
+		focus = SVO_Old_Union_Remnants
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Road_for_Industrialization"
+		SIB_increase_worker_tension_med = yes
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 2
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Build_Up_Civilian_Industry
+	icon = GFX_TNO_generic_socialist_industry
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_The_Road_for_Industrialization
+	prerequisite = {
+		focus = SVO_The_Road_for_Industrialization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Build_Up_Civilian_Industry"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Reopen_Mining_Fields
+	icon = GFX_RAJ_Invest_In_Coal
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Build_Up_Civilian_Industry
+	prerequisite = {
+		focus = SVO_Build_Up_Civilian_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Reopen_Mining_Fields"
+		SIB_increase_resources_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Modern_Construction_Equipments
+	icon = GFX_CHI_Modern_Construction_Equipment
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Build_Up_Civilian_Industry
+	prerequisite = {
+		focus = SVO_Build_Up_Civilian_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Modern_Construction_Equipments"
+		TNO_improve_industrial_equipment_med = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Tuva_Road
+	icon = GFX_IBR_open_road
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Reopen_Mining_Fields
+	prerequisite = {
+		focus = SVO_Reopen_Mining_Fields
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Tuva_Road"
+		329 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Establish_Minimum_Wage
+	icon = GFX_RAJ_India_Worker_Rights
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Modern_Construction_Equipments
+	prerequisite = {
+		focus = SVO_Modern_Construction_Equipments
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Establish_Minimum_Wage"
+		SIB_decrease_worker_tension_low = yes
+		tno_minimum_wage_improve = yes
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Radar_Stations
+	icon = GFX_TNO_generic_radio_tower
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_The_Tuva_Road
+	prerequisite = {
+		focus = SVO_The_Tuva_Road
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Radar_Stations"
+		random_owned_state = {
+			add_building_construction = {
+				type = radar_station
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = radar_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Decryption_Machines
+	icon = GFX_CNT_signals_intelligence
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_The_Tuva_Road
+	prerequisite = {
+		focus = SVO_The_Tuva_Road
+	}
+	prerequisite = {
+		focus = SVO_Establish_Minimum_Wage
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Decryption_Machines"
+		add_tech_bonus = {
+			bonus = 1.00
+			uses = 2
+			category = decryption_tech
+			category = encryption_tech
+			category = computing_tech
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Agriculture_Mechanization
+	icon = GFX_RAJ_India_Revitalize_Farming
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Establish_Minimum_Wage
+	prerequisite = {
+		focus = SVO_Establish_Minimum_Wage
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Agriculture_Mechanization"
+		TNO_improve_agriculture_low = yes #coded with a script
+	}
+}
+
+shared_focus = {
+	id = SVO_Work_to_Do
+	icon = GFX_goal_workers_fist
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Decryption_Machines
+	prerequisite = {
+		focus = SVO_Radar_Stations
+	}
+	prerequisite = {
+		focus = SVO_Decryption_Machines
+	}
+	prerequisite = {
+		focus = SVO_Agriculture_Mechanization
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Work_to_Do"
+		SIB_increase_efficiency_gain_med = yes
+		SIB_decrease_consumer_goods_low = yes
+		SIB_decrease_worker_tension_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Decide_Our_Future
+	icon = GFX_OST_The_future_frozen
+	cost = 3.00
+	x = 3
+	y = 1
+	relative_position_id = SVO_Prioritize_Defense
+	prerequisite = {
+		focus = SVO_Aggressive_Doctrine
+		focus = SVO_Prioritize_Defense
+	}
+	prerequisite = {
+		focus = SVO_Work_to_Do
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Decide_Our_Future"
+		country_event = SVO.22
+	}
+}
+
+#Expansion Tree
+
+shared_focus = {
+	id = SVO_Red_Spring
+	icon = GFX_Generic_Authoritarian_Socialism
+	cost = 3.00
+	x = 24
+	y = 0
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = SIB_spring_tt
+			date > 1963.5.1
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Red_Spring"
+		country_event = SVO.3
+		swap_ideas = {
+			remove_idea = SVO_factionalism
+			add_idea = SVO_old_union
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Deal_with_the_Old_Believers
+	icon = GFX_SIB_diplo_oyrotia
+	cost = 3.00
+	x = -4
+	y = 1
+	relative_position_id = SVO_Red_Spring
+	prerequisite = {
+		focus = SVO_Red_Spring
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+		country_exists = ALT
+	}
+	mutually_exclusive = {
+		focus = SVO_March_to_Oyrotia
+	}
+	bypass = {
+		NOT = {
+			country_exists = ALT
+			controls_state = 654
+		}
+	}
+	will_lead_to_war_with = ALT
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Deal_with_the_Old_Believers"
+		custom_effect_tooltip = SVO_Deal_with_the_Old_Believers_tt
+		ALT = {
+			country_event = {
+				id = SVO.19
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_March_to_Oyrotia
+	icon = GFX_SIB_invade_oyrotia
+	cost = 3.00
+	x = -2
+	y = 1
+	relative_position_id = SVO_Red_Spring
+	prerequisite = {
+		focus = SVO_Red_Spring
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	mutually_exclusive = {
+		focus = SVO_Deal_with_the_Old_Believers
+	}
+	bypass = {
+		OR = {
+			has_war_with = ALT
+			NOT = { country_exists = ALT }
+		}
+	}
+	will_lead_to_war_with = ALT
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_March_to_Oyrotia"
+		if = {
+			limit = {
+				NOT = { has_country_flag = ALT_refused }
+			}
+			declare_war_on = {
+				target = ALT
+				type = annex_everything
+			}
+		}
+		else = {
+			effect_tooltip = {
+				declare_war_on = {
+					target = ALT
+					type = annex_everything
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Integrate_the_Administration
+	icon = GFX_KHA_expand_administrative_umbrella
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Deal_with_the_Old_Believers
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 654
+		custom_trigger_tooltip = {
+			tooltip = SVO_Integrate_the_Administration_tt
+			NOT = { has_country_flag = ALT_refused }
+		}
+	}
+	bypass = {
+		NOT = {
+			country_exists = ALT
+			controls_state = 654
+		}
+	}
+	prerequisite = {
+		focus = SVO_Deal_with_the_Old_Believers
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Deal_with_the_Old_Believers"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Persecute_the_Believers
+	icon = GFX_Generic_Orthodox_Cross
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_March_to_Oyrotia
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 654
+	}
+	bypass = {
+		NOT = {
+			country_exists = ALT
+			controls_state = 654
+		}
+	}
+	prerequisite = {
+		focus = SVO_March_to_Oyrotia
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Persecute_the_Believers"
+		SIB_increase_worker_tension_med = yes
+		country_event = {
+			id = SVO.24
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_End_with_Anarchy
+	icon = GFX_SIB_invade_SBA
+	cost = 3.00
+	x = 3
+	y = 1
+	relative_position_id = SVO_Red_Spring
+	prerequisite = {
+		focus = SVO_Red_Spring
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	bypass = {
+		OR = {
+			has_war_with = KHA
+			NOT = { country_exists = KHA }
+		}
+	}
+	will_lead_to_war_with = KHA
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_End_with_Anarchy"
+		declare_war_on = {
+			target = KHA
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Restore_Order
+	icon = GFX_generic_communist_deal
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_End_with_Anarchy
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 568
+	}
+	bypass = {
+		NOT = {
+			country_exists = KHA
+			controls_state = 568
+		}
+	}
+	prerequisite = {
+		focus = SVO_End_with_Anarchy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Restore_Order"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Crush_the_Communes
+	icon = GFX_TNO_generic_global_anti_communism
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_End_with_Anarchy
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 568
+	}
+	bypass = {
+		NOT = {
+			country_exists = KHA
+			controls_state = 568
+		}
+	}
+	prerequisite = {
+		focus = SVO_End_with_Anarchy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Crush_the_Communes"
+		custom_effect_tooltip = SVO_Crush_the_Communes_tt
+		hidden_effect = {
+			country_event = {
+				id = SVO.52
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Ruriks_Madness
+	icon = GFX_KEM_The_Kings_Society
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Integrate_the_Administration
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		country_exists = KEM
+	}
+	bypass = {
+		NOT = {
+			country_exists = KEM
+		}
+	}
+	prerequisite = {
+		focus = SVO_Integrate_the_Administration
+		focus = SVO_Persecute_the_Believers
+	}
+	prerequisite = {
+		focus = SVO_Restore_Order
+	}
+	prerequisite = {
+		focus = SVO_Crush_the_Communes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Ruriks_Madness"
+		custom_effect_tooltip = SVO_Ruriks_Madness_tt
+		country_event = {
+			id = SVO.53
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Dismantle_the_Kingdom
+	icon = GFX_SIB_invade_kemerovo
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Ruriks_Madness
+	prerequisite = {
+		focus = SVO_Ruriks_Madness
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	bypass = {
+		OR = {
+			has_war_with = KEM
+			NOT = { country_exists = KEM }
+		}
+	}
+	will_lead_to_war_with = KEM
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Dismantle_the_Kingdom"
+		declare_war_on = {
+			target = KEM
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Royal_Family_Fate
+	icon = GFX_TNO_Generic_Restricted_Monarchy
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Dismantle_the_Kingdom
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 569
+	}
+	bypass = {
+		NOT = {
+			country_exists = KEM
+			controls_state = 569
+		}
+	}
+	prerequisite = {
+		focus = SVO_Dismantle_the_Kingdom
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Royal_Family_Fate"
+		country_event = {
+			id = SVO.54
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Integrate_Crownlands
+	icon = GFX_SIB_diplo_kemerovo
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Dismantle_the_Kingdom
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 569
+	}
+	bypass = {
+		NOT = {
+			country_exists = KEM
+			controls_state = 569
+		}
+	}
+	prerequisite = {
+		focus = SVO_Dismantle_the_Kingdom
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Integrate_Crownlands"
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Northern_Populists
+	icon = GFX_SAH_the_enemy_within
+	cost = 3.00
+	x = 0
+	y = 2
+	relative_position_id = SVO_End_with_Anarchy
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		country_exists = SAH
+	}
+	bypass = {
+		NOT = {
+			country_exists = SAH
+		}
+	}
+	prerequisite = {
+		focus = SVO_Integrate_the_Administration
+		focus = SVO_Persecute_the_Believers
+	}
+	prerequisite = {
+		focus = SVO_Restore_Order
+	}
+	prerequisite = {
+		focus = SVO_Crush_the_Communes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Northern_Populists"
+		add_war_support = 0.05
+	}
+}
+
+
+shared_focus = {
+	id = SVO_Strike_Krasnoyarsk
+	icon = GFX_SIB_invade_krasnoyarsk
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_The_Northern_Populists
+	prerequisite = {
+		focus = SVO_The_Northern_Populists
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	bypass = {
+		OR = {
+			has_war_with = SAH
+			NOT = { country_exists = SAH }
+		}
+	}
+	will_lead_to_war_with = SAH
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Strike_Krasnoyarsk"
+		declare_war_on = {
+			target = SAH
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Offer_Amnesty
+	icon = GFX_OST_Fight_for_Freedom
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Strike_Krasnoyarsk
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 757
+	}
+	mutually_exclusive = {
+		focus = SVO_Destroy_the_Military_Remnants
+	}
+	bypass = {
+		NOT = {
+			country_exists = SAH
+			controls_state = 757
+		}
+	}
+	prerequisite = {
+		focus = SVO_Strike_Krasnoyarsk
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Offer_Amnesty"
+		custom_effect_tooltip = SVO_Offer_Amnesty_tt
+		SIB_increase_worker_tension_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Destroy_the_Military_Remnants
+	icon = GFX_goal_COG_icon_military_clusterfuck
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Strike_Krasnoyarsk
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 757
+	}
+	mutually_exclusive = {
+		focus = SVO_Offer_Amnesty
+	}
+	bypass = {
+		NOT = {
+			country_exists = SAH
+			controls_state = 757
+		}
+	}
+	prerequisite = {
+		focus = SVO_Strike_Krasnoyarsk
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Destroy_the_Military_Remnants"
+		custom_effect_tooltip = SVO_Destroy_the_Military_Remnants_tt
+		SIB_increase_worker_tension_low = yes
+		hidden_effect = {
+			country_event = {
+				id = SVO.57
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Border_Fortifications
+	icon = GFX_COG_Fortify_The_Border
+	cost = 3.00
+	x = 2
+	y = 2
+	relative_position_id = SVO_Dismantle_the_Kingdom
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		NOT = {
+			country_exists = KEM
+			country_exists = SAH
+		}
+	}
+	bypass = {
+		NOT = {
+			country_exists = PAV
+			country_exists = ERS
+		}
+	}
+	prerequisite = {
+		focus = SVO_The_Royal_Family_Fate
+	}
+	prerequisite = {
+		focus = SVO_Integrate_Crownlands
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Border_Fortifications"
+		every_owned_state = {
+			limit = {
+				any_neighbor_state = {
+					OR = {
+						is_controlled_by = ERS
+						is_controlled_by = PAV
+					}
+				}
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Prepare_our_Troops
+	icon = GFX_CAU_Prepare_the_Troops
+	cost = 3.00
+	x = -2
+	y = 2
+	relative_position_id = SVO_Strike_Krasnoyarsk
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		NOT = {
+			country_exists = KEM
+			country_exists = SAH
+		}
+	}
+	bypass = {
+		NOT = {
+			country_exists = PAV
+			country_exists = ERS
+		}
+	}
+	prerequisite = {
+		focus = SVO_Offer_Amnesty
+		focus = SVO_Destroy_the_Military_Remnants
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Prepare_our_Troops"
+		every_army_leader = {
+			add_temporary_buff_to_units = {
+				combat_offense = 0.10
+				combat_breakthrough = 0.25
+				cannot_retreat_while_defending = 0.10
+				war_support_reduction_on_damage = 0.05
+				days = 75
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Last_Fight
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Border_Fortifications
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+	}
+	bypass = {
+		NOT = {
+			country_exists = PAV
+			country_exists = ERS
+			country_exists = KEM
+			country_exists = SAH
+			country_exists = KHA
+			country_exists = ALT
+		}
+	}
+	prerequisite = {
+		focus = SVO_Border_Fortifications
+	}
+	prerequisite = {
+		focus = SVO_Prepare_our_Troops
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Last_Fight"
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = SVO_Crush_the_Artists_Republic
+	icon = GFX_SIB_invade_tomsk
+	cost = 3.00
+	x = -3
+	y = 1
+	relative_position_id = SVO_The_Last_Fight
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	bypass = {
+		OR = {
+			has_war_with = ERS
+			NOT = { country_exists = ERS }
+		}
+	}
+	prerequisite = {
+		focus = SVO_The_Last_Fight
+	}
+	will_lead_to_war_with = ERS
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Crush_the_Artists_Republic"
+		declare_war_on = {
+			target = ERS
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Overrun_Tomsk
+	icon = GFX_USA_The_Pacific_Blitz_alt
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Crush_the_Artists_Republic
+	prerequisite = {
+		focus = SVO_Crush_the_Artists_Republic
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war_with = ERS
+	}
+	bypass = {
+		NOT = { has_war_with = ERS }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Overrun_Tomsk"
+		add_timed_idea = {
+			idea = SVO_Overrun_Tomsk_idea
+			days = 60
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Spread_Political_Division
+	icon = GFX_generic_political_chaos
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Crush_the_Artists_Republic
+	prerequisite = {
+		focus = SVO_Crush_the_Artists_Republic
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war_with = ERS
+	}
+	bypass = {
+		NOT = { has_war_with = ERS }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Spread_Political_Division"
+		ERS = {
+			effect_tooltip = { add_war_support = -0.10 }
+			country_event = SVO.27
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Incorpore_Friendly_Elements
+	icon = GFX_SIB_diplo_tomsk
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Overrun_Tomsk
+	prerequisite = {
+		focus = SVO_Overrun_Tomsk
+	}
+	mutually_exclusive = {
+		focus = SVO_Purge_Them_All
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 578
+	}
+	bypass = {
+		NOT = {
+			country_exists = ERS
+			controls_state = 578
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Incorpore_Friendly_Elements"
+		custom_effect_tooltip = SVO_Incorpore_Friendly_Elements_tt
+		add_stability = -0.10
+	}
+}
+
+shared_focus = {
+	id = SVO_Purge_Them_All
+	icon = GFX_Generic_Political_Purge
+	cost = 3.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Spread_Political_Division
+	prerequisite = {
+		focus = SVO_Spread_Political_Division
+	}
+	mutually_exclusive = {
+		focus = SVO_Incorpore_Friendly_Elements
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 578
+	}
+	bypass = {
+		NOT = {
+			country_exists = ERS
+			controls_state = 578
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Incorpore_Friendly_Elements"
+		SIB_increase_worker_tension_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Hunt_Down_the_Siberian_Falcon
+	icon = GFX_SIB_invade_novosibirsk
+	cost = 3.00
+	x = 3
+	y = 1
+	relative_position_id = SVO_The_Last_Fight
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war = no
+	}
+	bypass = {
+		OR = {
+			has_war_with = PAV
+			NOT = { country_exists = PAV }
+		}
+	}
+	prerequisite = {
+		focus = SVO_The_Last_Fight
+	}
+	will_lead_to_war_with = PAV
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Hunt_Down_the_Siberian_Falcon"
+		declare_war_on = {
+			target = PAV
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Infiltrate_Their_Army
+	icon = GFX_focus_prc_infiltration
+	cost = 3.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Hunt_Down_the_Siberian_Falcon
+	prerequisite = {
+		focus = SVO_Hunt_Down_the_Siberian_Falcon
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war_with = PAV
+	}
+	bypass = {
+		NOT = { has_war_with = PAV }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Infiltrate_Their_Army"
+		PAV = {
+			country_event = SVO.25
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Sabotage_Supply_Lines
+	icon = GFX_TNO_generic_arms_shipments
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Hunt_Down_the_Siberian_Falcon
+	prerequisite = {
+		focus = SVO_Hunt_Down_the_Siberian_Falcon
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		has_war_with = PAV
+	}
+	bypass = {
+		NOT = { has_war_with = PAV }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Sabotage_Supply_Lines"
+		PAV = {
+			country_event = SVO.26
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Siberian_Air_Fleet
+	icon = GFX_TNO_generic_socialist_plane
+	cost = 3.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Infiltrate_Their_Army
+	prerequisite = {
+		focus = SVO_Infiltrate_Their_Army
+	}
+	prerequisite = {
+		focus = SVO_Sabotage_Supply_Lines
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		controls_state = 570
+	}
+	bypass = {
+		NOT = {
+			country_exists = PAV
+			controls_state = 570
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Siberian_Air_Fleet"
+		570 = {
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Liberation_of_Siberia
+	icon = GFX_generic_socialist_movement
+	cost = 4.00
+	x = 2
+	y = 1
+	relative_position_id = SVO_Purge_Them_All
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_russian_prc_tt
+			OR = {
+				check_variable = { SVO_MON_divide > 0 }
+				NOT = { has_variable = SVO_MON_divide }
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = SVO_has_formed_regional_tt
+			has_cosmetic_tag = SVO_regional_unifier
+		}
+		has_war = no
+		has_completed_focus = SVO_Decide_Our_Future
+		NOT = {
+			country_exists = PAV
+			country_exists = ERS
+			country_exists = KEM
+			country_exists = SAH
+			country_exists = KHA
+			country_exists = ALT
+		}
+	}
+	prerequisite = {
+		focus = SVO_Incorpore_Friendly_Elements
+		focus = SVO_Purge_Them_All
+	}
+	prerequisite = {
+		focus = SVO_The_Siberian_Air_Fleet
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Liberation_of_Siberia"
+		custom_effect_tooltip = SVO_Liberation_of_Siberia_tt
+		country_event = {
+			id = SVO.61
+			days = 1
+		}
+		814 = {
+			remove_core_of = SVO
+			start_resistance = yes
+			set_compliance = 30
+		}
+		hidden_effect = {
+			load_focus_tree = { tree = SVO_regional_tree keep_completed = yes }
+		}
+	}
+}
+
+#Regional Tree
+##tex did the poli side :)
+
+shared_focus = {
+	id = SVO_Secure_our_Position
+	icon = GFX_SVO_Siberian_Strategy
+	cost = 4.40
+	x = 5
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Secure_our_Position"
+		country_event = { id = SVO.62 days = 1 } #capital event
+	}
+}
+##poli side starts here :)))
+shared_focus = {
+	id = SVO_The_Krasnoyarsk_Conference
+	icon = GFX_WAL_Generic_Papers
+	cost = 4.00
+	x = -3
+	y = 1
+
+	relative_position_id = SVO_Secure_our_Position
+	prerequisite = { focus = SVO_Secure_our_Position }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Krasnoyarsk_Conference"
+		country_event = { id = SVO.83 }
+	}
+}
+
+shared_focus = {
+	id = SVO_A_Way_Of_Hope
+	icon = GFX_TNO_generic_left_unity
+	cost = 4.00
+	x = -2
+	y = 1
+	relative_position_id = SVO_The_Krasnoyarsk_Conference
+	mutually_exclusive = { focus = SVO_Defenders_Of_The_Union }
+	prerequisite = { focus = SVO_The_Krasnoyarsk_Conference }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_A_Way_Of_Hope"
+		custom_effect_tooltip = SVO_A_Way_Of_Hope_tt
+	}
+}
+
+shared_focus = {
+	id = SVO_Defenders_Of_The_Union
+	icon = GFX_TNO_generic_left_unity_warfare
+	cost = 4.00
+	x = 2
+	y = 1
+	relative_position_id = SVO_The_Krasnoyarsk_Conference
+	mutually_exclusive = { focus = SVO_A_Way_Of_Hope }
+	prerequisite = { focus = SVO_The_Krasnoyarsk_Conference }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Defenders_Of_The_Union"
+		custom_effect_tooltip = SVO_Defenders_Of_The_Union_tt
+	}
+}
+
+shared_focus = {
+	id = SVO_Deal_With_Officers
+	icon = GFX_CAU_purge_the_bureaucrats
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_Deal_With_Officers_trigger_tt
+			check_variable = { SVO_Army_Loyalty > 49.9 }
+		}
+	}
+	x = 1
+	y = 1
+	relative_position_id = SVO_A_Way_Of_Hope
+	prerequisite = { focus = SVO_A_Way_Of_Hope }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Deal_With_Officers"
+		custom_effect_tooltip = SVO_Deal_With_Officers_tt
+		hidden_effect = {
+			random_owned_state = {
+				limit = { check_variable = { SVO_Owner = -1 } }
+				set_variable = { SVO_Owner = 0 }
+			}
+
+			random_owned_state = {
+				limit = { check_variable = { SVO_Owner = -1 } }
+				set_variable = { SVO_Owner = 0 }
+			}
+
+			random_owned_state = {
+				limit = { check_variable = { SVO_Owner = -1 } }
+				set_variable = { SVO_Owner = 0 }
+
+			}
+			subtract_from_variable = { SVO_Army_Power = 30 }
+			subtract_from_variable = { SVO_Army_Loyalty = 10 }
+			SVO_apply_relationship_effect = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Establish_A_Civilian_Goverment
+	icon = GFX_TNO_generic_public_houses
+	cost = 4.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_A_Way_Of_Hope
+	prerequisite = { focus = SVO_A_Way_Of_Hope }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Establish_A_Civilian_Goverment"
+		custom_effect_tooltip = SVO_Establish_A_Civilian_Goverment_tt
+		add_to_variable = { SVO_Civilian_Loyalty = 40 }
+		add_to_variable = { SVO_Civilian_Power = 40 }
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Deal_With_The_Administration
+
+	icon = GFX_CAU_The_Government_Purge
+	cost = 4.00
+	x = 5
+	y = 1
+	relative_position_id = SVO_A_Way_Of_Hope
+	prerequisite = { focus = SVO_Defenders_Of_The_Union }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Deal_With_The_Administration"
+		custom_effect_tooltip = SVO_Deal_With_The_Administration_tt
+		every_owned_state = {
+			limit = { check_variable = { SVO_Owner = 1 } }
+			set_variable = { SVO_Owner = 0 }
+		}
+		add_to_variable = { SVO_Civilian_Loyalty = -65 }
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Strength_Military_Institutions
+	icon = GFX_Against_The_Opposition
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = SVO_Strength_Military_Institutions_trigger_tt
+			check_variable = { SVO_Civilian_Power < 50 }
+		}
+	}
+	x = 3
+	y = 1
+	relative_position_id = SVO_A_Way_Of_Hope
+	prerequisite = { focus = SVO_Defenders_Of_The_Union }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Strength_Military_Institutions"
+		custom_effect_tooltip = SVO_Strength_Military_Institutions_tt
+		add_to_variable = { SVO_Army_Power = 40 }
+		add_to_variable = { SVO_Army_Loyalty = 40 }
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Talk_To_The_Generals
+	icon = GFX_BRT_Negotiate_With_Clique
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Deal_With_Officers
+	prerequisite = { focus = SVO_Deal_With_Officers }
+
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Talk_To_The_Generals"
+		custom_effect_tooltip = SVO_Talk_To_The_Generals_tt
+		add_to_variable = { SVO_Army_Loyalty = 5 }
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Decide_Power_Balance
+	icon = GFX_ORE_balancing_the_council
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Establish_A_Civilian_Goverment
+	prerequisite = { focus = SVO_Establish_A_Civilian_Goverment }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Decide_Power_Balance"
+		custom_effect_tooltip = SVO_Decide_Power_Balance_tt
+
+	}
+}
+
+shared_focus = {
+	id = SVO_Talk_To_The_Civilians
+	icon = GFX_WAL_Talk_with_socialist_militias
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Deal_With_The_Administration
+	prerequisite = { focus = SVO_Deal_With_The_Administration }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Talk_To_The_Civilians"
+		custom_effect_tooltip = SVO_Talk_To_The_Civilians_tt
+		add_to_variable = { SVO_Civilian_Loyalty = 15 }
+		SVO_apply_relationship_effect = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Ensure_Our_Rule
+	icon = GFX_ORE_codify_central_powers
+	cost = 4.00
+	x = 0
+	y = 1
+	available = {
+		has_completed_focus = SVO_Deal_With_The_Administration
+		has_completed_focus = SVO_Talk_To_The_Civilians
+	}
+	relative_position_id = SVO_Strength_Military_Institutions
+	prerequisite = { focus = SVO_Strength_Military_Institutions }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Ensure_Our_Rule"
+		custom_effect_tooltip = SVO_Ensure_Our_Rule_tt
+		set_country_flag = SVO_no_bonuses_from_civ
+		set_variable = { SVO_pp_civilian_bonus = 0 }
+		set_variable = { SVO_ic_civilian_bonus = 0 }
+		set_variable = { SVO_agriculture_civilian_bonus = 0 }
+	}
+}
+
+shared_focus = {
+	id = SVO_A_New_Future
+	icon = GFX_generic_socialist_progressive_values
+	cost = 4.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Talk_To_The_Generals
+	available = {
+		has_completed_focus = SVO_Peace_In_Central_Siberia
+		if = {
+			limit = {
+				has_completed_focus = SVO_A_Way_Of_Hope
+			}
+			custom_trigger_tooltip = {
+				tooltip = SVO_A_New_Future_trigger_1_tt
+				check_variable = { SVO_Army_Loyalty > 49.9 }
+				check_variable = { SVO_Civilian_Power > 49.9 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = SVO_Defenders_Of_The_Union
+			}
+			custom_trigger_tooltip = {
+				tooltip = SVO_A_New_Future_trigger_2_tt
+				check_variable = { SVO_Civilian_Loyalty > 49.9 }
+				check_variable = { SVO_Army_Power > 49.9 }
+			}
+		}
+	}
+	prerequisite = {
+		focus = SVO_Talk_To_The_Generals
+		focus = SVO_Talk_To_The_Civilians
+	}
+	prerequisite = {
+		focus = SVO_Decide_Power_Balance
+		focus = SVO_Ensure_Our_Rule
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_A_New_Future"
+		custom_effect_tooltip = SVO_A_New_Future_tt
+		RUS_decrease_administrative_strain = yes
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = { SVO_Army_Power > SVO_Civilian_Power }
+					check_variable = { SVO_Army_Loyalty > 50 }
+				}
+				country_event = { id = SVO.68 } #Military overpowers citizens
+			}
+			else_if = {
+				limit = {
+					check_variable = { SVO_Civilian_Power > SVO_Army_Power }
+					check_variable = { SVO_Civilian_Loyalty > 50 }
+				}
+				country_event = { id = SVO.69 } #Citizens overpowers military
+			}
+			else = {
+				country_event = { id = SVO.70 } #Deadlock
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SVO_The_New_Territories
+	icon = GFX_ORE_the_soviet_land_surveys
+	cost = 4.00
+	x = 4
+	y = 1
+	relative_position_id = SVO_Secure_our_Position
+	prerequisite = { focus = SVO_Secure_our_Position }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_New_Territories"
+		RUS_integration_cost_days_decrease = yes
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = SVO_Kostins_Legacy
+	icon = GFX_workers_fist
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_The_New_Territories
+	prerequisite = { focus = SVO_The_New_Territories }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Kostins_Legacy"
+		country_event = SVO.85
+		set_country_flag = SVO_can_give_non_cores
+		custom_effect_tooltip = SVO_Kostins_Legacy_tt
+	}
+}
+
+shared_focus = {
+	id = SVO_Pardon_Them
+	icon = GFX_TNO_generic_liberating_camps_prisoners
+	cost = 4.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Kostins_Legacy
+	mutually_exclusive = { focus = SVO_Smash_Them }
+	prerequisite = { focus = SVO_Kostins_Legacy }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Pardon_Them"
+		custom_effect_tooltip = SVO_raise_military_effect_loyalty_tt
+		add_to_variable = { SVO_Army_Loyalty = 5 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Smash_Them
+	icon = GFX_YUN_Public_Executions
+	cost = 4.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Kostins_Legacy
+	mutually_exclusive = { focus = SVO_Pardon_Them }
+	prerequisite = { focus = SVO_Kostins_Legacy }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Smash_Them"
+		custom_effect_tooltip = SVO_raise_civilian_effect_loyalty_tt
+		add_to_variable = { SVO_Civilian_Loyalty = 5 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Defeat_Warlord_Pockets
+	icon = GFX_GER_A_Gentle_Purge
+	cost = 4.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Smash_Them
+	prerequisite = { focus = SVO_Smash_Them }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Defeat_Warlord_Pockets"
+		add_manpower = -1500
+		RUS_integration_cost_days_decrease = yes
+		add_to_variable = { SVO_Army_Loyalty = -10 }
+		custom_effect_tooltip = SVO_lower_military_effect_loyalty_tt
+	}
+}
+
+shared_focus = {
+	id = SVO_Make_An_Offer
+	icon = GFX_Generic_Liberty_Handshake
+	cost = 4.00
+	x = -1
+	y = 1
+	relative_position_id = SVO_Pardon_Them
+	prerequisite = { focus = SVO_Pardon_Them }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Make_An_Offer"
+		custom_effect_tooltip = SVO_raise_military_effect_power_tt
+		add_to_variable = { SVO_Army_Power = 10 }
+		add_manpower = 5000
+	}
+}
+
+shared_focus = {
+	id = SVO_Integrate_Our_Land
+	icon = GFX_RAJ_National_Land_Reform
+	cost = 4.00
+	x = 1
+	y = 1
+	relative_position_id = SVO_Pardon_Them
+	prerequisite = {
+		focus = SVO_Pardon_Them
+		focus = SVO_Smash_Them
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Integrate_Our_Land"
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Towards_Peace_And_Unity
+	icon = GFX_IRK_remember_the_revolution
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Make_An_Offer
+	prerequisite = { focus = SVO_Make_An_Offer }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Towards_Peace_And_Unity"
+		add_stability = 0.05
+		SIB_decrease_consumer_goods_med = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Put_Traitors_On_Trial
+	icon = GFX_generic_trials
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Defeat_Warlord_Pockets
+	prerequisite = { focus = SVO_Defeat_Warlord_Pockets }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Put_Traitors_On_Trial"
+		country_event = { id = SVO.84 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Birth_Of_A_State
+	icon = GFX_ISH_new_soviet_spirit
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Integrate_Our_Land
+	prerequisite = { focus = SVO_Integrate_Our_Land }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Birth_Of_A_State"
+		TNO_improve_industrial_equipment_low = yes
+		TNO_improve_agriculture_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Peace_In_Central_Siberia
+	icon = GFX_IRK_Red_Siberia
+	cost = 4.00
+	x = 0
+	y = 1
+	relative_position_id = SVO_Birth_Of_A_State
+	prerequisite = {
+		focus = SVO_Towards_Peace_And_Unity
+		focus = SVO_Put_Traitors_On_Trial
+	}
+	prerequisite = { focus = SVO_Birth_Of_A_State }
+
+	completion_reward = {
+		RUS_decrease_administrative_strain = yes
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Peace_In_Central_Siberia"
+		custom_effect_tooltip = SVO_raise_civilian_effect_loyalty_tt
+		custom_effect_tooltip = SVO_raise_military_effect_loyalty_tt
+		add_to_variable = { SVO_Army_Loyalty = 5 }
+		add_to_variable = { SVO_Civilian_Loyalty = 5 }
+		add_political_power = 25
+		add_stability = 0.05
+	}
+}
+
+#Military Tree
+
+shared_focus = {
+	id = SVO_Into_the_Military_Front
+	icon = GFX_NIK_army_for_the_motherland_ultravisionary
+	cost = 4.40
+	x = 17
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Into_the_Military_Front"
+		army_experience = 30
+		custom_effect_tooltip = econ_debt_rate_generic_increase
+		add_to_variable = { interest_rates = 0.075 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Great_Patriotic_War_Legacy
+	icon = GFX_YUN_The_Chinese_Army_Unbowed
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Into_the_Military_Front
+	mutually_exclusive = {
+		focus = SVO_Warlord_Era_Legacy
+	}
+	prerequisite = {
+		focus = SVO_Into_the_Military_Front
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Great_Patriotic_War_Legacy"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 2
+			category = cat_strategic_theorem
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Warlord_Era_Legacy
+	icon = GFX_CAU_purge_the_officers
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Into_the_Military_Front
+	mutually_exclusive = {
+		focus = SVO_Great_Patriotic_War_Legacy
+	}
+	prerequisite = {
+		focus = SVO_Into_the_Military_Front
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Warlord_Era_Legacy"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 2
+			category = cat_combined_operations
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Our_Man_Will_March
+	icon = GFX_TNO_generic_Marching_Men_Soviet
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Warlord_Era_Legacy
+	prerequisite = {
+		focus = SVO_Warlord_Era_Legacy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Our_Man_Will_March"
+		add_timed_idea = {
+			idea = SVO_Infantry_idea_1
+			days = 1800
+		}
+		add_to_variable = { national_debt = 12 }
+		custom_effect_tooltip = econ_increase_debt_small
+	}
+}
+
+shared_focus = {
+	id = SVO_Our_Tanks_Will_Run
+	icon = GFX_TNO_generic_socialist_tank
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Great_Patriotic_War_Legacy
+	prerequisite = {
+		focus = SVO_Great_Patriotic_War_Legacy
+	}
+	completion_reward = {
+		log = "[GetDateText]: [RFoot.GetName]: Focus SVO_Our_Tanks_Will_Run"
+		add_timed_idea = {
+			idea = SVO_Tank_idea_1
+			days = 1800
+		}
+		add_to_variable = { national_debt = 20 }
+		custom_effect_tooltip = econ_increase_debt
+	}
+}
+
+shared_focus = {
+	id = SVO_Right_Hand_of_the_Soldiers
+	icon = GFX_generic_artillery_warfare
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Our_Tanks_Will_Run
+	prerequisite = {
+		focus = SVO_Our_Man_Will_March
+		focus = SVO_Our_Tanks_Will_Run
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Right_Hand_of_the_Soldiers"
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = artillery
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Army_of_the_Tundras
+	icon = GFX_IRK_ironclad_union
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Our_Man_Will_March
+	prerequisite = {
+		focus = SVO_Our_Man_Will_March
+		focus = SVO_Our_Tanks_Will_Run
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Army_of_the_Tundras"
+		tno_training_improve = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Expand_Helicopter_Divisions
+	icon = GFX_TNO_generic_helicopter
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Our_Man_Will_March
+	prerequisite = {
+		focus = SVO_Our_Man_Will_March
+		focus = SVO_Our_Tanks_Will_Run
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Expand_Helicopter_Divisions"
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 2
+			category = helicopter
+		}
+		add_equipment_to_stockpile = {
+			type = transport_helicopter_equipment
+			amount = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Red_Air_Force
+	icon = GFX_TNO_generic_socialist_plane
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Right_Hand_of_the_Soldiers
+	prerequisite = {
+		focus = SVO_Right_Hand_of_the_Soldiers
+	}
+	prerequisite = {
+		focus = SVO_Expand_Helicopter_Divisions
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Red_Air_Force"
+		air_experience = 30
+		add_to_variable = { national_debt = 20 }
+		custom_effect_tooltip = econ_increase_debt
+		570 = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 2
+			category = air_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Bomber-Focused_Doctrine
+	icon = GFX_ANG_bomber_buildup
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Red_Air_Force
+	mutually_exclusive = {
+		focus = SVO_Fighter-Focused_Doctrine
+	}
+	prerequisite = {
+		focus = SVO_Red_Air_Force
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Bomber-Focused_Doctrine"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = air_parity
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Fighter-Focused_Doctrine
+	icon = GFX_generic_jet_fighter_1
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Red_Air_Force
+	mutually_exclusive = {
+		focus = SVO_Bomber-Focused_Doctrine
+	}
+	prerequisite = {
+		focus = SVO_Red_Air_Force
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Bomber-Focused_Doctrine"
+		add_tech_bonus = {
+			bonus = 0.75
+			uses = 1
+			category = air_superiority
+		}
+	}
+}
+
+
+shared_focus = {
+	id = SVO_Foreign_Weapons
+	icon = GFX_ORS_Soviet_Arms
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Army_of_the_Tundras
+	available = {
+		has_completed_focus = SVO_Foreign_Advisors
+	}
+	prerequisite = {
+		focus = SVO_Army_of_the_Tundras
+	}
+	prerequisite = {
+		focus = SVO_Expand_Helicopter_Divisions
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Foreign_Weapons"
+		country_event = { id = SVO.92 days = 1 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 800
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 150
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = IFV_equipment
+			amount = 75
+			producer = USA
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Soviet_War_Machine
+	icon = GFX_GER_mobile_infantry
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Foreign_Weapons
+	prerequisite = {
+		focus = SVO_Foreign_Weapons
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Soviet_War_Machine"
+		TNO_improve_army_professionalism_high = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Restoring_our_Riches
+	icon = GFX_BRT_Mind_the_Economy
+	cost = 4.40
+	x = 26
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Restoring_our_Riches"
+		multiply_variable = { GDP = 1.03 }
+		custom_effect_tooltip = econ_increase_GDP_small
+	}
+}
+
+shared_focus = {
+	id = SVO_Establish_a_Budget
+	icon = GFX_TNO_generic_gold_bars
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Restoring_our_Riches
+	prerequisite = {
+		focus = SVO_Restoring_our_Riches
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Establish_a_Budget"
+		country_event = { id = SVO.90 days = 1 }
+		SIB_decrease_consumer_goods_med = yes
+		add_ideas = tno_tax_rate_high_taxes
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Siberian_Wealth
+	icon = GFX_TOB_The_Resources_of_Siberia
+	cost = 4.40
+	x = -3
+	y = 1
+	relative_position_id = SVO_Establish_a_Budget
+	prerequisite = {
+		focus = SVO_Establish_a_Budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Siberian_Wealth"
+		add_to_variable = { misc_costs = 5 }
+		custom_effect_tooltip = econ_misc_expenses_add_medium_increase
+		SIB_increase_ic_high = yes
+		569 = { add_extra_state_shared_building_slots = 2 }
+		757 = { add_extra_state_shared_building_slots = 2 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Novosibirsk_Civilian_Industry
+	icon = GFX_TNO_generic_socialist_industry
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_The_Siberian_Wealth
+	prerequisite = {
+		focus = SVO_The_Siberian_Wealth
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Novosibirsk_Civilian_Industry"
+		add_to_variable = { national_debt = 25 }
+		custom_effect_tooltip = econ_increase_debt_small
+		570 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Biysk_Military_Industry
+	icon = GFX_generic_advanced_weapons
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_The_Siberian_Wealth
+	prerequisite = {
+		focus = SVO_The_Siberian_Wealth
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Biysk_Military_Industry"
+		add_to_variable = { national_debt = 35 }
+		custom_effect_tooltip = econ_increase_debt
+		654 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Oil_Exploration
+	icon = GFX_Protect_the_oil
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Novosibirsk_Civilian_Industry
+	prerequisite = {
+		focus = SVO_Novosibirsk_Civilian_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Oil_Exploration"
+		multiply_variable = { misc_costs = 1.05 }
+		custom_effect_tooltip = econ_misc_costs_add_5_percent
+		SIB_increase_resources_high = yes
+		add_resource = {
+			type = oil
+			amount = 6
+			state = 577
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Connect_the_Cities
+	icon = GFX_ITA_Modernize_the_Infrastructures
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Novosibirsk_Civilian_Industry
+	prerequisite = {
+		focus = SVO_Novosibirsk_Civilian_Industry
+	}
+	prerequisite = {
+		focus = SVO_Biysk_Military_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Connect_the_Cities"
+		add_to_variable = { national_debt = 15 }
+		custom_effect_tooltip = econ_increase_debt_small
+		570 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		568 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		578 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		887 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Norilsk_Legacy
+	icon = GFX_The_Model_City
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Biysk_Military_Industry
+	prerequisite = {
+		focus = SVO_Biysk_Military_Industry
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Norilsk_Legacy"
+		TNO_improve_industrial_equipment_high = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Expand_Industrial_Centers
+	icon = GFX_ITA_center_of_production
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Connect_the_Cities
+	mutually_exclusive = {
+		focus = SVO_Prepared_for_War
+	}
+	prerequisite = {
+		focus = SVO_Oil_Exploration
+	}
+	prerequisite = {
+		focus = SVO_Connect_the_Cities
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Expand_Industrial_Centers"
+		add_to_variable = { interest_rates = 0.03 }
+		custom_effect_tooltip = econ_debt_rate_generic_increase
+		SIB_increase_construction_speed_med = yes
+		SIB_increase_max_efficiency_med = yes
+	}
+}
+
+
+shared_focus = {
+	id = SVO_Prepared_for_War
+	icon = GFX_TOB_Sverdlovsk_Tank_Factory
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Norilsk_Legacy
+	mutually_exclusive = {
+		focus = SVO_Expand_Industrial_Centers
+	}
+	prerequisite = {
+		focus = SVO_Norilsk_Legacy
+	}
+	prerequisite = {
+		focus = SVO_Connect_the_Cities
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Prepared_for_War"
+		tno_economic_focus_improve = yes
+		SIB_decrease_consumer_goods_high = yes
+		SIB_decrease_max_efficiency_med = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Into_the_Modern_Age
+	icon = GFX_IRK_The_International_Factory
+	cost = 4.40
+	x = 3
+	y = 1
+	relative_position_id = SVO_Establish_a_Budget
+	prerequisite = {
+		focus = SVO_Establish_a_Budget
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Into_the_Modern_Age"
+		add_to_variable = { national_debt = 11 }
+		custom_effect_tooltip = econ_increase_debt_small
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 2
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Soviet_Worker
+	icon = GFX_IRK_construction
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Into_the_Modern_Age
+	prerequisite = {
+		focus = SVO_Into_the_Modern_Age
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Soviet_Worker"
+		RUS_decrease_administrative_strain = yes
+		SIB_increase_max_efficiency_high = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Farms_of_the_Future
+	icon = GFX_CHI_New_Farming_Techniques
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_The_Soviet_Worker
+	prerequisite = {
+		focus = SVO_The_Soviet_Worker
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Farms_of_the_Future"
+		TNO_improve_agriculture_med = yes
+		TNO_improve_poverty_high = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_New_Industrial_Methods
+	icon = GFX_market_socialism
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_The_Soviet_Worker
+	prerequisite = {
+		focus = SVO_The_Soviet_Worker
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_New_Industrial_Methods"
+		TNO_improve_industrial_expertise_high = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Import_Electronic_Designs
+	icon = GFX_CHI_Adapt_Computer_Designs
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_New_Industrial_Methods
+	prerequisite = {
+		focus = SVO_New_Industrial_Methods
+	}
+	prerequisite = {
+		focus = SVO_Farms_of_the_Future
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Import_Electronic_Designs"
+		TNO_improve_industrial_equipment_high = yes
+		add_to_variable = { misc_costs = 15 }
+		custom_effect_tooltip = econ_misc_expenses_add_large_increase
+	}
+}
+
+shared_focus = {
+	id = SVO_Education_for_All
+	icon = GFX_ISH_new_soviet_family
+	cost = 4.40
+	x = 3
+	y = 1
+	relative_position_id = SVO_Into_the_Modern_Age
+	prerequisite = {
+		focus = SVO_Into_the_Modern_Age
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Education_for_All"
+		TNO_improve_academic_base_med = yes
+		add_to_variable = { national_debt = 67 }
+		custom_effect_tooltip = econ_increase_debt_large
+	}
+}
+
+shared_focus = {
+	id = SVO_Restore_the_Universities
+	icon = GFX_NIK_socialist_science
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Education_for_All
+	prerequisite = {
+		focus = SVO_Education_for_All
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Restore_the_Universities"
+		country_event = { id = SVO.93 days = 1 }
+		TNO_improve_research_facilities_med = yes
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_The_International_Field
+	icon = GFX_NIK_restore_international_trade
+	cost = 4.40
+	x = 37
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_International_Field"
+		custom_effect_tooltip = SVO_The_International_Field_tt
+	}
+}
+
+shared_focus = {
+	id = SVO_Over_the_Asian_Continent
+	icon = GFX_CNT_Asia
+	cost = 4.40
+	x = -2
+	y = 1
+	relative_position_id = SVO_The_International_Field
+	prerequisite = {
+		focus = SVO_The_International_Field
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Over_the_Asian_Continent"
+		SVO_increase_trade_idea = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Search_for_Recognition
+	icon = GFX_TNO_generic_soviet_coat_of_arms
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Over_the_Asian_Continent
+	prerequisite = {
+		focus = SVO_Over_the_Asian_Continent
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Search_for_Recognition"
+		every_country = {
+			limit = {
+				is_warlord = no
+				is_russian_nation = no
+				NOT = { tag = ZZZ }
+				capital_scope = {
+					is_on_continent = asia
+				}
+			}
+			add_opinion_modifier = { target = SVO modifier = RUS_recognition }
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_The_Central_Asia_Countries
+	icon = GFX_TRK_Redraw_Traditional_Borders
+	cost = 4.40
+	x = -1
+	y = 1
+	relative_position_id = SVO_Search_for_Recognition
+	prerequisite = {
+		focus = SVO_Search_for_Recognition
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_The_Central_Asia_Countries"
+		every_country = {
+			limit = {
+				OR = {
+					tag = TRK
+					tag = UZB
+					tag = KRK
+					tag = TAJ
+					tag = KYR
+				}
+			}
+			add_opinion_modifier = { target = SVO modifier = RUS_trade }
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Solidarity_to_the_Socialist_Cause
+	icon = GFX_generic_communist_deal
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Search_for_Recognition
+	prerequisite = {
+		focus = SVO_Search_for_Recognition
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Solidarity_to_the_Socialist_Cause"
+		every_other_country = {
+			limit = {
+				NOT = {
+					OR = {
+						tag = DSR
+						tag = ZZZ
+						tag = ROOT
+						is_russian_nation = yes
+					}
+				}
+				has_government = communist
+				has_government = socialist
+			}
+			add_opinion_modifier = { target = SVO modifier = RUS_trade }
+		}
+		SVO_increase_trade_idea = yes
+		TNO_run_socintern_script = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Friends_in_the_Western_Hemisphere
+	icon = GFX_USA_American_Federation_Of_Labor
+	cost = 4.40
+	x = 2
+	y = 1
+	relative_position_id = SVO_The_International_Field
+	prerequisite = {
+		focus = SVO_The_International_Field
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Friends_in_the_Western_Hemisphere"
+		every_country = {
+			limit = {
+				is_warlord = no
+				is_russian_nation = no
+				NOT = { tag = ZZZ }
+				capital_scope = {
+					is_on_continent = north_america
+				}
+			}
+			add_opinion_modifier = { target = SVO modifier = RUS_recognition }
+		}
+		country_event = { id = SVO.91 days = 1 }
+	}
+}
+
+shared_focus = {
+	id = SVO_Deal_with_the_OFN
+	icon = GFX_goal_OFN_COG_The_Leopoldville_Committee
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Friends_in_the_Western_Hemisphere
+	prerequisite = {
+		focus = SVO_Friends_in_the_Western_Hemisphere
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Deal_with_the_OFN"
+		SVO_increase_trade_idea = yes
+		every_country = {
+			limit = {
+				is_in_faction_with = USA
+			}
+			add_opinion_modifier = { target = SVO modifier = RUS_trade }
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_Foreign_Advisors
+	icon = GFX_goal_OFN_CAR_American_Foreign_Legions
+	cost = 4.40
+	x = 0
+	y = 1
+	relative_position_id = SVO_Deal_with_the_OFN
+	prerequisite = {
+		focus = SVO_Deal_with_the_OFN
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Foreign_Advisors"
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_Taking_Back_our_Place
+	icon = GFX_KHA_revolutionary_reconstruction
+	cost = 4.40
+	x = 1
+	y = 1
+	relative_position_id = SVO_Solidarity_to_the_Socialist_Cause
+	prerequisite = {
+		focus = SVO_The_Central_Asia_Countries
+	}
+	prerequisite = {
+		focus = SVO_Solidarity_to_the_Socialist_Cause
+	}
+	prerequisite = {
+		focus = SVO_Foreign_Advisors
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_Taking_Back_our_Place"
+		add_stability = 0.10
+	}
+}
+
+#SUPERREGIONAL TREES
+
+shared_focus = {
+	id = SVO_MIL_A_United_Siberia
+	icon = GFX_IRK_Red_Siberia
+	cost = 2.3
+	x = 6
+	y = 0
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_A_United_Siberia"
+		add_stability = 0.10
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Securing_Far_East
+	icon = GFX_UPO_Secure_the_Bombs
+	cost = 2.3
+	x = -2
+	y = 1
+	relative_position_id = SVO_MIL_A_United_Siberia
+	prerequisite = { focus = SVO_MIL_A_United_Siberia }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Securing_Far_East"
+		add_political_power = 50
+		RUS_integration_cost_days_decrease = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_The_Soviet_Navy
+	icon = GFX_FEN_The_Red_Navy
+	cost = 2.3
+	x = 0
+	y = 1
+	relative_position_id = SVO_MIL_A_United_Siberia
+	prerequisite = { focus = SVO_MIL_A_United_Siberia }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_The_Soviet_Navy"
+		country_event = { id = SVO.96 days = 1 }
+		navy_experience = 25
+		add_tech_bonus = {
+			bonus = 1
+			uses = 3
+			category = naval_equipment
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Open_New_Doors
+	icon = GFX_USA_Door_in_Face
+	cost = 2.3
+	x = 2
+	y = 1
+	relative_position_id = SVO_MIL_A_United_Siberia
+	prerequisite = { focus = SVO_MIL_A_United_Siberia }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Open_New_Doors"
+		custom_effect_tooltip = econ_misc_income_add_medium_increase
+		add_to_variable = { misc_income = 25 }
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Rebuild_The_Cities
+	icon = GFX_JAP_Rebuilding_the_Cities
+	cost = 2.3
+	x = -1
+	y = 1
+	relative_position_id = SVO_MIL_Securing_Far_East
+	prerequisite = { focus = SVO_MIL_Securing_Far_East }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Rebuild_The_Cities"
+		TNO_improve_poverty_med = yes
+		multiply_variable = { GDP = 1.03 }
+		custom_effect_tooltip = econ_increase_GDP_small
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Invite_Their_Scientists
+	icon = GFX_NIK_socialist_science
+	cost = 2.3
+	x = 0
+	y = 1
+	relative_position_id = SVO_MIL_Rebuild_The_Cities
+	prerequisite = { focus = SVO_MIL_Rebuild_The_Cities }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Invite_Their_Scientists"
+		TNO_improve_research_facilities_high = yes
+		add_timed_idea = { idea = SVO_Age_of_Science days = 720 }
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Move_Our_Troops
+	icon = GFX_TNO_generic_Marching_Men_Soviet
+	cost = 2.3
+	x = 1
+	y = 1
+	relative_position_id = SVO_MIL_Securing_Far_East
+	prerequisite = { focus = SVO_MIL_Securing_Far_East }
+	prerequisite = { focus = SVO_MIL_The_Soviet_Navy }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Move_Our_Troops"
+		country_event = { id = SVO.87 days = 1 }
+		army_experience = 30
+		TNO_improve_army_professionalism_med = yes
+		add_timed_idea = { idea = SVO_Preparing_for_Unification days = 720 }
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Reallocate_Our_Forts
+	icon = GFX_YUN_Fortify_The_Border
+	cost = 2.3
+	x = 0
+	y = 1
+	relative_position_id = SVO_MIL_Move_Our_Troops
+	prerequisite = { focus = SVO_MIL_Move_Our_Troops }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Reallocate_Our_Forts"
+		custom_effect_tooltip = SVO_MIL_Reallocate_Our_Forts_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					NOT = {
+						any_neighbor_state = { is_controlled_by = RWS }
+						any_province_building_level = { building = bunker level > 1 }
+					}
+				}
+				set_building_level = { type = bunker level = 1 instant_build = yes }
+			}
+		}
+		every_owned_state = {
+			limit = {
+				any_neighbor_state = {
+					owner = { is_russian_nation = yes }
+				}
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Looking_Into_The_West
+	icon = GFX_RUS_russia_superregional
+	cost = 2.3
+	x = 1
+	y = 1
+	relative_position_id = SVO_MIL_Invite_Their_Scientists
+	prerequisite = { focus = SVO_MIL_Invite_Their_Scientists }
+	prerequisite = { focus = SVO_MIL_Reallocate_Our_Forts }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Looking_Into_The_West"
+		if = {
+			limit = {
+				RWS = {
+					has_government = communist
+				}
+			}
+			RWS = {
+				add_opinion_modifier = {
+					target = SIB
+					modifier = TNO_opened_diplomatic_relations
+				}
+				reverse_add_opinion_modifier = {
+					target = SIB
+					modifier = TNO_opened_diplomatic_relations
+				}
+			}
+		}
+		else = {
+			add_war_support = 0.10
+			add_manpower = 65000
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Port_Modernization_Program
+	icon = GFX_Generic_Ship_Trade
+	cost = 2.3
+	x = 1
+	y = 1
+	relative_position_id = SVO_MIL_The_Soviet_Navy
+	prerequisite = { focus = SVO_MIL_Open_New_Doors }
+	prerequisite = { focus = SVO_MIL_The_Soviet_Navy }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Port_Modernization_Program"
+		886 = {
+			add_building_construction = {
+				type = naval_base
+				level = 1
+				instant_build = yes
+				province = 1772
+			}
+		}
+		562 = {
+			add_building_construction = {
+				type = naval_base
+				level = 1
+				instant_build = yes
+				province = 12683
+			}
+		}
+		add_equipment_to_stockpile = { type = convoy amount = 70 }
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_The_Pacific_Route
+	icon = GFX_NIK_restore_international_trade
+	cost = 2.3
+	x = 0
+	y = 1
+	relative_position_id = SVO_MIL_Port_Modernization_Program
+	prerequisite = { focus = SVO_MIL_Port_Modernization_Program }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_The_Pacific_Route"
+		custom_effect_tooltip = SVO_MIL_The_Pacific_Route_tt
+		every_other_country = {
+			limit = {
+				AND = {
+					is_warlord = no
+					is_puppet = no
+					is_russian_nation = no
+					NOT = {
+						OR = {
+							is_in_faction_with = USA
+							is_in_faction_with = JAP
+							is_in_faction_with = GER
+						}
+					}
+					capital_scope = {
+						OR = {
+							is_on_continent = asia
+							is_on_continent = north_america
+							is_on_continent = south_america
+						}
+					}
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+			}
+			log = "[GetDateText]: [tHIS.GetName] : PRC TEST"
+			add_opinion_modifier = { target = SVO modifier = RUS_trade }
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_Roads_Through_The_Wastes
+	icon = GFX_IBR_open_road
+	cost = 2.3
+	x = 1
+	y = 1
+	relative_position_id = SVO_MIL_Open_New_Doors
+	prerequisite = { focus = SVO_MIL_Open_New_Doors }
+	prerequisite = { focus = SVO_MIL_The_Soviet_Navy }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_Roads_Through_The_Wastes"
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_The_Siberian_Trains
+	icon = GFX_KHA_repair_the_trans_siberian_railway
+	cost = 2.3
+	x = 0
+	y = 1
+	relative_position_id = SVO_MIL_Roads_Through_The_Wastes
+	prerequisite = { focus = SVO_MIL_Roads_Through_The_Wastes }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_The_Siberian_Trains"
+		country_event = { id = SVO.88 days = 1 }
+		custom_effect_tooltip = econ_increase_debt
+		add_to_variable = { national_debt = 120 }
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = industry
+		}
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_The_Workers_Example
+	icon = GFX_goal_workers_fist
+	cost = 2.3
+	x = 1
+	y = 1
+	relative_position_id = SVO_MIL_The_Pacific_Route
+	prerequisite = { focus = SVO_MIL_The_Pacific_Route }
+	prerequisite = { focus = SVO_MIL_The_Siberian_Trains }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_The_Workers_Example"
+		tno_minimum_wage_improve = yes
+		TNO_improve_poverty_low = yes
+	}
+}
+
+shared_focus = {
+	id = SVO_MIL_A_Renewed_Union
+	icon = GFX_TNO_generic_soviet_flag
+	cost = 2.3
+	x = 2
+	y = 1
+	relative_position_id = SVO_MIL_Looking_Into_The_West
+	prerequisite = { focus = SVO_MIL_Looking_Into_The_West }
+	prerequisite = { focus = SVO_MIL_The_Workers_Example }
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus SVO_MIL_A_Renewed_Union"
+		country_event = { id = SVO.89 days = 1 }
+		add_stability = 0.10
+	}
+}

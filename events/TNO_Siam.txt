@@ -1,0 +1,40 @@
+add_namespace = sia
+
+country_event = { #Dummy event for Plaek death
+	id = sia.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event sia.0"}
+ 	title = sia.0.t
+ 	desc = sia.0.d
+ 	picture = GFX_report_event_generic_military_parade
+
+	is_triggered_only = yes
+ 	fire_only_once = yes
+
+ 	option = {
+ 		name = sia.0.a
+        hidden_effect = {
+			kill_country_leader = yes
+			set_politics = { ruling_party = authoritarian_democrat }
+			every_country = {
+				news_event = { id = WORLD.16510 }
+			}
+			random_list = {
+				50 = {
+					every_country = {
+						news_event = { id = WORLD.16512 days = 14 }
+					}
+				}
+				35 = {
+					every_country = {
+						news_event = { id = WORLD.16513 days = 14 }
+					}
+				}
+				15 = {
+					every_country = {
+						news_event = { id = WORLD.16511 days = 14 }
+					}
+				}
+			}
+		}
+	}
+}

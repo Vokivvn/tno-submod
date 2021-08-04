@@ -1,0 +1,1663 @@
+SAF_difficulty_category = {
+	SAF_hard_mode = {
+		icon = generic_prospect_for_resources
+		
+		available = {
+			original_tag = SAF
+			date < 1963.1.1
+			is_ai = no
+		}
+		visible = {
+			OR = {
+				NOT = {
+					has_global_flag = SAFWAR_schild_hard
+					date > 1963.1.1
+					is_ai = yes
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_hard_mode"
+			set_global_flag = SAFWAR_schild_hard
+			custom_effect_tooltip = SAF_hard_mode_tt
+			hidden_effect = {
+				ANG = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 30000
+					}
+					add_equipment_to_stockpile = {
+						type = anti_tank_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = motorized_equipment
+						amount = 2000
+					}
+					add_equipment_to_stockpile = {
+						type = support_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_equipment
+						amount = 500
+					}
+					add_equipment_to_stockpile = {
+						type = transport_helicopter_equipment
+						amount = 500
+					}
+					add_manpower = 150000
+					add_ideas = RK_SAF_war_AI_hardmode
+					load_OOB = ANG_hard
+				}
+				MZB = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 30000
+					}
+					add_equipment_to_stockpile = {
+						type = anti_tank_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = motorized_equipment
+						amount = 2000
+					}
+					add_equipment_to_stockpile = {
+						type = support_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_equipment
+						amount = 500
+					}
+					add_manpower = 150000
+					add_ideas = RK_SAF_war_AI_hardmode
+					load_OOB = MZB_hard
+				}
+				COG = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 30000
+					}
+					add_equipment_to_stockpile = {
+						type = anti_tank_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = motorized_equipment
+						amount = 2000
+					}
+					add_equipment_to_stockpile = {
+						type = support_equipment
+						amount = 5000
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_equipment
+						amount = 500
+					}
+					add_manpower = 150000
+					add_ideas = RK_SAF_war_AI_hardmode
+					load_OOB = COG_hard
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+SAF_monarchy_referendum_category = {
+	SAF_hold_referendum_debug = {
+		icon = generic_industry
+
+		available = {
+			original_tag = SAF
+		}
+		visible = {
+			always = no
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_hold_referendum_debug"
+			SAF_calculate_referendum_winner = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	SAF_campaign_cape = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_campaign_cape"
+			SAF = {
+				681 = { #Cape
+					multiply_variable = { SAF_monarchy_support = 1.05 }
+					round_variable = SAF_monarchy_support
+					clamp_variable = {
+						var = SAF_monarchy_support
+						min = 0
+						max = 100
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = SAF.136
+						days = 6
+					}
+				}
+			}
+			custom_effect_tooltip = SAF_monarchy_support_up_cape
+		}
+	}
+
+	SAF_campaign_natal = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_campaign_natal"
+			SAF = {
+				719 = { #Natal
+					multiply_variable = { SAF_monarchy_support = 1.05 }
+					round_variable = SAF_monarchy_support
+					clamp_variable = {
+						var = SAF_monarchy_support
+						min = 0
+						max = 100
+					}
+				}
+				custom_effect_tooltip = SAF_monarchy_support_up_natal
+			}
+		}
+	}
+
+	SAF_campaign_transvaal = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_campaign_transvaal"
+			SAF = {
+				940 = { #Transvaal
+					multiply_variable = { SAF_monarchy_support = 1.05 }
+					round_variable = SAF_monarchy_support
+					clamp_variable = {
+						var = SAF_monarchy_support
+						min = 0
+						max = 100
+					}
+				}
+				custom_effect_tooltip = SAF_monarchy_support_up_transvaal
+				hidden_effect = {
+					country_event = {
+						id = SAF.137
+						days = 6
+					}
+				}
+			}
+		}
+	}
+
+
+	SAF_campaign_orange = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_campaign_orange"
+			SAF = {
+				275 = { #Orange Free State
+					multiply_variable = { SAF_monarchy_support = 1.05 }
+					round_variable = SAF_monarchy_support
+					clamp_variable = {
+						var = SAF_monarchy_support
+						min = 0
+						max = 100
+					}
+				}
+				custom_effect_tooltip = SAF_monarchy_support_up_orange
+				hidden_effect = {
+					country_event = {
+						id = SAF.138
+						days = 6
+					}
+				}
+			}
+		}
+	}
+
+	SAF_campaign_bechuanaland = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 5
+		days_re_enable = 120
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_campaign_bechuanaland"
+			SAF = {
+				1050 = { #Bechuanaland
+					multiply_variable = { SAF_monarchy_support = 1.05 }
+					round_variable = SAF_monarchy_support
+					clamp_variable = {
+						var = SAF_monarchy_support
+						min = 0
+						max = 100
+					}
+				}
+				custom_effect_tooltip = SAF_monarchy_support_up_bechuanaland
+			}
+		}
+	}
+
+
+	SAF_supress_orange = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+			divisions_in_state = {
+				state = 275
+				size < 5
+			}
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 50
+		fire_only_once = yes
+
+		cost = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_supress_orange"
+			SAF = {
+				activate_mission = SAF_mission_supress_orange
+			}
+			set_country_flag = MAKE_MISSION_ORANGE_VISIBLE
+			custom_effect_tooltip = SAF_force_fellas_support_down_orange
+		}
+	}
+
+	SAF_supress_Transvaal = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			original_tag = SAF
+			divisions_in_state = {
+				state = 940
+				size < 5
+			}
+		}
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 90
+		fire_only_once = yes
+
+		cost = 115
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_supress_Transvaal"
+			SAF = {
+				activate_mission = SAF_mission_supress_Transvaal
+			}
+			hidden_effect = {
+				country_event = {
+					id = SAF.135
+					days = 21
+				}
+			}
+			set_country_flag = MAKE_MISSION_TRANSVAAL_VISIBLE
+			custom_effect_tooltip = SAF_force_fellas_support_down_transvaal
+		}
+	}
+
+
+	SAF_mission_supress_orange = {
+
+		icon = generic_civil_support
+
+		available = {
+			always = no
+		}
+
+		days_mission_timeout = MAN_main_control_timer?50
+
+		activation = {
+			always = no #Triggered from effect
+		}
+
+		cancel_trigger = {
+			divisions_in_state = {
+				state = 275
+				size < 5
+			}
+		}
+
+		highlight_state_targets = {
+			state = 275
+		}
+
+		visible = {
+			has_country_flag = MAKE_MISSION_ORANGE_VISIBLE
+		}
+
+		is_good = yes
+
+		timeout_effect = {
+			army_experience = 5
+			add_stability = -0.03
+			clr_country_flag = MAKE_MISSION_ORANGE_VISIBLE
+			275 = { #Orange Free State
+				set_variable = { SAF_voter_percent = 5 }
+			}
+			719 = { #Natal
+				add_to_variable  = { SAF_voter_percent = 2 }
+			}
+			1050 = { #Bech
+				add_to_variable  = { SAF_voter_percent = 2 }
+			}
+			custom_effect_tooltip = SAF_orange_voter_power_lowered
+		}
+	}
+
+	SAF_mission_supress_Transvaal = {
+
+		icon = generic_civil_support
+
+		available = {
+			always = no
+		}
+
+		days_mission_timeout = MAN_main_control_timer?50
+
+		activation = {
+			always = no #Triggered from effect
+		}
+
+		cancel_trigger = {
+			divisions_in_state = {
+				state = 940
+				size < 5
+			}
+		}
+
+		highlight_state_targets = {
+			state = 940
+		}
+
+		visible = {
+			has_country_flag = MAKE_MISSION_TRANSVAAL_VISIBLE
+		}
+
+		is_good = yes
+
+		timeout_effect = {
+			army_experience = 5
+			add_stability = -0.03
+			clr_country_flag = MAKE_MISSION_TRANSVAAL_VISIBLE
+			940 = { #Transvaal
+				set_variable = { SAF_voter_percent = 35 }
+			}
+			681 = { #Cape
+				add_to_variable  = { SAF_voter_percent = 3 }
+			}
+			1050 = { #Bech
+				add_to_variable  = { SAF_voter_percent = 1 }
+			}
+			custom_effect_tooltip = SAF_transvaal_voter_power_lowered
+		}
+	}
+}
+
+SAF_SOG_category = {
+
+	SAF_SOG_Stay_Behind = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_equipment = {
+				infantry_equipment > 500
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_Has_SOG_Agents
+				check_variable = { SOG_Agents > 1 }
+			}	
+		}
+
+		visible = {
+			has_country_flag = SOG_Arrived
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 180
+		days_re_enable = 180
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Stay_Behind"
+			subtract_from_variable = { SOG_Agents = 1 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			country_event = {
+					id = SAF.85
+					days = 7
+				}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Air_Support_Gear"
+			SAF = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
+				add_to_variable = { Stay_Behind = 1 }
+				add_to_variable = { SOG_Agents = 1 }
+			}
+		}
+	}
+
+	SAF_SOG_Recces = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_equipment = {
+				infantry_equipment > 500
+			}
+			custom_trigger_tooltip = {
+				tooltip = SAF_Has_SOG_Agents
+				check_variable = { SOG_Agents > 1 }
+			}
+
+			has_manpower > 3000
+		}
+
+
+		visible = {
+			has_completed_focus = SAF_schedule_a_referendum
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 180
+		days_re_enable = 180
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Stay_Behind"
+			subtract_from_variable = { SOG_Agents = 1 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			add_manpower = -3000
+			country_event = {
+					id = SAF.82
+					days = 7
+				}
+		}
+
+		remove_effect = {
+			SAF = {
+				load_OOB = SAF_Recces
+				add_to_variable = { SOG_Agents = 1 }
+			}
+		}
+	}
+
+	SAF_SOG_Force_Mult = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_Has_SOG_Agents
+				check_variable = { SOG_Agents > 1 }
+			}
+		}
+
+		visible = {
+			has_country_flag = SOG_Arrived
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 180
+		days_re_enable = 180
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Force_Mult"
+			SAF = {
+				add_ideas = SAF_SOG_advisors
+				subtract_from_variable = { SOG_Agents = 1 }
+			}
+			country_event = {
+					id = SAF.83
+					days = 7
+				}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Force_Mult"
+			SAF = {
+				remove_ideas = SAF_SOG_advisors
+			}
+			add_to_variable = { SOG_Agents = 1 }
+		}
+	}
+
+	SAF_SOG_Recon_Border = {
+		icon = generic_prospect_for_resources
+
+		available = {
+		custom_trigger_tooltip = {
+				tooltip = SAF_Has_SOG_Agents
+				check_variable = { SOG_Agents > 1 }
+			}
+		}
+
+		visible = {
+			has_country_flag = SOG_Arrived
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 180
+
+		fire_only_once = yes
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Force_Mult"
+			SAF = {
+				subtract_from_variable = { SOG_Agents = 1 }
+				country_event = {
+					id = SAF.81
+					days = 7
+				}
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_Force_Mult"
+			SAF = {
+				hidden_effect = {
+					add_tech_bonus = {
+						bonus = 1
+						uses = 1
+						category = recon_tech
+					}
+				}
+			}
+			add_to_variable = { SOG_Agents = 1 }
+		}
+
+	}
+
+
+	SAF_SOG_COIN = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SAF_Has_SOG_Agents
+				check_variable = { SOG_Agents > 1 }
+			}
+		}
+
+		visible = {
+			has_country_flag = SOG_Arrived
+			original_tag = SAF
+			OR = {
+				has_idea = usa_Wervolf_6
+				has_idea = usa_Wervolf_5
+				has_idea = usa_Wervolf_4
+				has_idea = usa_Wervolf_3
+				has_idea = usa_Wervolf_2
+				has_idea = usa_Wervolf_1
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 180
+		days_re_enable = 180
+
+		cost = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_COIN"
+			SAF = {
+				SAF_decrease_RK_debuff = yes
+				subtract_from_variable = { SOG_Agents = 1 }
+				country_event = {
+					id = SAF.84
+					days = 7
+				}
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_SOG_COIN"
+			SAF = {
+				SAF_increase_RK_debuff = yes
+			}
+			add_to_variable = { SOG_Agents = 1 }
+		}
+	}
+}
+
+SAF_Iberia_category = {
+
+	SAF_Sao_Tome_base = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = SAF_Iberia
+		}
+
+		visible = {
+			has_country_flag = SAF_Iberia
+			original_tag = SAF
+			NOT = {
+				has_country_flag = Sao_tome_base
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 21
+
+		cost = 5
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Sao_Tome_base"
+			SAF = { 
+				country_event = {
+					id = SAF.64
+					days = 1
+				}
+			}
+		}
+
+		remove_effect = {
+			SAF = {
+				transfer_state = 705
+			}
+			add_to_variable = { SOG_Agents = 1 }
+			add_ideas = SAF_sao_tome
+			add_to_variable = { Logistics_activity = 1 }
+			set_country_flag = Sao_tome_base
+		}
+	}
+
+
+	SAF_Guine_training = {
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = Sao_tome_base
+			has_manpower > 500
+		}
+
+		visible = {
+			has_country_flag = Sao_tome_base
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 14
+
+		cost = 5
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Guine_training"
+		}
+
+		remove_effect = {
+			add_ideas = SAF_Guine_training
+			set_country_flag = Guine_training
+		}
+	}
+
+	SAF_Angola_Maps = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = Sao_tome_base
+			1035 = {
+				is_controlled_by = ANG
+			}
+		}
+
+		visible = {
+			has_country_flag = Sao_tome_base
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 14
+
+		cost = 50
+
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Angola_Maps"
+				SAF = { 
+			country_event = {
+					id = SAF.65
+					days = 4
+				}
+		}
+		}
+
+		remove_effect = {
+			set_country_flag = Angola_Maps
+		}
+	}
+
+
+	SAF_Iberia_psy = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = Sao_tome_base
+		}
+
+		visible = {
+			has_country_flag = Sao_tome_base
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 14
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Iberia_psy"
+		}
+
+		remove_effect = {
+			SAF = {
+				add_war_support = 0.05
+				add_stability = 0.05
+				country_event = {
+					id = SAF.67
+					days = 7
+				}
+				set_country_flag = Iberia_psyops
+			}
+		}
+	}
+
+	SAF_Iberia_nurses = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = Sao_tome_base
+		}
+
+		visible = {
+			has_country_flag = Sao_tome_base
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 14
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Iberia_psy"
+		}
+
+		remove_effect = {
+			SAF = {
+				add_war_support = 0.05
+				add_stability = 0.05
+				country_event = {
+					id = SAF.68
+					days = 7
+				}
+				set_country_flag = Iberia_Nurses
+			}
+		}
+	}
+
+	SAF_Iberia_Coluna_Infernal = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			has_country_flag = Iberia_Nurses
+			has_country_flag = Iberia_psyops
+		}
+
+		visible = {
+			has_country_flag = Sao_tome_base
+			original_tag = SAF
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		days_remove = 14
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_Iberia_psy"
+		}
+
+		remove_effect = {
+			SAF = {
+				add_war_support = 0.05
+				add_stability = 0.05
+				country_event = {
+					id = SAF.67
+					days = 7
+				}
+				set_country_flag = Coluna_Infernal
+			
+				add_ideas = SAF_Coluna_Infernal
+			}
+			
+		}
+	}
+}
+
+SAF_diamonds_from_sierra_leon = {
+	SAF_develop_cape = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			owns_state = 681
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+			check_variable = {
+				var = SAF_diamond_count
+				value = 18
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_18_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 365
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_develop_cape"
+			add_to_variable = { SAF_diamond_count = -18 }
+			681 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			SAF_gain_mothly_diamonds_1 = yes
+		}
+	}
+	SAF_develop_orange = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			owns_state = 275
+			NOT = {
+				
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 18
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_18_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 365
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_develop_orange"
+			add_to_variable = { SAF_diamond_count = -18 }
+			275 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			SAF_gain_mothly_diamonds_1 = yes
+		}
+	}
+	SAF_subsidize_transvaal_farms = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			owns_state = 940
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_subsidize_transvaal_farms"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+	SAF_develop_bechuan = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			owns_state = 1050
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 8
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_8_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_develop_bechuan"
+			add_to_variable = { SAF_diamond_count = -8 }
+			add_manpower = 450
+			1050 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	SAF_fund_orange_militias = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			owns_state = 275
+			NOT = {
+				has_country_flag = SAF_pro_anc
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_fund_orange_militias"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_manpower = 200
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 125
+				producer = SAF
+			}
+		}
+	}
+	SAF_expand_diamond_mines = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			NOT = {
+				has_country_flag = SAF_pro_anc
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 30
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_30_diamon_cost
+
+		ai_will_do = {
+			factor = 365
+		}
+		days_remove = 5
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_expand_diamond_mines"
+			add_to_variable = { SAF_diamond_count = -30 }
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			SAF_gain_mothly_diamonds_1 = yes
+		}
+	}
+	SAF_raise_work_times = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			NOT = {
+				has_country_flag = SAF_pro_anc
+			}
+			has_country_flag = SAF_anti_anc
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		cost = 150
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 560
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_raise_work_times"
+			tno_max_workhours_worsen = yes
+			SAF_gain_mothly_diamonds_2 = yes
+		}
+	}
+	SAF_lower_worker_pensions = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			NOT = {
+				has_country_flag = SAF_pro_anc
+			}
+			has_country_flag = SAF_anti_anc
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		cost = 125
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 365
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_lower_worker_pensions"
+			tno_pensions_worsen = yes
+			SAF_gain_mothly_diamonds_1 = yes
+		}
+	}
+	
+	## army stuff
+	SAF_buy_OFN_guns = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 8
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_8_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_buy_OFN_guns"
+			add_to_variable = { SAF_diamond_count = -8 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = USA
+			}
+			SAF_Pakt_Anger_Raise_5 = yes
+		}
+	}
+	SAF_attract_OFN_business = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_attract_OFN_business"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_offsite_building = { type = industrial_complex level = 1 }
+			SAF_Pakt_Anger_Raise_10 = yes
+		}
+	}
+	SAF_ask_for_OFN_stationing = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_ask_for_OFN_stationing"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_manpower = 350
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 350
+				producer = USA
+			}
+			SAF_Pakt_Anger_Raise_20 = yes
+		}
+	}
+	SAF_cut_off_trade_with_the_pakt = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			check_variable = {
+				var = SAF_Pakt_Displeasure
+				value = 0.60
+				compare = greater_than_or_equals
+			}
+			NOT = {
+				OR = {
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+			NOT = { has_global_flag = south_african_war }
+			NOT = {
+				OR = {
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		custom_cost_trigger = {
+            check_variable = {SAF_Pakt_Displeasure < 1}
+        }
+        custom_cost_text = PAKT_BYE_SAF
+
+		ai_will_do = {
+			factor = 25
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_cut_off_trade_with_the_pakt"
+			add_manpower = 750
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 750
+				producer = USA
+			}
+			SAF_gain_5_diamonds = yes
+			SAF_end_pakt_trade = yes
+		}
+	}
+	SAF_buy_Pakt_guns = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+			NOT = { has_global_flag = south_african_war }
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 8
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_8_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_buy_Pakt_guns"
+			add_to_variable = { SAF_diamond_count = -8 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 750
+				producer = GER
+			}
+			SAF_Pakt_Anger_Lower_3 = yes
+		}
+	}
+	SAF_attract_Pakt_business = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			NOT = { has_global_flag = south_african_war }
+			tag = SAF
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_attract_Pakt_business"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_offsite_building = { type = industrial_complex level = 2 } 
+			SAF_Pakt_Anger_Lower_6 = yes
+		}
+	}
+	SAF_buy_Pakt_research = {
+
+		icon = generic_prospect_for_resources
+
+		available = {
+			tag = SAF
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		allowed = {
+			
+			tag = SAF
+		}
+		visible = {
+			NOT = { has_global_flag = south_african_war }
+			NOT = {
+				OR = {
+					check_variable = {
+						var = SAF_Pakt_Displeasure
+						value = 1
+						compare = greater_than_or_equals
+					}
+					has_global_flag = german_civil_war
+				}
+			}
+		}
+		custom_cost_trigger = {
+            check_variable = {
+				var = SAF_diamond_count
+				value = 12
+				compare = greater_than_or_equals
+			}
+        }
+        custom_cost_text = SAF_12_diamon_cost
+
+		ai_will_do = {
+			factor = 25
+		}
+		days_remove = 120
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SAF_buy_Pakt_research"
+			add_to_variable = { SAF_diamond_count = -12 }
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+			SAF_Pakt_Anger_Lower_6 = yes
+		}
+	}
+}

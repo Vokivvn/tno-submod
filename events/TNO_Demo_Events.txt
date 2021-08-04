@@ -1,0 +1,3425 @@
+﻿add_namespace = DEMOEVENT
+
+country_event = { #Moon Landing, leads to attempt on Hitler and eventually Japanese economic wars. 
+    id = DEMOEVENT.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.1"}
+	title = DEMOEVENT.1.t
+	desc = DEMOEVENT.1.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.1.a
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.1
+			    days = 1
+			}
+		}
+		country_event = {
+		    id = DEMOEVENT.2
+		    days = 2
+	    }
+	}
+}
+
+country_event = { #Attempt on Hitler, leads to him picking a successor  
+    id = DEMOEVENT.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.2"}
+	title = DEMOEVENT.2.t
+	desc = DEMOEVENT.2.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.2.a
+		country_event = {
+		    id = DEMOEVENT.3
+		    days = 5
+	    }
+	}
+}
+
+country_event = { #Successor chosen, leads to Hitler Dying
+    id = DEMOEVENT.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.3"}
+	title = DEMOEVENT.3.t
+	desc = DEMOEVENT.3.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.3.a
+		random_list = {
+		    40 = { #Bormann
+			    every_country = {
+			        news_event = {
+				        id = DEMOWORLDEVENT.3
+			            days = 1
+			        }
+		        }
+		    }
+			30 = { #Goering
+				every_country = {
+			        news_event = {
+				        id = DEMOWORLDEVENT.4
+			            days = 1
+			        }
+		        }
+			}
+			20 = { #Speer
+				every_country = {
+			        news_event = {
+				        id = DEMOWORLDEVENT.2
+			            days = 1
+			        }
+		        }
+			}
+			10 = {  #Heydrich
+				every_country = {
+			        news_event = {
+				        id = DEMOWORLDEVENT.5
+			            days = 1
+			        }
+		        }
+			}
+		}
+	}
+}
+
+country_event = { #Hitler is dead, leads to Heydrich rising up.
+    id = DEMOEVENT.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.4"}
+	title = DEMOEVENT.4.t
+	desc = DEMOEVENT.4.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.4.a
+		GER = {
+		    kill_country_leader = yes
+		    create_country_leader = {
+			    name = "Reichstag Emergency Council"
+			    desc = "REICHSTAG_EMERGENCY_COUNCIL_DESC"
+			    picture = "Portrait_Germany_Reichstag_Emergency_Council.dds"
+			    expire = "1980.1.1"
+			    ideology = national_socialism_subtype
+			    traits = {}
+		    }
+		}
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.6
+			    days = 1
+			}
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.5
+		        days = 7
+	        }
+		}
+	}
+}
+
+country_event = { #Heydrich rises up, leads to Speer rising up
+    id = DEMOEVENT.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.5"}
+	title = DEMOEVENT.5.t
+	desc = DEMOEVENT.5.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.5.a
+		GER = {
+		    if = {
+				limit = {
+					has_template = "Schutzdivision"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Schutzdivision"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Gebirgs-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Gebirgs-Division"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Infanterie-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Infanterie-Division"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Fallschirmjäger-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Fallschirmjäger-Division"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Infanterie-Division (mot.)"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Infanterie-Division (mot.)"
+				}
+			}
+			if = {
+				limit = {
+					has_template = "Panzer-Division"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Panzer-Division"
+				}
+			}
+		}
+		HGR = {
+		    transfer_state = 28
+			transfer_state = 42
+			transfer_state = 8
+			transfer_state = 5
+			transfer_state = 85
+			transfer_state = 188
+			transfer_state = 97
+			transfer_state = 98
+
+			add_state_core = 188
+			add_state_core = 28
+			add_state_core = 42
+			add_state_core = 8
+			add_state_core = 5
+			add_state_core = 85
+			add_state_core = 97
+			add_state_core = 98
+
+			inherit_technology = PREV
+
+			load_oob = HGR
+			
+			demo_embargo_south_ural = yes
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.6
+		        days = 1
+	        }
+		}
+	}
+}
+
+country_event = { #Speer rises up, leads to Goering rising up
+    id = DEMOEVENT.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.6"}
+	title = DEMOEVENT.6.t
+	desc = DEMOEVENT.6.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.6.a
+		SGR = {
+			transfer_state = 57
+			transfer_state = 56
+			transfer_state = 51
+			transfer_state = 55
+			transfer_state = 775
+
+			add_state_core = 55
+			add_state_core = 57
+			add_state_core = 56
+			add_state_core = 51
+			add_state_core = 775
+
+			inherit_technology = PREV
+
+			load_oob = SGR
+			
+			demo_embargo_south_ural = yes
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.7
+		        days = 1
+	        }
+		}
+	}
+}
+
+country_event = { #Goering rises up, leads to Bormann rising up
+    id = DEMOEVENT.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.7"}
+	title = DEMOEVENT.7.t
+	desc = DEMOEVENT.7.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.7.a
+		GGR = {
+			transfer_state = 63
+			transfer_state = 62
+			transfer_state = 58
+			transfer_state = 59
+			transfer_state = 87
+			transfer_state = 86
+			transfer_state = 87
+			transfer_state = 68
+			transfer_state = 774
+			transfer_state = 61
+			transfer_state = 74
+			transfer_state = 66
+			transfer_state = 67
+			transfer_state = 72
+
+			add_state_core = 63
+			add_state_core = 62
+			add_state_core = 58
+			add_state_core = 59
+			add_state_core = 87
+			add_state_core = 86
+			add_state_core = 87
+			add_state_core = 68
+			add_state_core = 774
+			add_state_core = 61
+			add_state_core = 74
+			add_state_core = 66
+			add_state_core = 72
+
+			inherit_technology = PREV
+
+			load_oob = GGR
+			
+			demo_embargo_south_ural = yes
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.8
+		        days = 1
+	        }
+		}
+	}
+}
+
+country_event = { #Bormann Rises up, leads to the GCW and the end of the Pakt
+    id = DEMOEVENT.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.8"}
+	title = DEMOEVENT.8.t
+	desc = DEMOEVENT.8.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.8.a
+		BGR = {
+			transfer_state = 50
+			transfer_state = 52
+			transfer_state = 153
+			transfer_state = 53
+			transfer_state = 69
+			transfer_state = 65
+			transfer_state = 60
+			transfer_state = 54
+			transfer_state = 4
+			transfer_state = 152
+			transfer_state = 770
+
+			add_state_core = 54
+			add_state_core = 50
+			add_state_core = 52
+			add_state_core = 153
+			add_state_core = 53
+			add_state_core = 69
+			add_state_core = 65
+			add_state_core = 60
+			add_state_core = 4
+			add_state_core = 152
+			add_state_core = 770
+
+			inherit_technology = PREV
+
+			load_oob = BGR
+			
+			demo_embargo_south_ural = yes
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.9
+		        days = 1
+	        }
+		}
+	}
+}
+
+country_event = { #GCW begins, leads to a bunch of stuff
+    id = DEMOEVENT.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.9"}
+	title = DEMOEVENT.9.t
+	desc = DEMOEVENT.9.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.9.a
+		set_global_flag = german_civil_war
+		GER = {
+			remove_ideas = {
+				#welsh_coal
+				#student_protests
+				#overextended_luftwaffe
+				#master_of_europe
+				#decadence_and_complacency
+			}
+		}
+		BGR = {
+			declare_war_on = {
+				target = GGR
+				type = civil_war
+			}
+		}
+		SGR = {
+			declare_war_on = {
+				target = BGR
+				type = civil_war
+			}
+			declare_war_on = {
+				target = GGR
+				type = civil_war
+			}
+		}
+		HGR = {
+			declare_war_on = {
+				target = BGR
+				type = civil_war
+			}
+			declare_war_on = {
+				target = GGR
+				type = civil_war
+			}
+			declare_war_on = {
+				target = SGR
+				type = civil_war
+			}
+		}
+		every_country = {
+			limit = {
+				OR = {
+					has_idea = RUS_terror_bombing 
+					has_idea = WEST_AFRICA_idea_terror_bombing
+				}
+			}
+			country_event = { id = DEMOEVENT.30 days = 3 }
+		}
+		GER = {
+		    dismantle_faction = yes
+		}
+		every_country = {
+			limit = {
+				is_puppet_of = GER
+			}
+			GER = { end_puppet = PREV }
+		}
+		every_country = {
+			limit = {
+				is_subject_of = GER
+			}
+			set_autonomy = {
+				target = PREV
+				autonomy_state = autonomy_free
+			}
+		}
+		GER = {
+		    remove_resource_rights = 232
+		    remove_resource_rights = 229
+		    remove_resource_rights = 234
+		    remove_resource_rights = 236
+		    remove_resource_rights = 217
+		    remove_resource_rights = 539
+		    remove_resource_rights = 718
+		}
+		CRN = {
+		    if = {
+	            limit = {
+		            OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+	            }
+				set_autonomy = {
+		            target = ENG
+		            autonomous_state = autonomy_puppet
+	            }
+				else = {
+		            puppet = ENG
+		        }
+			}
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.10
+		        days = 7
+	        }
+		}
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.7
+			    days = 1
+			}
+		}
+		GER = {
+		    country_event = {
+				id = DEMOEVENT.29
+				days = 730
+		    }
+		}
+		ENG = {
+		    country_event = {
+				id = DEMOEVENT.15
+				days = 28
+		    }
+			set_politics = {
+	            ruling_party = fascism
+	            last_election = "1935.11.14"
+	            election_frequency = 48
+	            elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 0
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 4
+                national_socialism = 19
+                social_conservative = 45
+                burgundian_system = 0
+                authoritarian_democrat = 0
+                despotism = 0
+                fascism = 32
+                market_liberal = 0
+            }
+            create_country_leader = {
+	            name = "HM King Edward VIII"
+	            desc = "POLITICS_WINSTON_CHURCHILL_DESC"
+	            picture = "Portrait_Britain_Edward_VIII.dds"
+	            expire = "1985.1.1"
+	            ideology = fascism_subtype
+	            traits = {
+		
+	            }
+            }
+		}
+		GGN = {
+		    country_event = {
+				id = DEMOEVENT.20
+				days = 3
+		    }
+		}
+		OST = {
+		    country_event = {
+				id = DEMOEVENT.55
+				days = 10
+		    }
+		}
+		BRG = {
+		    country_event = {
+				id = DEMOEVENT.16
+				days = 14
+		    }
+		}
+		COG = {
+		    country_event = {
+				id = DEMOEVENT.22
+				days = 10
+		    }
+		}
+		MAD = {
+			country_event = {
+				id = DEMOEVENT.57
+				days = 15
+			}
+		}
+		ZZZ = {
+		    country_event = {
+				id = DEMOWORLDEVENT.37
+				days = 10
+		    }
+		}
+	}
+}
+
+country_event = { #Speidel Coups
+    id = DEMOEVENT.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.10"}
+	title = DEMOEVENT.10.t
+	desc = DEMOEVENT.10.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.10.a
+		GER = {
+		    retire_country_leader = yes
+			create_country_leader = {
+				name = "Hans Speidel"
+				desc = "POLITICS_HANS_SPIEDEL_DESC"
+				picture = "Portrait_Germany_Hans_Spiedel.dds"
+				expire = "1984.10.28"
+				ideology = national_socialism_subtype
+				traits = {
+				}
+			}
+			load_oob = SPI
+		}
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.8
+			    days = 1
+			}
+		}
+		GER = {
+		    country_event = {
+		        id = DEMOEVENT.11
+		        days = 5
+	        }
+		}
+	}
+}
+
+country_event = { #Donitz Takes Crimea
+    id = DEMOEVENT.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.11"}
+	title = DEMOEVENT.11.t
+	desc = DEMOEVENT.11.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.11.a
+		CRI = {
+			transfer_state = 137
+			add_state_core = 137
+			inherit_technology = PREV
+			demo_embargo_south_ural = yes
+		}
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.9
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Anarchy Speidel Goes Wild
+    id = DEMOEVENT.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.12"}
+	title = DEMOEVENT.12.t
+	desc = DEMOEVENT.12.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.12.a
+		GER = {
+		    if = {
+			    limit = {
+			        country_exists = SGR
+			    }
+			    declare_war_on = { target = SGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = BGR
+			    }
+			    declare_war_on = { target = BGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = GGR
+			    }
+			    declare_war_on = { target = GGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = HGR
+			    }
+			    declare_war_on = { target = HGR type = civil_war }
+            }
+		}
+		SGR = {
+		    country_event = {
+		        id = DEMOEVENT.13
+		        days = 30
+	        }
+		}
+		GGR = {
+		    country_event = {
+		        id = DEMOEVENT.14
+		        days = 20
+	        }
+		}
+	}
+}
+
+country_event = { #Anarchy DSR Coup
+    id = DEMOEVENT.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.13"}
+	title = DEMOEVENT.13.t
+	desc = DEMOEVENT.13.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.13.a
+		trigger = {
+			country_exists = SGR
+		}
+		DSR = {
+			annex_country = {
+				target = SGR
+				transfer_troops = yes
+			}
+			inherit_technology = PREV
+			load_oob = DSR
+			demo_embargo_south_ural = yes
+			if = {
+			    limit = {
+			        country_exists = BGR
+			    }
+			    declare_war_on = { target = BGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = GGR
+			    }
+			    declare_war_on = { target = GGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = HGR
+			    }
+			    declare_war_on = { target = HGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = GER
+			    }
+			    declare_war_on = { target = GER type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = RNW
+			    }
+			    declare_war_on = { target = RNW type = civil_war }
+            }
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.13.b
+		trigger = {
+		    NOT = {
+			    country_exists = SGR
+			}
+		}
+	}
+}
+
+country_event = { #Anarchy RNW Coup
+    id = DEMOEVENT.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.14"}
+	title = DEMOEVENT.14.t
+	desc = DEMOEVENT.14.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.14.a
+		trigger = {
+			country_exists = GGR
+		}
+		RNW = {
+			annex_country = {
+				target = GGR
+				transfer_troops = yes
+			}
+			inherit_technology = PREV
+			demo_embargo_south_ural = yes
+			if = {
+			    limit = {
+			        country_exists = SGR
+			    }
+			    declare_war_on = { target = SGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = BGR
+			    }
+			    declare_war_on = { target = BGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = HGR
+			    }
+			    declare_war_on = { target = HGR type = civil_war }
+            }
+			if = {
+			    limit = {
+			        country_exists = GER
+			    }
+			    declare_war_on = { target = GER type = civil_war }
+            }
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.14.b
+		trigger = {
+		    NOT = {
+			    country_exists = GGR
+			}
+		}
+	}
+}
+
+country_event = { #English Civil War
+    id = DEMOEVENT.15
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.15"
+		CRN = { end_puppet = ENG }
+	}
+	title = DEMOEVENT.15.t
+	desc = DEMOEVENT.15.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.15.a
+		127 = { set_demilitarized_zone = no }
+		338 = { set_demilitarized_zone = no }
+		FEN = {
+		    add_state_core = 131
+			add_state_core = 130
+			add_state_core = 132
+			add_state_core = 128
+			add_state_core = 127
+			add_state_core = 129
+			add_state_core = 125
+			add_state_core = 126
+			add_state_core = 777
+			add_state_core = 338
+			add_state_core = 123
+			add_state_core = 1296
+			add_state_core = 885
+			
+			transfer_state = 131
+			transfer_state = 130
+			transfer_state = 132
+			
+			inherit_technology = PREV
+			
+			load_oob = FEN_Rebellion_3
+			
+			demo_embargo_south_ural = yes
+			
+			declare_war_on = { target = ENG type = civil_war }	
+		}
+		CRN = {
+		    declare_war_on = { target = FEN type = civil_war }
+		}
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.42
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Burgundy Pounces France
+    id = DEMOEVENT.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.16"}
+	title = DEMOEVENT.16.t
+	desc = DEMOEVENT.16.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.16.a
+		747 = { set_demilitarized_zone = no }
+		791 = { set_demilitarized_zone = no }
+		787 = { set_demilitarized_zone = no }
+		792 = { set_demilitarized_zone = no }
+		789 = { set_demilitarized_zone = no }
+		790 = { set_demilitarized_zone = no }
+		BRG = { declare_war_on = { target = FRA type = annex_everything	} }
+		every_country = {
+		    news_event = {
+				id = DEMOWORLDEVENT.17
+				days = 1
+			}
+		}
+		BRT = {
+		    country_event = {
+		        id = DEMOEVENT.17
+		        days = 1
+	        }
+		}
+	}
+}
+
+country_event = { #Brittany Pounces France Too
+    id = DEMOEVENT.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.17"}
+	title = DEMOEVENT.17.t
+	desc = DEMOEVENT.17.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.17.a
+		BRT = { declare_war_on = { target = FRA type = annex_everything	} }
+	}
+}
+
+country_event = { #1964 Presidential Election Winner 
+    id = DEMOEVENT.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.18"}
+	title = DEMOEVENT.18.t
+	desc = DEMOEVENT.18.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.18.a
+		random_list = {
+		    22 = { #Bennett 2 points more bc Bennett Gang
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.18
+			        days = 1
+			        }
+		        }
+				USA = {
+				    country_event = {
+		                id = DEMOEVENT.46
+		                days = 60
+	                }
+				}
+		    }
+			24 = { #Johnson RD best partie
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.19
+			        days = 1
+			        }
+		        }
+				USA = {
+				    country_event = {
+		                id = DEMOEVENT.47
+		                days = 60
+	                }
+				}
+			}
+			24 = { #Kennedy Im sorry mister reform man, but you NPP bad-boy
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.20
+			        days = 1
+			        }
+		        }
+				USA = {
+				    country_event = {
+		                id = DEMOEVENT.48
+		                days = 60
+	                }
+				}
+			}
+			20 = { #Wallace              If you are reading this, reminder that Wallace is a pee-pee head and deserves his 20%
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.21
+			        days = 1
+			        }
+		        }
+				USA = {
+				    country_event = {
+		                id = DEMOEVENT.49
+		                days = 60
+	                }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Trium Collapses
+    id = DEMOEVENT.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.19"}
+	title = DEMOEVENT.19.t
+	desc = DEMOEVENT.19.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.19.a
+		ITA = {
+		    dismantle_faction = yes
+		}
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.22
+			    days = 1
+			}
+		}
+		TUR = {
+		    country_event = {
+		        id = DEMOEVENT.27
+		        days = 20
+	        }
+		}
+	}
+}
+
+country_event = { #Warsaw Uprising
+    id = DEMOEVENT.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.20"}
+	title = DEMOEVENT.20.t
+	desc = DEMOEVENT.20.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.20.a
+		POL = {
+		    annex_country = {
+				target = GGN
+				transfer_troops = no
+			}
+			demo_embargo_south_ural = yes
+		}
+		10 = { set_demilitarized_zone = no }
+        90 = { set_demilitarized_zone = no }
+        92 = { set_demilitarized_zone = no }
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.43
+				days = 1
+			}
+		}
+	}
+}
+
+#country_event = { #Ostland Civil War Victory
+#    id = DEMOEVENT.21
+#	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.21"}
+#	title = DEMOEVENT.21.t
+#	desc = DEMOEVENT.21.d
+#	picture = GFX_report_event_televison_announcement
+#
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	
+#	hidden = yes
+#
+#	option = {
+#		name = DEMOEVENT.21.a
+#		random_list = {
+#		    20 = { 
+#			    DST = {
+#		            annex_country = {
+#				        target = OST
+#				        transfer_troops = no
+#			        }
+#		        }
+#		    }
+#			20 = { 
+#                JST = {
+#		            annex_country = {
+#				        target = OST
+#				        transfer_troops = no
+#			        }
+#		        }
+#			}
+#			20 = { 
+#			    MST = {
+#		            annex_country = {
+#				        target = OST
+#				        transfer_troops = no
+#			        }
+#		        }
+#			}
+#			20 = { 
+#			    LIT = {
+#		            annex_country = {
+#				        target = OST
+#				        transfer_troops = no
+#			        }
+#		        }
+#			}
+#			20 = { 
+#			    BLR = {
+#		            annex_country = {
+#				        target = OST
+#				        transfer_troops = no
+#			        }
+#		        }
+#			}
+#		}
+#	}
+#}
+
+country_event = { #Afrika Schild Created
+    id = DEMOEVENT.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.22"}
+	title = DEMOEVENT.22.t
+	desc = DEMOEVENT.22.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.22.a
+		COG = {
+		    create_faction = afrika_schild
+			add_to_faction = MZB
+			add_to_faction = ANG
+		}
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.23
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #SAF War Begins
+    id = DEMOEVENT.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.23"}
+	title = DEMOEVENT.23.t
+	desc = DEMOEVENT.23.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.23.a
+		BOR = {
+			transfer_state = 275
+			transfer_state = 275
+			transfer_state = 939
+			transfer_state = 940
+			transfer_state = 938
+			transfer_state = 937
+			
+			load_oob = BOR	
+			
+			demo_embargo_south_ural = yes
+
+	  		declare_war_on = {
+				target = SAF
+				type = annex_everything
+			}
+	    }
+	    every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.24
+			    days = 1
+			}
+	    }
+		COG = {
+		    country_event = {
+		        id = DEMOEVENT.24
+		        days = 5
+		        random = 48
+	        }
+		}
+	}
+}
+
+country_event = { #Afrika Schild Joins In SAF
+    id = DEMOEVENT.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.24"}
+	title = DEMOEVENT.24.t
+	desc = DEMOEVENT.24.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.24.a
+		COG = { 
+		    add_to_faction = BOR
+			declare_war_on = { target = SAF type = annex_everything	}
+		}
+		MZB = { 
+			declare_war_on = { target = SAF type = annex_everything	}
+		}
+		ANG = { 
+			declare_war_on = { target = SAF type = annex_everything	}
+		}
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.25
+			    days = 1
+			}
+	    }
+		SAF = {
+		    country_event = {
+		        id = DEMOEVENT.25
+		        days = 10
+	        }
+		}
+	}
+}
+
+country_event = { #Americans Arrive In SAF
+    id = DEMOEVENT.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.25"}
+	title = DEMOEVENT.25.t
+	desc = DEMOEVENT.25.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.25.a
+		SAF = {
+		    load_oob = USA_SAF
+		}
+		SAF = {
+		    country_event = {
+			    id = DEMOEVENT.26
+				days = 60
+			}
+		}
+		SAF = {
+			country_event = {
+				id = DEMOEVENT.63
+				days = 640
+				random = 2880
+			}
+		}
+	}
+}
+
+country_event = { #More Americans Arrive In SAF
+    id = DEMOEVENT.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.26"}
+	title = DEMOEVENT.26.t
+	desc = DEMOEVENT.26.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.26.a
+		trigger = {
+            SAF = {
+			    has_war_with = BOR
+			}
+        }
+		SAF = {
+		    load_oob = USA_SAF
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.26.b
+		trigger = {
+		    NOT = {
+                SAF = {
+			        has_war_with = BOR
+			    }
+			}
+        }
+	}
+}
+
+country_event = { #Italo-Turkish War
+    id = DEMOEVENT.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.27"}
+	title = DEMOEVENT.27.t
+	desc = DEMOEVENT.27.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.27.a
+		IME = {
+			if = {
+			limit = {
+				is_puppet_of = ITA
+			}
+			ITA = { end_puppet = PREV }
+			}
+		}
+		IME = {
+			if = {
+			limit = {
+				is_subject_of = ITA
+			}
+			set_autonomy = {
+				target = PREV
+				autonomy_state = autonomy_free
+			}
+			}
+		}
+		#TUR = {
+		#    declare_war_on = { target = IME type = annex_everything	}
+		#}
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.26
+			    days = 1
+			}
+		}
+		ITA = {
+		    country_event = {
+		        id = DEMOEVENT.28
+		        days = 80
+	        }
+		}
+	}
+}
+
+country_event = { #Italo-Turkish War Winner
+    id = DEMOEVENT.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.28"}
+	title = DEMOEVENT.28.t
+	desc = DEMOEVENT.28.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.28.a
+		random_list = {
+            20 = { #Scorza Victory
+                IME = {
+                    add_state_core = 554
+                    set_state_owner = 554
+                }
+                IRQ = {
+                    set_state_owner = 781
+                }
+                ITA = {
+                    puppet = IME
+                }    
+            }
+            40 = { #Turkish Victory
+                TUR = {
+                    add_state_core = 183
+                    add_state_core = 164
+                    transfer_state = 164
+                    transfer_state = 553
+                    transfer_state = 782
+                    transfer_state = 183
+                }
+                IME = {
+                    transfer_state = 453
+                    transfer_state = 1247
+                    transfer_state = 1246
+                    transfer_state = 1244
+                    transfer_state = 455
+                    transfer_state = 1245
+                    transfer_state = 1248
+                    transfer_state = 454
+                }
+                ITA = {
+                    puppet = IME
+                }
+            }
+			40 = { #Ciano Victory
+                ITA = {
+                    puppet = IME
+                }
+            }
+        }
+	}
+}
+
+country_event = { #German Anarchy 
+    id = DEMOEVENT.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.29"}
+	title = DEMOEVENT.29.t
+	desc = DEMOEVENT.29.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.29.a
+		if = {
+			limit = {
+			    has_global_flag = german_civil_war
+			}
+			country_event = {
+                id = DEMOEVENT.12
+				days = 1
+            }
+        }
+	}
+}
+
+country_event = { #Russia Terror Bombing Stops
+    id = DEMOEVENT.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.28"}
+	title = DEMOEVENT.30.t
+	desc = DEMOEVENT.30.d
+	picture = GFX_report_event_MAN_truck
+
+	is_triggered_only = yes
+
+	option = {
+		name = DEMOEVENT.30.a
+		ai_chance = { factor = 80 }
+		remove_ideas = RUS_terror_bombing
+		if = {
+			limit = { has_idea = WEST_AFRICA_idea_terror_bombing }
+			remove_ideas = WEST_AFRICA_idea_terror_bombing
+		}
+	}
+}
+
+#country_event = { #Anarchy Part One
+#    id = DEMOEVENT.31
+#	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.31"}
+#	title = DEMOEVENT.31.t
+#	desc = DEMOEVENT.31.d
+#	picture = GFX_report_event_televison_announcement
+#
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#
+#	immediate = {
+#		hidden = {
+#			FFR = {
+#				transfer_state = 780
+#				transfer_state = 1209
+#				transfer_state = 1208
+#			}
+#			YOR = {
+#				transfer_state = 1188
+#			}
+#			GBE = {
+#				transfer_state = 882
+#				transfer_state = 941
+#			}
+#			EWE = {
+#				transfer_state = 833
+#				transfer_state = 274
+#			}
+#			LIB = {
+#				transfer_state = 838
+#			}
+#			SUS = {
+#				transfer_state = 838
+#				transfer_state = 556
+#				transfer_state = 1224
+#			}
+#			WOL = {
+#				transfer_state = 272
+#				transfer_state = 1223
+#			}
+#			CAO = {
+#				transfer_state = 1203
+#				transfer_state = 1202
+#				transfer_state = 1201
+#				transfer_state = 1196
+#				transfer_state = 826
+#				transfer_state = 1197
+#				transfer_state = 1198
+#				transfer_state = 1200
+#				transfer_state = 1207
+#				transfer_state = 1205
+#				transfer_state = 1206
+#				transfer_state = 1199
+#				transfer_state = 1204
+#				transfer_state = 1189
+#				transfer_state = 558
+#			}
+#			ZZZ = {
+#				country_event = { id = DEMOEVENT.32 days = 20 }
+#			}
+#		}
+#	}
+#
+#	option = {
+#		name = DEMOEVENT.31.a
+#	}
+#}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.32"}
+	title = DEMOEVENT.32.t
+	desc = DEMOEVENT.32.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.32.a
+		BKF = {
+			transfer_state = 834
+			add_state_core = 834
+			transfer_state = 1217
+			add_state_core = 1217
+			demo_embargo_south_ural = yes
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.33 days = 20 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.33"}
+	title = DEMOEVENT.33.t
+	desc = DEMOEVENT.33.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.33.a
+		HAU = {
+			transfer_state = 831
+			add_state_core = 831
+			transfer_state = 832
+			add_state_core = 832
+			transfer_state = 1220
+			add_state_core = 1220
+			transfer_state = 1219
+			add_state_core = 1219
+			transfer_state = 1218
+			add_state_core = 1218
+			transfer_state = 1226
+			add_state_core = 1226
+			transfer_state = 1216
+			add_state_core = 1216	
+			transfer_state = 835
+			add_state_core = 835
+			transfer_state = 1221
+			add_state_core = 1221
+			demo_embargo_south_ural = yes
+		}
+		HAU = {
+		    country_event = { id = DEMOEVENT.34 days = 65 }
+		}
+		HAU = {
+		    country_event = { id = DEMOEVENT.35 days = 115 }
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.36 days = 10 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.34"}
+	title = DEMOEVENT.34.t
+	desc = DEMOEVENT.34.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.34.a
+		FTF = {
+			transfer_state = 834
+			add_state_core = 834
+			demo_embargo_south_ural = yes
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.35"}
+	title = DEMOEVENT.35.t
+	desc = DEMOEVENT.35.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.35.a
+		ZAR = {
+			transfer_state = 831
+			add_state_core = 831
+			transfer_state = 1219
+			add_state_core = 1219
+			transfer_state = 1218
+			add_state_core = 1218
+			transfer_state = 1226
+			add_state_core = 1226
+			demo_embargo_south_ural = yes
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.36"}
+	title = DEMOEVENT.36.t
+	desc = DEMOEVENT.36.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.36.a
+		MLI = {
+			transfer_state = 836
+			add_state_core = 836
+			transfer_state = 837
+			add_state_core = 837
+			transfer_state = 1227
+			add_state_core = 1227
+			transfer_state = 1231
+			add_state_core = 1231
+			transfer_state = 1230
+			add_state_core = 1230
+			transfer_state = 1225
+			add_state_core = 1225
+			demo_embargo_south_ural = yes
+		}
+		MLI = {
+		    country_event = { id = DEMOEVENT.37 days = 105 }
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.38 days = 15 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.37"}
+	title = DEMOEVENT.37.t
+	desc = DEMOEVENT.37.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.37.a
+		KAY = {
+			transfer_state = 836
+			add_state_core = 836
+			transfer_state = 1227
+			add_state_core = 1227
+			transfer_state = 1231
+			add_state_core = 1231
+			demo_embargo_south_ural = yes
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.38"}
+	title = DEMOEVENT.38.t
+	desc = DEMOEVENT.38.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.38.a
+		TRZ = {
+			transfer_state = 839
+			add_state_core = 839
+			transfer_state = 1159
+			add_state_core = 1159
+			demo_embargo_south_ural = yes
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.39 days = 20 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.39"}
+	title = DEMOEVENT.39.t
+	desc = DEMOEVENT.39.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.39.a
+		AZW = {
+			transfer_state = 557
+			add_state_core = 557
+			transfer_state = 1228
+			add_state_core = 1228
+			transfer_state = 1229
+			add_state_core = 1229
+			transfer_state = 1235
+			add_state_core = 1235
+			transfer_state = 1232
+			add_state_core = 1232
+			transfer_state = 1233
+			add_state_core = 1233
+			demo_embargo_south_ural = yes
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.40 days = 10 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.40
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.40"}
+	title = DEMOEVENT.40.t
+	desc = DEMOEVENT.40.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.40.a
+		AYR = {
+			transfer_state = 1222
+			add_state_core = 1222
+			transfer_state = 1190
+			add_state_core = 1190
+			transfer_state = 1191
+			add_state_core = 1191
+			transfer_state = 515
+			add_state_core = 515
+			transfer_state = 1193
+			add_state_core = 1193
+			transfer_state = 1192
+			add_state_core = 1192
+			demo_embargo_south_ural = yes
+		}
+		ZZZ = {
+		    country_event = { id = DEMOEVENT.41 days = 10 }
+		}
+	}
+}
+
+country_event = { #Anarchy
+    id = DEMOEVENT.41
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.41"}
+	title = DEMOEVENT.41.t
+	desc = DEMOEVENT.41.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.41.a
+		KNM = {
+			transfer_state = 1195
+			transfer_state = 660
+			add_state_core = 1195
+			add_state_core = 660
+			transfer_state = 1194
+			add_state_core = 1194
+			demo_embargo_south_ural = yes
+		}
+	}
+}
+
+country_event = { #Mongolian Civil War
+    id = DEMOEVENT.42
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.42"}
+	title = DEMOEVENT.42.t
+	desc = DEMOEVENT.42.d
+	picture = GFX_report_event_televison_announcement
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.42.a
+            MEN = {
+				annex_country = { target = MON transfer_troops = no }
+			}
+			JAP = {
+				puppet = MEN
+			}
+			MEN = { 
+			set_politics = {
+			ruling_party = fascism
+			last_election = "1962.1.1"
+			election_frequency = 48
+			elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 5
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 0
+                market_liberal = 0
+                social_conservative = 5
+                authoritarian_democrat = 20
+                despotism = 10
+                fascism = 60
+                burgundian_system = 0
+            }
+		}
+	}		
+}
+
+
+country_event = { #Siberian Rumors
+    id = DEMOEVENT.43
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.43"}
+	title = DEMOEVENT.43.t
+	desc = DEMOEVENT.43.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.43.a
+        every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.27
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Speidel's Choice
+    id = DEMOEVENT.44
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.44"}
+	title = DEMOEVENT.44.t
+	desc = DEMOEVENT.44.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = SGR
+        }
+        GER = {
+		    annex_country = { target = SGR transfer_troops = yes }
+			set_politics = {
+	            ruling_party = fascism
+	            last_election = "1933.3.5"
+	            election_frequency = 48
+	            elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 0
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 25
+                market_liberal = 0
+                social_conservative = 0
+                authoritarian_democrat = 0
+                despotism = 0
+                fascism = 60
+                national_socialism = 15
+                burgundian_system = 0
+            }
+           create_country_leader = {
+	           name = "Albert Speer"
+	           desc = "POLITICS_SPEER_GERMANY_DESC"
+	           picture = "Portrait_Germany_Albert_Speer.dds"
+	           expire = "1999.1.1"
+	           ideology = fascism_subtype
+	           traits = {
+		           dictator
+	           }
+            }
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.10
+			    days = 1
+			}
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = BGR
+        }
+		GER = {
+		    annex_country = { target = BGR transfer_troops = yes }
+			set_politics = {
+	            ruling_party = national_socialism
+	            last_election = "1933.3.5"
+	            election_frequency = 48
+	            elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 0
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 0
+                market_liberal = 0
+                social_conservative = 0
+                authoritarian_democrat = 0
+                despotism = 0
+                fascism = 30
+                national_socialism = 70
+                burgundian_system = 0
+            }
+           create_country_leader = {
+	           name = "Martin Bormann"
+	           desc = "POLITICS_MARTIN_BORMANN_DESC"
+	           picture = "Portrait_Germany_Martin_Bormann.dds"
+	           expire = "1999.1.1"
+	           ideology = national_socialism_subtype
+	           traits = {
+		           dictator
+	           }
+            }
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.11
+			    days = 1
+			}
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = GGR
+        }
+        GER = {
+		    annex_country = { target = GGR transfer_troops = yes }
+			set_politics = {
+	            ruling_party = national_socialism
+	            last_election = "1933.3.5"
+	            election_frequency = 48
+	            elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 10
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 0
+                market_liberal = 0
+                social_conservative = 0
+                authoritarian_democrat = 0
+                despotism = 0
+                fascism = 20
+                national_socialism = 70
+                burgundian_system = 0
+            }
+           create_country_leader = {
+	           name = "Hermann Göring"
+	           desc = "POLITICS_HERMANN_GORING_DESC"
+	           picture = "gfx/leaders/GER/Portrait_Germany_Hermann_Goring.dds"
+	           expire = "1999.1.1"
+	           ideology = national_socialism_subtype
+	           traits = {
+		           dictator
+	           }
+            }
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.12
+			    days = 1
+			}
+		}		
+	}
+	
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = HGR
+        }		
+		GER = {
+		    declare_war_on = {
+                target = HGR
+                type = annex_everything
+            }
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = DSR
+        }
+		GER = {
+		    declare_war_on = {
+                target = DSR
+                type = annex_everything
+            }
+		}
+	}
+	
+	option = {
+		name = DEMOEVENT.44.a		
+        trigger = {
+            country_exists = RNW
+        }	
+		GER = {
+		    declare_war_on = {
+                target = RNW
+                type = annex_everything
+            }
+		}
+	}
+}
+
+country_event = { #Algeria
+    id = DEMOEVENT.45
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.45"}
+	title = DEMOEVENT.45.t
+	desc = DEMOEVENT.45.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.45.a
+		random_list = {
+		    20 = { 
+                FRA = {
+				    transfer_state = 460
+					transfer_state = 1161
+					transfer_state = 1007
+					transfer_state = 459
+					transfer_state = 1006
+					transfer_state = 1151
+					transfer_state = 1147
+					transfer_state = 1154
+					transfer_state = 1146
+					transfer_state = 1145
+					transfer_state = 1144
+					transfer_state = 514
+					transfer_state = 1143
+					transfer_state = 1149
+					transfer_state = 785
+					transfer_state = 513
+					transfer_state = 1148
+				}
+		    }
+			20 = { 
+                ITA = {
+				    transfer_state = 460
+					transfer_state = 1161
+					transfer_state = 1007
+					transfer_state = 459
+					transfer_state = 1006
+					transfer_state = 1151
+					transfer_state = 1147
+					transfer_state = 1154
+					transfer_state = 1146
+					transfer_state = 1145
+					transfer_state = 1144
+					transfer_state = 514
+					transfer_state = 1143
+					transfer_state = 1149
+					transfer_state = 785
+					transfer_state = 513
+					transfer_state = 1148
+				}
+			}
+			20 = { 
+                IBR = {
+				    transfer_state = 460
+					transfer_state = 1161
+					transfer_state = 1007
+					transfer_state = 459
+					transfer_state = 1006
+					transfer_state = 1151
+					transfer_state = 1147
+					transfer_state = 1154
+					transfer_state = 1146
+					transfer_state = 1145
+					transfer_state = 1144
+					transfer_state = 514
+					transfer_state = 1143
+					transfer_state = 1149
+					transfer_state = 785
+					transfer_state = 513
+					transfer_state = 1148
+				}
+			}
+			20 = { 
+		        ALG = {
+				    transfer_state = 460
+					transfer_state = 1161
+					transfer_state = 1007
+					transfer_state = 459
+					transfer_state = 1006
+					transfer_state = 1151
+					transfer_state = 1147
+					transfer_state = 1154
+					transfer_state = 1146
+					transfer_state = 1145
+					transfer_state = 1144
+					transfer_state = 514
+					transfer_state = 1143
+					transfer_state = 1149
+					transfer_state = 785
+					transfer_state = 513
+					transfer_state = 1148
+					demo_embargo_south_ural = yes
+				}
+			}
+			20 = { 
+                FRA = {
+				    add_political_power = 100
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Bennett Inaguration
+    id = DEMOEVENT.46
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.46"}
+	title = DEMOEVENT.46.t
+	desc = DEMOEVENT.46.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.46.a
+		USA = {
+		    set_politics = { ruling_party = social_conservative }
+	        create_country_leader = {
+		        name = "Wallace F. Bennett"	
+		        desc = "POLITICS_WALLACE_F_BENNETT_DESC"
+		        picture = "Portrait_USA_Wallace_F_Bennett.dds"
+		        expire = "1994.4.20"
+		        ideology = social_conservative_subtype
+		        traits = {
+		        }
+		    }
+		}
+	}
+}
+
+country_event = { #Johnson Inaguration
+    id = DEMOEVENT.47
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.47"}
+	title = DEMOEVENT.47.t
+	desc = DEMOEVENT.47.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.47.a
+		USA = {
+		    set_politics = { ruling_party = social_liberal }
+	        create_country_leader = {
+	            name = "Lyndon B. Johnson"
+		        desc = "POLITICS_LYNDON_B_JOHNSON_DESC"
+		        picture = "Portrait_USA_Lyndon_B_Johnson.dds"
+                expire = "1994.4.20"
+	            ideology = social_liberal_subtype
+	            traits = {
+	            }
+            }
+	    }
+	}
+}
+
+country_event = { #Kennedy Inaguration
+    id = DEMOEVENT.48
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.48"}
+	title = DEMOEVENT.48.t
+	desc = DEMOEVENT.48.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.48.a
+		USA = {
+		    set_politics = { ruling_party = social_democrat }
+		    create_country_leader = {
+	            name = "Robert F. Kennedy"
+   	        desc = "POLITICS_RFK_DESC"
+		        picture = "Portrait_USA_Bobby_Kennedy.dds"
+		        expire = "1994.4.20"
+		        ideology = social_democrat_subtype
+		        traits = {
+		        }
+            }
+		}
+	}
+}
+
+country_event = { #Wallace Inaguration
+    id = DEMOEVENT.49
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.49"}
+	title = DEMOEVENT.49.t
+	desc = DEMOEVENT.49.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.49.a
+		USA = {
+		    set_politics = { ruling_party = authoritarian_democrat }
+		    create_country_leader = {  
+                name = "George Wallace"
+	            desc = "POLITICS_GEORGE_WALLACE_DESC"
+	            picture = "Portrait_USA_George_Wallace.dds"
+                expire = "1994.4.20"
+	            ideology = authoritarian_democrat_subtype
+                traits = {
+				}
+            }
+		}
+	}
+}
+
+country_event = { #Heydrich Wins GCW
+    id = DEMOEVENT.50
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.50"}
+	title = DEMOEVENT.50.t
+	desc = DEMOEVENT.50.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.50.a
+		GER = {
+		    annex_country = { target = HGR transfer_troops = yes }
+			set_politics = {
+	            ruling_party = burgundian_system
+	            last_election = "1933.3.5"
+	            election_frequency = 48
+	            elections_allowed = no
+        }
+
+            set_popularities = {
+                communist = 0
+                ultranational_socialism = 0
+                socialist = 0
+                social_democrat = 0
+                social_liberal = 0
+                market_liberal = 0
+                social_conservative = 0
+                authoritarian_democrat = 0
+                despotism = 0
+                fascism = 0
+                national_socialism = 25
+                burgundian_system = 75
+            }
+           create_country_leader = {
+	           name = "Reinhard Heydrich"
+	           desc = "POLITICS_REINHARD_HEYDRICH_DESC"
+	           picture = "Portrait_Germany_Reinhard_Heydrich.dds"
+	           expire = "1999.1.1"
+	           ideology = burgundian_system_subtype
+	           traits = {
+		           dictator
+	           }
+            }
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.13
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #DSR Wins GCW
+    id = DEMOEVENT.51
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.51"}
+	title = DEMOEVENT.51.t
+	desc = DEMOEVENT.51.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.51.a
+		DSR = {
+		    annex_country = { target = GER transfer_troops = no }
+			set_capital = 64
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.15
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #RNW Wins GCW
+    id = DEMOEVENT.52
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.52"}
+	title = DEMOEVENT.52.t
+	desc = DEMOEVENT.52.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.52.a
+		RNW = {
+		    annex_country = { target = GER transfer_troops = no }
+			set_capital = 64
+		}
+		clr_global_flag = german_civil_war
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.16
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Speidel Wins GCW
+    id = DEMOEVENT.53
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.53"}
+	title = DEMOEVENT.53.t
+	desc = DEMOEVENT.53.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.53.a
+		clr_global_flag = german_civil_war
+		GER = {
+		    if = {
+			    limit = {
+			        country_exists = SGR
+			    }
+			    annex_country = { target = SGR transfer_troops = no }
+            }
+			if = {
+			    limit = {
+			        country_exists = BGR
+			    }
+			    annex_country = { target = BGR transfer_troops = no }
+            }
+			if = {
+			    limit = {
+			        country_exists = GGR
+			    }
+			    annex_country = { target = GGR transfer_troops = no }
+            }
+			if = {
+			    limit = {
+			        country_exists = HGR
+			    }
+			    annex_country = { target = HGR transfer_troops = no }
+            }
+			if = {
+			    limit = {
+			        country_exists = DSR
+			    }
+			    annex_country = { target = DSR transfer_troops = no }
+            }
+			if = {
+			    limit = {
+			        country_exists = RNW
+			    }
+			    annex_country = { target = RNW transfer_troops = no }
+            }
+		}
+		every_country = {
+	        news_event = {
+		        id = DEMOWORLDEVENT.14
+			    days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Japanese Economic War 
+    id = DEMOEVENT.54
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.54"}
+	title = DEMOEVENT.54.t
+	desc = DEMOEVENT.54.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.28
+			    days = 1
+			}
+		}
+	}
+}
+
+##########################
+### REAL OSTLAND HOURS ###
+##########################
+
+country_event = {
+	id = DEMOEVENT.55
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.55"}
+	title = DEMOEVENT.55.t
+	desc = DEMOEVENT.55.desc
+	picture = GFX_report_event_OST_tank
+	fire_only_once = yes
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.55.a
+		custom_effect_tooltip = OST_shattered
+		delete_unit_template_and_units = {
+			division_template = "Weißrussische Volksmiliz"
+		}
+		hidden_effect = {
+			#Set up OST_contenders
+			add_to_array = { global.OST_contenders = OST } #Stahlecker
+			add_to_array = { global.OST_contenders = DST } #Drechsler
+			add_to_array = { global.OST_contenders = JST } #Jeckeln
+			add_to_array = { global.OST_contenders = MST } #Meyer-Landrut
+			add_to_array = { global.OST_contenders = LIT } #Kovner
+			add_to_array = { global.OST_contenders = BLR } #Vituska
+
+			load_oob = OST_war
+			country_event = { id = DEMOEVENT.56 days = 1 }
+			kill_country_leader = yes
+			create_country_leader = {
+				name = "Franz Walter Stahlecker"
+				desc = ""
+				picture = "gfx/leaders/OST/Portrait_Ostland_Franz_Walter_Stahlecker.dds"
+				expire = "1985.1.1"
+				ideology = national_socialism_subtype
+				traits = { }
+			}
+			DST = {
+				transfer_state = 190
+				transfer_state = 189
+				transfer_state = 11
+				190 = {
+					add_core_of = DST }
+				189 = {
+					add_core_of = DST }
+				11 = {
+					add_core_of = DST }
+				inherit_technology = PREV
+				load_oob = DST
+				demo_embargo_south_ural = yes
+				#set_cosmetic_tag = DST_FIXED
+			}
+			MST = {
+				transfer_state = 96
+				set_cosmetic_tag = MST_FIXED
+				96 = {
+					add_core_of = MST 
+				}
+				inherit_technology = PREV
+				load_oob = MST
+				demo_embargo_south_ural = yes
+			}
+			JST = {
+				94 = {
+					add_core_of = JST 
+				}
+				transfer_state = 94
+				inherit_technology = PREV
+				load_oob = JST
+				demo_embargo_south_ural = yes
+				#set_cosmetic_tag = JST_FIXED
+			}
+			LIT = {
+				set_cosmetic_tag = LIT_partisan
+				943 = {
+					add_core_of = LIT
+				}
+				13 = {
+					add_core_of = LIT
+				}
+				191 = {
+					add_core_of = LIT
+				}
+				12 = {
+					add_core_of = LIT
+				}
+				190 = {
+					add_core_of = LIT
+				}
+				189 = {
+					add_core_of = LIT
+				}
+				transfer_state = 943
+				inherit_technology = PREV
+				load_oob = LIT
+				demo_embargo_south_ural = yes
+			}
+			BLR = {
+				set_cosmetic_tag = BLR_partisan
+				207 = {
+					add_core_of = BLR
+				}
+				96 = {
+					add_core_of = BLR
+				}
+				206 = {
+					add_core_of = BLR
+				}
+				95 = {
+					add_core_of = BLR
+				}
+				204 = {
+					add_core_of = BLR
+				}
+				11 = {
+					add_core_of = BLR
+				}
+				transfer_state = 207
+				load_oob = BLR
+				inherit_technology = PREV
+				demo_embargo_south_ural = yes
+			}
+		}
+	}
+}
+
+
+country_event = {#Ostland Civil War
+	id = DEMOEVENT.56
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.56"}
+	title = DEMOEVENT.56.t
+	desc = DEMOEVENT.56.d
+	picture = GFX_report_event_OST_tank
+	fire_only_once = yes
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.56.a
+		set_global_flag = Ostland_war
+		every_country = {
+			news_event = {
+				id = DEMOWORLDEVENT.29
+			    days = 1
+			}
+		}
+		BLR = { 
+			declare_war_on = {
+				target = OST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = JST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = DST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = MST
+				type = civil_war
+			} 
+		}
+		OST = {
+			declare_war_on = {
+				target = JST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = DST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = MST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = LIT
+				type = civil_war
+			}
+		}
+		DST = {
+			declare_war_on = {
+				target = JST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = MST
+				type = civil_war
+			}
+		}
+		JST = { 
+			declare_war_on = {
+				target = MST
+				type = civil_war
+			}
+		}
+		LIT = {
+			declare_war_on = {
+				target = OST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = JST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = DST
+				type = civil_war
+			}
+			declare_war_on = {
+				target = MST
+				type = civil_war
+			}
+		}
+	}
+}
+
+#Just Fuck My shit up, Bruh (Madagaskan Civil War)
+country_event = {
+	id = DEMOEVENT.57
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.57"}
+	title = DEMOEVENT.57.t
+	desc = DEMOEVENT.57.desc
+	picture = GFX_report_event_african_rebels2
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+	immediate = {
+		hidden_effect = {
+			MDJ = { # Jewish Partisans
+				transfer_state = 543
+				transfer_state = 706
+				transfer_state = 707
+				transfer_state = 947
+				add_state_core = 543
+				add_state_core = 706
+				add_state_core = 707
+				add_state_core = 947
+				
+				inherit_technology = PREV
+				
+				demo_embargo_south_ural = yes
+
+				load_oob = MDJ_CIVIL_WAR
+				declare_war_on = {
+					target = MAD
+					type = annex_everything
+				}
+
+			}
+
+			MDM = { # Malagasy Rebels
+				transfer_state = 945
+				add_state_core = 945
+				transfer_state = 1041
+				add_state_core = 1041
+				
+				inherit_technology = PREV
+				
+				demo_embargo_south_ural = yes
+
+				load_oob = MDM_CIVIL_WAR
+				declare_war_on = {
+					target = MAD
+					type = annex_everything
+				}
+
+			}
+
+			MDG = { # German Garrison
+				transfer_state = 946
+				transfer_state = 1043
+				add_state_core = 946
+				add_state_core = 1043
+				
+				demo_embargo_south_ural = yes
+				
+				inherit_technology = PREV
+				
+				load_oob = MDG_CIVIL_WAR
+				declare_war_on = {
+					target = MAD
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = MDJ
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = MDM
+					type = annex_everything
+				}
+
+			}
+
+			load_oob = MAD_CIVIL_WAR
+			news_event = DEMOWORLDEVENT.44
+			#set_country_flag = MAD_civil_war
+		}
+	}
+
+	option = { # Oh, wonderful.
+		name = DEMOEVENT.57.a
+	}
+}
+
+country_event = { #Japanese Interregnum Succession
+    id = DEMOEVENT.58
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.58"}
+	title = DEMOEVENT.58.t
+	desc = DEMOEVENT.58.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.58.a
+		random_list = {
+		    26 = { #Takagi
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.41
+			        days = 2
+			        }
+		        }
+				JAP = {
+				    country_event = {
+		                id = DEMOEVENT.59
+		                days = 1
+	                }
+				}
+		    }
+			27 = { #Kaya
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.40
+			        days = 2
+			        }
+		        }
+				JAP = {
+				    country_event = {
+		                id = DEMOEVENT.60
+		                days = 1
+	                }
+				}
+			}
+			27 = { #Ikeda
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.39
+			        days = 2
+			        }
+		        }
+				JAP = {
+				    country_event = {
+		                id = DEMOEVENT.61
+		                days = 1
+	                }
+				}
+			}
+			20 = { #Kido
+			    every_country = { 
+			        news_event = {
+				    id = DEMOWORLDEVENT.38
+			        days = 2
+			        }
+		        }
+				JAP = {
+				    country_event = {
+		                id = DEMOEVENT.62
+		                days = 1
+	                }
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Takagi win
+    id = DEMOEVENT.59
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.59"}
+	title = DEMOEVENT.59.t
+	desc = DEMOEVENT.59.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.59.a
+		JAP = {
+		    create_country_leader = {  
+               name = "Soukichi Takagi"
+	            desc = "POLITICS_TAKAGI_DESC"
+	            picture = "Portrait_Japan_Takagi_Soukichi.dds"
+                expire = "1994.4.20"
+	            ideology = fascism_subtype
+                traits = {
+				}
+           }
+	    }
+	}
+}
+
+country_event = { #Kaya win
+    id = DEMOEVENT.60
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.60"}
+	title = DEMOEVENT.60.t
+	desc = DEMOEVENT.60.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.60.a
+		JAP = {
+		    create_country_leader = {  
+               name = "Okinori Kaya"
+	            desc = "POLITICS_KAYA_DESC"
+	            picture = "Portrait_Japan_Kaya_Okinori.dds"
+                expire = "1994.4.20"
+	            ideology = fascism_subtype
+                traits = {
+				}
+            }
+		}
+	}
+}
+
+country_event = { #Ikeda win
+    id = DEMOEVENT.61
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.61"}
+	title = DEMOEVENT.61.t
+	desc = DEMOEVENT.61.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.61.a
+		JAP = {
+		    create_country_leader = {  
+               name = "Masanosuke Ikeda"
+	            desc = "POLITICS_IKEDA_DESC"
+	            picture = "Portrait_Japan_Ikeda_Masanosuke.dds"
+                expire = "1994.4.20"
+	            ideology = fascism_subtype
+               traits = {
+				}
+            }
+		}
+	}
+}
+
+country_event = { #Kido win
+    id = DEMOEVENT.62
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.62"}
+	title = DEMOEVENT.62.t
+	desc = DEMOEVENT.62.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.62.a
+		JAP = {
+		    create_country_leader = {  
+               name = "Kouichi Kido"
+	            desc = "POLITICS_KIDO_DESC"
+	            picture = "Portrait_Japan_Kido_Kouichi.dds"
+               expire = "1994.4.20"
+	            ideology = fascism_subtype
+               traits = {
+				}
+           }
+		}
+	}
+}
+
+country_event = { #SAF ceasefire
+    id = DEMOEVENT.63
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.63"}
+	title = DEMOEVENT.63.t
+	desc = DEMOEVENT.63.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	trigger = {
+		NOT = {has_global_flag = SAF_war_ended}
+	}
+
+	option = {
+		name = DEMOEVENT.62.a
+		set_global_flag = SAF_war_ended
+		random_list = {
+			50 = {
+				SAF = {
+					white_peace = COG
+					white_peace = MZB
+					white_peace = ANG
+					white_peace = BOR
+
+					#SAF
+					transfer_state = 937
+					transfer_state = 938
+					transfer_state = 940
+					transfer_state = 939
+					transfer_state = 275
+					transfer_state = 936
+					transfer_state = 719
+					transfer_state = 935
+					transfer_state = 934
+					transfer_state = 933
+					transfer_state = 681
+					transfer_state = 942
+					transfer_state = 1044
+					transfer_state = 542
+					transfer_state = 1046
+					transfer_state = 1050
+					transfer_state = 1048
+					transfer_state = 1047
+					transfer_state = 1045
+					transfer_state = 1049
+				}
+
+				ANG = {
+					transfer_state = 1031
+						transfer_state = 1030
+						transfer_state = 1029
+						transfer_state = 1027
+						transfer_state = 1028
+						transfer_state = 1027
+						transfer_state = 1214
+						transfer_state = 778
+						transfer_state = 541
+						transfer_state = 1213
+						transfer_state = 1035
+						transfer_state = 1038
+						transfer_state = 1039
+						transfer_state = 1037
+						transfer_state = 540
+						transfer_state = 1034
+						transfer_state = 1036
+						transfer_state = 1040
+						transfer_state = 1033
+						transfer_state = 1032
+						transfer_state = 1051
+				}
+				MZB = {
+					transfer_state = 545
+					transfer_state = 1063
+					transfer_state = 881
+					transfer_state = 1064
+					transfer_state = 1065
+					transfer_state = 1059
+					transfer_state = 1058
+					transfer_state = 880
+					transfer_state = 1052
+					transfer_state = 1054
+					transfer_state = 1053
+					transfer_state = 1067
+					transfer_state = 1068
+					transfer_state = 1066
+					transfer_state = 1062
+					transfer_state = 1061
+					transfer_state = 1060
+					transfer_state = 1069
+					transfer_state = 1074
+					transfer_state = 879
+					transfer_state = 544
+					transfer_state = 1075
+					transfer_state = 1073
+					transfer_state = 1071
+					transfer_state = 748
+					transfer_state = 1070
+					transfer_state = 1072
+					transfer_state = 1083
+					transfer_state = 1076
+					transfer_state = 1077
+					transfer_state = 546
+					transfer_state = 1085
+					transfer_state = 1084
+					transfer_state = 1078
+					transfer_state = 1082
+					transfer_state = 1086
+					transfer_state = 1087
+					transfer_state = 1079
+					transfer_state = 1080
+					transfer_state = 1081
+					transfer_state = 1088
+					transfer_state = 1091
+					transfer_state = 548
+					transfer_state = 1089
+					transfer_state = 1090
+				}
+				COG = {
+					transfer_state = 1184
+					transfer_state = 1171
+					transfer_state = 538
+					transfer_state = 1182
+					transfer_state = 1181
+					transfer_state = 1185
+					transfer_state = 1183
+					transfer_state = 1180
+					transfer_state = 1165
+					transfer_state = 539
+					transfer_state = 1164
+					transfer_state = 295
+					transfer_state = 1163
+					transfer_state = 1162
+					transfer_state = 1167
+					transfer_state = 1166
+					transfer_state = 1169
+					transfer_state = 1055
+					transfer_state = 1056
+					transfer_state = 1057
+					transfer_state = 1174
+					transfer_state = 1173
+					transfer_state = 1172
+					transfer_state = 1175
+					transfer_state = 1168
+					transfer_state = 1170
+					transfer_state = 1176
+					transfer_state = 718
+					transfer_state = 1177
+					transfer_state = 1178
+				}
+			}
+			50 = {
+				SAF = {
+					white_peace = COG
+					white_peace = MZB
+					white_peace = ANG
+					white_peace = BOR
+					#SAF
+					transfer_state = 937
+					transfer_state = 938
+					transfer_state = 940
+					transfer_state = 939
+					transfer_state = 275
+					transfer_state = 936
+					transfer_state = 719
+					transfer_state = 935
+					transfer_state = 934
+					transfer_state = 933
+					transfer_state = 681
+					transfer_state = 942
+					transfer_state = 1044
+					transfer_state = 542
+					transfer_state = 1046
+					transfer_state = 1050
+					transfer_state = 1048
+					transfer_state = 1047
+					transfer_state = 1045
+					transfer_state = 1049
+
+					#ANG
+					transfer_state = 1031
+					transfer_state = 1030
+					transfer_state = 1029
+					transfer_state = 1027
+					transfer_state = 1028
+					transfer_state = 1027
+					transfer_state = 1214
+					transfer_state = 778
+					transfer_state = 541
+					transfer_state = 1213
+
+					#MZB
+					transfer_state = 545
+					transfer_state = 1063
+					transfer_state = 881
+					transfer_state = 1064
+					transfer_state = 1065
+					transfer_state = 1059
+					transfer_state = 1058
+					transfer_state = 880
+				}
+				ANG = {
+					transfer_state = 1035
+					transfer_state = 1038
+					transfer_state = 1039
+					transfer_state = 1037
+					transfer_state = 540
+					transfer_state = 1034
+					transfer_state = 1036
+					transfer_state = 1040
+					transfer_state = 1033
+					transfer_state = 1032
+					transfer_state = 1051
+				}
+				MZB = {
+					transfer_state = 1052
+					transfer_state = 1054
+					transfer_state = 1053
+					transfer_state = 1067
+					transfer_state = 1068
+					transfer_state = 1066
+					transfer_state = 1062
+					transfer_state = 1061
+					transfer_state = 1060
+					transfer_state = 1069
+					transfer_state = 1074
+					transfer_state = 879
+					transfer_state = 544
+					transfer_state = 1075
+					transfer_state = 1073
+					transfer_state = 1071
+					transfer_state = 748
+					transfer_state = 1070
+					transfer_state = 1072
+					transfer_state = 1083
+					transfer_state = 1076
+					transfer_state = 1077
+					transfer_state = 546
+					transfer_state = 1085
+					transfer_state = 1084
+					transfer_state = 1078
+					transfer_state = 1082
+					transfer_state = 1086
+					transfer_state = 1087
+					transfer_state = 1079
+					transfer_state = 1080
+					transfer_state = 1081
+					transfer_state = 1088
+					transfer_state = 1091
+					transfer_state = 548
+					transfer_state = 1089
+					transfer_state = 1090
+				}
+				COG = {
+					transfer_state = 1184
+					transfer_state = 1171
+					transfer_state = 538
+					transfer_state = 1182
+					transfer_state = 1181
+					transfer_state = 1185
+					transfer_state = 1183
+					transfer_state = 1180
+					transfer_state = 1165
+					transfer_state = 539
+					transfer_state = 1164
+					transfer_state = 295
+					transfer_state = 1163
+					transfer_state = 1162
+					transfer_state = 1167
+					transfer_state = 1166
+					transfer_state = 1169
+					transfer_state = 1055
+					transfer_state = 1056
+					transfer_state = 1057
+					transfer_state = 1174
+					transfer_state = 1173
+					transfer_state = 1172
+					transfer_state = 1175
+					transfer_state = 1168
+					transfer_state = 1170
+					transfer_state = 1176
+					transfer_state = 718
+					transfer_state = 1177
+					transfer_state = 1178
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Germans Arrive in SAF
+    id = DEMOEVENT.64
+	immediate = {log = "[GetDateText]: [Root.GetName]: event DEMOEVENT.64"}
+	title = DEMOEVENT.64.t
+	desc = DEMOEVENT.64.d
+	picture = GFX_report_event_televison_announcement
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	hidden = yes
+
+	option = {
+		name = DEMOEVENT.64.a
+		trigger = {
+            COG = {
+			    has_war_with = SAF
+			}
+        }
+		if = {
+		    limit = {
+			    country_exists = COG
+			}
+			COG = {
+			    load_oob = GER_SAF
+			}
+        }
+		if = {
+		    limit = {
+			    country_exists = ANG
+			}
+			ANG = {
+			    load_oob = GER_SAF
+			}
+        }
+		if = {
+		    limit = {
+			    country_exists = MZB
+			}
+			MZB = {
+			    load_oob = GER_SAF
+			}
+        }
+	}
+	
+	option = {
+		name = DEMOEVENT.64.b
+		trigger = {
+		    NOT = {
+                COG = {
+			        has_war_with = SAF
+			    }
+			}
+        }
+	}
+}
+
+### Hi There
+### Debbel (and Bread :D) here
+### I did the wider world work for the demo (I helped a bit too)
+### If you are seeing this you are probably looking for secrets in the code or spoilers
+### There are none in here i'm afraid
+### But I hope you enjoyed the demo
+### A lot of people worked very hard on it
+### We love our community
+### And it means so much to us we get to show all this to you
+### So know that if you ever feel alone
+### Know that you are not
+### You have a community here

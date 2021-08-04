@@ -1,0 +1,275 @@
+scripted_gui = {
+	COMECON_GUI = {
+		context_type = decision_category
+		window_name = "COMECON_GUI"
+
+		visible = {
+			always = yes
+		}
+
+		triggers = {
+			COMECON_GUI_Defense_Fund_Withdraw_visible = {
+				check_variable = { global.COMECON_collective_defense_value > COMECONDefTransferAmt }
+				has_war = yes
+				NOT = {
+					has_country_flag = COMECON_def_withdrawal_made
+				}
+			}
+			COMECON_GUI_Dev_Fund_Withdraw_visible = {
+				check_variable = { global.COMECON_monetary_fund_value > COMECONDevTransferAmt }
+				OR = {
+					check_variable = { deficit > 1 }
+					check_variable = { GDP < 50000 }
+				}
+				NOT = {
+					has_country_flag = COMECON_dev_withdrawal_made
+				}
+			}
+			COMECON_GUI_Defense_Fund_Deposit_visible = {
+				NOT = {
+					has_country_flag = COMECON_def_deposit_made
+				}
+			}
+			COMECON_GUI_Dev_Fund_Deposit_visible = {
+				NOT = {
+					has_country_flag = COMECON_dev_deposit_made
+				}
+			}
+			COMECON_GUI_Country_Entry_Button_visible = {
+				NOT = {
+					has_country_flag = COMECON_aid_sent
+				}
+			}
+		}
+
+		effects = {
+			COMECON_GUI_Defense_Fund_Yearly_Contrib_Sub10_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDefTransferAmtYearly < 20.1 }
+					}
+					set_variable = { COMECONDefTransferAmtYearly = 10 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDefTransferAmtYearly < 20.1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDefTransferAmtYearly = 10 }
+				}
+			}
+			COMECON_GUI_Defense_Fund_Yearly_Contrib_Sub1_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDefTransferAmtYearly < 11.1 }
+					}
+					set_variable = { COMECONDefTransferAmtYearly = 10 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDefTransferAmtYearly < 11.1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDefTransferAmtYearly = 1 }
+				}
+			}
+			COMECON_GUI_Defense_Fund_Yearly_Contrib_Add10_click = {
+				add_to_variable = { COMECONDefTransferAmtYearly = 10 }
+			}
+			COMECON_GUI_Defense_Fund_Yearly_Contrib_Add1_click = {
+				add_to_variable = { COMECONDefTransferAmtYearly = 1 }
+			}
+			COMECON_GUI_Dev_Fund_Yearly_Contrib_Sub10_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDevTransferAmtYearly < 20.1 }
+					}
+					set_variable = { COMECONDevTransferAmtYearly = 10 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDevTransferAmtYearly < 20.1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDevTransferAmtYearly = 10 }
+				}
+			}
+			COMECON_GUI_Dev_Fund_Yearly_Contrib_Sub1_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDevTransferAmtYearly < 11.1 }
+					}
+					set_variable = { COMECONDevTransferAmtYearly = 10 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDevTransferAmtYearly < 11.1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDevTransferAmtYearly = 1 }
+				}
+			}
+			COMECON_GUI_Dev_Fund_Yearly_Contrib_Add10_click = {
+				add_to_variable = { COMECONDevTransferAmtYearly = 10 }
+			}
+			COMECON_GUI_Dev_Fund_Yearly_Contrib_Add1_click = {
+				add_to_variable = { COMECONDevTransferAmtYearly = 1 }
+			}
+
+			COMECON_GUI_Defense_Fund_Sub10_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDefTransferAmt < 10.1 }
+					}
+					set_variable = { COMECONDefTransferAmt = 0 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDefTransferAmt < 10 }
+						}	
+					}
+					subtract_from_variable = { COMECONDefTransferAmt = 10 }
+				}
+			}
+			COMECON_GUI_Defense_Fund_Sub1_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDefTransferAmt < 1.1 }
+					}
+					set_variable = { COMECONDefTransferAmt = 0 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDefTransferAmt < 1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDefTransferAmt = 1 }
+				}
+			}
+			COMECON_GUI_Defense_Fund_Add10_click = {
+				add_to_variable = { COMECONDefTransferAmt = 10 }
+			}
+			COMECON_GUI_Defense_Fund_Add1_click = {
+				add_to_variable = { COMECONDefTransferAmt = 1 }
+			}
+			COMECON_GUI_Dev_Fund_Sub10_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDevTransferAmt < 10.1 }
+					}
+					set_variable = { COMECONDevTransferAmt = 0 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDevTransferAmt < 10 }
+						}	
+					}
+					subtract_from_variable = { COMECONDevTransferAmt = 10 }
+				}
+			}
+			COMECON_GUI_Dev_Fund_Sub1_click = {
+				if = {
+					limit = {
+						check_variable = { COMECONDevTransferAmt < 1.1 }
+					}
+					set_variable = { COMECONDevTransferAmt = 0 }
+				}
+				if = {
+					limit = {
+						NOT = {
+							check_variable = { COMECONDevTransferAmt < 1 }
+						}	
+					}
+					subtract_from_variable = { COMECONDevTransferAmt = 1 }
+				}
+			}
+			COMECON_GUI_Dev_Fund_Add10_click = {
+				add_to_variable = { COMECONDevTransferAmt = 10 }
+			}
+			COMECON_GUI_Dev_Fund_Add1_click = {
+				add_to_variable = { COMECONDevTransferAmt = 1 }
+			}
+
+			COMECON_GUI_Defense_Fund_Deposit_click = {
+				add_to_variable = { global.COMECON_collective_defense_value = COMECONDefTransferAmt }
+				add_to_variable = { national_debt = COMECONDefTransferAmt }
+				set_variable = { COMECONDefTransferAmt = 5 }
+				set_country_flag = COMECON_def_deposit_made
+			}
+
+			COMECON_GUI_Dev_Fund_Deposit_click = {
+				add_to_variable = { global.COMECON_monetary_fund_value = COMECONDevTransferAmt }
+				add_to_variable = { national_debt = COMECONDevTransferAmt }
+				set_variable = { COMECONDevTransferAmt = 5 }
+				set_country_flag = COMECON_dev_deposit_made
+			}
+
+			COMECON_GUI_Defense_Fund_Withdraw_click = {
+				if = {
+					limit = {
+						check_variable = { global.COMECON_collective_defense_value > COMECONDefTransferAmt }
+					}
+					subtract_from_variable = { global.COMECON_collective_defense_value = COMECONDefTransferAmt }
+					add_to_variable = { money_reserves = COMECONDefTransferAmt }
+					set_variable = { COMECONDefTransferAmt = 5 }
+					set_country_flag = COMECON_def_withdrawal_made
+				}	
+			}
+
+			COMECON_GUI_Dev_Fund_Withdraw_click = {
+				if = {
+					limit = {
+						check_variable = { global.COMECON_monetary_fund_value > COMECONDevTransferAmt }
+					}
+					subtract_from_variable = { global.COMECON_monetary_fund_value = COMECONDevTransferAmt }
+					add_to_variable = { money_reserves = COMECONDevTransferAmt }
+					set_variable = { COMECONDevTransferAmt = 5 }
+					set_country_flag = COMECON_dev_withdrawal_made
+				}
+			}
+
+			COMECON_GUI_Country_Entry_Button_click = {
+				THIS = {
+					country_event = {
+						id = comecon.5
+						days = 1
+					}
+				}
+				set_country_flag = COMECON_aid_sent
+				ROOT = {
+					add_to_variable = { national_debt = 250 }
+				}
+			}
+		}
+
+		properties = {
+			COMECON_GUI_Country_Entry_Members_Flag = {
+				image = "[This.GetFlag]"
+			}
+			COMECON_GUI_Country_Entry_Eligible_Flag = {
+				image = "[This.GetFlag]"
+			}
+		}
+		
+		dynamic_lists = {
+			COMECON_GUI_Participants_List = {
+				array = global.COMECON_MEMBERS
+				change_scope = yes
+				entry_container = COMECON_GUI_Member_Country_Entry
+			}
+			
+			COMECON_GUI_Eligible_List = {
+				array = global.COMECON_ELIGIBLE
+				change_scope = yes
+				entry_container = COMECON_GUI_Eligible_Country_Entry
+			}
+		}
+	}
+}

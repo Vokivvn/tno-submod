@@ -1,0 +1,233 @@
+shared_focus = {
+	id = BRG_our_true_goal
+	icon = GFX_BRG_focus_das_atomwaffenamt
+	cost = 3
+	x = 21
+	y = 0
+	offset = {
+		x = 11
+		y = 0
+		trigger = {
+			has_country_flag = BRG_fall_ragnarchar_allowed
+		}
+	}
+	allow_branch = { has_country_flag = BRG_nuclear }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_our_true_goal"
+		country_event = { id = BRG_focus.215 }
+	}
+}
+shared_focus = {
+	id = BRG_draft_the_lists
+	icon = GFX_BRG_Focus_Write_Down_Priority_Lists
+	cost = 3
+	prerequisite = { focus = BRG_our_true_goal }
+	x = -1
+	y = 1
+	relative_position_id = BRG_our_true_goal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_draft_the_lists"
+		country_event = { id = BRG_focus.203 }
+	}
+}
+shared_focus = {
+	id = BRG_find_the_locations
+	icon = GFX_BRG_focus_apply_grenzeschild_knowledge
+	cost = 3
+	prerequisite = { focus = BRG_our_true_goal }
+	x = 1
+	y = 1
+	relative_position_id = BRG_our_true_goal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_find_the_locations"
+		country_event = { id = BRG_focus.200 }
+	}
+}
+shared_focus = {
+	id = BRG_project_bergentruckung
+	icon = GFX_BRG_Focus_Expand_The_Bunker_Systems
+	cost = 4.00
+	prerequisite = { focus = BRG_draft_the_lists }
+	prerequisite = { focus = BRG_find_the_locations }
+	x = 0
+	y = 2
+	relative_position_id = BRG_our_true_goal
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_project_bergentruckung"
+		country_event = { id = BRG_focus.216 }
+	}
+}
+ #knock on wood
+shared_focus = {
+	id = BRG_the_agents_of_destruction
+	icon = GFX_BRG_focus_its_not_rocket_science
+	cost = 4.00
+	prerequisite = { focus = BRG_project_bergentruckung }
+	x = -2
+	y = 1
+	relative_position_id = BRG_project_bergentruckung
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_agents_of_destruction"
+		country_event = { id = BRG_nuclear.10 }
+	}
+}
+shared_focus = {
+	id = BRG_hiding_the_silos
+	icon = GFX_BRG_Focus_Hidden_Nuclear_Facilites
+	cost = 4.00
+	prerequisite = { focus = BRG_the_agents_of_destruction }
+	x = -1
+	y = 1
+	relative_position_id = BRG_the_agents_of_destruction
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_hiding_the_silos"
+		custom_effect_tooltip = BRG_Hid_Silos
+	}
+}
+shared_focus = {
+	id = BRG_expanded_uranium_production
+	icon = GFX_BRG_Focus_Prepare_For_The_Battle
+	cost = 4.00
+	prerequisite = { focus = BRG_the_agents_of_destruction }
+	x = 1
+	y = 1
+	relative_position_id = BRG_the_agents_of_destruction
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_expanded_uranium_production"
+		TNO_improve_nuclear_stockpile_low = yes
+		custom_effect_tooltip = BRG_Expanded_UP
+	}
+}
+shared_focus = {
+	id = BRG_the_grasping_hand
+	icon = GFX_BRG_Our_Grasp
+	cost = 4.00
+	prerequisite = { focus = BRG_hiding_the_silos }
+	prerequisite = { focus = BRG_expanded_uranium_production }
+	x = 0
+	y = 2
+	relative_position_id = BRG_the_agents_of_destruction
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_grasping_hand"
+		TNO_improve_nuclear_stockpile_low = yes
+		country_event = { id = BRG_focus.204 }
+	}
+}
+shared_focus = {
+	id = BRG_preparing_for_the_new_beginning
+	icon = GFX_BRG_Focus_Prepare_For_The_New_Beginning
+	cost = 4.00
+	prerequisite = { focus = BRG_project_bergentruckung }
+	x = 2
+	y = 1
+	relative_position_id = BRG_project_bergentruckung
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_preparing_for_the_new_beginning"
+		country_event = { id = BRG_nuclear.1 days = 4 }
+		custom_effect_tooltip = BRG_Unlock_Shelter_Shit
+		set_variable = { BRG_days_remove_time = 31 }
+		add_dynamic_modifier = { modifier = BRG_nuclear_tree_dynamic_modifier }
+			set_variable = { BRG_national_shelter_level = 1 }
+			set_variable = { charlemagne_manpower_level = 1 }
+			set_variable = { charlemagne_money_level = 1 }
+			set_variable = { charlemagne_if_level = 1 }
+			set_variable = { charlemagne_if_xp_needed = 300 }
+			set_variable = { charlemagne_money_xp_needed = 300 }
+			set_variable = { charlemagne_manpower_xp_needed = 300}
+
+			set_variable = { langemarck_manpower_level = 1 }
+			set_variable = { langemarck_money_level = 1 }
+			set_variable = { langemarck_if_level = 1 }
+			set_variable = { langemarck_if_xp_needed = 300 }
+			set_variable = { langemarck_money_xp_needed = 300 }
+			set_variable = { langemarck_manpower_xp_needed = 300}
+
+			set_variable = { himmler_manpower_level = 1 }
+			set_variable = { himmler_money_level = 1 }
+			set_variable = { himmler_if_level = 1 }
+			set_variable = { himmler_if_xp_needed = 300 }
+			set_variable = { himmler_money_xp_needed = 300 }
+			set_variable = { himmler_manpower_xp_needed = 300}
+
+			set_variable = { walloon_manpower_level = 1 }
+			set_variable = { walloon_money_level = 1 }
+			set_variable = { walloon_if_level = 1 }
+			set_variable = { walloon_if_xp_needed = 300 }
+			set_variable = { walloon_money_xp_needed = 300 }
+			set_variable = { walloon_manpower_xp_needed = 300}
+			TNO_BRG_calculate_total_levels = yes
+	}
+}
+shared_focus = {
+	id = BRG_expanded_bunker_design
+	icon = GFX_BRG_Expanded_Bunker_Design
+	cost = 4.00
+	prerequisite = { focus = BRG_preparing_for_the_new_beginning }
+	x = 0
+	y = 1
+	relative_position_id = BRG_preparing_for_the_new_beginning
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_expanded_bunker_design"
+		custom_effect_tooltip = BRG_All_Boost
+		country_event = { id = BRG_nuclear.2 days = 3 }
+		add_to_variable = { himmler_if_xp = 100 }
+		add_to_variable = { charlemagne_if_xp = 100 }
+		add_to_variable = { langemarck_if_xp = 100 }
+		add_to_variable = { walloon_if_xp = 100 }
+
+		add_to_variable = { himmler_money_xp = 100 }
+		add_to_variable = { charlemagne_money_xp = 100 }
+		add_to_variable = { langemarck_money_xp = 100 }
+		add_to_variable = { walloon_money_xp = 100 }
+
+		add_to_variable = { himmler_manpower_xp = 100 }
+		add_to_variable = { charlemagne_manpower_xp = 100 }
+		add_to_variable = { langemarck_manpower_xp = 100 }
+		add_to_variable = { walloon_manpower_xp = 100 }
+		TNO_Charlemagne_XP_Checks = yes
+	}
+}
+shared_focus = {
+	id = BRG_upgraded_ventilation_research
+	icon = GFX_BRG_Upgraded_Vents
+	cost = 4.00
+	prerequisite = { focus = BRG_expanded_bunker_design }
+	x = -1
+	y = 1
+	relative_position_id = BRG_expanded_bunker_design
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_upgraded_ventilation_research"
+		custom_effect_tooltip = BRG_unlock_vents_tt
+		set_country_flag = BRG_can_unlock_vents
+	}
+}
+shared_focus = {
+	id = BRG_finalize_the_evacuation_plans
+	icon = GFX_BRG_Focus_Complet_The_Evacuation_Plans
+	cost = 4.00
+	prerequisite = { focus = BRG_expanded_bunker_design }
+	x = 1
+	y = 1
+	relative_position_id = BRG_expanded_bunker_design
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_finalize_the_evacuation_plans"
+		custom_effect_tooltip = BRG_Reduce_Time
+		set_variable = { BRG_days_remove_time = 15 }
+		country_event = { id = BRG_nuclear.3 days = 5 }
+	}
+}
+shared_focus = {
+	id = BRG_the_future_secured
+	icon = GFX_BRG_Turn_The_Key
+	cost = 4.00
+	prerequisite = { focus = BRG_the_grasping_hand }
+	prerequisite = { focus = BRG_upgraded_ventilation_research }
+	prerequisite = { focus = BRG_finalize_the_evacuation_plans }
+	x = 0
+	y = 4
+	relative_position_id = BRG_project_bergentruckung
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus BRG_the_future_secured"
+		country_event = { id = BRG_focus.206 }
+	}
+}

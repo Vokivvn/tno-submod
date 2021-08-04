@@ -1,0 +1,272 @@
+scripted_gui = {
+	TNO_Bormann_EconMech_DecisionGui = {
+		window_name = "TNO_Bormann_EconMech_GUI"
+		context_type = decision_category
+		# context_type = player_context
+		# parent_window_token = TNO_Germany_army_window_main
+
+		visible = {
+			tag = GER
+			has_country_flag = BOR_EconomyMechanic_Active
+		}
+
+		effects = {
+			TNO_Bormann_EconMech_POL_click = {
+				GGN = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_OST_click = {
+				OSL = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_UKR_click = {
+				UKR = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_CAU_click = {
+				CAU = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_MCW_click = {
+				MCW = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_HOL_click = {
+				HOL = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_DEN_click = {
+				DEN = { BOR_EconMech_RK_selection_map = yes }
+			}
+			TNO_Bormann_EconMech_NOR_click = {
+				NOR = { BOR_EconMech_RK_selection_map = yes }
+			}
+
+			BOR_econ_button_increase_investment_click = {
+				add_political_power = -15
+				add_to_variable = { BOR_SlaveCost = 0.005 }
+				BOR_EconMech_update_cost_display = yes
+				update_economy_tab = yes
+				add_to_variable = { BOR_econ_button_drager_X = 22 }
+				clr_country_flag = gui_alert_visible
+			}
+			BOR_econ_button_decrease_investment_click = {
+				add_political_power = -20
+				subtract_from_variable = { BOR_SlaveCost = 0.005 }
+				BOR_EconMech_update_cost_display = yes
+				update_economy_tab = yes
+				add_to_variable = { BOR_econ_button_drager_X = -22 }
+				clr_country_flag = gui_alert_visible
+			}
+
+			BOR_econ_debug_click = {
+				if = { 
+					limit = { 
+						has_country_flag = BOR_EconomyMechanic_Active
+						check_variable = { BOR_WorkforceFactor < 1 }
+					}
+					log = "[GetDateText]: [Root.GetName]: Monthly Bormann EconMech update"
+					# Monthly slave population change
+					BOR_EconMech_update_slave_pop = yes
+					# Monthly workforce change
+					BOR_EconMech_update_workforce = yes
+					# Monthly slave cost requirement update
+					BOR_EconMech_update_minimum_investment = yes
+					# Monthly total GDP update
+					BOR_EconMech_update_gdps = yes
+					# Check to see if the program has finished
+					if = {
+						limit = { check_variable = { BOR_WorkforceFactor = 1 } }
+						clear_variable = BOR_SlaveCost
+						clear_variable = BOR_SlaveCost_Display
+						clear_variable = BOR_MinimumInvestment
+					}
+				}
+			}
+			BOR_econ_debug_right_click = {
+				BOR_EconMech_update_minimum_investment = yes
+				set_variable = { BOR_SlaveCost = 0.005 }
+				BOR_EconMech_update_cost_display = yes
+				update_economy_tab = yes
+				set_variable = { BOR_econ_button_drager_X = 25 }
+			}
+		}
+
+		triggers = {
+			TNO_Bormann_EconMech_POL_visible = {
+				GGN = {
+					exists = yes
+					is_in_faction_with = GER
+				}
+			}
+			TNO_Bormann_EconMech_POL_GER_visible = {
+				GGN = { exists = no }
+			}
+			TNO_Bormann_EconMech_OST_visible = {
+				OSL = {
+					exists = yes
+					is_in_faction_with = GER
+				}
+			}
+			TNO_Bormann_EconMech_OST_GER_visible = {
+				OST = { exists = no }
+				MST = { exists = no }
+				DST = { exists = no }
+				JST = { exists = no }
+				BLR = { exists = no }
+				UPO = { exists = no }
+			}
+			TNO_Bormann_EconMech_CAU_visible = {
+				CAU = { is_in_faction_with = GER }
+			}
+			TNO_Bormann_EconMech_MCW_visible = {
+				MCW = { is_in_faction_with = GER }
+			}
+			TNO_Bormann_EconMech_DEN_visible = {
+				DEN = {
+					exists = yes
+					is_in_faction_with = GER 
+				}
+			}
+			TNO_Bormann_EconMech_DEN_GER_visible = {
+				DEN = { exists = no }
+			}
+			TNO_Bormann_EconMech_UKR_visible = {
+				UKR = {
+					is_in_faction_with = GER
+					BOR_EconMech_RKSelect_Enabled = yes
+				}
+			}
+			TNO_Bormann_EconMech_UKR_icon_visible = {
+				UKR = {
+					is_in_faction_with = GER
+					BOR_EconMech_RKSelect_Enabled = no
+				}
+			}
+			TNO_Bormann_EconMech_NOR_outline_visible = {
+				NOR = {
+					is_in_faction_with = GER
+					OR = {
+						has_government = national_socialism
+						has_government = fascism
+						has_government = despotism
+					}
+				}
+			}
+			TNO_Bormann_EconMech_NOR_visible = {
+				NOR = {
+					is_in_faction_with = GER
+					OR = {
+						has_government = national_socialism
+						has_government = fascism
+						has_government = despotism
+					}
+					BOR_EconMech_RKSelect_Enabled = yes
+				}
+			}
+			TNO_Bormann_EconMech_NOR_icon_visible = {
+				NOR = {
+					is_in_faction_with = GER
+					OR = {
+						has_government = national_socialism
+						has_government = fascism
+						has_government = despotism
+					}
+					BOR_EconMech_RKSelect_Enabled = no
+				}
+			}
+			TNO_Bormann_EconMech_HOL_visible = {
+				HOL = {
+					exists = yes
+					is_in_faction_with = GER 
+				}
+			}
+			TNO_Bormann_EconMech_HOL_GER_visible = {
+				HOL = { exists = no }
+			}
+
+			BOR_econ_debug_visible = {
+				is_debug = yes
+			}
+
+			TNO_Bormann_EconMech_POL_click_enabled = {
+				GGN = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+			TNO_Bormann_EconMech_OST_click_enabled = {
+				OSL = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+			TNO_Bormann_EconMech_CAU_click_enabled = {
+				CAU = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+			TNO_Bormann_EconMech_MCW_click_enabled = {
+				MCW = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+			TNO_Bormann_EconMech_HOL_click_enabled = {
+				HOL = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+			TNO_Bormann_EconMech_DEN_click_enabled = {
+				DEN = { BOR_EconMech_RKSelect_Enabled = yes }
+			}
+
+			BOR_econ_button_increase_investment_click_enabled = {
+				has_political_power > 14
+				check_variable = { BOR_SlaveCost < 0.1 }
+				check_variable = { BOR_WorkforceFactor < 1 }
+			}
+			BOR_econ_button_decrease_investment_click_enabled = {
+				has_political_power > 19
+				check_variable = { BOR_SlaveCost > 0.005 }
+				check_variable = { BOR_WorkforceFactor < 1 }
+			}
+
+			# GUI alert because people can't SEE
+			gui_alert_1_visible = {
+				has_country_flag = gui_alert_visible
+			}
+			gui_alert_2_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+
+		properties = {
+			BOR_econ_button_drager = {
+				x = BOR_econ_button_drager_X
+			}
+		}
+
+		ai_enabled = { original_tag = GER }
+		ai_check = {
+			check_variable = { BOR_WorkforceFactor > 0 }
+			check_variable = { BOR_WorkforceFactor < 1 }
+        }
+
+		ai_test_interval = 168
+		ai_max_weight_taken_per_test = 2
+
+		ai_weights = {
+			BOR_econ_button_increase_investment_click = {
+				ai_will_do = {
+					base = -1
+					modifier = {
+						check_variable = { BOR_SlaveCost_Display < BOR_MinimumInvestment }
+						add = 10
+					}
+					modifier = {
+						check_variable = { deficit < 0 }
+						add = 5
+					}
+					modifier = {
+						check_variable = { BOR_SlaveCost < 0.03 }
+						add = 20
+					}
+				}
+				weight = 1
+			}
+			BOR_econ_button_decrease_investment_click = {
+				ai_will_do = {
+					base = -1
+					modifier = {
+						check_variable = { deficit > 0 }
+						check_variable = { BOR_SlaveCost_Display > BOR_MinimumInvestment }
+						add = 8
+					}
+				}
+				weight = 1
+			}
+		}
+	}
+}

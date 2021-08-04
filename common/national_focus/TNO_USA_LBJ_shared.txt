@@ -1,0 +1,6077 @@
+############################
+# ALL THE WAY WITH LBJ   #
+############################
+#PHASE 1
+shared_focus = {
+	id = USA_lbj_64_the_johnson_presidency
+	icon = GFX_USA_The_Johnson_Presidency
+	cost = 2.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_the_johnson_presidency"
+		country_event = { id = LBJ.1 }
+	}
+	x = 18
+	y = 0
+}
+
+shared_focus = {
+	id = USA_lbj_64_mistakes_of_nixon
+	icon = GFX_USA_60_Nixon
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_the_johnson_presidency
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_mistakes_of_nixon"
+		custom_effect_tooltip = LBJ_nixon_misstakes
+		custom_effect_tooltip = USA_add_RD_unity
+		add_stability = 0.03
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 0.75 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.025 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 17
+	y = 1
+}
+
+shared_focus = {
+	id = USA_lbj_64_legacy_of_kennedy
+	icon = GFX_USA_Handshake_with_MLK
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_the_johnson_presidency
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_legacy_of_kennedy"
+		custom_effect_tooltip = LBJ_kennedy_legacy
+		custom_effect_tooltip = USA_add_RD_unity
+		add_political_power = 100
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = 0.75 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+
+					}
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.025 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 19
+	y = 1
+}
+
+shared_focus = {
+	id = USA_lbj_64_forwards_together
+	icon = GFX_USA_Forwards_Together
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_mistakes_of_nixon
+	}
+	prerequisite = {
+		focus = USA_lbj_64_legacy_of_kennedy
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_forwards_together"
+		custom_effect_tooltip = USA_add_OFN_unity
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		add_stability = 0.02
+		hidden_effect = {
+			add_to_variable = { OFN_unity = 1 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+						check_variable = { nationality = 83 }  #Dixie
+						check_variable = { nationality = 337 } #Unchanging Corn
+						}
+					}
+				}
+				add_to_variable = { NPP_C_bonus_popularity = 0.05}
+				add_to_variable = { RD_R_bonus_popularity = 0.05}
+				if = {
+					limit = { check_variable = {RD_R_bonus_popularity < RD_D_bonus_popularity } }
+					subtract_from_variable = { RD_R_bonus_popularity = 0.1 }
+					add_to_variable = { RD_D_bonus_popularity = 0.1 }
+				}
+				if = {
+					limit = { check_variable = {NPP_FR_bonus_popularity < NPP_C_bonus_popularity } }
+					subtract_from_variable = { NPP_C_bonus_popularity = 0.1 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.1 }
+				}
+			}
+		}
+	}
+	x = 18
+	y = 2
+}
+
+shared_focus = {
+	id = USA_lbj_64_secure_congress_support
+	icon = GFX_USA_Wrangle_the_Senate
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_forwards_together
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_secure_congress_support"
+		add_political_power = 50
+		country_event = { id = LBJ.9 }
+	}
+	x = 16
+	y = 3
+}
+
+shared_focus = {
+	id = USA_lbj_64_on_our_own
+	icon = GFX_USA_Reestablish_Party
+	cost = 3.00
+	prerequisite = {
+		focus = USA_lbj_64_secure_congress_support
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_deal_with_center
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_on_our_own"
+		custom_effect_tooltip = USA_add_RD_popularity_low_north
+		custom_effect_tooltip = USA_add_RD_unity
+		add_stability = 0.03
+		add_political_power = 100
+		hidden_effect = {
+			add_to_variable = {	USA_RD_Unity = 0.75}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #Bigger gains for them in New England
+					limit = { check_variable = { nationality = 82 } }
+					add_to_temp_variable = { popularity_bonus = 0.03 }
+				}
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+				subtract_from_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 15
+	y = 4
+}
+
+shared_focus = {
+	id = USA_lbj_64_deal_with_center
+	icon = GFX_USA_For_the_Good_of_America
+	cost = 3.00
+	prerequisite = {
+		focus = USA_lbj_64_secure_congress_support
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_on_our_own
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_deal_with_center"
+		custom_effect_tooltip  = LBJ_strengthen_center
+		add_stability = -0.03
+		add_political_power = -100
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #Bigger gains for them in New England
+					limit = { check_variable = { nationality = 82 } }
+					add_to_temp_variable = { popularity_bonus = 0.03 }
+				}
+				add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				subtract_from_temp_variable = { popularity_bonus = 0.03 }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+			country_event = { id = LBJ.2 }
+		}
+	}
+	x = 17
+	y = 4
+}
+
+shared_focus = {
+	id = USA_lbj_64_shut_up_and_help_me
+	icon = GFX_USA_Against_the_NPP
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_on_our_own
+		focus = USA_lbj_64_deal_with_center
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_shut_up_and_help_me"
+		custom_effect_tooltip = USA_LBJ_temp_vote_tell_desc
+		if = {
+			limit = { has_country_flag = USA_R_Center_United }
+			custom_effect_tooltip = LBJ_strengthen_center
+			add_political_power = 50
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.02 }
+					if = { #Bigger gains for them in New England
+						limit = { check_variable = { nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.01 }
+					}
+					add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.01 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		else = {
+			custom_effect_tooltip = USA_random_C_votes_tt
+			set_temp_variable = { tvar = NPP_C_senators }
+			multiply_temp_variable = { tvar = random }
+			multiply_temp_variable = { tvar = 0.5 }
+			add_to_variable = { temporary_congress_votes = tvar }
+			round_variable = temporary_congress_votes
+			USA_get_total_congress_votes = yes
+		}
+	}
+	x = 16
+	y = 5
+}
+
+shared_focus = {
+	id = USA_lbj_64_lay_groundwork
+	icon = GFX_USA_make_speeches
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_forwards_together
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_lay_groundwork"
+		country_event = { id = LBJ.11 }
+
+	}
+	x = 20
+	y = 3
+}
+
+shared_focus = {
+	id = USA_lbj_64_introduce_concept
+	icon = GFX_Generic_Social_Liberal
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_lay_groundwork
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_introduce_concept"
+		country_event = { id = LBJ.12 }
+	}
+	x = 20
+	y = 4
+}
+
+shared_focus = {
+	id = USA_lbj_64_form_task_forces
+	icon = GFX_TNO_generic_inviting_people
+	cost = 2.00
+	prerequisite = {
+		focus = USA_lbj_64_introduce_concept
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_form_task_forces"
+		add_ideas = USA_LBJ_task_forces
+	}
+	x = 20
+	y = 5
+}
+#PHASE 2
+# The Great Society Tree
+shared_focus = {
+	id = USA_lbj_64_the_great_society
+	icon = GFX_USA_The_Great_Society
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_shut_up_and_help_me
+	}
+	prerequisite = {
+		focus = USA_lbj_64_form_task_forces
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_the_great_society"
+		USA_decrease_depression = yes
+		unlock_decision_category_tooltip = USA_LBJ_great_society_category
+		hidden_effect = {
+			set_variable = { LBJ_civil_rights_strength = 0 }
+			set_variable = { LBJ_welfare_strength = 0 }
+			set_variable = { LBJ_healthcare_strength = 0 }
+			set_variable = { LBJ_education_strength = 0 }
+			set_variable = { LBJ_environment_strength = 0 }
+			set_variable = { LBJ_exhuastion = 0 }
+			set_country_flag = USA_LBJ_great_society_started
+		}
+	}
+	x = 18
+	y = 6
+}
+
+# Rightmost Education Section
+shared_focus = {
+	id = USA_lbj_64_teach_them_well
+	icon = GFX_USA_Our_Nations_Education
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_the_great_society
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_teach_them_well"
+		custom_effect_tooltip = LBJ_strengthen_republicans
+		add_political_power = 50
+		hidden_effect = {
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					}
+					set_temp_variable = { popularity_bonus = 0.04 }
+					if = { #Bigger gains for them in New England
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+							}
+						}
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.025 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+	}
+	x = 28
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_head_start
+	icon = GFX_CHI_Reorganizing_the_Curriculum
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_teach_them_well
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_head_start"
+		country_event = { id = LBJ.80 days = 7 }
+		TNO_improve_poverty_low = yes #coded with a script
+		TNO_improve_academic_base_low = yes #coded with a script
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+	}
+	x = 28
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_teacher_unions
+	icon = GFX_RAJ_The_Education
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_head_start
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_teacher_unions"
+		country_event = { id = LBJ.81  days = 7 } #Sitting down with teacher unions
+	}
+	x = 27
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_assess_material_needs
+	icon = GFX_USA_Begin_Integration
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_head_start
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_assess_material_needs"
+		country_event = { id = LBJ.83 days = 7 }
+	}
+	x = 29
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_first_education_act
+	icon = GFX_USA_Primary_Education_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_assess_material_needs
+	}
+	prerequisite = {
+		focus = USA_lbj_64_teacher_unions
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_first_education_act"
+		if = {
+			limit = {
+				AND = {
+					has_country_flag = LBJ_Education1_money
+					has_country_flag = LBJ_Education1_changed_requirements
+				}
+			}
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+			add_to_variable = { LBJ_education_strength = 5 }
+			add_to_variable = { LBJ_exhuastion = 1 }
+			TNO_improve_academic_base_high = yes #coded with a script
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.13 }
+					if = { #More effective in New England
+						limit = { check_variable = { nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.07 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					US_underdog_RD_5_5 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.13 }
+					if = { #More hurtful in deep south
+						limit = { check_variable = { nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.07 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_RD_5_5 = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_country_flag = LBJ_Education1_money
+					has_country_flag = LBJ_Education1_changed_requirements
+				}
+			}
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity_west
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+			add_to_variable = { LBJ_education_strength = 3 }
+			add_to_variable = { LBJ_exhuastion = 1 }
+			TNO_improve_academic_base_med = yes #coded with a script
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.11 }
+					if = { #More effective in New England
+						limit = { check_variable = { nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.06 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+					US_underdog_RD_5_5 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 88 } #Pacific
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.11 }
+					if = { #More hurtful in deep south
+						limit = { check_variable = { nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.06 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_NPP_5_5 = yes
+				}
+			}
+
+		}
+		else_if = {
+			limit = {
+				AND = {
+					has_country_flag = LBJ_Education1_no_money
+					has_country_flag = LBJ_Education1_kept_requirements
+				}
+			}
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity_west
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+			add_to_variable = { LBJ_education_strength = 1 }
+			TNO_improve_academic_base_low = yes #coded with a script
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.08 }
+					if = { #More effective in New England
+						limit = { check_variable = { nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.01 }
+					}
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.02 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 88 } #Pacific
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.08 }
+					if = { #More hurtful in deep south
+						limit = { check_variable = { nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.01 }
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_variable = { popularity_bonus = 0.02 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		else = { custom_effect_tooltip = USA_LBJ_determine_bill_strength }
+		USA_pass_legislation = yes
+		custom_effect_tooltip = USA_clear_temp_votes_d
+		USA_LBJ_check_exhuastion = yes
+		set_country_flag = USA_LBJ_education_act_f
+		}
+	x = 28
+	y = 10
+}
+
+shared_focus = {
+	id = USA_lbj_64_our_past
+	icon = GFX_continuous_research
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_first_education_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_our_past"
+		USA_lbj_strengthen_education_small = yes
+		add_political_power = 25
+	}
+	x = 26
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_our_future
+	icon = GFX_CHI_Adapt_Computer_Designs
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_first_education_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_our_future"
+		USA_lbj_strengthen_education_small = yes
+		add_stability = 0.02
+	}
+	x = 30
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_funding_schools
+	icon = GFX_USA_Funding_Our_Schools
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_our_past
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_funding_schools"
+		country_event = { id = LBJ.90 }
+	}
+	x = 26
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_funding_colleges
+	icon = GFX_USA_Funding_Our_Colleges
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_our_future
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_funding_colleges"
+		country_event = { id = LBJ.91 days = 7 }
+	}
+	x = 30
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_teacher_corps
+	icon = GFX_CHI_Scholarships_for_the_Poor
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_our_future
+	}
+	prerequisite = {
+		focus = USA_lbj_64_our_past
+	}
+	prerequisite = {
+		focus = USA_lbj_64_first_education_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_teacher_corps"
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+		TNO_improve_poverty_low = yes #coded with a script
+		TNO_improve_academic_base_low = yes #coded with a script
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+		USA_LBJ_increase_social_funding = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						AND = { #Support in African American states if LBJ completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #More effective in New England
+					limit = { check_variable = { nationality = 82 } }
+					add_to_temp_variable = { popularity_bonus = 0.01 }
+				}
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+							check_variable = { nationality = 337 } #Unchanging Corn
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = { #More hurtful in deep south
+					limit = { check_variable = { nationality = 83 } }
+					add_to_temp_variable = { popularity_bonus = 0.01 }
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { popularity_bonus = 0.02 }
+				add_to_variable = { NPP_popularity = popularity_bonus }
+				subtract_from_variable = { RD_popularity = popularity_bonus }
+				subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 28
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_second_education_act
+	icon = GFX_USA_Secondary_Education_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_teacher_corps
+	}
+	prerequisite = {
+		focus = USA_lbj_64_funding_colleges
+	}
+	prerequisite = {
+		focus = USA_lbj_64_funding_schools
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_second_education_act"
+		if = {
+			limit = {
+				has_country_flag = LBJ_Education2_colleges_funded
+				has_country_flag = LBJ_Education2_schools_funded
+			}
+			custom_effect_tooltip = LBJ_univerity_bonus
+			tno_education_improve = yes
+			TNO_improve_academic_base_high = yes #coded with a script
+			USA_LBJ_increase_social_funding = yes
+			hidden_effect = { #add a lot of RD support in New England, California, Texas
+				add_to_variable = { LBJ_education_strength = 5 }
+				add_to_variable = { LBJ_exhuastion = 1 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+							state = 375
+							state = 378
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.11 }
+					if = { #More effective in New England
+						limit = { check_variable = {nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+								state = 375
+								state = 378
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.11 }
+					if = { #More effective in Deep South
+						limit = { check_variable = {nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_country_flag = LBJ_Education2_colleges_funded
+					has_country_flag = LBJ_Education2_schools_funded
+				}
+			}
+			add_timed_idea = {
+				idea = USA_LBJ_school_bonus_2
+				days = 1460
+			}
+			custom_effect_tooltip = LBJ_univerity_bonus
+			TNO_improve_academic_base_med = yes #coded with a script
+			USA_LBJ_increase_social_funding = yes
+			##add a RD support in New England, California, Texas
+			hidden_effect = {
+				add_to_variable = { LBJ_education_strength = 3 }
+				add_to_variable = { LBJ_exhuastion = 1 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+							state = 375
+							state = 378
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.09 }
+					if = { #More effective in New England
+						limit = { check_variable = {nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+								state = 375
+								state = 378
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.09 }
+					if = { #More effective in Deep South
+						limit = { check_variable = {nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				AND = {
+					has_country_flag = LBJ_Education2_colleges_not_funded
+					has_country_flag = LBJ_Education2_schools_not_funded
+				}
+			}
+			add_timed_idea = {
+				idea = USA_LBJ_school_bonus_2
+				days = 730
+			}
+			TNO_improve_academic_base_low = yes #coded with a script
+			custom_effect_tooltip = LBJ_univerity_bonus
+			USA_LBJ_increase_social_funding = yes
+			hidden_effect = {
+				add_to_variable = { LBJ_education_strength = 1 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							AND = { #Support in African American states if LBJ completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+							state = 375
+							state = 378
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.07 }
+					if = { #More effective in New England
+						limit = { check_variable = {nationality = 82 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { RD_R_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 82 } #Yankee
+								check_variable = { nationality = 85 } #Steel Belt
+								check_variable = { nationality = 337 } #Unchanging Corn
+								AND = { #Support in African American states if LBJ completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+								state = 375
+								state = 378
+							}
+						}
+					}
+					set_temp_variable = { popularity_bonus = 0.07 }
+					if = { #More effective in Deep South
+						limit = { check_variable = {nationality = 83 } }
+						add_to_temp_variable = { popularity_bonus = 0.02 }
+					}
+					add_to_variable  = { NPP_FR_bonus_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					add_to_variable = { NPP_popularity = popularity_bonus }
+					subtract_from_temp_variable = { popularity_bonus = 0.04 }
+					subtract_from_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		else = { custom_effect_tooltip = USA_LBJ_determine_bill_strength }
+		custom_effect_tooltip = USA_clear_temp_votes_d
+		set_country_flag = LBJ_higher_education_flag
+		hidden_effect = {
+			USA_pass_legislation = yes
+			USA_LBJ_check_exhuastion = yes
+		}
+	}
+	x = 28
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_national_arts
+	icon = GFX_SLO_Ease_Press_Cencorship
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_second_education_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_national_arts"
+		add_ideas = USA_LBJ_national_endowment_for_arts
+	}
+	x = 27
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_national_humanities
+	icon = GFX_SLO_The_Writers_Union
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_second_education_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_national_humanities"
+		add_ideas = USA_LBJ_national_endowment_of_humanities
+	}
+	x = 29
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_pbs_broadcast
+	icon = GFX_USA_First_PBS_Broadcast
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_national_humanities
+	}
+	prerequisite = {
+		focus = USA_lbj_64_national_arts
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_pbs_broadcast"
+		country_event = { id = LBJ.112	days = 3 }
+	}
+	x = 28
+	y = 15
+}
+
+# Leftmost Civil Rights Section##############################
+shared_focus = {
+	id = USA_lbj_64_more_civil_rights
+	icon = GFX_USA_The_Issue_of_Civil_Rights
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_the_great_society
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_more_civil_rights"
+		add_political_power = -25
+		custom_effect_tooltip = NPP_shift_right_south_tt
+		
+		# South hates this while North likes it
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 83 } # Dixie
+				}
+				add_to_variable = { NPP_FR_bonus_popularity = 0.2 }
+				add_to_variable = { NPP_popularity = 0.25 }
+				US_underdog_NPP_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 } # Yankee
+						check_variable = { nationality = 85 } # Steel Belt
+					}
+				}
+				add_to_variable = {	RD_R_bonus_popularity = 0.06 }
+				add_to_variable = { RD_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 8
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_vote_in_hand
+	icon = GFX_USA_voting_stations_inspections
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_more_civil_rights
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_vote_in_hand"
+		add_political_power = -50
+		custom_effect_tooltip = NPP_lose_AA_popularity_tt
+		# Motivates African Americans to come out and vote, reducing segregationist influence in south
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 84 } # African American
+						check_variable = { nationality = 83 } # Dixie
+						check_variable = { nationality = 86 } # Southwestern
+					}
+				}
+				subtract_from_variable = { NPP_popularity = 0.12 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+	x = 8
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_outlaw_literacy_tests
+	icon = GFX_USA_Outlaw_Literacy_Tests
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_vote_in_hand
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_outlaw_literacy_tests"
+		add_stability = 0.02
+		custom_effect_tooltip = NPP_lose_AA_popularity_tt
+		# Motivates African Americans to come out and vote, reducing segregationist influence in south
+		hidden_effect = {
+			random_list = {
+				50 = {
+					every_owned_state = {
+						limit = {
+							can_have_elections_in_state = yes
+							OR = {
+								check_variable = { nationality = 84 } # African American
+								check_variable = { nationality = 83 } # Dixie
+								check_variable = { nationality = 86 } # Southwestern
+							}
+						}
+						subtract_from_variable = { NPP_popularity = 0.05 }
+						subtract_from_variable = { NPP_FR_bonus_popularity = 0.05 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.05 }
+						US_underdog_RD_2_2 = yes
+					}
+				}
+				50 = {
+					every_owned_state = {
+						limit = {
+							can_have_elections_in_state = yes
+							OR = {
+								check_variable = { nationality = 84 } # African American
+								check_variable = { nationality = 83 } # Dixie
+								check_variable = { nationality = 86 } # Southwestern
+							}
+						}
+						add_to_variable = { RD_popularity = 0.075 }
+						add_to_variable = { RD_R_bonus_popularity = 0.1 }
+						add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+						US_underdog_RD_2_2 = yes
+					}
+				}
+			}
+		}
+	}
+	x = 7
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_special_provisions
+	icon = GFX_USA_desegregat_the_south
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_vote_in_hand
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_special_provisions"
+		country_event = { id = LBJ.13 }
+	}
+	x = 9
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_voting_rights_act
+	icon = GFX_USA_Voting_Rights_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_outlaw_literacy_tests
+	}
+	prerequisite = {
+		focus = USA_lbj_64_special_provisions
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_voting_rights_act"
+		# Add vote franchise if civil rights bill not passed
+		USA_increase_civil_rights = yes
+		if = {
+			limit = { has_idea = tno_minorities_segregation }
+			tno_minorities_improve = yes
+		}
+		# Make the south pissed if the north was pissed at first
+		if = {
+			limit = { has_idea = USA_northern_fury }
+			swap_ideas = {
+				remove_idea = USA_northern_fury
+				add_idea = USA_southern_resistance
+			}
+		}
+		add_to_variable = { LBJ_exhuastion = 1 }
+
+		set_country_flag = USA_voting_rights_act #civil_rights CRA
+		set_country_flag = USA_LBJ_voting_rights_act #civil_rights CRA
+
+		if = {
+			limit = { has_country_flag = LBJ_VRA_strong }
+			add_to_variable = { LBJ_civil_rights_strength = 5 }
+			custom_effect_tooltip = USA_LBJ_reduce_voter_discrimination_big_tt
+			hidden_effect = {
+				country_event = { id = LBJ.14 days = 21}
+				country_event = { id = LBJ.24 days = 7}
+				#DIXIE STATES
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.18}
+					add_to_variable = { NPP_popularity = 0.18}
+					US_underdog_NPP_5_5 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 337 } #Unchanging corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.1 }
+					add_to_variable = {RD_R_bonus_popularity = 0.1 }
+					if = { #Bigger boost in New England
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+					US_underdog_RD_5_5 = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = LBJ_VRA_medium
+			}
+			add_popularity = {
+				ideology = authoritarian_democrat
+				popularity = 0.01
+			}
+			add_to_variable = {
+				LBJ_civil_rights_strength = 3
+			}
+			custom_effect_tooltip = USA_LBJ_reduce_voter_discrimination_med_tt
+			hidden_effect = {
+				#DIXIE STATES
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.2}
+					add_to_variable = { NPP_popularity = 0.2}
+					US_underdog_NPP_5_5 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 337 } #Unchanging corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.07 }
+					add_to_variable = {RD_R_bonus_popularity = 0.07 }
+					if = {
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+					US_underdog_RD_2_2 = yes
+				}
+			}
+			country_event = { id = LBJ.24	days = 7 }
+		}
+		else_if = {
+			# this is a bad idea don't do it
+			limit = {
+				has_country_flag = LBJ_VRA_weak
+			}
+			add_political_power = 50
+			add_to_variable = {
+				LBJ_civil_rights_strength = 1
+			}
+			custom_effect_tooltip = USA_LBJ_reduce_voter_discrimination_small_tt
+			hidden_effect = {
+				#DIXIE STATES
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.10}
+					add_to_variable = { NPP_popularity = 0.10}
+					US_underdog_NPP_2_2 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 337 } #Unchanging corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.05 }
+					add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					if = {
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+		else = { custom_effect_tooltip = USA_LBJ_determine_bill_strength }
+		custom_effect_tooltip = USA_clear_temp_votes_d
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+		hidden_effect = {
+			USA_pass_legislation = yes
+			# NPP-C upset if you're working with them and made a bad bill
+			if = {
+				limit = {
+					has_variable = LBJ_NPP_civil_rights_demand
+					has_country_flag = USA_R_Center_United
+					has_country_flag = LBJ_VRA_weak
+				}
+				country_event = { id = LBJ.15 days = 7 }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = LBJ_VRA_strong
+						has_country_flag = LBJ_VRA_medium
+					}
+				}
+				country_event = { id = LBJ.135 days = 13 }
+			}
+			country_event = { id = LBJ.16 days = 21 }
+		}
+		USA_LBJ_check_exhuastion = yes
+	}
+	x = 8
+	y = 10
+}
+
+# totally not a 40k reference guys its all cool
+shared_focus = {
+	id = USA_lbj_64_once_more_unto_the_breach
+	icon = GFX_DOM_The_Trial
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_voting_rights_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_once_more_unto_the_breach"
+		# Time to actually enforce the civil rights bills we've passed
+		# Unlock decisions here
+		country_event = { id = LBJ.40 }
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+	}
+	x = 7
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_reshuffle_police_forces
+	icon = GFX_USA_police
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_once_more_unto_the_breach
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reshuffle_police_forces"
+		country_event = { id = LBJ.17 }
+	}
+	x = 7
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_beacon_in_darkness
+	icon = GFX_SLO_Allow_Limited_Press_Liberalization
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_voting_rights_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_beacon_in_darkness"
+		country_event = { id = LBJ.60 }
+	}
+	x = 9
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_for_those_worthy
+	icon = GFX_SLO_Limited_State_Newspaper
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_beacon_in_darkness
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_for_those_worthy"
+		country_event = { id = LBJ.63 days = 7 }
+	}
+	x = 9
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_immigration_nationality_act
+	icon = GFX_USA_Immigration_and_Nationality_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_for_those_worthy
+	}
+	prerequisite = {
+		focus = USA_lbj_64_reshuffle_police_forces
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_immigration_nationality_act"
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_increase_civil_rights = yes
+		if = {
+			# Strongest possible bill
+			limit = {
+				AND = {
+					has_country_flag = LBJ_immigration_inclusive
+					has_country_flag = LBJ_immigration_strong
+				}
+			}
+			add_to_variable = { LBJ_civil_rights_strength = 3 }
+			swap_ideas = {
+				add_idea = tno_immigration_naturalization
+				remove_idea = tno_immigration_quota_immigration
+			}
+			add_political_power = -75
+			custom_effect_tooltip = USA_add_RD_popularity_low
+			custom_effect_tooltip = USA_subtract_RD_popularity_high_south
+			hidden_effect = {
+				#Southern hate
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.16 }
+					add_to_variable = { NPP_popularity = 0.11 }
+					US_underdog_NPP_5_5 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 86 } #Southwestern
+								check_variable = { nationality = 337 } #Unchanging Corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.06 }
+					add_to_variable = {RD_R_bonus_popularity = 0.04}
+					US_underdog_RD_2_2 = yes
+					if = {
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_country_flag = LBJ_immigration_inclusive
+					has_country_flag = LBJ_immigration_strong
+				}
+			}
+			add_to_variable = { LBJ_civil_rights_strength = 2 }
+			swap_ideas = {
+				add_idea = tno_immigration_open_immigration
+				remove_idea = tno_immigration_quota_immigration
+			}
+			custom_effect_tooltip = USA_add_RD_popularity_med
+			custom_effect_tooltip = USA_subtract_RD_popularity_south
+			hidden_effect = {
+				#Southern hate
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.12 }
+					add_to_variable = { NPP_popularity = 0.08 }
+					US_underdog_NPP_2_2 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 86 } #Southwestern
+								check_variable = { nationality = 337 } #Unchanging Corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.08 } #Yeah you get more popularity for a less radical bill, turns out America has a racism problem
+					add_to_variable = {RD_R_bonus_popularity = 0.06 }
+					US_underdog_RD_2_2 = yes
+					if = {
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+				}
+			}
+			add_political_power = -50
+		}
+		else_if = {
+			# Weakest possible bill
+			limit = {
+				OR = {
+					has_country_flag = LBJ_immigration_exclusive
+					has_country_flag = LBJ_immigration_weak
+				}
+			}
+			add_to_variable = { LBJ_civil_rights_strength = 1 }
+			add_timed_idea = {
+				idea = USA_LBJ_immigration_bonus
+				days = 730
+			}
+			add_political_power = -25
+			custom_effect_tooltip = USA_add_RD_popularity_low
+			custom_effect_tooltip = USA_subtract_RD_popularity_low_south
+			hidden_effect = {
+				#Southern hate
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 84 } #African-American
+							check_variable = { nationality = 86 } #Southwestern
+						}
+					}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.08 }
+					add_to_variable = { NPP_popularity = 0.06 }
+					US_underdog_NPP_2_2 = yes
+				}
+				#everywhere else
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = {
+							OR = {
+								check_variable = { nationality = 83 } #Dixie
+								check_variable = { nationality = 84 } #African-American
+								check_variable = { nationality = 86 } #Southwestern
+								check_variable = { nationality = 337 } #Unchanging Corn
+							}
+						}
+					}
+					add_to_variable = {RD_popularity = 0.08 } #Yeah you get more popularity for a less radical bill, turns out America has a racism problem
+					add_to_variable = {RD_R_bonus_popularity = 0.06 }
+					if = {
+						limit = { check_variable = { nationality = 82 } }
+						add_to_variable = {RD_popularity = 0.05 }
+						add_to_variable = {RD_R_bonus_popularity = 0.05 }
+					}
+					US_underdog_RD_2_2 = yes
+				}
+			}
+		}
+		else = {
+			custom_effect_tooltip = USA_LBJ_determine_bill_strength
+		}
+		USA_LBJ_check_exhuastion = yes
+		custom_effect_tooltip = USA_clear_temp_votes_d
+		hidden_effect = {
+			USA_pass_legislation = yes
+			country_event = { id = LBJ.64 days = 21 }
+		}
+	}
+	x = 8
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_ghetto_riots
+	icon = GFX_USA_Use_The_Ghetto_Riots
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_immigration_nationality_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = LBJ_FHA_nixed
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_ghetto_riots"
+		USA_LBJ_reduce_race_riots = yes
+		add_political_power = 50
+	}
+	x = 8
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_roof_over_head
+	icon = GFX_USA_roof_over_ones_head
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_immigration_nationality_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = LBJ_FHA_nixed
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_roof_over_head"
+		country_event = { id = LBJ.76 }
+	}
+	x = 6
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_yes_in_my_backyard
+	icon = GFX_USA_yes_in_my_backyard
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_immigration_nationality_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = LBJ_FHA_nixed
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_yes_in_my_backyard"
+		add_political_power = -75
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		country_event = { id = LBJ.70 }
+	}
+	x = 10
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_the_FHA
+	icon = GFX_USA_The_Fair_Housing_Administration
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_yes_in_my_backyard
+	}
+	prerequisite = {
+		focus = USA_lbj_64_ghetto_riots
+	}
+	prerequisite = {
+		focus = USA_lbj_64_roof_over_head
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	bypass = {
+		hidden_trigger = {
+			has_country_flag = LBJ_FHA_nixed
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_the_FHA"
+		# Turns out the north is still pretty fucking racist, huh
+		USA_increase_civil_rights = yes
+		if = {
+			limit = { has_country_flag = LBJ_FHA_strong }
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+			custom_effect_tooltip = LBJ_moderate_party
+			custom_effect_tooltip = USA_subtract_RD_unity
+			hidden_effect = {
+				add_to_variable = {	LBJ_civil_rights_strength = 5 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = {	nationality = 82 } #Yankee
+							check_variable = {	nationality = 85 } #Steel Belt
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.06 }
+					subtract_from_variable = { RD_R_bonus_popularity = 0.06 }
+					add_to_variable = { RD_popularity = 0.08 }
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 87 } #Rockies
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = {	NPP_popularity = 0.15 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.19 }
+					US_underdog_NPP_5_5 = yes
+				}
+				every_owned_state = { #Thank you LBJ
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { nationality = 84} #African American
+					}
+					add_to_variable = { RD_popularity = 0.12 }
+					add_to_variable = { RD_R_bonus_popularity = 0.12 }
+					US_underdog_RD_5_5 = yes
+				}
+				subtract_from_variable = { USA_RD_Unity = 2.75 }
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = LBJ_FHA_medium }
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+			custom_effect_tooltip = LBJ_moderate_party
+			custom_effect_tooltip = USA_subtract_RD_unity
+			hidden_effect = {
+				add_to_variable = {	LBJ_civil_rights_strength = 3 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = {	nationality = 82 } #Yankee
+							check_variable = {	nationality = 85 } #Steel Belt
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.04 }
+					subtract_from_variable = { RD_R_bonus_popularity = 0.04 }
+					add_to_variable = { RD_popularity = 0.09 } #Racism
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 87 } #Rockies
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = {	NPP_popularity = 0.12 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.16 }
+					US_underdog_NPP_5_5 = yes
+				}
+				every_owned_state = { #Its not as good as it could be but its still a damn good sight
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { nationality = 84} #African American
+					}
+					add_to_variable = { RD_popularity = 0.1 }
+					add_to_variable = { RD_R_bonus_popularity = 0.1 }
+					US_underdog_RD_5_5 = yes
+				}
+				subtract_from_variable = { USA_RD_Unity = 1.75 }
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = LBJ_FHA_weak }
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity_west
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+			custom_effect_tooltip = LBJ_moderate_party
+			custom_effect_tooltip = USA_subtract_RD_unity
+			hidden_effect = {
+				country_event = { id = LBJ.141 days = 10 }
+				add_to_variable = {	LBJ_civil_rights_strength = 1 }
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { RD_D_bonus_popularity = 0.04 }
+					subtract_from_variable = { RD_R_bonus_popularity = 0.04 }
+					add_to_variable = { RD_popularity = 0.09 } #Racism
+					US_underdog_RD_2_2 = yes
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							check_variable = { nationality = 87 } #Rockies
+						}
+					}
+					add_to_variable = {	NPP_popularity = 0.08 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.12 }
+					US_underdog_NPP_2_2 = yes
+				}
+				every_owned_state = { #Sighs
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { nationality = 84} #African American
+					}
+					add_to_variable = { RD_popularity = 0.04 }
+					add_to_variable = { RD_R_bonus_popularity = 0.04 }
+					US_underdog_RD_2_2 = yes
+				}
+				subtract_from_variable = { USA_RD_Unity = 0.75 }
+			}
+		}
+		else = {
+			custom_effect_tooltip = USA_LBJ_determine_bill_strength
+		}
+		custom_effect_tooltip = USA_clear_temp_votes_d
+		if = {
+			limit = { has_variable = LBJ_NPP_civil_rights_demand }
+			custom_effect_tooltip = LBJ_satisfy_demand
+			clear_variable = LBJ_NPP_civil_rights_demand
+		}
+		hidden_effect = {
+			USA_pass_legislation = yes
+			# Event about democratic party decrying the bill
+			# Event some republicans hesitant
+		}
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+	}
+	x = 8
+	y = 15
+}
+
+# Welfare/Poverty/Healthcare Midsection
+shared_focus = {
+	id = USA_lbj_64_welfare_of_people
+	icon = GFX_USA_Welfare_of_the_People
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_the_great_society
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_welfare_of_people"
+		add_political_power = 50
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes }
+				add_to_variable = { RD_popularity = 0.02 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		custom_effect_tooltip = USA_LBJ_wellfare_path
+	}
+
+	x = 18
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_war_on_poverty
+	icon = GFX_USA_The_War_on_Poverty
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_the_great_society
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_war_on_poverty"
+		add_ideas = USA_LBJ_pilot_programs_1
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				add_to_variable = { RD_popularity = 0.02 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		custom_effect_tooltip = USA_LBJ_poverty_path
+	}
+	x = 12
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_healthcare_for_a_nation
+	icon = GFX_USA_Healthcare_for_a_Nation
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_the_great_society
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_healthcare_for_a_nation"
+		add_ideas = USA_LBJ_healthcare_programs_1
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = { can_have_elections_in_state = yes}
+				add_to_variable = { RD_popularity = 0.02}
+				US_underdog_RD_2_2 = yes
+			}
+		}
+		custom_effect_tooltip = USA_LBJ_healthcare_path
+	}
+	x = 24
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_assess_current_programs
+	icon = GFX_IEA_Implementing_the_Strategic_Staircase
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_welfare_of_people
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_assess_current_programs"
+		custom_effect_tooltip = LBJ_strengthen_republicans_party
+		add_political_power = -50
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } }
+					check_variable = { RD_popularity > NPP_popularity }
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+			}
+		}
+	}
+	x = 18
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_stopgap_measures
+	icon = GFX_USA_lbj_64_stopgap_measures
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_assess_current_programs
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_stopgap_measures"
+		USA_lbj_strengthen_wellfare_small = yes
+		USA_LBJ_increase_social_funding = yes
+	}
+	x = 18
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_begin_pilot_programs
+	icon = GFX_XSM_The_Little_Farmland_that_we_Have
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_welfare_of_people
+	}
+	prerequisite = {
+		focus = USA_lbj_64_war_on_poverty
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_begin_pilot_programs"
+		swap_ideas = {
+			remove_idea = USA_LBJ_pilot_programs_1
+			add_idea = USA_LBJ_pilot_programs_2
+		}
+		USA_lbj_strengthen_wellfare_small = yes
+		USA_LBJ_increase_social_funding = yes
+	}
+	x = 16
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_prevention_best_cure
+	icon = GFX_RAJ_India_Education_For_All
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_welfare_of_people
+	}
+	prerequisite = {
+		focus = USA_lbj_64_war_on_poverty
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_prevention_best_cure"
+		custom_effect_tooltip = econ_increase_GDP_growth_small
+		add_to_variable = { GDP_growth = 0.0005 }
+	}
+	x = 14
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_create_OEO
+	icon = GFX_GER_back_to_work
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_prevention_best_cure
+	}
+	prerequisite = {
+		focus = USA_lbj_64_begin_pilot_programs
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_create_OEO"
+		swap_ideas = {
+			remove_idea = USA_LBJ_task_forces
+			add_idea = USA_LBJ_OEO_idea
+		}
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = USA_LBJ_remove_previous_costs_tt
+		multiply_variable = { misc_costs = 0.5 }
+		USA_lbj_strengthen_wellfare_small = yes
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 }
+						check_variable = { nationality = 85 }
+						AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+					}
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.07 }
+				add_to_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+			country_event = { id = LBJ.117 days = 7 }
+		}
+	}
+	x = 15
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_protect_most_vulnerable
+	icon = GFX_USA_lbj_64_protect_most_vulnerable
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_welfare_of_people
+	}
+	prerequisite = {
+		focus = USA_lbj_64_healthcare_for_a_nation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_protect_most_vulnerable"
+		custom_effect_tooltip = LBJ_strengthen_republicans
+		add_political_power = 25
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 }
+						check_variable = { nationality = 85 }
+						check_variable = { nationality = 88 }
+						AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+					}
+				}
+				add_to_variable = { RD_popularity = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 20
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_trumans_idea
+	icon = GFX_USA_Truman
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_welfare_of_people
+	}
+	prerequisite = {
+		focus = USA_lbj_64_healthcare_for_a_nation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_trumans_idea"
+		USA_decrease_depression = yes
+	}
+	x = 22
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_revisit_wmd_bill
+	icon = GFX_RAJ_India_Comprimise_Constitution
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_trumans_idea
+	}
+	prerequisite = {
+		focus = USA_lbj_64_protect_most_vulnerable
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_revisit_wmd_bill"
+		add_to_variable = {	LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		USA_lbj_strengthen_healthcare_small = yes
+		swap_ideas = {
+			remove_idea = USA_LBJ_healthcare_programs_1
+			add_idea = USA_LBJ_healthcare_programs_2
+		}
+	}
+	x = 21
+	y = 9
+}
+
+shared_focus = {
+	id = USA_lbj_64_community_action_initiative
+	icon = GFX_RAJ_India_Minority_Affairs
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_war_on_poverty
+	}
+	prerequisite = {
+		focus = USA_lbj_64_create_OEO
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_community_action_initiative"
+		swap_ideas = {
+			remove_idea = USA_LBJ_pilot_programs_2
+			add_idea = USA_LBJ_pilot_programs_3
+		}
+		custom_effect_tooltip = LBJ_progressive_support
+		USA_lbj_strengthen_wellfare_small = yes
+		USA_LBJ_increase_social_funding = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_R_bonus_popularity > RD_D_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_C_bonus_popularity > NPP_FR_bonus_popularity }
+						}
+					}
+				}
+				add_to_variable = { RD_popularity = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 12
+	y = 10
+}
+
+shared_focus = {
+	id = USA_lbj_64_job_corps
+	icon = GFX_CHI_Modern_Construction_Equipment
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_community_action_initiative
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_job_corps"
+		swap_ideas = {
+			remove_idea = USA_LBJ_pilot_programs_3
+			add_idea = USA_LBJ_pilot_programs_4
+		}
+		TNO_improve_industrial_expertise_low = yes
+		USA_lbj_strengthen_wellfare_small = yes
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+		USA_LBJ_increase_social_funding = yes
+	}
+	x = 12
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_vista_of_future
+	icon = GFX_RAJ_India_The_Climate
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_community_action_initiative
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_vista_of_future"
+		TNO_improve_academic_base_low = yes
+		TNO_improve_poverty_low = yes
+		USA_LBJ_increase_social_funding = yes
+		custom_effect_tooltip = LBJ_poor_region_gain
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 87 } #Rockies
+						check_variable = { nationality = 84 } #African American
+					}
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.06 }
+				add_to_variable = { RD_popularity = 0.06 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 14
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_more_food_stamps
+	icon = GFX_shopping_spree
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_job_corps
+	}
+	prerequisite = {
+		focus = USA_lbj_64_vista_of_future
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_more_food_stamps"
+		custom_effect_tooltip = LBJ_boost_wellfare
+		custom_effect_tooltip = LBJ_poor_region_gain
+		TNO_improve_poverty_low = yes
+		USA_LBJ_increase_social_funding = yes
+		custom_effect_tooltip = USA_more_decisions_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83} #Dixie
+						check_variable = { nationality = 84} #African American
+						check_variable = { nationality = 86 } #Rockies
+					}
+				}
+				add_to_variable = { RD_popularity = 0.04 }
+				add_to_variable = { RD_R_bonus_popularity = 0.06 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 13
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_EOA_act
+	icon = GFX_USA_The_Economic_Opportunity_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_vista_of_future
+	}
+	prerequisite = {
+		focus = USA_lbj_64_more_food_stamps
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_EOA_act"
+		remove_ideas = USA_LBJ_pilot_programs_4
+		tno_minimum_wage_improve = yes
+		tno_unemployment_improve = yes
+		TNO_improve_poverty_low = yes #coded with a script
+		USA_lbj_strengthen_wellfare_medium = yes
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity_west
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 82 }
+						check_variable = { nationality = 85 }
+						check_variable = { nationality = 88 }
+						AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+					}
+				}
+				add_to_variable = { RD_popularity = 0.06 }
+				add_to_variable = { RD_R_bonus_popularity = 0.06 }
+				subtract_from_variable = { NPP_popularity = 0.06 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.06 }
+				US_underdog_RD_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					can_have_elections_in_state = yes
+					NOT = {
+						OR = {
+							check_variable = { nationality = 337 } #Unchanging Corn
+							check_variable = { nationality = 82 }
+							check_variable = { nationality = 85 }
+							check_variable = { nationality = 88 }
+							AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.06 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.06 }
+				add_to_variable = { NPP_popularity = 0.06 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.06 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+	x = 14
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_consolidate_programs
+	icon = GFX_cut_the_red_tape
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_EOA_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		if = {
+			limit = { is_ai = no }
+			has_political_power > 75
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_consolidate_programs"
+		custom_effect_tooltip = USA_LBJ_remove_previous_costs_tt
+		custom_effect_tooltip = LBJ_overreach
+		add_political_power = -50
+		hidden_effect = {
+			multiply_variable = { misc_costs = 0.5 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity }
+						}
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+				add_to_variable = { NPP_popularity = 0.02 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.02 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 14
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_reintroduce_social_security
+	icon = GFX_IBR_burning_paperwork
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_stopgap_measures
+	}
+	prerequisite = {
+		focus = USA_lbj_64_create_OEO
+	}
+	prerequisite = {
+		focus = USA_lbj_64_revisit_wmd_bill
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reintroduce_social_security"
+		custom_effect_tooltip = LBJ_cannibalize_center
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		hidden_effect = {
+			country_event = {
+				id = LBJ.124
+				days = 3
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					check_variable = { NPP_popularity > RD_popularity }
+				}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 18
+	y = 10
+}
+
+shared_focus = {
+	id = USA_lbj_64_no_bootstraps
+	icon = GFX_endless_money
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reintroduce_social_security
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_no_bootstraps"
+		custom_effect_tooltip = LBJ_decrease_conservative_popularity
+		custom_effect_tooltip = USA_LBJ_more_decisions_tt
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				if = {
+					limit = {
+						OR = {
+							AND = { #Support in African American states if LBJ has completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+							check_variable = { nationality = 82 } #Yankee
+							check_variable = { nationality = 85 } #Steel Belt
+							check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_temp_variable = { popularity_bonus = 0.02 }
+				}
+				if = {
+					limit = { check_variable = { RD_popularity > NPP_popularity } }
+					subtract_from_variable = { RD_D_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					divide_temp_variable = { popularity_bonus = 2 }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					US_underdog_RD_2_2 = yes
+				}
+				else = {
+					subtract_from_variable = { NPP_FR_bonus_popularity = popularity_bonus }
+					add_to_variable = { NPP_C_bonus_popularity = popularity_bonus }
+				}
+			}
+		}
+	}
+	x = 18
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_reassure_public
+	icon = GFX_RAJ_Guru_on_Radio
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reintroduce_social_security
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reassure_public"
+		custom_effect_tooltip = LBJ_progressive_support
+		add_stability = 0.02
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = { #Support in African American states if LBJ has completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { RD_popularity = 0.02 }
+				add_to_variable = { RD_R_bonus_popularity = 0.02 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 20
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_reassure_party
+	icon = GFX_RAJ_Everything_Went_Fine
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reintroduce_social_security
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		if = {
+			limit = { is_ai = no }
+			has_political_power > 75
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reassure_party"
+		add_political_power = -50
+		custom_effect_tooltip = LBJ_conservative_support
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity }
+						}
+					}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.04 }
+				add_to_variable = { RD_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 16
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_unity_above_all
+	icon = GFX_USA_Reestablish_Party
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reassure_party
+	}
+	prerequisite = {
+		focus = USA_lbj_64_no_bootstraps
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_break_with_democrats
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_unity_above_all"
+		custom_effect_tooltip = USA_add_RD_unity
+		add_to_variable = { USA_RD_Unity = 1.25 }
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = USA_R_Center_United }
+				country_event = { id = LBJ.94 days = 4 }
+			}
+		}
+	}
+	x = 16
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_break_with_democrats
+	icon = GFX_USA_The_Party_Splits
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reassure_public
+	}
+	prerequisite = {
+		focus = USA_lbj_64_no_bootstraps
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_unity_above_all
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 200
+			add = 150
+			BRG = { has_country_flag = BRG_encouraging_party_breaking }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_break_with_democrats"
+		if = {
+			limit = {
+				NOT = {	has_country_flag = USA_R_Center_United }
+			}
+			country_event = { id = LBJ.97 }
+		}
+		else = { country_event = { id = LBJ.98 } }
+		hidden_effect = {
+			country_event = { id = LBJ.96 days = 3 }
+		}
+		custom_effect_tooltip = USA_subtract_RD_unity
+		subtract_from_variable = {	USA_RD_Unity = 1 }
+	}
+	x = 20
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_we_need_to_pay
+	icon = GFX_GIB_anyone_who_can_pay
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_unity_above_all
+		focus = USA_lbj_64_break_with_democrats
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_we_need_to_pay"
+		country_event = { id = LBJ.126 }
+	}
+	x = 18
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_duty_to_people
+	icon = GFX_USA_Turn_the_People
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_break_with_democrats
+	}
+	available = {
+		if = {
+			limit = { is_ai = no }
+			has_political_power > 50
+		}
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_duty_to_people"
+		custom_effect_tooltip = LBJ_progressive_support
+		custom_effect_tooltip = LBJ_more_effective_sa
+		add_political_power = -50
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_R_bonus_popularity > RD_D_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_C_bonus_popularity > NPP_FR_bonus_popularity }
+						}
+					}
+				}
+				add_to_variable = { RD_R_bonus_popularity = 0.04 }
+				add_to_variable = { RD_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 20
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_duty_to_country
+	icon = GFX_USA_duty_to_country
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_unity_above_all
+	}
+	available = {
+		if = {
+			limit = { is_ai = no }
+			has_political_power > 50
+		}
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_duty_to_country"
+		custom_effect_tooltip = LBJ_conservative_support
+		add_political_power = -50
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity }
+						}
+					}
+				}
+				add_to_variable = { RD_D_bonus_popularity = 0.04 }
+				add_to_variable = { RD_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 16
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_social_security_act
+	icon = GFX_USA_The_Social_Security_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_we_need_to_pay
+	}
+	prerequisite = {
+		focus = USA_lbj_64_duty_to_country
+		focus = USA_lbj_64_duty_to_people
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_social_security_act"
+		if = {
+			limit = { has_country_flag = LBJ_increase_taxes }
+			custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+			custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+			tno_tax_rate_improve = yes
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					}
+					if = {
+						limit = {
+							OR = {
+								check_variable = { nationality = 82 }
+								check_variable = { nationality = 85 }
+								AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+									check_variable = { nationality = 84 } #African American
+									USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+								}
+							}
+						}
+						add_to_variable = { RD_popularity = 0.12 }
+						add_to_variable = { RD_R_bonus_popularity = 0.11 }
+						subtract_from_variable = { NPP_popularity = 0.07 }
+						subtract_from_variable = { NPP_C_bonus_popularity = 0.07 }
+						US_underdog_RD_5_5 = yes
+					}
+					else = {
+						subtract_from_variable = { RD_popularity = 0.11 }
+						subtract_from_variable = { RD_D_bonus_popularity = 0.111 }
+						add_to_variable = { NPP_popularity = 0.08 }
+						add_to_variable = { NPP_FR_bonus_popularity = 0.08 }
+						US_underdog_NPP_5_5 = yes
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = LBJ_increase_income_taxes }
+			tno_income_taxation_improve = yes
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				if = {
+					limit = { check_variable = { nationality = 84}}
+					add_to_variable = { RD_D_bonus_popularity = 0.025}
+					add_to_variable = { NPP_popularity = 0.025}
+					add_to_variable = { NPP_C_bonus_popularity = 0.025}
+					US_underdog_NPP_2_2 = yes
+				}
+			}
+		}
+		if = {
+			limit = { has_completed_focus = USA_lbj_64_duty_to_country }
+			tno_pensions_improve = yes
+			USA_lbj_strengthen_wellfare_medium = yes
+		}
+		else_if = {
+			limit = { has_completed_focus = USA_lbj_64_duty_to_people }
+			swap_ideas = { #Two levels
+				remove_idea = tno_pensions_trinket_pensions
+				add_idea = tno_pensions_acceptable_pensions
+			}
+			USA_lbj_strengthen_wellfare_large = yes
+		}
+		else = {
+			custom_effect_tooltip = USA_LBJ_determine_bill_strength
+		}
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+	}
+	x = 18
+	y = 14
+}
+
+shared_focus = {
+	id = USA_lbj_64_insurance_companies
+	icon = GFX_USA_money
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_revisit_wmd_bill
+	}
+	prerequisite = {
+		focus = USA_lbj_64_healthcare_for_a_nation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_insurance_companies"
+		custom_effect_tooltip = LBJ_win_west
+		USA_lbj_strengthen_healthcare_small = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = { check_variable = { nationality = 88 } } #Pacific
+				add_to_variable = { RD_popularity = 0.04 }
+				add_to_variable = { RD_R_bonus_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 24
+	y = 10
+}
+
+shared_focus = {
+	id = USA_lbj_64_blue_cross_blue_shield
+	icon = GFX_USA_Blue_Cross_Blue_Shield
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_insurance_companies
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_blue_cross_blue_shield"
+		USA_lbj_strengthen_healthcare_small = yes
+		swap_ideas = {
+			remove_idea = USA_LBJ_healthcare_programs_2
+			add_idea = USA_LBJ_healthcare_programs_3
+		}
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					check_variable = { nationality = 82 } #Yankee
+					check_variable = { nationality = 85 } #Steel Belt
+				}
+			}
+			add_to_variable = { RD_popularity = 0.03 }
+			add_to_variable = { RD_R_bonus_popularity = 0.03 }
+			US_underdog_RD_2_2 = yes
+		}
+		USA_LBJ_increase_social_funding = yes
+	}
+	x = 24
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_ammend_hill_burton
+	icon = GFX_SLO_Ease_Price_Controls
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_insurance_companies
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_ammend_hill_burton"
+		add_to_variable = { LBJ_healthcare_strength = 1 }
+		USA_lbj_strengthen_healthcare_small = yes
+		TNO_improve_poverty_low = yes
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						AND = { #Pushback in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							NOT = { USA = { has_country_flag = LBJ_completed_civil_rights_reforms } }
+						}
+						check_variable = { nationality = 86 } #Southwestern
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.02 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.02 }
+				add_to_variable = { NPP_popularity = 0.02 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.02 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 22
+	y = 11
+}
+
+shared_focus = {
+	id = USA_lbj_64_reign_in_AMA
+	icon = GFX_USA_Rein_in_the_AMA
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_blue_cross_blue_shield
+	}
+	prerequisite = {
+		focus = USA_lbj_64_ammend_hill_burton
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reign_in_AMA"
+		swap_ideas = {
+			remove_idea = USA_LBJ_healthcare_programs_3
+			add_idea = USA_LBJ_healthcare_programs_4
+		}
+		custom_effect_tooltip = USA_NPP_popularity_grows
+		add_political_power = -50
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.04 }
+				if = {
+					limit = {
+						OR = {
+							check_variable = { nationality = 83 } #Dixie
+							AND = { #Pushback in African American states if LBJ has not yet completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								NOT = { USA = { has_country_flag = LBJ_completed_civil_rights_reforms } }
+							}
+							check_variable = { nationality = 86 } #Southwestern
+							check_variable = { nationality = 87 } #Rockies
+						}
+					}
+					add_to_variable = { NPP_popularity = 0.03 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.03 }
+				}
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 23
+	y = 12
+}
+
+shared_focus = {
+	id = USA_lbj_64_workplace_healthcare_act
+	icon = GFX_USA_The_Workplace_Healthcare_Act
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reign_in_AMA
+	}
+	prerequisite = {
+		focus = USA_lbj_64_ammend_hill_burton
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_workplace_healthcare_act"
+		tno_health_care_improve = yes
+		remove_ideas = USA_LBJ_healthcare_programs_4
+		USA_lbj_strengthen_healthcare_large = yes
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity
+		hidden_effect = {
+			add_to_variable = { LBJ_exhuastion = 1 }
+			USA_LBJ_check_exhuastion = yes
+			every_owned_state = {
+				limit = {
+					OR = {
+						check_variable = { nationality = 82 } #Yankee
+						AND = { #Support in African American states if LBJ completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+						}
+						check_variable = { nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.08 }
+				add_to_variable = { RD_R_bonus_popularity = 0.11 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.07 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.07 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						AND = { #Pushback in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							NOT = { USA = { has_country_flag = LBJ_completed_civil_rights_reforms } }
+						}
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.08 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.08 }
+				add_to_variable = { NPP_popularity = 0.08 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.08 }
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+	x = 22
+	y = 13
+}
+
+shared_focus = {
+	id = USA_lbj_64_pressure_states
+	icon = GFX_USA_Only_American_Future
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_workplace_healthcare_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+		if = {
+			limit = { is_ai = no }
+			has_political_power > 75
+		}	
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_pressure_states"
+		custom_effect_tooltip = USA_LBJ_remove_previous_costs_tt
+		custom_effect_tooltip = LBJ_overreach
+		add_political_power = -50
+		hidden_effect = {
+			multiply_variable = { misc_costs = 0.5 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					OR = {
+						AND = {
+							check_variable = { RD_popularity > NPP_popularity }
+							check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+						}
+						AND = {
+							check_variable = { NPP_popularity > RD_popularity }
+							check_variable = { NPP_FR_bonus_popularity > NPP_C_bonus_popularity }
+						}
+					}
+				}
+				subtract_from_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+				add_to_variable = { NPP_popularity = 0.02 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.02 }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 22
+	y = 14
+}
+
+# The Second Half which might be a little too socialist for the Country.
+shared_focus = {
+	id = USA_lbj_64_work_never_done
+	icon = GFX_IEA_Its_Nothing_Personal
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_social_security_act
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_work_never_done"
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+				}
+				if = {
+					limit = {
+						check_variable = { NPP_L_bonus_popularity > 0.002 }
+					}
+					add_to_variable = { NPP_L_bonus_popularity = 0.01}
+					add_to_variable = { NPP_C_bonus_popularity = -0.005}
+					add_to_variable = { NPP_FR_bonus_popularity = 0.005}
+					add_to_variable = { RD_popularity = 0.03}
+					US_underdog_RD_2_2 = yes
+				}
+				else = {
+					add_to_variable = { RD_popularity = 0.1}
+					US_underdog_RD_5_5 = yes
+				}
+			}
+		}
+	}
+	x = 18
+	y = 15
+}
+
+shared_focus = {
+	id = USA_lbj_64_massive_burdens
+	icon = GFX_USA_Our_Burdens_are_Massive
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_work_never_done
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_massive_burdens"
+		add_political_power = -200
+		unlock_decision_category_tooltip = USA_LBJ_massive_burdens_decisions_category
+		}
+	x = 18
+	y = 16
+}
+
+shared_focus = {
+	id = USA_lbj_64_many_troubles
+	icon = GFX_GER_factories_smoking
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_massive_burdens
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_many_troubles"
+		add_stability = -0.10
+		custom_effect_tooltip = LBJ_our_troubles.tt
+		custom_effect_tooltip = USA_subtract_OFN_unity
+		subtract_from_variable = { OFN_unity = 1 }
+	}
+	x = 18
+	y = 17
+}
+
+shared_focus = {
+	id = USA_lbj_64_great_virtues
+	icon = GFX_MAD_freedom_must_be_found
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_many_troubles
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_great_virtues"
+		add_stability = 0.10
+		add_political_power = 150
+		custom_effect_tooltip = USA_add_RD_popularity_high
+		custom_effect_tooltip = USA_add_OFN_unity
+		add_to_variable = { OFN_unity = 1 }
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				add_to_variable = { RD_popularity = 0.07 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 18
+	y = 18
+}
+
+shared_focus = {
+	id = USA_lbj_64_increase_minimum_benefits
+	icon = GFX_USA_More_Food_Stamps
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_social_security_act
+	}
+	prerequisite = {
+		focus = USA_lbj_64_consolidate_programs
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_increase_minimum_benefits"
+		TNO_improve_poverty_med = yes
+		USA_lbj_strengthen_wellfare_medium = yes
+		USA_LBJ_increase_social_funding = yes
+		custom_effect_tooltip = USA_subtract_RD_unity
+		custom_effect_tooltip = LBJ_democrat_defections
+		hidden_effect = {
+			add_to_variable = { USA_RD_Unity = -0.75 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } }
+					check_variable = { RD_D_bonus_popularity > RD_R_bonus_popularity }
+				}
+				subtract_from_variable = { RD_popularity = 0.04 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.04 }
+				add_to_variable = { NPP_popularity = 0.04 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.04 }
+				if = { #Encourage NPP-L
+					limit = { check_variable = { NPP_L_bonus_popularity > 0.01 } }
+					add_to_variable = { NPP_L_bonus_popularity = 0.05 }
+				}
+				else = { add_to_variable = {NPP_L_bonus_popularity = 0.02 } }
+				US_underdog_NPP_2_2 = yes
+			}
+		}
+	}
+	x = 14
+	y = 15
+}
+
+shared_focus = {
+	id = USA_lbj_64_nobody_left_behind
+	icon = GFX_USA_helping_hand
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_increase_minimum_benefits
+	}
+	prerequisite = {
+		focus = USA_lbj_64_the_FHA
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_nobody_left_behind"
+		USA_lbj_strengthen_civil_rights_medium = yes
+		custom_effect_tooltip = LBJ_african_american_support
+		custom_effect_tooltip = LBJ_growing_backlash
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 84 } #African American
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 87 } #Rockies
+					}
+				}
+				add_to_variable = { RD_popularity = 0.03  }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.08 }
+				add_to_variable = { NPP_Y_bonus_popularity = 0.08 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 14
+	y = 16
+}
+
+shared_focus = {
+	id = USA_lbj_64_safety_net
+	icon = GFX_USA_Build_A_Saftey_Net
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_work_never_done
+	}
+	prerequisite = {
+		focus = USA_lbj_64_increase_minimum_benefits
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_safety_net"
+		country_event = { id = LBJ.129 }
+	}
+	x = 16
+	y = 16
+}
+
+shared_focus = {
+	id = USA_lbj_64_neither_race_nor_class
+	icon = GFX_SLO_Social_Liberalization
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_nobody_left_behind
+	}
+	prerequisite = {
+		focus = USA_lbj_64_safety_net
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_neither_race_nor_class"
+		add_political_power = 50
+		add_stability = 0.01
+		hidden_effect = { country_event = { id = LBJ.128 days = 7 } }
+		add_to_variable = {	LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+	}
+	x = 15
+	y = 17
+}
+
+shared_focus = {
+	id = USA_lbj_64_right_to_liberty
+	icon = GFX_USA_Civil_Rights_Act_Deluxe
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_neither_race_nor_class
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_right_to_liberty"
+		tno_minorities_improve = yes
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = LBJ_african_american_support
+		custom_effect_tooltip = LBJ_npp_far_right_radicalization
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+		custom_effect_tooltip = USA_subtract_NPP_unity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = { #Pushback in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							NOT = { USA = { has_country_flag = LBJ_completed_civil_rights_reforms } }
+						}
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				add_to_variable = { NPP_Y_bonus_popularity = 0.08 }
+				subtract_from_variable = { NPP_FR_bonus_popularity = 0.08 }
+				subtract_from_variable = { RD_D_bonus_popularity = 0.08 }
+				subtract_from_variable = { RD_popularity = 0.08 }
+				US_underdog_NPP_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = {	nationality = 82 } #Yankee
+						check_variable = {	nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.04 } #Racism restricts your gains
+				add_to_variable = { RD_R_bonus_popularity = 0.04 }
+				US_underdog_RD_2_2 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					check_variable = { nationality = 84 } #African American
+					USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+				}
+				add_to_variable = { RD_popularity = 0.08 } #GO LBJ GOGOGOGOGO KILL THESE RACIST FUCKERS
+				add_to_variable = { RD_R_bonus_popularity = 0.08 }
+				US_underdog_RD_5_5 = yes
+			}
+			subtract_from_variable = { USA_NPP_unity = 1}
+		}
+	}
+	x = 15
+	y = 18
+}
+
+shared_focus = {
+	id = USA_lbj_64_medicare_medicaid
+	icon = GFX_USA_Medicare__Medicaid
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_social_security_act
+	}
+	prerequisite = {
+		focus = USA_lbj_64_pressure_states
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_medicare_medicaid"
+		tno_health_care_improve = yes
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						AND = { #Pushback in African American states if LBJ has not yet completed his civil rights reforms
+							check_variable = { nationality = 84 } #African American
+							NOT = { USA = { has_country_flag = LBJ_completed_civil_rights_reforms } }
+						}
+						check_variable = { nationality = 83 } #Dixie
+						check_variable = { nationality = 86 } #Southwestern
+						check_variable = { nationality = 88 } #Pacific
+					}
+				}
+				subtract_from_variable = { RD_D_bonus_popularity = 0.09 }
+				subtract_from_variable = { RD_popularity = 0.09 }
+				add_to_variable = { NPP_popularity = 0.06 }
+				add_to_variable = { NPP_FR_bonus_popularity = 0.06 }
+				US_underdog_NPP_5_5 = yes
+			}
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					OR = {
+						check_variable = {	nationality = 82 } #Yankee
+						check_variable = {	nationality = 85 } #Steel Belt
+					}
+				}
+				add_to_variable = { RD_popularity = 0.08 } #FUCK YES
+				add_to_variable = { RD_R_bonus_popularity = 0.08 }
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.04 }
+				subtract_from_variable = { NPP_popularity = 0.04 }
+				US_underdog_RD_5_5 = yes
+			}
+			subtract_from_variable = { USA_RD_Unity = 0.75 }
+		}
+	}
+	x = 22
+	y = 15
+}
+
+shared_focus = {
+	id = USA_lbj_64_doctor_corps
+	icon = GFX_USA_Reign_in_the_AMA
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_medicare_medicaid
+	}
+	prerequisite = {
+		focus = USA_lbj_64_pbs_broadcast
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_doctor_corps"
+		TNO_improve_poverty_med = yes #coded with a script
+		USA_LBJ_increase_social_funding = yes
+	}
+	x = 22
+	y = 16
+}
+
+shared_focus = {
+	id = USA_lbj_64_budget_drafts
+	icon = GFX_USA_money
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_medicare_medicaid
+	}
+	prerequisite = {
+		focus = USA_lbj_64_work_never_done
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_budget_drafts"
+		country_event = { id = LBJ.130 }
+		add_political_power = 75
+		subtract_from_variable = { USA_RD_Unity = 0.75 }
+		custom_effect_tooltip = USA_subtract_RD_unity
+	}
+	x = 20
+	y = 16
+}
+
+shared_focus = {
+	id = USA_lbj_64_radical_proposal
+	icon = GFX_BRT_The_Breton_Standard
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_doctor_corps
+	}
+	prerequisite = {
+		focus = USA_lbj_64_budget_drafts
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_radical_proposal"
+		custom_effect_tooltip = LBJ_cannibalize_center
+		custom_effect_tooltip = USA_subtract_RD_unity
+		hidden_effect = {
+			subtract_from_variable = { USA_RD_Unity = 0.75 }
+			country_event = { id = LBJ.131	days = 3 }
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+					check_variable = { NPP_popularity > RD_popularity }
+				}
+				subtract_from_variable = { NPP_C_bonus_popularity = 0.03 }
+				subtract_from_variable = { NPP_popularity = 0.03 }
+				add_to_variable = { RD_popularity = 0.03 }
+				add_to_variable = { RD_R_bonus_popularity = 0.03 }
+				US_underdog_RD_2_2 = yes
+			}
+		}
+	}
+	x = 21
+	y = 17
+}
+
+shared_focus = {
+	id = USA_lbj_64_right_to_life
+	icon = GFX_BRT_A_New_Life
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_radical_proposal
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_has_congress_majority_tt
+			USA_has_congress_majority_vote = yes
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_lost_congress_majority_tt
+			NOT = {
+				USA_has_congress_majority_vote = yes
+			}
+		}
+	}
+	ai_will_do = {
+		factor = 100
+		modifier = {
+			factor = 1
+			#trigger
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_right_to_life"
+		tno_health_care_improve = yes
+		custom_effect_tooltip = USA_GLN_increase_heartland_popularity
+		custom_effect_tooltip = USA_GLN_decrease_southern_popularity_west
+		custom_effect_tooltip = USA_subtract_RD_unity
+		subtract_from_variable = { USA_RD_Unity = 0.75 }
+		add_to_variable = { LBJ_exhuastion = 1 }
+		USA_LBJ_check_exhuastion = yes
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				if = {
+					limit = {
+						OR = {
+							check_variable = { nationality = 82 } # Yankee
+							check_variable = { nationality = 85 } # Steel Belt
+							AND = { #Support in African American states if LBJ has not yet completed his civil rights reforms
+								check_variable = { nationality = 84 } #African American
+								USA = { has_country_flag = LBJ_completed_civil_rights_reforms }
+							}
+						}
+					}
+					add_to_variable = { RD_popularity = 0.06 }
+					add_to_variable = { RD_R_bonus_popularity = 0.06 }
+					subtract_from_variable = { NPP_popularity = 0.06 }
+					subtract_from_variable = { NPP_C_bonus_popularity = 0.06 }
+
+				}
+				else = {
+					subtract_from_variable = { RD_popularity = 0.07 }
+					subtract_from_variable = { RD_D_bonus_popularity = 0.07 }
+					add_to_variable = { NPP_popularity = 0.07 }
+					add_to_variable = { NPP_FR_bonus_popularity = 0.07 } #These are the defecting Democrats
+					add_to_variable = { NPP_Y_bonus_popularity = 0.07 } #And these are the former NPP-FR
+				}
+				US_underdog_NPP_5_5 = yes
+			}
+		}
+	}
+	x = 21
+	y = 18
+}
+
+shared_focus = {
+	id = USA_lbj_64_in_pursuit_of_happiness
+	icon = GFX_USA_get_in_loser_were_saving_america
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_right_to_life
+	}
+	prerequisite = {
+		focus = USA_lbj_64_right_to_liberty
+	}
+	prerequisite = {
+		focus = USA_lbj_64_great_virtues
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_in_pursuit_of_happiness"
+		USA_decrease_depression = yes
+		custom_effect_tooltip = USA_add_RD_unity
+		custom_effect_tooltip = USA_add_RD_popularity_low
+		add_stability = 0.05
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					can_have_elections_in_state = yes
+					NOT = { check_variable = { nationality = 337 } } #Unchanging Corn
+				}
+				set_temp_variable = { popularity_bonus = 0.04 }
+				add_to_variable = { RD_popularity = popularity_bonus }
+				add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+				subtract_from_variable = { NPP_popularity = popularity_bonus }
+				US_underdog_RD_2_2 = yes
+			}
+			if = {
+				limit = { check_variable = {USA_RD_Unity < 6 } }
+				add_to_variable = { USA_RD_Unity = 7 }
+			}
+			else = { add_to_variable = { USA_RD_Unity = 2.25 } }
+		}
+	}
+	x = 18
+	y = 19
+}
+
+shared_focus = {
+	id = USA_lbj_64_a_great_society
+	icon = GFX_USA_A_Great_Society
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_in_pursuit_of_happiness
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_a_great_society"
+		country_event = { id = LBJ.132 }
+		add_to_variable = { USA_unity = 1 }
+		custom_effect_tooltip = USA_add_societal_unity
+		# Remove american depression
+		if = {
+			limit = { has_idea = USA_the_american_depression_1 }
+			remove_ideas = USA_the_american_depression_1
+		}
+		else_if = {
+			limit = { has_idea = USA_the_american_depression_2 }
+			remove_ideas = USA_the_american_depression_2
+		}
+		else_if = {
+			limit = { has_idea = USA_the_american_depression_3 }
+			remove_ideas = USA_the_american_depression_3
+		}
+		else_if = {
+			limit = { has_idea = USA_the_american_depression_4 }
+			remove_ideas = USA_the_american_depression_4
+		}
+		else_if = {
+			limit = { has_idea = USA_the_american_depression_5 }
+			remove_ideas = USA_the_american_depression_5
+		}
+	}
+	x = 18
+	y = 20
+}
+
+#####################
+# SOUTH AFRICA TREE #
+#####################
+shared_focus = {
+	id = USA_lbj_64_south_africa
+	icon = GFX_unknown
+	cost = 4.00
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_south_africa"
+	}
+	x = 34
+	y = 0
+}
+
+shared_focus = {
+	id = USA_lbj_64_reassess_the_situation
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_south_africa
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_reassess_the_situation"
+	}
+	x = 34
+	y = 1
+}
+
+shared_focus = {
+	id = USA_lbj_64_begin_shock_and_awe
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reassess_the_situation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_begin_shock_and_awe"
+	}
+	x = 35
+	y = 2
+}
+
+shared_focus = {
+	id = USA_lbj_64_intensify_bombings
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_begin_shock_and_awe
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_intensify_bombings"
+	}
+	x = 35
+	y = 3
+}
+
+shared_focus = {
+	id = USA_lbj_64_apply_defoliants
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_intensify_bombings
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_apply_defoliants"
+	}
+	x = 35
+	y = 4
+}
+
+shared_focus = {
+	id = USA_lbj_64_rolling_thunder
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_apply_defoliants
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_rolling_thunder"
+	}
+	x = 35
+	y = 5
+}
+
+shared_focus = {
+	id = USA_lbj_64_assess_effectiveness
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_rolling_thunder
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_assess_effectiveness"
+	}
+	x = 35
+	y = 6
+}
+
+shared_focus = {
+	id = USA_lbj_64_on_the_homefront
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_reassess_the_situation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_on_the_homefront"
+	}
+	x = 33
+	y = 2
+}
+
+shared_focus = {
+	id = USA_lbj_64_promises_of_victory
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_on_the_homefront
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_promises_of_victory"
+	}
+	x = 33
+	y = 3
+}
+
+shared_focus = {
+	id = USA_lbj_64_promises_of_peace
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_promises_of_victory
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_promises_of_peace"
+	}
+	x = 33
+	y = 4
+}
+
+shared_focus = {
+	id = USA_lbj_64_crack_down
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_promises_of_peace
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_crack_down"
+	}
+	x = 33
+	y = 5
+}
+
+shared_focus = {
+	id = USA_lbj_64_whatever_it_takes
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_crack_down
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_whatever_it_takes"
+	}
+	x = 33
+	y = 6
+}
+
+shared_focus = {
+	id = USA_lbj_64_this_isnt_working
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_whatever_it_takes
+	}
+	prerequisite = {
+		focus = USA_lbj_64_assess_effectiveness
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_this_isnt_working"
+	}
+	x = 34
+	y = 7
+}
+
+shared_focus = {
+	id = USA_lbj_64_peace_talks
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_this_isnt_working
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_pull_out
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_peace_talks"
+	}
+	x = 33
+	y = 8
+}
+
+shared_focus = {
+	id = USA_lbj_64_pull_out
+	icon = GFX_unknown
+	cost = 4.00
+	prerequisite = {
+		focus = USA_lbj_64_this_isnt_working
+	}
+	mutually_exclusive = {
+		focus = USA_lbj_64_peace_talks
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = USA_not_in_crisis_tooltip
+			NOT = {
+				has_country_flag = USA_in_crisis
+			}
+		}
+	}
+	cancel = {
+		custom_trigger_tooltip = {
+			tooltip = USA_in_crisis_tooltip
+			has_country_flag = USA_in_crisis
+		}
+	}
+	ai_will_do = {
+	factor = 100
+	modifier = {
+		factor = 1
+		#trigger
+	}
+}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus USA_lbj_64_pull_out"
+	}
+	x = 35
+	y = 8
+}

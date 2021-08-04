@@ -1,0 +1,123 @@
+on_actions = {
+	on_daily_MAD = {
+		effect = {
+			if = {
+				limit = {
+					MAD = {
+						has_country_flag = MAD_die_schwarze_pest_flag
+					}
+				}
+
+				MAD = {
+					add_to_variable = { MAD_handy_counter = 1 }
+					if = {
+						limit = {
+							check_variable = { MAD_handy_counter = 7 }
+						}
+						MAD_plague_sim_tick = yes
+						set_variable = { MAD_handy_counter = 0 }
+						log = "[GetDateText]: [Root.GetName]: Madagaskar's plague spread!"
+					}
+				}
+			}
+		}
+	}
+
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						tag = MDG
+						tag = MDM
+						tag = MDJ
+					}
+					country_exists = MAD
+					FROM.FROM = { state = 944 }
+				}
+				country_event = {
+					id = MADAGASKAR_MAURICE.13
+					days = 1
+				}
+			}
+		}
+	}
+
+	on_annex = {
+		effect = {
+			if = {
+				limit = {
+					has_global_flag = madagaskar_civil_war
+					ROOT = { tag = MDM }
+					NOT = { country_exists = MAD }
+					NOT = { country_exists = MDG }
+				}
+				MDM = {
+					country_event = { 
+						id = MADAGASKAR_CIVIL_WAR.3
+						days = 7
+					}
+				}
+			}
+
+			# MAD VICTORY
+			if = {
+				limit = {
+					has_global_flag = madagaskar_civil_war
+					ROOT = { tag = MAD }
+					NOT = { country_exists = MDJ }
+					NOT = { country_exists = MDG }
+					NOT = { country_exists = MDM }
+				}
+				clr_global_flag = madagaskar_civil_war
+				MAD = { country_event = { id = MADAGASKAR_CIVIL_WAR.5 } }
+				USA = { country_event = { id = USA.madagascar.5 } }
+			}
+
+			# MDG VICTORY
+			if = {
+				limit = {
+					has_global_flag = madagaskar_civil_war
+					ROOT = { tag = MDG }
+					NOT = { country_exists = MAD }
+					NOT = { country_exists = MDJ }
+					NOT = { country_exists = MDM }
+				}
+				clr_global_flag = madagaskar_civil_war
+				USA = { country_event = { id = USA.madagascar.4 } }
+			}
+
+			# MDJ VICTORY
+			if = {
+				limit = {
+					has_global_flag = madagaskar_civil_war
+					ROOT = { tag = MDJ }
+					NOT = { country_exists = MAD }
+					NOT = { country_exists = MDG }
+					NOT = { country_exists = MDM }
+				}
+				MDJ = {
+					country_event = { 
+						id = MADAGASKAR_CIVIL_WAR.4
+						days = 7
+					}
+				}
+				clr_global_flag = madagaskar_civil_war
+				USA = { country_event = { id = USA.madagascar.3 } }
+			}
+
+			# MDM VICTORY
+			if = {
+				limit = {
+					has_global_flag = madagaskar_civil_war
+					ROOT = { original_tag = MDM }
+					NOT = { country_exists = MAD }
+					NOT = { country_exists = MDG }
+					NOT = { country_exists = MDJ }
+				}
+				USA = { country_event = { id = USA.madagascar.6 } }
+				clr_global_flag = madagaskar_civil_war
+			}
+		}
+	}
+}

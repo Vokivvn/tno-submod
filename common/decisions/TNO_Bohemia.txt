@@ -1,0 +1,736 @@
+#CZE_ai_ss_path = {
+#	CZE_burn_lezaky_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_burn_lezaky_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_burn_lezaky_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_burn_lezaky_done
+#			CZE = {
+#				country_event = { id = CZE.19 days = 2 }
+#			}
+#		}
+#	}
+#	CZE_a_grim_reminder_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_a_grim_reminder_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_burn_lezaky_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_a_grim_reminder_done
+#			CZE = {
+#				country_event = { id = CZE.33 days = 2 }
+#			}
+#		}
+#	}
+#	CZE_in_the_garrison_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_a_grim_reminder_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_in_the_garrison_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_in_the_garrison_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_in_the_garrison_done
+#			set_temp_variable = { CZE_guard_execution = CZE_guard_safety }
+#			add_to_temp_variable = { CZE_guard_execution = CZE_guard_competence }
+#			if = {
+#				limit = { check_variable = { CZE_guard_execution < 0 }}
+#				country_event = { id = CZE.20 }
+#			}
+#			else_if = {
+#				limit = { check_variable = { CZE_guard_execution < -3 }}
+#				country_event = { id = CZE.21 }
+#			}
+#			else_if = {
+#				limit = {
+#					OR = {
+#						check_variable = { CZE_guard_execution > 0 }
+#						check_variable = { CZE_guard_execution = 0 }
+#					}
+#				}
+#				country_event = { id = CZE.26 }
+#			}
+#		}
+#	}
+#	CZE_claim_the_throne_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#			modifier = {
+#				add = -599
+#				CZE = {
+#					OR = {
+#						has_country_flag = ss_control_prague
+#						has_country_flag = garrison_control_prague
+#					}
+#				}
+#			}
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			OR = {
+#				has_country_flag = CZE_in_the_garrison_done
+#				has_country_flag = CZE_burn_lezaky_done
+#			}
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_claim_the_throne_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_claim_the_throne_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_claim_the_throne_done
+#			CZE = {
+#				country_event = { id = CZE.33 days = 2 }
+##				if = {
+#					limit = { check_variable = { CZE_guard_competence < 0 } }
+#					country_event = { id = CZE.38 }
+#				}
+#			}
+#		}
+#	}
+#	CZE_alone_in_the_dark_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#			modifier = {
+#				add = -599
+#				CZE = {
+#					OR = {
+#						has_country_flag = ss_control_prague
+##						has_country_flag = garrison_control_prague
+#					}
+#				}
+#			}
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_claim_the_throne_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_alone_in_the_dark_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_alone_in_the_dark_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_alone_in_the_dark_done
+#			CZE = {
+#				if = {
+#					limit = { 
+#						has_completed_focus = CZE_work_with_skoda
+#						has_completed_focus = CZE_the_true_saviors
+#					}
+#					country_event = { id = CZE.38 days = 2 }
+#				}
+#				else_if = {
+#					limit = { NOT = { has_country_flag = CZE_blood_on_the_horizon_done }}
+#					random_list = {
+#						30 = {
+#							country_event = { id = CZE.38 days = 2 }
+#						}
+#						70 = {
+#						}
+#					}
+#				}
+#				else = {
+#					random_list = {
+#						70 = {
+#							country_event = { id = CZE.38 days = 2 }
+#						}
+#						30 = {
+#						}
+#					}
+#				}
+#			}
+#		}
+#	}
+#	CZE_black_sun_over_prague = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 6000
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			OR = {
+#				has_country_flag = CZE_alone_in_the_dark_done
+#				has_country_flag = CZE_blood_on_the_horizon_done
+#			}
+#			CZE = {
+#				has_country_flag = ss_control_prague
+#			}
+#		}
+##		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_black_sun_over_prague"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_black_sun_over_prague"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_black_sun_over_prague_done
+#			if = {
+#				limit = {
+#					NOT = {
+#						has_global_flag = CZE_garrison_control
+#					}
+#				}
+#				CZE = {
+#					country_event = { id = CZE.45 days = 2 }
+#				}
+#			}
+#		}
+#	}
+#	CZE_blood_on_the_horizon_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#			modifier = {
+#				add = -599
+#				CZE = {
+#					OR = {
+##						has_country_flag = ss_control_prague
+#						has_country_flag = garrison_control_prague
+#					}
+#				}
+#			}
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_claim_the_throne_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_blood_on_the_horizon_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_blood_on_the_horizon_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+##			set_country_flag = CZE_blood_on_the_horizon_done
+#			CZE = {
+#				if = {
+#					limit = { 
+#						has_completed_focus = CZE_work_with_skoda
+#						has_completed_focus = CZE_the_true_saviors
+##					}
+#					country_event = { id = CZE.38 days = 2 }
+#				}
+#				else_if = {
+#					limit = { NOT = { has_country_flag = CZE_alone_in_the_dark_done }}
+#					random_list = {
+#						30 = {
+#							country_event = { id = CZE.38 days = 2 }
+#						}
+#						70 = {
+#						}
+#					}
+#				}
+#				else = {
+#					random_list = {
+#						70 = {
+#							country_event = { id = CZE.38 days = 2 }
+#						}
+#						30 = {
+#						}
+#					}
+#				}
+#			}
+#		}
+#	}
+#	CZE_contact_himmler_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+##			OR = {
+#				has_country_flag = CZE_in_the_garrison_done
+#				has_country_flag = CZE_burn_lezaky_done
+#			}
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_contact_himmler_dec"
+##			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_contact_himmler_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_contact_himmler_done
+#			CZE = {
+#				country_event = { id = CZE.35 days = 2 }
+#			}
+#		}
+#	}
+#	CZE_rule_through_fear_dec = {
+#		icon = generic_political_actions
+##		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			OR = {
+#				has_country_flag = CZE_contact_himmler_done
+#				has_country_flag = CZE_claim_the_throne_done
+#			}
+#			CZE = {
+#				set_temp_variable = { CZE_victory_check = CZE_ss_control }
+#				subtract_from_temp_variable = { CZE_victory_check = 2 }
+#				check_variable = { CZE_victory_check > CZE_garrison_control }
+#			}
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_rule_through_fear_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_rule_through_fear_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_claim_the_throne_done
+#			if = {
+#				limit = {
+#					NOT = {
+#						has_global_flag = CZE_garrison_victory
+#					}
+#				}
+#				CZE = {
+#					country_event = { id = CZE.45 days = 2 }
+#				}
+#			}
+#		}
+#	}
+#}
+#CZE_ai_garrison_path = {
+#	CZE_asses_the_damage_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_asses_the_damage_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_asses_the_damage_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_asses_the_damage_done
+#			CZE = {
+#				country_event = { id = CZE.39 }
+#			}
+#		}
+#	}
+#	CZE_consolidate_whats_left_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+##		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_asses_the_damage_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_consolidate_whats_left_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_consolidate_whats_left_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_consolidate_whats_left_done
+#			CZE = {
+#				country_event = { id = CZE.39 }
+#			}
+#		}
+#	}
+#	CZE_instill_confidence_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+##			has_country_flag = CZE_consolidate_whats_left_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_instill_confidence_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_instill_confidence_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_instill_confidence_done
+#			CZE = {
+#				country_event = { id = CZE.40 }
+#			}
+#		}
+#	}
+#	CZE_the_true_saviors_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_instill_confidence_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_the_true_saviors_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_the_true_saviors_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_the_true_saviors_done
+#			CZE = {
+#				country_event = { id = CZE.39 }
+#			}
+#		}
+#	}
+#	CZE_fortify_prague_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+##			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_consolidate_whats_left_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_fortify_prague_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_fortify_prague_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_fortify_prague_done
+##			CZE = {
+#				add_to_variable = { CZE_guard_competence = 2 }
+##			}
+#		}
+#	}
+#	CZE_bide_our_time_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_consolidate_whats_left_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_bide_our_time_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_bide_our_time_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+##			set_country_flag = CZE_bide_our_time_done
+#			CZE = {
+#				country_event = { id = CZE.39 }
+#			}
+#		}
+#	}
+#	CZE_work_with_skoda_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+##			has_country_flag = CZE_fortify_prague_done
+#			has_country_flag = CZE_bide_our_time_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_work_with_skoda_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#		}
+#		days_remove = 28
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_work_with_skoda_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_work_with_skoda_done
+#			CZE = {
+#				9 = {
+#					add_building_construction = {
+#						type = arms_factory
+#						level = 1
+#						instant_build = yes
+#					}
+#					add_extra_state_shared_building_slots = 1
+#				}
+#			}
+#		}
+#	}
+#	CZE_our_prosperous_homeland_dec = {
+#		icon = generic_political_actions
+#		fire_only_once = yes
+#		
+##		ai_will_do = {
+#			factor = 600
+#		}
+#		available = {
+#			NOT = { has_country_flag = CZE_AI_focus_in_progress }
+#			has_country_flag = CZE_the_true_saviors_done
+#			has_country_flag = CZE_work_with_skoda_done
+#		}
+#		
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_our_prosperous_homeland_dec"
+#			set_country_flag = CZE_AI_focus_in_progress
+#			CZE = {
+#				country_event = { id = CZE.43 }
+#			}
+#		}
+#		days_remove = 35
+#		remove_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision remove CZE_our_prosperous_homeland_dec"
+#			clr_country_flag = CZE_AI_focus_in_progress
+#			set_country_flag = CZE_our_prosperous_homeland_done
+#			if = {
+#				limit = {
+#					NOT = {
+#						has_global_flag = CZE_ss_victory
+#					}
+#				}
+#				CZE = {
+#					country_event = { id = CZE.44 }
+#				}
+#			}
+#		}
+#	}
+#}
+#CZE_power_struggle = {
+#	CZE_attack_prague = {
+#		cost = 100
+#		icon = generic_political_actions
+##		fire_only_once = yes
+#		
+#		ai_will_do = {
+#			factor = 0
+#			modifier = {
+#				add = 50
+#				has_completed_focus = CZE_claim_the_throne
+#			}
+#			modifier = {
+#				add = 50
+#				has_completed_focus = CZE_alone_in_the_dark
+#			}
+#			modifier = {
+#				add = 50
+#				has_completed_focus = CZE_blood_on_the_horizon
+#			}
+#			modifier = {
+#				add = 1000
+#				ZZZ = {
+#					has_country_flag = CZE_the_true_saviors_done
+#					has_country_flag = CZE_work_with_skoda_done
+#				}
+#			}
+#		}
+#		
+#		visible = {
+#			has_country_flag = CZE_player_ss
+#		}
+#		complete_effect = {
+#			log = "[GetDateText]: [Root.GetName]: Decision CZE_attack_prague"
+#			CZE = {
+#				country_event = { id = CZE.38 }
+#			}
+#		}
+#	}
+#	CZE_fortify_the_guard_in_prague = {
+#		cost = 80
+#		icon = generic_political_actions
+#		days_re_enable = 28
+#		
+#		ai_will_do = {
+#			factor = 100
+#		}
+#		
+#		visible = {
+#			has_completed_focus = CZE_fortify_prague
+#		}
+#		
+#		available = {
+#			has_equipment  = {
+#				infantry_equipment > 1499
+#			}
+#		}
+#		
+#		complete_effect = {
+#			add_equipment_to_stockpile = {
+#				type = infantry_equipment
+#				amount = -1500
+#			}
+#			add_to_variable = { CZE_guard_competence = 1 }
+#			custom_effect_tooltip = CZE_guard_competence_increase
+#		}
+#	}
+#	CZE_garrison_player_power_improver = {
+#		cost = 80
+#		icon = generic_political_actions
+#		days_re_enable = 28
+#		
+#		ai_will_do = {
+#			factor = 100
+#		}
+#		
+#		visible = {
+#			has_completed_focus = CZE_loyalty_to_the_fatherland
+#		}
+#		
+#		available = {
+#			has_equipment  = {
+#				infantry_equipment > 1499
+#			}
+#		}
+#		
+#		complete_effect = {
+#			add_equipment_to_stockpile = {
+#				type = infantry_equipment
+#				amount = -1500
+#			}
+#			add_to_variable = { CZE_garrison_control = 1 }
+#			custom_effect_tooltip = garrison_control_rises_good_tooltip
+#		}
+#	}
+#}
+
+#CZE_czech_guard_category = {
+#	CZE_increase_competence = {
+#		cost = 150
+#		icon = generic_political_actions
+#		days_re_enable = 28
+#		
+#		ai_will_do = {
+#			factor = 100
+#		}
+#		
+#		complete_effect = {
+#			custom_effect_tooltip = CZE_guard_competence_increase
+#			add_to_variable = { CZE_guard_competence = 1 }
+#		}
+#	}
+#	CZE_increase_safety = {
+##		cost = 150
+#		icon = generic_political_actions
+#		days_re_enable = 28
+#		
+#		ai_will_do = {
+#			factor = 100
+#		}
+#		
+#		complete_effect = {
+#			custom_effect_tooltip = CZE_guard_safety_increase
+#			add_to_variable = { CZE_guard_safety = 1 }
+#		}
+#	}
+##	CZE_increase_loyalty = {
+#		cost = 150
+#		icon = generic_political_actions
+#		days_re_enable = 28
+#		
+#		ai_will_do = {
+#			factor = 100
+#		}
+#		
+#		complete_effect = {
+#			add_to_variable = { CZE_guard_loyalty = 1 }
+#			custom_effect_tooltip = CZE_guard_loyalty_increase
+#		}
+#	}
+#}
+	
+	

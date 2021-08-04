@@ -1,0 +1,2785 @@
+######################
+####   INDONESIA   ###
+######################
+INS_Rally_event_trigger = {
+    INS_Rally_event_decision = {
+    	allowed = { 
+    		tag = ZZZ
+    	}
+		visible = {
+			INS = { has_country_flag = INS_Decree_321_65 }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Rally_event_decision"
+		}
+		days_remove = 25
+		remove_effect  = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove INS_Rally_event_decision"
+			if = {
+				limit = {
+					has_country_flag = INS_Decree_321_65
+				}
+				INS = {
+					country_event = {
+						id = indonesia.9
+					}
+				}	
+			}
+		}  
+		ai_will_do = {
+			factor = 999
+		}
+	}	
+}
+
+INS_The_Konfrontasi = {
+    INS_Appease_Japan = {
+    	allowed = { 
+    		tag = INS
+    	}
+		visible = {
+			NOT = {
+				OR = {
+					has_country_flag = INS_Deals_with_the_Army_decision
+					has_country_flag = INS_Deals_with_NU_decision
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Appease_Japan"
+			add_to_variable = { JAP_support = 3 }
+			add_to_variable = { ARMY_support = -2 }
+			add_to_variable = { NU_support = -2 }
+			set_country_flag = INS_Appease_Japan_decision
+		}
+		remove_effect  = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove INS_Appease_Japan"
+			clr_country_flag = INS_Appease_Japan_decision
+		}  
+		cost = 75
+		days_remove = 360
+	}	
+	INS_Negotiate_with_NU = {
+    	allowed = { 
+    		tag = INS
+    	}
+		visible = {
+			NOT = {
+				OR = {
+					has_country_flag = INS_Appease_Japan_decision
+					has_country_flag = INS_Deals_with_the_Army_decision
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Rally_event_decision"
+			add_to_variable = { JAP_support = -2 }
+			add_to_variable = { ARMY_support = -2 }
+			add_to_variable = { NU_support = 3 }
+			set_country_flag = INS_Deals_with_NU_decision
+		}
+		remove_effect  = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove INS_Appease_Japan"
+			clr_country_flag = INS_Deals_with_NU_decision
+		}  
+		cost = 75
+		days_remove = 360
+	}	
+
+	INS_Deals_with_the_Army = {
+    	allowed = { 
+    		tag = INS
+    	}
+		visible = {
+			NOT = {
+				OR = {
+					has_country_flag = INS_Deals_with_NU_decision
+					has_country_flag = INS_Appease_Japan_decision
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Rally_event_decision"
+			add_to_variable = { JAP_support = -2 }
+			add_to_variable = { ARMY_support = 3 }
+			add_to_variable = { NU_support = -2 }
+			set_country_flag = INS_Deals_with_the_Army_decision
+		}
+		remove_effect  = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove INS_Appease_Japan"
+			clr_country_flag = INS_Deals_with_the_Army_decision
+		}  
+		cost = 75
+		days_remove = 360
+	}
+	
+	INS_Civil_War_Debug = {
+		visible = {
+			is_debug = yes
+		}
+    	allowed = { 
+    		tag = INS
+    	}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Civil_War_Debug"
+			set_country_flag = INS_Civil_War
+			clr_country_flag = INS_starting_tree_flag
+			load_focus_tree = { tree = INS_SukarnoWar_Tree }
+		}
+		custom_cost_trigger = { always = yes } #no cost
+	}	
+}
+
+INS_Army_Command_Category = {
+	INS_Army_Command_Coup = {
+		allowed = {
+			original_tag = INS
+		}
+
+		available = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Army_Command_Coup_trigger_tt_1
+					NOT = {
+						count_triggers = {
+							amount = 3
+							check_variable = {INS_ac_Java < 40}
+							check_variable = {INS_ac_Sumatra < 40}
+							check_variable = {INS_ac_Kalimantan < 40}
+							check_variable = {INS_ac_Sulawesi < 40}
+							check_variable = {INS_ac_Papua < 40}
+							check_variable = {INS_ac_Moluccas < 40}
+						}
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Army_Command_Coup_trigger_tt_2
+					NOT = {
+						check_variable = {INS_ac_Java < 60}
+					}
+				}
+			}
+		}
+
+		activation = {
+			has_country_flag = INS_Civil_War
+			count_triggers = {
+				amount = 3
+				check_variable = {INS_ac_Java < 40}
+				check_variable = {INS_ac_Sumatra < 40}
+				check_variable = {INS_ac_Kalimantan < 40}
+				check_variable = {INS_ac_Sulawesi < 40}
+				check_variable = {INS_ac_Papua < 40}
+				check_variable = {INS_ac_Moluccas < 40}
+			}
+			check_variable = {INS_ac_Java < 60}
+		}
+
+		fire_only_once = no
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission INS_Army_Command_Coup Failed"
+			custom_effect_tooltip = INS_Army_Command_Coup_timeout_tt
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission INS_Army_Command_Coup Completed"
+			custom_effect_tooltip = INS_Army_Command_Coup_complete_tt
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+	}
+	INS_Bribe_Army_Command_Java = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Java taken"
+			country_event = {id = indonesia.101}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Java removed"
+		}
+	}
+	INS_Bribe_Army_Command_Sumatra = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Sumatra taken"
+			country_event = {id = indonesia.102}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Sumatra removed"
+		}
+	}
+	INS_Bribe_Army_Command_Kalimantan = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Kalimantan taken"
+			country_event = {id = indonesia.103}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Kalimantan removed"
+		}
+	}
+	INS_Bribe_Army_Command_Sulawesi = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Sulawesi taken"
+			country_event = {id = indonesia.104}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Sulawesi removed"
+		}
+	}
+	INS_Bribe_Army_Command_Papua = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Papua taken"
+			country_event = {id = indonesia.105}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Papua removed"
+		}
+	}
+	INS_Bribe_Army_Command_Moluccas = {
+		allowed = {
+			original_tag = INS
+		}
+		visible = {
+			NOT = {
+				has_country_flag = INS_starting_tree_flag
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = INS_Bribe_Army_District_trigger_tt_1
+				NOT = {
+					count_triggers = {
+						amount = 2
+						has_decision = INS_Bribe_Army_Command_Java
+						has_decision = INS_Bribe_Army_Command_Sumatra
+						has_decision = INS_Bribe_Army_Command_Kalimantan
+						has_decision = INS_Bribe_Army_Command_Papua
+						has_decision = INS_Bribe_Army_Command_Sulawesi
+						has_decision = INS_Bribe_Army_Command_Moluccas
+					}
+				}
+			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_2
+					check_variable = {var = money_reserves value = 400 compare = greater_than_or_equals}
+				}
+				custom_trigger_tooltip = {
+					tooltip = INS_Bribe_Army_District_trigger_tt_3
+					check_variable = {national_debt < GDP}
+				}
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Moluccas taken"
+			country_event = {id = indonesia.106}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision INS_Bribe_Army_Command_Moluccas removed"
+		}
+	}
+}
+
+############################
+####   FREE INDONESIA   ####
+############################
+FRI_Cell_Command_Category = {
+	FRI_Invest_Funds_North_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_North_Sumatra_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_North_Sumatra_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_North_Sumatra_invested_funds
+			}
+			check_variable = {
+				FRI_cs_north_sumatra < 10
+			}
+			FRI_has_majority_control_North_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 818
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_North_Sumatra taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_North_Sumatra_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_North_Sumatra removed"
+			set_country_flag = FRI_North_Sumatra_invested_funds
+			custom_effect_tooltip = FRI_North_Sumatra_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_North_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_North_Sumatra_invested_funds
+			NOT = {
+				has_country_flag = FRI_North_Sumatra_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_north_sumatra < 10
+			}
+			FRI_has_majority_control_North_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 818
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_North_Sumatra taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_North_Sumatra_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_North_Sumatra removed"
+			set_country_flag = FRI_North_Sumatra_smuggled_guns
+			custom_effect_tooltip = FRI_North_Sumatra_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_North_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_North_Sumatra_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_North_Sumatra_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_North_Sumatra_smuggled_guns
+			check_variable = {
+				FRI_cs_north_sumatra < 10
+			}
+			FRI_has_majority_control_North_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 818
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_North_Sumatra taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_North_Sumatra_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_North_Sumatra removed"
+			clr_country_flag = FRI_North_Sumatra_smuggled_guns
+			clr_country_flag = FRI_North_Sumatra_invested_funds
+			add_to_variable = {FRI_cs_north_sumatra = 1}
+			custom_effect_tooltip = FRI_North_Sumatra_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_North_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_North_Sumatra = no
+			check_variable = {FRI_cs_north_sumatra > 0}
+		}
+
+		highlight_states = {
+			state = 818
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_North_Sumatra taken"
+			if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_north_sumatra = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Nsum_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_North_Sumatra_complete_10
+			}
+			set_variable = {FRI_cs_north_sumatra = 0}
+		}
+	}
+
+	FRI_Invest_Funds_South_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_South_Sumatra_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_South_Sumatra_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_South_Sumatra_invested_funds
+			}
+			check_variable = {
+				FRI_cs_south_sumatra < 10
+			}
+			FRI_has_majority_control_South_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 819
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_South_Sumatra taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_South_Sumatra_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_South_Sumatra removed"
+			set_country_flag = FRI_South_Sumatra_invested_funds
+			custom_effect_tooltip = FRI_South_Sumatra_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_South_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_South_Sumatra_invested_funds
+			NOT = {
+				has_country_flag = FRI_South_Sumatra_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_south_sumatra < 10
+			}
+			FRI_has_majority_control_South_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 819
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_South_Sumatra taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_South_Sumatra_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_South_Sumatra removed"
+			set_country_flag = FRI_South_Sumatra_smuggled_guns
+			custom_effect_tooltip = FRI_South_Sumatra_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_South_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_South_Sumatra_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_South_Sumatra_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_South_Sumatra_smuggled_guns
+			check_variable = {
+				FRI_cs_south_sumatra < 10
+			}
+			FRI_has_majority_control_South_Sumatra = no
+		}
+
+		highlight_states = {
+			state = 819
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_South_Sumatra taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_South_Sumatra_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_South_Sumatra removed"
+			clr_country_flag = FRI_South_Sumatra_smuggled_guns
+			clr_country_flag = FRI_South_Sumatra_invested_funds
+			add_to_variable = {FRI_cs_south_sumatra = 1}
+			custom_effect_tooltip = FRI_South_Sumatra_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_South_Sumatra = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_South_Sumatra = no
+			check_variable = {FRI_cs_south_sumatra > 0}
+		}
+
+		highlight_states = {
+			state = 819
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_South_Sumatra taken"
+			if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_south_sumatra = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ssum_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_South_Sumatra_complete_10
+			}
+			set_variable = {FRI_cs_south_sumatra = 0}
+		}
+	}
+
+	FRI_Invest_Funds_West_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_West_Java_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_West_Java_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_West_Java_invested_funds
+			}
+			check_variable = {
+				FRI_cs_west_java < 10
+			}
+			FRI_has_majority_control_West_Java = no
+		}
+
+		highlight_states = {
+			state = 799
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_West_Java taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_West_Java_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_West_Java removed"
+			set_country_flag = FRI_West_Java_invested_funds
+			custom_effect_tooltip = FRI_West_Java_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_West_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_West_Java_invested_funds
+			NOT = {
+				has_country_flag = FRI_West_Java_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_west_java < 10
+			}
+			FRI_has_majority_control_West_Java = no
+		}
+
+		highlight_states = {
+			state = 799
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_West_Java taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_West_Java_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_West_Java removed"
+			set_country_flag = FRI_West_Java_smuggled_guns
+			custom_effect_tooltip = FRI_West_Java_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_West_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_West_Java_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_West_Java_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_West_Java_smuggled_guns
+			check_variable = {
+				FRI_cs_west_java < 10
+			}
+			FRI_has_majority_control_West_Java = no
+		}
+
+		highlight_states = {
+			state = 799
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_West_Java taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_West_Java_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_West_Java removed"
+			clr_country_flag = FRI_West_Java_smuggled_guns
+			clr_country_flag = FRI_West_Java_invested_funds
+			add_to_variable = {FRI_cs_west_java = 1}
+			custom_effect_tooltip = FRI_West_Java_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_West_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_West_Java = no
+			check_variable = {FRI_cs_west_java > 0}
+		}
+
+		highlight_states = {
+			state = 799
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_West_Java taken"
+			if = {
+				limit = {check_variable = {FRI_cs_west_java = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_west_java = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Wjav_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_West_Java_complete_10
+			}
+			set_variable = {FRI_cs_west_java = 0}
+		}
+	}
+
+	FRI_Invest_Funds_East_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_East_Java_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_East_Java_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_East_Java_invested_funds
+			}
+			check_variable = {
+				FRI_cs_east_java < 10
+			}
+			FRI_has_majority_control_East_Java = no
+		}
+
+		highlight_states = {
+			state = 335
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_East_Java taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_East_Java_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_East_Java removed"
+			set_country_flag = FRI_East_Java_invested_funds
+			custom_effect_tooltip = FRI_East_Java_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_East_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_East_Java_invested_funds
+			NOT = {
+				has_country_flag = FRI_East_Java_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_east_java < 10
+			}
+			FRI_has_majority_control_East_Java = no
+		}
+
+		highlight_states = {
+			state = 335
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_East_Java taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_East_Java_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_East_Java removed"
+			set_country_flag = FRI_East_Java_smuggled_guns
+			custom_effect_tooltip = FRI_East_Java_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_East_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_East_Java_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_East_Java_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_East_Java_smuggled_guns
+			check_variable = {
+				FRI_cs_east_java < 10
+			}
+			FRI_has_majority_control_East_Java = no
+		}
+
+		highlight_states = {
+			state = 335
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_East_Java taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_East_Java_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_East_Java removed"
+			clr_country_flag = FRI_East_Java_smuggled_guns
+			clr_country_flag = FRI_East_Java_invested_funds
+			add_to_variable = {FRI_cs_east_java = 1}
+			custom_effect_tooltip = FRI_East_Java_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_East_Java = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_East_Java = no
+			check_variable = {FRI_cs_east_java > 0}
+		}
+
+		highlight_states = {
+			state = 335
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_East_Java taken"
+			if = {
+				limit = {check_variable = {FRI_cs_east_java = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_east_java = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Ejav_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_East_Java_complete_10
+			}
+			set_variable = {FRI_cs_east_java = 0}
+		}
+	}
+
+	FRI_Invest_Funds_Kalimantan = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Kalimantan_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Kalimantan_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_Kalimantan_invested_funds
+			}
+			check_variable = {
+				FRI_cs_kalimantan < 10
+			}
+			FRI_has_majority_control_Kalimantan = no
+		}
+
+		highlight_states = {
+			state = 1330
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Kalimantan taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_Kalimantan_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Kalimantan removed"
+			set_country_flag = FRI_Kalimantan_invested_funds
+			custom_effect_tooltip = FRI_Kalimantan_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_Kalimantan = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Kalimantan_invested_funds
+			NOT = {
+				has_country_flag = FRI_Kalimantan_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_kalimantan < 10
+			}
+			FRI_has_majority_control_Kalimantan = no
+		}
+
+		highlight_states = {
+			state = 1330
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Kalimantan taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_Kalimantan_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Kalimantan removed"
+			set_country_flag = FRI_Kalimantan_smuggled_guns
+			custom_effect_tooltip = FRI_Kalimantan_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_Kalimantan = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Kalimantan_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Kalimantan_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Kalimantan_smuggled_guns
+			check_variable = {
+				FRI_cs_kalimantan < 10
+			}
+			FRI_has_majority_control_Kalimantan = no
+		}
+
+		highlight_states = {
+			state = 1330
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Kalimantan taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_Kalimantan_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Kalimantan removed"
+			clr_country_flag = FRI_Kalimantan_smuggled_guns
+			clr_country_flag = FRI_Kalimantan_invested_funds
+			add_to_variable = {FRI_cs_kalimantan = 1}
+			custom_effect_tooltip = FRI_Kalimantan_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_Kalimantan = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_Kalimantan = no
+			check_variable = {FRI_cs_kalimantan > 0}
+		}
+
+		highlight_states = {
+			state = 1330
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_Kalimantan taken"
+			if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_kalimantan = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Kal_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Kalimantan_complete_10
+			}
+			set_variable = {FRI_cs_kalimantan = 0}
+		}
+	}
+
+	FRI_Invest_Funds_Sulawesi = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Sulawesi_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Sulawesi_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_Sulawesi_invested_funds
+			}
+			check_variable = {
+				FRI_cs_sulawesi < 10
+			}
+			FRI_has_majority_control_Sulawesi = no
+		}
+
+		highlight_states = {
+			state = 821
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Sulawesi taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_Sulawesi_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Sulawesi removed"
+			set_country_flag = FRI_Sulawesi_invested_funds
+			custom_effect_tooltip = FRI_Sulawesi_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_Sulawesi = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Sulawesi_invested_funds
+			NOT = {
+				has_country_flag = FRI_Sulawesi_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_sulawesi < 10
+			}
+			FRI_has_majority_control_Sulawesi = no
+		}
+
+		highlight_states = {
+			state = 821
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Sulawesi taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_Sulawesi_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Sulawesi removed"
+			set_country_flag = FRI_Sulawesi_smuggled_guns
+			custom_effect_tooltip = FRI_Sulawesi_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_Sulawesi = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Sulawesi_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Sulawesi_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Sulawesi_smuggled_guns
+			check_variable = {
+				FRI_cs_sulawesi < 10
+			}
+			FRI_has_majority_control_Sulawesi = no
+		}
+
+		highlight_states = {
+			state = 821
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Sulawesi taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_Sulawesi_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Sulawesi removed"
+			clr_country_flag = FRI_Sulawesi_smuggled_guns
+			clr_country_flag = FRI_Sulawesi_invested_funds
+			add_to_variable = {FRI_cs_sulawesi = 1}
+			custom_effect_tooltip = FRI_Sulawesi_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_Sulawesi = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_Sulawesi = no
+			check_variable = {FRI_cs_sulawesi > 0}
+		}
+
+		highlight_states = {
+			state = 821
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_Sulawesi taken"
+			if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_sulawesi = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Sul_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Sulawesi_complete_10
+			}
+			set_variable = {FRI_cs_sulawesi = 0}
+		}
+	}
+
+	FRI_Invest_Funds_Papua = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Papua_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Papua_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_Papua_invested_funds
+			}
+			check_variable = {
+				FRI_cs_papua < 10
+			}
+			FRI_has_majority_control_Papua = no
+		}
+
+		highlight_states = {
+			state = 1331
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Papua taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_Papua_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Papua removed"
+			set_country_flag = FRI_Papua_invested_funds
+			custom_effect_tooltip = FRI_Papua_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_Papua = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Papua_invested_funds
+			NOT = {
+				has_country_flag = FRI_Papua_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_papua < 10
+			}
+			FRI_has_majority_control_Papua = no
+		}
+
+		highlight_states = {
+			state = 1331
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Papua taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_Papua_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Papua removed"
+			set_country_flag = FRI_Papua_smuggled_guns
+			custom_effect_tooltip = FRI_Papua_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_Papua = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Papua_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Papua_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Papua_smuggled_guns
+			check_variable = {
+				FRI_cs_papua < 10
+			}
+			FRI_has_majority_control_Papua = no
+		}
+
+		highlight_states = {
+			state = 1331
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Papua taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_Papua_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Papua removed"
+			clr_country_flag = FRI_Papua_smuggled_guns
+			clr_country_flag = FRI_Papua_invested_funds
+			add_to_variable = {FRI_cs_papua = 1}
+			custom_effect_tooltip = FRI_Papua_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_Papua = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_Papua = no
+			check_variable = {FRI_cs_papua > 0}
+		}
+
+		highlight_states = {
+			state = 1331
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_Papua taken"
+			if = {
+				limit = {check_variable = {FRI_cs_papua = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_papua = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Pap_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Papua_complete_10
+			}
+			set_variable = {FRI_cs_Papua = 0}
+		}
+	}
+
+	FRI_Invest_Funds_Moluccas = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Moluccas_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Invest_Funds_Moluccas_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			NOT = {
+				has_country_flag = FRI_Moluccas_invested_funds
+			}
+			check_variable = {
+				FRI_cs_moluccas < 10
+			}
+			FRI_has_majority_control_Moluccas = no
+		}
+
+		highlight_states = {
+			state = 824
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Moluccas taken"
+			add_to_variable = {money_reserves = -50}
+			if = {
+				limit = {check_variable = {money_reserves < 0}}
+				subtract_from_variable = {national_debt = money_reserves}
+				set_variable = {national_debt = 0}
+			}
+			custom_effect_tooltip = FRI_Moluccas_invested_funds_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Invest_Funds_Moluccas removed"
+			set_country_flag = FRI_Moluccas_invested_funds
+			custom_effect_tooltip = FRI_Moluccas_invested_funds_remove
+		}
+	}
+	FRI_Smuggle_Guns_Moluccas = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			has_equipment = {
+				infantry_equipment > 499
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Moluccas_invested_funds
+			NOT = {
+				has_country_flag = FRI_Moluccas_smuggled_guns
+			}
+			check_variable = {
+				FRI_cs_moluccas < 10
+			}
+			FRI_has_majority_control_Moluccas = no
+		}
+
+		highlight_states = {
+			state = 824
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Moluccas taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			custom_effect_tooltip = FRI_Moluccas_smuggled_guns_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Smuggle_Guns_Moluccas removed"
+			set_country_flag = FRI_Moluccas_smuggled_guns
+			custom_effect_tooltip = FRI_Moluccas_smuggled_guns_remove
+		}
+	}
+	FRI_Build_CS_Moluccas = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Moluccas_tt_1
+					check_variable = {
+						var = money_reserves
+						value = 50
+						compare = greater_than_or_equals
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = FRI_Build_CS_Moluccas_tt_2
+					check_variable = {
+						GDP > national_debt
+					}
+				}
+			}
+			has_equipment = {
+				infantry_equipment > 149
+			}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			has_country_flag = FRI_Moluccas_smuggled_guns
+			check_variable = {
+				FRI_cs_moluccas < 10
+			}
+			FRI_has_majority_control_Moluccas = no
+		}
+
+		highlight_states = {
+			state = 824
+		}
+
+		on_map_mode = map_only
+		days_remove = 10
+		days_re_enable = 30
+		custom_cost_trigger = { always = yes } #no cost
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Moluccas taken"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -150
+			}
+			custom_effect_tooltip = FRI_Moluccas_build_cs_complete
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Build_CS_Moluccas removed"
+			clr_country_flag = FRI_Moluccas_smuggled_guns
+			clr_country_flag = FRI_Moluccas_invested_funds
+			add_to_variable = {FRI_cs_moluccas = 1}
+			custom_effect_tooltip = FRI_Moluccas_build_cs_remove
+		}
+	}
+	FRI_Raise_Units_Moluccas = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {has_country_flag = FRI_Civil_War}
+		}
+
+		visible = {
+			has_country_flag = FRI_Civil_War
+			FRI_has_majority_control_Moluccas = no
+			check_variable = {FRI_cs_north_moluccas > 0}
+		}
+
+		highlight_states = {
+			state = 824
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		on_map_mode = map_only
+		days_re_enable = 60
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRI_Raise_Units_Moluccas taken"
+			if = {
+				limit = {check_variable = {FRI_cs_moluccas = 1}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_1"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_1
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 2}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_2"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_2
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 3}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_3"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_3
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 4}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_4"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_4
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 5}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_5"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_5
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 6}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_6"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_6
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 7}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_7"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_7
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 8}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_8"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_8
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 9}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_9"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_9
+			}
+			else_if = {
+				limit = {check_variable = {FRI_cs_moluccas = 10}}
+				hidden_effect = {
+					load_oob = "FRI_cell_Mol_10"
+				}
+				custom_effect_tooltip = FRI_Raise_Units_Moluccas_complete_10
+			}
+			set_variable = {FRI_cs_moluccas = 0}
+		}
+	}
+}
+
+ZZZ_Cell_Command_Anarchy_Pulse_Category = {
+	ZZZ_FRI_Cell_Command_Cell_Buster = {
+		allowed = {
+			original_tag = ZZZ
+		}
+		
+		available = {
+			hidden_trigger = {INS = {NOT = {has_country_flag = INS_Civil_War}}}
+		}
+
+		activation = {
+			always = no
+		}
+
+		is_good = no
+
+		days_mission_timeout = 14
+		fixed_random_seed = no
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: ZZZ_FRI_Cell_Command_Cell_Buster mission timer elapsed" 
+			INS = {INS_check_FRI_cells = yes}
+	
+			hidden_effect = {
+			  if = {
+				 limit = {
+					INS = {has_country_flag = INS_Civil_War} 
+				 }
+				 activate_mission = ZZZ_FRI_Cell_Command_Cell_Buster
+			  }
+			}    
+	 	}    
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: mission ZZZ_FRI_Cell_Command_Cell_Buster completed"
+		}
+  	}
+}
+
+#INDONESIA CIVIL WAR
+INS_Stalemate_Category = {
+	INS_Stalemate_Timer_Mission = {
+		allowed = {
+			original_tag = INS
+		}
+
+		available = {
+			hidden_trigger = {INS = { NOT = {has_country_flag = INS_Civil_War}}}
+		}
+
+		activation = {
+			always = no
+		}
+
+		is_good = no
+
+		days_mission_timeout = 1095
+		days_remove = 10
+		fixed_random_seed = no
+		selectable_mission = no
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: INS_Stalemate_Timer_Mission mission timer elapsed" 
+			custom_effect_tooltip = INS_Stalemate_Timer_Mission_timeout_tt
+			hidden_effect = {
+				country_event = {
+					id = indonesiapeace.1
+				}
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: mission INS_Stalemate_Timer_Mission completed"
+			custom_effect_tooltip = INS_Stalemate_Timer_Mission_completion_tt
+		}
+	}
+}
+
+FRI_Stalemate_Category = {
+	FRI_Stalemate_Timer_Mission = {
+		allowed = {
+			original_tag = FRI
+		}
+
+		available = {
+			hidden_trigger = {FRI = { NOT = {has_country_flag = FRI_Civil_War}}}
+		}
+
+		activation = {
+			always = no
+		}
+
+		is_good = no
+
+		days_mission_timeout = 1094
+		days_remove = 10
+		fixed_random_seed = no
+		selectable_mission = no
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: INS_Stalemate_Timer_Mission mission timer elapsed"
+			country_event = {
+				id = indonesiapeace.4
+			}
+			custom_effect_tooltip = FRI_Stalemate_Timer_Mission_timeout_tt
+			INS = { change_tag_from = ROOT }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: mission INS_Stalemate_Timer_Mission completed"
+			custom_effect_tooltip = FRI_Stalemate_Timer_Mission_completion_tt
+		}
+	}
+}

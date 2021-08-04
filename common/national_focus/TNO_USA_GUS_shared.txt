@@ -1,0 +1,307 @@
+####GUS HALL made by tex####
+
+####fuck you tex, Barry claims this file####
+###i have returned, sorry barry###
+#communism is bad#
+###https://www.youtube.com/watch?v=hE8V22unwRo###
+###https://www.youtube.com/watch?v=mWsxkzSzKRo###
+
+#DAMMMNNNN
+shared_focus = {
+		id = USA_gus_72_thehallresidency
+		icon = GFX_USA_72_Hall
+		
+		x = 6
+		y = 0
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_thehallresidency"
+			add_political_power = 75
+		}
+	}
+	
+#fuck reactionaries all my homies hate reactionaries
+shared_focus = {
+		id = USA_gus_72_wrangle_the_npp
+		prerequisite = { focus = USA_gus_72_thehallresidency }
+		icon = GFX_USA_wrangle_the_npp
+		
+		x = 0
+		y = 2
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_wrangle_the_npp"
+			custom_effect_tooltip = USA_subtract_NPP_unity
+			custom_effect_tooltip = USA_gus_72_wrangle_the_npp_tt
+			add_to_variable = { USA_NPP_Unity = -1 }
+			hidden_effect = {
+				358 = {
+					if = { 
+						limit = { check_variable = { senator_1 = 4 } } 
+						set_variable = { senator_1 = 3 }
+						if = {
+							limit = { USA = { has_country_flag = USA_nixon_vetod } }
+							set_variable = { name_change_1 = 1 }
+						}
+						else = {
+							set_variable = { name_change_1 = 4 }
+						}
+					}
+				}
+				
+				386 = {
+					if = { 
+						limit = { check_variable = { senator_1 = 4 } } 
+						set_variable = { senator_1 = 3 }
+						if = {
+							limit = { USA = { has_country_flag = USA_nixon_vetod } }
+							set_variable = { name_change_1 = 1 }
+						}
+						else = {
+							set_variable = { name_change_1 = 4 }
+						}
+					}
+				}
+				
+				360 = {
+					if = { 
+						limit = { check_variable = { senator_1 = 4 } } 
+						set_variable = { senator_1 = 3 }
+						if = {
+							limit = { USA = { has_country_flag = USA_nixon_vetod } }
+							set_variable = { name_change_1 = 1 }
+						}
+						else = {
+							set_variable = { name_change_1 = 4 }
+						}
+					}
+				}
+			}
+		}
+		relative_position_id = USA_gus_72_thehallresidency
+	}
+
+#apple pie communism based???
+shared_focus = {
+		id = USA_gus_72_memories_of_lincoln
+		prerequisite = { focus = USA_gus_72_thehallresidency }
+		icon = GFX_Memories_of_Lincoln
+		x = -1
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_memories_of_lincoln"
+			custom_effect_tooltip = USA_add_NPP_popularity_north
+			custom_effect_tooltip = USA_gus_72_memories_of_lincoln_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						OR = {
+						check_variable = { nationality = 82 } #Yankee
+						check_variable = { nationality = 85 } #Steel Belt
+						check_variable = { nationality = 88 } #Pacific
+						}
+					}
+					add_to_variable = { NPP_popularity = 0.1 }
+					add_to_variable = { NPP_L_bonus_popularity = 0.15 }
+					add_to_variable = { NPP_C_bonus_popularity = 0.05 }
+					US_underdog_NPP_5_5 = yes
+				}
+				country_event = { id = HAL.4 }
+			}
+		}
+		relative_position_id = USA_gus_72_thehallresidency
+	}
+	
+#communism will win over the bad people >:)))
+shared_focus = {
+		id = USA_gus_72_crush_the_fifth_column
+		icon = GFX_Crush_the_Fifth_Column
+		prerequisite = { focus = USA_gus_72_thehallresidency }
+		x = 1
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_memories_of_lincoln"
+			custom_effect_tooltip = USA_gus_72_crush_the_fifth_column_tt
+			hidden_effect = {
+			country_event = { id = HAL.5 }
+			}
+		}
+		relative_position_id = USA_gus_72_thehallresidency
+	}
+#stop being racist and arguring about it, CIVIL RIGHTS ARE HERE TO STAY
+shared_focus = {
+		id = USA_gus_72_civil_rights_are_here_to_stay
+		icon = GFX_Put_Down_Dixie
+		prerequisite = { focus = USA_gus_72_memories_of_lincoln }
+		x = -1
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		select_effect = { NPP_L_holy_shit_its_super_civil_rights = yes }
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_civil_rights_are_here_to_stay"
+			custom_effect_tooltip = USA_gus_72_civil_rights_are_here_to_stay_tt
+			hidden_effect = {
+				check_if_bill_passed = yes
+				if = { 
+					limit = { has_country_flag = bill_passed }
+					country_event = { id = HAL.2 }
+				}
+				
+				else = {
+					country_event = { id = HAL.3 }
+				}
+			}
+		}
+		relative_position_id = USA_gus_72_memories_of_lincoln
+	}	
+	#FUCK HOOVER
+shared_focus = {
+		id = USA_gus_72_sins_of_the_father
+		icon = GFX_The_Sins_of_the_Father
+		prerequisite = { focus = USA_gus_72_crush_the_fifth_column }
+		x = 1
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_memories_of_lincoln"
+			custom_effect_tooltip = USA_gus_72_sins_of_the_father_tt
+			hidden_effect = {
+			country_event = { id = HAL.6 }
+			}
+		}
+		relative_position_id = USA_gus_72_crush_the_fifth_column
+	}	
+#######YOOOOOOOOOOOOO, communism? IN AMERICA??? YOOOOO###
+shared_focus = {
+		id = USA_gus_72_raise_the_sickle
+		icon = GFX_Raise_the_Sickle
+		prerequisite = { focus = USA_gus_72_sins_of_the_father }
+		prerequisite = { focus = USA_gus_72_civil_rights_are_here_to_stay }
+		prerequisite = { focus = USA_gus_72_wrangle_the_npp }
+		x = 0
+		y = 3
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_memories_of_lincoln"
+			add_stability = -0.03
+			custom_effect_tooltip = USA_gus_72_raise_the_sickle_tt
+			hidden_effect = {
+			country_event = { id = HAL.10 }
+			}
+		}
+		relative_position_id = USA_gus_72_thehallresidency
+	}	
+###
+shared_focus = {
+		id = USA_gus_72_the_african_nightmare
+		icon = GFX_USA_uncover_our_crimes
+		x = -1
+		y = 1
+		cost = 2
+		prerequisite = { focus = USA_gus_72_raise_the_sickle }
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_the_african_nightmare"
+			custom_effect_tooltip = USA_subtract_OFN_unity
+			TNO_worsen_army_professionalism_low = yes
+			hidden_effect = {
+				subtract_from_variable = { OFN_Unity = 2 }
+				country_event = { id = HAL.11 }
+			}
+		}
+		relative_position_id = USA_gus_72_raise_the_sickle
+	}
+	
+shared_focus = {
+		id = USA_gus_72_stop_the_infilitration
+		icon = GFX_Focus_The_AFL_CIO
+		prerequisite = { focus = USA_gus_72_raise_the_sickle }
+		x = 1
+		y = 1
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_stop_the_infilitration"
+			custom_effect_tooltip = USA_add_NPP_unity
+			custom_effect_tooltip = USA_NPP_popularity_grows_low
+			custom_effect_tooltip = USA_gus_72_stop_the_infilitration_tt
+			add_to_variable = { USA_NPP_Unity = 2 }
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						check_variable = { NPP_popularity < RD_popularity }
+					}
+					add_to_variable = { NPP_L_bonus_popularity = 0.05 }
+					add_to_variable = { NPP_popularity = 0.05 }
+				}
+				every_owned_state = {
+					limit = {
+						can_have_elections_in_state = yes
+						NOT = { check_variable = { NPP_popularity < RD_popularity } }
+					}
+					add_to_variable = { NPP_L_bonus_popularity = 0.05 }
+				}
+			}	
+		}
+		relative_position_id = USA_gus_72_raise_the_sickle
+	}
+	
+shared_focus = {
+		id = USA_gus_72_a_new_red_dawn
+		icon = GFX_A_New_Red_Dawn
+		prerequisite = { focus = USA_gus_72_the_african_nightmare }
+		prerequisite = { focus = USA_gus_72_stop_the_infilitration }
+		x = 0
+		y = 2
+		cost = 2
+		available_if_capitulated = yes
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = { 
+			log = "[GetDateText]: [Root.GetName]: Focus USA_gus_72_stop_the_infilitration"
+			custom_effect_tooltip = USA_gus_72_a_new_red_dawn_tt
+			hidden_effect = {
+				country_event = { id = HAL.12 }
+			}
+		}
+		relative_position_id = USA_gus_72_raise_the_sickle
+	}

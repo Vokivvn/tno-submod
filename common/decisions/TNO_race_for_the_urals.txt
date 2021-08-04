@@ -1,0 +1,2861 @@
+RUS_race_for_the_urals = {
+	RUS_increase_influence_in_orenburg = {
+
+		icon = decision_humanitarian_aid_increase
+
+		available = {
+			ORE = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_not_max_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				}
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			}
+			ORE = {
+				exists = yes
+				NOT = {
+					has_country_flag = ORE_ANARCHY
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_influence_in_orenburg"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+			}
+		}
+	}
+	RUS_decrease_influence_in_orenburg = {
+
+		icon = decision_humanitarian_aid_decrease
+
+		available = {
+			ORE = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			}
+			ORE = {
+				exists = yes
+				NOT = {
+					has_country_flag = ORE_ANARCHY
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_decrease_influence_in_orenburg"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_3
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_ORE_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_ORE_INFLUENCE_0
+			}
+		}
+	}
+	RUS_increase_relations_with_orenburg = {
+
+		icon = decision_black_market_presence_increase
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_ORE_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				NOT = {
+					OR = {
+						AND = {
+							tag = WSB
+							ORE = {
+								OR = {
+									has_country_flag = WSB_INFLUENCE_LEVEL_5
+									has_country_flag = WSB_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+						AND = {
+							tag = WSR
+							ORE = {
+								OR = {
+									has_country_flag = WSR_INFLUENCE_LEVEL_5
+									has_country_flag = WSR_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			}
+			ORE = {
+				exists = yes
+				NOT = {
+					has_country_flag = ORE_ANARCHY
+				}
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						ORE = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						ORE = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_relations_with_orenburg"
+			subtract_from_variable = { RUS_ORE_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				ORE = {
+					RUS_WSR_increase_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				ORE = {
+					RUS_WSB_increase_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_remove_orenburg_from_sphere = {
+
+		icon = decision_generic_independence
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_ORE_Influence > 99.99 }
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			}
+			ORE = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_remove_orenburg_from_sphere"
+			subtract_from_variable = { RUS_ORE_Influence = 100 }
+			set_autonomy = {
+				target = ORE
+				autonomy_state = autonomy_free
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				ORE = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_6
+					set_country_flag = WSB_INFLUENCE_LEVEL_5
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				ORE = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_6
+					set_country_flag = WSR_INFLUENCE_LEVEL_5
+				}
+			}
+		}
+	}
+
+	RUS_add_orenburg_to_sphere = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_ORE_Influence > 99.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				OR = {
+					AND = {
+						tag = WSR
+						ORE = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_5
+						}
+					}
+					AND = {
+						tag = WSB
+						ORE = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_5
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			}
+			ORE = {
+				exists = yes
+				NOT = {
+					has_country_flag = ORE_ANARCHY
+				}
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						ORE = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						ORE = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_add_orenburg_to_sphere"
+			subtract_from_variable = { RUS_ORE_Influence = 100 }
+			ORE = {
+				RUS_puppet_keep_ideology = yes
+			}
+			custom_effect_tooltip = RUS_increase_relations_5_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				ORE = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_5
+					set_country_flag = WSR_INFLUENCE_LEVEL_6
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				ORE = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_5
+					set_country_flag = WSB_INFLUENCE_LEVEL_6
+				}
+			}
+		}
+	}
+
+	RUS_integrate_orenburg = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_ORE_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_in_sphere
+				OR = {
+					AND = {
+						tag = WSR
+						ORE = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						ORE = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			ORE = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+				}
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+				}
+			}
+		}
+
+		days_remove = 30
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_orenburg"
+			subtract_from_variable = { RUS_ORE_Influence = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_orenburg remove"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				set_global_flag = WSR_INTEGRATING_ORE
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				set_global_flag = WSB_INTEGRATING_ORE
+			}
+			ORE = {
+				country_event = {
+					id = russiadiplo.16
+					days = 1
+				}
+			}
+		}
+	}
+
+	RUS_increase_influence_in_ural_league = {
+
+		icon = decision_humanitarian_aid_increase
+
+		available = {
+			URL = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_not_max_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				}
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_influence_in_ural_league"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+			}
+		}
+	}
+	RUS_decrease_influence_in_ural_league = {
+
+		icon = decision_humanitarian_aid_decrease
+
+		available = {
+			URL = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				}
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_decrease_influence_in_ural_league"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_3
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_URL_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_URL_INFLUENCE_0
+			}
+		}
+	}
+	RUS_increase_relations_with_ural_league = {
+
+		icon = decision_black_market_presence_increase
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_URL_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				NOT = {
+					OR = {
+						AND = {
+							tag = WSB
+							URL = {
+								OR = {
+									has_country_flag = WSB_INFLUENCE_LEVEL_5
+									has_country_flag = WSB_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+						AND = {
+							tag = WSR
+							URL = {
+								OR = {
+									has_country_flag = WSR_INFLUENCE_LEVEL_5
+									has_country_flag = WSR_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						URL = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						URL = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_relations_with_ural_league"
+			subtract_from_variable = { RUS_URL_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				URL = {
+					RUS_WSR_increase_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				URL = {
+					RUS_WSB_increase_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_add_ural_league_to_sphere = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_URL_Influence > 99.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				OR = {
+					AND = {
+						tag = WSR
+						URL = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_5
+						}
+					}
+					AND = {
+						tag = WSB
+						URL = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_5
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						URL = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						URL = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_add_ural_league_to_sphere"
+			subtract_from_variable = { RUS_URL_Influence = 100 }
+			URL = {
+				RUS_puppet_keep_ideology = yes
+			}
+			custom_effect_tooltip = RUS_increase_relations_5_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				URL = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_5
+					set_country_flag = WSR_INFLUENCE_LEVEL_6
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				URL = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_5
+					set_country_flag = WSB_INFLUENCE_LEVEL_6
+				}
+			}
+		}
+	}
+
+	RUS_remove_ural_league_from_sphere = {
+
+		icon = decision_generic_independence
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_URL_Influence > 99.99 }
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_remove_ural_league_from_sphere"
+			subtract_from_variable = { RUS_URL_Influence = 100 }
+			set_autonomy = {
+				target = URL
+				autonomy_state = autonomy_free
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				URL = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_6
+					set_country_flag = WSB_INFLUENCE_LEVEL_5
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				URL = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_6
+					set_country_flag = WSR_INFLUENCE_LEVEL_5
+				}
+			}
+		}
+	}
+
+	RUS_integrate_ural_league = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_URL_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_in_sphere
+				OR = {
+					AND = {
+						tag = WSR
+						URL = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						URL = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = URL
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			}
+			URL = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+				}
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+				}
+			}
+		}
+
+		days_remove = 30
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_ural_league"
+			subtract_from_variable = { RUS_URL_Influence = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_ural_league remove"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				set_global_flag = WSR_INTEGRATING_URL
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				set_global_flag = WSB_INTEGRATING_URL
+			}
+			URL = {
+				country_event = {
+					id = russiadiplo.17
+					days = 1
+				}
+			}
+		}
+	}
+
+	RUS_increase_influence_in_magnitogorsk = {
+
+		icon = decision_humanitarian_aid_increase
+
+		available = {
+			BAS = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_not_max_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				}
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			BAS = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_influence_in_magnitogorsk"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+			}
+		}
+	}
+	RUS_decrease_influence_in_magnitogorsk = {
+
+		icon = decision_humanitarian_aid_decrease
+
+		available = {
+			BAS = {
+				exists = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_has_current_investments
+				OR = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				}
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			BAS = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_decrease_influence_in_magnitogorsk"
+			if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_3
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_2
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				}
+				clr_country_flag = URALS_CRISIS_BAS_INFLUENCE_1
+				set_country_flag = URALS_CRISIS_BAS_INFLUENCE_0
+			}
+		}
+	}
+	RUS_increase_relations_with_magnitogorsk = {
+
+		icon = decision_black_market_presence_increase
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_BAS_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				NOT = {
+					OR = {
+						AND = {
+							tag = WSB
+							BAS = {
+								OR = {
+									has_country_flag = WSB_INFLUENCE_LEVEL_5
+									has_country_flag = WSB_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+						AND = {
+							tag = WSR
+							BAS = {
+								OR = {
+									has_country_flag = WSR_INFLUENCE_LEVEL_5
+									has_country_flag = WSR_INFLUENCE_LEVEL_6
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			BAS = {
+				exists = yes
+			}
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						BAS = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						BAS = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_relations_with_magnitogorsk"
+			subtract_from_variable = { RUS_BAS_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				BAS = {
+					RUS_WSR_increase_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				BAS = {
+					RUS_WSB_increase_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_add_magnitogorsk_to_sphere = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_BAS_Influence > 99.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_can_increase_relations
+				OR = {
+					AND = {
+						tag = WSR
+						BAS = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_5
+						}
+					}
+					AND = {
+						tag = WSB
+						BAS = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_5
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			BAS = {
+				exists = yes
+			}
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			NOT = {
+				OR = {
+					AND = {
+						tag = WSR
+						BAS = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						BAS = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_add_magnitogorsk_to_sphere"
+			subtract_from_variable = { RUS_BAS_Influence = 100 }
+			BAS = {
+				RUS_puppet_keep_ideology = yes
+			}
+			custom_effect_tooltip = RUS_increase_relations_5_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				BAS = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_5
+					set_country_flag = WSR_INFLUENCE_LEVEL_6
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				BAS = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_5
+					set_country_flag = WSB_INFLUENCE_LEVEL_6
+				}
+			}
+		}
+	}
+
+	RUS_remove_magnitogorsk_from_sphere = {
+
+		icon = decision_generic_independence
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_100_influence_tt
+				check_variable = { RUS_BAS_Influence > 99.99 }
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			BAS = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_remove_magnitogorsk_from_sphere"
+			subtract_from_variable = { RUS_BAS_Influence = 100 }
+			set_autonomy = {
+				target = BAS
+				autonomy_state = autonomy_free
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				BAS = {
+					clr_country_flag = WSB_INFLUENCE_LEVEL_6
+					set_country_flag = WSB_INFLUENCE_LEVEL_5
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				BAS = {
+					clr_country_flag = WSR_INFLUENCE_LEVEL_6
+					set_country_flag = WSR_INFLUENCE_LEVEL_5
+				}
+			}
+		}
+	}
+
+	RUS_integrate_magnitogorsk = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_BAS_Influence > 49.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = RUS_in_sphere
+				OR = {
+					AND = {
+						tag = WSR
+						BAS = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_6
+						}
+					}
+					AND = {
+						tag = WSB
+						BAS = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_6
+						}
+					}
+				}
+			}
+			NOT = {
+				has_war_with = BAS
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			NOT = {
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			}
+			BAS = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_6
+					}
+				}
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_6
+					}
+				}
+			}
+		}
+
+		days_remove = 30
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 500
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_magnitogorsk"
+			subtract_from_variable = { RUS_BAS_Influence = 50 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_integrate_magnitogorsk remove"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				set_global_flag = WSR_INTEGRATING_BAS
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				set_global_flag = WSB_INTEGRATING_BAS
+			}
+			BAS = {
+				country_event = {
+					id = russiadiplo.18
+					days = 1
+				}
+			}
+		}
+	}
+
+	RUS_intervene_in_orenburg = {
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			ORE = {
+				is_neighbor_of = ROOT
+			}
+
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			ORE = {
+				exists = yes
+				has_country_flag = ORE_ANARCHY
+				has_government = socialist
+				NOT = {
+					AND = {
+						owns_state = 652
+						owns_state = 848
+						owns_state = 582
+						owns_state = 846
+					}
+				}
+			}
+			NOT = {
+				has_war_with = ORE
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 25
+			modifier = {
+				ORE = {
+					is_in_faction_with = URL
+				}
+				add = -25
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_intervene_in_orenburg"
+			#Invade Orenburg anarchy
+			set_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			ORE = {
+				country_event = {
+					id = russiadiplo.69
+					hours = 1
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_intervene_in_orenburg remove"
+			declare_war_on = {
+				target = ORE
+				type = annex_everything
+			}
+		}
+	}
+
+	RUS_intervene_in_orsk = {
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			ORS = {
+				is_neighbor_of = ROOT
+			}
+
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			ORS = {
+				exists = yes
+				has_government = socialist
+				NOT = {
+					AND = {
+						owns_state = 652
+						owns_state = 848
+						owns_state = 582
+						owns_state = 846
+					}
+				}
+			}
+			NOT = {
+				has_war_with = ORS
+			}
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 25
+		}
+
+		fire_only_once = no
+
+		days_remove = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_intervene_in_orsk"
+			#Invade Dirlewanger anarchy
+			ORS = {
+				country_event = {
+					id = russiadiplo.72
+					hours = 1
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_intervene_in_orsk remove"
+			declare_war_on = {
+				target = ORS
+				type = annex_everything
+			}
+		}
+	}
+
+	RUS_launch_military_intervention = {
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			always = yes
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+		}
+
+		days_re_enable = 0
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				has_government = burgundian_system
+				add = 25
+			}
+			modifier = {
+				has_government = ultranational_socialism
+				add = 35
+			}
+			modifier = {
+				has_government = national_socialism
+				add = 25
+			}
+			modifier = {
+				has_government = fascism
+				add = 10
+			}
+			modifier = {
+				URL = {
+					exists = yes
+				}
+				has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+				add = 5
+			}
+			modifier = {
+				BAS = {
+					exists = yes
+				}
+				has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+				add = 5
+			}
+			modifier = {
+				ORE = {
+					exists = yes
+				}
+				has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+				add = 5
+			}
+			modifier = {
+				ORE = {
+					exists = yes
+				}
+				NOT = {
+					has_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+				}
+				add = -10
+			}
+			modifier = {
+				URL = {
+					exists = yes
+				}
+				NOT = {
+					has_country_flag = RUS_CANNOT_NEGOTIATE_URL
+				}
+				add = -10
+			}
+			modifier = {
+				BAS = {
+					exists = yes
+				}
+				NOT = {
+					has_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+				}
+				add = -10
+			}
+			modifier = {
+				ORE = {
+					exists = yes
+					is_puppet_of = ROOT
+				}
+				add = -100
+			}
+			modifier = {
+				URL = {
+					exists = yes
+					is_puppet_of = ROOT
+				}
+				add = -100
+			}
+			modifier = {
+				BAS = {
+					exists = yes
+					is_puppet_of = ROOT
+				}
+				add = -100
+			}
+		}
+
+		fire_only_once = yes
+
+		days_remove = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_launch_military_intervention"
+			set_country_flag = RUS_CANNOT_NEGOTIATE_ORE
+			set_country_flag = RUS_CANNOT_NEGOTIATE_URL
+			set_country_flag = RUS_CANNOT_NEGOTIATE_BAS
+			set_country_flag = RUS_CANNOT_NEGOTIATE_ORS
+			if = {
+				limit = {
+					ORE = {
+						exists = yes
+					}
+				}
+				ORE = {
+					country_event = {
+						id = russiadiplo.69
+						hours = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					URL = {
+						exists = yes
+					}
+				}
+				URL = {
+					country_event = {
+						id = russiadiplo.70
+						hours = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					BAS = {
+						exists = yes
+					}
+				}
+				BAS = {
+					country_event = {
+						id = russiadiplo.71
+						hours = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					ORS = {
+						exists = yes
+					}
+				}
+				ORS = {
+					country_event = {
+						id = russiadiplo.72
+						hours = 1
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_launch_military_intervention remove"
+			if = {
+				limit = {
+					ORS = {
+						exists = yes
+					}
+				}
+				declare_war_on = {
+					target = ORS
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					URL = {
+						exists = yes
+					}
+				}
+				declare_war_on = {
+					target = URL
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					ORE = {
+						exists = yes
+					}
+				}
+				declare_war_on = {
+					target = ORE
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					BAS = {
+						exists = yes
+					}
+				}
+				declare_war_on = {
+					target = BAS
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					country_event = {
+						id = russiadiplo.68
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					country_event = {
+						id = russiadiplo.68
+						days = 1
+					}
+				}
+			}
+		}
+	}
+
+	RUS_discredit_opponent_in_orenburg = {
+
+		icon = decision_generic_civil_support
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_25_influence_tt
+				check_variable = { RUS_ORE_Influence > 24.99 }
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			ORE = {
+				exists = yes
+				NOT = {
+					has_country_flag = ORE_ANARCHY
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 30
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_discredit_opponent_in_orenburg"
+			custom_effect_tooltip = RUS_opponent_discredit_add_tt
+			subtract_from_variable = { RUS_ORE_Influence = 25 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					set_country_flag = URALS_CRISIS_ORE_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					set_country_flag = URALS_CRISIS_ORE_DISCREDITED
+				}
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_display_southern_urals_influence"
+			custom_effect_tooltip = RUS_opponent_discredit_remove_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					clr_country_flag = URALS_CRISIS_ORE_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					clr_country_flag = URALS_CRISIS_ORE_DISCREDITED
+				}
+			}
+		}
+	}
+
+	RUS_discredit_opponent_in_ural_league = {
+
+		icon = decision_generic_civil_support
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_25_influence_tt
+				check_variable = { RUS_URL_Influence > 24.99 }
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			URL = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 30
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = RUS_opponent_discredit_add_tt
+			subtract_from_variable = { RUS_URL_Influence = 25 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					set_country_flag = URALS_CRISIS_URL_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					set_country_flag = URALS_CRISIS_URL_DISCREDITED
+				}
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_display_southern_urals_influence"
+			custom_effect_tooltip = RUS_opponent_discredit_remove_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					clr_country_flag = URALS_CRISIS_URL_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					clr_country_flag = URALS_CRISIS_URL_DISCREDITED
+				}
+			}
+		}
+	}
+
+	RUS_discredit_opponent_in_magnitogorsk = {
+
+		icon = decision_generic_civil_support
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_25_influence_tt
+				check_variable = { RUS_BAS_Influence > 24.99 }
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			BAS = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 30
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = RUS_opponent_discredit_add_tt
+			subtract_from_variable = { RUS_BAS_Influence = 25 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					set_country_flag = URALS_CRISIS_BAS_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					set_country_flag = URALS_CRISIS_BAS_DISCREDITED
+				}
+			}
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove RUS_display_southern_urals_influence"
+			custom_effect_tooltip = RUS_opponent_discredit_remove_tt
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				WSB = {
+					clr_country_flag = URALS_CRISIS_BAS_DISCREDITED
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				WSR = {
+					clr_country_flag = URALS_CRISIS_BAS_DISCREDITED
+				}
+			}
+		}
+	}
+
+	RUS_decrease_opponent_influence_in_orenburg = {
+
+		icon = decision_black_market_shut_down
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_ORE_Influence > 49.99 }
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			ORE = {
+				exists = yes
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					ORE = {
+						NOT = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+				AND = {
+					tag = WSB
+					ORE = {
+						NOT = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 45
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSR
+					ORE = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSB
+					ORE = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = RUS_opponent_decrease_influence_tt
+			subtract_from_variable = { RUS_ORE_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				ORE = {
+					RUS_WSB_decrease_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				ORE = {
+					RUS_WSR_decrease_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_decrease_opponent_influence_in_ural_league = {
+
+		icon = decision_black_market_shut_down
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_URL_Influence > 49.99 }
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					URL = {
+						NOT = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+				AND = {
+					tag = WSB
+					URL = {
+						NOT = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			URL = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 45
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSR
+					URL = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSB
+					URL = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = RUS_opponent_decrease_influence_tt
+			subtract_from_variable = { RUS_URL_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				URL = {
+					RUS_WSB_decrease_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				URL = {
+					RUS_WSR_decrease_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_decrease_opponent_influence_in_magnitogorsk = {
+
+		icon = decision_black_market_shut_down
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_50_influence_tt
+				check_variable = { RUS_BAS_Influence > 49.99 }
+			}
+			OR = {
+				AND = {
+					tag = WSR
+					BAS = {
+						NOT = {
+							has_country_flag = WSB_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+				AND = {
+					tag = WSB
+					BAS = {
+						NOT = {
+							has_country_flag = WSR_INFLUENCE_LEVEL_1
+						}
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+			BAS = {
+				exists = yes
+			}
+		}
+
+		days_re_enable = 0
+
+		days_remove = 45
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSR
+					BAS = {
+						has_country_flag = WSB_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_1
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_2
+					}
+				}
+			}
+			modifier = {
+				factor = 1
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_3
+					}
+				}
+			}
+			modifier = {
+				factor = 5
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_4
+					}
+				}
+			}
+			modifier = {
+				factor = 20
+				AND = {
+					tag = WSB
+					BAS = {
+						has_country_flag = WSR_INFLUENCE_LEVEL_5
+					}
+				}
+			}
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			custom_effect_tooltip = RUS_opponent_decrease_influence_tt
+			subtract_from_variable = { RUS_BAS_Influence = 50 }
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSR
+					}
+				}
+				BAS = {
+					RUS_WSB_decrease_relations = yes
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						tag = WSB
+					}
+				}
+				BAS = {
+					RUS_WSR_decrease_relations = yes
+				}
+			}
+		}
+	}
+
+	RUS_propose_east_leaning_ceasefire = {
+
+		icon = decision_border_war
+
+		visible = {
+			OR = {
+				AND = {
+					tag = WSR
+					has_war_with = WSB
+				}
+				AND = {
+					tag = WSB
+					has_war_with = WSR
+				}
+			}
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+		}
+		available = {
+			ORS = {
+				exists = no
+			}
+			ORE = {
+				exists = no
+			}
+			URL = {
+				exists = no
+			}
+			BAS = {
+				exists = no
+			}
+			WSR = {
+				surrender_progress > 0.2
+			}
+			date < 1969.1.1
+		}
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_propose_east_leaning_ceasefire"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				WSB = {
+					country_event = {
+						id = russiadiplo.83
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				WSR = {
+					country_event = {
+						id = russiadiplo.83
+						days = 1
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	RUS_propose_west_leaning_ceasefire = {
+
+		icon = decision_border_war
+
+		visible = {
+			OR = {
+				AND = {
+					tag = WSR
+					has_war_with = WSB
+				}
+				AND = {
+					tag = WSB
+					has_war_with = WSR
+				}
+			}
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+		}
+		available = {
+			ORS = {
+				exists = no
+			}
+			ORE = {
+				exists = no
+			}
+			URL = {
+				exists = no
+			}
+			BAS = {
+				exists = no
+			}
+			WSB = {
+				surrender_progress > 0.2
+			}
+			date < 1969.1.1
+		}
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_propose_west_leaning_ceasefire"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				WSB = {
+					country_event = {
+						id = russiadiplo.82
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				WSR = {
+					country_event = {
+						id = russiadiplo.82
+						days = 1
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	RUS_propose_neutral_ceasefire = {
+
+		icon = decision_border_war
+
+		visible = {
+			OR = {
+				AND = {
+					tag = WSR
+					has_war_with = WSB
+				}
+				AND = {
+					tag = WSB
+					has_war_with = WSR
+				}
+			}
+			has_country_flag = BEGUN_SOUTHERN_URALS_CRISIS
+		}
+		available = {
+			ORS = {
+				exists = no
+			}
+			ORE = {
+				exists = no
+			}
+			URL = {
+				exists = no
+			}
+			BAS = {
+				exists = no
+			}
+			date < 1969.1.1
+		}
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_propose_neutral_ceasefire"
+			if = {
+				limit = {
+					tag = WSR
+				}
+				WSB = {
+					country_event = {
+						id = russiadiplo.84
+						days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					tag = WSB
+				}
+				WSR = {
+					country_event = {
+						id = russiadiplo.84
+						days = 1
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}

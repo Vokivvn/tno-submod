@@ -1,0 +1,43 @@
+﻿add_namespace = KST
+
+country_event = { #
+	id = KST.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KST.1"}
+	title = KST.1.t
+	desc = KST.1.desc
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = KST.1.a
+		ai_chance = { factor = 50 }
+		VOL = {
+			annex_country = {
+				target = KST
+				transfer_troops = yes
+			}
+			add_state_core = 856
+		}
+		VOL = {
+			change_tag_from = KST
+		}
+		KST = {
+			every_unit_leader = {
+				set_nationality = VOL
+			}
+		}
+	}
+	option = { #
+		name = KST.1.b
+		ai_chance = { factor = 30 }
+		VOL = {
+			declare_war_on = {
+				target = KST
+				type = annex_everything
+			}
+			add_state_core = 856
+		}
+	}
+}

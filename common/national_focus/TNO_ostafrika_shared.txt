@@ -1,0 +1,1622 @@
+### Huttig Pre-War Tree ###
+	
+    shared_focus = {
+	    id = MZB_the_guardians_of_afrika
+	    icon = GFX_goal_MZB_icon_the_guardian_of_afrika
+	    cost = 4
+		allow_branch = {
+		    has_country_leader = {
+                name = "Hans Hüttig"
+                ruling_only = yes
+            }
+	    }
+	    x = 10
+	    y = 0
+	    completion_reward = {
+		    log = "[GetDateText]: [Root.GetName]: Focus MZB_the_guardians_of_afrika"
+			add_political_power = 100
+
+			country_event = { 
+				id = MZB_FOCUS.1 
+				days = 1
+			}
+	    }
+    }
+	
+	shared_focus = {
+		id = MZB_the_drums_echo
+		icon = GFX_MZB_The_Drums_Echo
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_guardians_of_afrika
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_drums_echo"
+			add_war_support = 0.1
+			set_country_flag = MZB_war_preparations_begin
+			unlock_decision_category_tooltip = MZB_war_preparations_category
+
+			country_event = { 
+				id = MZB_FOCUS.2 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_the_home_of_the_exile
+		icon = GFX_MZB_The_Home_of_the_Exile
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_drums_echo
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_home_of_the_exile"
+			add_manpower = 5000
+			army_experience = 10
+
+			country_event = { 
+				id = MZB_FOCUS.3 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_slave_munitions
+		icon = GFX_MZB_slave_munitions
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_home_of_the_exile
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_slave_munitions"
+			1066 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			1082 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			unlock_decision_tooltip = MZB_reduced_rations_for_workers
+			unlock_decision_tooltip = MZB_conscript_more_workers
+
+			country_event = { 
+				id = MZB_FOCUS.4 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_master_the_jungle
+		icon = GFX_MZB_master_the_jungle
+		cost = 4
+		prerequisite = {
+			focus = MZB_slave_munitions
+		}
+		mutually_exclusive = {
+			focus = MZB_master_the_desert
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_master_the_jungle"
+			MZB = {
+			    every_unit_leader = {
+				    limit = {
+					    is_MZB_general = yes
+				    }
+				add_unit_leader_trait = jungle_rat
+			    }
+		    }
+
+		    country_event = { id = MZB_FOCUS.5 }
+        }
+	}
+	
+	shared_focus = {
+		id = MZB_master_the_desert
+		icon = GFX_MZB_master_the_desert
+		cost = 4
+		prerequisite = {
+			focus = MZB_slave_munitions
+		}
+		mutually_exclusive = {
+			focus = MZB_master_the_jungle
+		}
+		x = 4
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_master_the_desert"
+			MZB = {
+			    every_unit_leader = {
+				    limit = {
+					    is_MZB_general = yes
+				    }
+				add_unit_leader_trait = desert_fox
+			    }
+		    }
+
+		    country_event = { 
+		    	id = MZB_FOCUS.6 
+		    	days = 1
+		    }
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_southern_land_grants
+		icon = GFX_MZB_Southern_Land_Grants
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_drums_echo
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_southern_land_grants"
+			add_political_power = 50
+			unlock_decision_tooltip = MZB_promote_loyalists
+			
+			country_event = { 
+				id = MZB_FOCUS.13 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_boer_support_staff
+		icon = GFX_General_Drafting
+		cost = 4
+		prerequisite = {
+			focus = MZB_southern_land_grants
+		}
+		x = 5
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_boer_support_staff"
+			custom_effect_tooltip = MZB_boer_support_staff_tooltip
+			add_manpower = 5000
+			add_tech_bonus = {
+                bonus = 0.3
+                uses = 1
+                category = land_doctrine
+            }
+			set_country_flag = MZB_BOR_joint_training
+
+			country_event = { 
+				id = MZB_FOCUS.14
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_help_me_to_help_you
+		icon = GFX_MZB_Help_Me_to_Help_You
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_drums_echo
+		}
+		x = 7
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_help_me_to_help_you"
+			545 = {
+			    add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1063 = {
+			    add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1065 = {
+			    add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			880 = {
+			    add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			country_event = { 
+				id = MZB_FOCUS.15
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_booby_trap_the_border
+		icon = GFX_IBR_road_investigation
+		cost = 4
+		prerequisite = {
+			focus = MZB_help_me_to_help_you
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_booby_trap_the_border"
+			custom_effect_tooltip = MZB_booby_trap_the_border_tooltip
+			set_country_flag = MZB_booby_trap_the_border_flag
+			unlock_decision_tooltip = MZB_test_the_gas
+
+			country_event = { 
+				id = MZB_FOCUS.16
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_kick_the_hornets_nest
+		icon = GFX_goal_MZB_icon_kick_the_hornets_nest
+		cost = 4
+		prerequisite = {
+			focus = MZB_boer_support_staff
+		}
+		prerequisite = {
+			focus = MZB_booby_trap_the_border
+		}
+		x = 6
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_kick_the_hornets_nest"
+			
+			country_event = { 
+				id = MZB_FOCUS.17
+				days = 7
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_arms_for_aryans
+		icon = GFX_national_socialist_male
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_drums_echo
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_arms_for_aryans"
+			add_equipment_to_stockpile = {
+                type = infantry_equipment_2
+                amount = 1000
+                producer = GER
+			}
+			unlock_decision_tooltip = MZB_set_up_patrols
+			unlock_decision_tooltip = MZB_reduce_patrols
+
+            country_event = { 
+				id = MZB_FOCUS.18
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_building_a_stockpile
+		icon = GFX_MZB_building_a_stockpile
+		cost = 4
+		prerequisite = {
+			focus = MZB_arms_for_aryans
+		}
+		x = 9
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_building_a_stockpile"
+			add_timed_idea = {
+                idea = MZB_Filling_The_Stores
+                days = 90
+			}
+			unlock_decision_tooltip = MZB_chemicals_for_guns
+
+            country_event = { 
+				id = MZB_FOCUS.19
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_prioritize_garrison_development
+		icon = GFX_MZB_Prioritize_Garrison_Development
+		cost = 4
+		prerequisite = {
+			focus = MZB_building_a_stockpile
+		}
+		mutually_exclusive = {
+			focus = MZB_prioritize_ss_development
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_prioritize_garrison_development"
+			add_tech_bonus = {
+                bonus = 0.3
+                uses = 2
+                category = infantry_weapons
+            }
+			add_tech_bonus = {
+                bonus = 0.2
+                uses = 2
+                category = engineers_tech
+            }
+			add_tech_bonus = {
+                bonus = 0.5
+                uses = 1
+                category = artillery
+            }
+
+            country_event = { 
+				id = MZB_FOCUS.20
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_prioritize_ss_development
+		icon = GFX_MZB_Prioritize_SS_Development
+		cost = 4
+		prerequisite = {
+			focus = MZB_building_a_stockpile
+		}
+		mutually_exclusive = {
+			focus = MZB_prioritize_garrison_development
+		}
+		x = 10
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_prioritize_ss_development"
+			add_tech_bonus = {
+                bonus = 0.3
+                uses = 1
+                category = infantry_weapons
+            }
+			add_tech_bonus = {
+                bonus = 0.4
+                uses = 1
+                category = motorized_equipment
+            }
+			if = {
+                limit = {
+                    NOT = {
+					    has_tech = MBT_1950
+					}
+                }   
+                add_tech_bonus = {
+                    bonus = 0.3
+                    uses = 1
+                    category = MBT
+                }
+            }
+			if = {
+                limit = {
+					has_tech = MBT_1950			
+                }   
+                add_tech_bonus = {
+                    bonus = 0.3
+                    uses = 1
+                    category = armor_improvements
+                }
+				add_tech_bonus = {
+                    bonus = 0.3
+                    uses = 1
+                    category = turret_improvements
+                }
+            }
+			add_tech_bonus = {
+                bonus = 0.2
+                uses = 1
+                category = military_police_tech
+			}
+			unlock_decision_tooltip = MZB_make_examples_of_degenerate_ss
+
+            country_event = { 
+				id = MZB_FOCUS.21
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_prepare_the_werewolves
+		icon = GFX_MZB_ss_werewolves
+		cost = 4
+		prerequisite = {
+			focus = MZB_master_the_jungle
+			focus = MZB_master_the_desert
+		}
+		prerequisite = {
+			focus = MZB_kick_the_hornets_nest
+		}
+		prerequisite = {
+			focus = MZB_prioritize_garrison_development
+			focus = MZB_prioritize_ss_development
+		}
+		x = 6
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_prepare_the_werewolves"
+			custom_effect_tooltip = MZB_prepare_the_werewolves_tt
+
+			country_event = { 
+				id = MZB_FOCUS.22
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_clean_the_colony
+		icon = GFX_CAU_stomp_on_partisans
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_guardians_of_afrika
+		}
+		x = 15
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_clean_the_colony"
+			add_stability = 0.1
+
+			country_event = { 
+				id = MZB_FOCUS.23
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_the_ring_of_fire
+		icon = GFX_MZB_Ring_of_Fire
+		cost = 4
+		prerequisite = {
+			focus = MZB_clean_the_colony
+		}
+		x = 13
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_ring_of_fire"
+			add_war_support = 0.15
+			add_command_power = 50
+			
+			country_event = { 
+				id = MZB_FOCUS.24
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_your_enemies_are_our_enemies
+		icon = GFX_MZB_Your_Enemies_Are_Our_Enemies
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_ring_of_fire
+		}
+		x = 12
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_your_enemies_are_our_enemies"
+			add_political_power = 100
+			add_manpower = -500
+
+			country_event = { 
+				id = MZB_FOCUS.25
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_expand_the_mines
+		icon = GFX_goal_COG_icon_blood_diamonds
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_ring_of_fire
+		}
+		x = 14
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_expand_the_mines"
+			1061 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			1082 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			country_event = { 
+				id = MZB_FOCUS.26
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_a_hundred_for_one
+		icon = GFX_MZB_A_Hundred_for_One
+		cost = 4
+		prerequisite = {
+			focus = MZB_your_enemies_are_our_enemies
+		}
+		prerequisite = {
+			focus = MZB_expand_the_mines
+		}
+		x = 13
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_a_hundred_for_one"
+			add_timed_idea = {
+			    idea = MZB_idea_a_hundred_for_one
+			    days = 730
+			}
+			
+			country_event = { 
+				id = MZB_FOCUS.27
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_reinforce_the_anglos
+		icon = GFX_MZB_reinforce_the_anglos
+		cost = 4
+		prerequisite = {
+			focus = MZB_a_hundred_for_one
+		}
+		x = 12
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_reinforce_the_anglos"
+			add_stability = 0.1
+			if = {
+                limit = {
+					1062 = {
+                        is_demilitarized_zone = yes
+                    }				
+                }
+                1062 = {
+				    set_demilitarized_zone = no
+				}			
+            }
+			if = {
+                limit = {
+					881 = {
+                        is_demilitarized_zone = yes
+                    }				
+                }
+                881 = {
+				    set_demilitarized_zone = no
+				}			
+            }
+			if = {
+                limit = {
+					1064 = {
+                        is_demilitarized_zone = yes
+                    }				
+                }
+                1064 = {
+				    set_demilitarized_zone = no
+				}			
+            }
+			if = {
+                limit = {
+					1065 = {
+                        is_demilitarized_zone = yes
+                    }				
+                }
+                1065 = {
+				    set_demilitarized_zone = no
+				}			
+            }
+
+            country_event = { 
+				id = MZB_FOCUS.28
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_the_bogeyman
+		icon = GFX_IRQ_Someone_Else
+		cost = 4
+		prerequisite = {
+			focus = MZB_a_hundred_for_one
+		}
+		x = 14
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_bogeyman"
+			add_political_power = 50
+			
+			country_event = { 
+				id = MZB_FOCUS.29
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_the_preikschat_schlicke_initiative
+		icon = GFX_IBR_paperwork
+		cost = 4
+		prerequisite = {
+			focus = MZB_clean_the_colony
+		}
+		x = 17
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_preikschat_schlicke_initiative"
+			add_ideas = MZB_preikschat_schlicke_initiative_0
+			
+			country_event = { 
+				id = MZB_FOCUS.7 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_colonial_rewards_program
+		icon = GFX_USA_silver_act
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_preikschat_schlicke_initiative
+		}
+		x = 16
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_colonial_rewards_program"
+			add_political_power = -50
+			add_stability = 0.1
+			
+			country_event = { 
+				id = MZB_FOCUS.8 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_colonial_information_stations
+		icon = GFX_MZB_Colonial_information_stations
+		cost = 4
+		prerequisite = {
+			focus = MZB_colonial_rewards_program
+		}
+		x = 16
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_colonial_information_stations"
+			add_political_power = -50
+			add_stability = 0.1
+			
+			country_event = { 
+				id = MZB_FOCUS.9 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_cctv
+		icon = GFX_MZB_icon_cctv
+		cost = 4
+		prerequisite = {
+			focus = MZB_the_preikschat_schlicke_initiative
+		}
+		x = 18
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_cctv"
+			swap_ideas = {
+			    remove_idea = MZB_preikschat_schlicke_initiative_0
+			    add_idea = MZB_preikschat_schlicke_initiative_1
+			}
+
+			country_event = { 
+				id = MZB_FOCUS.10 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_get_your_free_tvs
+		icon = GFX_MZB_get_your_free_tvs
+		cost = 4
+		prerequisite = {
+			focus = MZB_cctv
+		}
+		x = 18
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_get_your_free_tvs"
+			swap_ideas = {
+			    remove_idea = MZB_preikschat_schlicke_initiative_1
+			    add_idea = MZB_preikschat_schlicke_initiative_2
+			}
+
+			country_event = { 
+				id = MZB_FOCUS.11 
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_be_happy_or_else
+		icon = GFX_goal_MZB_icon_be_happy_or_else
+		cost = 4
+		prerequisite = {
+			focus = MZB_colonial_information_stations
+		}
+		prerequisite = {
+			focus = MZB_get_your_free_tvs
+		}
+		x = 17
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_be_happy_or_else"
+			add_political_power = -50
+			add_stability = 0.1
+
+			country_event = { 
+				id = MZB_FOCUS.12 
+				days = 1
+			}
+		}
+	}
+	
+	#shared_focus = {
+	#	id = MZB_send_the_signal
+	#	icon = GFX_USA_The_Juciest_Blackmail
+	#	cost = 4
+	#	prerequisite = {
+	#		focus = MZB_prepare_the_werewolves
+	#	}
+	#	prerequisite = {
+	#		focus = MZB_reinforce_the_anglos
+	#	}
+	#	prerequisite = {
+	#		focus = MZB_the_bogeyman
+	#	}
+	#	prerequisite = {
+	#		focus = MZB_be_happy_or_else
+	#	}
+	#	x = 11
+	#	y = 6
+	#	completion_reward = {
+	#		log = "[GetDateText]: [Root.GetName]: Focus MZB_send_the_signal"
+	#		
+	#	}
+	#}
+	
+	### Huttig SAF War Tree ###
+	
+	shared_focus = {
+		id = MZB_now_it_begins
+		icon = GFX_MZB_So_It_Begins
+		cost = 1
+		allow_branch = {
+		    has_country_leader = {
+                name = "Hans Hüttig"
+                ruling_only = yes
+            }
+	    }
+		x = 7
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_now_it_begins"
+			add_dynamic_modifier = {
+				modifier = MZB_the_drums_of_war
+			}
+			add_to_variable = {
+				var = MZB_drums_attack
+				value = 0.05
+			}
+			custom_effect_tooltip = MZB_drums_initial_tt
+			country_event = { 
+				id = MZB_FOCUS.30
+				days = 1
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_the_schild_united
+		icon = GFX_MZB_the_schild_united
+		cost = 6
+		prerequisite = {
+			focus = MZB_now_it_begins
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_the_schild_united"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_factory
+				value = 0.05
+			}
+			hidden_effect = {
+				add_stability = 0.05
+				COG = {
+					add_stability = 0.05
+				}
+				ANG = {
+					add_stability = 0.05
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_assist_their_generals
+		icon = GFX_MZB_Assist_their_Generals
+		cost = 6
+		prerequisite = {
+			focus = MZB_the_schild_united
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_assist_their_generals"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_org
+				value = 5
+			}
+			army_experience = 10
+			add_tech_bonus = {
+                bonus = 0.3
+                uses = 1
+                category = land_doctrine
+            }
+			ANG = {
+			    country_event = {
+                    id = MZB.14
+                    days = 1
+                }
+			}
+			COG = {
+			    country_event = {
+                    id = MZB.14
+                    days = 1
+                }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_assist_their_industries
+		icon = GFX_Generic_Industry
+		cost = 6
+		prerequisite = {
+			focus = MZB_the_schild_united
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_assist_their_industries"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_factory
+				value = 0.05
+			}
+			ANG = {
+			    country_event = {
+                    id = MZB.11
+                    days = 1
+                }
+			}
+			COG = {
+			    country_event = {
+                    id = MZB.11
+                    days = 1
+                }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_oberkommando_der_afrika
+		icon = GFX_MZB_Oberkommando_Afrika
+		cost = 6
+		prerequisite = {
+			focus = MZB_assist_their_generals
+		}
+		prerequisite = {
+			focus = MZB_assist_their_industries
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_oberkommando_der_afrika"
+			add_ideas = MZB_Oberkommando_Der_Afrika_Idea
+			COG = {
+			    country_event = {
+                    id = MZB.8
+                    days = 1
+                }
+			}
+			ANG = {
+			    country_event = {
+                    id = MZB.8
+                    days = 1
+                }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_protect_schencks_jets
+		icon = GFX_MZB_Protect_Schencks_Jets
+		cost = 6
+		prerequisite = {
+			focus = MZB_oberkommando_der_afrika
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_protect_schencks_jets"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_air_damage
+				value = -0.05
+			}
+			add_tech_bonus = {
+                bonus = 0.25
+                uses = 1
+                category = artillery
+            }
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_pay_mullers_men
+		icon = GFX_MZB_pay_mullers_men
+		cost = 6
+		prerequisite = {
+			focus = MZB_oberkommando_der_afrika
+		}
+		x = 4
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_pay_mullers_men"
+			add_to_variable = { misc_costs = 1 }
+			add_ideas = COG_Soldiers_Of_Fortune
+			custom_effect_tooltip = MZB_pay_muellers_men_tooltip
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_development_triad
+		icon = GFX_MZB_Development_Triad
+		cost = 6
+		prerequisite = {
+			focus = MZB_protect_schencks_jets
+		}
+		prerequisite = {
+			focus = MZB_pay_mullers_men
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_development_triad"
+			add_to_tech_sharing_group = afrika_schild_tech_group
+			COG = {
+			    add_to_tech_sharing_group = afrika_schild_tech_group
+			}
+			ANG = {
+			    add_to_tech_sharing_group = afrika_schild_tech_group
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_supply_the_boers
+		icon = GFX_MZB_supply_the_boers
+		cost = 6
+		prerequisite = {
+			focus = MZB_the_schild_united
+			focus = MZB_mobilize_ostafrika
+		}
+		x = 7
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_supply_the_boers"
+			custom_effect_tooltip = MZB_supply_the_boers_tooltip
+			set_country_flag = MZB_supplying_the_boers
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_develop_boer_industries
+		icon = GFX_MZB_Develop_Boer_Industries
+		cost = 6
+		prerequisite = {
+			focus = MZB_supply_the_boers
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_develop_boer_industries"
+			BOR = {
+			    country_event = {
+                    id = MZB.12
+                    days = 1
+                }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_rigged_to_blow
+		icon = GFX_MAD_the_grenadiers_plot
+		cost = 6
+		prerequisite = {
+			focus = MZB_develop_boer_industries
+		}
+		x = 6
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_rigged_to_blow"
+			set_country_flag = MZB_Boer_factories_rigged
+			custom_effect_tooltip = MZB_rigged_to_blow_tooltip
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_boers_for_the_boerstadt
+		icon = GFX_MZB_Boers_For_The_Boerstadt
+		cost = 6
+		prerequisite = {
+			focus = MZB_supply_the_boers
+		}
+		x = 8
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_boers_for_the_boerstadt"
+			BOR = {
+			    country_event = {
+                    id = MZB.13
+                    days = 1
+                }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_take_their_prisoners
+		icon = GFX_TNO_generic_prison_camp
+		cost = 6
+		prerequisite = {
+			focus = MZB_boers_for_the_boerstadt
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_take_their_prisoners"
+			add_to_variable = { misc_income = 1 }
+			custom_effect_tooltip = MZB_take_their_prisoners_tooltip
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_insurgency_training
+		icon = GFX_MZB_Insurgency_Training
+		cost = 6
+		prerequisite = {
+			focus = MZB_rigged_to_blow
+		}
+		prerequisite = {
+			focus = MZB_take_their_prisoners
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_insurgency_training"
+			BOR = {
+				add_ideas = MZB_Insurgency_Training
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_mobilize_ostafrika
+		icon = GFX_MZB_Mobilize_Ostafrika
+		cost = 6
+		prerequisite = {
+			focus = MZB_now_it_begins
+		}
+		x = 11
+		y = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_mobilize_ostafrika"
+			add_ideas = tno_economic_focus_war_economy
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_skim_the_cream
+		icon = GFX_MZB_skim_the_cream
+		cost = 6
+		prerequisite = {
+			focus = MZB_mobilize_ostafrika
+		}
+		x = 10
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_skim_the_cream"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_factory
+				value = 0.05
+			}
+			subtract_from_variable = { misc_costs = 5 }
+			custom_effect_tooltip = MZB_skim_the_cream_tooltip
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_pipeline_to_zanzibar
+		icon = GFX_MZB_Pipeline_to_Zanzibar
+		cost = 6
+		prerequisite = {
+			focus = MZB_mobilize_ostafrika
+		}
+		x = 12
+		y = 2
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_pipeline_to_zanzibar"
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 544
+				   }
+				}
+			    544 = {
+			        add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 1071
+				   }
+				}
+			    1071 = {
+			        add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 1072
+				   }
+				}
+			    1072 = {
+			        add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 546
+				   }
+				}
+			    546 = {
+			        add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 1078
+				   }
+				}
+			    1078 = {
+			        add_building_construction = {
+					    type = infrastructure
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_defense_industry_development
+		icon = GFX_OST_Military_Industry_Development
+		cost = 6
+		prerequisite = {
+			focus = MZB_skim_the_cream
+		}
+		prerequisite = {
+			focus = MZB_pipeline_to_zanzibar
+		}
+		x = 11
+		y = 3
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_defense_industry_development"
+			if = {
+			    limit = {
+				   MZB = {
+				       controls_state = 544
+				   }
+				}
+			    544 = {
+				    add_extra_state_shared_building_slots = 1
+			        add_building_construction = {
+					    type = arms_factory
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+				1082 = {
+				    add_extra_state_shared_building_slots = 1
+			        add_building_construction = {
+					    type = arms_factory
+					    level = 1
+					    instant_build = yes
+				    }
+			    }
+			}
+			if = {
+			    limit = {
+				   NOT = {
+				       MZB = {
+				           controls_state = 544
+				       }
+				   }
+				}
+				1082 = {
+				    add_extra_state_shared_building_slots = 2
+			        add_building_construction = {
+					    type = arms_factory
+					    level = 2
+					    instant_build = yes
+				    }
+			    }
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_conscript_the_tribes
+		icon = GFX_MZB_conscript_the_tribes
+		cost = 6
+		prerequisite = {
+			focus = MZB_defense_industry_development
+		}
+		x = 10
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_conscript_the_tribes"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			add_to_variable = {
+				var = MZB_drums_training_time
+				value = -0.05
+			}
+			add_ideas = MZB_Tribal_Recruitment
+			
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_unified_holdouts
+		icon = GFX_MZB_Unified_Holdouts
+		cost = 6
+		prerequisite = {
+			focus = MZB_defense_industry_development
+		}
+		x = 12
+		y = 4
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_unified_holdouts"
+			custom_effect_tooltip = MZB_unified_holdouts_tooltip
+			set_country_flag = MZB_unified_holdout_program
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_simplify_arms_production
+		icon = GFX_MZB_Simplify_Arms_Production
+		cost = 6
+		prerequisite = {
+			focus = MZB_conscript_the_tribes
+		}
+		prerequisite = {
+			focus = MZB_unified_holdouts
+		}
+		x = 11
+		y = 5
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_simplify_arms_production"
+			add_ideas = MZB_Simplified_Arms_Production_Idea
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_everyone_is_fucking_useless
+		icon = GFX_JAP_cooler_heads
+		cost = 6
+		prerequisite = {
+			focus = MZB_development_triad
+		}
+		prerequisite = {
+			focus = MZB_insurgency_training
+		}
+		prerequisite = {
+			focus = MZB_simplify_arms_production
+		}
+		x = 7
+		y = 6
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_everyone_is_fucking_useless"
+			add_political_power = 25
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			hidden_effect = {
+				country_event = { 
+					id = MZB_FOCUS.31
+					days = 1
+				}
+			}
+			add_to_variable = {
+				var = MZB_drums_defense
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MZB_drums_attack
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MZB_drums_ai
+				value = 0.25
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_burn_them_all
+		icon = GFX_ITA_Run_over_the_Barricades
+		cost = 6
+		prerequisite = {
+			focus = MZB_everyone_is_fucking_useless
+		}
+		x = 6
+		y = 7
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_burn_them_all"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			hidden_effect = {
+				country_event = { 
+					id = MZB_FOCUS.32
+					days = 1
+				}
+			}
+			add_to_variable = {
+				var = MZB_drums_attack
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MZB_drums_ai
+				value = 0.25
+			}
+			SAF = {
+				add_ideas = MZB_Burn_Them_All
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_kindersoldaten
+		icon = GFX_goal_MZB_icon_kindersoldaten
+		cost = 6
+		prerequisite = {
+			focus = MZB_everyone_is_fucking_useless
+		}
+		x = 8
+		y = 7
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_kindersoldaten"
+			custom_effect_tooltip = MZB_drums_empowered_tt
+			hidden_effect = {
+				country_event = { 
+					id = MZB_FOCUS.33
+					days = 1
+				}
+			}
+			add_to_variable = {
+				var = MZB_MZB_drums_training_time
+				value = -0.05
+			}
+			swap_ideas = {
+                remove_idea = MZB_Tribal_Recruitment
+                add_idea = MZB_Kindersoldaten_Idea
+            }
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_let_them_know_true_fear
+		icon = GFX_MZB_let_them_know_true_fear
+		cost = 6
+		prerequisite = {
+			focus = MZB_burn_them_all
+		}
+		prerequisite = {
+			focus = MZB_kindersoldaten
+		}
+		x = 7
+		y = 8
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_let_them_know_true_fear"
+			custom_effect_tooltip = MZB_gas_attacks_tt
+			hidden_effect = {
+				country_event = { 
+					id = MZB_FOCUS.34
+					days = 1
+				}
+			}
+			add_timed_idea = {
+				idea = MZB_gas_gas_gas
+				days = 28
+			}
+			SAF = {
+				add_stability = -0.10
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_brudermord
+		icon = GFX_goal_MZB_icon_brudermord
+		cost = 6
+		prerequisite = {
+			focus = MZB_let_them_know_true_fear
+		}
+		mutually_exclusive = {
+			focus = MZB_reinige_den_suden
+		}
+		x = 6
+		y = 9
+		completion_reward = {
+			custom_effect_tooltip = MZB_brudermord_tt
+			
+			country_event = {
+				id = MZB_FOCUS.36
+				days = 1
+			}
+			remove_dynamic_modifier = {
+				modifier = MZB_the_drums_of_war
+			}
+			hidden_effect = {
+				set_global_flag = MZB_brudermord
+				COG = {
+					country_event = {
+						id = MZB_FOCUS.36
+						days = 1
+					}
+					every_owned_state = { 
+						add_core_of = MZB
+					}
+				}
+				ANG = {
+					country_event = {
+						id = MZB_FOCUS.36
+						days = 1
+					}
+					every_owned_state = { 
+						add_core_of = MZB
+					}
+				}
+				MZB = {
+					country_event = {
+						id = SAFWAR.23
+						days = 2
+					}
+				}
+			}
+		}
+	}
+	
+	shared_focus = {
+		id = MZB_reinige_den_suden
+		icon = GFX_goal_MZB_icon_reinige_den_suden
+		cost = 6
+		prerequisite = {
+			focus = MZB_let_them_know_true_fear
+		}
+		mutually_exclusive = {
+			focus = MZB_brudermord
+		}
+		x = 8
+		y = 9
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus MZB_reinige_den_suden"
+			custom_effect_tooltip = MZB_reinige_den_suden_tt
+			remove_dynamic_modifier = {
+				modifier = MZB_the_drums_of_war
+			}
+			hidden_effect = {
+				country_event = { 
+					id = MZB_FOCUS.35
+					days = 1
+				}
+				MZB = {
+					swap_ideas = {
+						remove_idea = MZB_gas_gas_gas
+						add_idea = MZB_hell_on_earth_self
+					}
+				}
+				SAF = {
+					add_ideas = MZB_hell_on_earth_others
+				}
+			}	
+		}
+	}
